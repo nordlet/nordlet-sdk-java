@@ -39,6 +39,10 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
 
   private final String quantity;
 
+  private final String unitFactor;
+
+  private final String baseQuantity;
+
   private final Optional<String> unitPriceExclVat;
 
   private final Optional<String> unitPriceInclVat;
@@ -57,6 +61,10 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
 
   private final Optional<String> deferralEndDate;
 
+  private final Optional<String> lotNumber;
+
+  private final Optional<String> expiryDate;
+
   private final String lineNet;
 
   private final String lineVat;
@@ -68,16 +76,20 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private DocumentsConfirmCaptureResponseInvoiceLinesItem(String id, Optional<String> itemId,
-      String description, String unit, String quantity, Optional<String> unitPriceExclVat,
-      Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
-      Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
-      Optional<String> deferralStartDate, Optional<String> deferralEndDate, String lineNet,
-      String lineVat, String lineGross, long sortOrder, Map<String, Object> additionalProperties) {
+      String description, String unit, String quantity, String unitFactor, String baseQuantity,
+      Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat, String vatRatePercent,
+      Optional<String> vatClassifierCode, Optional<String> costCenterId, Optional<String> projectId,
+      Optional<String> accountCode, Optional<String> deferralStartDate,
+      Optional<String> deferralEndDate, Optional<String> lotNumber, Optional<String> expiryDate,
+      String lineNet, String lineVat, String lineGross, long sortOrder,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
     this.quantity = quantity;
+    this.unitFactor = unitFactor;
+    this.baseQuantity = baseQuantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.unitPriceInclVat = unitPriceInclVat;
     this.vatRatePercent = vatRatePercent;
@@ -87,6 +99,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     this.accountCode = accountCode;
     this.deferralStartDate = deferralStartDate;
     this.deferralEndDate = deferralEndDate;
+    this.lotNumber = lotNumber;
+    this.expiryDate = expiryDate;
     this.lineNet = lineNet;
     this.lineVat = lineVat;
     this.lineGross = lineGross;
@@ -120,6 +134,16 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("unitFactor")
+  public String getUnitFactor() {
+    return unitFactor;
+  }
+
+  @JsonProperty("baseQuantity")
+  public String getBaseQuantity() {
+    return baseQuantity;
   }
 
   @JsonIgnore
@@ -189,6 +213,22 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
       return Optional.empty();
     }
     return deferralEndDate;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLotNumber() {
+    if (lotNumber == null) {
+      return Optional.empty();
+    }
+    return lotNumber;
+  }
+
+  @JsonIgnore
+  public Optional<String> getExpiryDate() {
+    if (expiryDate == null) {
+      return Optional.empty();
+    }
+    return expiryDate;
   }
 
   @JsonProperty("lineNet")
@@ -292,6 +332,24 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     return deferralEndDate;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lotNumber")
+  private Optional<String> _getLotNumber() {
+    return lotNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("expiryDate")
+  private Optional<String> _getExpiryDate() {
+    return expiryDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -304,12 +362,12 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureResponseInvoiceLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
   }
 
   @java.lang.Override
@@ -336,7 +394,15 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
   }
 
   public interface QuantityStage {
-    VatRatePercentStage quantity(@NotNull String quantity);
+    UnitFactorStage quantity(@NotNull String quantity);
+  }
+
+  public interface UnitFactorStage {
+    BaseQuantityStage unitFactor(@NotNull String unitFactor);
+  }
+
+  public interface BaseQuantityStage {
+    VatRatePercentStage baseQuantity(@NotNull String baseQuantity);
   }
 
   public interface VatRatePercentStage {
@@ -419,12 +485,24 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     _FinalStage deferralEndDate(String deferralEndDate);
 
     _FinalStage deferralEndDate(Nullable<String> deferralEndDate);
+
+    _FinalStage lotNumber(Optional<String> lotNumber);
+
+    _FinalStage lotNumber(String lotNumber);
+
+    _FinalStage lotNumber(Nullable<String> lotNumber);
+
+    _FinalStage expiryDate(Optional<String> expiryDate);
+
+    _FinalStage expiryDate(String expiryDate);
+
+    _FinalStage expiryDate(Nullable<String> expiryDate);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, UnitFactorStage, BaseQuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, _FinalStage {
     private String id;
 
     private String description;
@@ -432,6 +510,10 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     private String unit;
 
     private String quantity;
+
+    private String unitFactor;
+
+    private String baseQuantity;
 
     private String vatRatePercent;
 
@@ -442,6 +524,10 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     private String lineGross;
 
     private long sortOrder;
+
+    private Optional<String> expiryDate = Optional.empty();
+
+    private Optional<String> lotNumber = Optional.empty();
 
     private Optional<String> deferralEndDate = Optional.empty();
 
@@ -474,6 +560,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
       description(other.getDescription());
       unit(other.getUnit());
       quantity(other.getQuantity());
+      unitFactor(other.getUnitFactor());
+      baseQuantity(other.getBaseQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       unitPriceInclVat(other.getUnitPriceInclVat());
       vatRatePercent(other.getVatRatePercent());
@@ -483,6 +571,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
       accountCode(other.getAccountCode());
       deferralStartDate(other.getDeferralStartDate());
       deferralEndDate(other.getDeferralEndDate());
+      lotNumber(other.getLotNumber());
+      expiryDate(other.getExpiryDate());
       lineNet(other.getLineNet());
       lineVat(other.getLineVat());
       lineGross(other.getLineGross());
@@ -513,8 +603,22 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public VatRatePercentStage quantity(@NotNull String quantity) {
+    public UnitFactorStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("unitFactor")
+    public BaseQuantityStage unitFactor(@NotNull String unitFactor) {
+      this.unitFactor = Objects.requireNonNull(unitFactor, "unitFactor must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseQuantity")
+    public VatRatePercentStage baseQuantity(@NotNull String baseQuantity) {
+      this.baseQuantity = Objects.requireNonNull(baseQuantity, "baseQuantity must not be null");
       return this;
     }
 
@@ -550,6 +654,66 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
     @JsonSetter("sortOrder")
     public _FinalStage sortOrder(long sortOrder) {
       this.sortOrder = sortOrder;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiryDate(Nullable<String> expiryDate) {
+      if (expiryDate.isNull()) {
+        this.expiryDate = null;
+      }
+      else if (expiryDate.isEmpty()) {
+        this.expiryDate = Optional.empty();
+      }
+      else {
+        this.expiryDate = Optional.of(expiryDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiryDate(String expiryDate) {
+      this.expiryDate = Optional.ofNullable(expiryDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiryDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiryDate(Optional<String> expiryDate) {
+      this.expiryDate = expiryDate;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lotNumber(Nullable<String> lotNumber) {
+      if (lotNumber.isNull()) {
+        this.lotNumber = null;
+      }
+      else if (lotNumber.isEmpty()) {
+        this.lotNumber = Optional.empty();
+      }
+      else {
+        this.lotNumber = Optional.of(lotNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
       return this;
     }
 
@@ -825,7 +989,7 @@ public final class DocumentsConfirmCaptureResponseInvoiceLinesItem {
 
     @java.lang.Override
     public DocumentsConfirmCaptureResponseInvoiceLinesItem build() {
-      return new DocumentsConfirmCaptureResponseInvoiceLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new DocumentsConfirmCaptureResponseInvoiceLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

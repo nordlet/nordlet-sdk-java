@@ -51,6 +51,10 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
 
   private final Optional<String> deferralEndDate;
 
+  private final Optional<String> lotNumber;
+
+  private final Optional<String> expiryDate;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesUpdatePurchasesRequestLinesItem(Optional<String> itemId,
@@ -60,6 +64,7 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
       Optional<String> deferralStartDate, Optional<String> deferralEndDate,
+      Optional<String> lotNumber, Optional<String> expiryDate,
       Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
@@ -74,6 +79,8 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
     this.accountCode = accountCode;
     this.deferralStartDate = deferralStartDate;
     this.deferralEndDate = deferralEndDate;
+    this.lotNumber = lotNumber;
+    this.expiryDate = expiryDate;
     this.additionalProperties = additionalProperties;
   }
 
@@ -142,6 +149,16 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
     return deferralEndDate;
   }
 
+  @JsonProperty("lotNumber")
+  public Optional<String> getLotNumber() {
+    return lotNumber;
+  }
+
+  @JsonProperty("expiryDate")
+  public Optional<String> getExpiryDate() {
+    return expiryDate;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -154,12 +171,12 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
   }
 
   private boolean equalTo(InvoicesUpdatePurchasesRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate);
   }
 
   @java.lang.Override
@@ -201,6 +218,10 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
 
     private Optional<String> deferralEndDate = Optional.empty();
 
+    private Optional<String> lotNumber = Optional.empty();
+
+    private Optional<String> expiryDate = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -221,6 +242,8 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
       accountCode(other.getAccountCode());
       deferralStartDate(other.getDeferralStartDate());
       deferralEndDate(other.getDeferralEndDate());
+      lotNumber(other.getLotNumber());
+      expiryDate(other.getExpiryDate());
       return this;
     }
 
@@ -406,8 +429,36 @@ public final class InvoicesUpdatePurchasesRequestLinesItem {
       return this;
     }
 
+    @JsonSetter(
+        value = "lotNumber",
+        nulls = Nulls.SKIP
+    )
+    public Builder lotNumber(Optional<String> lotNumber) {
+      this.lotNumber = lotNumber;
+      return this;
+    }
+
+    public Builder lotNumber(String lotNumber) {
+      this.lotNumber = Optional.ofNullable(lotNumber);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "expiryDate",
+        nulls = Nulls.SKIP
+    )
+    public Builder expiryDate(Optional<String> expiryDate) {
+      this.expiryDate = expiryDate;
+      return this;
+    }
+
+    public Builder expiryDate(String expiryDate) {
+      this.expiryDate = Optional.ofNullable(expiryDate);
+      return this;
+    }
+
     public InvoicesUpdatePurchasesRequestLinesItem build() {
-      return new InvoicesUpdatePurchasesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, additionalProperties);
+      return new InvoicesUpdatePurchasesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

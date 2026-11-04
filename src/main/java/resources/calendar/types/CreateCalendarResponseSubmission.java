@@ -79,6 +79,8 @@ public final class CreateCalendarResponseSubmission {
 
   private final Optional<String> deliveryError;
 
+  private final boolean confirmationPending;
+
   private final Optional<String> sentSha256;
 
   private final Optional<String> certificateFingerprint;
@@ -103,9 +105,9 @@ public final class CreateCalendarResponseSubmission {
       Optional<OffsetDateTime> submittedAt, Optional<OffsetDateTime> acceptedAt,
       Optional<OffsetDateTime> rejectedAt, Optional<OffsetDateTime> checkedAt,
       Optional<OffsetDateTime> nextCheckAt, long attempts, Optional<String> deliveryError,
-      Optional<String> sentSha256, Optional<String> certificateFingerprint,
-      Optional<String> submittedByActorType, Optional<String> submittedByActorId,
-      OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      boolean confirmationPending, Optional<String> sentSha256,
+      Optional<String> certificateFingerprint, Optional<String> submittedByActorType,
+      Optional<String> submittedByActorId, OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.obligation = obligation;
@@ -131,6 +133,7 @@ public final class CreateCalendarResponseSubmission {
     this.nextCheckAt = nextCheckAt;
     this.attempts = attempts;
     this.deliveryError = deliveryError;
+    this.confirmationPending = confirmationPending;
     this.sentSha256 = sentSha256;
     this.certificateFingerprint = certificateFingerprint;
     this.submittedByActorType = submittedByActorType;
@@ -306,6 +309,11 @@ public final class CreateCalendarResponseSubmission {
       return Optional.empty();
     }
     return deliveryError;
+  }
+
+  @JsonProperty("confirmationPending")
+  public boolean getConfirmationPending() {
+    return confirmationPending;
   }
 
   @JsonIgnore
@@ -542,12 +550,12 @@ public final class CreateCalendarResponseSubmission {
   }
 
   private boolean equalTo(CreateCalendarResponseSubmission other) {
-    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -590,7 +598,11 @@ public final class CreateCalendarResponseSubmission {
   }
 
   public interface AttemptsStage {
-    CreatedAtStage attempts(long attempts);
+    ConfirmationPendingStage attempts(long attempts);
+  }
+
+  public interface ConfirmationPendingStage {
+    CreatedAtStage confirmationPending(boolean confirmationPending);
   }
 
   public interface CreatedAtStage {
@@ -732,7 +744,7 @@ public final class CreateCalendarResponseSubmission {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, ConfirmationPendingStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String obligation;
@@ -748,6 +760,8 @@ public final class CreateCalendarResponseSubmission {
     private String origin;
 
     private long attempts;
+
+    private boolean confirmationPending;
 
     private OffsetDateTime createdAt;
 
@@ -825,6 +839,7 @@ public final class CreateCalendarResponseSubmission {
       nextCheckAt(other.getNextCheckAt());
       attempts(other.getAttempts());
       deliveryError(other.getDeliveryError());
+      confirmationPending(other.getConfirmationPending());
       sentSha256(other.getSentSha256());
       certificateFingerprint(other.getCertificateFingerprint());
       submittedByActorType(other.getSubmittedByActorType());
@@ -885,8 +900,15 @@ public final class CreateCalendarResponseSubmission {
 
     @java.lang.Override
     @JsonSetter("attempts")
-    public CreatedAtStage attempts(long attempts) {
+    public ConfirmationPendingStage attempts(long attempts) {
       this.attempts = attempts;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("confirmationPending")
+    public CreatedAtStage confirmationPending(boolean confirmationPending) {
+      this.confirmationPending = confirmationPending;
       return this;
     }
 
@@ -1508,7 +1530,7 @@ public final class CreateCalendarResponseSubmission {
 
     @java.lang.Override
     public CreateCalendarResponseSubmission build() {
-      return new CreateCalendarResponseSubmission(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, additionalProperties);
+      return new CreateCalendarResponseSubmission(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

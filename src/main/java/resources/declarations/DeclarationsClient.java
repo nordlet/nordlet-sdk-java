@@ -89,6 +89,7 @@ import com.nordlet.api.resources.declarations.requests.PlZusDraPdfDeclarationsRe
 import com.nordlet.api.resources.declarations.requests.RoEtransportBuildDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.RoEtransportStatusDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.RoEtransportSubmitDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsConfirmDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsCreateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsMarkDeclarationsRequest;
@@ -184,6 +185,7 @@ import com.nordlet.api.resources.declarations.types.PlZusDraPdfDeclarationsRespo
 import com.nordlet.api.resources.declarations.types.RoEtransportBuildDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.RoEtransportStatusDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.RoEtransportSubmitDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsConfirmDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsCreateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsMarkDeclarationsResponse;
@@ -357,14 +359,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+   * Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. <code>corrections</code> carries corrected values per waybill: <code>consigneePartnerId</code>, <code>unloadAddress</code>, <code>vehiclePlate</code>, <code>trailerPlate</code>, <code>driverName</code>, <code>driverSurname</code> (the last three can be cleared with null) and line <code>quantity</code> by line id; the message carries the waybill with them applied, and with <code>persist</code> they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in <code>waybillIds</code>, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
    */
   public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request) {
     return this.rawClient.ltIvazAmend(request).body();
   }
 
   /**
-   * Builds an i.VAZ amendment message for up to 100 issued waybills, carrying their current data as TransportDocumentAmendment elements. Answers 422 when the registration code of the company is not numeric or when a waybill is not issued. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
+   * Builds an i.VAZ amendment message for up to 100 issued waybills as TransportDocumentAmendment elements. <code>corrections</code> carries corrected values per waybill: <code>consigneePartnerId</code>, <code>unloadAddress</code>, <code>vehiclePlate</code>, <code>trailerPlate</code>, <code>driverName</code>, <code>driverSurname</code> (the last three can be cleared with null) and line <code>quantity</code> by line id; the message carries the waybill with them applied, and with <code>persist</code> they are also stored on the waybill. Answers 422 when the registration code of the company is not numeric, when a waybill is not issued, or when a correction names a waybill not in <code>waybillIds</code>, a waybill twice, a line not on its waybill or a consignee partner the company does not have. With <code>persist</code>, the file is stored and a submission for <code>lt-ivaz-amendment</code> is created.
    */
   public LtIvazAmendDeclarationsResponse ltIvazAmend(LtIvazAmendDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -1502,7 +1504,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+   * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
    */
   public PlCit8GenerateDeclarationsResponse plCit8Generate(
       PlCit8GenerateDeclarationsRequest request) {
@@ -1510,7 +1512,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
+   * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced. Answers 422 for a tax year that starts before 2025-01-01, which the CIT-8(34) schema does not accept.
    */
   public PlCit8GenerateDeclarationsResponse plCit8Generate(
       PlCit8GenerateDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1809,6 +1811,22 @@ public class DeclarationsClient {
   public SubmissionsRetryDeclarationsResponse submissionsRetry(
       SubmissionsRetryDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.submissionsRetry(request, requestOptions).body();
+  }
+
+  /**
+   * Sends a submission whose <code>confirmationPending</code> is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+   */
+  public SubmissionsConfirmDeclarationsResponse submissionsConfirm(
+      SubmissionsConfirmDeclarationsRequest request) {
+    return this.rawClient.submissionsConfirm(request).body();
+  }
+
+  /**
+   * Sends a submission whose <code>confirmationPending</code> is true once more with the stored file and the token the administration handed back with its warnings (the advis of Erhvervsstyrelsen's Regnskab Indberet, which files the annual report only when it is sent again with that token), and returns the updated submission. Answers 409 when the submission is not waiting for a confirmation.
+   */
+  public SubmissionsConfirmDeclarationsResponse submissionsConfirm(
+      SubmissionsConfirmDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsConfirm(request, requestOptions).body();
   }
 
   /**

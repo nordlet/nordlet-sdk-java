@@ -39,6 +39,10 @@ public final class ActsUpdateSalesResponseLinesItem {
 
   private final String quantity;
 
+  private final String unitFactor;
+
+  private final String baseQuantity;
+
   private final Optional<String> unitPriceExclVat;
 
   private final Optional<String> lineNet;
@@ -48,13 +52,16 @@ public final class ActsUpdateSalesResponseLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private ActsUpdateSalesResponseLinesItem(String id, Optional<String> itemId, String description,
-      String unit, String quantity, Optional<String> unitPriceExclVat, Optional<String> lineNet,
-      long sortOrder, Map<String, Object> additionalProperties) {
+      String unit, String quantity, String unitFactor, String baseQuantity,
+      Optional<String> unitPriceExclVat, Optional<String> lineNet, long sortOrder,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
     this.quantity = quantity;
+    this.unitFactor = unitFactor;
+    this.baseQuantity = baseQuantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.lineNet = lineNet;
     this.sortOrder = sortOrder;
@@ -87,6 +94,16 @@ public final class ActsUpdateSalesResponseLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("unitFactor")
+  public String getUnitFactor() {
+    return unitFactor;
+  }
+
+  @JsonProperty("baseQuantity")
+  public String getBaseQuantity() {
+    return baseQuantity;
   }
 
   @JsonIgnore
@@ -149,12 +166,12 @@ public final class ActsUpdateSalesResponseLinesItem {
   }
 
   private boolean equalTo(ActsUpdateSalesResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && lineNet.equals(other.lineNet) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && lineNet.equals(other.lineNet) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.lineNet, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.unitPriceExclVat, this.lineNet, this.sortOrder);
   }
 
   @java.lang.Override
@@ -181,7 +198,15 @@ public final class ActsUpdateSalesResponseLinesItem {
   }
 
   public interface QuantityStage {
-    SortOrderStage quantity(@NotNull String quantity);
+    UnitFactorStage quantity(@NotNull String quantity);
+  }
+
+  public interface UnitFactorStage {
+    BaseQuantityStage unitFactor(@NotNull String unitFactor);
+  }
+
+  public interface BaseQuantityStage {
+    SortOrderStage baseQuantity(@NotNull String baseQuantity);
   }
 
   public interface SortOrderStage {
@@ -217,7 +242,7 @@ public final class ActsUpdateSalesResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, SortOrderStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, UnitFactorStage, BaseQuantityStage, SortOrderStage, _FinalStage {
     private String id;
 
     private String description;
@@ -225,6 +250,10 @@ public final class ActsUpdateSalesResponseLinesItem {
     private String unit;
 
     private String quantity;
+
+    private String unitFactor;
+
+    private String baseQuantity;
 
     private long sortOrder;
 
@@ -247,6 +276,8 @@ public final class ActsUpdateSalesResponseLinesItem {
       description(other.getDescription());
       unit(other.getUnit());
       quantity(other.getQuantity());
+      unitFactor(other.getUnitFactor());
+      baseQuantity(other.getBaseQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       lineNet(other.getLineNet());
       sortOrder(other.getSortOrder());
@@ -276,8 +307,22 @@ public final class ActsUpdateSalesResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public SortOrderStage quantity(@NotNull String quantity) {
+    public UnitFactorStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("unitFactor")
+    public BaseQuantityStage unitFactor(@NotNull String unitFactor) {
+      this.unitFactor = Objects.requireNonNull(unitFactor, "unitFactor must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseQuantity")
+    public SortOrderStage baseQuantity(@NotNull String baseQuantity) {
+      this.baseQuantity = Objects.requireNonNull(baseQuantity, "baseQuantity must not be null");
       return this;
     }
 
@@ -380,7 +425,7 @@ public final class ActsUpdateSalesResponseLinesItem {
 
     @java.lang.Override
     public ActsUpdateSalesResponseLinesItem build() {
-      return new ActsUpdateSalesResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, lineNet, sortOrder, additionalProperties);
+      return new ActsUpdateSalesResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, unitPriceExclVat, lineNet, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

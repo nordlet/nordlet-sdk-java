@@ -58,6 +58,8 @@ public final class VehiclesUpdateFleetRequest {
 
   private final Optional<VehiclesUpdateFleetRequestStatus> status;
 
+  private final Optional<String> disposalDate;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
@@ -67,8 +69,8 @@ public final class VehiclesUpdateFleetRequest {
       Optional<VehiclesUpdateFleetRequestFuelType> fuelType, Optional<String> acquisitionDate,
       Optional<String> marketValue, Optional<String> fixedAssetId,
       Optional<String> technicalInspectionDue, Optional<String> insuranceDue,
-      Optional<VehiclesUpdateFleetRequestStatus> status, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      Optional<VehiclesUpdateFleetRequestStatus> status, Optional<String> disposalDate,
+      Optional<String> notes, Map<String, Object> additionalProperties) {
     this.id = id;
     this.plateNumber = plateNumber;
     this.make = make;
@@ -82,6 +84,7 @@ public final class VehiclesUpdateFleetRequest {
     this.technicalInspectionDue = technicalInspectionDue;
     this.insuranceDue = insuranceDue;
     this.status = status;
+    this.disposalDate = disposalDate;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -173,6 +176,14 @@ public final class VehiclesUpdateFleetRequest {
   }
 
   @JsonIgnore
+  public Optional<String> getDisposalDate() {
+    if (disposalDate == null) {
+      return Optional.empty();
+    }
+    return disposalDate;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
     if (notes == null) {
       return Optional.empty();
@@ -247,6 +258,15 @@ public final class VehiclesUpdateFleetRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("disposalDate")
+  private Optional<String> _getDisposalDate() {
+    return disposalDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("notes")
   private Optional<String> _getNotes() {
     return notes;
@@ -264,12 +284,12 @@ public final class VehiclesUpdateFleetRequest {
   }
 
   private boolean equalTo(VehiclesUpdateFleetRequest other) {
-    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && notes.equals(other.notes);
+    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && disposalDate.equals(other.disposalDate) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.notes);
+    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.disposalDate, this.notes);
   }
 
   @java.lang.Override
@@ -356,6 +376,12 @@ public final class VehiclesUpdateFleetRequest {
 
     _FinalStage status(VehiclesUpdateFleetRequestStatus status);
 
+    _FinalStage disposalDate(Optional<String> disposalDate);
+
+    _FinalStage disposalDate(String disposalDate);
+
+    _FinalStage disposalDate(Nullable<String> disposalDate);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -370,6 +396,8 @@ public final class VehiclesUpdateFleetRequest {
     private String id;
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> disposalDate = Optional.empty();
 
     private Optional<VehiclesUpdateFleetRequestStatus> status = Optional.empty();
 
@@ -416,6 +444,7 @@ public final class VehiclesUpdateFleetRequest {
       technicalInspectionDue(other.getTechnicalInspectionDue());
       insuranceDue(other.getInsuranceDue());
       status(other.getStatus());
+      disposalDate(other.getDisposalDate());
       notes(other.getNotes());
       return this;
     }
@@ -454,6 +483,36 @@ public final class VehiclesUpdateFleetRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalDate(Nullable<String> disposalDate) {
+      if (disposalDate.isNull()) {
+        this.disposalDate = null;
+      }
+      else if (disposalDate.isEmpty()) {
+        this.disposalDate = Optional.empty();
+      }
+      else {
+        this.disposalDate = Optional.of(disposalDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalDate(String disposalDate) {
+      this.disposalDate = Optional.ofNullable(disposalDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "disposalDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage disposalDate(Optional<String> disposalDate) {
+      this.disposalDate = disposalDate;
       return this;
     }
 
@@ -749,7 +808,7 @@ public final class VehiclesUpdateFleetRequest {
 
     @java.lang.Override
     public VehiclesUpdateFleetRequest build() {
-      return new VehiclesUpdateFleetRequest(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, notes, additionalProperties);
+      return new VehiclesUpdateFleetRequest(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, disposalDate, notes, additionalProperties);
     }
 
     @java.lang.Override

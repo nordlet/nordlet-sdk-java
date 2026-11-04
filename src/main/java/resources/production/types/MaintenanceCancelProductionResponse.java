@@ -48,6 +48,8 @@ public final class MaintenanceCancelProductionResponse {
 
   private final Optional<String> cost;
 
+  private final Optional<String> purchaseInvoiceId;
+
   private final Optional<String> notes;
 
   private final OffsetDateTime createdAt;
@@ -58,8 +60,8 @@ public final class MaintenanceCancelProductionResponse {
       MaintenanceCancelProductionResponseType type,
       MaintenanceCancelProductionResponseStatus status, String plannedDate,
       Optional<String> completedDate, Optional<String> description, Optional<String> downtimeHours,
-      Optional<String> cost, Optional<String> notes, OffsetDateTime createdAt,
-      Map<String, Object> additionalProperties) {
+      Optional<String> cost, Optional<String> purchaseInvoiceId, Optional<String> notes,
+      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.workCenterId = workCenterId;
     this.type = type;
@@ -69,6 +71,7 @@ public final class MaintenanceCancelProductionResponse {
     this.description = description;
     this.downtimeHours = downtimeHours;
     this.cost = cost;
+    this.purchaseInvoiceId = purchaseInvoiceId;
     this.notes = notes;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -132,6 +135,14 @@ public final class MaintenanceCancelProductionResponse {
   }
 
   @JsonIgnore
+  public Optional<String> getPurchaseInvoiceId() {
+    if (purchaseInvoiceId == null) {
+      return Optional.empty();
+    }
+    return purchaseInvoiceId;
+  }
+
+  @JsonIgnore
   public Optional<String> getNotes() {
     if (notes == null) {
       return Optional.empty();
@@ -184,6 +195,15 @@ public final class MaintenanceCancelProductionResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("purchaseInvoiceId")
+  private Optional<String> _getPurchaseInvoiceId() {
+    return purchaseInvoiceId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("notes")
   private Optional<String> _getNotes() {
     return notes;
@@ -201,12 +221,12 @@ public final class MaintenanceCancelProductionResponse {
   }
 
   private boolean equalTo(MaintenanceCancelProductionResponse other) {
-    return id.equals(other.id) && workCenterId.equals(other.workCenterId) && type.equals(other.type) && status.equals(other.status) && plannedDate.equals(other.plannedDate) && completedDate.equals(other.completedDate) && description.equals(other.description) && downtimeHours.equals(other.downtimeHours) && cost.equals(other.cost) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && workCenterId.equals(other.workCenterId) && type.equals(other.type) && status.equals(other.status) && plannedDate.equals(other.plannedDate) && completedDate.equals(other.completedDate) && description.equals(other.description) && downtimeHours.equals(other.downtimeHours) && cost.equals(other.cost) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.workCenterId, this.type, this.status, this.plannedDate, this.completedDate, this.description, this.downtimeHours, this.cost, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.workCenterId, this.type, this.status, this.plannedDate, this.completedDate, this.description, this.downtimeHours, this.cost, this.purchaseInvoiceId, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -275,6 +295,12 @@ public final class MaintenanceCancelProductionResponse {
 
     _FinalStage cost(Nullable<String> cost);
 
+    _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(String purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(Nullable<String> purchaseInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -299,6 +325,8 @@ public final class MaintenanceCancelProductionResponse {
     private OffsetDateTime createdAt;
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> purchaseInvoiceId = Optional.empty();
 
     private Optional<String> cost = Optional.empty();
 
@@ -325,6 +353,7 @@ public final class MaintenanceCancelProductionResponse {
       description(other.getDescription());
       downtimeHours(other.getDowntimeHours());
       cost(other.getCost());
+      purchaseInvoiceId(other.getPurchaseInvoiceId());
       notes(other.getNotes());
       createdAt(other.getCreatedAt());
       return this;
@@ -399,6 +428,36 @@ public final class MaintenanceCancelProductionResponse {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseInvoiceId(Nullable<String> purchaseInvoiceId) {
+      if (purchaseInvoiceId.isNull()) {
+        this.purchaseInvoiceId = null;
+      }
+      else if (purchaseInvoiceId.isEmpty()) {
+        this.purchaseInvoiceId = Optional.empty();
+      }
+      else {
+        this.purchaseInvoiceId = Optional.of(purchaseInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseInvoiceId(String purchaseInvoiceId) {
+      this.purchaseInvoiceId = Optional.ofNullable(purchaseInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId) {
+      this.purchaseInvoiceId = purchaseInvoiceId;
       return this;
     }
 
@@ -524,7 +583,7 @@ public final class MaintenanceCancelProductionResponse {
 
     @java.lang.Override
     public MaintenanceCancelProductionResponse build() {
-      return new MaintenanceCancelProductionResponse(id, workCenterId, type, status, plannedDate, completedDate, description, downtimeHours, cost, notes, createdAt, additionalProperties);
+      return new MaintenanceCancelProductionResponse(id, workCenterId, type, status, plannedDate, completedDate, description, downtimeHours, cost, purchaseInvoiceId, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

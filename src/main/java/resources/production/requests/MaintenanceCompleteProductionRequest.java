@@ -34,17 +34,20 @@ public final class MaintenanceCompleteProductionRequest {
 
   private final Optional<String> cost;
 
+  private final Optional<String> purchaseInvoiceId;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private MaintenanceCompleteProductionRequest(String id, String completedDate,
-      Optional<String> downtimeHours, Optional<String> cost, Optional<String> notes,
-      Map<String, Object> additionalProperties) {
+      Optional<String> downtimeHours, Optional<String> cost, Optional<String> purchaseInvoiceId,
+      Optional<String> notes, Map<String, Object> additionalProperties) {
     this.id = id;
     this.completedDate = completedDate;
     this.downtimeHours = downtimeHours;
     this.cost = cost;
+    this.purchaseInvoiceId = purchaseInvoiceId;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -69,6 +72,11 @@ public final class MaintenanceCompleteProductionRequest {
     return cost;
   }
 
+  @JsonProperty("purchaseInvoiceId")
+  public Optional<String> getPurchaseInvoiceId() {
+    return purchaseInvoiceId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -86,12 +94,12 @@ public final class MaintenanceCompleteProductionRequest {
   }
 
   private boolean equalTo(MaintenanceCompleteProductionRequest other) {
-    return id.equals(other.id) && completedDate.equals(other.completedDate) && downtimeHours.equals(other.downtimeHours) && cost.equals(other.cost) && notes.equals(other.notes);
+    return id.equals(other.id) && completedDate.equals(other.completedDate) && downtimeHours.equals(other.downtimeHours) && cost.equals(other.cost) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.completedDate, this.downtimeHours, this.cost, this.notes);
+    return Objects.hash(this.id, this.completedDate, this.downtimeHours, this.cost, this.purchaseInvoiceId, this.notes);
   }
 
   @java.lang.Override
@@ -128,6 +136,10 @@ public final class MaintenanceCompleteProductionRequest {
 
     _FinalStage cost(String cost);
 
+    _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(String purchaseInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -142,6 +154,8 @@ public final class MaintenanceCompleteProductionRequest {
     private String completedDate;
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> purchaseInvoiceId = Optional.empty();
 
     private Optional<String> cost = Optional.empty();
 
@@ -159,6 +173,7 @@ public final class MaintenanceCompleteProductionRequest {
       completedDate(other.getCompletedDate());
       downtimeHours(other.getDowntimeHours());
       cost(other.getCost());
+      purchaseInvoiceId(other.getPurchaseInvoiceId());
       notes(other.getNotes());
       return this;
     }
@@ -190,6 +205,22 @@ public final class MaintenanceCompleteProductionRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage purchaseInvoiceId(String purchaseInvoiceId) {
+      this.purchaseInvoiceId = Optional.ofNullable(purchaseInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId) {
+      this.purchaseInvoiceId = purchaseInvoiceId;
       return this;
     }
 
@@ -227,7 +258,7 @@ public final class MaintenanceCompleteProductionRequest {
 
     @java.lang.Override
     public MaintenanceCompleteProductionRequest build() {
-      return new MaintenanceCompleteProductionRequest(id, completedDate, downtimeHours, cost, notes, additionalProperties);
+      return new MaintenanceCompleteProductionRequest(id, completedDate, downtimeHours, cost, purchaseInvoiceId, notes, additionalProperties);
     }
 
     @java.lang.Override

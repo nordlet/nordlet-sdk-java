@@ -161,6 +161,8 @@ public final class InvoicesListSalesResponseRowsItem {
 
   private final Optional<String> partnerName;
 
+  private final Optional<String> advanceUnappliedAmount;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesListSalesResponseRowsItem(String id, String partnerId,
@@ -190,7 +192,7 @@ public final class InvoicesListSalesResponseRowsItem {
       Optional<String> peppolStatus, Optional<String> peppolDetail,
       Optional<OffsetDateTime> peppolSentAt, Optional<OffsetDateTime> peppolCheckedAt,
       OffsetDateTime createdAt, OffsetDateTime updatedAt, Optional<String> partnerName,
-      Map<String, Object> additionalProperties) {
+      Optional<String> advanceUnappliedAmount, Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.type = type;
@@ -256,6 +258,7 @@ public final class InvoicesListSalesResponseRowsItem {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.partnerName = partnerName;
+    this.advanceUnappliedAmount = advanceUnappliedAmount;
     this.additionalProperties = additionalProperties;
   }
 
@@ -728,6 +731,17 @@ public final class InvoicesListSalesResponseRowsItem {
     return partnerName;
   }
 
+  /**
+   * @return Gross amount of an advance invoice not yet applied or credited; null on other documents
+   */
+  @JsonIgnore
+  public Optional<String> getAdvanceUnappliedAmount() {
+    if (advanceUnappliedAmount == null) {
+      return Optional.empty();
+    }
+    return advanceUnappliedAmount;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -1160,6 +1174,15 @@ public final class InvoicesListSalesResponseRowsItem {
     return partnerName;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("advanceUnappliedAmount")
+  private Optional<String> _getAdvanceUnappliedAmount() {
+    return advanceUnappliedAmount;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -1172,12 +1195,12 @@ public final class InvoicesListSalesResponseRowsItem {
   }
 
   private boolean equalTo(InvoicesListSalesResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && payLinkEnabled == other.payLinkEnabled && debtRemindersEnabled == other.debtRemindersEnabled && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && partnerName.equals(other.partnerName);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && payLinkEnabled == other.payLinkEnabled && debtRemindersEnabled == other.debtRemindersEnabled && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && partnerName.equals(other.partnerName) && advanceUnappliedAmount.equals(other.advanceUnappliedAmount);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.salesTaxPercent, this.salesTaxTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.payLinkEnabled, this.debtRemindersEnabled, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.partnerName);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.salesTaxPercent, this.salesTaxTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.payLinkEnabled, this.debtRemindersEnabled, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.partnerName, this.advanceUnappliedAmount);
   }
 
   @java.lang.Override
@@ -1554,6 +1577,15 @@ public final class InvoicesListSalesResponseRowsItem {
     _FinalStage partnerName(String partnerName);
 
     _FinalStage partnerName(Nullable<String> partnerName);
+
+    /**
+     * <p>Gross amount of an advance invoice not yet applied or credited; null on other documents</p>
+     */
+    _FinalStage advanceUnappliedAmount(Optional<String> advanceUnappliedAmount);
+
+    _FinalStage advanceUnappliedAmount(String advanceUnappliedAmount);
+
+    _FinalStage advanceUnappliedAmount(Nullable<String> advanceUnappliedAmount);
   }
 
   @JsonIgnoreProperties(
@@ -1593,6 +1625,8 @@ public final class InvoicesListSalesResponseRowsItem {
     private OffsetDateTime createdAt;
 
     private OffsetDateTime updatedAt;
+
+    private Optional<String> advanceUnappliedAmount = Optional.empty();
 
     private Optional<String> partnerName = Optional.empty();
 
@@ -1763,6 +1797,7 @@ public final class InvoicesListSalesResponseRowsItem {
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       partnerName(other.getPartnerName());
+      advanceUnappliedAmount(other.getAdvanceUnappliedAmount());
       return this;
     }
 
@@ -1883,6 +1918,47 @@ public final class InvoicesListSalesResponseRowsItem {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice not yet applied or credited; null on other documents</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage advanceUnappliedAmount(Nullable<String> advanceUnappliedAmount) {
+      if (advanceUnappliedAmount.isNull()) {
+        this.advanceUnappliedAmount = null;
+      }
+      else if (advanceUnappliedAmount.isEmpty()) {
+        this.advanceUnappliedAmount = Optional.empty();
+      }
+      else {
+        this.advanceUnappliedAmount = Optional.of(advanceUnappliedAmount.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice not yet applied or credited; null on other documents</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage advanceUnappliedAmount(String advanceUnappliedAmount) {
+      this.advanceUnappliedAmount = Optional.ofNullable(advanceUnappliedAmount);
+      return this;
+    }
+
+    /**
+     * <p>Gross amount of an advance invoice not yet applied or credited; null on other documents</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "advanceUnappliedAmount",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage advanceUnappliedAmount(Optional<String> advanceUnappliedAmount) {
+      this.advanceUnappliedAmount = advanceUnappliedAmount;
       return this;
     }
 
@@ -3328,7 +3404,7 @@ public final class InvoicesListSalesResponseRowsItem {
 
     @java.lang.Override
     public InvoicesListSalesResponseRowsItem build() {
-      return new InvoicesListSalesResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, salesTaxPercent, salesTaxTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, payLinkEnabled, debtRemindersEnabled, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, partnerName, additionalProperties);
+      return new InvoicesListSalesResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, salesTaxPercent, salesTaxTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, payLinkEnabled, debtRemindersEnabled, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, partnerName, advanceUnappliedAmount, additionalProperties);
     }
 
     @java.lang.Override

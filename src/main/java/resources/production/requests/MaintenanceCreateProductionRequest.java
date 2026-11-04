@@ -35,17 +35,21 @@ public final class MaintenanceCreateProductionRequest {
 
   private final Optional<String> description;
 
+  private final Optional<String> purchaseInvoiceId;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private MaintenanceCreateProductionRequest(String workCenterId,
       MaintenanceCreateProductionRequestType type, String plannedDate, Optional<String> description,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      Optional<String> purchaseInvoiceId, Optional<String> notes,
+      Map<String, Object> additionalProperties) {
     this.workCenterId = workCenterId;
     this.type = type;
     this.plannedDate = plannedDate;
     this.description = description;
+    this.purchaseInvoiceId = purchaseInvoiceId;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -70,6 +74,11 @@ public final class MaintenanceCreateProductionRequest {
     return description;
   }
 
+  @JsonProperty("purchaseInvoiceId")
+  public Optional<String> getPurchaseInvoiceId() {
+    return purchaseInvoiceId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -87,12 +96,12 @@ public final class MaintenanceCreateProductionRequest {
   }
 
   private boolean equalTo(MaintenanceCreateProductionRequest other) {
-    return workCenterId.equals(other.workCenterId) && type.equals(other.type) && plannedDate.equals(other.plannedDate) && description.equals(other.description) && notes.equals(other.notes);
+    return workCenterId.equals(other.workCenterId) && type.equals(other.type) && plannedDate.equals(other.plannedDate) && description.equals(other.description) && purchaseInvoiceId.equals(other.purchaseInvoiceId) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.workCenterId, this.type, this.plannedDate, this.description, this.notes);
+    return Objects.hash(this.workCenterId, this.type, this.plannedDate, this.description, this.purchaseInvoiceId, this.notes);
   }
 
   @java.lang.Override
@@ -129,6 +138,10 @@ public final class MaintenanceCreateProductionRequest {
 
     _FinalStage description(String description);
 
+    _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId);
+
+    _FinalStage purchaseInvoiceId(String purchaseInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -146,6 +159,8 @@ public final class MaintenanceCreateProductionRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> purchaseInvoiceId = Optional.empty();
+
     private Optional<String> description = Optional.empty();
 
     @JsonAnySetter
@@ -160,6 +175,7 @@ public final class MaintenanceCreateProductionRequest {
       type(other.getType());
       plannedDate(other.getPlannedDate());
       description(other.getDescription());
+      purchaseInvoiceId(other.getPurchaseInvoiceId());
       notes(other.getNotes());
       return this;
     }
@@ -202,6 +218,22 @@ public final class MaintenanceCreateProductionRequest {
     }
 
     @java.lang.Override
+    public _FinalStage purchaseInvoiceId(String purchaseInvoiceId) {
+      this.purchaseInvoiceId = Optional.ofNullable(purchaseInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "purchaseInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage purchaseInvoiceId(Optional<String> purchaseInvoiceId) {
+      this.purchaseInvoiceId = purchaseInvoiceId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage description(String description) {
       this.description = Optional.ofNullable(description);
       return this;
@@ -219,7 +251,7 @@ public final class MaintenanceCreateProductionRequest {
 
     @java.lang.Override
     public MaintenanceCreateProductionRequest build() {
-      return new MaintenanceCreateProductionRequest(workCenterId, type, plannedDate, description, notes, additionalProperties);
+      return new MaintenanceCreateProductionRequest(workCenterId, type, plannedDate, description, purchaseInvoiceId, notes, additionalProperties);
     }
 
     @java.lang.Override

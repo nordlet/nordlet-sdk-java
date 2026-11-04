@@ -29,6 +29,9 @@ import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsListPosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsListPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
@@ -42,6 +45,9 @@ import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsListPosResponse;
+import com.nordlet.api.resources.pos.types.RefundsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.RefundsGetPosResponse;
+import com.nordlet.api.resources.pos.types.RefundsListPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
@@ -309,7 +315,7 @@ public class RawPosClient {
         }
 
         /**
-         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code>, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. <code>cogsAccountCode</code> and <code>inventoryAccountCode</code> default to the posting rules <code>inventory.cogs</code> and <code>inventory.stock</code>, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
          */
         public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
             ReportsCreatePosRequest request) {
@@ -317,7 +323,7 @@ public class RawPosClient {
         }
 
         /**
-         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+         * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code>, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. <code>cogsAccountCode</code> and <code>inventoryAccountCode</code> default to the posting rules <code>inventory.cogs</code> and <code>inventory.stock</code>, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
          */
         public NordletApiHttpResponse<ReportsCreatePosResponse> reportsCreate(
             ReportsCreatePosRequest request, RequestOptions requestOptions) {
@@ -1029,21 +1035,21 @@ public class RawPosClient {
                           }
 
                           /**
-                           * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+                           * Refund <code>quantity</code> of lines of a receipt, paid in cash out of the open shift <code>shiftId</code>, on <code>date</code> (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (<code>inventory.stock</code> for layers without one) against <code>inventory.cogs</code>; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
                            */
-                          public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
-                              ShiftsClosePosRequest request) {
-                            return shiftsClose(request,null);
+                          public NordletApiHttpResponse<RefundsCreatePosResponse> refundsCreate(
+                              RefundsCreatePosRequest request) {
+                            return refundsCreate(request,null);
                           }
 
                           /**
-                           * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+                           * Refund <code>quantity</code> of lines of a receipt, paid in cash out of the open shift <code>shiftId</code>, on <code>date</code> (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (<code>inventory.stock</code> for layers without one) against <code>inventory.cogs</code>; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
                            */
-                          public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
-                              ShiftsClosePosRequest request, RequestOptions requestOptions) {
+                          public NordletApiHttpResponse<RefundsCreatePosResponse> refundsCreate(
+                              RefundsCreatePosRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/pos/shifts/close");if (requestOptions != null) {
+                              .addPathSegments("v1/pos/refunds/create");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1073,7 +1079,7 @@ public class RawPosClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ShiftsClosePosResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundsCreatePosResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1102,4 +1108,244 @@ public class RawPosClient {
                                 throw new NordletApiException("Network error executing HTTP request", e);
                               }
                             }
-                          }
+
+                            /**
+                             * Read one POS refund with its lines.
+                             */
+                            public NordletApiHttpResponse<RefundsGetPosResponse> refundsGet(
+                                RefundsGetPosRequest request) {
+                              return refundsGet(request,null);
+                            }
+
+                            /**
+                             * Read one POS refund with its lines.
+                             */
+                            public NordletApiHttpResponse<RefundsGetPosResponse> refundsGet(
+                                RefundsGetPosRequest request, RequestOptions requestOptions) {
+                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                .addPathSegments("v1/pos/refunds/get");if (requestOptions != null) {
+                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                    httpUrl.addQueryParameter(_key, _value);
+                                  } );
+                                }
+                                RequestBody body;
+                                try {
+                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                }
+                                catch(JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to serialize request", e);
+                                }
+                                Request okhttpRequest = new Request.Builder()
+                                  .url(httpUrl.build())
+                                  .method("POST", body)
+                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                  .addHeader("Content-Type", "application/json")
+                                  .addHeader("Accept", "application/json")
+                                  .build();
+                                OkHttpClient client = clientOptions.httpClient();
+                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                }
+                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                }
+                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                  ResponseBody responseBody = response.body();
+                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                  if (response.isSuccessful()) {
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundsGetPosResponse.class), response);
+                                  }
+                                  try {
+                                    switch (response.code()) {
+                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    }
+                                  }
+                                  catch (JsonProcessingException ignored) {
+                                    // unable to map error response, throwing generic error
+                                  }
+                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                }
+                                catch (JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                }
+                                catch (IOException e) {
+                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                }
+                              }
+
+                              /**
+                               * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                               */
+                              public NordletApiHttpResponse<RefundsListPosResponse> refundsList() {
+                                return refundsList(RefundsListPosRequest.builder().build());
+                              }
+
+                              /**
+                               * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                               */
+                              public NordletApiHttpResponse<RefundsListPosResponse> refundsList(
+                                  RequestOptions requestOptions) {
+                                return refundsList(RefundsListPosRequest.builder().build(),requestOptions);
+                              }
+
+                              /**
+                               * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                               */
+                              public NordletApiHttpResponse<RefundsListPosResponse> refundsList(
+                                  RefundsListPosRequest request) {
+                                return refundsList(request,null);
+                              }
+
+                              /**
+                               * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                               */
+                              public NordletApiHttpResponse<RefundsListPosResponse> refundsList(
+                                  RefundsListPosRequest request, RequestOptions requestOptions) {
+                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                  .addPathSegments("v1/pos/refunds/list");if (requestOptions != null) {
+                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                      httpUrl.addQueryParameter(_key, _value);
+                                    } );
+                                  }
+                                  RequestBody body;
+                                  try {
+                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                  }
+                                  catch(JsonProcessingException e) {
+                                    throw new NordletApiException("Failed to serialize request", e);
+                                  }
+                                  Request okhttpRequest = new Request.Builder()
+                                    .url(httpUrl.build())
+                                    .method("POST", body)
+                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                    .addHeader("Content-Type", "application/json")
+                                    .addHeader("Accept", "application/json")
+                                    .build();
+                                  OkHttpClient client = clientOptions.httpClient();
+                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                  }
+                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                  }
+                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                    ResponseBody responseBody = response.body();
+                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                    if (response.isSuccessful()) {
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RefundsListPosResponse.class), response);
+                                    }
+                                    try {
+                                      switch (response.code()) {
+                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      }
+                                    }
+                                    catch (JsonProcessingException ignored) {
+                                      // unable to map error response, throwing generic error
+                                    }
+                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                  }
+                                  catch (JsonProcessingException e) {
+                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                  }
+                                  catch (IOException e) {
+                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                  }
+                                }
+
+                                /**
+                                 * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. Quantities refunded from the shift's receipts by <code>pos/refunds/create</code> are left out of the stock write-off. The response adds <code>expectedCash</code> (opening cash plus the cash receipts less the cash refunds paid out of the shift) and <code>cashDifference</code> (<code>countedCash</code> less expected). A difference is posted in its own journal entry on <code>date</code> (document type <code>pos_shift</code>): a shortage debits the <code>pos.cashShortage</code> rule account and credits the chart's cash account, a surplus debits the cash account and credits <code>pos.cashSurplus</code>; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
+                                 */
+                                public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
+                                    ShiftsClosePosRequest request) {
+                                  return shiftsClose(request,null);
+                                }
+
+                                /**
+                                 * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. Quantities refunded from the shift's receipts by <code>pos/refunds/create</code> are left out of the stock write-off. The response adds <code>expectedCash</code> (opening cash plus the cash receipts less the cash refunds paid out of the shift) and <code>cashDifference</code> (<code>countedCash</code> less expected). A difference is posted in its own journal entry on <code>date</code> (document type <code>pos_shift</code>): a shortage debits the <code>pos.cashShortage</code> rule account and credits the chart's cash account, a surplus debits the cash account and credits <code>pos.cashSurplus</code>; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
+                                 */
+                                public NordletApiHttpResponse<ShiftsClosePosResponse> shiftsClose(
+                                    ShiftsClosePosRequest request, RequestOptions requestOptions) {
+                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                    .addPathSegments("v1/pos/shifts/close");if (requestOptions != null) {
+                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                        httpUrl.addQueryParameter(_key, _value);
+                                      } );
+                                    }
+                                    RequestBody body;
+                                    try {
+                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                    }
+                                    catch(JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to serialize request", e);
+                                    }
+                                    Request okhttpRequest = new Request.Builder()
+                                      .url(httpUrl.build())
+                                      .method("POST", body)
+                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                      .addHeader("Content-Type", "application/json")
+                                      .addHeader("Accept", "application/json")
+                                      .build();
+                                    OkHttpClient client = clientOptions.httpClient();
+                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                    }
+                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                    }
+                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                      ResponseBody responseBody = response.body();
+                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                      if (response.isSuccessful()) {
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ShiftsClosePosResponse.class), response);
+                                      }
+                                      try {
+                                        switch (response.code()) {
+                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        }
+                                      }
+                                      catch (JsonProcessingException ignored) {
+                                        // unable to map error response, throwing generic error
+                                      }
+                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                    }
+                                    catch (JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                    }
+                                    catch (IOException e) {
+                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                    }
+                                  }
+                                }

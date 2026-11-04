@@ -80,14 +80,14 @@ public class BillingClient {
   }
 
   /**
-   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan. On the day of the change, the plan fee (without a subscription) and the storage are split by hour, each hour at the plan in force when the hour starts, and the sale invoices of the day count against the plan in force when they were made.
    */
   public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request) {
     return this.rawClient.accountSetPlan(request).body();
   }
 
   /**
-   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan.
+   * Change the plan of the user's flat-rate billing account of the request's site; answers 422 when the plan is not one of that site's plans and 409 when the account type is not <code>flat_rate</code>. With a Stripe subscription and payments configured, the subscription is moved to the new plan. On the day of the change, the plan fee (without a subscription) and the storage are split by hour, each hour at the plan in force when the hour starts, and the sale invoices of the day count against the plan in force when they were made.
    */
   public AccountSetPlanBillingResponse accountSetPlan(AccountSetPlanBillingRequest request,
       RequestOptions requestOptions) {

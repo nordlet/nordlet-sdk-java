@@ -39,6 +39,10 @@ import com.nordlet.api.resources.catalog.requests.ItemsListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersDeleteCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersUpsertCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsCreateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsItemsDeleteCatalogRequest;
@@ -67,6 +71,10 @@ import com.nordlet.api.resources.catalog.types.ItemsListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersDeleteCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersUpsertCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsCreateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsItemsDeleteCatalogResponse;
@@ -879,7 +887,7 @@ public class RawCatalogClient {
                       }
 
                       /**
-                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
                        */
                       public NordletApiHttpResponse<UnitsCreateCatalogResponse> unitsCreate(
                           UnitsCreateCatalogRequest request) {
@@ -887,7 +895,7 @@ public class RawCatalogClient {
                       }
 
                       /**
-                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
                        */
                       public NordletApiHttpResponse<UnitsCreateCatalogResponse> unitsCreate(
                           UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
@@ -954,7 +962,7 @@ public class RawCatalogClient {
                         }
 
                         /**
-                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
                          */
                         public NordletApiHttpResponse<UnitsUpdateCatalogResponse> unitsUpdate(
                             UnitsUpdateCatalogRequest request) {
@@ -962,7 +970,7 @@ public class RawCatalogClient {
                         }
 
                         /**
-                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
                          */
                         public NordletApiHttpResponse<UnitsUpdateCatalogResponse> unitsUpdate(
                             UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
@@ -1850,22 +1858,22 @@ public class RawCatalogClient {
                                               }
 
                                               /**
-                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
                                                */
-                                              public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
-                                                  PriceListsCreateCatalogRequest request) {
-                                                return priceListsCreate(request,null);
+                                              public NordletApiHttpResponse<ItemsUnitsCreateCatalogResponse> itemsUnitsCreate(
+                                                  ItemsUnitsCreateCatalogRequest request) {
+                                                return itemsUnitsCreate(request,null);
                                               }
 
                                               /**
-                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
                                                */
-                                              public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
-                                                  PriceListsCreateCatalogRequest request,
+                                              public NordletApiHttpResponse<ItemsUnitsCreateCatalogResponse> itemsUnitsCreate(
+                                                  ItemsUnitsCreateCatalogRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/catalog/price-lists/create");if (requestOptions != null) {
+                                                  .addPathSegments("v1/catalog/items/units/create");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -1895,7 +1903,7 @@ public class RawCatalogClient {
                                                     ResponseBody responseBody = response.body();
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsCreateCatalogResponse.class), response);
+                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsCreateCatalogResponse.class), response);
                                                     }
                                                     try {
                                                       switch (response.code()) {
@@ -1926,22 +1934,22 @@ public class RawCatalogClient {
                                                 }
 
                                                 /**
-                                                 * Change a price list. 409 when the new code already exists.
+                                                 * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
                                                  */
-                                                public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
-                                                    PriceListsUpdateCatalogRequest request) {
-                                                  return priceListsUpdate(request,null);
+                                                public NordletApiHttpResponse<ItemsUnitsUpdateCatalogResponse> itemsUnitsUpdate(
+                                                    ItemsUnitsUpdateCatalogRequest request) {
+                                                  return itemsUnitsUpdate(request,null);
                                                 }
 
                                                 /**
-                                                 * Change a price list. 409 when the new code already exists.
+                                                 * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
                                                  */
-                                                public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
-                                                    PriceListsUpdateCatalogRequest request,
+                                                public NordletApiHttpResponse<ItemsUnitsUpdateCatalogResponse> itemsUnitsUpdate(
+                                                    ItemsUnitsUpdateCatalogRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/catalog/price-lists/update");if (requestOptions != null) {
+                                                    .addPathSegments("v1/catalog/items/units/update");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -1971,7 +1979,7 @@ public class RawCatalogClient {
                                                       ResponseBody responseBody = response.body();
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsUpdateCatalogResponse.class), response);
+                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsUpdateCatalogResponse.class), response);
                                                       }
                                                       try {
                                                         switch (response.code()) {
@@ -2002,38 +2010,22 @@ public class RawCatalogClient {
                                                   }
 
                                                   /**
-                                                   * List the company's price lists, ordered by code.
+                                                   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
                                                    */
-                                                  public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
-                                                      ) {
-                                                    return priceListsList(PriceListsListCatalogRequest.builder().build());
+                                                  public NordletApiHttpResponse<ItemsUnitsDeleteCatalogResponse> itemsUnitsDelete(
+                                                      ItemsUnitsDeleteCatalogRequest request) {
+                                                    return itemsUnitsDelete(request,null);
                                                   }
 
                                                   /**
-                                                   * List the company's price lists, ordered by code.
+                                                   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
                                                    */
-                                                  public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
-                                                      RequestOptions requestOptions) {
-                                                    return priceListsList(PriceListsListCatalogRequest.builder().build(),requestOptions);
-                                                  }
-
-                                                  /**
-                                                   * List the company's price lists, ordered by code.
-                                                   */
-                                                  public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
-                                                      PriceListsListCatalogRequest request) {
-                                                    return priceListsList(request,null);
-                                                  }
-
-                                                  /**
-                                                   * List the company's price lists, ordered by code.
-                                                   */
-                                                  public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
-                                                      PriceListsListCatalogRequest request,
+                                                  public NordletApiHttpResponse<ItemsUnitsDeleteCatalogResponse> itemsUnitsDelete(
+                                                      ItemsUnitsDeleteCatalogRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/catalog/price-lists/list");if (requestOptions != null) {
+                                                      .addPathSegments("v1/catalog/items/units/delete");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2063,7 +2055,7 @@ public class RawCatalogClient {
                                                         ResponseBody responseBody = response.body();
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsListCatalogResponse.class), response);
+                                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsDeleteCatalogResponse.class), response);
                                                         }
                                                         try {
                                                           switch (response.code()) {
@@ -2094,22 +2086,22 @@ public class RawCatalogClient {
                                                     }
 
                                                     /**
-                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     * List the alternative units of an item, ordered by unit code.
                                                      */
-                                                    public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
-                                                        PriceListsItemsSetCatalogRequest request) {
-                                                      return priceListsItemsSet(request,null);
+                                                    public NordletApiHttpResponse<ItemsUnitsListCatalogResponse> itemsUnitsList(
+                                                        ItemsUnitsListCatalogRequest request) {
+                                                      return itemsUnitsList(request,null);
                                                     }
 
                                                     /**
-                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     * List the alternative units of an item, ordered by unit code.
                                                      */
-                                                    public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
-                                                        PriceListsItemsSetCatalogRequest request,
+                                                    public NordletApiHttpResponse<ItemsUnitsListCatalogResponse> itemsUnitsList(
+                                                        ItemsUnitsListCatalogRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/catalog/price-lists/items/set");if (requestOptions != null) {
+                                                        .addPathSegments("v1/catalog/items/units/list");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2139,7 +2131,7 @@ public class RawCatalogClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsSetCatalogResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsListCatalogResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2170,22 +2162,22 @@ public class RawCatalogClient {
                                                       }
 
                                                       /**
-                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
                                                        */
-                                                      public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
-                                                          PriceListsItemsListCatalogRequest request) {
-                                                        return priceListsItemsList(request,null);
+                                                      public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
+                                                          PriceListsCreateCatalogRequest request) {
+                                                        return priceListsCreate(request,null);
                                                       }
 
                                                       /**
-                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
                                                        */
-                                                      public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
-                                                          PriceListsItemsListCatalogRequest request,
+                                                      public NordletApiHttpResponse<PriceListsCreateCatalogResponse> priceListsCreate(
+                                                          PriceListsCreateCatalogRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/catalog/price-lists/items/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/catalog/price-lists/create");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2215,7 +2207,7 @@ public class RawCatalogClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsListCatalogResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsCreateCatalogResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2246,22 +2238,22 @@ public class RawCatalogClient {
                                                         }
 
                                                         /**
-                                                         * Remove one item from a price list.
+                                                         * Change a price list. 409 when the new code already exists.
                                                          */
-                                                        public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
-                                                            PriceListsItemsDeleteCatalogRequest request) {
-                                                          return priceListsItemsDelete(request,null);
+                                                        public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
+                                                            PriceListsUpdateCatalogRequest request) {
+                                                          return priceListsUpdate(request,null);
                                                         }
 
                                                         /**
-                                                         * Remove one item from a price list.
+                                                         * Change a price list. 409 when the new code already exists.
                                                          */
-                                                        public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
-                                                            PriceListsItemsDeleteCatalogRequest request,
+                                                        public NordletApiHttpResponse<PriceListsUpdateCatalogResponse> priceListsUpdate(
+                                                            PriceListsUpdateCatalogRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/catalog/price-lists/items/delete");if (requestOptions != null) {
+                                                            .addPathSegments("v1/catalog/price-lists/update");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2291,7 +2283,7 @@ public class RawCatalogClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsDeleteCatalogResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsUpdateCatalogResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2320,4 +2312,324 @@ public class RawCatalogClient {
                                                               throw new NordletApiException("Network error executing HTTP request", e);
                                                             }
                                                           }
-                                                        }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
+                                                              ) {
+                                                            return priceListsList(PriceListsListCatalogRequest.builder().build());
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
+                                                              RequestOptions requestOptions) {
+                                                            return priceListsList(PriceListsListCatalogRequest.builder().build(),requestOptions);
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
+                                                              PriceListsListCatalogRequest request) {
+                                                            return priceListsList(request,null);
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public NordletApiHttpResponse<PriceListsListCatalogResponse> priceListsList(
+                                                              PriceListsListCatalogRequest request,
+                                                              RequestOptions requestOptions) {
+                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                              .addPathSegments("v1/catalog/price-lists/list");if (requestOptions != null) {
+                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                } );
+                                                              }
+                                                              RequestBody body;
+                                                              try {
+                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                              }
+                                                              catch(JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                              }
+                                                              Request okhttpRequest = new Request.Builder()
+                                                                .url(httpUrl.build())
+                                                                .method("POST", body)
+                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                .addHeader("Content-Type", "application/json")
+                                                                .addHeader("Accept", "application/json")
+                                                                .build();
+                                                              OkHttpClient client = clientOptions.httpClient();
+                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                              }
+                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                              }
+                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                ResponseBody responseBody = response.body();
+                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                if (response.isSuccessful()) {
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsListCatalogResponse.class), response);
+                                                                }
+                                                                try {
+                                                                  switch (response.code()) {
+                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  }
+                                                                }
+                                                                catch (JsonProcessingException ignored) {
+                                                                  // unable to map error response, throwing generic error
+                                                                }
+                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                              }
+                                                              catch (JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                              }
+                                                              catch (IOException e) {
+                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                              }
+                                                            }
+
+                                                            /**
+                                                             * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                             */
+                                                            public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
+                                                                PriceListsItemsSetCatalogRequest request) {
+                                                              return priceListsItemsSet(request,null);
+                                                            }
+
+                                                            /**
+                                                             * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                             */
+                                                            public NordletApiHttpResponse<PriceListsItemsSetCatalogResponse> priceListsItemsSet(
+                                                                PriceListsItemsSetCatalogRequest request,
+                                                                RequestOptions requestOptions) {
+                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                .addPathSegments("v1/catalog/price-lists/items/set");if (requestOptions != null) {
+                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                  } );
+                                                                }
+                                                                RequestBody body;
+                                                                try {
+                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                }
+                                                                catch(JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                }
+                                                                Request okhttpRequest = new Request.Builder()
+                                                                  .url(httpUrl.build())
+                                                                  .method("POST", body)
+                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                  .addHeader("Content-Type", "application/json")
+                                                                  .addHeader("Accept", "application/json")
+                                                                  .build();
+                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                }
+                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                }
+                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                  ResponseBody responseBody = response.body();
+                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                  if (response.isSuccessful()) {
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsSetCatalogResponse.class), response);
+                                                                  }
+                                                                  try {
+                                                                    switch (response.code()) {
+                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    }
+                                                                  }
+                                                                  catch (JsonProcessingException ignored) {
+                                                                    // unable to map error response, throwing generic error
+                                                                  }
+                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                }
+                                                                catch (JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                }
+                                                                catch (IOException e) {
+                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                }
+                                                              }
+
+                                                              /**
+                                                               * List the prices of a price list with the item name and code, ordered by item name.
+                                                               */
+                                                              public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
+                                                                  PriceListsItemsListCatalogRequest request) {
+                                                                return priceListsItemsList(request,null);
+                                                              }
+
+                                                              /**
+                                                               * List the prices of a price list with the item name and code, ordered by item name.
+                                                               */
+                                                              public NordletApiHttpResponse<PriceListsItemsListCatalogResponse> priceListsItemsList(
+                                                                  PriceListsItemsListCatalogRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/catalog/price-lists/items/list");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                    ResponseBody responseBody = response.body();
+                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                    if (response.isSuccessful()) {
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsListCatalogResponse.class), response);
+                                                                    }
+                                                                    try {
+                                                                      switch (response.code()) {
+                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      }
+                                                                    }
+                                                                    catch (JsonProcessingException ignored) {
+                                                                      // unable to map error response, throwing generic error
+                                                                    }
+                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                  }
+                                                                  catch (JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                  }
+                                                                  catch (IOException e) {
+                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                  }
+                                                                }
+
+                                                                /**
+                                                                 * Remove one item from a price list.
+                                                                 */
+                                                                public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
+                                                                    PriceListsItemsDeleteCatalogRequest request) {
+                                                                  return priceListsItemsDelete(request,null);
+                                                                }
+
+                                                                /**
+                                                                 * Remove one item from a price list.
+                                                                 */
+                                                                public NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse> priceListsItemsDelete(
+                                                                    PriceListsItemsDeleteCatalogRequest request,
+                                                                    RequestOptions requestOptions) {
+                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                    .addPathSegments("v1/catalog/price-lists/items/delete");if (requestOptions != null) {
+                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                      } );
+                                                                    }
+                                                                    RequestBody body;
+                                                                    try {
+                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                    }
+                                                                    catch(JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                    }
+                                                                    Request okhttpRequest = new Request.Builder()
+                                                                      .url(httpUrl.build())
+                                                                      .method("POST", body)
+                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                      .addHeader("Content-Type", "application/json")
+                                                                      .addHeader("Accept", "application/json")
+                                                                      .build();
+                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                    }
+                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                    }
+                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                      ResponseBody responseBody = response.body();
+                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                      if (response.isSuccessful()) {
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsDeleteCatalogResponse.class), response);
+                                                                      }
+                                                                      try {
+                                                                        switch (response.code()) {
+                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        }
+                                                                      }
+                                                                      catch (JsonProcessingException ignored) {
+                                                                        // unable to map error response, throwing generic error
+                                                                      }
+                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                    }
+                                                                    catch (JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                    }
+                                                                    catch (IOException e) {
+                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                    }
+                                                                  }
+                                                                }

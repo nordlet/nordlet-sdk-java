@@ -59,7 +59,7 @@ public class RawFleetClient {
   }
 
   /**
-   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle. <code>disposalDate</code>, the day the vehicle was sold or scrapped, is the last day of its car benefit in kind.
    */
   public NordletApiHttpResponse<VehiclesCreateFleetResponse> vehiclesCreate(
       VehiclesCreateFleetRequest request) {
@@ -67,7 +67,7 @@ public class RawFleetClient {
   }
 
   /**
-   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle.
+   * Register a vehicle. The plate number is stored in upper case and must be unique in the company (409 otherwise); <code>fixedAssetId</code> must name an existing fixed asset. Uploaded <code>documents</code> are attached to the vehicle. <code>disposalDate</code>, the day the vehicle was sold or scrapped, is the last day of its car benefit in kind.
    */
   public NordletApiHttpResponse<VehiclesCreateFleetResponse> vehiclesCreate(
       VehiclesCreateFleetRequest request, RequestOptions requestOptions) {
@@ -134,7 +134,7 @@ public class RawFleetClient {
     }
 
     /**
-     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code> and its <code>disposalDate</code>, the last day of its car benefit in kind; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
      */
     public NordletApiHttpResponse<VehiclesUpdateFleetResponse> vehiclesUpdate(
         VehiclesUpdateFleetRequest request) {
@@ -142,7 +142,7 @@ public class RawFleetClient {
     }
 
     /**
-     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code>; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
+     * Change a vehicle's details or set its <code>status</code> to <code>active</code>, <code>sold</code> or <code>scrapped</code> and its <code>disposalDate</code>, the last day of its car benefit in kind; omitted fields keep their value. A plate number already used by another vehicle is refused with 409.
      */
     public NordletApiHttpResponse<VehiclesUpdateFleetResponse> vehiclesUpdate(
         VehiclesUpdateFleetRequest request, RequestOptions requestOptions) {
@@ -614,7 +614,7 @@ public class RawFleetClient {
                 }
 
                 /**
-                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A month the assignment starts or ends in, or the vehicle's <code>disposalDate</code> falls in, is valued by its calendar days with the car; after the <code>disposalDate</code> there is no benefit. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
                  */
                 public NordletApiHttpResponse<NaturaPreviewFleetResponse> naturaPreview(
                     NaturaPreviewFleetRequest request) {
@@ -622,7 +622,7 @@ public class RawFleetClient {
                 }
 
                 /**
-                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
+                 * Preview the car benefit in kind of a month for a Lithuanian company: every assignment with <code>privateUse</code> that overlaps the month is valued at 0.75 % of the vehicle's market value when the employer pays the fuel, else 0.70 %, one row per employee and vehicle, with the total. A month the assignment starts or ends in, or the vehicle's <code>disposalDate</code> falls in, is valued by its calendar days with the car; after the <code>disposalDate</code> there is no benefit. A company registered in another country is refused with 422. The same amounts are added to a payroll run created with <code>includeNatura</code> (<code>payroll/runs/create</code>).
                  */
                 public NordletApiHttpResponse<NaturaPreviewFleetResponse> naturaPreview(
                     NaturaPreviewFleetRequest request, RequestOptions requestOptions) {

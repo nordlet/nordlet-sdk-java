@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.declarations.types.LtIvazAmendDeclarationsRequestCorrectionsItem;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -32,12 +33,16 @@ public final class LtIvazAmendDeclarationsRequest {
 
   private final Optional<Boolean> persist;
 
+  private final Optional<List<LtIvazAmendDeclarationsRequestCorrectionsItem>> corrections;
+
   private final Map<String, Object> additionalProperties;
 
   private LtIvazAmendDeclarationsRequest(List<String> waybillIds, Optional<Boolean> persist,
+      Optional<List<LtIvazAmendDeclarationsRequestCorrectionsItem>> corrections,
       Map<String, Object> additionalProperties) {
     this.waybillIds = waybillIds;
     this.persist = persist;
+    this.corrections = corrections;
     this.additionalProperties = additionalProperties;
   }
 
@@ -49,6 +54,11 @@ public final class LtIvazAmendDeclarationsRequest {
   @JsonProperty("persist")
   public Optional<Boolean> getPersist() {
     return persist;
+  }
+
+  @JsonProperty("corrections")
+  public Optional<List<LtIvazAmendDeclarationsRequestCorrectionsItem>> getCorrections() {
+    return corrections;
   }
 
   @java.lang.Override
@@ -63,12 +73,12 @@ public final class LtIvazAmendDeclarationsRequest {
   }
 
   private boolean equalTo(LtIvazAmendDeclarationsRequest other) {
-    return waybillIds.equals(other.waybillIds) && persist.equals(other.persist);
+    return waybillIds.equals(other.waybillIds) && persist.equals(other.persist) && corrections.equals(other.corrections);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.waybillIds, this.persist);
+    return Objects.hash(this.waybillIds, this.persist, this.corrections);
   }
 
   @java.lang.Override
@@ -88,6 +98,8 @@ public final class LtIvazAmendDeclarationsRequest {
 
     private Optional<Boolean> persist = Optional.empty();
 
+    private Optional<List<LtIvazAmendDeclarationsRequestCorrectionsItem>> corrections = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -97,6 +109,7 @@ public final class LtIvazAmendDeclarationsRequest {
     public Builder from(LtIvazAmendDeclarationsRequest other) {
       waybillIds(other.getWaybillIds());
       persist(other.getPersist());
+      corrections(other.getCorrections());
       return this;
     }
 
@@ -138,8 +151,23 @@ public final class LtIvazAmendDeclarationsRequest {
       return this;
     }
 
+    @JsonSetter(
+        value = "corrections",
+        nulls = Nulls.SKIP
+    )
+    public Builder corrections(
+        Optional<List<LtIvazAmendDeclarationsRequestCorrectionsItem>> corrections) {
+      this.corrections = corrections;
+      return this;
+    }
+
+    public Builder corrections(List<LtIvazAmendDeclarationsRequestCorrectionsItem> corrections) {
+      this.corrections = Optional.ofNullable(corrections);
+      return this;
+    }
+
     public LtIvazAmendDeclarationsRequest build() {
-      return new LtIvazAmendDeclarationsRequest(waybillIds, persist, additionalProperties);
+      return new LtIvazAmendDeclarationsRequest(waybillIds, persist, corrections, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

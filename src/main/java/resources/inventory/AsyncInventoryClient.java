@@ -196,7 +196,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+   * Consume a quantity of an item from a warehouse, first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first; expired lots included) or from one lot when <code>lotNumber</code> is given, and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the <code>inventory.stock</code> posting rule account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
    */
   public CompletableFuture<StockWriteOffInventoryResponse> stockWriteOff(
       StockWriteOffInventoryRequest request) {
@@ -204,7 +204,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Consume a quantity of an item from a warehouse, oldest layers first (from one lot when <code>lotNumber</code> is given), and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the chart's inventory account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
+   * Consume a quantity of an item from a warehouse, first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first; expired lots included) or from one lot when <code>lotNumber</code> is given, and post a journal entry: debit the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account), credit the stock account each consumed layer was received on (the <code>inventory.stock</code> posting rule account for layers without one), or <code>inventoryAccountCode</code> for the whole cost when given. 409 when the accounting period of <code>date</code> is locked; 422 when the stock is insufficient under the <code>reject</code> policy or in the named lot. Emits <code>stock.changed</code> and, when the consumption takes the available quantity from above a reorder rule's minimum to at or below it, <code>stock.reorder_needed</code>.
    */
   public CompletableFuture<StockWriteOffInventoryResponse> stockWriteOff(
       StockWriteOffInventoryRequest request, RequestOptions requestOptions) {
@@ -212,7 +212,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+   * Move a quantity of an item from one warehouse to another: the source layers are consumed as <code>inventory/stock/write-off</code> consumes them, except that expired lots are left out unless <code>lotNumber</code> names one, and received in the target with the same quantities, costs, lots and stock accounts, one receipt per lot and stock account (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
    */
   public CompletableFuture<StockTransferInventoryResponse> stockTransfer(
       StockTransferInventoryRequest request) {
@@ -220,7 +220,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Move a quantity of an item from one warehouse to another: the source layers are consumed oldest first (from one lot when <code>lotNumber</code> is given) and received in the target with the same quantities, costs, lots and stock accounts (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
+   * Move a quantity of an item from one warehouse to another: the source layers are consumed as <code>inventory/stock/write-off</code> consumes them, except that expired lots are left out unless <code>lotNumber</code> names one, and received in the target with the same quantities, costs, lots and stock accounts, one receipt per lot and stock account (document type <code>warehouse_transfer</code>). 422 when both warehouses are the same or the source stock is insufficient under the <code>reject</code> policy. <code>inMovementId</code> is the first receipt when the consumption spans several lots or stock accounts. Emits <code>stock.changed</code> for both warehouses and <code>stock.reorder_needed</code> as <code>inventory/stock/write-off</code> does.
    */
   public CompletableFuture<StockTransferInventoryResponse> stockTransfer(
       StockTransferInventoryRequest request, RequestOptions requestOptions) {
@@ -228,7 +228,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off as <code>inventory/stock/write-off</code> consumes stock or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the <code>inventory.stock</code> posting rule account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
    */
   public CompletableFuture<StockTakeInventoryResponse> stockTake(
       StockTakeInventoryRequest request) {
@@ -236,7 +236,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off oldest layers first or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the chart's inventory account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
+   * Post a stock count for a warehouse. Each line names an item by <code>itemId</code> or <code>barcode</code> with its <code>countedQty</code>; the difference to the quantity on hand in the warehouse (all lots together) is written off as <code>inventory/stock/write-off</code> consumes stock or received as a surplus at <code>unitCost</code> (the item's purchase price when omitted; 422 when neither is set), with document type <code>stock_take</code>, and a surplus of a lot- or serial-tracked item needs <code>lotNumber</code> (422). The shortage cost less the surplus cost is posted in one journal entry between the expense account (<code>expenseAccountCode</code>, default the chart's inventory expense account) and the stock accounts (<code>inventoryAccountCode</code> for everything when given, else the accounts of the consumed layers and the <code>inventory.stock</code> posting rule account for the surpluses); nothing is posted and <code>journalTransactionId</code> is null when the net is zero. 409 when the accounting period of <code>date</code> is locked. Emits <code>stock.changed</code> per adjusted item.
    */
   public CompletableFuture<StockTakeInventoryResponse> stockTake(StockTakeInventoryRequest request,
       RequestOptions requestOptions) {
@@ -335,14 +335,14 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Return a lot with its quantity on hand and its movements in date order.
+   * Return a lot with its quantity on hand and its movements in date order, the outgoing movement before the incoming one when one posting made both (a transfer).
    */
   public CompletableFuture<LotsGetInventoryResponse> lotsGet(LotsGetInventoryRequest request) {
     return this.rawClient.lotsGet(request).thenApply(response -> response.body());
   }
 
   /**
-   * Return a lot with its quantity on hand and its movements in date order.
+   * Return a lot with its quantity on hand and its movements in date order, the outgoing movement before the incoming one when one posting made both (a transfer).
    */
   public CompletableFuture<LotsGetInventoryResponse> lotsGet(LotsGetInventoryRequest request,
       RequestOptions requestOptions) {
@@ -366,7 +366,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity moved to another warehouse by <code>inventory/stock/transfer</code> follows it to the receipts the transfer made there and is allocated on them the same way; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
    */
   public CompletableFuture<LandedCostsCreateInventoryResponse> landedCostsCreate(
       LandedCostsCreateInventoryRequest request) {
@@ -374,7 +374,7 @@ public class AsyncInventoryClient {
   }
 
   /**
-   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
+   * Allocate an extra cost <code>amount</code> (positive, whole cents; 422 otherwise) over incoming stock movements, named by <code>movementIds</code> or taken from the lines of a goods receipt (<code>goodsReceiptId</code>; 422 when the receipt has no stock movements), in proportion to their cost (<code>by_value</code>) or quantity (<code>by_quantity</code>), largest remainder to the cent. The part of each share that belongs to the quantity still on hand raises the movement's remaining cost and recomputes its unit cost; the part that belongs to quantity moved to another warehouse by <code>inventory/stock/transfer</code> follows it to the receipts the transfer made there and is allocated on them the same way; the part that belongs to quantity already consumed is posted in a journal entry dated <code>date</code> debiting <code>inventory.cogs</code> and crediting the movement's stock account (<code>inventory.stock</code> when it has none), 409 when that period is locked. 422 when a movement is not incoming or the weights sum to zero. <code>sourceInvoiceId</code> records the purchase invoice the cost came from. Goods receipts come from <code>purchases/receipts/create</code>.
    */
   public CompletableFuture<LandedCostsCreateInventoryResponse> landedCostsCreate(
       LandedCostsCreateInventoryRequest request, RequestOptions requestOptions) {

@@ -39,6 +39,10 @@ import com.nordlet.api.resources.catalog.requests.ItemsListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersDeleteCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersUpsertCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsCreateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsItemsDeleteCatalogRequest;
@@ -67,6 +71,10 @@ import com.nordlet.api.resources.catalog.types.ItemsListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersDeleteCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersUpsertCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsCreateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsItemsDeleteCatalogResponse;
@@ -1115,7 +1123,7 @@ public class AsyncRawCatalogClient {
                       }
 
                       /**
-                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
                        */
                       public CompletableFuture<NordletApiHttpResponse<UnitsCreateCatalogResponse>> unitsCreate(
                           UnitsCreateCatalogRequest request) {
@@ -1123,7 +1131,7 @@ public class AsyncRawCatalogClient {
                       }
 
                       /**
-                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+                       * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
                        */
                       public CompletableFuture<NordletApiHttpResponse<UnitsCreateCatalogResponse>> unitsCreate(
                           UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
@@ -1213,7 +1221,7 @@ public class AsyncRawCatalogClient {
                         }
 
                         /**
-                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
                          */
                         public CompletableFuture<NordletApiHttpResponse<UnitsUpdateCatalogResponse>> unitsUpdate(
                             UnitsUpdateCatalogRequest request) {
@@ -1221,7 +1229,7 @@ public class AsyncRawCatalogClient {
                         }
 
                         /**
-                         * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+                         * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
                          */
                         public CompletableFuture<NordletApiHttpResponse<UnitsUpdateCatalogResponse>> unitsUpdate(
                             UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
@@ -2363,22 +2371,22 @@ public class AsyncRawCatalogClient {
                                               }
 
                                               /**
-                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
-                                                  PriceListsCreateCatalogRequest request) {
-                                                return priceListsCreate(request,null);
+                                              public CompletableFuture<NordletApiHttpResponse<ItemsUnitsCreateCatalogResponse>> itemsUnitsCreate(
+                                                  ItemsUnitsCreateCatalogRequest request) {
+                                                return itemsUnitsCreate(request,null);
                                               }
 
                                               /**
-                                               * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                               * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
-                                                  PriceListsCreateCatalogRequest request,
+                                              public CompletableFuture<NordletApiHttpResponse<ItemsUnitsCreateCatalogResponse>> itemsUnitsCreate(
+                                                  ItemsUnitsCreateCatalogRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/catalog/price-lists/create");if (requestOptions != null) {
+                                                  .addPathSegments("v1/catalog/items/units/create");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -2404,14 +2412,14 @@ public class AsyncRawCatalogClient {
                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                   }
-                                                  CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> future = new CompletableFuture<>();
+                                                  CompletableFuture<NordletApiHttpResponse<ItemsUnitsCreateCatalogResponse>> future = new CompletableFuture<>();
                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                     @Override
                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                       try (ResponseBody responseBody = response.body()) {
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsCreateCatalogResponse.class), response));
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsCreateCatalogResponse.class), response));
                                                           return;
                                                         }
                                                         try {
@@ -2462,22 +2470,22 @@ public class AsyncRawCatalogClient {
                                                 }
 
                                                 /**
-                                                 * Change a price list. 409 when the new code already exists.
+                                                 * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> priceListsUpdate(
-                                                    PriceListsUpdateCatalogRequest request) {
-                                                  return priceListsUpdate(request,null);
+                                                public CompletableFuture<NordletApiHttpResponse<ItemsUnitsUpdateCatalogResponse>> itemsUnitsUpdate(
+                                                    ItemsUnitsUpdateCatalogRequest request) {
+                                                  return itemsUnitsUpdate(request,null);
                                                 }
 
                                                 /**
-                                                 * Change a price list. 409 when the new code already exists.
+                                                 * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> priceListsUpdate(
-                                                    PriceListsUpdateCatalogRequest request,
+                                                public CompletableFuture<NordletApiHttpResponse<ItemsUnitsUpdateCatalogResponse>> itemsUnitsUpdate(
+                                                    ItemsUnitsUpdateCatalogRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/catalog/price-lists/update");if (requestOptions != null) {
+                                                    .addPathSegments("v1/catalog/items/units/update");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -2503,14 +2511,14 @@ public class AsyncRawCatalogClient {
                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                     }
-                                                    CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> future = new CompletableFuture<>();
+                                                    CompletableFuture<NordletApiHttpResponse<ItemsUnitsUpdateCatalogResponse>> future = new CompletableFuture<>();
                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                       @Override
                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                         try (ResponseBody responseBody = response.body()) {
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsUpdateCatalogResponse.class), response));
+                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsUpdateCatalogResponse.class), response));
                                                             return;
                                                           }
                                                           try {
@@ -2561,38 +2569,22 @@ public class AsyncRawCatalogClient {
                                                   }
 
                                                   /**
-                                                   * List the company's price lists, ordered by code.
+                                                   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
-                                                      ) {
-                                                    return priceListsList(PriceListsListCatalogRequest.builder().build());
+                                                  public CompletableFuture<NordletApiHttpResponse<ItemsUnitsDeleteCatalogResponse>> itemsUnitsDelete(
+                                                      ItemsUnitsDeleteCatalogRequest request) {
+                                                    return itemsUnitsDelete(request,null);
                                                   }
 
                                                   /**
-                                                   * List the company's price lists, ordered by code.
+                                                   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
-                                                      RequestOptions requestOptions) {
-                                                    return priceListsList(PriceListsListCatalogRequest.builder().build(),requestOptions);
-                                                  }
-
-                                                  /**
-                                                   * List the company's price lists, ordered by code.
-                                                   */
-                                                  public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
-                                                      PriceListsListCatalogRequest request) {
-                                                    return priceListsList(request,null);
-                                                  }
-
-                                                  /**
-                                                   * List the company's price lists, ordered by code.
-                                                   */
-                                                  public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
-                                                      PriceListsListCatalogRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<ItemsUnitsDeleteCatalogResponse>> itemsUnitsDelete(
+                                                      ItemsUnitsDeleteCatalogRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/catalog/price-lists/list");if (requestOptions != null) {
+                                                      .addPathSegments("v1/catalog/items/units/delete");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2618,14 +2610,14 @@ public class AsyncRawCatalogClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<ItemsUnitsDeleteCatalogResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsListCatalogResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsDeleteCatalogResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2676,22 +2668,22 @@ public class AsyncRawCatalogClient {
                                                     }
 
                                                     /**
-                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     * List the alternative units of an item, ordered by unit code.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> priceListsItemsSet(
-                                                        PriceListsItemsSetCatalogRequest request) {
-                                                      return priceListsItemsSet(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<ItemsUnitsListCatalogResponse>> itemsUnitsList(
+                                                        ItemsUnitsListCatalogRequest request) {
+                                                      return itemsUnitsList(request,null);
                                                     }
 
                                                     /**
-                                                     * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                     * List the alternative units of an item, ordered by unit code.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> priceListsItemsSet(
-                                                        PriceListsItemsSetCatalogRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<ItemsUnitsListCatalogResponse>> itemsUnitsList(
+                                                        ItemsUnitsListCatalogRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/catalog/price-lists/items/set");if (requestOptions != null) {
+                                                        .addPathSegments("v1/catalog/items/units/list");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2717,14 +2709,14 @@ public class AsyncRawCatalogClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<ItemsUnitsListCatalogResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsSetCatalogResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ItemsUnitsListCatalogResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2775,22 +2767,22 @@ public class AsyncRawCatalogClient {
                                                       }
 
                                                       /**
-                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> priceListsItemsList(
-                                                          PriceListsItemsListCatalogRequest request) {
-                                                        return priceListsItemsList(request,null);
+                                                      public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
+                                                          PriceListsCreateCatalogRequest request) {
+                                                        return priceListsCreate(request,null);
                                                       }
 
                                                       /**
-                                                       * List the prices of a price list with the item name and code, ordered by item name.
+                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> priceListsItemsList(
-                                                          PriceListsItemsListCatalogRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
+                                                          PriceListsCreateCatalogRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/catalog/price-lists/items/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/catalog/price-lists/create");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2816,14 +2808,14 @@ public class AsyncRawCatalogClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsListCatalogResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsCreateCatalogResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2874,22 +2866,22 @@ public class AsyncRawCatalogClient {
                                                         }
 
                                                         /**
-                                                         * Remove one item from a price list.
+                                                         * Change a price list. 409 when the new code already exists.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> priceListsItemsDelete(
-                                                            PriceListsItemsDeleteCatalogRequest request) {
-                                                          return priceListsItemsDelete(request,null);
+                                                        public CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> priceListsUpdate(
+                                                            PriceListsUpdateCatalogRequest request) {
+                                                          return priceListsUpdate(request,null);
                                                         }
 
                                                         /**
-                                                         * Remove one item from a price list.
+                                                         * Change a price list. 409 when the new code already exists.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> priceListsItemsDelete(
-                                                            PriceListsItemsDeleteCatalogRequest request,
+                                                        public CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> priceListsUpdate(
+                                                            PriceListsUpdateCatalogRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/catalog/price-lists/items/delete");if (requestOptions != null) {
+                                                            .addPathSegments("v1/catalog/price-lists/update");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2915,14 +2907,14 @@ public class AsyncRawCatalogClient {
                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                             }
-                                                            CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> future = new CompletableFuture<>();
+                                                            CompletableFuture<NordletApiHttpResponse<PriceListsUpdateCatalogResponse>> future = new CompletableFuture<>();
                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                               @Override
                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                 try (ResponseBody responseBody = response.body()) {
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsDeleteCatalogResponse.class), response));
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsUpdateCatalogResponse.class), response));
                                                                     return;
                                                                   }
                                                                   try {
@@ -2971,4 +2963,416 @@ public class AsyncRawCatalogClient {
                                                             });
                                                             return future;
                                                           }
-                                                        }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
+                                                              ) {
+                                                            return priceListsList(PriceListsListCatalogRequest.builder().build());
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
+                                                              RequestOptions requestOptions) {
+                                                            return priceListsList(PriceListsListCatalogRequest.builder().build(),requestOptions);
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
+                                                              PriceListsListCatalogRequest request) {
+                                                            return priceListsList(request,null);
+                                                          }
+
+                                                          /**
+                                                           * List the company's price lists, ordered by code.
+                                                           */
+                                                          public CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> priceListsList(
+                                                              PriceListsListCatalogRequest request,
+                                                              RequestOptions requestOptions) {
+                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                              .addPathSegments("v1/catalog/price-lists/list");if (requestOptions != null) {
+                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                } );
+                                                              }
+                                                              RequestBody body;
+                                                              try {
+                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                              }
+                                                              catch(JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                              }
+                                                              Request okhttpRequest = new Request.Builder()
+                                                                .url(httpUrl.build())
+                                                                .method("POST", body)
+                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                .addHeader("Content-Type", "application/json")
+                                                                .addHeader("Accept", "application/json")
+                                                                .build();
+                                                              OkHttpClient client = clientOptions.httpClient();
+                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                              }
+                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                              }
+                                                              CompletableFuture<NordletApiHttpResponse<PriceListsListCatalogResponse>> future = new CompletableFuture<>();
+                                                              client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                @Override
+                                                                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                  try (ResponseBody responseBody = response.body()) {
+                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                    if (response.isSuccessful()) {
+                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsListCatalogResponse.class), response));
+                                                                      return;
+                                                                    }
+                                                                    try {
+                                                                      switch (response.code()) {
+                                                                        case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                        case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                        return;
+                                                                      }
+                                                                    }
+                                                                    catch (JsonProcessingException ignored) {
+                                                                      // unable to map error response, throwing generic error
+                                                                    }
+                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                    future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                    return;
+                                                                  }
+                                                                  catch (JsonProcessingException e) {
+                                                                    future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                  }
+                                                                  catch (IOException e) {
+                                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                  }
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                  future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                }
+                                                              });
+                                                              return future;
+                                                            }
+
+                                                            /**
+                                                             * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                             */
+                                                            public CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> priceListsItemsSet(
+                                                                PriceListsItemsSetCatalogRequest request) {
+                                                              return priceListsItemsSet(request,null);
+                                                            }
+
+                                                            /**
+                                                             * Set the unit price excluding VAT of up to 500 items on a price list; a price already on the list is replaced and the other items on the list are kept. 422 when an item appears twice in the request. Emits <code>price_list.updated</code> with the item ids.
+                                                             */
+                                                            public CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> priceListsItemsSet(
+                                                                PriceListsItemsSetCatalogRequest request,
+                                                                RequestOptions requestOptions) {
+                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                .addPathSegments("v1/catalog/price-lists/items/set");if (requestOptions != null) {
+                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                  } );
+                                                                }
+                                                                RequestBody body;
+                                                                try {
+                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                }
+                                                                catch(JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                }
+                                                                Request okhttpRequest = new Request.Builder()
+                                                                  .url(httpUrl.build())
+                                                                  .method("POST", body)
+                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                  .addHeader("Content-Type", "application/json")
+                                                                  .addHeader("Accept", "application/json")
+                                                                  .build();
+                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                }
+                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                }
+                                                                CompletableFuture<NordletApiHttpResponse<PriceListsItemsSetCatalogResponse>> future = new CompletableFuture<>();
+                                                                client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                  @Override
+                                                                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                    try (ResponseBody responseBody = response.body()) {
+                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                      if (response.isSuccessful()) {
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsSetCatalogResponse.class), response));
+                                                                        return;
+                                                                      }
+                                                                      try {
+                                                                        switch (response.code()) {
+                                                                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                          return;
+                                                                        }
+                                                                      }
+                                                                      catch (JsonProcessingException ignored) {
+                                                                        // unable to map error response, throwing generic error
+                                                                      }
+                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                      return;
+                                                                    }
+                                                                    catch (JsonProcessingException e) {
+                                                                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                    }
+                                                                    catch (IOException e) {
+                                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                    }
+                                                                  }
+
+                                                                  @Override
+                                                                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                  }
+                                                                });
+                                                                return future;
+                                                              }
+
+                                                              /**
+                                                               * List the prices of a price list with the item name and code, ordered by item name.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> priceListsItemsList(
+                                                                  PriceListsItemsListCatalogRequest request) {
+                                                                return priceListsItemsList(request,null);
+                                                              }
+
+                                                              /**
+                                                               * List the prices of a price list with the item name and code, ordered by item name.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> priceListsItemsList(
+                                                                  PriceListsItemsListCatalogRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/catalog/price-lists/items/list");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  CompletableFuture<NordletApiHttpResponse<PriceListsItemsListCatalogResponse>> future = new CompletableFuture<>();
+                                                                  client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                    @Override
+                                                                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                      try (ResponseBody responseBody = response.body()) {
+                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                        if (response.isSuccessful()) {
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsListCatalogResponse.class), response));
+                                                                          return;
+                                                                        }
+                                                                        try {
+                                                                          switch (response.code()) {
+                                                                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                          }
+                                                                        }
+                                                                        catch (JsonProcessingException ignored) {
+                                                                          // unable to map error response, throwing generic error
+                                                                        }
+                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                        future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                        return;
+                                                                      }
+                                                                      catch (JsonProcessingException e) {
+                                                                        future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                      }
+                                                                      catch (IOException e) {
+                                                                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                      }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                    }
+                                                                  });
+                                                                  return future;
+                                                                }
+
+                                                                /**
+                                                                 * Remove one item from a price list.
+                                                                 */
+                                                                public CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> priceListsItemsDelete(
+                                                                    PriceListsItemsDeleteCatalogRequest request) {
+                                                                  return priceListsItemsDelete(request,null);
+                                                                }
+
+                                                                /**
+                                                                 * Remove one item from a price list.
+                                                                 */
+                                                                public CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> priceListsItemsDelete(
+                                                                    PriceListsItemsDeleteCatalogRequest request,
+                                                                    RequestOptions requestOptions) {
+                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                    .addPathSegments("v1/catalog/price-lists/items/delete");if (requestOptions != null) {
+                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                      } );
+                                                                    }
+                                                                    RequestBody body;
+                                                                    try {
+                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                    }
+                                                                    catch(JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                    }
+                                                                    Request okhttpRequest = new Request.Builder()
+                                                                      .url(httpUrl.build())
+                                                                      .method("POST", body)
+                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                      .addHeader("Content-Type", "application/json")
+                                                                      .addHeader("Accept", "application/json")
+                                                                      .build();
+                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                    }
+                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                    }
+                                                                    CompletableFuture<NordletApiHttpResponse<PriceListsItemsDeleteCatalogResponse>> future = new CompletableFuture<>();
+                                                                    client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                      @Override
+                                                                      public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                        try (ResponseBody responseBody = response.body()) {
+                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                          if (response.isSuccessful()) {
+                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PriceListsItemsDeleteCatalogResponse.class), response));
+                                                                            return;
+                                                                          }
+                                                                          try {
+                                                                            switch (response.code()) {
+                                                                              case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                              case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                              return;
+                                                                            }
+                                                                          }
+                                                                          catch (JsonProcessingException ignored) {
+                                                                            // unable to map error response, throwing generic error
+                                                                          }
+                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                          future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                          return;
+                                                                        }
+                                                                        catch (JsonProcessingException e) {
+                                                                          future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                        }
+                                                                        catch (IOException e) {
+                                                                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                        }
+                                                                      }
+
+                                                                      @Override
+                                                                      public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                      }
+                                                                    });
+                                                                    return future;
+                                                                  }
+                                                                }

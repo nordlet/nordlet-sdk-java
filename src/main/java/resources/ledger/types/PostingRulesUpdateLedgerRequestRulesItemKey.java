@@ -16,6 +16,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SALES_REVENUE_PRODUCTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SALES_REVENUE_PRODUCTS, "sales.revenueProducts");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey POS_CASH_SURPLUS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.POS_CASH_SURPLUS, "pos.cashSurplus");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey POS_CASH_SHORTAGE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.POS_CASH_SHORTAGE, "pos.cashShortage");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_FEES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_FEES, "bank.fees");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey CLOSING_RETAINED_EARNINGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.CLOSING_RETAINED_EARNINGS, "closing.retainedEarnings");
@@ -126,6 +130,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitAssetsDisposalLoss();
       case SALES_REVENUE_PRODUCTS:
         return visitor.visitSalesRevenueProducts();
+      case POS_CASH_SURPLUS:
+        return visitor.visitPosCashSurplus();
+      case POS_CASH_SHORTAGE:
+        return visitor.visitPosCashShortage();
       case BANK_FEES:
         return visitor.visitBankFees();
       case CLOSING_RETAINED_EARNINGS:
@@ -215,6 +223,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return ASSETS_DISPOSAL_LOSS;
       case "sales.revenueProducts":
         return SALES_REVENUE_PRODUCTS;
+      case "pos.cashSurplus":
+        return POS_CASH_SURPLUS;
+      case "pos.cashShortage":
+        return POS_CASH_SHORTAGE;
       case "bank.fees":
         return BANK_FEES;
       case "closing.retainedEarnings":
@@ -321,6 +333,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     PRODUCTION_SCRAP,
 
+    POS_CASH_SHORTAGE,
+
+    POS_CASH_SURPLUS,
+
     BANK_FX_GAIN,
 
     BANK_FX_LOSS,
@@ -402,6 +418,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitProductionLaborApplied();
 
     T visitProductionScrap();
+
+    T visitPosCashShortage();
+
+    T visitPosCashSurplus();
 
     T visitBankFxGain();
 

@@ -39,6 +39,10 @@ public final class OrdersApprovePurchasesResponseLinesItem {
 
   private final String quantity;
 
+  private final String unitFactor;
+
+  private final String baseQuantity;
+
   private final String receivedQty;
 
   private final String remainingQty;
@@ -68,16 +72,19 @@ public final class OrdersApprovePurchasesResponseLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private OrdersApprovePurchasesResponseLinesItem(String id, Optional<String> itemId,
-      String description, String unit, String quantity, String receivedQty, String remainingQty,
-      Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat, String vatRatePercent,
-      Optional<String> vatClassifierCode, Optional<String> costCenterId, Optional<String> projectId,
-      Optional<String> accountCode, String lineNet, String lineVat, String lineGross,
-      long sortOrder, Map<String, Object> additionalProperties) {
+      String description, String unit, String quantity, String unitFactor, String baseQuantity,
+      String receivedQty, String remainingQty, Optional<String> unitPriceExclVat,
+      Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
+      Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
+      String lineNet, String lineVat, String lineGross, long sortOrder,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
     this.quantity = quantity;
+    this.unitFactor = unitFactor;
+    this.baseQuantity = baseQuantity;
     this.receivedQty = receivedQty;
     this.remainingQty = remainingQty;
     this.unitPriceExclVat = unitPriceExclVat;
@@ -120,6 +127,16 @@ public final class OrdersApprovePurchasesResponseLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("unitFactor")
+  public String getUnitFactor() {
+    return unitFactor;
+  }
+
+  @JsonProperty("baseQuantity")
+  public String getBaseQuantity() {
+    return baseQuantity;
   }
 
   @JsonProperty("receivedQty")
@@ -280,12 +297,12 @@ public final class OrdersApprovePurchasesResponseLinesItem {
   }
 
   private boolean equalTo(OrdersApprovePurchasesResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && receivedQty.equals(other.receivedQty) && remainingQty.equals(other.remainingQty) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && receivedQty.equals(other.receivedQty) && remainingQty.equals(other.remainingQty) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.receivedQty, this.remainingQty, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.receivedQty, this.remainingQty, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
   }
 
   @java.lang.Override
@@ -312,7 +329,15 @@ public final class OrdersApprovePurchasesResponseLinesItem {
   }
 
   public interface QuantityStage {
-    ReceivedQtyStage quantity(@NotNull String quantity);
+    UnitFactorStage quantity(@NotNull String quantity);
+  }
+
+  public interface UnitFactorStage {
+    BaseQuantityStage unitFactor(@NotNull String unitFactor);
+  }
+
+  public interface BaseQuantityStage {
+    ReceivedQtyStage baseQuantity(@NotNull String baseQuantity);
   }
 
   public interface ReceivedQtyStage {
@@ -396,7 +421,7 @@ public final class OrdersApprovePurchasesResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, ReceivedQtyStage, RemainingQtyStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, UnitFactorStage, BaseQuantityStage, ReceivedQtyStage, RemainingQtyStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, _FinalStage {
     private String id;
 
     private String description;
@@ -404,6 +429,10 @@ public final class OrdersApprovePurchasesResponseLinesItem {
     private String unit;
 
     private String quantity;
+
+    private String unitFactor;
+
+    private String baseQuantity;
 
     private String receivedQty;
 
@@ -446,6 +475,8 @@ public final class OrdersApprovePurchasesResponseLinesItem {
       description(other.getDescription());
       unit(other.getUnit());
       quantity(other.getQuantity());
+      unitFactor(other.getUnitFactor());
+      baseQuantity(other.getBaseQuantity());
       receivedQty(other.getReceivedQty());
       remainingQty(other.getRemainingQty());
       unitPriceExclVat(other.getUnitPriceExclVat());
@@ -485,8 +516,22 @@ public final class OrdersApprovePurchasesResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public ReceivedQtyStage quantity(@NotNull String quantity) {
+    public UnitFactorStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("unitFactor")
+    public BaseQuantityStage unitFactor(@NotNull String unitFactor) {
+      this.unitFactor = Objects.requireNonNull(unitFactor, "unitFactor must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseQuantity")
+    public ReceivedQtyStage baseQuantity(@NotNull String baseQuantity) {
+      this.baseQuantity = Objects.requireNonNull(baseQuantity, "baseQuantity must not be null");
       return this;
     }
 
@@ -751,7 +796,7 @@ public final class OrdersApprovePurchasesResponseLinesItem {
 
     @java.lang.Override
     public OrdersApprovePurchasesResponseLinesItem build() {
-      return new OrdersApprovePurchasesResponseLinesItem(id, itemId, description, unit, quantity, receivedQty, remainingQty, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new OrdersApprovePurchasesResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, receivedQty, remainingQty, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

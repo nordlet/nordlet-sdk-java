@@ -6,11 +6,15 @@ package com.nordlet.api.resources.catalog.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
@@ -18,6 +22,7 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -31,17 +36,21 @@ public final class UnitsCreateCatalogResponse {
 
   private final String name;
 
+  private final Optional<String> rec20Code;
+
   private final boolean isActive;
 
   private final OffsetDateTime createdAt;
 
   private final Map<String, Object> additionalProperties;
 
-  private UnitsCreateCatalogResponse(String id, String code, String name, boolean isActive,
-      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+  private UnitsCreateCatalogResponse(String id, String code, String name,
+      Optional<String> rec20Code, boolean isActive, OffsetDateTime createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.code = code;
     this.name = name;
+    this.rec20Code = rec20Code;
     this.isActive = isActive;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
@@ -62,6 +71,14 @@ public final class UnitsCreateCatalogResponse {
     return name;
   }
 
+  @JsonIgnore
+  public Optional<String> getRec20Code() {
+    if (rec20Code == null) {
+      return Optional.empty();
+    }
+    return rec20Code;
+  }
+
   @JsonProperty("isActive")
   public boolean getIsActive() {
     return isActive;
@@ -70,6 +87,15 @@ public final class UnitsCreateCatalogResponse {
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("rec20Code")
+  private Optional<String> _getRec20Code() {
+    return rec20Code;
   }
 
   @java.lang.Override
@@ -84,12 +110,12 @@ public final class UnitsCreateCatalogResponse {
   }
 
   private boolean equalTo(UnitsCreateCatalogResponse other) {
-    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && isActive == other.isActive && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && name.equals(other.name) && rec20Code.equals(other.rec20Code) && isActive == other.isActive && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.name, this.isActive, this.createdAt);
+    return Objects.hash(this.id, this.code, this.name, this.rec20Code, this.isActive, this.createdAt);
   }
 
   @java.lang.Override
@@ -129,6 +155,12 @@ public final class UnitsCreateCatalogResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage rec20Code(Optional<String> rec20Code);
+
+    _FinalStage rec20Code(String rec20Code);
+
+    _FinalStage rec20Code(Nullable<String> rec20Code);
   }
 
   @JsonIgnoreProperties(
@@ -145,6 +177,8 @@ public final class UnitsCreateCatalogResponse {
 
     private OffsetDateTime createdAt;
 
+    private Optional<String> rec20Code = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -156,6 +190,7 @@ public final class UnitsCreateCatalogResponse {
       id(other.getId());
       code(other.getCode());
       name(other.getName());
+      rec20Code(other.getRec20Code());
       isActive(other.getIsActive());
       createdAt(other.getCreatedAt());
       return this;
@@ -197,8 +232,38 @@ public final class UnitsCreateCatalogResponse {
     }
 
     @java.lang.Override
+    public _FinalStage rec20Code(Nullable<String> rec20Code) {
+      if (rec20Code.isNull()) {
+        this.rec20Code = null;
+      }
+      else if (rec20Code.isEmpty()) {
+        this.rec20Code = Optional.empty();
+      }
+      else {
+        this.rec20Code = Optional.of(rec20Code.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage rec20Code(String rec20Code) {
+      this.rec20Code = Optional.ofNullable(rec20Code);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "rec20Code",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage rec20Code(Optional<String> rec20Code) {
+      this.rec20Code = rec20Code;
+      return this;
+    }
+
+    @java.lang.Override
     public UnitsCreateCatalogResponse build() {
-      return new UnitsCreateCatalogResponse(id, code, name, isActive, createdAt, additionalProperties);
+      return new UnitsCreateCatalogResponse(id, code, name, rec20Code, isActive, createdAt, additionalProperties);
     }
 
     @java.lang.Override

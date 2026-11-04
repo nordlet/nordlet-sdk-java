@@ -565,7 +565,7 @@ public class RawProductionClient {
               }
 
               /**
-               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>. <code>purchaseInvoiceId</code> links the purchase invoice that books its cost (422 when it is not a purchase invoice of the company or is a credit note). Maintenance posts nothing to the ledger itself.
                */
               public NordletApiHttpResponse<MaintenanceCreateProductionResponse> maintenanceCreate(
                   MaintenanceCreateProductionRequest request) {
@@ -573,7 +573,7 @@ public class RawProductionClient {
               }
 
               /**
-               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>.
+               * Record a <code>preventive</code> or <code>corrective</code> maintenance planned for a work center on <code>plannedDate</code>; it starts as <code>planned</code>. <code>purchaseInvoiceId</code> links the purchase invoice that books its cost (422 when it is not a purchase invoice of the company or is a credit note). Maintenance posts nothing to the ledger itself.
                */
               public NordletApiHttpResponse<MaintenanceCreateProductionResponse> maintenanceCreate(
                   MaintenanceCreateProductionRequest request, RequestOptions requestOptions) {
@@ -640,7 +640,7 @@ public class RawProductionClient {
                 }
 
                 /**
-                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date. <code>purchaseInvoiceId</code> links the purchase invoice that books the cost, as on <code>production/maintenance/create</code>; the cost is not posted to the ledger, with or without the link.
                  */
                 public NordletApiHttpResponse<MaintenanceCompleteProductionResponse> maintenanceComplete(
                     MaintenanceCompleteProductionRequest request) {
@@ -648,7 +648,7 @@ public class RawProductionClient {
                 }
 
                 /**
-                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date.
+                 * Mark a <code>planned</code> maintenance as completed on <code>completedDate</code>, with optional <code>downtimeHours</code> and <code>cost</code> (409 when it is already completed or cancelled). The work center's <code>nextMaintenanceDate</code> is then counted from the latest completed maintenance date. <code>purchaseInvoiceId</code> links the purchase invoice that books the cost, as on <code>production/maintenance/create</code>; the cost is not posted to the ledger, with or without the link.
                  */
                 public NordletApiHttpResponse<MaintenanceCompleteProductionResponse> maintenanceComplete(
                     MaintenanceCompleteProductionRequest request, RequestOptions requestOptions) {
@@ -1273,7 +1273,7 @@ public class RawProductionClient {
                                 }
 
                                 /**
-                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending or failed.
                                  */
                                 public NordletApiHttpResponse<QualityChecksAddProductionResponse> qualityChecksAdd(
                                     QualityChecksAddProductionRequest request) {
@@ -1281,7 +1281,7 @@ public class RawProductionClient {
                                 }
 
                                 /**
-                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending.
+                                 * Add a pending quality check to a draft production order (409 once the order is completed). The order cannot complete while a check is pending or failed.
                                  */
                                 public NordletApiHttpResponse<QualityChecksAddProductionResponse> qualityChecksAdd(
                                     QualityChecksAddProductionRequest request,
@@ -1349,7 +1349,7 @@ public class RawProductionClient {
                                   }
 
                                   /**
-                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). <code>production/orders/complete</code> answers 409 while a check is <code>pending</code> or <code>failed</code>; a failed check can be recorded again as <code>passed</code>.
                                    */
                                   public NordletApiHttpResponse<QualityChecksRecordProductionResponse> qualityChecksRecord(
                                       QualityChecksRecordProductionRequest request) {
@@ -1357,7 +1357,7 @@ public class RawProductionClient {
                                   }
 
                                   /**
-                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). Only a <code>pending</code> check blocks <code>production/orders/complete</code>; a <code>failed</code> one does not.
+                                   * Record the result of a quality check as <code>passed</code> or <code>failed</code>, with the time and the actor (409 once the order is completed). <code>production/orders/complete</code> answers 409 while a check is <code>pending</code> or <code>failed</code>; a failed check can be recorded again as <code>passed</code>.
                                    */
                                   public NordletApiHttpResponse<QualityChecksRecordProductionResponse> qualityChecksRecord(
                                       QualityChecksRecordProductionRequest request,
@@ -1517,7 +1517,7 @@ public class RawProductionClient {
                                       }
 
                                       /**
-                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components from the warehouse, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts; consumed layers without a stock account are credited to the given code, else to the <code>inventory.stock</code> rule account. Refused with 409 when the order is already completed, a quality check is still pending or has failed, or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
                                        */
                                       public NordletApiHttpResponse<OrdersCompleteProductionResponse> ordersComplete(
                                           OrdersCompleteProductionRequest request) {
@@ -1525,7 +1525,7 @@ public class RawProductionClient {
                                       }
 
                                       /**
-                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components FIFO from the warehouse (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts. Refused with 409 when the order is already completed, a quality check is still pending or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
+                                       * Complete a draft production order on the order's date. An <code>assembly</code> consumes the components from the warehouse, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (line quantity × order quantity, increased by <code>scrapPercent</code>), prices each operation at its actual or planned minutes × <code>costPerHour</code>, receives the finished item at material cost + labor cost less the share of <code>scrappedQuantity</code>, and, when there is labor, scrap or a component stock account other than the finished one, posts a journal entry debiting the finished stock account (and the <code>production.scrap</code> rule account for the scrapped share) and crediting the component stock accounts and the work centers' cost accounts (or the <code>production.laborApplied</code> rule account); a <code>disassembly</code> consumes the finished item and receives the components at its cost shared by quantity. <code>componentsAccountCode</code> and <code>finishedAccountCode</code> default to the chart's production accounts; consumed layers without a stock account are credited to the given code, else to the <code>inventory.stock</code> rule account. Refused with 409 when the order is already completed, a quality check is still pending or has failed, or the accounting period is locked, and with 422 when the BOM has no lines, <code>scrappedQuantity</code> is given on a disassembly or exceeds the finished quantity, the assembly cost is zero, stock is insufficient, a received item needs lot or serial tracking, or a posting account is missing. Emits <code>stock.changed</code>.
                                        */
                                       public NordletApiHttpResponse<OrdersCompleteProductionResponse> ordersComplete(
                                           OrdersCompleteProductionRequest request,

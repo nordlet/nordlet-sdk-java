@@ -63,6 +63,8 @@ public final class InvoicesGetPublicResponse {
 
   private final Optional<String> payUrl;
 
+  private final boolean cardPaymentReceived;
+
   private final InvoicesGetPublicResponseSeller seller;
 
   private final InvoicesGetPublicResponseBuyer buyer;
@@ -76,9 +78,9 @@ public final class InvoicesGetPublicResponse {
       Optional<String> number, Optional<String> issueDate, Optional<String> dueDate,
       String currency, String netTotal, String vatTotal, Optional<String> salesTaxPercent,
       String salesTaxTotal, String grossTotal, String paidAmount, Optional<String> paidOn,
-      Optional<String> notes, Optional<String> payUrl, InvoicesGetPublicResponseSeller seller,
-      InvoicesGetPublicResponseBuyer buyer, List<InvoicesGetPublicResponseLinesItem> lines,
-      Map<String, Object> additionalProperties) {
+      Optional<String> notes, Optional<String> payUrl, boolean cardPaymentReceived,
+      InvoicesGetPublicResponseSeller seller, InvoicesGetPublicResponseBuyer buyer,
+      List<InvoicesGetPublicResponseLinesItem> lines, Map<String, Object> additionalProperties) {
     this.type = type;
     this.status = status;
     this.paymentStatus = paymentStatus;
@@ -95,6 +97,7 @@ public final class InvoicesGetPublicResponse {
     this.paidOn = paidOn;
     this.notes = notes;
     this.payUrl = payUrl;
+    this.cardPaymentReceived = cardPaymentReceived;
     this.seller = seller;
     this.buyer = buyer;
     this.lines = lines;
@@ -202,6 +205,11 @@ public final class InvoicesGetPublicResponse {
     return payUrl;
   }
 
+  @JsonProperty("cardPaymentReceived")
+  public boolean getCardPaymentReceived() {
+    return cardPaymentReceived;
+  }
+
   @JsonProperty("seller")
   public InvoicesGetPublicResponseSeller getSeller() {
     return seller;
@@ -292,12 +300,12 @@ public final class InvoicesGetPublicResponse {
   }
 
   private boolean equalTo(InvoicesGetPublicResponse other) {
-    return type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && number.equals(other.number) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && paidOn.equals(other.paidOn) && notes.equals(other.notes) && payUrl.equals(other.payUrl) && seller.equals(other.seller) && buyer.equals(other.buyer) && lines.equals(other.lines);
+    return type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && number.equals(other.number) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && paidOn.equals(other.paidOn) && notes.equals(other.notes) && payUrl.equals(other.payUrl) && cardPaymentReceived == other.cardPaymentReceived && seller.equals(other.seller) && buyer.equals(other.buyer) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.status, this.paymentStatus, this.number, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.salesTaxPercent, this.salesTaxTotal, this.grossTotal, this.paidAmount, this.paidOn, this.notes, this.payUrl, this.seller, this.buyer, this.lines);
+    return Objects.hash(this.type, this.status, this.paymentStatus, this.number, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.salesTaxPercent, this.salesTaxTotal, this.grossTotal, this.paidAmount, this.paidOn, this.notes, this.payUrl, this.cardPaymentReceived, this.seller, this.buyer, this.lines);
   }
 
   @java.lang.Override
@@ -344,7 +352,11 @@ public final class InvoicesGetPublicResponse {
   }
 
   public interface PaidAmountStage {
-    SellerStage paidAmount(@NotNull String paidAmount);
+    CardPaymentReceivedStage paidAmount(@NotNull String paidAmount);
+  }
+
+  public interface CardPaymentReceivedStage {
+    SellerStage cardPaymentReceived(boolean cardPaymentReceived);
   }
 
   public interface SellerStage {
@@ -414,7 +426,7 @@ public final class InvoicesGetPublicResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, SalesTaxTotalStage, GrossTotalStage, PaidAmountStage, SellerStage, BuyerStage, _FinalStage {
+  public static final class Builder implements TypeStage, StatusStage, PaymentStatusStage, CurrencyStage, NetTotalStage, VatTotalStage, SalesTaxTotalStage, GrossTotalStage, PaidAmountStage, CardPaymentReceivedStage, SellerStage, BuyerStage, _FinalStage {
     private InvoicesGetPublicResponseType type;
 
     private InvoicesGetPublicResponseStatus status;
@@ -432,6 +444,8 @@ public final class InvoicesGetPublicResponse {
     private String grossTotal;
 
     private String paidAmount;
+
+    private boolean cardPaymentReceived;
 
     private InvoicesGetPublicResponseSeller seller;
 
@@ -477,6 +491,7 @@ public final class InvoicesGetPublicResponse {
       paidOn(other.getPaidOn());
       notes(other.getNotes());
       payUrl(other.getPayUrl());
+      cardPaymentReceived(other.getCardPaymentReceived());
       seller(other.getSeller());
       buyer(other.getBuyer());
       lines(other.getLines());
@@ -542,8 +557,15 @@ public final class InvoicesGetPublicResponse {
 
     @java.lang.Override
     @JsonSetter("paidAmount")
-    public SellerStage paidAmount(@NotNull String paidAmount) {
+    public CardPaymentReceivedStage paidAmount(@NotNull String paidAmount) {
       this.paidAmount = Objects.requireNonNull(paidAmount, "paidAmount must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("cardPaymentReceived")
+    public SellerStage cardPaymentReceived(boolean cardPaymentReceived) {
+      this.cardPaymentReceived = cardPaymentReceived;
       return this;
     }
 
@@ -800,7 +822,7 @@ public final class InvoicesGetPublicResponse {
 
     @java.lang.Override
     public InvoicesGetPublicResponse build() {
-      return new InvoicesGetPublicResponse(type, status, paymentStatus, number, issueDate, dueDate, currency, netTotal, vatTotal, salesTaxPercent, salesTaxTotal, grossTotal, paidAmount, paidOn, notes, payUrl, seller, buyer, lines, additionalProperties);
+      return new InvoicesGetPublicResponse(type, status, paymentStatus, number, issueDate, dueDate, currency, netTotal, vatTotal, salesTaxPercent, salesTaxTotal, grossTotal, paidAmount, paidOn, notes, payUrl, cardPaymentReceived, seller, buyer, lines, additionalProperties);
     }
 
     @java.lang.Override

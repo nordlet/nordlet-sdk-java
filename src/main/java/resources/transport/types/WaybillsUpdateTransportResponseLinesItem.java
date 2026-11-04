@@ -39,6 +39,10 @@ public final class WaybillsUpdateTransportResponseLinesItem {
 
   private final String quantity;
 
+  private final String unitFactor;
+
+  private final String baseQuantity;
+
   private final Optional<String> productCode;
 
   private final long sortOrder;
@@ -46,13 +50,15 @@ public final class WaybillsUpdateTransportResponseLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private WaybillsUpdateTransportResponseLinesItem(String id, Optional<String> itemId,
-      String description, String unit, String quantity, Optional<String> productCode,
-      long sortOrder, Map<String, Object> additionalProperties) {
+      String description, String unit, String quantity, String unitFactor, String baseQuantity,
+      Optional<String> productCode, long sortOrder, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
     this.quantity = quantity;
+    this.unitFactor = unitFactor;
+    this.baseQuantity = baseQuantity;
     this.productCode = productCode;
     this.sortOrder = sortOrder;
     this.additionalProperties = additionalProperties;
@@ -84,6 +90,16 @@ public final class WaybillsUpdateTransportResponseLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("unitFactor")
+  public String getUnitFactor() {
+    return unitFactor;
+  }
+
+  @JsonProperty("baseQuantity")
+  public String getBaseQuantity() {
+    return baseQuantity;
   }
 
   @JsonIgnore
@@ -129,12 +145,12 @@ public final class WaybillsUpdateTransportResponseLinesItem {
   }
 
   private boolean equalTo(WaybillsUpdateTransportResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && productCode.equals(other.productCode) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && productCode.equals(other.productCode) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.productCode, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.productCode, this.sortOrder);
   }
 
   @java.lang.Override
@@ -161,7 +177,15 @@ public final class WaybillsUpdateTransportResponseLinesItem {
   }
 
   public interface QuantityStage {
-    SortOrderStage quantity(@NotNull String quantity);
+    UnitFactorStage quantity(@NotNull String quantity);
+  }
+
+  public interface UnitFactorStage {
+    BaseQuantityStage unitFactor(@NotNull String unitFactor);
+  }
+
+  public interface BaseQuantityStage {
+    SortOrderStage baseQuantity(@NotNull String baseQuantity);
   }
 
   public interface SortOrderStage {
@@ -191,7 +215,7 @@ public final class WaybillsUpdateTransportResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, SortOrderStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, UnitFactorStage, BaseQuantityStage, SortOrderStage, _FinalStage {
     private String id;
 
     private String description;
@@ -199,6 +223,10 @@ public final class WaybillsUpdateTransportResponseLinesItem {
     private String unit;
 
     private String quantity;
+
+    private String unitFactor;
+
+    private String baseQuantity;
 
     private long sortOrder;
 
@@ -219,6 +247,8 @@ public final class WaybillsUpdateTransportResponseLinesItem {
       description(other.getDescription());
       unit(other.getUnit());
       quantity(other.getQuantity());
+      unitFactor(other.getUnitFactor());
+      baseQuantity(other.getBaseQuantity());
       productCode(other.getProductCode());
       sortOrder(other.getSortOrder());
       return this;
@@ -247,8 +277,22 @@ public final class WaybillsUpdateTransportResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public SortOrderStage quantity(@NotNull String quantity) {
+    public UnitFactorStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("unitFactor")
+    public BaseQuantityStage unitFactor(@NotNull String unitFactor) {
+      this.unitFactor = Objects.requireNonNull(unitFactor, "unitFactor must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseQuantity")
+    public SortOrderStage baseQuantity(@NotNull String baseQuantity) {
+      this.baseQuantity = Objects.requireNonNull(baseQuantity, "baseQuantity must not be null");
       return this;
     }
 
@@ -321,7 +365,7 @@ public final class WaybillsUpdateTransportResponseLinesItem {
 
     @java.lang.Override
     public WaybillsUpdateTransportResponseLinesItem build() {
-      return new WaybillsUpdateTransportResponseLinesItem(id, itemId, description, unit, quantity, productCode, sortOrder, additionalProperties);
+      return new WaybillsUpdateTransportResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, productCode, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

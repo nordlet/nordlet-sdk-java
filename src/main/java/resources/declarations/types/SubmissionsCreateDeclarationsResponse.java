@@ -81,6 +81,8 @@ public final class SubmissionsCreateDeclarationsResponse {
 
   private final Optional<String> deliveryError;
 
+  private final boolean confirmationPending;
+
   private final Optional<String> sentSha256;
 
   private final Optional<String> certificateFingerprint;
@@ -107,10 +109,10 @@ public final class SubmissionsCreateDeclarationsResponse {
       Optional<OffsetDateTime> submittedAt, Optional<OffsetDateTime> acceptedAt,
       Optional<OffsetDateTime> rejectedAt, Optional<OffsetDateTime> checkedAt,
       Optional<OffsetDateTime> nextCheckAt, long attempts, Optional<String> deliveryError,
-      Optional<String> sentSha256, Optional<String> certificateFingerprint,
-      Optional<String> submittedByActorType, Optional<String> submittedByActorId,
-      OffsetDateTime createdAt, OffsetDateTime updatedAt, List<String> warnings,
-      Map<String, Object> additionalProperties) {
+      boolean confirmationPending, Optional<String> sentSha256,
+      Optional<String> certificateFingerprint, Optional<String> submittedByActorType,
+      Optional<String> submittedByActorId, OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      List<String> warnings, Map<String, Object> additionalProperties) {
     this.id = id;
     this.obligation = obligation;
     this.periodYear = periodYear;
@@ -135,6 +137,7 @@ public final class SubmissionsCreateDeclarationsResponse {
     this.nextCheckAt = nextCheckAt;
     this.attempts = attempts;
     this.deliveryError = deliveryError;
+    this.confirmationPending = confirmationPending;
     this.sentSha256 = sentSha256;
     this.certificateFingerprint = certificateFingerprint;
     this.submittedByActorType = submittedByActorType;
@@ -311,6 +314,11 @@ public final class SubmissionsCreateDeclarationsResponse {
       return Optional.empty();
     }
     return deliveryError;
+  }
+
+  @JsonProperty("confirmationPending")
+  public boolean getConfirmationPending() {
+    return confirmationPending;
   }
 
   @JsonIgnore
@@ -552,12 +560,12 @@ public final class SubmissionsCreateDeclarationsResponse {
   }
 
   private boolean equalTo(SubmissionsCreateDeclarationsResponse other) {
-    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && warnings.equals(other.warnings);
+    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && warnings.equals(other.warnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt, this.warnings);
+    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt, this.warnings);
   }
 
   @java.lang.Override
@@ -600,7 +608,11 @@ public final class SubmissionsCreateDeclarationsResponse {
   }
 
   public interface AttemptsStage {
-    CreatedAtStage attempts(long attempts);
+    ConfirmationPendingStage attempts(long attempts);
+  }
+
+  public interface ConfirmationPendingStage {
+    CreatedAtStage confirmationPending(boolean confirmationPending);
   }
 
   public interface CreatedAtStage {
@@ -748,7 +760,7 @@ public final class SubmissionsCreateDeclarationsResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, ConfirmationPendingStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String obligation;
@@ -764,6 +776,8 @@ public final class SubmissionsCreateDeclarationsResponse {
     private String origin;
 
     private long attempts;
+
+    private boolean confirmationPending;
 
     private OffsetDateTime createdAt;
 
@@ -843,6 +857,7 @@ public final class SubmissionsCreateDeclarationsResponse {
       nextCheckAt(other.getNextCheckAt());
       attempts(other.getAttempts());
       deliveryError(other.getDeliveryError());
+      confirmationPending(other.getConfirmationPending());
       sentSha256(other.getSentSha256());
       certificateFingerprint(other.getCertificateFingerprint());
       submittedByActorType(other.getSubmittedByActorType());
@@ -904,8 +919,15 @@ public final class SubmissionsCreateDeclarationsResponse {
 
     @java.lang.Override
     @JsonSetter("attempts")
-    public CreatedAtStage attempts(long attempts) {
+    public ConfirmationPendingStage attempts(long attempts) {
       this.attempts = attempts;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("confirmationPending")
+    public CreatedAtStage confirmationPending(boolean confirmationPending) {
+      this.confirmationPending = confirmationPending;
       return this;
     }
 
@@ -1554,7 +1576,7 @@ public final class SubmissionsCreateDeclarationsResponse {
 
     @java.lang.Override
     public SubmissionsCreateDeclarationsResponse build() {
-      return new SubmissionsCreateDeclarationsResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, warnings, additionalProperties);
+      return new SubmissionsCreateDeclarationsResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, warnings, additionalProperties);
     }
 
     @java.lang.Override

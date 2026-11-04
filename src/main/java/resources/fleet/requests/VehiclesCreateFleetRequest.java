@@ -52,6 +52,8 @@ public final class VehiclesCreateFleetRequest {
 
   private final Optional<String> insuranceDue;
 
+  private final Optional<String> disposalDate;
+
   private final Optional<String> notes;
 
   private final Optional<List<VehiclesCreateFleetRequestDocumentsItem>> documents;
@@ -63,7 +65,8 @@ public final class VehiclesCreateFleetRequest {
       Optional<VehiclesCreateFleetRequestFuelType> fuelType, Optional<String> acquisitionDate,
       Optional<String> marketValue, Optional<String> fixedAssetId,
       Optional<String> technicalInspectionDue, Optional<String> insuranceDue,
-      Optional<String> notes, Optional<List<VehiclesCreateFleetRequestDocumentsItem>> documents,
+      Optional<String> disposalDate, Optional<String> notes,
+      Optional<List<VehiclesCreateFleetRequestDocumentsItem>> documents,
       Map<String, Object> additionalProperties) {
     this.plateNumber = plateNumber;
     this.make = make;
@@ -76,6 +79,7 @@ public final class VehiclesCreateFleetRequest {
     this.fixedAssetId = fixedAssetId;
     this.technicalInspectionDue = technicalInspectionDue;
     this.insuranceDue = insuranceDue;
+    this.disposalDate = disposalDate;
     this.notes = notes;
     this.documents = documents;
     this.additionalProperties = additionalProperties;
@@ -136,6 +140,11 @@ public final class VehiclesCreateFleetRequest {
     return insuranceDue;
   }
 
+  @JsonProperty("disposalDate")
+  public Optional<String> getDisposalDate() {
+    return disposalDate;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -158,12 +167,12 @@ public final class VehiclesCreateFleetRequest {
   }
 
   private boolean equalTo(VehiclesCreateFleetRequest other) {
-    return plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && notes.equals(other.notes) && documents.equals(other.documents);
+    return plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && disposalDate.equals(other.disposalDate) && notes.equals(other.notes) && documents.equals(other.documents);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.notes, this.documents);
+    return Objects.hash(this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.disposalDate, this.notes, this.documents);
   }
 
   @java.lang.Override
@@ -228,6 +237,10 @@ public final class VehiclesCreateFleetRequest {
 
     _FinalStage insuranceDue(String insuranceDue);
 
+    _FinalStage disposalDate(Optional<String> disposalDate);
+
+    _FinalStage disposalDate(String disposalDate);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -250,6 +263,8 @@ public final class VehiclesCreateFleetRequest {
     private Optional<List<VehiclesCreateFleetRequestDocumentsItem>> documents = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
+
+    private Optional<String> disposalDate = Optional.empty();
 
     private Optional<String> insuranceDue = Optional.empty();
 
@@ -286,6 +301,7 @@ public final class VehiclesCreateFleetRequest {
       fixedAssetId(other.getFixedAssetId());
       technicalInspectionDue(other.getTechnicalInspectionDue());
       insuranceDue(other.getInsuranceDue());
+      disposalDate(other.getDisposalDate());
       notes(other.getNotes());
       documents(other.getDocuments());
       return this;
@@ -342,6 +358,22 @@ public final class VehiclesCreateFleetRequest {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalDate(String disposalDate) {
+      this.disposalDate = Optional.ofNullable(disposalDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "disposalDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage disposalDate(Optional<String> disposalDate) {
+      this.disposalDate = disposalDate;
       return this;
     }
 
@@ -475,7 +507,7 @@ public final class VehiclesCreateFleetRequest {
 
     @java.lang.Override
     public VehiclesCreateFleetRequest build() {
-      return new VehiclesCreateFleetRequest(plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, notes, documents, additionalProperties);
+      return new VehiclesCreateFleetRequest(plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, disposalDate, notes, documents, additionalProperties);
     }
 
     @java.lang.Override

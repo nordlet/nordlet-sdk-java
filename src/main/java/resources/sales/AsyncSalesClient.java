@@ -180,7 +180,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
+   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>; null while <code>cardPaymentReceived</code>), <code>cardPaymentReceived</code> (a completed card payment was received and the invoice waits for the payout settlement) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
    */
   public CompletableFuture<InvoicesViewSalesResponse> invoicesView(
       InvoicesViewSalesRequest request) {
@@ -188,7 +188,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
+   * Return a sale document as its customer sees it: the seller as printed on it (the snapshot taken at issue, else the company), the buyer with address and e-mail, the lines, the totals, <code>paidOn</code> (the date of the latest payment once the document is paid), <code>payUrl</code> (as in <code>sales/invoices/payment-link</code>; null while <code>cardPaymentReceived</code>), <code>cardPaymentReceived</code> (a completed card payment was received and the invoice waits for the payout settlement) and <code>token</code>, the document's customer token for <code>public/invoices/get</code> and <code>public/invoices/pdf</code>, created on first use; <code>token</code> is null on a draft.
    */
   public CompletableFuture<InvoicesViewSalesResponse> invoicesView(InvoicesViewSalesRequest request,
       RequestOptions requestOptions) {
@@ -340,7 +340,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request) {
@@ -348,7 +348,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
@@ -498,21 +498,21 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList() {
     return this.rawClient.invoicesList().thenApply(response -> response.body());
   }
 
   /**
-   * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(RequestOptions requestOptions) {
     return this.rawClient.invoicesList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(
       InvoicesListSalesRequest request) {
@@ -520,7 +520,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the sale documents of the company with the partner name. Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(InvoicesListSalesRequest request,
       RequestOptions requestOptions) {
@@ -573,14 +573,14 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Cancel a draft or issued delivery act. Answers 409 when it is already cancelled.
+   * Cancel a draft or issued delivery act. When issuing the act recognised milestone revenue, the recognition journal entry is reversed on the company's current date (or on the recognition date when that is later) and those milestone schedules return to <code>pending</code>. Answers 409 when it is already cancelled or when the recognition it posted has changed since.
    */
   public CompletableFuture<ActsCancelSalesResponse> actsCancel(ActsCancelSalesRequest request) {
     return this.rawClient.actsCancel(request).thenApply(response -> response.body());
   }
 
   /**
-   * Cancel a draft or issued delivery act. Answers 409 when it is already cancelled.
+   * Cancel a draft or issued delivery act. When issuing the act recognised milestone revenue, the recognition journal entry is reversed on the company's current date (or on the recognition date when that is later) and those milestone schedules return to <code>pending</code>. Answers 409 when it is already cancelled or when the recognition it posted has changed since.
    */
   public CompletableFuture<ActsCancelSalesResponse> actsCancel(ActsCancelSalesRequest request,
       RequestOptions requestOptions) {
@@ -1087,7 +1087,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
+   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Refunds paid on credit notes, credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
    */
   public CompletableFuture<PaymentsListSalesResponse> paymentsList(
       PaymentsListSalesRequest request) {
@@ -1095,7 +1095,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
+   * List the money received on sale documents between <code>from</code> and <code>to</code> (inclusive), oldest first: bank payments matched to the document, card settlements of a payment provider and cash receipt orders. A reversed bank match is a row with a negative amount on the date it was reversed. Refunds paid on credit notes, credit notes, advances applied to a final invoice and balances carried over by a migration are not money received and are left out. <code>amount</code> is in the document currency; <code>method</code> is <code>card</code> for a settlement or a payment into a Stripe bank account, <code>cash</code> for a cash order and <code>bank_transfer</code> otherwise.
    */
   public CompletableFuture<PaymentsListSalesResponse> paymentsList(PaymentsListSalesRequest request,
       RequestOptions requestOptions) {

@@ -22,6 +22,10 @@ import com.nordlet.api.resources.catalog.requests.ItemsListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersDeleteCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersListCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsSuppliersUpsertCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsCreateCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsDeleteCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsListCatalogRequest;
+import com.nordlet.api.resources.catalog.requests.ItemsUnitsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.ItemsUpdateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsCreateCatalogRequest;
 import com.nordlet.api.resources.catalog.requests.PriceListsItemsDeleteCatalogRequest;
@@ -50,6 +54,10 @@ import com.nordlet.api.resources.catalog.types.ItemsListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersDeleteCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersListCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsSuppliersUpsertCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsCreateCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsDeleteCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsListCatalogResponse;
+import com.nordlet.api.resources.catalog.types.ItemsUnitsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.ItemsUpdateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsCreateCatalogResponse;
 import com.nordlet.api.resources.catalog.types.PriceListsItemsDeleteCatalogResponse;
@@ -269,7 +277,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
    */
   public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
       UnitsCreateCatalogRequest request) {
@@ -277,7 +285,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). 409 when the code already exists.
+   * Create a unit of measure of the company's own, in addition to the global measurement units (<code>reference/units/list</code>). <code>rec20Code</code> is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
    */
   public CompletableFuture<UnitsCreateCatalogResponse> unitsCreate(
       UnitsCreateCatalogRequest request, RequestOptions requestOptions) {
@@ -285,7 +293,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+   * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
    */
   public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
       UnitsUpdateCatalogRequest request) {
@@ -293,7 +301,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+   * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
    */
   public CompletableFuture<UnitsUpdateCatalogResponse> unitsUpdate(
       UnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
@@ -516,6 +524,70 @@ public class AsyncCatalogClient {
   public CompletableFuture<ItemsSuppliersDeleteCatalogResponse> itemsSuppliersDelete(
       ItemsSuppliersDeleteCatalogRequest request, RequestOptions requestOptions) {
     return this.rawClient.itemsSuppliersDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
+   */
+  public CompletableFuture<ItemsUnitsCreateCatalogResponse> itemsUnitsCreate(
+      ItemsUnitsCreateCatalogRequest request) {
+    return this.rawClient.itemsUnitsCreate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Add an alternative unit to an item: <code>factor</code> is how many of the item's own unit one <code>unitCode</code> holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move <code>quantity × factor</code> of the item's unit in stock and filings. <code>isDefaultSale</code> and <code>isDefaultPurchase</code> mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when <code>unitCode</code> is the item's own unit or not a known unit; 409 when the item already has that unit.
+   */
+  public CompletableFuture<ItemsUnitsCreateCatalogResponse> itemsUnitsCreate(
+      ItemsUnitsCreateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsUnitsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
+   */
+  public CompletableFuture<ItemsUnitsUpdateCatalogResponse> itemsUnitsUpdate(
+      ItemsUnitsUpdateCatalogRequest request) {
+    return this.rawClient.itemsUnitsUpdate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
+   */
+  public CompletableFuture<ItemsUnitsUpdateCatalogResponse> itemsUnitsUpdate(
+      ItemsUnitsUpdateCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsUnitsUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
+   */
+  public CompletableFuture<ItemsUnitsDeleteCatalogResponse> itemsUnitsDelete(
+      ItemsUnitsDeleteCatalogRequest request) {
+    return this.rawClient.itemsUnitsDelete(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
+   */
+  public CompletableFuture<ItemsUnitsDeleteCatalogResponse> itemsUnitsDelete(
+      ItemsUnitsDeleteCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsUnitsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the alternative units of an item, ordered by unit code.
+   */
+  public CompletableFuture<ItemsUnitsListCatalogResponse> itemsUnitsList(
+      ItemsUnitsListCatalogRequest request) {
+    return this.rawClient.itemsUnitsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the alternative units of an item, ordered by unit code.
+   */
+  public CompletableFuture<ItemsUnitsListCatalogResponse> itemsUnitsList(
+      ItemsUnitsListCatalogRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itemsUnitsList(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

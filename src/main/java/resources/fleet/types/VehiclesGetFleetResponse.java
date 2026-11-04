@@ -58,6 +58,8 @@ public final class VehiclesGetFleetResponse {
 
   private final VehiclesGetFleetResponseStatus status;
 
+  private final Optional<String> disposalDate;
+
   private final Optional<String> notes;
 
   private final Optional<List<VehiclesGetFleetResponseDocumentsItem>> documents;
@@ -72,7 +74,7 @@ public final class VehiclesGetFleetResponse {
       Optional<Long> year, Optional<String> vin, Optional<String> fuelType,
       Optional<String> acquisitionDate, String marketValue, Optional<String> fixedAssetId,
       Optional<String> technicalInspectionDue, Optional<String> insuranceDue,
-      VehiclesGetFleetResponseStatus status, Optional<String> notes,
+      VehiclesGetFleetResponseStatus status, Optional<String> disposalDate, Optional<String> notes,
       Optional<List<VehiclesGetFleetResponseDocumentsItem>> documents,
       Optional<VehiclesGetFleetResponseCurrentAssignment> currentAssignment,
       OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
@@ -89,6 +91,7 @@ public final class VehiclesGetFleetResponse {
     this.technicalInspectionDue = technicalInspectionDue;
     this.insuranceDue = insuranceDue;
     this.status = status;
+    this.disposalDate = disposalDate;
     this.notes = notes;
     this.documents = documents;
     this.currentAssignment = currentAssignment;
@@ -180,6 +183,14 @@ public final class VehiclesGetFleetResponse {
   @JsonProperty("status")
   public VehiclesGetFleetResponseStatus getStatus() {
     return status;
+  }
+
+  @JsonIgnore
+  public Optional<String> getDisposalDate() {
+    if (disposalDate == null) {
+      return Optional.empty();
+    }
+    return disposalDate;
   }
 
   @JsonIgnore
@@ -278,6 +289,15 @@ public final class VehiclesGetFleetResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("disposalDate")
+  private Optional<String> _getDisposalDate() {
+    return disposalDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("notes")
   private Optional<String> _getNotes() {
     return notes;
@@ -313,12 +333,12 @@ public final class VehiclesGetFleetResponse {
   }
 
   private boolean equalTo(VehiclesGetFleetResponse other) {
-    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && currentAssignment.equals(other.currentAssignment) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && plateNumber.equals(other.plateNumber) && make.equals(other.make) && model.equals(other.model) && year.equals(other.year) && vin.equals(other.vin) && fuelType.equals(other.fuelType) && acquisitionDate.equals(other.acquisitionDate) && marketValue.equals(other.marketValue) && fixedAssetId.equals(other.fixedAssetId) && technicalInspectionDue.equals(other.technicalInspectionDue) && insuranceDue.equals(other.insuranceDue) && status.equals(other.status) && disposalDate.equals(other.disposalDate) && notes.equals(other.notes) && documents.equals(other.documents) && currentAssignment.equals(other.currentAssignment) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.notes, this.documents, this.currentAssignment, this.createdAt);
+    return Objects.hash(this.id, this.plateNumber, this.make, this.model, this.year, this.vin, this.fuelType, this.acquisitionDate, this.marketValue, this.fixedAssetId, this.technicalInspectionDue, this.insuranceDue, this.status, this.disposalDate, this.notes, this.documents, this.currentAssignment, this.createdAt);
   }
 
   @java.lang.Override
@@ -409,6 +429,12 @@ public final class VehiclesGetFleetResponse {
 
     _FinalStage insuranceDue(Nullable<String> insuranceDue);
 
+    _FinalStage disposalDate(Optional<String> disposalDate);
+
+    _FinalStage disposalDate(String disposalDate);
+
+    _FinalStage disposalDate(Nullable<String> disposalDate);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -454,6 +480,8 @@ public final class VehiclesGetFleetResponse {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> disposalDate = Optional.empty();
+
     private Optional<String> insuranceDue = Optional.empty();
 
     private Optional<String> technicalInspectionDue = Optional.empty();
@@ -489,6 +517,7 @@ public final class VehiclesGetFleetResponse {
       technicalInspectionDue(other.getTechnicalInspectionDue());
       insuranceDue(other.getInsuranceDue());
       status(other.getStatus());
+      disposalDate(other.getDisposalDate());
       notes(other.getNotes());
       documents(other.getDocuments());
       currentAssignment(other.getCurrentAssignment());
@@ -635,6 +664,36 @@ public final class VehiclesGetFleetResponse {
     )
     public _FinalStage notes(Optional<String> notes) {
       this.notes = notes;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalDate(Nullable<String> disposalDate) {
+      if (disposalDate.isNull()) {
+        this.disposalDate = null;
+      }
+      else if (disposalDate.isEmpty()) {
+        this.disposalDate = Optional.empty();
+      }
+      else {
+        this.disposalDate = Optional.of(disposalDate.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalDate(String disposalDate) {
+      this.disposalDate = Optional.ofNullable(disposalDate);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "disposalDate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage disposalDate(Optional<String> disposalDate) {
+      this.disposalDate = disposalDate;
       return this;
     }
 
@@ -850,7 +909,7 @@ public final class VehiclesGetFleetResponse {
 
     @java.lang.Override
     public VehiclesGetFleetResponse build() {
-      return new VehiclesGetFleetResponse(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, notes, documents, currentAssignment, createdAt, additionalProperties);
+      return new VehiclesGetFleetResponse(id, plateNumber, make, model, year, vin, fuelType, acquisitionDate, marketValue, fixedAssetId, technicalInspectionDue, insuranceDue, status, disposalDate, notes, documents, currentAssignment, createdAt, additionalProperties);
     }
 
     @java.lang.Override

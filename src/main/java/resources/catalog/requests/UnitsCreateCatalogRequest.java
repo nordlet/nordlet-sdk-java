@@ -31,14 +31,17 @@ public final class UnitsCreateCatalogRequest {
 
   private final String name;
 
+  private final Optional<String> rec20Code;
+
   private final Optional<Boolean> isActive;
 
   private final Map<String, Object> additionalProperties;
 
-  private UnitsCreateCatalogRequest(String code, String name, Optional<Boolean> isActive,
-      Map<String, Object> additionalProperties) {
+  private UnitsCreateCatalogRequest(String code, String name, Optional<String> rec20Code,
+      Optional<Boolean> isActive, Map<String, Object> additionalProperties) {
     this.code = code;
     this.name = name;
+    this.rec20Code = rec20Code;
     this.isActive = isActive;
     this.additionalProperties = additionalProperties;
   }
@@ -51,6 +54,11 @@ public final class UnitsCreateCatalogRequest {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonProperty("rec20Code")
+  public Optional<String> getRec20Code() {
+    return rec20Code;
   }
 
   @JsonProperty("isActive")
@@ -70,12 +78,12 @@ public final class UnitsCreateCatalogRequest {
   }
 
   private boolean equalTo(UnitsCreateCatalogRequest other) {
-    return code.equals(other.code) && name.equals(other.name) && isActive.equals(other.isActive);
+    return code.equals(other.code) && name.equals(other.name) && rec20Code.equals(other.rec20Code) && isActive.equals(other.isActive);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.name, this.isActive);
+    return Objects.hash(this.code, this.name, this.rec20Code, this.isActive);
   }
 
   @java.lang.Override
@@ -104,6 +112,10 @@ public final class UnitsCreateCatalogRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage rec20Code(Optional<String> rec20Code);
+
+    _FinalStage rec20Code(String rec20Code);
+
     _FinalStage isActive(Optional<Boolean> isActive);
 
     _FinalStage isActive(Boolean isActive);
@@ -119,6 +131,8 @@ public final class UnitsCreateCatalogRequest {
 
     private Optional<Boolean> isActive = Optional.empty();
 
+    private Optional<String> rec20Code = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -129,6 +143,7 @@ public final class UnitsCreateCatalogRequest {
     public Builder from(UnitsCreateCatalogRequest other) {
       code(other.getCode());
       name(other.getName());
+      rec20Code(other.getRec20Code());
       isActive(other.getIsActive());
       return this;
     }
@@ -164,8 +179,24 @@ public final class UnitsCreateCatalogRequest {
     }
 
     @java.lang.Override
+    public _FinalStage rec20Code(String rec20Code) {
+      this.rec20Code = Optional.ofNullable(rec20Code);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "rec20Code",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage rec20Code(Optional<String> rec20Code) {
+      this.rec20Code = rec20Code;
+      return this;
+    }
+
+    @java.lang.Override
     public UnitsCreateCatalogRequest build() {
-      return new UnitsCreateCatalogRequest(code, name, isActive, additionalProperties);
+      return new UnitsCreateCatalogRequest(code, name, rec20Code, isActive, additionalProperties);
     }
 
     @java.lang.Override

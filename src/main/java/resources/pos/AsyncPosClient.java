@@ -12,6 +12,9 @@ import com.nordlet.api.resources.pos.requests.DevicesUpdatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReceiptsListPosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsCreatePosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsGetPosRequest;
+import com.nordlet.api.resources.pos.requests.RefundsListPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsCreatePosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsGetPosRequest;
 import com.nordlet.api.resources.pos.requests.ReportsListPosRequest;
@@ -25,6 +28,9 @@ import com.nordlet.api.resources.pos.types.DevicesUpdatePosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReceiptsListPosResponse;
+import com.nordlet.api.resources.pos.types.RefundsCreatePosResponse;
+import com.nordlet.api.resources.pos.types.RefundsGetPosResponse;
+import com.nordlet.api.resources.pos.types.RefundsListPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsCreatePosResponse;
 import com.nordlet.api.resources.pos.types.ReportsGetPosResponse;
 import com.nordlet.api.resources.pos.types.ReportsListPosResponse;
@@ -113,7 +119,7 @@ public class AsyncPosClient {
   }
 
   /**
-   * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+   * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code>, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. <code>cogsAccountCode</code> and <code>inventoryAccountCode</code> default to the posting rules <code>inventory.cogs</code> and <code>inventory.stock</code>, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
    */
   public CompletableFuture<ReportsCreatePosResponse> reportsCreate(
       ReportsCreatePosRequest request) {
@@ -121,7 +127,7 @@ public class AsyncPosClient {
   }
 
   /**
-   * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code> FIFO (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. Account codes default to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
+   * Record a daily cash register report (Z-report) and post it to the ledger in one journal entry: the cash and card takings are debited to <code>cashAccountCode</code> and <code>cardAccountCode</code>, the net of the <code>vatLines</code> is credited to <code>revenueAccountCode</code> and their VAT to <code>vatAccountCode</code>. <code>itemLines</code> write the sold products off <code>warehouseId</code>, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots (a set is expanded to its product components) and add the cost of goods sold, debited to <code>cogsAccountCode</code> against the stock accounts. <code>cogsAccountCode</code> and <code>inventoryAccountCode</code> default to the posting rules <code>inventory.cogs</code> and <code>inventory.stock</code>, the other account codes to the company's chart. Refused with 422 when cash plus card differs from the gross total, the item lines have no warehouse or the device is inactive, with 409 when the accounting period is locked or the <code>reportNumber</code> already exists. Emits <code>pos_report.created</code> and, per item line, <code>stock.changed</code>.
    */
   public CompletableFuture<ReportsCreatePosResponse> reportsCreate(ReportsCreatePosRequest request,
       RequestOptions requestOptions) {
@@ -292,14 +298,74 @@ public class AsyncPosClient {
   }
 
   /**
-   * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+   * Refund <code>quantity</code> of lines of a receipt, paid in cash out of the open shift <code>shiftId</code>, on <code>date</code> (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (<code>inventory.stock</code> for layers without one) against <code>inventory.cogs</code>; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
+   */
+  public CompletableFuture<RefundsCreatePosResponse> refundsCreate(
+      RefundsCreatePosRequest request) {
+    return this.rawClient.refundsCreate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Refund <code>quantity</code> of lines of a receipt, paid in cash out of the open shift <code>shiftId</code>, on <code>date</code> (default: the company's today). A line refunded in part is priced from its VAT-inclusive unit price, the rest of a line at what is left of its amounts. One journal entry debits the chart's POS revenue and VAT accounts with the net and VAT and credits the chart's cash account with the gross. When the receipt's shift is closed, the stock lines go back into the warehouse at the cost they left it on that shift's report, debited to their stock accounts (<code>inventory.stock</code> for layers without one) against <code>inventory.cogs</code>; when it is still open, the refunded quantities are left out of the stock write-off at its close. A receipt of another open shift is refused with 422, as are a line not on the receipt, a line named twice, a zero quantity and a quantity above what is left to refund; 409 when the shift is closed or the accounting period is locked.
+   */
+  public CompletableFuture<RefundsCreatePosResponse> refundsCreate(RefundsCreatePosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.refundsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Read one POS refund with its lines.
+   */
+  public CompletableFuture<RefundsGetPosResponse> refundsGet(RefundsGetPosRequest request) {
+    return this.rawClient.refundsGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Read one POS refund with its lines.
+   */
+  public CompletableFuture<RefundsGetPosResponse> refundsGet(RefundsGetPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.refundsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
+  public CompletableFuture<RefundsListPosResponse> refundsList() {
+    return this.rawClient.refundsList().thenApply(response -> response.body());
+  }
+
+  /**
+   * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
+  public CompletableFuture<RefundsListPosResponse> refundsList(RequestOptions requestOptions) {
+    return this.rawClient.refundsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
+  public CompletableFuture<RefundsListPosResponse> refundsList(RefundsListPosRequest request) {
+    return this.rawClient.refundsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * List POS refunds without their lines. Filterable by <code>shiftId</code> and <code>receiptId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   */
+  public CompletableFuture<RefundsListPosResponse> refundsList(RefundsListPosRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.refundsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. Quantities refunded from the shift's receipts by <code>pos/refunds/create</code> are left out of the stock write-off. The response adds <code>expectedCash</code> (opening cash plus the cash receipts less the cash refunds paid out of the shift) and <code>cashDifference</code> (<code>countedCash</code> less expected). A difference is posted in its own journal entry on <code>date</code> (document type <code>pos_shift</code>): a shortage debits the <code>pos.cashShortage</code> rule account and credits the chart's cash account, a surplus debits the cash account and credits <code>pos.cashSurplus</code>; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
    */
   public CompletableFuture<ShiftsClosePosResponse> shiftsClose(ShiftsClosePosRequest request) {
     return this.rawClient.shiftsClose(request).thenApply(response -> response.body());
   }
 
   /**
-   * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. The response adds <code>expectedCash</code> (opening cash plus the cash receipts) and <code>cashDifference</code> (<code>countedCash</code> less expected). A shift without receipts is refused with 422, a closed one with 409.
+   * Close an open shift: its receipts are summed by VAT rate and by product into one POS report, created as by <code>pos/reports/create</code> with number <code>reportNumber</code> (default <code>Z-&lt;device serial&gt;-&lt;n&gt;</code>, n being the device's closed shifts plus one) on <code>date</code> (default: the company's today), which posts the takings and the stock write-off to the ledger and emits <code>pos_report.created</code>. Quantities refunded from the shift's receipts by <code>pos/refunds/create</code> are left out of the stock write-off. The response adds <code>expectedCash</code> (opening cash plus the cash receipts less the cash refunds paid out of the shift) and <code>cashDifference</code> (<code>countedCash</code> less expected). A difference is posted in its own journal entry on <code>date</code> (document type <code>pos_shift</code>): a shortage debits the <code>pos.cashShortage</code> rule account and credits the chart's cash account, a surplus debits the cash account and credits <code>pos.cashSurplus</code>; 422 when the company's chart lacks the account. A shift without receipts is refused with 422, a closed one with 409.
    */
   public CompletableFuture<ShiftsClosePosResponse> shiftsClose(ShiftsClosePosRequest request,
       RequestOptions requestOptions) {

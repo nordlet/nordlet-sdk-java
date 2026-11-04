@@ -128,28 +128,28 @@ public class RawPublicClient {
     }
 
     /**
-     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
      */
     public NordletApiHttpResponse<Void> pay(String token) {
       return pay(token,PayPublicRequest.builder().build());
     }
 
     /**
-     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
      */
     public NordletApiHttpResponse<Void> pay(String token, RequestOptions requestOptions) {
       return pay(token,PayPublicRequest.builder().build(),requestOptions);
     }
 
     /**
-     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
      */
     public NordletApiHttpResponse<Void> pay(String token, PayPublicRequest request) {
       return pay(token,request,null);
     }
 
     /**
-     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
+     * Redirect (302) to the company's payment page for the issued invoice that carries this payment token, rendered from the template set with <code>sales/invoices/payment-settings/update</code> with the invoice number, the amount still unpaid, the currency, the token, the invoice id and the customer name (see <code>sales/invoices/payment-link</code>). Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no template, and 409 when the invoice is already paid.
      */
     public NordletApiHttpResponse<Void> pay(String token, PayPublicRequest request,
         RequestOptions requestOptions) {
@@ -284,7 +284,7 @@ public class RawPublicClient {
         }
 
         /**
-         * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+         * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid or a completed card payment for it was received and waits for the payout, and 422 when Stripe cannot take the amount in the invoice currency.
          */
         public NordletApiHttpResponse<InvoicesCheckoutPublicResponse> invoicesCheckout(
             InvoicesCheckoutPublicRequest request) {
@@ -292,7 +292,7 @@ public class RawPublicClient {
         }
 
         /**
-         * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid and 422 when Stripe cannot take the amount in the invoice currency.
+         * Open a Stripe Checkout page on the company's connected Stripe account for the amount still unpaid on the issued invoice that carries this customer token, and return its <code>url</code>. Stripe sends the customer back to the public invoice page. Answers 404 when the token matches no issued invoice, the document is a credit note, the invoice has <code>payLinkEnabled</code> false or the company has no Stripe account that can take charges, 409 when the invoice is already paid or a completed card payment for it was received and waits for the payout, and 422 when Stripe cannot take the amount in the invoice currency.
          */
         public NordletApiHttpResponse<InvoicesCheckoutPublicResponse> invoicesCheckout(
             InvoicesCheckoutPublicRequest request, RequestOptions requestOptions) {

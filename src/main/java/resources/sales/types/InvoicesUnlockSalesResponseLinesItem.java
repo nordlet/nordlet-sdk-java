@@ -40,6 +40,10 @@ public final class InvoicesUnlockSalesResponseLinesItem {
 
   private final String quantity;
 
+  private final String unitFactor;
+
+  private final String baseQuantity;
+
   private final Optional<String> unitPriceExclVat;
 
   private final Optional<String> unitPriceInclVat;
@@ -79,10 +83,11 @@ public final class InvoicesUnlockSalesResponseLinesItem {
   private final Map<String, Object> additionalProperties;
 
   private InvoicesUnlockSalesResponseLinesItem(String id, Optional<String> itemId,
-      String description, String unit, String quantity, Optional<String> unitPriceExclVat,
-      Optional<String> unitPriceInclVat, String vatRatePercent, Optional<String> vatClassifierCode,
-      Optional<String> vatExemptionBasis, Optional<String> costCenterId, Optional<String> projectId,
-      String lineNet, String lineVat, String lineGross, long sortOrder,
+      String description, String unit, String quantity, String unitFactor, String baseQuantity,
+      Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat, String vatRatePercent,
+      Optional<String> vatClassifierCode, Optional<String> vatExemptionBasis,
+      Optional<String> costCenterId, Optional<String> projectId, String lineNet, String lineVat,
+      String lineGross, long sortOrder,
       InvoicesUnlockSalesResponseLinesItemRecognitionMethod recognitionMethod,
       Optional<String> recognitionStartDate, Optional<String> recognitionEndDate,
       Optional<List<InvoicesUnlockSalesResponseLinesItemRecognitionMilestonesItem>> recognitionMilestones,
@@ -93,6 +98,8 @@ public final class InvoicesUnlockSalesResponseLinesItem {
     this.description = description;
     this.unit = unit;
     this.quantity = quantity;
+    this.unitFactor = unitFactor;
+    this.baseQuantity = baseQuantity;
     this.unitPriceExclVat = unitPriceExclVat;
     this.unitPriceInclVat = unitPriceInclVat;
     this.vatRatePercent = vatRatePercent;
@@ -140,6 +147,16 @@ public final class InvoicesUnlockSalesResponseLinesItem {
   @JsonProperty("quantity")
   public String getQuantity() {
     return quantity;
+  }
+
+  @JsonProperty("unitFactor")
+  public String getUnitFactor() {
+    return unitFactor;
+  }
+
+  @JsonProperty("baseQuantity")
+  public String getBaseQuantity() {
+    return baseQuantity;
   }
 
   @JsonIgnore
@@ -399,12 +416,12 @@ public final class InvoicesUnlockSalesResponseLinesItem {
   }
 
   private boolean equalTo(InvoicesUnlockSalesResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && vatExemptionBasis.equals(other.vatExemptionBasis) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder && recognitionMethod.equals(other.recognitionMethod) && recognitionStartDate.equals(other.recognitionStartDate) && recognitionEndDate.equals(other.recognitionEndDate) && recognitionMilestones.equals(other.recognitionMilestones) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && allocatedNet.equals(other.allocatedNet) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && vatExemptionBasis.equals(other.vatExemptionBasis) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder && recognitionMethod.equals(other.recognitionMethod) && recognitionStartDate.equals(other.recognitionStartDate) && recognitionEndDate.equals(other.recognitionEndDate) && recognitionMilestones.equals(other.recognitionMilestones) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && allocatedNet.equals(other.allocatedNet) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.vatExemptionBasis, this.costCenterId, this.projectId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder, this.recognitionMethod, this.recognitionStartDate, this.recognitionEndDate, this.recognitionMilestones, this.standaloneSellingPrice, this.allocatedNet, this.refundEstimatePercent);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.vatExemptionBasis, this.costCenterId, this.projectId, this.lineNet, this.lineVat, this.lineGross, this.sortOrder, this.recognitionMethod, this.recognitionStartDate, this.recognitionEndDate, this.recognitionMilestones, this.standaloneSellingPrice, this.allocatedNet, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -431,7 +448,15 @@ public final class InvoicesUnlockSalesResponseLinesItem {
   }
 
   public interface QuantityStage {
-    VatRatePercentStage quantity(@NotNull String quantity);
+    UnitFactorStage quantity(@NotNull String quantity);
+  }
+
+  public interface UnitFactorStage {
+    BaseQuantityStage unitFactor(@NotNull String unitFactor);
+  }
+
+  public interface BaseQuantityStage {
+    VatRatePercentStage baseQuantity(@NotNull String baseQuantity);
   }
 
   public interface VatRatePercentStage {
@@ -551,7 +576,7 @@ public final class InvoicesUnlockSalesResponseLinesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, RecognitionMethodStage, _FinalStage {
+  public static final class Builder implements IdStage, DescriptionStage, UnitStage, QuantityStage, UnitFactorStage, BaseQuantityStage, VatRatePercentStage, LineNetStage, LineVatStage, LineGrossStage, SortOrderStage, RecognitionMethodStage, _FinalStage {
     private String id;
 
     private String description;
@@ -559,6 +584,10 @@ public final class InvoicesUnlockSalesResponseLinesItem {
     private String unit;
 
     private String quantity;
+
+    private String unitFactor;
+
+    private String baseQuantity;
 
     private String vatRatePercent;
 
@@ -611,6 +640,8 @@ public final class InvoicesUnlockSalesResponseLinesItem {
       description(other.getDescription());
       unit(other.getUnit());
       quantity(other.getQuantity());
+      unitFactor(other.getUnitFactor());
+      baseQuantity(other.getBaseQuantity());
       unitPriceExclVat(other.getUnitPriceExclVat());
       unitPriceInclVat(other.getUnitPriceInclVat());
       vatRatePercent(other.getVatRatePercent());
@@ -655,8 +686,22 @@ public final class InvoicesUnlockSalesResponseLinesItem {
 
     @java.lang.Override
     @JsonSetter("quantity")
-    public VatRatePercentStage quantity(@NotNull String quantity) {
+    public UnitFactorStage quantity(@NotNull String quantity) {
       this.quantity = Objects.requireNonNull(quantity, "quantity must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("unitFactor")
+    public BaseQuantityStage unitFactor(@NotNull String unitFactor) {
+      this.unitFactor = Objects.requireNonNull(unitFactor, "unitFactor must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseQuantity")
+    public VatRatePercentStage baseQuantity(@NotNull String baseQuantity) {
+      this.baseQuantity = Objects.requireNonNull(baseQuantity, "baseQuantity must not be null");
       return this;
     }
 
@@ -1098,7 +1143,7 @@ public final class InvoicesUnlockSalesResponseLinesItem {
 
     @java.lang.Override
     public InvoicesUnlockSalesResponseLinesItem build() {
-      return new InvoicesUnlockSalesResponseLinesItem(id, itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, vatExemptionBasis, costCenterId, projectId, lineNet, lineVat, lineGross, sortOrder, recognitionMethod, recognitionStartDate, recognitionEndDate, recognitionMilestones, standaloneSellingPrice, allocatedNet, refundEstimatePercent, additionalProperties);
+      return new InvoicesUnlockSalesResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, vatExemptionBasis, costCenterId, projectId, lineNet, lineVat, lineGross, sortOrder, recognitionMethod, recognitionStartDate, recognitionEndDate, recognitionMilestones, standaloneSellingPrice, allocatedNet, refundEstimatePercent, additionalProperties);
     }
 
     @java.lang.Override
