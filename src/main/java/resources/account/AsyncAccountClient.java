@@ -47,6 +47,12 @@ import com.nordlet.api.resources.account.requests.SessionsRevokeOthersAccountReq
 import com.nordlet.api.resources.account.requests.TableSettingsGetAccountRequest;
 import com.nordlet.api.resources.account.requests.TableSettingsListAccountRequest;
 import com.nordlet.api.resources.account.requests.TableSettingsSetAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorDisableAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorEnableAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorGetAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorRecoveryCodesRegenerateAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorSetupAccountRequest;
+import com.nordlet.api.resources.account.requests.TwoFactorVerifyAccountRequest;
 import com.nordlet.api.resources.account.types.ApiKeysCreateAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysListAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysRevokeAccountResponse;
@@ -88,6 +94,12 @@ import com.nordlet.api.resources.account.types.SessionsRevokeOthersAccountRespon
 import com.nordlet.api.resources.account.types.TableSettingsGetAccountResponse;
 import com.nordlet.api.resources.account.types.TableSettingsListAccountResponse;
 import com.nordlet.api.resources.account.types.TableSettingsSetAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorDisableAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorEnableAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorGetAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorRecoveryCodesRegenerateAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorSetupAccountResponse;
+import com.nordlet.api.resources.account.types.TwoFactorVerifyAccountResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAccountClient {
@@ -108,7 +120,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another; after five links for the address within an hour it answers 429; otherwise the earlier unused sign-in links for the address stop working. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
    */
   public CompletableFuture<LoginLinkRequestAccountResponse> loginLinkRequest(
       LoginLinkRequestAccountRequest request) {
@@ -116,7 +128,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
+   * Create a sign-in link for the e-mail address and send it; the link is valid for 15 minutes and is consumed with <code>account/login-link/consume</code>. When an unused link was requested for the same address within the last minute, the call answers <code>sent</code> without sending another; after five links for the address within an hour it answers 429; otherwise the earlier unused sign-in links for the address stop working. <code>locale</code> sets the language of the e-mail and of the link; <code>app</code> set to <code>invoice</code> makes the link open the invoice app instead of the Nordlet app; <code>acceptTerms</code>, <code>acceptDpa</code> and <code>referralCode</code> are stored with the link and used when the address has no account yet.
    */
   public CompletableFuture<LoginLinkRequestAccountResponse> loginLinkRequest(
       LoginLinkRequestAccountRequest request, RequestOptions requestOptions) {
@@ -124,7 +136,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. The link <code>account/email/change-request</code> sends to the current address signs that user in and sends a confirmation link to the new address; that second link changes the address, deletes the user's other sessions and sends the previous address a link, valid for 24 hours, that changes the address back and deletes every session of the user. No link goes to the new address when another account has it, and the change and the change back are refused with 409 when another account has the address. When the user has two-factor authentication on, <code>twoFactorRequired</code> is true and the session can make no call other than <code>account/two-factor/verify</code> and <code>account/logout</code> until a code is entered.
    */
   public CompletableFuture<LoginLinkConsumeAccountResponse> loginLinkConsume(
       LoginLinkConsumeAccountRequest request) {
@@ -132,7 +144,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. A link from <code>account/email/change-request</code> changes the signed-in user's address instead, refused with 409 when another account has it.
+   * Exchange a sign-in link token for a session; an unknown, used or expired token is refused with 401. When no account has the address, one is created (<code>isNewUser</code>), which is refused with 422 unless the link was requested with <code>acceptTerms</code> and <code>acceptDpa</code>; a <code>referralCode</code> on the link records who referred the new user. The link <code>account/email/change-request</code> sends to the current address signs that user in and sends a confirmation link to the new address; that second link changes the address, deletes the user's other sessions and sends the previous address a link, valid for 24 hours, that changes the address back and deletes every session of the user. No link goes to the new address when another account has it, and the change and the change back are refused with 409 when another account has the address. When the user has two-factor authentication on, <code>twoFactorRequired</code> is true and the session can make no call other than <code>account/two-factor/verify</code> and <code>account/logout</code> until a code is entered.
    */
   public CompletableFuture<LoginLinkConsumeAccountResponse> loginLinkConsume(
       LoginLinkConsumeAccountRequest request, RequestOptions requestOptions) {
@@ -276,7 +288,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member and with 429 (<code>rate_limited</code>) after 50 invitations by the user, in all their companies, within 24 hours.
    */
   public CompletableFuture<InvitesCreateAccountResponse> invitesCreate(
       InvitesCreateAccountRequest request) {
@@ -284,7 +296,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member.
+   * Create an invitation to the active company for an e-mail address with the given role and send it by e-mail in <code>locale</code>; owners and admins may call it. The invitation is valid for 7 days and replaces an earlier pending one for the same address. Refused with 409 when the address already belongs to a member and with 429 (<code>rate_limited</code>) after 50 invitations by the user, in all their companies, within 24 hours.
    */
   public CompletableFuture<InvitesCreateAccountResponse> invitesCreate(
       InvitesCreateAccountRequest request, RequestOptions requestOptions) {
@@ -526,7 +538,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
+   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
    */
   public CompletableFuture<ApiKeysCreateAccountResponse> apiKeysCreate(
       ApiKeysCreateAccountRequest request) {
@@ -534,7 +546,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. Without <code>expiresInDays</code> the key does not expire.
+   * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
    */
   public CompletableFuture<ApiKeysCreateAccountResponse> apiKeysCreate(
       ApiKeysCreateAccountRequest request, RequestOptions requestOptions) {
@@ -542,21 +554,21 @@ public class AsyncAccountClient {
   }
 
   /**
-   * List the signed-in person's API keys, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
    */
   public CompletableFuture<ApiKeysListAccountResponse> apiKeysList() {
     return this.rawClient.apiKeysList().thenApply(response -> response.body());
   }
 
   /**
-   * List the signed-in person's API keys, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
    */
   public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(RequestOptions requestOptions) {
     return this.rawClient.apiKeysList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List the signed-in person's API keys, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
    */
   public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(
       ApiKeysListAccountRequest request) {
@@ -564,7 +576,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * List the signed-in person's API keys, including expired and revoked ones.
+   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
    */
   public CompletableFuture<ApiKeysListAccountResponse> apiKeysList(
       ApiKeysListAccountRequest request, RequestOptions requestOptions) {
@@ -572,7 +584,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
+   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
    */
   public CompletableFuture<ApiKeysRotateAccountResponse> apiKeysRotate(
       ApiKeysRotateAccountRequest request) {
@@ -580,7 +592,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
+   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
    */
   public CompletableFuture<ApiKeysRotateAccountResponse> apiKeysRotate(
       ApiKeysRotateAccountRequest request, RequestOptions requestOptions) {
@@ -636,7 +648,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+   * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
    */
   public CompletableFuture<EmailChangeRequestAccountResponse> emailChangeRequest(
       EmailChangeRequestAccountRequest request) {
@@ -644,7 +656,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Send a confirmation link to <code>newEmail</code>; the address changes when that link is consumed with <code>account/login-link/consume</code>. When an unused link was sent to the address within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 409 when another account has it.
+   * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
    */
   public CompletableFuture<EmailChangeRequestAccountResponse> emailChangeRequest(
       EmailChangeRequestAccountRequest request, RequestOptions requestOptions) {
@@ -652,14 +664,14 @@ public class AsyncAccountClient {
   }
 
   /**
-   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
    */
   public CompletableFuture<SessionsListAccountResponse> sessionsList() {
     return this.rawClient.sessionsList().thenApply(response -> response.body());
   }
 
   /**
-   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
    */
   public CompletableFuture<SessionsListAccountResponse> sessionsList(
       RequestOptions requestOptions) {
@@ -667,7 +679,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
    */
   public CompletableFuture<SessionsListAccountResponse> sessionsList(
       SessionsListAccountRequest request) {
@@ -675,7 +687,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * List the signed-in user's sessions that have not expired; <code>current</code> marks the one the call was made with.
+   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
    */
   public CompletableFuture<SessionsListAccountResponse> sessionsList(
       SessionsListAccountRequest request, RequestOptions requestOptions) {
@@ -730,28 +742,28 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
    */
   public CompletableFuture<ExportAccountResponse> export() {
     return this.rawClient.export().thenApply(response -> response.body());
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
    */
   public CompletableFuture<ExportAccountResponse> export(RequestOptions requestOptions) {
     return this.rawClient.export(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
    */
   public CompletableFuture<ExportAccountResponse> export(ExportAccountRequest request) {
     return this.rawClient.export(request).thenApply(response -> response.body());
   }
 
   /**
-   * Return the user's profile, consent state, memberships, unexpired sessions, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and the audit entries they made in their companies (the most recent 5000 of each of the last two).
+   * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
    */
   public CompletableFuture<ExportAccountResponse> export(ExportAccountRequest request,
       RequestOptions requestOptions) {
@@ -928,5 +940,131 @@ public class AsyncAccountClient {
   public CompletableFuture<OauthAuthorizeDenyAccountResponse> oauthAuthorizeDeny(
       OauthAuthorizeDenyAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.oauthAuthorizeDeny(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+   */
+  public CompletableFuture<TwoFactorGetAccountResponse> twoFactorGet() {
+    return this.rawClient.twoFactorGet().thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+   */
+  public CompletableFuture<TwoFactorGetAccountResponse> twoFactorGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.twoFactorGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+   */
+  public CompletableFuture<TwoFactorGetAccountResponse> twoFactorGet(
+      TwoFactorGetAccountRequest request) {
+    return this.rawClient.twoFactorGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+   */
+  public CompletableFuture<TwoFactorGetAccountResponse> twoFactorGet(
+      TwoFactorGetAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+   */
+  public CompletableFuture<TwoFactorSetupAccountResponse> twoFactorSetup() {
+    return this.rawClient.twoFactorSetup().thenApply(response -> response.body());
+  }
+
+  /**
+   * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+   */
+  public CompletableFuture<TwoFactorSetupAccountResponse> twoFactorSetup(
+      RequestOptions requestOptions) {
+    return this.rawClient.twoFactorSetup(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+   */
+  public CompletableFuture<TwoFactorSetupAccountResponse> twoFactorSetup(
+      TwoFactorSetupAccountRequest request) {
+    return this.rawClient.twoFactorSetup(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+   */
+  public CompletableFuture<TwoFactorSetupAccountResponse> twoFactorSetup(
+      TwoFactorSetupAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorSetup(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
+   */
+  public CompletableFuture<TwoFactorEnableAccountResponse> twoFactorEnable(
+      TwoFactorEnableAccountRequest request) {
+    return this.rawClient.twoFactorEnable(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
+   */
+  public CompletableFuture<TwoFactorEnableAccountResponse> twoFactorEnable(
+      TwoFactorEnableAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorEnable(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
+   */
+  public CompletableFuture<TwoFactorVerifyAccountResponse> twoFactorVerify(
+      TwoFactorVerifyAccountRequest request) {
+    return this.rawClient.twoFactorVerify(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
+   */
+  public CompletableFuture<TwoFactorVerifyAccountResponse> twoFactorVerify(
+      TwoFactorVerifyAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorVerify(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
+   */
+  public CompletableFuture<TwoFactorRecoveryCodesRegenerateAccountResponse> twoFactorRecoveryCodesRegenerate(
+      TwoFactorRecoveryCodesRegenerateAccountRequest request) {
+    return this.rawClient.twoFactorRecoveryCodesRegenerate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
+   */
+  public CompletableFuture<TwoFactorRecoveryCodesRegenerateAccountResponse> twoFactorRecoveryCodesRegenerate(
+      TwoFactorRecoveryCodesRegenerateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorRecoveryCodesRegenerate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+   */
+  public CompletableFuture<TwoFactorDisableAccountResponse> twoFactorDisable(
+      TwoFactorDisableAccountRequest request) {
+    return this.rawClient.twoFactorDisable(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+   */
+  public CompletableFuture<TwoFactorDisableAccountResponse> twoFactorDisable(
+      TwoFactorDisableAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.twoFactorDisable(request, requestOptions).thenApply(response -> response.body());
   }
 }

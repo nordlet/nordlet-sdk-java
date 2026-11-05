@@ -16,6 +16,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItemKind {
 
   public static final ConfigsUpdateDeclarationsResponseFieldsItemKind SELECT = new ConfigsUpdateDeclarationsResponseFieldsItemKind(Value.SELECT, "select");
 
+  public static final ConfigsUpdateDeclarationsResponseFieldsItemKind HOST = new ConfigsUpdateDeclarationsResponseFieldsItemKind(Value.HOST, "host");
+
   public static final ConfigsUpdateDeclarationsResponseFieldsItemKind CERTIFICATE = new ConfigsUpdateDeclarationsResponseFieldsItemKind(Value.CERTIFICATE, "certificate");
 
   public static final ConfigsUpdateDeclarationsResponseFieldsItemKind URL = new ConfigsUpdateDeclarationsResponseFieldsItemKind(Value.URL, "url");
@@ -58,6 +60,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItemKind {
         return visitor.visitText();
       case SELECT:
         return visitor.visitSelect();
+      case HOST:
+        return visitor.visitHost();
       case CERTIFICATE:
         return visitor.visitCertificate();
       case URL:
@@ -79,6 +83,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItemKind {
         return TEXT;
       case "select":
         return SELECT;
+      case "host":
+        return HOST;
       case "certificate":
         return CERTIFICATE;
       case "url":
@@ -97,6 +103,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItemKind {
 
     URL,
 
+    HOST,
+
     CERTIFICATE,
 
     UNKNOWN
@@ -110,6 +118,8 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItemKind {
     T visitSelect();
 
     T visitUrl();
+
+    T visitHost();
 
     T visitCertificate();
 

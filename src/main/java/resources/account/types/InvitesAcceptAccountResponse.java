@@ -29,14 +29,18 @@ public final class InvitesAcceptAccountResponse {
 
   private final OffsetDateTime expiresAt;
 
+  private final boolean twoFactorRequired;
+
   private final InvitesAcceptAccountResponseUser user;
 
   private final Map<String, Object> additionalProperties;
 
   private InvitesAcceptAccountResponse(String token, OffsetDateTime expiresAt,
-      InvitesAcceptAccountResponseUser user, Map<String, Object> additionalProperties) {
+      boolean twoFactorRequired, InvitesAcceptAccountResponseUser user,
+      Map<String, Object> additionalProperties) {
     this.token = token;
     this.expiresAt = expiresAt;
+    this.twoFactorRequired = twoFactorRequired;
     this.user = user;
     this.additionalProperties = additionalProperties;
   }
@@ -49,6 +53,11 @@ public final class InvitesAcceptAccountResponse {
   @JsonProperty("expiresAt")
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
+  }
+
+  @JsonProperty("twoFactorRequired")
+  public boolean getTwoFactorRequired() {
+    return twoFactorRequired;
   }
 
   @JsonProperty("user")
@@ -68,12 +77,12 @@ public final class InvitesAcceptAccountResponse {
   }
 
   private boolean equalTo(InvitesAcceptAccountResponse other) {
-    return token.equals(other.token) && expiresAt.equals(other.expiresAt) && user.equals(other.user);
+    return token.equals(other.token) && expiresAt.equals(other.expiresAt) && twoFactorRequired == other.twoFactorRequired && user.equals(other.user);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.token, this.expiresAt, this.user);
+    return Objects.hash(this.token, this.expiresAt, this.twoFactorRequired, this.user);
   }
 
   @java.lang.Override
@@ -92,7 +101,11 @@ public final class InvitesAcceptAccountResponse {
   }
 
   public interface ExpiresAtStage {
-    UserStage expiresAt(@NotNull OffsetDateTime expiresAt);
+    TwoFactorRequiredStage expiresAt(@NotNull OffsetDateTime expiresAt);
+  }
+
+  public interface TwoFactorRequiredStage {
+    UserStage twoFactorRequired(boolean twoFactorRequired);
   }
 
   public interface UserStage {
@@ -110,10 +123,12 @@ public final class InvitesAcceptAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements TokenStage, ExpiresAtStage, UserStage, _FinalStage {
+  public static final class Builder implements TokenStage, ExpiresAtStage, TwoFactorRequiredStage, UserStage, _FinalStage {
     private String token;
 
     private OffsetDateTime expiresAt;
+
+    private boolean twoFactorRequired;
 
     private InvitesAcceptAccountResponseUser user;
 
@@ -127,6 +142,7 @@ public final class InvitesAcceptAccountResponse {
     public Builder from(InvitesAcceptAccountResponse other) {
       token(other.getToken());
       expiresAt(other.getExpiresAt());
+      twoFactorRequired(other.getTwoFactorRequired());
       user(other.getUser());
       return this;
     }
@@ -140,8 +156,15 @@ public final class InvitesAcceptAccountResponse {
 
     @java.lang.Override
     @JsonSetter("expiresAt")
-    public UserStage expiresAt(@NotNull OffsetDateTime expiresAt) {
+    public TwoFactorRequiredStage expiresAt(@NotNull OffsetDateTime expiresAt) {
       this.expiresAt = Objects.requireNonNull(expiresAt, "expiresAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("twoFactorRequired")
+    public UserStage twoFactorRequired(boolean twoFactorRequired) {
+      this.twoFactorRequired = twoFactorRequired;
       return this;
     }
 
@@ -154,7 +177,7 @@ public final class InvitesAcceptAccountResponse {
 
     @java.lang.Override
     public InvitesAcceptAccountResponse build() {
-      return new InvitesAcceptAccountResponse(token, expiresAt, user, additionalProperties);
+      return new InvitesAcceptAccountResponse(token, expiresAt, twoFactorRequired, user, additionalProperties);
     }
 
     @java.lang.Override

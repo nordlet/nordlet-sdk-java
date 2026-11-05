@@ -50,6 +50,14 @@ public final class ExportAccountResponse {
 
   private final List<ExportAccountResponseAuditEntriesItem> auditEntries;
 
+  private final List<ExportAccountResponseAuthEventsItem> authEvents;
+
+  private final List<ExportAccountResponseApiKeysItem> apiKeys;
+
+  private final List<ExportAccountResponseOauthGrantsItem> oauthGrants;
+
+  private final List<ExportAccountResponseReferralPointsItem> referralPoints;
+
   private final Map<String, Object> additionalProperties;
 
   private ExportAccountResponse(OffsetDateTime generatedAt, ExportAccountResponseUser user,
@@ -59,6 +67,10 @@ public final class ExportAccountResponse {
       List<ExportAccountResponseBillingAccountsItem> billingAccounts,
       List<ExportAccountResponseCreditTransactionsItem> creditTransactions,
       List<ExportAccountResponseAuditEntriesItem> auditEntries,
+      List<ExportAccountResponseAuthEventsItem> authEvents,
+      List<ExportAccountResponseApiKeysItem> apiKeys,
+      List<ExportAccountResponseOauthGrantsItem> oauthGrants,
+      List<ExportAccountResponseReferralPointsItem> referralPoints,
       Map<String, Object> additionalProperties) {
     this.generatedAt = generatedAt;
     this.user = user;
@@ -69,6 +81,10 @@ public final class ExportAccountResponse {
     this.billingAccounts = billingAccounts;
     this.creditTransactions = creditTransactions;
     this.auditEntries = auditEntries;
+    this.authEvents = authEvents;
+    this.apiKeys = apiKeys;
+    this.oauthGrants = oauthGrants;
+    this.referralPoints = referralPoints;
     this.additionalProperties = additionalProperties;
   }
 
@@ -120,6 +136,26 @@ public final class ExportAccountResponse {
     return auditEntries;
   }
 
+  @JsonProperty("authEvents")
+  public List<ExportAccountResponseAuthEventsItem> getAuthEvents() {
+    return authEvents;
+  }
+
+  @JsonProperty("apiKeys")
+  public List<ExportAccountResponseApiKeysItem> getApiKeys() {
+    return apiKeys;
+  }
+
+  @JsonProperty("oauthGrants")
+  public List<ExportAccountResponseOauthGrantsItem> getOauthGrants() {
+    return oauthGrants;
+  }
+
+  @JsonProperty("referralPoints")
+  public List<ExportAccountResponseReferralPointsItem> getReferralPoints() {
+    return referralPoints;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -141,12 +177,12 @@ public final class ExportAccountResponse {
   }
 
   private boolean equalTo(ExportAccountResponse other) {
-    return generatedAt.equals(other.generatedAt) && user.equals(other.user) && consent.equals(other.consent) && memberships.equals(other.memberships) && sessions.equals(other.sessions) && billing.equals(other.billing) && billingAccounts.equals(other.billingAccounts) && creditTransactions.equals(other.creditTransactions) && auditEntries.equals(other.auditEntries);
+    return generatedAt.equals(other.generatedAt) && user.equals(other.user) && consent.equals(other.consent) && memberships.equals(other.memberships) && sessions.equals(other.sessions) && billing.equals(other.billing) && billingAccounts.equals(other.billingAccounts) && creditTransactions.equals(other.creditTransactions) && auditEntries.equals(other.auditEntries) && authEvents.equals(other.authEvents) && apiKeys.equals(other.apiKeys) && oauthGrants.equals(other.oauthGrants) && referralPoints.equals(other.referralPoints);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.generatedAt, this.user, this.consent, this.memberships, this.sessions, this.billing, this.billingAccounts, this.creditTransactions, this.auditEntries);
+    return Objects.hash(this.generatedAt, this.user, this.consent, this.memberships, this.sessions, this.billing, this.billingAccounts, this.creditTransactions, this.auditEntries, this.authEvents, this.apiKeys, this.oauthGrants, this.referralPoints);
   }
 
   @java.lang.Override
@@ -218,6 +254,30 @@ public final class ExportAccountResponse {
     _FinalStage addAuditEntries(ExportAccountResponseAuditEntriesItem auditEntries);
 
     _FinalStage addAllAuditEntries(List<ExportAccountResponseAuditEntriesItem> auditEntries);
+
+    _FinalStage authEvents(List<ExportAccountResponseAuthEventsItem> authEvents);
+
+    _FinalStage addAuthEvents(ExportAccountResponseAuthEventsItem authEvents);
+
+    _FinalStage addAllAuthEvents(List<ExportAccountResponseAuthEventsItem> authEvents);
+
+    _FinalStage apiKeys(List<ExportAccountResponseApiKeysItem> apiKeys);
+
+    _FinalStage addApiKeys(ExportAccountResponseApiKeysItem apiKeys);
+
+    _FinalStage addAllApiKeys(List<ExportAccountResponseApiKeysItem> apiKeys);
+
+    _FinalStage oauthGrants(List<ExportAccountResponseOauthGrantsItem> oauthGrants);
+
+    _FinalStage addOauthGrants(ExportAccountResponseOauthGrantsItem oauthGrants);
+
+    _FinalStage addAllOauthGrants(List<ExportAccountResponseOauthGrantsItem> oauthGrants);
+
+    _FinalStage referralPoints(List<ExportAccountResponseReferralPointsItem> referralPoints);
+
+    _FinalStage addReferralPoints(ExportAccountResponseReferralPointsItem referralPoints);
+
+    _FinalStage addAllReferralPoints(List<ExportAccountResponseReferralPointsItem> referralPoints);
   }
 
   @JsonIgnoreProperties(
@@ -229,6 +289,14 @@ public final class ExportAccountResponse {
     private ExportAccountResponseUser user;
 
     private ExportAccountResponseConsent consent;
+
+    private List<ExportAccountResponseReferralPointsItem> referralPoints = new ArrayList<>();
+
+    private List<ExportAccountResponseOauthGrantsItem> oauthGrants = new ArrayList<>();
+
+    private List<ExportAccountResponseApiKeysItem> apiKeys = new ArrayList<>();
+
+    private List<ExportAccountResponseAuthEventsItem> authEvents = new ArrayList<>();
 
     private List<ExportAccountResponseAuditEntriesItem> auditEntries = new ArrayList<>();
 
@@ -259,6 +327,10 @@ public final class ExportAccountResponse {
       billingAccounts(other.getBillingAccounts());
       creditTransactions(other.getCreditTransactions());
       auditEntries(other.getAuditEntries());
+      authEvents(other.getAuthEvents());
+      apiKeys(other.getApiKeys());
+      oauthGrants(other.getOauthGrants());
+      referralPoints(other.getReferralPoints());
       return this;
     }
 
@@ -280,6 +352,116 @@ public final class ExportAccountResponse {
     @JsonSetter("consent")
     public _FinalStage consent(@NotNull ExportAccountResponseConsent consent) {
       this.consent = Objects.requireNonNull(consent, "consent must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllReferralPoints(
+        List<ExportAccountResponseReferralPointsItem> referralPoints) {
+      if (referralPoints != null) {
+        this.referralPoints.addAll(referralPoints);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addReferralPoints(ExportAccountResponseReferralPointsItem referralPoints) {
+      this.referralPoints.add(referralPoints);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "referralPoints",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage referralPoints(
+        List<ExportAccountResponseReferralPointsItem> referralPoints) {
+      this.referralPoints.clear();
+      if (referralPoints != null) {
+        this.referralPoints.addAll(referralPoints);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllOauthGrants(List<ExportAccountResponseOauthGrantsItem> oauthGrants) {
+      if (oauthGrants != null) {
+        this.oauthGrants.addAll(oauthGrants);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addOauthGrants(ExportAccountResponseOauthGrantsItem oauthGrants) {
+      this.oauthGrants.add(oauthGrants);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "oauthGrants",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage oauthGrants(List<ExportAccountResponseOauthGrantsItem> oauthGrants) {
+      this.oauthGrants.clear();
+      if (oauthGrants != null) {
+        this.oauthGrants.addAll(oauthGrants);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllApiKeys(List<ExportAccountResponseApiKeysItem> apiKeys) {
+      if (apiKeys != null) {
+        this.apiKeys.addAll(apiKeys);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addApiKeys(ExportAccountResponseApiKeysItem apiKeys) {
+      this.apiKeys.add(apiKeys);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "apiKeys",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage apiKeys(List<ExportAccountResponseApiKeysItem> apiKeys) {
+      this.apiKeys.clear();
+      if (apiKeys != null) {
+        this.apiKeys.addAll(apiKeys);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllAuthEvents(List<ExportAccountResponseAuthEventsItem> authEvents) {
+      if (authEvents != null) {
+        this.authEvents.addAll(authEvents);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAuthEvents(ExportAccountResponseAuthEventsItem authEvents) {
+      this.authEvents.add(authEvents);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "authEvents",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage authEvents(List<ExportAccountResponseAuthEventsItem> authEvents) {
+      this.authEvents.clear();
+      if (authEvents != null) {
+        this.authEvents.addAll(authEvents);
+      }
       return this;
     }
 
@@ -457,7 +639,7 @@ public final class ExportAccountResponse {
 
     @java.lang.Override
     public ExportAccountResponse build() {
-      return new ExportAccountResponse(generatedAt, user, consent, memberships, sessions, billing, billingAccounts, creditTransactions, auditEntries, additionalProperties);
+      return new ExportAccountResponse(generatedAt, user, consent, memberships, sessions, billing, billingAccounts, creditTransactions, auditEntries, authEvents, apiKeys, oauthGrants, referralPoints, additionalProperties);
     }
 
     @java.lang.Override

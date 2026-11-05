@@ -29,6 +29,8 @@ public final class LoginLinkConsumeAccountResponse {
 
   private final OffsetDateTime expiresAt;
 
+  private final boolean twoFactorRequired;
+
   private final LoginLinkConsumeAccountResponseUser user;
 
   private final boolean isNewUser;
@@ -36,10 +38,11 @@ public final class LoginLinkConsumeAccountResponse {
   private final Map<String, Object> additionalProperties;
 
   private LoginLinkConsumeAccountResponse(String token, OffsetDateTime expiresAt,
-      LoginLinkConsumeAccountResponseUser user, boolean isNewUser,
+      boolean twoFactorRequired, LoginLinkConsumeAccountResponseUser user, boolean isNewUser,
       Map<String, Object> additionalProperties) {
     this.token = token;
     this.expiresAt = expiresAt;
+    this.twoFactorRequired = twoFactorRequired;
     this.user = user;
     this.isNewUser = isNewUser;
     this.additionalProperties = additionalProperties;
@@ -53,6 +56,11 @@ public final class LoginLinkConsumeAccountResponse {
   @JsonProperty("expiresAt")
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
+  }
+
+  @JsonProperty("twoFactorRequired")
+  public boolean getTwoFactorRequired() {
+    return twoFactorRequired;
   }
 
   @JsonProperty("user")
@@ -77,12 +85,12 @@ public final class LoginLinkConsumeAccountResponse {
   }
 
   private boolean equalTo(LoginLinkConsumeAccountResponse other) {
-    return token.equals(other.token) && expiresAt.equals(other.expiresAt) && user.equals(other.user) && isNewUser == other.isNewUser;
+    return token.equals(other.token) && expiresAt.equals(other.expiresAt) && twoFactorRequired == other.twoFactorRequired && user.equals(other.user) && isNewUser == other.isNewUser;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.token, this.expiresAt, this.user, this.isNewUser);
+    return Objects.hash(this.token, this.expiresAt, this.twoFactorRequired, this.user, this.isNewUser);
   }
 
   @java.lang.Override
@@ -101,7 +109,11 @@ public final class LoginLinkConsumeAccountResponse {
   }
 
   public interface ExpiresAtStage {
-    UserStage expiresAt(@NotNull OffsetDateTime expiresAt);
+    TwoFactorRequiredStage expiresAt(@NotNull OffsetDateTime expiresAt);
+  }
+
+  public interface TwoFactorRequiredStage {
+    UserStage twoFactorRequired(boolean twoFactorRequired);
   }
 
   public interface UserStage {
@@ -123,10 +135,12 @@ public final class LoginLinkConsumeAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements TokenStage, ExpiresAtStage, UserStage, IsNewUserStage, _FinalStage {
+  public static final class Builder implements TokenStage, ExpiresAtStage, TwoFactorRequiredStage, UserStage, IsNewUserStage, _FinalStage {
     private String token;
 
     private OffsetDateTime expiresAt;
+
+    private boolean twoFactorRequired;
 
     private LoginLinkConsumeAccountResponseUser user;
 
@@ -142,6 +156,7 @@ public final class LoginLinkConsumeAccountResponse {
     public Builder from(LoginLinkConsumeAccountResponse other) {
       token(other.getToken());
       expiresAt(other.getExpiresAt());
+      twoFactorRequired(other.getTwoFactorRequired());
       user(other.getUser());
       isNewUser(other.getIsNewUser());
       return this;
@@ -156,8 +171,15 @@ public final class LoginLinkConsumeAccountResponse {
 
     @java.lang.Override
     @JsonSetter("expiresAt")
-    public UserStage expiresAt(@NotNull OffsetDateTime expiresAt) {
+    public TwoFactorRequiredStage expiresAt(@NotNull OffsetDateTime expiresAt) {
       this.expiresAt = Objects.requireNonNull(expiresAt, "expiresAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("twoFactorRequired")
+    public UserStage twoFactorRequired(boolean twoFactorRequired) {
+      this.twoFactorRequired = twoFactorRequired;
       return this;
     }
 
@@ -177,7 +199,7 @@ public final class LoginLinkConsumeAccountResponse {
 
     @java.lang.Override
     public LoginLinkConsumeAccountResponse build() {
-      return new LoginLinkConsumeAccountResponse(token, expiresAt, user, isNewUser, additionalProperties);
+      return new LoginLinkConsumeAccountResponse(token, expiresAt, twoFactorRequired, user, isNewUser, additionalProperties);
     }
 
     @java.lang.Override

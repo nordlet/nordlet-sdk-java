@@ -28,12 +28,14 @@ import com.nordlet.api.resources.webhooks.requests.DeliveriesRedeliverWebhooksRe
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsCreateWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsDeleteWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsRotateSecretWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsUpdateWebhooksRequest;
 import com.nordlet.api.resources.webhooks.types.DeliveriesListWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.DeliveriesRedeliverWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsCreateWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsDeleteWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsRotateSecretWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsUpdateWebhooksResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
@@ -55,7 +57,7 @@ public class RawWebhooksClient {
   }
 
   /**
-   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
    */
   public NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request) {
@@ -63,7 +65,7 @@ public class RawWebhooksClient {
   }
 
   /**
-   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
    */
   public NordletApiHttpResponse<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
@@ -220,21 +222,21 @@ public class RawWebhooksClient {
       }
 
       /**
-       * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+       * Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless <code>secret</code> is given (at least 32 characters). For 24 hours <code>x-nordlet-signature-v2</code> carries two <code>v1=</code> values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; <code>x-nordlet-signature</code> uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
        */
-      public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
-          SubscriptionsUpdateWebhooksRequest request) {
-        return subscriptionsUpdate(request,null);
+      public NordletApiHttpResponse<SubscriptionsRotateSecretWebhooksResponse> subscriptionsRotateSecret(
+          SubscriptionsRotateSecretWebhooksRequest request) {
+        return subscriptionsRotateSecret(request,null);
       }
 
       /**
-       * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+       * Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless <code>secret</code> is given (at least 32 characters). For 24 hours <code>x-nordlet-signature-v2</code> carries two <code>v1=</code> values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; <code>x-nordlet-signature</code> uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
        */
-      public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
-          SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
+      public NordletApiHttpResponse<SubscriptionsRotateSecretWebhooksResponse> subscriptionsRotateSecret(
+          SubscriptionsRotateSecretWebhooksRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-          .addPathSegments("v1/webhooks/subscriptions/update");if (requestOptions != null) {
+          .addPathSegments("v1/webhooks/subscriptions/rotate-secret");if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
               httpUrl.addQueryParameter(_key, _value);
             } );
@@ -264,7 +266,7 @@ public class RawWebhooksClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsUpdateWebhooksResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsRotateSecretWebhooksResponse.class), response);
             }
             try {
               switch (response.code()) {
@@ -295,21 +297,21 @@ public class RawWebhooksClient {
         }
 
         /**
-         * Delete a webhook subscription.
+         * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
          */
-        public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
-            SubscriptionsDeleteWebhooksRequest request) {
-          return subscriptionsDelete(request,null);
+        public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
+            SubscriptionsUpdateWebhooksRequest request) {
+          return subscriptionsUpdate(request,null);
         }
 
         /**
-         * Delete a webhook subscription.
+         * Change the URL, event types or <code>isActive</code> flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting <code>isActive</code> to true also clears <code>pausedAt</code> and <code>consecutiveFailures</code>, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
          */
-        public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
-            SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
+        public NordletApiHttpResponse<SubscriptionsUpdateWebhooksResponse> subscriptionsUpdate(
+            SubscriptionsUpdateWebhooksRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-            .addPathSegments("v1/webhooks/subscriptions/delete");if (requestOptions != null) {
+            .addPathSegments("v1/webhooks/subscriptions/update");if (requestOptions != null) {
               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);
               } );
@@ -339,7 +341,7 @@ public class RawWebhooksClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsDeleteWebhooksResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsUpdateWebhooksResponse.class), response);
               }
               try {
                 switch (response.code()) {
@@ -370,36 +372,21 @@ public class RawWebhooksClient {
           }
 
           /**
-           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           * Delete a webhook subscription.
            */
-          public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList() {
-            return deliveriesList(DeliveriesListWebhooksRequest.builder().build());
+          public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
+              SubscriptionsDeleteWebhooksRequest request) {
+            return subscriptionsDelete(request,null);
           }
 
           /**
-           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+           * Delete a webhook subscription.
            */
-          public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
-              RequestOptions requestOptions) {
-            return deliveriesList(DeliveriesListWebhooksRequest.builder().build(),requestOptions);
-          }
-
-          /**
-           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
-           */
-          public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
-              DeliveriesListWebhooksRequest request) {
-            return deliveriesList(request,null);
-          }
-
-          /**
-           * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
-           */
-          public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
-              DeliveriesListWebhooksRequest request, RequestOptions requestOptions) {
+          public NordletApiHttpResponse<SubscriptionsDeleteWebhooksResponse> subscriptionsDelete(
+              SubscriptionsDeleteWebhooksRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/webhooks/deliveries/list");if (requestOptions != null) {
+              .addPathSegments("v1/webhooks/subscriptions/delete");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -429,7 +416,7 @@ public class RawWebhooksClient {
                 ResponseBody responseBody = response.body();
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesListWebhooksResponse.class), response);
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionsDeleteWebhooksResponse.class), response);
                 }
                 try {
                   switch (response.code()) {
@@ -460,21 +447,36 @@ public class RawWebhooksClient {
             }
 
             /**
-             * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+             * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
              */
-            public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
-                DeliveriesRedeliverWebhooksRequest request) {
-              return deliveriesRedeliver(request,null);
+            public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList() {
+              return deliveriesList(DeliveriesListWebhooksRequest.builder().build());
             }
 
             /**
-             * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+             * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
              */
-            public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
-                DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
+                RequestOptions requestOptions) {
+              return deliveriesList(DeliveriesListWebhooksRequest.builder().build(),requestOptions);
+            }
+
+            /**
+             * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+             */
+            public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
+                DeliveriesListWebhooksRequest request) {
+              return deliveriesList(request,null);
+            }
+
+            /**
+             * List the company's webhook deliveries, newest first. Filterable by <code>status</code>, <code>eventType</code> and <code>subscriptionId</code>; sortable by <code>createdAt</code>.
+             */
+            public NordletApiHttpResponse<DeliveriesListWebhooksResponse> deliveriesList(
+                DeliveriesListWebhooksRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/webhooks/deliveries/redeliver");if (requestOptions != null) {
+                .addPathSegments("v1/webhooks/deliveries/list");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -504,7 +506,7 @@ public class RawWebhooksClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesRedeliverWebhooksResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesListWebhooksResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
@@ -533,4 +535,79 @@ public class RawWebhooksClient {
                   throw new NordletApiException("Network error executing HTTP request", e);
                 }
               }
-            }
+
+              /**
+               * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+               */
+              public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
+                  DeliveriesRedeliverWebhooksRequest request) {
+                return deliveriesRedeliver(request,null);
+              }
+
+              /**
+               * Send a delivery again now: its status goes back to <code>pending</code> with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+               */
+              public NordletApiHttpResponse<DeliveriesRedeliverWebhooksResponse> deliveriesRedeliver(
+                  DeliveriesRedeliverWebhooksRequest request, RequestOptions requestOptions) {
+                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                  .addPathSegments("v1/webhooks/deliveries/redeliver");if (requestOptions != null) {
+                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                      httpUrl.addQueryParameter(_key, _value);
+                    } );
+                  }
+                  RequestBody body;
+                  try {
+                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                  }
+                  catch(JsonProcessingException e) {
+                    throw new NordletApiException("Failed to serialize request", e);
+                  }
+                  Request okhttpRequest = new Request.Builder()
+                    .url(httpUrl.build())
+                    .method("POST", body)
+                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json")
+                    .build();
+                  OkHttpClient client = clientOptions.httpClient();
+                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                  }
+                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                  }
+                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                    ResponseBody responseBody = response.body();
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeliveriesRedeliverWebhooksResponse.class), response);
+                    }
+                    try {
+                      switch (response.code()) {
+                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                      }
+                    }
+                    catch (JsonProcessingException ignored) {
+                      // unable to map error response, throwing generic error
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                  }
+                  catch (JsonProcessingException e) {
+                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                  }
+                  catch (IOException e) {
+                    throw new NordletApiException("Network error executing HTTP request", e);
+                  }
+                }
+              }

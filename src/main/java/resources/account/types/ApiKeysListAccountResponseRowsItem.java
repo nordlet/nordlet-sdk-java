@@ -36,6 +36,8 @@ public final class ApiKeysListAccountResponseRowsItem {
 
   private final String name;
 
+  private final Optional<String> lastFour;
+
   private final List<String> scopes;
 
   private final Optional<OffsetDateTime> lastUsedAt;
@@ -50,12 +52,13 @@ public final class ApiKeysListAccountResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private ApiKeysListAccountResponseRowsItem(String id, String name, List<String> scopes,
-      Optional<OffsetDateTime> lastUsedAt, Optional<OffsetDateTime> expiresAt,
+  private ApiKeysListAccountResponseRowsItem(String id, String name, Optional<String> lastFour,
+      List<String> scopes, Optional<OffsetDateTime> lastUsedAt, Optional<OffsetDateTime> expiresAt,
       Optional<String> replacedByKeyId, Optional<OffsetDateTime> revokedAt,
       OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
+    this.lastFour = lastFour;
     this.scopes = scopes;
     this.lastUsedAt = lastUsedAt;
     this.expiresAt = expiresAt;
@@ -73,6 +76,14 @@ public final class ApiKeysListAccountResponseRowsItem {
   @JsonProperty("name")
   public String getName() {
     return name;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLastFour() {
+    if (lastFour == null) {
+      return Optional.empty();
+    }
+    return lastFour;
   }
 
   @JsonProperty("scopes")
@@ -115,6 +126,15 @@ public final class ApiKeysListAccountResponseRowsItem {
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lastFour")
+  private Optional<String> _getLastFour() {
+    return lastFour;
   }
 
   @JsonInclude(
@@ -165,12 +185,12 @@ public final class ApiKeysListAccountResponseRowsItem {
   }
 
   private boolean equalTo(ApiKeysListAccountResponseRowsItem other) {
-    return id.equals(other.id) && name.equals(other.name) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && expiresAt.equals(other.expiresAt) && replacedByKeyId.equals(other.replacedByKeyId) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && name.equals(other.name) && lastFour.equals(other.lastFour) && scopes.equals(other.scopes) && lastUsedAt.equals(other.lastUsedAt) && expiresAt.equals(other.expiresAt) && replacedByKeyId.equals(other.replacedByKeyId) && revokedAt.equals(other.revokedAt) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.scopes, this.lastUsedAt, this.expiresAt, this.replacedByKeyId, this.revokedAt, this.createdAt);
+    return Objects.hash(this.id, this.name, this.lastFour, this.scopes, this.lastUsedAt, this.expiresAt, this.replacedByKeyId, this.revokedAt, this.createdAt);
   }
 
   @java.lang.Override
@@ -202,6 +222,12 @@ public final class ApiKeysListAccountResponseRowsItem {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage lastFour(Optional<String> lastFour);
+
+    _FinalStage lastFour(String lastFour);
+
+    _FinalStage lastFour(Nullable<String> lastFour);
 
     _FinalStage scopes(List<String> scopes);
 
@@ -254,6 +280,8 @@ public final class ApiKeysListAccountResponseRowsItem {
 
     private List<String> scopes = new ArrayList<>();
 
+    private Optional<String> lastFour = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -264,6 +292,7 @@ public final class ApiKeysListAccountResponseRowsItem {
     public Builder from(ApiKeysListAccountResponseRowsItem other) {
       id(other.getId());
       name(other.getName());
+      lastFour(other.getLastFour());
       scopes(other.getScopes());
       lastUsedAt(other.getLastUsedAt());
       expiresAt(other.getExpiresAt());
@@ -442,8 +471,38 @@ public final class ApiKeysListAccountResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage lastFour(Nullable<String> lastFour) {
+      if (lastFour.isNull()) {
+        this.lastFour = null;
+      }
+      else if (lastFour.isEmpty()) {
+        this.lastFour = Optional.empty();
+      }
+      else {
+        this.lastFour = Optional.of(lastFour.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lastFour(String lastFour) {
+      this.lastFour = Optional.ofNullable(lastFour);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lastFour",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lastFour(Optional<String> lastFour) {
+      this.lastFour = lastFour;
+      return this;
+    }
+
+    @java.lang.Override
     public ApiKeysListAccountResponseRowsItem build() {
-      return new ApiKeysListAccountResponseRowsItem(id, name, scopes, lastUsedAt, expiresAt, replacedByKeyId, revokedAt, createdAt, additionalProperties);
+      return new ApiKeysListAccountResponseRowsItem(id, name, lastFour, scopes, lastUsedAt, expiresAt, replacedByKeyId, revokedAt, createdAt, additionalProperties);
     }
 
     @java.lang.Override

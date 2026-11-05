@@ -16,6 +16,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItemKind {
 
   public static final ConfigsListDeclarationsResponseRowsItemFieldsItemKind SELECT = new ConfigsListDeclarationsResponseRowsItemFieldsItemKind(Value.SELECT, "select");
 
+  public static final ConfigsListDeclarationsResponseRowsItemFieldsItemKind HOST = new ConfigsListDeclarationsResponseRowsItemFieldsItemKind(Value.HOST, "host");
+
   public static final ConfigsListDeclarationsResponseRowsItemFieldsItemKind CERTIFICATE = new ConfigsListDeclarationsResponseRowsItemFieldsItemKind(Value.CERTIFICATE, "certificate");
 
   public static final ConfigsListDeclarationsResponseRowsItemFieldsItemKind URL = new ConfigsListDeclarationsResponseRowsItemFieldsItemKind(Value.URL, "url");
@@ -58,6 +60,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItemKind {
         return visitor.visitText();
       case SELECT:
         return visitor.visitSelect();
+      case HOST:
+        return visitor.visitHost();
       case CERTIFICATE:
         return visitor.visitCertificate();
       case URL:
@@ -79,6 +83,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItemKind {
         return TEXT;
       case "select":
         return SELECT;
+      case "host":
+        return HOST;
       case "certificate":
         return CERTIFICATE;
       case "url":
@@ -97,6 +103,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItemKind {
 
     URL,
 
+    HOST,
+
     CERTIFICATE,
 
     UNKNOWN
@@ -110,6 +118,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItemKind {
     T visitSelect();
 
     T visitUrl();
+
+    T visitHost();
 
     T visitCertificate();
 

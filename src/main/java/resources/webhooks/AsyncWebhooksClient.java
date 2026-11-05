@@ -11,12 +11,14 @@ import com.nordlet.api.resources.webhooks.requests.DeliveriesRedeliverWebhooksRe
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsCreateWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsDeleteWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsListWebhooksRequest;
+import com.nordlet.api.resources.webhooks.requests.SubscriptionsRotateSecretWebhooksRequest;
 import com.nordlet.api.resources.webhooks.requests.SubscriptionsUpdateWebhooksRequest;
 import com.nordlet.api.resources.webhooks.types.DeliveriesListWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.DeliveriesRedeliverWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsCreateWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsDeleteWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsListWebhooksResponse;
+import com.nordlet.api.resources.webhooks.types.SubscriptionsRotateSecretWebhooksResponse;
 import com.nordlet.api.resources.webhooks.types.SubscriptionsUpdateWebhooksResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -38,7 +40,7 @@ public class AsyncWebhooksClient {
   }
 
   /**
-   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
    */
   public CompletableFuture<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request) {
@@ -46,7 +48,7 @@ public class AsyncWebhooksClient {
   }
 
   /**
-   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given, and this call is the only one that returns it.
+   * Register a webhook endpoint for the given event types (<code>*</code> for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless <code>secret</code> is given (at least 32 characters), and this call is the only one that returns it. Answers 503 when the platform encryption key is not configured.
    */
   public CompletableFuture<SubscriptionsCreateWebhooksResponse> subscriptionsCreate(
       SubscriptionsCreateWebhooksRequest request, RequestOptions requestOptions) {
@@ -82,6 +84,22 @@ public class AsyncWebhooksClient {
   public CompletableFuture<SubscriptionsListWebhooksResponse> subscriptionsList(
       SubscriptionsListWebhooksRequest request, RequestOptions requestOptions) {
     return this.rawClient.subscriptionsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless <code>secret</code> is given (at least 32 characters). For 24 hours <code>x-nordlet-signature-v2</code> carries two <code>v1=</code> values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; <code>x-nordlet-signature</code> uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+   */
+  public CompletableFuture<SubscriptionsRotateSecretWebhooksResponse> subscriptionsRotateSecret(
+      SubscriptionsRotateSecretWebhooksRequest request) {
+    return this.rawClient.subscriptionsRotateSecret(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the signing secret of a subscription and return the new one; this call is the only one that returns it. The secret is generated unless <code>secret</code> is given (at least 32 characters). For 24 hours <code>x-nordlet-signature-v2</code> carries two <code>v1=</code> values, one with the new secret and one with the previous one, so a receiver can switch secrets without refusing deliveries; <code>x-nordlet-signature</code> uses the new secret only. Answers 404 for an unknown subscription and 503 when the platform encryption key is not configured.
+   */
+  public CompletableFuture<SubscriptionsRotateSecretWebhooksResponse> subscriptionsRotateSecret(
+      SubscriptionsRotateSecretWebhooksRequest request, RequestOptions requestOptions) {
+    return this.rawClient.subscriptionsRotateSecret(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
