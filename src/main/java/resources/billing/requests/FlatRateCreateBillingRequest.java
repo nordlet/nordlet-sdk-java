@@ -31,12 +31,16 @@ public final class FlatRateCreateBillingRequest {
 
   private final Optional<FlatRateCreateBillingRequestPlan> plan;
 
+  private final Optional<String> convertCompanyId;
+
   private final Map<String, Object> additionalProperties;
 
   private FlatRateCreateBillingRequest(Optional<FlatRateCreateBillingRequestLocale> locale,
-      Optional<FlatRateCreateBillingRequestPlan> plan, Map<String, Object> additionalProperties) {
+      Optional<FlatRateCreateBillingRequestPlan> plan, Optional<String> convertCompanyId,
+      Map<String, Object> additionalProperties) {
     this.locale = locale;
     this.plan = plan;
+    this.convertCompanyId = convertCompanyId;
     this.additionalProperties = additionalProperties;
   }
 
@@ -48,6 +52,11 @@ public final class FlatRateCreateBillingRequest {
   @JsonProperty("plan")
   public Optional<FlatRateCreateBillingRequestPlan> getPlan() {
     return plan;
+  }
+
+  @JsonProperty("convertCompanyId")
+  public Optional<String> getConvertCompanyId() {
+    return convertCompanyId;
   }
 
   @java.lang.Override
@@ -62,12 +71,12 @@ public final class FlatRateCreateBillingRequest {
   }
 
   private boolean equalTo(FlatRateCreateBillingRequest other) {
-    return locale.equals(other.locale) && plan.equals(other.plan);
+    return locale.equals(other.locale) && plan.equals(other.plan) && convertCompanyId.equals(other.convertCompanyId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.locale, this.plan);
+    return Objects.hash(this.locale, this.plan, this.convertCompanyId);
   }
 
   @java.lang.Override
@@ -87,6 +96,8 @@ public final class FlatRateCreateBillingRequest {
 
     private Optional<FlatRateCreateBillingRequestPlan> plan = Optional.empty();
 
+    private Optional<String> convertCompanyId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -96,6 +107,7 @@ public final class FlatRateCreateBillingRequest {
     public Builder from(FlatRateCreateBillingRequest other) {
       locale(other.getLocale());
       plan(other.getPlan());
+      convertCompanyId(other.getConvertCompanyId());
       return this;
     }
 
@@ -127,8 +139,22 @@ public final class FlatRateCreateBillingRequest {
       return this;
     }
 
+    @JsonSetter(
+        value = "convertCompanyId",
+        nulls = Nulls.SKIP
+    )
+    public Builder convertCompanyId(Optional<String> convertCompanyId) {
+      this.convertCompanyId = convertCompanyId;
+      return this;
+    }
+
+    public Builder convertCompanyId(String convertCompanyId) {
+      this.convertCompanyId = Optional.ofNullable(convertCompanyId);
+      return this;
+    }
+
     public FlatRateCreateBillingRequest build() {
-      return new FlatRateCreateBillingRequest(locale, plan, additionalProperties);
+      return new FlatRateCreateBillingRequest(locale, plan, convertCompanyId, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

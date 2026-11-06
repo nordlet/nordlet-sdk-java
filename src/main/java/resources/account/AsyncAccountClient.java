@@ -12,6 +12,7 @@ import com.nordlet.api.resources.account.requests.ApiKeysRevokeAccountRequest;
 import com.nordlet.api.resources.account.requests.ApiKeysRotateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesConvertToLiveAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesCreateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesDeleteAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesProfileAccountRequest;
@@ -59,6 +60,7 @@ import com.nordlet.api.resources.account.types.ApiKeysRevokeAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysRotateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesConvertToLiveAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesDeleteAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesProfileAccountResponse;
@@ -396,7 +398,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
    */
   public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
       CompaniesCreateAccountRequest request) {
@@ -404,7 +406,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
    */
   public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
       CompaniesCreateAccountRequest request, RequestOptions requestOptions) {
@@ -519,6 +521,22 @@ public class AsyncAccountClient {
   public CompletableFuture<CompaniesDeleteAccountResponse> companiesDelete(
       CompaniesDeleteAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.companiesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+   */
+  public CompletableFuture<CompaniesConvertToLiveAccountResponse> companiesConvertToLive(
+      CompaniesConvertToLiveAccountRequest request) {
+    return this.rawClient.companiesConvertToLive(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+   */
+  public CompletableFuture<CompaniesConvertToLiveAccountResponse> companiesConvertToLive(
+      CompaniesConvertToLiveAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesConvertToLive(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

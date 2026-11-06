@@ -13,6 +13,7 @@ import com.nordlet.api.resources.billing.requests.AccountSetOverdraftCapBillingR
 import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.FreeSandboxStartBillingRequest;
 import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.SubscriptionCancelBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupConfirmBillingRequest;
@@ -26,6 +27,7 @@ import com.nordlet.api.resources.billing.types.AccountSetOverdraftCapBillingResp
 import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.FreeSandboxStartBillingResponse;
 import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.SubscriptionCancelBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupConfirmBillingResponse;
@@ -143,14 +145,14 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>; with <code>convertCompanyId</code> it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
    */
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request) {
     return this.rawClient.topupCreate(request).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+   * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>; with <code>convertCompanyId</code> it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
    */
   public TopupCreateBillingResponse topupCreate(TopupCreateBillingRequest request,
       RequestOptions requestOptions) {
@@ -173,28 +175,57 @@ public class BillingClient {
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+   */
+  public FreeSandboxStartBillingResponse freeSandboxStart() {
+    return this.rawClient.freeSandboxStart().body();
+  }
+
+  /**
+   * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+   */
+  public FreeSandboxStartBillingResponse freeSandboxStart(RequestOptions requestOptions) {
+    return this.rawClient.freeSandboxStart(requestOptions).body();
+  }
+
+  /**
+   * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+   */
+  public FreeSandboxStartBillingResponse freeSandboxStart(FreeSandboxStartBillingRequest request) {
+    return this.rawClient.freeSandboxStart(request).body();
+  }
+
+  /**
+   * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
+   */
+  public FreeSandboxStartBillingResponse freeSandboxStart(FreeSandboxStartBillingRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.freeSandboxStart(request, requestOptions).body();
+  }
+
+  /**
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate() {
     return this.rawClient.flatRateCreate().body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(RequestOptions requestOptions) {
     return this.rawClient.flatRateCreate(requestOptions).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request) {
     return this.rawClient.flatRateCreate(request).body();
   }
 
   /**
-   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
    */
   public FlatRateCreateBillingResponse flatRateCreate(FlatRateCreateBillingRequest request,
       RequestOptions requestOptions) {

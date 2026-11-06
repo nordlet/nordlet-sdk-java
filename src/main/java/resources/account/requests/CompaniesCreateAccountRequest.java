@@ -365,7 +365,7 @@ public final class CompaniesCreateAccountRequest {
   }
 
   /**
-   * @return Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
+   * @return Sandbox companies hold test data and are purged immediately on delete; <code>companies/convert-to-live</code> turns one into a live company
    */
   @JsonProperty("isSandbox")
   public Optional<Boolean> getIsSandbox() {
@@ -583,7 +583,7 @@ public final class CompaniesCreateAccountRequest {
     _FinalStage baseCurrency(String baseCurrency);
 
     /**
-     * <p>Sandbox companies hold test data and are purged immediately on delete (immutable after creation)</p>
+     * <p>Sandbox companies hold test data and are purged immediately on delete; <code>companies/convert-to-live</code> turns one into a live company</p>
      */
     _FinalStage isSandbox(Optional<Boolean> isSandbox);
 
@@ -754,7 +754,7 @@ public final class CompaniesCreateAccountRequest {
     }
 
     /**
-     * <p>Sandbox companies hold test data and are purged immediately on delete (immutable after creation)</p>
+     * <p>Sandbox companies hold test data and are purged immediately on delete; <code>companies/convert-to-live</code> turns one into a live company</p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override
@@ -764,7 +764,7 @@ public final class CompaniesCreateAccountRequest {
     }
 
     /**
-     * <p>Sandbox companies hold test data and are purged immediately on delete (immutable after creation)</p>
+     * <p>Sandbox companies hold test data and are purged immediately on delete; <code>companies/convert-to-live</code> turns one into a live company</p>
      */
     @java.lang.Override
     @JsonSetter(

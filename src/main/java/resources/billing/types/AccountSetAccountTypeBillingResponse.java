@@ -43,6 +43,8 @@ public final class AccountSetAccountTypeBillingResponse {
 
   private final Optional<OffsetDateTime> trialEndsAt;
 
+  private final Optional<OffsetDateTime> freeSandboxStartedAt;
+
   private final Optional<OffsetDateTime> firstTopUpAt;
 
   private final Optional<String> lastChargedDate;
@@ -81,10 +83,11 @@ public final class AccountSetAccountTypeBillingResponse {
       AccountSetAccountTypeBillingResponsePlan plan,
       AccountSetAccountTypeBillingResponseAccountType accountType,
       AccountSetAccountTypeBillingResponseStatus status, long balanceCents,
-      Optional<OffsetDateTime> trialEndsAt, Optional<OffsetDateTime> firstTopUpAt,
-      Optional<String> lastChargedDate, boolean paymentsConfigured, boolean hasPaymentAccount,
-      boolean hasSubscription, Optional<OffsetDateTime> subscriptionCancelAt,
-      Optional<OffsetDateTime> paymentFailedAt, Optional<String> paymentFailedInvoiceUrl,
+      Optional<OffsetDateTime> trialEndsAt, Optional<OffsetDateTime> freeSandboxStartedAt,
+      Optional<OffsetDateTime> firstTopUpAt, Optional<String> lastChargedDate,
+      boolean paymentsConfigured, boolean hasPaymentAccount, boolean hasSubscription,
+      Optional<OffsetDateTime> subscriptionCancelAt, Optional<OffsetDateTime> paymentFailedAt,
+      Optional<String> paymentFailedInvoiceUrl,
       AccountSetAccountTypeBillingResponseMonthToDate monthToDate,
       Map<String, AccountSetAccountTypeBillingResponsePlansValue> plans, String apiRequestEur,
       AccountSetAccountTypeBillingResponseTopUp topUp,
@@ -96,6 +99,7 @@ public final class AccountSetAccountTypeBillingResponse {
     this.status = status;
     this.balanceCents = balanceCents;
     this.trialEndsAt = trialEndsAt;
+    this.freeSandboxStartedAt = freeSandboxStartedAt;
     this.firstTopUpAt = firstTopUpAt;
     this.lastChargedDate = lastChargedDate;
     this.paymentsConfigured = paymentsConfigured;
@@ -149,6 +153,17 @@ public final class AccountSetAccountTypeBillingResponse {
       return Optional.empty();
     }
     return trialEndsAt;
+  }
+
+  /**
+   * @return When the free sandbox plan was started; it ends at <code>trialEndsAt</code>
+   */
+  @JsonIgnore
+  public Optional<OffsetDateTime> getFreeSandboxStartedAt() {
+    if (freeSandboxStartedAt == null) {
+      return Optional.empty();
+    }
+    return freeSandboxStartedAt;
   }
 
   @JsonIgnore
@@ -262,6 +277,15 @@ public final class AccountSetAccountTypeBillingResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("freeSandboxStartedAt")
+  private Optional<OffsetDateTime> _getFreeSandboxStartedAt() {
+    return freeSandboxStartedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("firstTopUpAt")
   private Optional<OffsetDateTime> _getFirstTopUpAt() {
     return firstTopUpAt;
@@ -315,12 +339,12 @@ public final class AccountSetAccountTypeBillingResponse {
   }
 
   private boolean equalTo(AccountSetAccountTypeBillingResponse other) {
-    return site.equals(other.site) && plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && subscriptionCancelAt.equals(other.subscriptionCancelAt) && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
+    return site.equals(other.site) && plan.equals(other.plan) && accountType.equals(other.accountType) && status.equals(other.status) && balanceCents == other.balanceCents && trialEndsAt.equals(other.trialEndsAt) && freeSandboxStartedAt.equals(other.freeSandboxStartedAt) && firstTopUpAt.equals(other.firstTopUpAt) && lastChargedDate.equals(other.lastChargedDate) && paymentsConfigured == other.paymentsConfigured && hasPaymentAccount == other.hasPaymentAccount && hasSubscription == other.hasSubscription && subscriptionCancelAt.equals(other.subscriptionCancelAt) && paymentFailedAt.equals(other.paymentFailedAt) && paymentFailedInvoiceUrl.equals(other.paymentFailedInvoiceUrl) && monthToDate.equals(other.monthToDate) && plans.equals(other.plans) && apiRequestEur.equals(other.apiRequestEur) && topUp.equals(other.topUp) && autoTopUp.equals(other.autoTopUp) && overdraftCapCents == other.overdraftCapCents && overdraftCapMaxCents == other.overdraftCapMaxCents && trialDays == other.trialDays;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.site, this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.subscriptionCancelAt, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
+    return Objects.hash(this.site, this.plan, this.accountType, this.status, this.balanceCents, this.trialEndsAt, this.freeSandboxStartedAt, this.firstTopUpAt, this.lastChargedDate, this.paymentsConfigured, this.hasPaymentAccount, this.hasSubscription, this.subscriptionCancelAt, this.paymentFailedAt, this.paymentFailedInvoiceUrl, this.monthToDate, this.plans, this.apiRequestEur, this.topUp, this.autoTopUp, this.overdraftCapCents, this.overdraftCapMaxCents, this.trialDays);
   }
 
   @java.lang.Override
@@ -412,6 +436,15 @@ public final class AccountSetAccountTypeBillingResponse {
 
     _FinalStage trialEndsAt(Nullable<OffsetDateTime> trialEndsAt);
 
+    /**
+     * <p>When the free sandbox plan was started; it ends at <code>trialEndsAt</code></p>
+     */
+    _FinalStage freeSandboxStartedAt(Optional<OffsetDateTime> freeSandboxStartedAt);
+
+    _FinalStage freeSandboxStartedAt(OffsetDateTime freeSandboxStartedAt);
+
+    _FinalStage freeSandboxStartedAt(Nullable<OffsetDateTime> freeSandboxStartedAt);
+
     _FinalStage firstTopUpAt(Optional<OffsetDateTime> firstTopUpAt);
 
     _FinalStage firstTopUpAt(OffsetDateTime firstTopUpAt);
@@ -498,6 +531,8 @@ public final class AccountSetAccountTypeBillingResponse {
 
     private Optional<OffsetDateTime> firstTopUpAt = Optional.empty();
 
+    private Optional<OffsetDateTime> freeSandboxStartedAt = Optional.empty();
+
     private Optional<OffsetDateTime> trialEndsAt = Optional.empty();
 
     @JsonAnySetter
@@ -514,6 +549,7 @@ public final class AccountSetAccountTypeBillingResponse {
       status(other.getStatus());
       balanceCents(other.getBalanceCents());
       trialEndsAt(other.getTrialEndsAt());
+      freeSandboxStartedAt(other.getFreeSandboxStartedAt());
       firstTopUpAt(other.getFirstTopUpAt());
       lastChargedDate(other.getLastChargedDate());
       paymentsConfigured(other.getPaymentsConfigured());
@@ -834,6 +870,47 @@ public final class AccountSetAccountTypeBillingResponse {
       return this;
     }
 
+    /**
+     * <p>When the free sandbox plan was started; it ends at <code>trialEndsAt</code></p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage freeSandboxStartedAt(Nullable<OffsetDateTime> freeSandboxStartedAt) {
+      if (freeSandboxStartedAt.isNull()) {
+        this.freeSandboxStartedAt = null;
+      }
+      else if (freeSandboxStartedAt.isEmpty()) {
+        this.freeSandboxStartedAt = Optional.empty();
+      }
+      else {
+        this.freeSandboxStartedAt = Optional.of(freeSandboxStartedAt.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>When the free sandbox plan was started; it ends at <code>trialEndsAt</code></p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage freeSandboxStartedAt(OffsetDateTime freeSandboxStartedAt) {
+      this.freeSandboxStartedAt = Optional.ofNullable(freeSandboxStartedAt);
+      return this;
+    }
+
+    /**
+     * <p>When the free sandbox plan was started; it ends at <code>trialEndsAt</code></p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "freeSandboxStartedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage freeSandboxStartedAt(Optional<OffsetDateTime> freeSandboxStartedAt) {
+      this.freeSandboxStartedAt = freeSandboxStartedAt;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage trialEndsAt(Nullable<OffsetDateTime> trialEndsAt) {
       if (trialEndsAt.isNull()) {
@@ -866,7 +943,7 @@ public final class AccountSetAccountTypeBillingResponse {
 
     @java.lang.Override
     public AccountSetAccountTypeBillingResponse build() {
-      return new AccountSetAccountTypeBillingResponse(site, plan, accountType, status, balanceCents, trialEndsAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, subscriptionCancelAt, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
+      return new AccountSetAccountTypeBillingResponse(site, plan, accountType, status, balanceCents, trialEndsAt, freeSandboxStartedAt, firstTopUpAt, lastChargedDate, paymentsConfigured, hasPaymentAccount, hasSubscription, subscriptionCancelAt, paymentFailedAt, paymentFailedInvoiceUrl, monthToDate, plans, apiRequestEur, topUp, autoTopUp, overdraftCapCents, overdraftCapMaxCents, trialDays, additionalProperties);
     }
 
     @java.lang.Override

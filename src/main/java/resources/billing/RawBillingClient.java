@@ -30,6 +30,7 @@ import com.nordlet.api.resources.billing.requests.AccountSetOverdraftCapBillingR
 import com.nordlet.api.resources.billing.requests.AccountSetPlanBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateConfirmBillingRequest;
 import com.nordlet.api.resources.billing.requests.FlatRateCreateBillingRequest;
+import com.nordlet.api.resources.billing.requests.FreeSandboxStartBillingRequest;
 import com.nordlet.api.resources.billing.requests.PortalCreateBillingRequest;
 import com.nordlet.api.resources.billing.requests.SubscriptionCancelBillingRequest;
 import com.nordlet.api.resources.billing.requests.TopupConfirmBillingRequest;
@@ -43,6 +44,7 @@ import com.nordlet.api.resources.billing.types.AccountSetOverdraftCapBillingResp
 import com.nordlet.api.resources.billing.types.AccountSetPlanBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateConfirmBillingResponse;
 import com.nordlet.api.resources.billing.types.FlatRateCreateBillingResponse;
+import com.nordlet.api.resources.billing.types.FreeSandboxStartBillingResponse;
 import com.nordlet.api.resources.billing.types.PortalCreateBillingResponse;
 import com.nordlet.api.resources.billing.types.SubscriptionCancelBillingResponse;
 import com.nordlet.api.resources.billing.types.TopupConfirmBillingResponse;
@@ -459,7 +461,7 @@ public class RawBillingClient {
             }
 
             /**
-             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>; with <code>convertCompanyId</code> it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
              */
             public NordletApiHttpResponse<TopupCreateBillingResponse> topupCreate(
                 TopupCreateBillingRequest request) {
@@ -467,7 +469,7 @@ public class RawBillingClient {
             }
 
             /**
-             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>. Answers 409 on a site without top-ups and 503 when online payments are not configured.
+             * Open a Stripe Checkout session for a one-time credit top-up of <code>amountCents</code> and return its URL; a Stripe customer is created for the user when there is none. <code>returnTo</code> chooses whether Checkout returns to the credits page or to the onboarding plan page, in <code>locale</code>; with <code>convertCompanyId</code> it returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 409 on a site without top-ups and 503 when online payments are not configured.
              */
             public NordletApiHttpResponse<TopupCreateBillingResponse> topupCreate(
                 TopupCreateBillingRequest request, RequestOptions requestOptions) {
@@ -609,36 +611,36 @@ public class RawBillingClient {
                 }
 
                 /**
-                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                 * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
                  */
-                public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate() {
-                  return flatRateCreate(FlatRateCreateBillingRequest.builder().build());
+                public NordletApiHttpResponse<FreeSandboxStartBillingResponse> freeSandboxStart() {
+                  return freeSandboxStart(FreeSandboxStartBillingRequest.builder().build());
                 }
 
                 /**
-                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                 * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
                  */
-                public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
+                public NordletApiHttpResponse<FreeSandboxStartBillingResponse> freeSandboxStart(
                     RequestOptions requestOptions) {
-                  return flatRateCreate(FlatRateCreateBillingRequest.builder().build(),requestOptions);
+                  return freeSandboxStart(FreeSandboxStartBillingRequest.builder().build(),requestOptions);
                 }
 
                 /**
-                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                 * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
                  */
-                public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
-                    FlatRateCreateBillingRequest request) {
-                  return flatRateCreate(request,null);
+                public NordletApiHttpResponse<FreeSandboxStartBillingResponse> freeSandboxStart(
+                    FreeSandboxStartBillingRequest request) {
+                  return freeSandboxStart(request,null);
                 }
 
                 /**
-                 * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site, with the trial period of <code>trialDays</code> days, and return its URL; a Stripe customer is created for that account when it has none. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                 * Start the free sandbox plan of the caller's <code>app</code> billing account: one sandbox company, free for 14 days from now, without a payment. A free sandbox that is already running keeps its end date. After <code>trialEndsAt</code> the sandbox company answers 402 until a paid plan is chosen. Answers 409 on the <code>invoice</code> site, when a paid plan is already active, and when the free sandbox of this account has already ended.
                  */
-                public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
-                    FlatRateCreateBillingRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<FreeSandboxStartBillingResponse> freeSandboxStart(
+                    FreeSandboxStartBillingRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/billing/flat-rate/create");if (requestOptions != null) {
+                    .addPathSegments("v1/billing/free-sandbox/start");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -668,7 +670,7 @@ public class RawBillingClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FlatRateCreateBillingResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FreeSandboxStartBillingResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
@@ -699,21 +701,36 @@ public class RawBillingClient {
                   }
 
                   /**
-                   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+                   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
                    */
-                  public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
-                      FlatRateConfirmBillingRequest request) {
-                    return flatRateConfirm(request,null);
+                  public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate() {
+                    return flatRateCreate(FlatRateCreateBillingRequest.builder().build());
                   }
 
                   /**
-                   * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
+                   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
                    */
-                  public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
-                      FlatRateConfirmBillingRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
+                      RequestOptions requestOptions) {
+                    return flatRateCreate(FlatRateCreateBillingRequest.builder().build(),requestOptions);
+                  }
+
+                  /**
+                   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                   */
+                  public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
+                      FlatRateCreateBillingRequest request) {
+                    return flatRateCreate(request,null);
+                  }
+
+                  /**
+                   * Open a Stripe Checkout session for a flat-rate subscription on <code>plan</code> (by default the first plan of the request's site) for the billing account of the request's site and return its URL; a Stripe customer is created for that account when it has none. The plans of the <code>app</code> site have no trial period: the first month is charged at checkout. The <code>invoicing</code> plan of the <code>invoice</code> site takes its trial days from the server setting <code>INVOICE_PLAN_TRIAL_DAYS</code> and returns to the invoice app. With <code>convertCompanyId</code> Checkout returns to the onboarding plan page, which then converts that sandbox company to a live company. Answers 422 when the plan is not one of the site's plans, 409 when the site's flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
+                   */
+                  public NordletApiHttpResponse<FlatRateCreateBillingResponse> flatRateCreate(
+                      FlatRateCreateBillingRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/billing/flat-rate/confirm");if (requestOptions != null) {
+                      .addPathSegments("v1/billing/flat-rate/create");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -743,7 +760,7 @@ public class RawBillingClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FlatRateConfirmBillingResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FlatRateCreateBillingResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
@@ -774,37 +791,21 @@ public class RawBillingClient {
                     }
 
                     /**
-                     * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+                     * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
                      */
-                    public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
-                        ) {
-                      return subscriptionCancel(SubscriptionCancelBillingRequest.builder().build());
+                    public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
+                        FlatRateConfirmBillingRequest request) {
+                      return flatRateConfirm(request,null);
                     }
 
                     /**
-                     * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+                     * Confirm a completed flat-rate Checkout session by <code>sessionId</code>: the billing account of the site of the session's plan becomes <code>flat_rate</code> on that plan with status <code>active</code> and the subscription attached, unless the Stripe webhook already did this. Answers 404 when the session is not the user's own or not completed.
                      */
-                    public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
-                        RequestOptions requestOptions) {
-                      return subscriptionCancel(SubscriptionCancelBillingRequest.builder().build(),requestOptions);
-                    }
-
-                    /**
-                     * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
-                     */
-                    public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
-                        SubscriptionCancelBillingRequest request) {
-                      return subscriptionCancel(request,null);
-                    }
-
-                    /**
-                     * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
-                     */
-                    public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
-                        SubscriptionCancelBillingRequest request, RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<FlatRateConfirmBillingResponse> flatRateConfirm(
+                        FlatRateConfirmBillingRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/billing/subscription/cancel");if (requestOptions != null) {
+                        .addPathSegments("v1/billing/flat-rate/confirm");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -834,7 +835,7 @@ public class RawBillingClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionCancelBillingResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FlatRateConfirmBillingResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
@@ -865,36 +866,37 @@ public class RawBillingClient {
                       }
 
                       /**
-                       * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
+                       * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
                        */
-                      public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate() {
-                        return portalCreate(PortalCreateBillingRequest.builder().build());
+                      public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
+                          ) {
+                        return subscriptionCancel(SubscriptionCancelBillingRequest.builder().build());
                       }
 
                       /**
-                       * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
+                       * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
                        */
-                      public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
+                      public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
                           RequestOptions requestOptions) {
-                        return portalCreate(PortalCreateBillingRequest.builder().build(),requestOptions);
+                        return subscriptionCancel(SubscriptionCancelBillingRequest.builder().build(),requestOptions);
                       }
 
                       /**
-                       * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
+                       * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
                        */
-                      public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
-                          PortalCreateBillingRequest request) {
-                        return portalCreate(request,null);
+                      public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
+                          SubscriptionCancelBillingRequest request) {
+                        return subscriptionCancel(request,null);
                       }
 
                       /**
-                       * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
+                       * Cancel the Stripe subscription of the user's billing account of the request's site at the end of the period already paid: the plan stays active until <code>subscriptionCancelAt</code>, and Stripe then ends the subscription, which its <code>customer.subscription.deleted</code> webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
                        */
-                      public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
-                          PortalCreateBillingRequest request, RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<SubscriptionCancelBillingResponse> subscriptionCancel(
+                          SubscriptionCancelBillingRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/billing/portal/create");if (requestOptions != null) {
+                          .addPathSegments("v1/billing/subscription/cancel");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -924,7 +926,7 @@ public class RawBillingClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PortalCreateBillingResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SubscriptionCancelBillingResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -955,37 +957,36 @@ public class RawBillingClient {
                         }
 
                         /**
-                         * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                         * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
                          */
-                        public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
-                            ) {
-                          return transactionsList(TransactionsListBillingRequest.builder().build());
+                        public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate() {
+                          return portalCreate(PortalCreateBillingRequest.builder().build());
                         }
 
                         /**
-                         * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                         * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
                          */
-                        public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
+                        public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
                             RequestOptions requestOptions) {
-                          return transactionsList(TransactionsListBillingRequest.builder().build(),requestOptions);
+                          return portalCreate(PortalCreateBillingRequest.builder().build(),requestOptions);
                         }
 
                         /**
-                         * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                         * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
                          */
-                        public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
-                            TransactionsListBillingRequest request) {
-                          return transactionsList(request,null);
+                        public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
+                            PortalCreateBillingRequest request) {
+                          return portalCreate(request,null);
                         }
 
                         /**
-                         * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                         * Open a Stripe customer portal session for the billing account of the request's site that returns to that site's credits page (the plan page on the <code>invoice</code> site) in <code>locale</code>, and return its URL. Answers 503 when online payments are not configured and 400 when the account has no Stripe customer yet.
                          */
-                        public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
-                            TransactionsListBillingRequest request, RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<PortalCreateBillingResponse> portalCreate(
+                            PortalCreateBillingRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/billing/transactions/list");if (requestOptions != null) {
+                            .addPathSegments("v1/billing/portal/create");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1015,7 +1016,7 @@ public class RawBillingClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsListBillingResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PortalCreateBillingResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -1046,21 +1047,38 @@ public class RawBillingClient {
                           }
 
                           /**
-                           * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+                           * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
                            */
-                          public NordletApiHttpResponse<UsageListBillingResponse> usageList(
-                              UsageListBillingRequest request) {
-                            return usageList(request,null);
+                          public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
+                              ) {
+                            return transactionsList(TransactionsListBillingRequest.builder().build());
                           }
 
                           /**
-                           * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+                           * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
                            */
-                          public NordletApiHttpResponse<UsageListBillingResponse> usageList(
-                              UsageListBillingRequest request, RequestOptions requestOptions) {
+                          public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
+                              RequestOptions requestOptions) {
+                            return transactionsList(TransactionsListBillingRequest.builder().build(),requestOptions);
+                          }
+
+                          /**
+                           * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                           */
+                          public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
+                              TransactionsListBillingRequest request) {
+                            return transactionsList(request,null);
+                          }
+
+                          /**
+                           * List the newest credit transactions of the user's billing account of the request's site, up to <code>limit</code>: trial grants, top-ups, usage charges, activations and adjustments, each with the balance after it.
+                           */
+                          public NordletApiHttpResponse<TransactionsListBillingResponse> transactionsList(
+                              TransactionsListBillingRequest request,
+                              RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/billing/usage/list");if (requestOptions != null) {
+                              .addPathSegments("v1/billing/transactions/list");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1090,7 +1108,7 @@ public class RawBillingClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UsageListBillingResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsListBillingResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1119,4 +1137,79 @@ public class RawBillingClient {
                                 throw new NordletApiException("Network error executing HTTP request", e);
                               }
                             }
-                          }
+
+                            /**
+                             * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+                             */
+                            public NordletApiHttpResponse<UsageListBillingResponse> usageList(
+                                UsageListBillingRequest request) {
+                              return usageList(request,null);
+                            }
+
+                            /**
+                             * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+                             */
+                            public NordletApiHttpResponse<UsageListBillingResponse> usageList(
+                                UsageListBillingRequest request, RequestOptions requestOptions) {
+                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                .addPathSegments("v1/billing/usage/list");if (requestOptions != null) {
+                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                    httpUrl.addQueryParameter(_key, _value);
+                                  } );
+                                }
+                                RequestBody body;
+                                try {
+                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                }
+                                catch(JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to serialize request", e);
+                                }
+                                Request okhttpRequest = new Request.Builder()
+                                  .url(httpUrl.build())
+                                  .method("POST", body)
+                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                  .addHeader("Content-Type", "application/json")
+                                  .addHeader("Accept", "application/json")
+                                  .build();
+                                OkHttpClient client = clientOptions.httpClient();
+                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                }
+                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                }
+                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                  ResponseBody responseBody = response.body();
+                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                  if (response.isSuccessful()) {
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UsageListBillingResponse.class), response);
+                                  }
+                                  try {
+                                    switch (response.code()) {
+                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    }
+                                  }
+                                  catch (JsonProcessingException ignored) {
+                                    // unable to map error response, throwing generic error
+                                  }
+                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                }
+                                catch (JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                }
+                                catch (IOException e) {
+                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                }
+                              }
+                            }

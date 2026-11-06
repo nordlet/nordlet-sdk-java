@@ -48,6 +48,8 @@ public final class MeAccountResponseBilling {
 
   private final boolean planChosen;
 
+  private final boolean freeSandbox;
+
   private final boolean flatRate;
 
   private final MeAccountResponseBillingAccountType accountType;
@@ -56,8 +58,9 @@ public final class MeAccountResponseBilling {
 
   private MeAccountResponseBilling(MeAccountResponseBillingStatus status, String plan,
       long balanceCents, long overdraftAllowanceCents, Optional<OffsetDateTime> trialEndsAt,
-      String payerUserId, String payerEmail, boolean isPayer, boolean planChosen, boolean flatRate,
-      MeAccountResponseBillingAccountType accountType, Map<String, Object> additionalProperties) {
+      String payerUserId, String payerEmail, boolean isPayer, boolean planChosen,
+      boolean freeSandbox, boolean flatRate, MeAccountResponseBillingAccountType accountType,
+      Map<String, Object> additionalProperties) {
     this.status = status;
     this.plan = plan;
     this.balanceCents = balanceCents;
@@ -67,6 +70,7 @@ public final class MeAccountResponseBilling {
     this.payerEmail = payerEmail;
     this.isPayer = isPayer;
     this.planChosen = planChosen;
+    this.freeSandbox = freeSandbox;
     this.flatRate = flatRate;
     this.accountType = accountType;
     this.additionalProperties = additionalProperties;
@@ -120,6 +124,14 @@ public final class MeAccountResponseBilling {
     return planChosen;
   }
 
+  /**
+   * @return The payer has no paid plan and has started the free sandbox plan (running or ended)
+   */
+  @JsonProperty("freeSandbox")
+  public boolean getFreeSandbox() {
+    return freeSandbox;
+  }
+
   @JsonProperty("flatRate")
   public boolean getFlatRate() {
     return flatRate;
@@ -151,12 +163,12 @@ public final class MeAccountResponseBilling {
   }
 
   private boolean equalTo(MeAccountResponseBilling other) {
-    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && overdraftAllowanceCents == other.overdraftAllowanceCents && trialEndsAt.equals(other.trialEndsAt) && payerUserId.equals(other.payerUserId) && payerEmail.equals(other.payerEmail) && isPayer == other.isPayer && planChosen == other.planChosen && flatRate == other.flatRate && accountType.equals(other.accountType);
+    return status.equals(other.status) && plan.equals(other.plan) && balanceCents == other.balanceCents && overdraftAllowanceCents == other.overdraftAllowanceCents && trialEndsAt.equals(other.trialEndsAt) && payerUserId.equals(other.payerUserId) && payerEmail.equals(other.payerEmail) && isPayer == other.isPayer && planChosen == other.planChosen && freeSandbox == other.freeSandbox && flatRate == other.flatRate && accountType.equals(other.accountType);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.status, this.plan, this.balanceCents, this.overdraftAllowanceCents, this.trialEndsAt, this.payerUserId, this.payerEmail, this.isPayer, this.planChosen, this.flatRate, this.accountType);
+    return Objects.hash(this.status, this.plan, this.balanceCents, this.overdraftAllowanceCents, this.trialEndsAt, this.payerUserId, this.payerEmail, this.isPayer, this.planChosen, this.freeSandbox, this.flatRate, this.accountType);
   }
 
   @java.lang.Override
@@ -199,7 +211,14 @@ public final class MeAccountResponseBilling {
   }
 
   public interface PlanChosenStage {
-    FlatRateStage planChosen(boolean planChosen);
+    FreeSandboxStage planChosen(boolean planChosen);
+  }
+
+  public interface FreeSandboxStage {
+    /**
+     * <p>The payer has no paid plan and has started the free sandbox plan (running or ended)</p>
+     */
+    FlatRateStage freeSandbox(boolean freeSandbox);
   }
 
   public interface FlatRateStage {
@@ -227,7 +246,7 @@ public final class MeAccountResponseBilling {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, OverdraftAllowanceCentsStage, PayerUserIdStage, PayerEmailStage, IsPayerStage, PlanChosenStage, FlatRateStage, AccountTypeStage, _FinalStage {
+  public static final class Builder implements StatusStage, PlanStage, BalanceCentsStage, OverdraftAllowanceCentsStage, PayerUserIdStage, PayerEmailStage, IsPayerStage, PlanChosenStage, FreeSandboxStage, FlatRateStage, AccountTypeStage, _FinalStage {
     private MeAccountResponseBillingStatus status;
 
     private String plan;
@@ -243,6 +262,8 @@ public final class MeAccountResponseBilling {
     private boolean isPayer;
 
     private boolean planChosen;
+
+    private boolean freeSandbox;
 
     private boolean flatRate;
 
@@ -267,6 +288,7 @@ public final class MeAccountResponseBilling {
       payerEmail(other.getPayerEmail());
       isPayer(other.getIsPayer());
       planChosen(other.getPlanChosen());
+      freeSandbox(other.getFreeSandbox());
       flatRate(other.getFlatRate());
       accountType(other.getAccountType());
       return this;
@@ -323,8 +345,19 @@ public final class MeAccountResponseBilling {
 
     @java.lang.Override
     @JsonSetter("planChosen")
-    public FlatRateStage planChosen(boolean planChosen) {
+    public FreeSandboxStage planChosen(boolean planChosen) {
       this.planChosen = planChosen;
+      return this;
+    }
+
+    /**
+     * <p>The payer has no paid plan and has started the free sandbox plan (running or ended)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    @JsonSetter("freeSandbox")
+    public FlatRateStage freeSandbox(boolean freeSandbox) {
+      this.freeSandbox = freeSandbox;
       return this;
     }
 
@@ -374,7 +407,7 @@ public final class MeAccountResponseBilling {
 
     @java.lang.Override
     public MeAccountResponseBilling build() {
-      return new MeAccountResponseBilling(status, plan, balanceCents, overdraftAllowanceCents, trialEndsAt, payerUserId, payerEmail, isPayer, planChosen, flatRate, accountType, additionalProperties);
+      return new MeAccountResponseBilling(status, plan, balanceCents, overdraftAllowanceCents, trialEndsAt, payerUserId, payerEmail, isPayer, planChosen, freeSandbox, flatRate, accountType, additionalProperties);
     }
 
     @java.lang.Override

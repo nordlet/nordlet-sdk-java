@@ -33,15 +33,18 @@ public final class TopupCreateBillingRequest {
 
   private final Optional<TopupCreateBillingRequestReturnTo> returnTo;
 
+  private final Optional<String> convertCompanyId;
+
   private final Map<String, Object> additionalProperties;
 
   private TopupCreateBillingRequest(long amountCents,
       Optional<TopupCreateBillingRequestLocale> locale,
-      Optional<TopupCreateBillingRequestReturnTo> returnTo,
+      Optional<TopupCreateBillingRequestReturnTo> returnTo, Optional<String> convertCompanyId,
       Map<String, Object> additionalProperties) {
     this.amountCents = amountCents;
     this.locale = locale;
     this.returnTo = returnTo;
+    this.convertCompanyId = convertCompanyId;
     this.additionalProperties = additionalProperties;
   }
 
@@ -60,6 +63,11 @@ public final class TopupCreateBillingRequest {
     return returnTo;
   }
 
+  @JsonProperty("convertCompanyId")
+  public Optional<String> getConvertCompanyId() {
+    return convertCompanyId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -72,12 +80,12 @@ public final class TopupCreateBillingRequest {
   }
 
   private boolean equalTo(TopupCreateBillingRequest other) {
-    return amountCents == other.amountCents && locale.equals(other.locale) && returnTo.equals(other.returnTo);
+    return amountCents == other.amountCents && locale.equals(other.locale) && returnTo.equals(other.returnTo) && convertCompanyId.equals(other.convertCompanyId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.amountCents, this.locale, this.returnTo);
+    return Objects.hash(this.amountCents, this.locale, this.returnTo, this.convertCompanyId);
   }
 
   @java.lang.Override
@@ -109,6 +117,10 @@ public final class TopupCreateBillingRequest {
     _FinalStage returnTo(Optional<TopupCreateBillingRequestReturnTo> returnTo);
 
     _FinalStage returnTo(TopupCreateBillingRequestReturnTo returnTo);
+
+    _FinalStage convertCompanyId(Optional<String> convertCompanyId);
+
+    _FinalStage convertCompanyId(String convertCompanyId);
   }
 
   @JsonIgnoreProperties(
@@ -116,6 +128,8 @@ public final class TopupCreateBillingRequest {
   )
   public static final class Builder implements AmountCentsStage, _FinalStage {
     private long amountCents;
+
+    private Optional<String> convertCompanyId = Optional.empty();
 
     private Optional<TopupCreateBillingRequestReturnTo> returnTo = Optional.empty();
 
@@ -132,6 +146,7 @@ public final class TopupCreateBillingRequest {
       amountCents(other.getAmountCents());
       locale(other.getLocale());
       returnTo(other.getReturnTo());
+      convertCompanyId(other.getConvertCompanyId());
       return this;
     }
 
@@ -139,6 +154,22 @@ public final class TopupCreateBillingRequest {
     @JsonSetter("amountCents")
     public _FinalStage amountCents(long amountCents) {
       this.amountCents = amountCents;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage convertCompanyId(String convertCompanyId) {
+      this.convertCompanyId = Optional.ofNullable(convertCompanyId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "convertCompanyId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage convertCompanyId(Optional<String> convertCompanyId) {
+      this.convertCompanyId = convertCompanyId;
       return this;
     }
 
@@ -176,7 +207,7 @@ public final class TopupCreateBillingRequest {
 
     @java.lang.Override
     public TopupCreateBillingRequest build() {
-      return new TopupCreateBillingRequest(amountCents, locale, returnTo, additionalProperties);
+      return new TopupCreateBillingRequest(amountCents, locale, returnTo, convertCompanyId, additionalProperties);
     }
 
     @java.lang.Override
