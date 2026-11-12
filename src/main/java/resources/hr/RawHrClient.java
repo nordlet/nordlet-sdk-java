@@ -353,7 +353,7 @@ public class RawHrClient {
         }
 
         /**
-         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
          */
         public NordletApiHttpResponse<EmployeesCreateHrResponse> employeesCreate(
             EmployeesCreateHrRequest request) {
@@ -361,7 +361,7 @@ public class RawHrClient {
         }
 
         /**
-         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false.
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
          */
         public NordletApiHttpResponse<EmployeesCreateHrResponse> employeesCreate(
             EmployeesCreateHrRequest request, RequestOptions requestOptions) {
@@ -428,7 +428,7 @@ public class RawHrClient {
           }
 
           /**
-           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
            */
           public NordletApiHttpResponse<EmployeesUpdateHrResponse> employeesUpdate(
               EmployeesUpdateHrRequest request) {
@@ -436,7 +436,7 @@ public class RawHrClient {
           }
 
           /**
-           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too.
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
            */
           public NordletApiHttpResponse<EmployeesUpdateHrResponse> employeesUpdate(
               EmployeesUpdateHrRequest request, RequestOptions requestOptions) {

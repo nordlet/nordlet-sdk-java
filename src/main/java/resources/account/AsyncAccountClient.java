@@ -10,6 +10,8 @@ import com.nordlet.api.resources.account.requests.ApiKeysCreateAccountRequest;
 import com.nordlet.api.resources.account.requests.ApiKeysListAccountRequest;
 import com.nordlet.api.resources.account.requests.ApiKeysRevokeAccountRequest;
 import com.nordlet.api.resources.account.requests.ApiKeysRotateAccountRequest;
+import com.nordlet.api.resources.account.requests.BrandGetAccountRequest;
+import com.nordlet.api.resources.account.requests.BrandUpdateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesConvertToLiveAccountRequest;
@@ -58,6 +60,8 @@ import com.nordlet.api.resources.account.types.ApiKeysCreateAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysListAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysRevokeAccountResponse;
 import com.nordlet.api.resources.account.types.ApiKeysRotateAccountResponse;
+import com.nordlet.api.resources.account.types.BrandGetAccountResponse;
+import com.nordlet.api.resources.account.types.BrandUpdateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesConvertToLiveAccountResponse;
@@ -183,28 +187,28 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance; <code>user.whiteLabel</code> says the user is a white-label partner, who may call <code>account/brand/get</code> and <code>account/brand/update</code>. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in, each with its country, base currency, VAT payer flag, VAT period and the month its fiscal year ends in.
    */
   public CompletableFuture<MeAccountResponse> me() {
     return this.rawClient.me().thenApply(response -> response.body());
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance; <code>user.whiteLabel</code> says the user is a white-label partner, who may call <code>account/brand/get</code> and <code>account/brand/update</code>. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in, each with its country, base currency, VAT payer flag, VAT period and the month its fiscal year ends in.
    */
   public CompletableFuture<MeAccountResponse> me(RequestOptions requestOptions) {
     return this.rawClient.me(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance; <code>user.whiteLabel</code> says the user is a white-label partner, who may call <code>account/brand/get</code> and <code>account/brand/update</code>. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in, each with its country, base currency, VAT payer flag, VAT period and the month its fiscal year ends in.
    */
   public CompletableFuture<MeAccountResponse> me(MeAccountRequest request) {
     return this.rawClient.me(request).thenApply(response -> response.body());
   }
 
   /**
-   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in.
+   * Return the signed-in user, their active company and role in it, the companies they belong to and their consent state. <code>billing</code> is the billing account of the request's site (the <code>x-nordlet-site</code> header, <code>app</code> when absent) that pays for the active company (its payer, or the user when there is none or no company), with <code>isPayer</code> saying whether that is the user; <code>referralPoints</code> is the user's current points balance; <code>user.whiteLabel</code> says the user is a white-label partner, who may call <code>account/brand/get</code> and <code>account/brand/update</code>. An API key may call it too: the active company is then the one named in the <code>x-nordlet-company</code> header, and <code>companies</code> lists every company the key works in, each with its country, base currency, VAT payer flag, VAT period and the month its fiscal year ends in.
    */
   public CompletableFuture<MeAccountResponse> me(MeAccountRequest request,
       RequestOptions requestOptions) {
@@ -398,7 +402,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency. An API key may call it when it holds the <code>account:write</code> scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
    */
   public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
       CompaniesCreateAccountRequest request) {
@@ -406,7 +410,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency.
+   * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of <code>countryCode</code>, and make it the active company of the session. <code>timeZone</code> defaults to the country's, <code>isVatPayer</code> to true and <code>defaultInvoiceCurrency</code> to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when <code>baseCurrency</code> is not a supported currency. An API key may call it when it holds the <code>account:write</code> scope (403 otherwise): the company is created for the person the key belongs to, and the key works in it like in their other companies.
    */
   public CompletableFuture<CompaniesCreateAccountResponse> companiesCreate(
       CompaniesCreateAccountRequest request, RequestOptions requestOptions) {
@@ -430,14 +434,14 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Return the profile of the active company.
+   * Return the profile of the active company. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
    */
   public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile() {
     return this.rawClient.companiesProfile().thenApply(response -> response.body());
   }
 
   /**
-   * Return the profile of the active company.
+   * Return the profile of the active company. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
    */
   public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
       RequestOptions requestOptions) {
@@ -445,7 +449,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Return the profile of the active company.
+   * Return the profile of the active company. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
    */
   public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
       CompaniesProfileAccountRequest request) {
@@ -453,7 +457,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Return the profile of the active company.
+   * Return the profile of the active company. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
    */
   public CompletableFuture<CompaniesProfileAccountResponse> companiesProfile(
       CompaniesProfileAccountRequest request, RequestOptions requestOptions) {
@@ -461,14 +465,14 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
    */
   public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate() {
     return this.rawClient.companiesUpdate().thenApply(response -> response.body());
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
    */
   public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
       RequestOptions requestOptions) {
@@ -476,7 +480,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
    */
   public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
       CompaniesUpdateAccountRequest request) {
@@ -484,7 +488,7 @@ public class AsyncAccountClient {
   }
 
   /**
-   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation.
+   * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
    */
   public CompletableFuture<CompaniesUpdateAccountResponse> companiesUpdate(
       CompaniesUpdateAccountRequest request, RequestOptions requestOptions) {
@@ -663,6 +667,51 @@ public class AsyncAccountClient {
   public CompletableFuture<ProfileUpdateAccountResponse> profileUpdate(
       ProfileUpdateAccountRequest request, RequestOptions requestOptions) {
     return this.rawClient.profileUpdate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandGetAccountResponse> brandGet() {
+    return this.rawClient.brandGet().thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandGetAccountResponse> brandGet(RequestOptions requestOptions) {
+    return this.rawClient.brandGet(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandGetAccountResponse> brandGet(BrandGetAccountRequest request) {
+    return this.rawClient.brandGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandGetAccountResponse> brandGet(BrandGetAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.brandGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandUpdateAccountResponse> brandUpdate(
+      BrandUpdateAccountRequest request) {
+    return this.rawClient.brandUpdate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
+   */
+  public CompletableFuture<BrandUpdateAccountResponse> brandUpdate(
+      BrandUpdateAccountRequest request, RequestOptions requestOptions) {
+    return this.rawClient.brandUpdate(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

@@ -47,12 +47,14 @@ public final class VatResolveReferenceResponse {
 
   private final List<String> notes;
 
+  private final List<String> vatTypeCodes;
+
   private final Map<String, Object> additionalProperties;
 
   private VatResolveReferenceResponse(VatResolveReferenceResponseScheme scheme,
       Optional<String> vatCountryCode, boolean reverseCharge, boolean deemedSupplier,
       boolean zeroRated, List<VatResolveReferenceResponseRatesItem> rates, String legalBasis,
-      List<String> notes, Map<String, Object> additionalProperties) {
+      List<String> notes, List<String> vatTypeCodes, Map<String, Object> additionalProperties) {
     this.scheme = scheme;
     this.vatCountryCode = vatCountryCode;
     this.reverseCharge = reverseCharge;
@@ -61,6 +63,7 @@ public final class VatResolveReferenceResponse {
     this.rates = rates;
     this.legalBasis = legalBasis;
     this.notes = notes;
+    this.vatTypeCodes = vatTypeCodes;
     this.additionalProperties = additionalProperties;
   }
 
@@ -107,6 +110,11 @@ public final class VatResolveReferenceResponse {
     return notes;
   }
 
+  @JsonProperty("vatTypeCodes")
+  public List<String> getVatTypeCodes() {
+    return vatTypeCodes;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -128,12 +136,12 @@ public final class VatResolveReferenceResponse {
   }
 
   private boolean equalTo(VatResolveReferenceResponse other) {
-    return scheme.equals(other.scheme) && vatCountryCode.equals(other.vatCountryCode) && reverseCharge == other.reverseCharge && deemedSupplier == other.deemedSupplier && zeroRated == other.zeroRated && rates.equals(other.rates) && legalBasis.equals(other.legalBasis) && notes.equals(other.notes);
+    return scheme.equals(other.scheme) && vatCountryCode.equals(other.vatCountryCode) && reverseCharge == other.reverseCharge && deemedSupplier == other.deemedSupplier && zeroRated == other.zeroRated && rates.equals(other.rates) && legalBasis.equals(other.legalBasis) && notes.equals(other.notes) && vatTypeCodes.equals(other.vatTypeCodes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.scheme, this.vatCountryCode, this.reverseCharge, this.deemedSupplier, this.zeroRated, this.rates, this.legalBasis, this.notes);
+    return Objects.hash(this.scheme, this.vatCountryCode, this.reverseCharge, this.deemedSupplier, this.zeroRated, this.rates, this.legalBasis, this.notes, this.vatTypeCodes);
   }
 
   @java.lang.Override
@@ -191,6 +199,12 @@ public final class VatResolveReferenceResponse {
     _FinalStage addNotes(String notes);
 
     _FinalStage addAllNotes(List<String> notes);
+
+    _FinalStage vatTypeCodes(List<String> vatTypeCodes);
+
+    _FinalStage addVatTypeCodes(String vatTypeCodes);
+
+    _FinalStage addAllVatTypeCodes(List<String> vatTypeCodes);
   }
 
   @JsonIgnoreProperties(
@@ -206,6 +220,8 @@ public final class VatResolveReferenceResponse {
     private boolean zeroRated;
 
     private String legalBasis;
+
+    private List<String> vatTypeCodes = new ArrayList<>();
 
     private List<String> notes = new ArrayList<>();
 
@@ -229,6 +245,7 @@ public final class VatResolveReferenceResponse {
       rates(other.getRates());
       legalBasis(other.getLegalBasis());
       notes(other.getNotes());
+      vatTypeCodes(other.getVatTypeCodes());
       return this;
     }
 
@@ -264,6 +281,33 @@ public final class VatResolveReferenceResponse {
     @JsonSetter("legalBasis")
     public _FinalStage legalBasis(@NotNull String legalBasis) {
       this.legalBasis = Objects.requireNonNull(legalBasis, "legalBasis must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllVatTypeCodes(List<String> vatTypeCodes) {
+      if (vatTypeCodes != null) {
+        this.vatTypeCodes.addAll(vatTypeCodes);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addVatTypeCodes(String vatTypeCodes) {
+      this.vatTypeCodes.add(vatTypeCodes);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatTypeCodes",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatTypeCodes(List<String> vatTypeCodes) {
+      this.vatTypeCodes.clear();
+      if (vatTypeCodes != null) {
+        this.vatTypeCodes.addAll(vatTypeCodes);
+      }
       return this;
     }
 
@@ -353,7 +397,7 @@ public final class VatResolveReferenceResponse {
 
     @java.lang.Override
     public VatResolveReferenceResponse build() {
-      return new VatResolveReferenceResponse(scheme, vatCountryCode, reverseCharge, deemedSupplier, zeroRated, rates, legalBasis, notes, additionalProperties);
+      return new VatResolveReferenceResponse(scheme, vatCountryCode, reverseCharge, deemedSupplier, zeroRated, rates, legalBasis, notes, vatTypeCodes, additionalProperties);
     }
 
     @java.lang.Override

@@ -14,6 +14,8 @@ public final class InvoicesGetPurchasesResponseStatus {
 
   public static final InvoicesGetPurchasesResponseStatus DRAFT = new InvoicesGetPurchasesResponseStatus(Value.DRAFT, "draft");
 
+  public static final InvoicesGetPurchasesResponseStatus REVERSED = new InvoicesGetPurchasesResponseStatus(Value.REVERSED, "reversed");
+
   private final Value value;
 
   private final String string;
@@ -50,6 +52,8 @@ public final class InvoicesGetPurchasesResponseStatus {
         return visitor.visitRegistered();
       case DRAFT:
         return visitor.visitDraft();
+      case REVERSED:
+        return visitor.visitReversed();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -65,6 +69,8 @@ public final class InvoicesGetPurchasesResponseStatus {
         return REGISTERED;
       case "draft":
         return DRAFT;
+      case "reversed":
+        return REVERSED;
       default:
         return new InvoicesGetPurchasesResponseStatus(Value.UNKNOWN, value);
     }
@@ -75,6 +81,8 @@ public final class InvoicesGetPurchasesResponseStatus {
 
     REGISTERED,
 
+    REVERSED,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class InvoicesGetPurchasesResponseStatus {
     T visitDraft();
 
     T visitRegistered();
+
+    T visitReversed();
 
     T visitUnknown(String unknownType);
   }

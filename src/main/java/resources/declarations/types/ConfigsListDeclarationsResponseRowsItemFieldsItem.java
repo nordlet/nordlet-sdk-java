@@ -30,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
   private final String key;
 
+  private final Optional<String> label;
+
   private final ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind;
 
   private final Optional<Boolean> multiline;
@@ -40,12 +42,13 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private ConfigsListDeclarationsResponseRowsItemFieldsItem(String key,
+  private ConfigsListDeclarationsResponseRowsItemFieldsItem(String key, Optional<String> label,
       ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind, Optional<Boolean> multiline,
       Optional<List<String>> options,
       Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField,
       Map<String, Object> additionalProperties) {
     this.key = key;
+    this.label = label;
     this.kind = kind;
     this.multiline = multiline;
     this.options = options;
@@ -58,6 +61,11 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     return key;
   }
 
+  @JsonProperty("label")
+  public Optional<String> getLabel() {
+    return label;
+  }
+
   @JsonProperty("kind")
   public ConfigsListDeclarationsResponseRowsItemFieldsItemKind getKind() {
     return kind;
@@ -68,11 +76,17 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     return multiline;
   }
 
+  /**
+   * @return The allowed values of a <code>select</code> field
+   */
   @JsonProperty("options")
   public Optional<List<String>> getOptions() {
     return options;
   }
 
+  /**
+   * @return The company profile field the value is taken from; change it with <code>account/companies/update</code>
+   */
   @JsonProperty("companyField")
   public Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> getCompanyField() {
     return companyField;
@@ -90,12 +104,12 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
   }
 
   private boolean equalTo(ConfigsListDeclarationsResponseRowsItemFieldsItem other) {
-    return key.equals(other.key) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options) && companyField.equals(other.companyField);
+    return key.equals(other.key) && label.equals(other.label) && kind.equals(other.kind) && multiline.equals(other.multiline) && options.equals(other.options) && companyField.equals(other.companyField);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.kind, this.multiline, this.options, this.companyField);
+    return Objects.hash(this.key, this.label, this.kind, this.multiline, this.options, this.companyField);
   }
 
   @java.lang.Override
@@ -124,14 +138,24 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage label(Optional<String> label);
+
+    _FinalStage label(String label);
+
     _FinalStage multiline(Optional<Boolean> multiline);
 
     _FinalStage multiline(Boolean multiline);
 
+    /**
+     * <p>The allowed values of a <code>select</code> field</p>
+     */
     _FinalStage options(Optional<List<String>> options);
 
     _FinalStage options(List<String> options);
 
+    /**
+     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     */
     _FinalStage companyField(
         Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField);
 
@@ -153,6 +177,8 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
     private Optional<Boolean> multiline = Optional.empty();
 
+    private Optional<String> label = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -162,6 +188,7 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     @java.lang.Override
     public Builder from(ConfigsListDeclarationsResponseRowsItemFieldsItem other) {
       key(other.getKey());
+      label(other.getLabel());
       kind(other.getKind());
       multiline(other.getMultiline());
       options(other.getOptions());
@@ -183,6 +210,10 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
       return this;
     }
 
+    /**
+     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
     @java.lang.Override
     public _FinalStage companyField(
         ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField companyField) {
@@ -190,6 +221,9 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
       return this;
     }
 
+    /**
+     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     */
     @java.lang.Override
     @JsonSetter(
         value = "companyField",
@@ -201,12 +235,19 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
       return this;
     }
 
+    /**
+     * <p>The allowed values of a <code>select</code> field</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
     @java.lang.Override
     public _FinalStage options(List<String> options) {
       this.options = Optional.ofNullable(options);
       return this;
     }
 
+    /**
+     * <p>The allowed values of a <code>select</code> field</p>
+     */
     @java.lang.Override
     @JsonSetter(
         value = "options",
@@ -234,8 +275,24 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     }
 
     @java.lang.Override
+    public _FinalStage label(String label) {
+      this.label = Optional.ofNullable(label);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "label",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage label(Optional<String> label) {
+      this.label = label;
+      return this;
+    }
+
+    @java.lang.Override
     public ConfigsListDeclarationsResponseRowsItemFieldsItem build() {
-      return new ConfigsListDeclarationsResponseRowsItemFieldsItem(key, kind, multiline, options, companyField, additionalProperties);
+      return new ConfigsListDeclarationsResponseRowsItemFieldsItem(key, label, kind, multiline, options, companyField, additionalProperties);
     }
 
     @java.lang.Override

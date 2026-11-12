@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -44,6 +45,16 @@ public final class MeAccountResponseCompaniesItem {
 
   private final boolean cashBasis;
 
+  private final String countryCode;
+
+  private final String baseCurrency;
+
+  private final boolean isVatPayer;
+
+  private final Optional<MeAccountResponseCompaniesItemVatPeriod> vatPeriod;
+
+  private final Optional<Long> fiscalYearEndMonth;
+
   private final MeAccountResponseCompaniesItemStatus status;
 
   private final Optional<OffsetDateTime> deletedAt;
@@ -52,8 +63,10 @@ public final class MeAccountResponseCompaniesItem {
 
   private MeAccountResponseCompaniesItem(String id, String name, Optional<String> code,
       Optional<String> vatCode, String role, boolean isSandbox, boolean cashBasis,
-      MeAccountResponseCompaniesItemStatus status, Optional<OffsetDateTime> deletedAt,
-      Map<String, Object> additionalProperties) {
+      String countryCode, String baseCurrency, boolean isVatPayer,
+      Optional<MeAccountResponseCompaniesItemVatPeriod> vatPeriod,
+      Optional<Long> fiscalYearEndMonth, MeAccountResponseCompaniesItemStatus status,
+      Optional<OffsetDateTime> deletedAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.code = code;
@@ -61,6 +74,11 @@ public final class MeAccountResponseCompaniesItem {
     this.role = role;
     this.isSandbox = isSandbox;
     this.cashBasis = cashBasis;
+    this.countryCode = countryCode;
+    this.baseCurrency = baseCurrency;
+    this.isVatPayer = isVatPayer;
+    this.vatPeriod = vatPeriod;
+    this.fiscalYearEndMonth = fiscalYearEndMonth;
     this.status = status;
     this.deletedAt = deletedAt;
     this.additionalProperties = additionalProperties;
@@ -107,6 +125,37 @@ public final class MeAccountResponseCompaniesItem {
     return cashBasis;
   }
 
+  @JsonProperty("countryCode")
+  public String getCountryCode() {
+    return countryCode;
+  }
+
+  @JsonProperty("baseCurrency")
+  public String getBaseCurrency() {
+    return baseCurrency;
+  }
+
+  @JsonProperty("isVatPayer")
+  public boolean getIsVatPayer() {
+    return isVatPayer;
+  }
+
+  @JsonIgnore
+  public Optional<MeAccountResponseCompaniesItemVatPeriod> getVatPeriod() {
+    if (vatPeriod == null) {
+      return Optional.empty();
+    }
+    return vatPeriod;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getFiscalYearEndMonth() {
+    if (fiscalYearEndMonth == null) {
+      return Optional.empty();
+    }
+    return fiscalYearEndMonth;
+  }
+
   @JsonProperty("status")
   public MeAccountResponseCompaniesItemStatus getStatus() {
     return status;
@@ -142,6 +191,24 @@ public final class MeAccountResponseCompaniesItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("vatPeriod")
+  private Optional<MeAccountResponseCompaniesItemVatPeriod> _getVatPeriod() {
+    return vatPeriod;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearEndMonth")
+  private Optional<Long> _getFiscalYearEndMonth() {
+    return fiscalYearEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("deletedAt")
   private Optional<OffsetDateTime> _getDeletedAt() {
     return deletedAt;
@@ -159,12 +226,12 @@ public final class MeAccountResponseCompaniesItem {
   }
 
   private boolean equalTo(MeAccountResponseCompaniesItem other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis && status.equals(other.status) && deletedAt.equals(other.deletedAt);
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isVatPayer == other.isVatPayer && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && status.equals(other.status) && deletedAt.equals(other.deletedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis, this.status, this.deletedAt);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis, this.countryCode, this.baseCurrency, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.status, this.deletedAt);
   }
 
   @java.lang.Override
@@ -195,7 +262,19 @@ public final class MeAccountResponseCompaniesItem {
   }
 
   public interface CashBasisStage {
-    StatusStage cashBasis(boolean cashBasis);
+    CountryCodeStage cashBasis(boolean cashBasis);
+  }
+
+  public interface CountryCodeStage {
+    BaseCurrencyStage countryCode(@NotNull String countryCode);
+  }
+
+  public interface BaseCurrencyStage {
+    IsVatPayerStage baseCurrency(@NotNull String baseCurrency);
+  }
+
+  public interface IsVatPayerStage {
+    StatusStage isVatPayer(boolean isVatPayer);
   }
 
   public interface StatusStage {
@@ -221,6 +300,18 @@ public final class MeAccountResponseCompaniesItem {
 
     _FinalStage vatCode(Nullable<String> vatCode);
 
+    _FinalStage vatPeriod(Optional<MeAccountResponseCompaniesItemVatPeriod> vatPeriod);
+
+    _FinalStage vatPeriod(MeAccountResponseCompaniesItemVatPeriod vatPeriod);
+
+    _FinalStage vatPeriod(Nullable<MeAccountResponseCompaniesItemVatPeriod> vatPeriod);
+
+    _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth);
+
     _FinalStage deletedAt(Optional<OffsetDateTime> deletedAt);
 
     _FinalStage deletedAt(OffsetDateTime deletedAt);
@@ -231,7 +322,7 @@ public final class MeAccountResponseCompaniesItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, StatusStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, CountryCodeStage, BaseCurrencyStage, IsVatPayerStage, StatusStage, _FinalStage {
     private String id;
 
     private String name;
@@ -242,9 +333,19 @@ public final class MeAccountResponseCompaniesItem {
 
     private boolean cashBasis;
 
+    private String countryCode;
+
+    private String baseCurrency;
+
+    private boolean isVatPayer;
+
     private MeAccountResponseCompaniesItemStatus status;
 
     private Optional<OffsetDateTime> deletedAt = Optional.empty();
+
+    private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<MeAccountResponseCompaniesItemVatPeriod> vatPeriod = Optional.empty();
 
     private Optional<String> vatCode = Optional.empty();
 
@@ -265,6 +366,11 @@ public final class MeAccountResponseCompaniesItem {
       role(other.getRole());
       isSandbox(other.getIsSandbox());
       cashBasis(other.getCashBasis());
+      countryCode(other.getCountryCode());
+      baseCurrency(other.getBaseCurrency());
+      isVatPayer(other.getIsVatPayer());
+      vatPeriod(other.getVatPeriod());
+      fiscalYearEndMonth(other.getFiscalYearEndMonth());
       status(other.getStatus());
       deletedAt(other.getDeletedAt());
       return this;
@@ -300,8 +406,29 @@ public final class MeAccountResponseCompaniesItem {
 
     @java.lang.Override
     @JsonSetter("cashBasis")
-    public StatusStage cashBasis(boolean cashBasis) {
+    public CountryCodeStage cashBasis(boolean cashBasis) {
       this.cashBasis = cashBasis;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("countryCode")
+    public BaseCurrencyStage countryCode(@NotNull String countryCode) {
+      this.countryCode = Objects.requireNonNull(countryCode, "countryCode must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseCurrency")
+    public IsVatPayerStage baseCurrency(@NotNull String baseCurrency) {
+      this.baseCurrency = Objects.requireNonNull(baseCurrency, "baseCurrency must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("isVatPayer")
+    public StatusStage isVatPayer(boolean isVatPayer) {
+      this.isVatPayer = isVatPayer;
       return this;
     }
 
@@ -339,6 +466,66 @@ public final class MeAccountResponseCompaniesItem {
     )
     public _FinalStage deletedAt(Optional<OffsetDateTime> deletedAt) {
       this.deletedAt = deletedAt;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth) {
+      if (fiscalYearEndMonth.isNull()) {
+        this.fiscalYearEndMonth = null;
+      }
+      else if (fiscalYearEndMonth.isEmpty()) {
+        this.fiscalYearEndMonth = Optional.empty();
+      }
+      else {
+        this.fiscalYearEndMonth = Optional.of(fiscalYearEndMonth.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = Optional.ofNullable(fiscalYearEndMonth);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = fiscalYearEndMonth;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(Nullable<MeAccountResponseCompaniesItemVatPeriod> vatPeriod) {
+      if (vatPeriod.isNull()) {
+        this.vatPeriod = null;
+      }
+      else if (vatPeriod.isEmpty()) {
+        this.vatPeriod = Optional.empty();
+      }
+      else {
+        this.vatPeriod = Optional.of(vatPeriod.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(MeAccountResponseCompaniesItemVatPeriod vatPeriod) {
+      this.vatPeriod = Optional.ofNullable(vatPeriod);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatPeriod",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatPeriod(Optional<MeAccountResponseCompaniesItemVatPeriod> vatPeriod) {
+      this.vatPeriod = vatPeriod;
       return this;
     }
 
@@ -404,7 +591,7 @@ public final class MeAccountResponseCompaniesItem {
 
     @java.lang.Override
     public MeAccountResponseCompaniesItem build() {
-      return new MeAccountResponseCompaniesItem(id, name, code, vatCode, role, isSandbox, cashBasis, status, deletedAt, additionalProperties);
+      return new MeAccountResponseCompaniesItem(id, name, code, vatCode, role, isSandbox, cashBasis, countryCode, baseCurrency, isVatPayer, vatPeriod, fiscalYearEndMonth, status, deletedAt, additionalProperties);
     }
 
     @java.lang.Override

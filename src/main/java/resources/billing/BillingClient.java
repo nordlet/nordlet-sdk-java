@@ -336,14 +336,14 @@ public class BillingClient {
   }
 
   /**
-   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, file storage bytes, database bytes, sale invoices; <code>ocr_page</code> rows remain from the time document scanning was charged). Requests and invoices count on the site the request came from; storage counts on the <code>app</code> site.
    */
   public UsageListBillingResponse usageList(UsageListBillingRequest request) {
     return this.rawClient.usageList(request).body();
   }
 
   /**
-   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, OCR pages, file storage bytes, database bytes, sale invoices). Requests, OCR pages and invoices count on the site the request came from; storage counts on the <code>app</code> site.
+   * List the daily usage records of the request's site in the companies the user pays for, from <code>from</code> to <code>to</code>: one row per company, date and metric (API requests, file storage bytes, database bytes, sale invoices; <code>ocr_page</code> rows remain from the time document scanning was charged). Requests and invoices count on the site the request came from; storage counts on the <code>app</code> site.
    */
   public UsageListBillingResponse usageList(UsageListBillingRequest request,
       RequestOptions requestOptions) {

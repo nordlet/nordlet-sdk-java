@@ -757,7 +757,7 @@ public class RawPartnersClient {
                   }
 
                   /**
-                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
                    */
                   public NordletApiHttpResponse<BankAccountsCreatePartnersResponse> bankAccountsCreate(
                       BankAccountsCreatePartnersRequest request) {
@@ -765,7 +765,7 @@ public class RawPartnersClient {
                   }
 
                   /**
-                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN the partner already has is refused with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+                   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
                    */
                   public NordletApiHttpResponse<BankAccountsCreatePartnersResponse> bankAccountsCreate(
                       BankAccountsCreatePartnersRequest request, RequestOptions requestOptions) {
@@ -832,7 +832,7 @@ public class RawPartnersClient {
                     }
 
                     /**
-                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 422 when its check digits fail (ISO 13616) and with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
                      */
                     public NordletApiHttpResponse<BankAccountsUpdatePartnersResponse> bankAccountsUpdate(
                         BankAccountsUpdatePartnersRequest request) {
@@ -840,7 +840,7 @@ public class RawPartnersClient {
                     }
 
                     /**
-                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
+                     * Changes the given fields of a partner bank account. A new IBAN is stored without spaces in upper case and is refused with 422 when its check digits fail (ISO 13616) and with 409 when the partner already has it; when the account is the default after the change, the partner's other accounts lose their default mark.
                      */
                     public NordletApiHttpResponse<BankAccountsUpdatePartnersResponse> bankAccountsUpdate(
                         BankAccountsUpdatePartnersRequest request, RequestOptions requestOptions) {
@@ -1946,7 +1946,7 @@ public class RawPartnersClient {
                                               }
 
                                               /**
-                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created.
                                                */
                                               public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
                                                   FindOrCreatePartnersRequest request) {
@@ -1954,7 +1954,7 @@ public class RawPartnersClient {
                                               }
 
                                               /**
-                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code>, then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. A creation that loses a race on the partner code returns the partner the other call created.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created.
                                                */
                                               public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
                                                   FindOrCreatePartnersRequest request,

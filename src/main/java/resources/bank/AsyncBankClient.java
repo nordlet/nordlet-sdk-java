@@ -36,6 +36,7 @@ import com.nordlet.api.resources.bank.requests.MatchRulesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.ReconciliationGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesImportBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesListBankRequest;
@@ -49,12 +50,15 @@ import com.nordlet.api.resources.bank.requests.SettlementsMatchBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsPostBankRequest;
 import com.nordlet.api.resources.bank.requests.SettlementsUnlinkBankRequest;
 import com.nordlet.api.resources.bank.requests.StatementsImportBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsIgnoreBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsImportBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsListBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsMatchBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsMatchManyBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsPostBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsRecordBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsSuggestMatchesBankRequest;
+import com.nordlet.api.resources.bank.requests.TransactionsUnignoreBankRequest;
 import com.nordlet.api.resources.bank.requests.TransactionsUnmatchBankRequest;
 import com.nordlet.api.resources.bank.types.AccountsCreateBankResponse;
 import com.nordlet.api.resources.bank.types.AccountsListBankResponse;
@@ -86,6 +90,7 @@ import com.nordlet.api.resources.bank.types.MatchRulesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
+import com.nordlet.api.resources.bank.types.ReconciliationGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesImportBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesListBankResponse;
@@ -99,12 +104,15 @@ import com.nordlet.api.resources.bank.types.SettlementsMatchBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsPostBankResponse;
 import com.nordlet.api.resources.bank.types.SettlementsUnlinkBankResponse;
 import com.nordlet.api.resources.bank.types.StatementsImportBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsIgnoreBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsImportBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsListBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsMatchBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsMatchManyBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsPostBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsRecordBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsSuggestMatchesBankResponse;
+import com.nordlet.api.resources.bank.types.TransactionsUnignoreBankResponse;
 import com.nordlet.api.resources.bank.types.TransactionsUnmatchBankResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -187,7 +195,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
+   * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. A line without <code>externalId</code> that is identical to a line already on the account (same booking date, amount, counterparty IBAN, or name when either IBAN is missing, and description) is skipped, counted in <code>skipped</code> and listed in <code>duplicates</code>. When <code>openingBalance</code> and <code>closingBalance</code> are both given, the opening balance plus the lines must give the closing balance (422 with both figures otherwise), and the closing balance is kept for <code>bank/reconciliation/get</code> as the balance on the latest line date. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
    */
   public CompletableFuture<TransactionsImportBankResponse> transactionsImport(
       TransactionsImportBankRequest request) {
@@ -195,7 +203,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
+   * Insert statement lines (up to 1000 per call) into a bank account as new transactions. A line without <code>currency</code> takes the account currency; a line in another currency is refused with 422. A line whose <code>externalId</code> is already on the account is skipped and counted in <code>skipped</code>. A line without <code>externalId</code> that is identical to a line already on the account (same booking date, amount, counterparty IBAN, or name when either IBAN is missing, and description) is skipped, counted in <code>skipped</code> and listed in <code>duplicates</code>. When <code>openingBalance</code> and <code>closingBalance</code> are both given, the opening balance plus the lines must give the closing balance (422 with both figures otherwise), and the closing balance is kept for <code>bank/reconciliation/get</code> as the balance on the latest line date. An incoming line that an active match rule (<code>bank/match-rules/create</code>) recognises is linked to its settlement batch.
    */
   public CompletableFuture<TransactionsImportBankResponse> transactionsImport(
       TransactionsImportBankRequest request, RequestOptions requestOptions) {
@@ -203,7 +211,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
+   * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the opening balance plus the lines of a camt.053 or MT940 statement does not give its closing balance (the message names both figures), when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. The closing balance of each statement is kept for <code>bank/reconciliation/get</code>. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
    */
   public CompletableFuture<StatementsImportBankResponse> statementsImport(
       StatementsImportBankRequest request) {
@@ -211,7 +219,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
+   * Import a statement file into a bank account: camt.053 XML, MT940, a Stripe balance CSV or a Revolut Business CSV, chosen by <code>format</code> or by the type of <code>templateId</code> (an iso20022 template also takes MT940 content). Statements whose IBAN or currency differ from the account are left out; the call is refused with 422 when none remains, when a line is in another currency, when the opening balance plus the lines of a camt.053 or MT940 statement does not give its closing balance (the message names both figures), when the file lacks the columns or elements the template requires or when it holds more than 50000 lines. The closing balance of each statement is kept for <code>bank/reconciliation/get</code>. Lines already on the account are skipped, and Stripe movements already posted through a settlement payout are skipped with a warning. With a template, the mapped fields are posted to their ledger accounts, partners are created, payments are matched to the invoices they reference, and invoices, credit notes or advance invoices are issued where the template asks for them (<code>invoiceMetaField</code>, <code>advanceInvoices</code>); <code>transfersCsv</code> posts the lender payouts and commissions of a Stripe template. Invoices issued this way are announced as <code>sale_invoice.issued</code>.
    */
   public CompletableFuture<StatementsImportBankResponse> statementsImport(
       StatementsImportBankRequest request, RequestOptions requestOptions) {
@@ -250,7 +258,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). Answers 409 when the line is already matched, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or to <code>remainder.accountCode</code>, which a supplier overpayment must name, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code> and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
    */
   public CompletableFuture<TransactionsMatchBankResponse> transactionsMatch(
       TransactionsMatchBankRequest request) {
@@ -258,7 +266,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). Answers 409 when the line is already matched, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or to <code>remainder.accountCode</code>, which a supplier overpayment must name, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code> and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
    */
   public CompletableFuture<TransactionsMatchBankResponse> transactionsMatch(
       TransactionsMatchBankRequest request, RequestOptions requestOptions) {
@@ -282,7 +290,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+   * Undo a match. A payment matched to an invoice, a line posted by an import template or by <code>bank/transactions/post</code> (to an account or a tax payment) gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked; an ignored line is restored as with <code>bank/transactions/unignore</code>. The line returns to status new.
    */
   public CompletableFuture<TransactionsUnmatchBankResponse> transactionsUnmatch(
       TransactionsUnmatchBankRequest request) {
@@ -290,7 +298,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+   * Undo a match. A payment matched to an invoice, a line posted by an import template or by <code>bank/transactions/post</code> (to an account or a tax payment) gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked; an ignored line is restored as with <code>bank/transactions/unignore</code>. The line returns to status new.
    */
   public CompletableFuture<TransactionsUnmatchBankResponse> transactionsUnmatch(
       TransactionsUnmatchBankRequest request, RequestOptions requestOptions) {
@@ -298,7 +306,71 @@ public class AsyncBankClient {
   }
 
   /**
-   * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (positive for a sale invoice, negative for a purchase invoice or payroll run, in the account currency) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
+   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+   */
+  public CompletableFuture<TransactionsPostBankResponse> transactionsPost(
+      TransactionsPostBankRequest request) {
+    return this.rawClient.transactionsPost(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+   */
+  public CompletableFuture<TransactionsPostBankResponse> transactionsPost(
+      TransactionsPostBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.transactionsPost(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Mark a new bank transaction as ignored, for a line that needs no booking (a duplicate the bank sent, a line booked another way), with the reason kept on the line. Nothing is posted. Answers 409 when the line is matched or already ignored; <code>bank/transactions/unignore</code> returns it to new.
+   */
+  public CompletableFuture<TransactionsIgnoreBankResponse> transactionsIgnore(
+      TransactionsIgnoreBankRequest request) {
+    return this.rawClient.transactionsIgnore(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Mark a new bank transaction as ignored, for a line that needs no booking (a duplicate the bank sent, a line booked another way), with the reason kept on the line. Nothing is posted. Answers 409 when the line is matched or already ignored; <code>bank/transactions/unignore</code> returns it to new.
+   */
+  public CompletableFuture<TransactionsIgnoreBankResponse> transactionsIgnore(
+      TransactionsIgnoreBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.transactionsIgnore(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return an ignored bank transaction to status new and clear its reason. Answers 409 when the line is not ignored.
+   */
+  public CompletableFuture<TransactionsUnignoreBankResponse> transactionsUnignore(
+      TransactionsUnignoreBankRequest request) {
+    return this.rawClient.transactionsUnignore(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Return an ignored bank transaction to status new and clear its reason. Answers 409 when the line is not ignored.
+   */
+  public CompletableFuture<TransactionsUnignoreBankResponse> transactionsUnignore(
+      TransactionsUnignoreBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.transactionsUnignore(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Compare a bank account's statement balance with its ledger balance on <code>date</code>. The statement balance is <code>statementBalance</code> when given, else the latest closing balance kept from an imported statement on or before <code>date</code> (<code>statementClosingDate</code>) plus the lines on the account dated after it up to <code>date</code>. The ledger balance is the posted balance of the bank account's ledger account up to <code>date</code>, in the account currency (for an account in another currency than the company's, the sum of the entries' currency amounts in that currency). <code>difference</code> is the statement balance less the ledger balance. <code>unbookedLines</code> are the lines up to <code>date</code> still in status new (at most 1000; <code>unbookedCount</code> and <code>unbookedTotal</code> cover all of them). Answers 404 when the bank account does not exist.
+   */
+  public CompletableFuture<ReconciliationGetBankResponse> reconciliationGet(
+      ReconciliationGetBankRequest request) {
+    return this.rawClient.reconciliationGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Compare a bank account's statement balance with its ledger balance on <code>date</code>. The statement balance is <code>statementBalance</code> when given, else the latest closing balance kept from an imported statement on or before <code>date</code> (<code>statementClosingDate</code>) plus the lines on the account dated after it up to <code>date</code>. The ledger balance is the posted balance of the bank account's ledger account up to <code>date</code>, in the account currency (for an account in another currency than the company's, the sum of the entries' currency amounts in that currency). <code>difference</code> is the statement balance less the ledger balance. <code>unbookedLines</code> are the lines up to <code>date</code> still in status new (at most 1000; <code>unbookedCount</code> and <code>unbookedTotal</code> cover all of them). Answers 404 when the bank account does not exist.
+   */
+  public CompletableFuture<ReconciliationGetBankResponse> reconciliationGet(
+      ReconciliationGetBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.reconciliationGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (<code>amount</code> is always positive, in the account currency: money received for a sale invoice, money paid out for a purchase invoice or payroll run) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
    */
   public CompletableFuture<TransactionsRecordBankResponse> transactionsRecord(
       TransactionsRecordBankRequest request) {
@@ -306,7 +378,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (positive for a sale invoice, negative for a purchase invoice or payroll run, in the account currency) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
+   * Record a payment that is on no imported statement: inserts a bank transaction on the account dated <code>date</code> (<code>amount</code> is always positive, in the account currency: money received for a sale invoice, money paid out for a purchase invoice or payroll run) and matches it to the document with the checks, posting and <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code> event of <code>bank/transactions/match</code>.
    */
   public CompletableFuture<TransactionsRecordBankResponse> transactionsRecord(
       TransactionsRecordBankRequest request, RequestOptions requestOptions) {

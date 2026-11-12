@@ -61,6 +61,12 @@ public final class InvoicesUpdatePurchasesRequest {
 
   private final Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines;
 
+  private final Optional<String> netTotal;
+
+  private final Optional<String> vatTotal;
+
+  private final Optional<String> grossTotal;
+
   private final Map<String, Object> additionalProperties;
 
   private InvoicesUpdatePurchasesRequest(String id, Optional<String> partnerId,
@@ -69,7 +75,8 @@ public final class InvoicesUpdatePurchasesRequest {
       Optional<String> notes, Optional<String> intrastatTransportMode,
       Optional<String> intrastatDeliveryTerms, Optional<String> intrastatRegion,
       Optional<String> intrastatNatureOfTransaction, Optional<String> einvoiceNumber,
-      Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines,
+      Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines, Optional<String> netTotal,
+      Optional<String> vatTotal, Optional<String> grossTotal,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
@@ -86,6 +93,9 @@ public final class InvoicesUpdatePurchasesRequest {
     this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
     this.einvoiceNumber = einvoiceNumber;
     this.lines = lines;
+    this.netTotal = netTotal;
+    this.vatTotal = vatTotal;
+    this.grossTotal = grossTotal;
     this.additionalProperties = additionalProperties;
   }
 
@@ -188,6 +198,21 @@ public final class InvoicesUpdatePurchasesRequest {
     return lines;
   }
 
+  @JsonProperty("netTotal")
+  public Optional<String> getNetTotal() {
+    return netTotal;
+  }
+
+  @JsonProperty("vatTotal")
+  public Optional<String> getVatTotal() {
+    return vatTotal;
+  }
+
+  @JsonProperty("grossTotal")
+  public Optional<String> getGrossTotal() {
+    return grossTotal;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -272,12 +297,12 @@ public final class InvoicesUpdatePurchasesRequest {
   }
 
   private boolean equalTo(InvoicesUpdatePurchasesRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && lines.equals(other.lines) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.lines, this.netTotal, this.vatTotal, this.grossTotal);
   }
 
   @java.lang.Override
@@ -373,6 +398,18 @@ public final class InvoicesUpdatePurchasesRequest {
     _FinalStage lines(Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines);
 
     _FinalStage lines(List<InvoicesUpdatePurchasesRequestLinesItem> lines);
+
+    _FinalStage netTotal(Optional<String> netTotal);
+
+    _FinalStage netTotal(String netTotal);
+
+    _FinalStage vatTotal(Optional<String> vatTotal);
+
+    _FinalStage vatTotal(String vatTotal);
+
+    _FinalStage grossTotal(Optional<String> grossTotal);
+
+    _FinalStage grossTotal(String grossTotal);
   }
 
   @JsonIgnoreProperties(
@@ -380,6 +417,12 @@ public final class InvoicesUpdatePurchasesRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<String> grossTotal = Optional.empty();
+
+    private Optional<String> vatTotal = Optional.empty();
+
+    private Optional<String> netTotal = Optional.empty();
 
     private Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines = Optional.empty();
 
@@ -432,6 +475,9 @@ public final class InvoicesUpdatePurchasesRequest {
       intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
       einvoiceNumber(other.getEinvoiceNumber());
       lines(other.getLines());
+      netTotal(other.getNetTotal());
+      vatTotal(other.getVatTotal());
+      grossTotal(other.getGrossTotal());
       return this;
     }
 
@@ -439,6 +485,54 @@ public final class InvoicesUpdatePurchasesRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage grossTotal(String grossTotal) {
+      this.grossTotal = Optional.ofNullable(grossTotal);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "grossTotal",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage grossTotal(Optional<String> grossTotal) {
+      this.grossTotal = grossTotal;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatTotal(String vatTotal) {
+      this.vatTotal = Optional.ofNullable(vatTotal);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatTotal",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatTotal(Optional<String> vatTotal) {
+      this.vatTotal = vatTotal;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage netTotal(String netTotal) {
+      this.netTotal = Optional.ofNullable(netTotal);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "netTotal",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage netTotal(Optional<String> netTotal) {
+      this.netTotal = netTotal;
       return this;
     }
 
@@ -780,7 +874,7 @@ public final class InvoicesUpdatePurchasesRequest {
 
     @java.lang.Override
     public InvoicesUpdatePurchasesRequest build() {
-      return new InvoicesUpdatePurchasesRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, lines, additionalProperties);
+      return new InvoicesUpdatePurchasesRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, lines, netTotal, vatTotal, grossTotal, additionalProperties);
     }
 
     @java.lang.Override

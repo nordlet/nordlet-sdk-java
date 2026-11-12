@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -32,13 +33,20 @@ public final class TransactionsImportBankRequest {
 
   private final List<TransactionsImportBankRequestTransactionsItem> transactions;
 
+  private final Optional<String> openingBalance;
+
+  private final Optional<String> closingBalance;
+
   private final Map<String, Object> additionalProperties;
 
   private TransactionsImportBankRequest(String bankAccountId,
       List<TransactionsImportBankRequestTransactionsItem> transactions,
+      Optional<String> openingBalance, Optional<String> closingBalance,
       Map<String, Object> additionalProperties) {
     this.bankAccountId = bankAccountId;
     this.transactions = transactions;
+    this.openingBalance = openingBalance;
+    this.closingBalance = closingBalance;
     this.additionalProperties = additionalProperties;
   }
 
@@ -50,6 +58,16 @@ public final class TransactionsImportBankRequest {
   @JsonProperty("transactions")
   public List<TransactionsImportBankRequestTransactionsItem> getTransactions() {
     return transactions;
+  }
+
+  @JsonProperty("openingBalance")
+  public Optional<String> getOpeningBalance() {
+    return openingBalance;
+  }
+
+  @JsonProperty("closingBalance")
+  public Optional<String> getClosingBalance() {
+    return closingBalance;
   }
 
   @java.lang.Override
@@ -64,12 +82,12 @@ public final class TransactionsImportBankRequest {
   }
 
   private boolean equalTo(TransactionsImportBankRequest other) {
-    return bankAccountId.equals(other.bankAccountId) && transactions.equals(other.transactions);
+    return bankAccountId.equals(other.bankAccountId) && transactions.equals(other.transactions) && openingBalance.equals(other.openingBalance) && closingBalance.equals(other.closingBalance);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.bankAccountId, this.transactions);
+    return Objects.hash(this.bankAccountId, this.transactions, this.openingBalance, this.closingBalance);
   }
 
   @java.lang.Override
@@ -100,6 +118,14 @@ public final class TransactionsImportBankRequest {
 
     _FinalStage addAllTransactions(
         List<TransactionsImportBankRequestTransactionsItem> transactions);
+
+    _FinalStage openingBalance(Optional<String> openingBalance);
+
+    _FinalStage openingBalance(String openingBalance);
+
+    _FinalStage closingBalance(Optional<String> closingBalance);
+
+    _FinalStage closingBalance(String closingBalance);
   }
 
   @JsonIgnoreProperties(
@@ -107,6 +133,10 @@ public final class TransactionsImportBankRequest {
   )
   public static final class Builder implements BankAccountIdStage, _FinalStage {
     private String bankAccountId;
+
+    private Optional<String> closingBalance = Optional.empty();
+
+    private Optional<String> openingBalance = Optional.empty();
 
     private List<TransactionsImportBankRequestTransactionsItem> transactions = new ArrayList<>();
 
@@ -120,6 +150,8 @@ public final class TransactionsImportBankRequest {
     public Builder from(TransactionsImportBankRequest other) {
       bankAccountId(other.getBankAccountId());
       transactions(other.getTransactions());
+      openingBalance(other.getOpeningBalance());
+      closingBalance(other.getClosingBalance());
       return this;
     }
 
@@ -127,6 +159,38 @@ public final class TransactionsImportBankRequest {
     @JsonSetter("bankAccountId")
     public _FinalStage bankAccountId(@NotNull String bankAccountId) {
       this.bankAccountId = Objects.requireNonNull(bankAccountId, "bankAccountId must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage closingBalance(String closingBalance) {
+      this.closingBalance = Optional.ofNullable(closingBalance);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "closingBalance",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage closingBalance(Optional<String> closingBalance) {
+      this.closingBalance = closingBalance;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage openingBalance(String openingBalance) {
+      this.openingBalance = Optional.ofNullable(openingBalance);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "openingBalance",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage openingBalance(Optional<String> openingBalance) {
+      this.openingBalance = openingBalance;
       return this;
     }
 
@@ -161,7 +225,7 @@ public final class TransactionsImportBankRequest {
 
     @java.lang.Override
     public TransactionsImportBankRequest build() {
-      return new TransactionsImportBankRequest(bankAccountId, transactions, additionalProperties);
+      return new TransactionsImportBankRequest(bankAccountId, transactions, openingBalance, closingBalance, additionalProperties);
     }
 
     @java.lang.Override

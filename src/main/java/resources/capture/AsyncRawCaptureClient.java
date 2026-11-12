@@ -28,21 +28,11 @@ import com.nordlet.api.resources.capture.requests.DocumentsDeleteCaptureRequest;
 import com.nordlet.api.resources.capture.requests.DocumentsExtractCaptureRequest;
 import com.nordlet.api.resources.capture.requests.DocumentsGetCaptureRequest;
 import com.nordlet.api.resources.capture.requests.DocumentsListCaptureRequest;
-import com.nordlet.api.resources.capture.requests.DocumentsUploadCaptureRequest;
-import com.nordlet.api.resources.capture.requests.InboundEmailCaptureRequest;
-import com.nordlet.api.resources.capture.requests.SettingsGetCaptureRequest;
-import com.nordlet.api.resources.capture.requests.SettingsRegenerateIntakeCaptureRequest;
-import com.nordlet.api.resources.capture.requests.SettingsUpdateCaptureRequest;
 import com.nordlet.api.resources.capture.types.DocumentsConfirmCaptureResponse;
 import com.nordlet.api.resources.capture.types.DocumentsDeleteCaptureResponse;
 import com.nordlet.api.resources.capture.types.DocumentsExtractCaptureResponse;
 import com.nordlet.api.resources.capture.types.DocumentsGetCaptureResponse;
 import com.nordlet.api.resources.capture.types.DocumentsListCaptureResponse;
-import com.nordlet.api.resources.capture.types.DocumentsUploadCaptureResponse;
-import com.nordlet.api.resources.capture.types.InboundEmailCaptureResponse;
-import com.nordlet.api.resources.capture.types.SettingsGetCaptureResponse;
-import com.nordlet.api.resources.capture.types.SettingsRegenerateIntakeCaptureResponse;
-import com.nordlet.api.resources.capture.types.SettingsUpdateCaptureResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -68,36 +58,21 @@ public class AsyncRawCaptureClient {
   }
 
   /**
-   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   * Parse a capture received over Peppol from its stored document again and replace its draft (supplier, totals, lines, matched partner). Refused with 422 for a capture that was not received over Peppol and with 409 once the capture is linked to a purchase invoice.
    */
-  public CompletableFuture<NordletApiHttpResponse<SettingsGetCaptureResponse>> settingsGet() {
-    return settingsGet(SettingsGetCaptureRequest.builder().build());
+  public CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> documentsExtract(
+      DocumentsExtractCaptureRequest request) {
+    return documentsExtract(request,null);
   }
 
   /**
-   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
+   * Parse a capture received over Peppol from its stored document again and replace its draft (supplier, totals, lines, matched partner). Refused with 422 for a capture that was not received over Peppol and with 409 once the capture is linked to a purchase invoice.
    */
-  public CompletableFuture<NordletApiHttpResponse<SettingsGetCaptureResponse>> settingsGet(
-      RequestOptions requestOptions) {
-    return settingsGet(SettingsGetCaptureRequest.builder().build(),requestOptions);
-  }
-
-  /**
-   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
-   */
-  public CompletableFuture<NordletApiHttpResponse<SettingsGetCaptureResponse>> settingsGet(
-      SettingsGetCaptureRequest request) {
-    return settingsGet(request,null);
-  }
-
-  /**
-   * Return the company's document capture settings: whether intake by e-mail is enabled, whether e-mailed documents are read on arrival, the company's intake e-mail address and whether a reading provider is configured. The intake token behind the address is created on the first call.
-   */
-  public CompletableFuture<NordletApiHttpResponse<SettingsGetCaptureResponse>> settingsGet(
-      SettingsGetCaptureRequest request, RequestOptions requestOptions) {
+  public CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> documentsExtract(
+      DocumentsExtractCaptureRequest request, RequestOptions requestOptions) {
     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-      .addPathSegments("v1/capture/settings/get");if (requestOptions != null) {
+      .addPathSegments("v1/capture/documents/extract");if (requestOptions != null) {
         requestOptions.getQueryParameters().forEach((_key, _value) -> {
           httpUrl.addQueryParameter(_key, _value);
         } );
@@ -123,14 +98,14 @@ public class AsyncRawCaptureClient {
       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
       }
-      CompletableFuture<NordletApiHttpResponse<SettingsGetCaptureResponse>> future = new CompletableFuture<>();
+      CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> future = new CompletableFuture<>();
       client.newCall(okhttpRequest).enqueue(new Callback() {
         @Override
         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
           try (ResponseBody responseBody = response.body()) {
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsGetCaptureResponse.class), response));
+              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsExtractCaptureResponse.class), response));
               return;
             }
             try {
@@ -181,37 +156,21 @@ public class AsyncRawCaptureClient {
     }
 
     /**
-     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     * Return one document received over Peppol (a capture) with its draft: supplier, dates, totals and lines.
      */
-    public CompletableFuture<NordletApiHttpResponse<SettingsUpdateCaptureResponse>> settingsUpdate(
-        ) {
-      return settingsUpdate(SettingsUpdateCaptureRequest.builder().build());
+    public CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> documentsGet(
+        DocumentsGetCaptureRequest request) {
+      return documentsGet(request,null);
     }
 
     /**
-     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
+     * Return one document received over Peppol (a capture) with its draft: supplier, dates, totals and lines.
      */
-    public CompletableFuture<NordletApiHttpResponse<SettingsUpdateCaptureResponse>> settingsUpdate(
-        RequestOptions requestOptions) {
-      return settingsUpdate(SettingsUpdateCaptureRequest.builder().build(),requestOptions);
-    }
-
-    /**
-     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
-     */
-    public CompletableFuture<NordletApiHttpResponse<SettingsUpdateCaptureResponse>> settingsUpdate(
-        SettingsUpdateCaptureRequest request) {
-      return settingsUpdate(request,null);
-    }
-
-    /**
-     * Switch <code>intakeEnabled</code> (documents sent to the intake address are accepted) and <code>captureAutoExtract</code> (they are read on arrival) on or off; at least one field is required.
-     */
-    public CompletableFuture<NordletApiHttpResponse<SettingsUpdateCaptureResponse>> settingsUpdate(
-        SettingsUpdateCaptureRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> documentsGet(
+        DocumentsGetCaptureRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-        .addPathSegments("v1/capture/settings/update");if (requestOptions != null) {
+        .addPathSegments("v1/capture/documents/get");if (requestOptions != null) {
           requestOptions.getQueryParameters().forEach((_key, _value) -> {
             httpUrl.addQueryParameter(_key, _value);
           } );
@@ -237,14 +196,14 @@ public class AsyncRawCaptureClient {
         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
         }
-        CompletableFuture<NordletApiHttpResponse<SettingsUpdateCaptureResponse>> future = new CompletableFuture<>();
+        CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
           @Override
           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
             try (ResponseBody responseBody = response.body()) {
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsUpdateCaptureResponse.class), response));
+                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsGetCaptureResponse.class), response));
                 return;
               }
               try {
@@ -295,37 +254,37 @@ public class AsyncRawCaptureClient {
       }
 
       /**
-       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       * List the documents received over Peppol (captures) with their drafts. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
        */
-      public CompletableFuture<NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse>> settingsRegenerateIntake(
+      public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
           ) {
-        return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build());
+        return documentsList(DocumentsListCaptureRequest.builder().build());
       }
 
       /**
-       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       * List the documents received over Peppol (captures) with their drafts. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
        */
-      public CompletableFuture<NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse>> settingsRegenerateIntake(
+      public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
           RequestOptions requestOptions) {
-        return settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest.builder().build(),requestOptions);
+        return documentsList(DocumentsListCaptureRequest.builder().build(),requestOptions);
       }
 
       /**
-       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       * List the documents received over Peppol (captures) with their drafts. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
        */
-      public CompletableFuture<NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse>> settingsRegenerateIntake(
-          SettingsRegenerateIntakeCaptureRequest request) {
-        return settingsRegenerateIntake(request,null);
+      public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
+          DocumentsListCaptureRequest request) {
+        return documentsList(request,null);
       }
 
       /**
-       * Replace the company's intake token, so the previous intake e-mail address stops working and the settings come back with the new one.
+       * List the documents received over Peppol (captures) with their drafts. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
        */
-      public CompletableFuture<NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse>> settingsRegenerateIntake(
-          SettingsRegenerateIntakeCaptureRequest request, RequestOptions requestOptions) {
+      public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
+          DocumentsListCaptureRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-          .addPathSegments("v1/capture/settings/regenerate-intake");if (requestOptions != null) {
+          .addPathSegments("v1/capture/documents/list");if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
               httpUrl.addQueryParameter(_key, _value);
             } );
@@ -351,14 +310,14 @@ public class AsyncRawCaptureClient {
           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
           }
-          CompletableFuture<NordletApiHttpResponse<SettingsRegenerateIntakeCaptureResponse>> future = new CompletableFuture<>();
+          CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> future = new CompletableFuture<>();
           client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
               try (ResponseBody responseBody = response.body()) {
                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                 if (response.isSuccessful()) {
-                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettingsRegenerateIntakeCaptureResponse.class), response));
+                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsListCaptureResponse.class), response));
                   return;
                 }
                 try {
@@ -409,37 +368,21 @@ public class AsyncRawCaptureClient {
         }
 
         /**
-         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
          */
-        public CompletableFuture<NordletApiHttpResponse<InboundEmailCaptureResponse>> inboundEmail(
-            ) {
-          return inboundEmail(InboundEmailCaptureRequest.builder().build());
+        public CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> documentsDelete(
+            DocumentsDeleteCaptureRequest request) {
+          return documentsDelete(request,null);
         }
 
         /**
-         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
+         * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
          */
-        public CompletableFuture<NordletApiHttpResponse<InboundEmailCaptureResponse>> inboundEmail(
-            RequestOptions requestOptions) {
-          return inboundEmail(InboundEmailCaptureRequest.builder().build(),requestOptions);
-        }
-
-        /**
-         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
-         */
-        public CompletableFuture<NordletApiHttpResponse<InboundEmailCaptureResponse>> inboundEmail(
-            InboundEmailCaptureRequest request) {
-          return inboundEmail(request,null);
-        }
-
-        /**
-         * Endpoint for the inbound e-mail provider (Postmark field names or the generic <code>to</code>, <code>from</code>, <code>subject</code> and <code>attachments</code> form). It needs the <code>x-inbound-secret</code> header and finds the company by the <code>intake+&lt;token&gt;@</code> recipient address (404 when unknown, 403 when intake is disabled). Every PDF, image, Word or PowerPoint attachment up to 10 MB becomes a <code>pending</code> capture (<code>accepted</code>), anything else is <code>skipped</code>; when the company has automatic reading on, is not on trial and a reading provider is configured, each capture is read at once.
-         */
-        public CompletableFuture<NordletApiHttpResponse<InboundEmailCaptureResponse>> inboundEmail(
-            InboundEmailCaptureRequest request, RequestOptions requestOptions) {
+        public CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> documentsDelete(
+            DocumentsDeleteCaptureRequest request, RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-            .addPathSegments("v1/capture/inbound-email");if (requestOptions != null) {
+            .addPathSegments("v1/capture/documents/delete");if (requestOptions != null) {
               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);
               } );
@@ -465,14 +408,14 @@ public class AsyncRawCaptureClient {
             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
             }
-            CompletableFuture<NordletApiHttpResponse<InboundEmailCaptureResponse>> future = new CompletableFuture<>();
+            CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> future = new CompletableFuture<>();
             client.newCall(okhttpRequest).enqueue(new Callback() {
               @Override
               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InboundEmailCaptureResponse.class), response));
+                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsDeleteCaptureResponse.class), response));
                     return;
                   }
                   try {
@@ -523,21 +466,21 @@ public class AsyncRawCaptureClient {
           }
 
           /**
-           * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+           * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
            */
-          public CompletableFuture<NordletApiHttpResponse<DocumentsUploadCaptureResponse>> documentsUpload(
-              DocumentsUploadCaptureRequest request) {
-            return documentsUpload(request,null);
+          public CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> documentsConfirm(
+              DocumentsConfirmCaptureRequest request) {
+            return documentsConfirm(request,null);
           }
 
           /**
-           * Upload a supplier document (PDF, image, Word or PowerPoint, up to 10 MB; 422 for any other type) as a capture and read it at once. The result holds the extracted supplier, dates, totals and lines, the partner matched by VAT code, then partner code, then name, the raw text, and <code>status</code> <code>extracted</code> or <code>failed</code> with <code>error</code>. Needs a configured reading provider, is refused with 402 for a company on trial until its first top-up, and counts every page read as <code>ocr_page</code> usage. The draft is reviewed and saved with <code>capture/documents/confirm</code>.
+           * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
            */
-          public CompletableFuture<NordletApiHttpResponse<DocumentsUploadCaptureResponse>> documentsUpload(
-              DocumentsUploadCaptureRequest request, RequestOptions requestOptions) {
+          public CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> documentsConfirm(
+              DocumentsConfirmCaptureRequest request, RequestOptions requestOptions) {
             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-              .addPathSegments("v1/capture/documents/upload");if (requestOptions != null) {
+              .addPathSegments("v1/capture/documents/confirm");if (requestOptions != null) {
                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                   httpUrl.addQueryParameter(_key, _value);
                 } );
@@ -563,14 +506,14 @@ public class AsyncRawCaptureClient {
               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
               }
-              CompletableFuture<NordletApiHttpResponse<DocumentsUploadCaptureResponse>> future = new CompletableFuture<>();
+              CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> future = new CompletableFuture<>();
               client.newCall(okhttpRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                   try (ResponseBody responseBody = response.body()) {
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsUploadCaptureResponse.class), response));
+                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsConfirmCaptureResponse.class), response));
                       return;
                     }
                     try {
@@ -619,510 +562,4 @@ public class AsyncRawCaptureClient {
               });
               return future;
             }
-
-            /**
-             * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
-             */
-            public CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> documentsExtract(
-                DocumentsExtractCaptureRequest request) {
-              return documentsExtract(request,null);
-            }
-
-            /**
-             * Read a stored capture again and replace its draft (supplier, totals, lines, matched partner). A capture received over Peppol is parsed from its document again without a reading provider; any other needs the provider and, for a company on trial, the first top-up (402). Refused with 409 once the capture is linked to a purchase invoice.
-             */
-            public CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> documentsExtract(
-                DocumentsExtractCaptureRequest request, RequestOptions requestOptions) {
-              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                .addPathSegments("v1/capture/documents/extract");if (requestOptions != null) {
-                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                    httpUrl.addQueryParameter(_key, _value);
-                  } );
-                }
-                RequestBody body;
-                try {
-                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                }
-                catch(JsonProcessingException e) {
-                  throw new NordletApiException("Failed to serialize request", e);
-                }
-                Request okhttpRequest = new Request.Builder()
-                  .url(httpUrl.build())
-                  .method("POST", body)
-                  .headers(Headers.of(clientOptions.headers(requestOptions)))
-                  .addHeader("Content-Type", "application/json")
-                  .addHeader("Accept", "application/json")
-                  .build();
-                OkHttpClient client = clientOptions.httpClient();
-                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                  client = clientOptions.httpClientWithTimeout(requestOptions);
-                }
-                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                }
-                CompletableFuture<NordletApiHttpResponse<DocumentsExtractCaptureResponse>> future = new CompletableFuture<>();
-                client.newCall(okhttpRequest).enqueue(new Callback() {
-                  @Override
-                  public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                    try (ResponseBody responseBody = response.body()) {
-                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                      if (response.isSuccessful()) {
-                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsExtractCaptureResponse.class), response));
-                        return;
-                      }
-                      try {
-                        switch (response.code()) {
-                          case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                          case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                          return;
-                        }
-                      }
-                      catch (JsonProcessingException ignored) {
-                        // unable to map error response, throwing generic error
-                      }
-                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                      future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                      return;
-                    }
-                    catch (JsonProcessingException e) {
-                      future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
-                    }
-                    catch (IOException e) {
-                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                    }
-                  }
-
-                  @Override
-                  public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                    future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                  }
-                });
-                return future;
-              }
-
-              /**
-               * Return one capture with its extraction and raw text.
-               */
-              public CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> documentsGet(
-                  DocumentsGetCaptureRequest request) {
-                return documentsGet(request,null);
-              }
-
-              /**
-               * Return one capture with its extraction and raw text.
-               */
-              public CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> documentsGet(
-                  DocumentsGetCaptureRequest request, RequestOptions requestOptions) {
-                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                  .addPathSegments("v1/capture/documents/get");if (requestOptions != null) {
-                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                      httpUrl.addQueryParameter(_key, _value);
-                    } );
-                  }
-                  RequestBody body;
-                  try {
-                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                  }
-                  catch(JsonProcessingException e) {
-                    throw new NordletApiException("Failed to serialize request", e);
-                  }
-                  Request okhttpRequest = new Request.Builder()
-                    .url(httpUrl.build())
-                    .method("POST", body)
-                    .headers(Headers.of(clientOptions.headers(requestOptions)))
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Accept", "application/json")
-                    .build();
-                  OkHttpClient client = clientOptions.httpClient();
-                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                    client = clientOptions.httpClientWithTimeout(requestOptions);
-                  }
-                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                  }
-                  CompletableFuture<NordletApiHttpResponse<DocumentsGetCaptureResponse>> future = new CompletableFuture<>();
-                  client.newCall(okhttpRequest).enqueue(new Callback() {
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                      try (ResponseBody responseBody = response.body()) {
-                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                        if (response.isSuccessful()) {
-                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsGetCaptureResponse.class), response));
-                          return;
-                        }
-                        try {
-                          switch (response.code()) {
-                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                            case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                            return;
-                          }
-                        }
-                        catch (JsonProcessingException ignored) {
-                          // unable to map error response, throwing generic error
-                        }
-                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                        future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                        return;
-                      }
-                      catch (JsonProcessingException e) {
-                        future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
-                      }
-                      catch (IOException e) {
-                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                      }
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                    }
-                  });
-                  return future;
-                }
-
-                /**
-                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                 */
-                public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
-                    ) {
-                  return documentsList(DocumentsListCaptureRequest.builder().build());
-                }
-
-                /**
-                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                 */
-                public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
-                    RequestOptions requestOptions) {
-                  return documentsList(DocumentsListCaptureRequest.builder().build(),requestOptions);
-                }
-
-                /**
-                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                 */
-                public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
-                    DocumentsListCaptureRequest request) {
-                  return documentsList(request,null);
-                }
-
-                /**
-                 * List captures without raw text. Filterable by <code>status</code>, <code>matchedPartnerId</code> and <code>purchaseInvoiceId</code>; sortable by <code>createdAt</code> and <code>updatedAt</code>.
-                 */
-                public CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> documentsList(
-                    DocumentsListCaptureRequest request, RequestOptions requestOptions) {
-                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                    .addPathSegments("v1/capture/documents/list");if (requestOptions != null) {
-                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                        httpUrl.addQueryParameter(_key, _value);
-                      } );
-                    }
-                    RequestBody body;
-                    try {
-                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                    }
-                    catch(JsonProcessingException e) {
-                      throw new NordletApiException("Failed to serialize request", e);
-                    }
-                    Request okhttpRequest = new Request.Builder()
-                      .url(httpUrl.build())
-                      .method("POST", body)
-                      .headers(Headers.of(clientOptions.headers(requestOptions)))
-                      .addHeader("Content-Type", "application/json")
-                      .addHeader("Accept", "application/json")
-                      .build();
-                    OkHttpClient client = clientOptions.httpClient();
-                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                      client = clientOptions.httpClientWithTimeout(requestOptions);
-                    }
-                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                    }
-                    CompletableFuture<NordletApiHttpResponse<DocumentsListCaptureResponse>> future = new CompletableFuture<>();
-                    client.newCall(okhttpRequest).enqueue(new Callback() {
-                      @Override
-                      public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        try (ResponseBody responseBody = response.body()) {
-                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                          if (response.isSuccessful()) {
-                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsListCaptureResponse.class), response));
-                            return;
-                          }
-                          try {
-                            switch (response.code()) {
-                              case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                              case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                              return;
-                            }
-                          }
-                          catch (JsonProcessingException ignored) {
-                            // unable to map error response, throwing generic error
-                          }
-                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                          future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                          return;
-                        }
-                        catch (JsonProcessingException e) {
-                          future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
-                        }
-                        catch (IOException e) {
-                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                        }
-                      }
-
-                      @Override
-                      public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                      }
-                    });
-                    return future;
-                  }
-
-                  /**
-                   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
-                   */
-                  public CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> documentsDelete(
-                      DocumentsDeleteCaptureRequest request) {
-                    return documentsDelete(request,null);
-                  }
-
-                  /**
-                   * Delete a capture and its stored file (409 once it is linked to a purchase invoice).
-                   */
-                  public CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> documentsDelete(
-                      DocumentsDeleteCaptureRequest request, RequestOptions requestOptions) {
-                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                      .addPathSegments("v1/capture/documents/delete");if (requestOptions != null) {
-                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                          httpUrl.addQueryParameter(_key, _value);
-                        } );
-                      }
-                      RequestBody body;
-                      try {
-                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                      }
-                      catch(JsonProcessingException e) {
-                        throw new NordletApiException("Failed to serialize request", e);
-                      }
-                      Request okhttpRequest = new Request.Builder()
-                        .url(httpUrl.build())
-                        .method("POST", body)
-                        .headers(Headers.of(clientOptions.headers(requestOptions)))
-                        .addHeader("Content-Type", "application/json")
-                        .addHeader("Accept", "application/json")
-                        .build();
-                      OkHttpClient client = clientOptions.httpClient();
-                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                        client = clientOptions.httpClientWithTimeout(requestOptions);
-                      }
-                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                      }
-                      CompletableFuture<NordletApiHttpResponse<DocumentsDeleteCaptureResponse>> future = new CompletableFuture<>();
-                      client.newCall(okhttpRequest).enqueue(new Callback() {
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                          try (ResponseBody responseBody = response.body()) {
-                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                            if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsDeleteCaptureResponse.class), response));
-                              return;
-                            }
-                            try {
-                              switch (response.code()) {
-                                case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                                case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                return;
-                              }
-                            }
-                            catch (JsonProcessingException ignored) {
-                              // unable to map error response, throwing generic error
-                            }
-                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                            future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                            return;
-                          }
-                          catch (JsonProcessingException e) {
-                            future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
-                          }
-                          catch (IOException e) {
-                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                          }
-                        }
-
-                        @Override
-                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                        }
-                      });
-                      return future;
-                    }
-
-                    /**
-                     * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
-                     */
-                    public CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> documentsConfirm(
-                        DocumentsConfirmCaptureRequest request) {
-                      return documentsConfirm(request,null);
-                    }
-
-                    /**
-                     * Creates the purchase invoice (or credit note, see <code>type</code>) from <code>lines</code>. Lines with the opposite sign go in <code>oppositeLines</code> and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered <code>oppositeDocumentNumber</code>, by default the document number followed by &quot;-CR&quot; (credit note) or &quot;-INV&quot; (invoice).
-                     */
-                    public CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> documentsConfirm(
-                        DocumentsConfirmCaptureRequest request, RequestOptions requestOptions) {
-                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
-
-                        .addPathSegments("v1/capture/documents/confirm");if (requestOptions != null) {
-                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
-                            httpUrl.addQueryParameter(_key, _value);
-                          } );
-                        }
-                        RequestBody body;
-                        try {
-                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-                        }
-                        catch(JsonProcessingException e) {
-                          throw new NordletApiException("Failed to serialize request", e);
-                        }
-                        Request okhttpRequest = new Request.Builder()
-                          .url(httpUrl.build())
-                          .method("POST", body)
-                          .headers(Headers.of(clientOptions.headers(requestOptions)))
-                          .addHeader("Content-Type", "application/json")
-                          .addHeader("Accept", "application/json")
-                          .build();
-                        OkHttpClient client = clientOptions.httpClient();
-                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                          client = clientOptions.httpClientWithTimeout(requestOptions);
-                        }
-                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
-                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
-                        }
-                        CompletableFuture<NordletApiHttpResponse<DocumentsConfirmCaptureResponse>> future = new CompletableFuture<>();
-                        client.newCall(okhttpRequest).enqueue(new Callback() {
-                          @Override
-                          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            try (ResponseBody responseBody = response.body()) {
-                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-                              if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DocumentsConfirmCaptureResponse.class), response));
-                                return;
-                              }
-                              try {
-                                switch (response.code()) {
-                                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                  case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
-                                  return;
-                                }
-                              }
-                              catch (JsonProcessingException ignored) {
-                                // unable to map error response, throwing generic error
-                              }
-                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
-                              future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
-                              return;
-                            }
-                            catch (JsonProcessingException e) {
-                              future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
-                            }
-                            catch (IOException e) {
-                              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                            }
-                          }
-
-                          @Override
-                          public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
-                          }
-                        });
-                        return future;
-                      }
-                    }
+          }

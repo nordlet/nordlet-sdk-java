@@ -41,16 +41,20 @@ public final class MeAccountResponseUser {
 
   private final boolean isSuperAdmin;
 
+  private final boolean whiteLabel;
+
   private final Map<String, Object> additionalProperties;
 
   private MeAccountResponseUser(String id, String email, Optional<String> name, String locale,
-      String plan, boolean isSuperAdmin, Map<String, Object> additionalProperties) {
+      String plan, boolean isSuperAdmin, boolean whiteLabel,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.email = email;
     this.name = name;
     this.locale = locale;
     this.plan = plan;
     this.isSuperAdmin = isSuperAdmin;
+    this.whiteLabel = whiteLabel;
     this.additionalProperties = additionalProperties;
   }
 
@@ -87,6 +91,11 @@ public final class MeAccountResponseUser {
     return isSuperAdmin;
   }
 
+  @JsonProperty("whiteLabel")
+  public boolean getWhiteLabel() {
+    return whiteLabel;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -108,12 +117,12 @@ public final class MeAccountResponseUser {
   }
 
   private boolean equalTo(MeAccountResponseUser other) {
-    return id.equals(other.id) && email.equals(other.email) && name.equals(other.name) && locale.equals(other.locale) && plan.equals(other.plan) && isSuperAdmin == other.isSuperAdmin;
+    return id.equals(other.id) && email.equals(other.email) && name.equals(other.name) && locale.equals(other.locale) && plan.equals(other.plan) && isSuperAdmin == other.isSuperAdmin && whiteLabel == other.whiteLabel;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.email, this.name, this.locale, this.plan, this.isSuperAdmin);
+    return Objects.hash(this.id, this.email, this.name, this.locale, this.plan, this.isSuperAdmin, this.whiteLabel);
   }
 
   @java.lang.Override
@@ -144,7 +153,11 @@ public final class MeAccountResponseUser {
   }
 
   public interface IsSuperAdminStage {
-    _FinalStage isSuperAdmin(boolean isSuperAdmin);
+    WhiteLabelStage isSuperAdmin(boolean isSuperAdmin);
+  }
+
+  public interface WhiteLabelStage {
+    _FinalStage whiteLabel(boolean whiteLabel);
   }
 
   public interface _FinalStage {
@@ -164,7 +177,7 @@ public final class MeAccountResponseUser {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmailStage, LocaleStage, PlanStage, IsSuperAdminStage, _FinalStage {
+  public static final class Builder implements IdStage, EmailStage, LocaleStage, PlanStage, IsSuperAdminStage, WhiteLabelStage, _FinalStage {
     private String id;
 
     private String email;
@@ -174,6 +187,8 @@ public final class MeAccountResponseUser {
     private String plan;
 
     private boolean isSuperAdmin;
+
+    private boolean whiteLabel;
 
     private Optional<String> name = Optional.empty();
 
@@ -191,6 +206,7 @@ public final class MeAccountResponseUser {
       locale(other.getLocale());
       plan(other.getPlan());
       isSuperAdmin(other.getIsSuperAdmin());
+      whiteLabel(other.getWhiteLabel());
       return this;
     }
 
@@ -224,8 +240,15 @@ public final class MeAccountResponseUser {
 
     @java.lang.Override
     @JsonSetter("isSuperAdmin")
-    public _FinalStage isSuperAdmin(boolean isSuperAdmin) {
+    public WhiteLabelStage isSuperAdmin(boolean isSuperAdmin) {
       this.isSuperAdmin = isSuperAdmin;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("whiteLabel")
+    public _FinalStage whiteLabel(boolean whiteLabel) {
+      this.whiteLabel = whiteLabel;
       return this;
     }
 
@@ -261,7 +284,7 @@ public final class MeAccountResponseUser {
 
     @java.lang.Override
     public MeAccountResponseUser build() {
-      return new MeAccountResponseUser(id, email, name, locale, plan, isSuperAdmin, additionalProperties);
+      return new MeAccountResponseUser(id, email, name, locale, plan, isSuperAdmin, whiteLabel, additionalProperties);
     }
 
     @java.lang.Override

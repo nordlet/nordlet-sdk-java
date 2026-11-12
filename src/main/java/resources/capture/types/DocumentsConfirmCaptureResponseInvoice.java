@@ -62,6 +62,12 @@ public final class DocumentsConfirmCaptureResponseInvoice {
 
   private final Optional<String> journalTransactionId;
 
+  private final Optional<OffsetDateTime> reversedAt;
+
+  private final Optional<String> reversalJournalTransactionId;
+
+  private final Optional<String> reversalReason;
+
   private final Optional<String> creditedInvoiceId;
 
   private final Optional<String> purchaseOrderId;
@@ -96,8 +102,10 @@ public final class DocumentsConfirmCaptureResponseInvoice {
       DocumentsConfirmCaptureResponseInvoicePaymentStatus paymentStatus, String documentNumber,
       String documentDate, Optional<String> dueDate, Optional<String> registrationDate,
       String currency, String netTotal, String vatTotal, String grossTotal, String paidAmount,
-      Optional<String> journalTransactionId, Optional<String> creditedInvoiceId,
-      Optional<String> purchaseOrderId, Optional<String> operationTypeId, Optional<String> notes,
+      Optional<String> journalTransactionId, Optional<OffsetDateTime> reversedAt,
+      Optional<String> reversalJournalTransactionId, Optional<String> reversalReason,
+      Optional<String> creditedInvoiceId, Optional<String> purchaseOrderId,
+      Optional<String> operationTypeId, Optional<String> notes,
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> einvoiceNumber, Optional<String> documentRef, OffsetDateTime createdAt,
@@ -118,6 +126,9 @@ public final class DocumentsConfirmCaptureResponseInvoice {
     this.grossTotal = grossTotal;
     this.paidAmount = paidAmount;
     this.journalTransactionId = journalTransactionId;
+    this.reversedAt = reversedAt;
+    this.reversalJournalTransactionId = reversalJournalTransactionId;
+    this.reversalReason = reversalReason;
     this.creditedInvoiceId = creditedInvoiceId;
     this.purchaseOrderId = purchaseOrderId;
     this.operationTypeId = operationTypeId;
@@ -216,6 +227,30 @@ public final class DocumentsConfirmCaptureResponseInvoice {
       return Optional.empty();
     }
     return journalTransactionId;
+  }
+
+  @JsonIgnore
+  public Optional<OffsetDateTime> getReversedAt() {
+    if (reversedAt == null) {
+      return Optional.empty();
+    }
+    return reversedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalJournalTransactionId() {
+    if (reversalJournalTransactionId == null) {
+      return Optional.empty();
+    }
+    return reversalJournalTransactionId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalReason() {
+    if (reversalReason == null) {
+      return Optional.empty();
+    }
+    return reversalReason;
   }
 
   @JsonIgnore
@@ -344,6 +379,33 @@ public final class DocumentsConfirmCaptureResponseInvoice {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("reversedAt")
+  private Optional<OffsetDateTime> _getReversedAt() {
+    return reversedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalJournalTransactionId")
+  private Optional<String> _getReversalJournalTransactionId() {
+    return reversalJournalTransactionId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalReason")
+  private Optional<String> _getReversalReason() {
+    return reversalReason;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("creditedInvoiceId")
   private Optional<String> _getCreditedInvoiceId() {
     return creditedInvoiceId;
@@ -442,12 +504,12 @@ public final class DocumentsConfirmCaptureResponseInvoice {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureResponseInvoice other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && registrationDate.equals(other.registrationDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason) && creditedInvoiceId.equals(other.creditedInvoiceId) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && documentRef.equals(other.documentRef) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.creditedInvoiceId, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.documentRef, this.createdAt, this.updatedAt, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.documentNumber, this.documentDate, this.dueDate, this.registrationDate, this.currency, this.netTotal, this.vatTotal, this.grossTotal, this.paidAmount, this.journalTransactionId, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason, this.creditedInvoiceId, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.documentRef, this.createdAt, this.updatedAt, this.lines);
   }
 
   @java.lang.Override
@@ -542,6 +604,24 @@ public final class DocumentsConfirmCaptureResponseInvoice {
     _FinalStage journalTransactionId(String journalTransactionId);
 
     _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
+
+    _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt);
+
+    _FinalStage reversedAt(OffsetDateTime reversedAt);
+
+    _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt);
+
+    _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId);
+
+    _FinalStage reversalReason(Optional<String> reversalReason);
+
+    _FinalStage reversalReason(String reversalReason);
+
+    _FinalStage reversalReason(Nullable<String> reversalReason);
 
     _FinalStage creditedInvoiceId(Optional<String> creditedInvoiceId);
 
@@ -664,6 +744,12 @@ public final class DocumentsConfirmCaptureResponseInvoice {
 
     private Optional<String> creditedInvoiceId = Optional.empty();
 
+    private Optional<String> reversalReason = Optional.empty();
+
+    private Optional<String> reversalJournalTransactionId = Optional.empty();
+
+    private Optional<OffsetDateTime> reversedAt = Optional.empty();
+
     private Optional<String> journalTransactionId = Optional.empty();
 
     private Optional<String> registrationDate = Optional.empty();
@@ -693,6 +779,9 @@ public final class DocumentsConfirmCaptureResponseInvoice {
       grossTotal(other.getGrossTotal());
       paidAmount(other.getPaidAmount());
       journalTransactionId(other.getJournalTransactionId());
+      reversedAt(other.getReversedAt());
+      reversalJournalTransactionId(other.getReversalJournalTransactionId());
+      reversalReason(other.getReversalReason());
       creditedInvoiceId(other.getCreditedInvoiceId());
       purchaseOrderId(other.getPurchaseOrderId());
       operationTypeId(other.getOperationTypeId());
@@ -1136,6 +1225,96 @@ public final class DocumentsConfirmCaptureResponseInvoice {
     }
 
     @java.lang.Override
+    public _FinalStage reversalReason(Nullable<String> reversalReason) {
+      if (reversalReason.isNull()) {
+        this.reversalReason = null;
+      }
+      else if (reversalReason.isEmpty()) {
+        this.reversalReason = Optional.empty();
+      }
+      else {
+        this.reversalReason = Optional.of(reversalReason.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalReason(String reversalReason) {
+      this.reversalReason = Optional.ofNullable(reversalReason);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalReason",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalReason(Optional<String> reversalReason) {
+      this.reversalReason = reversalReason;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId) {
+      if (reversalJournalTransactionId.isNull()) {
+        this.reversalJournalTransactionId = null;
+      }
+      else if (reversalJournalTransactionId.isEmpty()) {
+        this.reversalJournalTransactionId = Optional.empty();
+      }
+      else {
+        this.reversalJournalTransactionId = Optional.of(reversalJournalTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = Optional.ofNullable(reversalJournalTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalJournalTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = reversalJournalTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt) {
+      if (reversedAt.isNull()) {
+        this.reversedAt = null;
+      }
+      else if (reversedAt.isEmpty()) {
+        this.reversedAt = Optional.empty();
+      }
+      else {
+        this.reversedAt = Optional.of(reversedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(OffsetDateTime reversedAt) {
+      this.reversedAt = Optional.ofNullable(reversedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt) {
+      this.reversedAt = reversedAt;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage journalTransactionId(Nullable<String> journalTransactionId) {
       if (journalTransactionId.isNull()) {
         this.journalTransactionId = null;
@@ -1227,7 +1406,7 @@ public final class DocumentsConfirmCaptureResponseInvoice {
 
     @java.lang.Override
     public DocumentsConfirmCaptureResponseInvoice build() {
-      return new DocumentsConfirmCaptureResponseInvoice(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, creditedInvoiceId, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, documentRef, createdAt, updatedAt, lines, additionalProperties);
+      return new DocumentsConfirmCaptureResponseInvoice(id, partnerId, type, status, paymentStatus, documentNumber, documentDate, dueDate, registrationDate, currency, netTotal, vatTotal, grossTotal, paidAmount, journalTransactionId, reversedAt, reversalJournalTransactionId, reversalReason, creditedInvoiceId, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, documentRef, createdAt, updatedAt, lines, additionalProperties);
     }
 
     @java.lang.Override

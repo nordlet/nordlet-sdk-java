@@ -31,6 +31,7 @@ import com.nordlet.api.resources.purchases.requests.InvoicesGetPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesListPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesMatchPurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesRegisterPurchasesRequest;
+import com.nordlet.api.resources.purchases.requests.InvoicesReversePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.InvoicesUpdatePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.OrdersApprovePurchasesRequest;
 import com.nordlet.api.resources.purchases.requests.OrdersCancelPurchasesRequest;
@@ -53,6 +54,7 @@ import com.nordlet.api.resources.purchases.types.InvoicesGetPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesListPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesMatchPurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesRegisterPurchasesResponse;
+import com.nordlet.api.resources.purchases.types.InvoicesReversePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.InvoicesUpdatePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.OrdersApprovePurchasesResponse;
 import com.nordlet.api.resources.purchases.types.OrdersCancelPurchasesResponse;
@@ -92,7 +94,7 @@ public class AsyncRawPurchasesClient {
   }
 
   /**
-   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total leaves out self-assessed VAT. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409.
+   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total is the amount owed: it leaves out self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return) and the value of lines whose VAT type is import VAT assessed by customs. <code>netTotal</code>, <code>vatTotal</code> and <code>grossTotal</code> are the totals printed on the document, with the meanings of the response fields: a difference of at most 0.01 from the totals of the lines is put on the line with the largest amount and the printed totals are stored, a larger one is refused with 422 naming both sets of totals. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409; numbers are compared without regard to case, and spaces, dashes, slashes, dots and underscores count as one separator. <code>warnings</code> lists what does not refuse the document but needs a look: <code>vat_type_not_valid_on_date</code>, <code>vat_type_domestic_for_eu_partner</code> and <code>vat_type_intra_eu_for_domestic_partner</code> as on <code>sales/invoices/create</code> (on the document date), and <code>possible_duplicate</code> when the supplier already has a document of the same type with the same document date and gross total.
    */
   public CompletableFuture<NordletApiHttpResponse<InvoicesCreatePurchasesResponse>> invoicesCreate(
       InvoicesCreatePurchasesRequest request) {
@@ -100,7 +102,7 @@ public class AsyncRawPurchasesClient {
   }
 
   /**
-   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total leaves out self-assessed VAT. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409.
+   * Create a draft purchase invoice or credit note (<code>type</code>) from a supplier document; it is posted with <code>purchases/invoices/register</code>. Lines without a unit price take the item's supplier or purchase price, <code>currency</code> defaults to the company's invoice currency, <code>documentRef</code> links an uploaded file, and the gross total is the amount owed: it leaves out self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return) and the value of lines whose VAT type is import VAT assessed by customs. <code>netTotal</code>, <code>vatTotal</code> and <code>grossTotal</code> are the totals printed on the document, with the meanings of the response fields: a difference of at most 0.01 from the totals of the lines is put on the line with the largest amount and the printed totals are stored, a larger one is refused with 422 naming both sets of totals. <code>creditedInvoiceId</code> (credit notes only) must be an invoice of the same partner, <code>purchaseOrderId</code> an order of the same partner that is not draft, submitted or cancelled, and <code>operationTypeId</code> an active purchase operation type, each 422 otherwise; the same <code>documentNumber</code> for the same partner is refused with 409; numbers are compared without regard to case, and spaces, dashes, slashes, dots and underscores count as one separator. <code>warnings</code> lists what does not refuse the document but needs a look: <code>vat_type_not_valid_on_date</code>, <code>vat_type_domestic_for_eu_partner</code> and <code>vat_type_intra_eu_for_domestic_partner</code> as on <code>sales/invoices/create</code> (on the document date), and <code>possible_duplicate</code> when the supplier already has a document of the same type with the same document date and gross total.
    */
   public CompletableFuture<NordletApiHttpResponse<InvoicesCreatePurchasesResponse>> invoicesCreate(
       InvoicesCreatePurchasesRequest request, RequestOptions requestOptions) {
@@ -288,7 +290,7 @@ public class AsyncRawPurchasesClient {
       }
 
       /**
-       * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409.
+       * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>netTotal</code>, <code>vatTotal</code> and <code>grossTotal</code> are the printed totals as on <code>purchases/invoices/create</code>; sent without <code>lines</code>, they are applied to the stored lines. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409, compared as on <code>purchases/invoices/create</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<InvoicesUpdatePurchasesResponse>> invoicesUpdate(
           InvoicesUpdatePurchasesRequest request) {
@@ -296,7 +298,7 @@ public class AsyncRawPurchasesClient {
       }
 
       /**
-       * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409.
+       * Change a draft purchase invoice (409 once registered); only the fields sent are changed, and <code>lines</code> replace all existing lines with the totals recomputed. <code>netTotal</code>, <code>vatTotal</code> and <code>grossTotal</code> are the printed totals as on <code>purchases/invoices/create</code>; sent without <code>lines</code>, they are applied to the stored lines. <code>purchaseOrderId</code> and <code>operationTypeId</code> are checked as on <code>purchases/invoices/create</code> (422). A <code>documentNumber</code> already used for the partner is refused with 409, compared as on <code>purchases/invoices/create</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<InvoicesUpdatePurchasesResponse>> invoicesUpdate(
           InvoicesUpdatePurchasesRequest request, RequestOptions requestOptions) {
@@ -484,7 +486,7 @@ public class AsyncRawPurchasesClient {
           }
 
           /**
-           * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's <code>lotNumber</code> (an unknown lot is created, and the line's <code>expiryDate</code> is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, for a line that is also deferred and for a lot- or serial-tracked item without <code>lotNumber</code>); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves.
+           * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable with the deductible VAT (the share of the line's VAT that its VAT type allows to deduct; the rest, and all VAT of a company that is not a VAT payer, is booked into the expense), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return); a line whose VAT type is import VAT assessed by customs posts only its VAT, owed to the document's partner, and is not received into stock; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's <code>lotNumber</code> (an unknown lot is created, and the line's <code>expiryDate</code> is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, for a line that is also deferred and for a lot- or serial-tracked item without <code>lotNumber</code>); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, the gross total differs from what the lines give by more than 0.01 (or the converted amounts by more than their conversion rounding), a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves. <code>warnings</code> carries the VAT type warnings of <code>purchases/invoices/create</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<InvoicesRegisterPurchasesResponse>> invoicesRegister(
               InvoicesRegisterPurchasesRequest request) {
@@ -492,7 +494,7 @@ public class AsyncRawPurchasesClient {
           }
 
           /**
-           * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable (a company that is not a VAT payer books the VAT into the expense instead), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's <code>lotNumber</code> (an unknown lot is created, and the line's <code>expiryDate</code> is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, for a line that is also deferred and for a lot- or serial-tracked item without <code>lotNumber</code>); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves.
+           * Register a draft purchase invoice or credit note: posts the journal entry dated <code>registrationDate</code> (default the document date) and sets the status to <code>registered</code>. The entry debits each line's expense account (the line's <code>accountCode</code>, else the item's purchase or expense account, else the operation type's expense account, else the <code>purchases.goodsForResale</code> or <code>purchases.defaultExpense</code> rule account), debits VAT receivable with the deductible VAT (the share of the line's VAT that its VAT type allows to deduct; the rest, and all VAT of a company that is not a VAT payer, is booked into the expense), credits payables (the operation type's credit account when set) and credits output VAT for self-assessed VAT (reverse charge, intra-EU acquisitions and import VAT the buyer declares in its VAT return); a line whose VAT type is import VAT assessed by customs posts only its VAT, owed to the document's partner, and is not received into stock; a credit note posts the reverse. Lines with <code>deferralStartDate</code> and <code>deferralEndDate</code> are debited to the <code>purchases.prepaidExpenses</code> account instead and get a monthly release schedule for <code>purchases/deferrals/post</code>. With <code>warehouseId</code> the product lines of an invoice are received into stock at their base-currency cost, into the lot named by the line's <code>lotNumber</code> (an unknown lot is created, and the line's <code>expiryDate</code> is stored on a lot that has none) (422 on an order-linked invoice, whose goods arrive through <code>purchases/receipts/create</code>, for a line that is also deferred and for a lot- or serial-tracked item without <code>lotNumber</code>); <code>returnFromStock</code> on a credit note that credits an invoice takes the goods back out of stock at their FIFO cost and books the difference to the credited amount on the <code>inventory.cogs</code> account (422 on an invoice, without <code>creditedInvoiceId</code>, or when no goods of the credited invoice are in stock). A credit note that credits a registered invoice in the same currency is applied to it as a payment up to the open amount. Refused with 409 when already registered or the accounting period is locked, and with 422 when the credit notes would exceed the credited invoice, the gross total differs from what the lines give by more than 0.01 (or the converted amounts by more than their conversion rounding), a posting account is missing or no exchange rate exists for the date. Emits <code>purchase_invoice.registered</code>, <code>purchase_invoice.paid</code> when the credited invoice becomes fully paid, and <code>stock.changed</code> when stock moves. <code>warnings</code> carries the VAT type warnings of <code>purchases/invoices/create</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<InvoicesRegisterPurchasesResponse>> invoicesRegister(
               InvoicesRegisterPurchasesRequest request, RequestOptions requestOptions) {
@@ -924,21 +926,21 @@ public class AsyncRawPurchasesClient {
                   }
 
                   /**
-                   * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
+                   * Posts a journal entry dated <code>date</code> (default the registration date) that mirrors the document's entry (debits and credits swapped), reverses the prepaid-expense releases already posted for it, cancels its pending releases and sets the status to <code>reversed</code> with the reason. The reversed document leaves the VAT returns, the open items and payment matching, and its supplier <code>documentNumber</code> can be entered again. <code>date</code> must be in the month of the registration date and not before it (422; correct an earlier month with a credit note). Answers 409 when the document is not registered, when the accounting period of <code>date</code> is locked (naming the period), when registered credit notes credit it, when payments are matched to it (naming them; unmatch them first), and when it moved goods in or out of stock or is the source of a landed cost (post a credit note with <code>returnFromStock</code> instead).
                    */
-                  public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
-                      OrdersCreatePurchasesRequest request) {
-                    return ordersCreate(request,null);
+                  public CompletableFuture<NordletApiHttpResponse<InvoicesReversePurchasesResponse>> invoicesReverse(
+                      InvoicesReversePurchasesRequest request) {
+                    return invoicesReverse(request,null);
                   }
 
                   /**
-                   * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
+                   * Posts a journal entry dated <code>date</code> (default the registration date) that mirrors the document's entry (debits and credits swapped), reverses the prepaid-expense releases already posted for it, cancels its pending releases and sets the status to <code>reversed</code> with the reason. The reversed document leaves the VAT returns, the open items and payment matching, and its supplier <code>documentNumber</code> can be entered again. <code>date</code> must be in the month of the registration date and not before it (422; correct an earlier month with a credit note). Answers 409 when the document is not registered, when the accounting period of <code>date</code> is locked (naming the period), when registered credit notes credit it, when payments are matched to it (naming them; unmatch them first), and when it moved goods in or out of stock or is the source of a landed cost (post a credit note with <code>returnFromStock</code> instead).
                    */
-                  public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
-                      OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
+                  public CompletableFuture<NordletApiHttpResponse<InvoicesReversePurchasesResponse>> invoicesReverse(
+                      InvoicesReversePurchasesRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
+                      .addPathSegments("v1/purchases/invoices/reverse");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -964,14 +966,14 @@ public class AsyncRawPurchasesClient {
                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                       }
-                      CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> future = new CompletableFuture<>();
+                      CompletableFuture<NordletApiHttpResponse<InvoicesReversePurchasesResponse>> future = new CompletableFuture<>();
                       client.newCall(okhttpRequest).enqueue(new Callback() {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                           try (ResponseBody responseBody = response.body()) {
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response));
+                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesReversePurchasesResponse.class), response));
                               return;
                             }
                             try {
@@ -1022,21 +1024,21 @@ public class AsyncRawPurchasesClient {
                     }
 
                     /**
-                     * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
+                     * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
                      */
-                    public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
-                        OrdersUpdatePurchasesRequest request) {
-                      return ordersUpdate(request,null);
+                    public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
+                        OrdersCreatePurchasesRequest request) {
+                      return ordersCreate(request,null);
                     }
 
                     /**
-                     * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
+                     * Create a draft purchase order for a supplier. Lines without a unit price take the item's supplier or purchase price; <code>orderNumber</code> comes from the <code>purchase_order</code> series with prefix PO when not given; <code>currency</code> defaults to the company's invoice currency; <code>documentRef</code> links an uploaded file to the order. A number already in use is refused with 409. The order continues with <code>purchases/orders/submit</code>, <code>purchases/orders/approve</code> and <code>purchases/receipts/create</code>.
                      */
-                    public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
-                        OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
+                    public CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> ordersCreate(
+                        OrdersCreatePurchasesRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
+                        .addPathSegments("v1/purchases/orders/create");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -1062,14 +1064,14 @@ public class AsyncRawPurchasesClient {
                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                         }
-                        CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> future = new CompletableFuture<>();
+                        CompletableFuture<NordletApiHttpResponse<OrdersCreatePurchasesResponse>> future = new CompletableFuture<>();
                         client.newCall(okhttpRequest).enqueue(new Callback() {
                           @Override
                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             try (ResponseBody responseBody = response.body()) {
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response));
+                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCreatePurchasesResponse.class), response));
                                 return;
                               }
                               try {
@@ -1120,21 +1122,21 @@ public class AsyncRawPurchasesClient {
                       }
 
                       /**
-                       * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
+                       * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
                        */
-                      public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
-                          OrdersGetPurchasesRequest request) {
-                        return ordersGet(request,null);
+                      public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
+                          OrdersUpdatePurchasesRequest request) {
+                        return ordersUpdate(request,null);
                       }
 
                       /**
-                       * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
+                       * Change a draft purchase order (409 once it is submitted); only the fields sent are changed. <code>lines</code> replace all existing lines and the totals are recomputed.
                        */
-                      public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
-                          OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
+                      public CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> ordersUpdate(
+                          OrdersUpdatePurchasesRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
+                          .addPathSegments("v1/purchases/orders/update");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -1160,14 +1162,14 @@ public class AsyncRawPurchasesClient {
                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                           }
-                          CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> future = new CompletableFuture<>();
+                          CompletableFuture<NordletApiHttpResponse<OrdersUpdatePurchasesResponse>> future = new CompletableFuture<>();
                           client.newCall(okhttpRequest).enqueue(new Callback() {
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                               try (ResponseBody responseBody = response.body()) {
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response));
+                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersUpdatePurchasesResponse.class), response));
                                   return;
                                 }
                                 try {
@@ -1218,37 +1220,21 @@ public class AsyncRawPurchasesClient {
                         }
 
                         /**
-                         * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+                         * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
                          */
-                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                            ) {
-                          return ordersList(OrdersListPurchasesRequest.builder().build());
+                        public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
+                            OrdersGetPurchasesRequest request) {
+                          return ordersGet(request,null);
                         }
 
                         /**
-                         * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+                         * Return one purchase order with its lines; each line carries <code>receivedQty</code> and <code>remainingQty</code>.
                          */
-                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                            RequestOptions requestOptions) {
-                          return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
-                        }
-
-                        /**
-                         * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
-                         */
-                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                            OrdersListPurchasesRequest request) {
-                          return ordersList(request,null);
-                        }
-
-                        /**
-                         * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
-                         */
-                        public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
-                            OrdersListPurchasesRequest request, RequestOptions requestOptions) {
+                        public CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> ordersGet(
+                            OrdersGetPurchasesRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
+                            .addPathSegments("v1/purchases/orders/get");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1274,14 +1260,14 @@ public class AsyncRawPurchasesClient {
                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                             }
-                            CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> future = new CompletableFuture<>();
+                            CompletableFuture<NordletApiHttpResponse<OrdersGetPurchasesResponse>> future = new CompletableFuture<>();
                             client.newCall(okhttpRequest).enqueue(new Callback() {
                               @Override
                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 try (ResponseBody responseBody = response.body()) {
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response));
+                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersGetPurchasesResponse.class), response));
                                     return;
                                   }
                                   try {
@@ -1332,21 +1318,37 @@ public class AsyncRawPurchasesClient {
                           }
 
                           /**
-                           * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
+                           * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
                            */
-                          public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
-                              OrdersSubmitPurchasesRequest request) {
-                            return ordersSubmit(request,null);
+                          public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                              ) {
+                            return ordersList(OrdersListPurchasesRequest.builder().build());
                           }
 
                           /**
-                           * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
+                           * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
                            */
-                          public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
-                              OrdersSubmitPurchasesRequest request, RequestOptions requestOptions) {
+                          public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                              RequestOptions requestOptions) {
+                            return ordersList(OrdersListPurchasesRequest.builder().build(),requestOptions);
+                          }
+
+                          /**
+                           * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+                           */
+                          public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                              OrdersListPurchasesRequest request) {
+                            return ordersList(request,null);
+                          }
+
+                          /**
+                           * List purchase orders without lines, with the supplier's <code>partnerName</code>. Filterable by <code>partnerId</code>, <code>status</code>, <code>orderNumber</code>, <code>orderDate</code>, <code>currency</code> and <code>grossTotal</code>; sortable by <code>createdAt</code>, <code>orderDate</code>, <code>orderNumber</code> and <code>grossTotal</code>.
+                           */
+                          public CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> ordersList(
+                              OrdersListPurchasesRequest request, RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
+                              .addPathSegments("v1/purchases/orders/list");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1372,14 +1374,14 @@ public class AsyncRawPurchasesClient {
                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                               }
-                              CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> future = new CompletableFuture<>();
+                              CompletableFuture<NordletApiHttpResponse<OrdersListPurchasesResponse>> future = new CompletableFuture<>();
                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                 @Override
                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                   try (ResponseBody responseBody = response.body()) {
                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                     if (response.isSuccessful()) {
-                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response));
+                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersListPurchasesResponse.class), response));
                                       return;
                                     }
                                     try {
@@ -1430,22 +1432,22 @@ public class AsyncRawPurchasesClient {
                             }
 
                             /**
-                             * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
+                             * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
                              */
-                            public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
-                                OrdersApprovePurchasesRequest request) {
-                              return ordersApprove(request,null);
+                            public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
+                                OrdersSubmitPurchasesRequest request) {
+                              return ordersSubmit(request,null);
                             }
 
                             /**
-                             * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
+                             * Move a <code>draft</code> purchase order to <code>submitted</code> for approval (409 from any other status). <code>reason</code> is kept in the audit log.
                              */
-                            public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
-                                OrdersApprovePurchasesRequest request,
+                            public CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> ordersSubmit(
+                                OrdersSubmitPurchasesRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
+                                .addPathSegments("v1/purchases/orders/submit");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1471,14 +1473,14 @@ public class AsyncRawPurchasesClient {
                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                 }
-                                CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> future = new CompletableFuture<>();
+                                CompletableFuture<NordletApiHttpResponse<OrdersSubmitPurchasesResponse>> future = new CompletableFuture<>();
                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                   @Override
                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                     try (ResponseBody responseBody = response.body()) {
                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                       if (response.isSuccessful()) {
-                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response));
+                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersSubmitPurchasesResponse.class), response));
                                         return;
                                       }
                                       try {
@@ -1529,22 +1531,22 @@ public class AsyncRawPurchasesClient {
                               }
 
                               /**
-                               * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
+                               * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
                                */
-                              public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
-                                  OrdersRejectPurchasesRequest request) {
-                                return ordersReject(request,null);
+                              public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
+                                  OrdersApprovePurchasesRequest request) {
+                                return ordersApprove(request,null);
                               }
 
                               /**
-                               * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
+                               * Approve a <code>submitted</code> purchase order (409 from any other status), recording who approved it and when; needs the <code>purchases:approve</code> scope. Goods are then received with <code>purchases/receipts/create</code>. Emits <code>purchase_order.approved</code>.
                                */
-                              public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
-                                  OrdersRejectPurchasesRequest request,
+                              public CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> ordersApprove(
+                                  OrdersApprovePurchasesRequest request,
                                   RequestOptions requestOptions) {
                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                  .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
+                                  .addPathSegments("v1/purchases/orders/approve");if (requestOptions != null) {
                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                       httpUrl.addQueryParameter(_key, _value);
                                     } );
@@ -1570,14 +1572,14 @@ public class AsyncRawPurchasesClient {
                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                   }
-                                  CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> future = new CompletableFuture<>();
+                                  CompletableFuture<NordletApiHttpResponse<OrdersApprovePurchasesResponse>> future = new CompletableFuture<>();
                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                     @Override
                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                       try (ResponseBody responseBody = response.body()) {
                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                         if (response.isSuccessful()) {
-                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response));
+                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersApprovePurchasesResponse.class), response));
                                           return;
                                         }
                                         try {
@@ -1628,22 +1630,22 @@ public class AsyncRawPurchasesClient {
                                 }
 
                                 /**
-                                 * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
+                                 * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
-                                    OrdersCancelPurchasesRequest request) {
-                                  return ordersCancel(request,null);
+                                public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
+                                    OrdersRejectPurchasesRequest request) {
+                                  return ordersReject(request,null);
                                 }
 
                                 /**
-                                 * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
+                                 * Send a <code>submitted</code> purchase order back to <code>draft</code> (409 from any other status); needs the <code>purchases:approve</code> scope. <code>reason</code> is kept in the audit log.
                                  */
-                                public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
-                                    OrdersCancelPurchasesRequest request,
+                                public CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> ordersReject(
+                                    OrdersRejectPurchasesRequest request,
                                     RequestOptions requestOptions) {
                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                    .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
+                                    .addPathSegments("v1/purchases/orders/reject");if (requestOptions != null) {
                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                         httpUrl.addQueryParameter(_key, _value);
                                       } );
@@ -1669,14 +1671,14 @@ public class AsyncRawPurchasesClient {
                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                     }
-                                    CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> future = new CompletableFuture<>();
+                                    CompletableFuture<NordletApiHttpResponse<OrdersRejectPurchasesResponse>> future = new CompletableFuture<>();
                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                       @Override
                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                         try (ResponseBody responseBody = response.body()) {
                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                           if (response.isSuccessful()) {
-                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response));
+                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersRejectPurchasesResponse.class), response));
                                             return;
                                           }
                                           try {
@@ -1727,22 +1729,22 @@ public class AsyncRawPurchasesClient {
                                   }
 
                                   /**
-                                   * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
+                                   * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
                                    */
-                                  public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
-                                      OrdersClosePurchasesRequest request) {
-                                    return ordersClose(request,null);
+                                  public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
+                                      OrdersCancelPurchasesRequest request) {
+                                    return ordersCancel(request,null);
                                   }
 
                                   /**
-                                   * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
+                                   * Cancel a <code>draft</code>, <code>submitted</code> or <code>approved</code> purchase order (409 from any other status, or when the order already has a goods receipt).
                                    */
-                                  public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
-                                      OrdersClosePurchasesRequest request,
+                                  public CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> ordersCancel(
+                                      OrdersCancelPurchasesRequest request,
                                       RequestOptions requestOptions) {
                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                      .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
+                                      .addPathSegments("v1/purchases/orders/cancel");if (requestOptions != null) {
                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                           httpUrl.addQueryParameter(_key, _value);
                                         } );
@@ -1768,14 +1770,14 @@ public class AsyncRawPurchasesClient {
                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                       }
-                                      CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> future = new CompletableFuture<>();
+                                      CompletableFuture<NordletApiHttpResponse<OrdersCancelPurchasesResponse>> future = new CompletableFuture<>();
                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                         @Override
                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                           try (ResponseBody responseBody = response.body()) {
                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                             if (response.isSuccessful()) {
-                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response));
+                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersCancelPurchasesResponse.class), response));
                                               return;
                                             }
                                             try {
@@ -1826,22 +1828,22 @@ public class AsyncRawPurchasesClient {
                                     }
 
                                     /**
-                                     * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
+                                     * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
-                                        OrdersDeletePurchasesRequest request) {
-                                      return ordersDelete(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
+                                        OrdersClosePurchasesRequest request) {
+                                      return ordersClose(request,null);
                                     }
 
                                     /**
-                                     * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
+                                     * Close an <code>approved</code>, <code>partially_received</code> or <code>received</code> purchase order (409 from any other status); a closed order accepts no further goods receipts.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
-                                        OrdersDeletePurchasesRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> ordersClose(
+                                        OrdersClosePurchasesRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
+                                        .addPathSegments("v1/purchases/orders/close");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1867,14 +1869,14 @@ public class AsyncRawPurchasesClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<OrdersClosePurchasesResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersClosePurchasesResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1925,22 +1927,22 @@ public class AsyncRawPurchasesClient {
                                       }
 
                                       /**
-                                       * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
+                                       * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
-                                          ReceiptsCreatePurchasesRequest request) {
-                                        return receiptsCreate(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
+                                          OrdersDeletePurchasesRequest request) {
+                                        return ordersDelete(request,null);
                                       }
 
                                       /**
-                                       * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
+                                       * Mark a <code>draft</code> purchase order as deleted (409 once it is submitted).
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
-                                          ReceiptsCreatePurchasesRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> ordersDelete(
+                                          OrdersDeletePurchasesRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
+                                          .addPathSegments("v1/purchases/orders/delete");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1966,14 +1968,14 @@ public class AsyncRawPurchasesClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<OrdersDeletePurchasesResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OrdersDeletePurchasesResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -2024,22 +2026,22 @@ public class AsyncRawPurchasesClient {
                                         }
 
                                         /**
-                                         * Return one goods receipt with its lines and their stock movement ids.
+                                         * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
-                                            ReceiptsGetPurchasesRequest request) {
-                                          return receiptsGet(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
+                                            ReceiptsCreatePurchasesRequest request) {
+                                          return receiptsCreate(request,null);
                                         }
 
                                         /**
-                                         * Return one goods receipt with its lines and their stock movement ids.
+                                         * Record a goods receipt against an <code>approved</code> or <code>partially_received</code> purchase order (409 otherwise), numbered from the <code>goods_receipt</code> series with prefix GR. Lines whose item is a product go into stock in <code>warehouseId</code>, else the order's warehouse (422 when neither is set), at their share of the order line's net amount converted at the receipt date's rate; <code>lotNumber</code> and <code>expiryDate</code> receive them into a lot, and an item that needs lot or serial tracking is refused with 422 without one. A quantity above the line's remaining quantity is refused with 409; the order becomes <code>received</code> when every line is fully received, else <code>partially_received</code>. Emits <code>goods_receipt.posted</code>, <code>stock.changed</code> and, when fully received, <code>purchase_order.received</code>.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
-                                            ReceiptsGetPurchasesRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> receiptsCreate(
+                                            ReceiptsCreatePurchasesRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
+                                            .addPathSegments("v1/purchases/receipts/create");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -2065,14 +2067,14 @@ public class AsyncRawPurchasesClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<ReceiptsCreatePurchasesResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsCreatePurchasesResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -2123,38 +2125,22 @@ public class AsyncRawPurchasesClient {
                                           }
 
                                           /**
-                                           * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+                                           * Return one goods receipt with its lines and their stock movement ids.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                              ) {
-                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build());
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
+                                              ReceiptsGetPurchasesRequest request) {
+                                            return receiptsGet(request,null);
                                           }
 
                                           /**
-                                           * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+                                           * Return one goods receipt with its lines and their stock movement ids.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                              RequestOptions requestOptions) {
-                                            return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
-                                          }
-
-                                          /**
-                                           * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
-                                           */
-                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                              ReceiptsListPurchasesRequest request) {
-                                            return receiptsList(request,null);
-                                          }
-
-                                          /**
-                                           * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
-                                           */
-                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
-                                              ReceiptsListPurchasesRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> receiptsGet(
+                                              ReceiptsGetPurchasesRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
+                                              .addPathSegments("v1/purchases/receipts/get");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -2180,14 +2166,14 @@ public class AsyncRawPurchasesClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<ReceiptsGetPurchasesResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsGetPurchasesResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2238,22 +2224,38 @@ public class AsyncRawPurchasesClient {
                                             }
 
                                             /**
-                                             * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+                                             * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
-                                                InvoicesMatchPurchasesRequest request) {
-                                              return invoicesMatch(request,null);
+                                            public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                                ) {
+                                              return receiptsList(ReceiptsListPurchasesRequest.builder().build());
                                             }
 
                                             /**
-                                             * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+                                             * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
-                                                InvoicesMatchPurchasesRequest request,
+                                            public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                                RequestOptions requestOptions) {
+                                              return receiptsList(ReceiptsListPurchasesRequest.builder().build(),requestOptions);
+                                            }
+
+                                            /**
+                                             * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+                                             */
+                                            public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                                ReceiptsListPurchasesRequest request) {
+                                              return receiptsList(request,null);
+                                            }
+
+                                            /**
+                                             * List goods receipts without lines. Filterable by <code>orderId</code>, <code>warehouseId</code>, <code>receiptDate</code> and <code>receiptNumber</code>; sortable by <code>createdAt</code> and <code>receiptDate</code>.
+                                             */
+                                            public CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> receiptsList(
+                                                ReceiptsListPurchasesRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                                .addPathSegments("v1/purchases/receipts/list");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -2279,14 +2281,14 @@ public class AsyncRawPurchasesClient {
                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                 }
-                                                CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> future = new CompletableFuture<>();
+                                                CompletableFuture<NordletApiHttpResponse<ReceiptsListPurchasesResponse>> future = new CompletableFuture<>();
                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                   @Override
                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                     try (ResponseBody responseBody = response.body()) {
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response));
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReceiptsListPurchasesResponse.class), response));
                                                         return;
                                                       }
                                                       try {
@@ -2335,4 +2337,103 @@ public class AsyncRawPurchasesClient {
                                                 });
                                                 return future;
                                               }
-                                            }
+
+                                              /**
+                                               * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+                                               */
+                                              public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
+                                                  InvoicesMatchPurchasesRequest request) {
+                                                return invoicesMatch(request,null);
+                                              }
+
+                                              /**
+                                               * Compare a purchase invoice with its linked purchase order and the goods received so far, grouped by item (by description for lines without one). Each row is <code>matched</code>, <code>not_received</code> (invoiced but nothing received), <code>over_invoiced</code> (invoiced more than received), <code>price_mismatch</code> (unit price differs by more than <code>priceTolerancePercent</code>), <code>not_on_order</code> or <code>not_invoiced</code>; <code>status</code> is <code>mismatched</code> when any row other than <code>not_invoiced</code> is not matched. Refused with 422 when the invoice has no <code>purchaseOrderId</code> or its currency differs from the order's. Nothing is changed.
+                                               */
+                                              public CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> invoicesMatch(
+                                                  InvoicesMatchPurchasesRequest request,
+                                                  RequestOptions requestOptions) {
+                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                  .addPathSegments("v1/purchases/invoices/match");if (requestOptions != null) {
+                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                      httpUrl.addQueryParameter(_key, _value);
+                                                    } );
+                                                  }
+                                                  RequestBody body;
+                                                  try {
+                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                  }
+                                                  catch(JsonProcessingException e) {
+                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                  }
+                                                  Request okhttpRequest = new Request.Builder()
+                                                    .url(httpUrl.build())
+                                                    .method("POST", body)
+                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                    .addHeader("Content-Type", "application/json")
+                                                    .addHeader("Accept", "application/json")
+                                                    .build();
+                                                  OkHttpClient client = clientOptions.httpClient();
+                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                  }
+                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                  }
+                                                  CompletableFuture<NordletApiHttpResponse<InvoicesMatchPurchasesResponse>> future = new CompletableFuture<>();
+                                                  client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                    @Override
+                                                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                      try (ResponseBody responseBody = response.body()) {
+                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                        if (response.isSuccessful()) {
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InvoicesMatchPurchasesResponse.class), response));
+                                                          return;
+                                                        }
+                                                        try {
+                                                          switch (response.code()) {
+                                                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                            case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                            return;
+                                                          }
+                                                        }
+                                                        catch (JsonProcessingException ignored) {
+                                                          // unable to map error response, throwing generic error
+                                                        }
+                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                        future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                        return;
+                                                      }
+                                                      catch (JsonProcessingException e) {
+                                                        future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                      }
+                                                      catch (IOException e) {
+                                                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                      }
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                    }
+                                                  });
+                                                  return future;
+                                                }
+                                              }

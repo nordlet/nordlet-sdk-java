@@ -919,7 +919,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero, and 409 when the kind or amount of a payment booked from a bank transaction (<code>bank/transactions/post</code>) changes.
    */
   public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
       TaxPaymentsUpdateDeclarationsRequest request) {
@@ -927,7 +927,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero.
+   * Changes the kind, amount, payment date, reference or description of a recorded tax payment; fields left out keep their value and an empty <code>reference</code> clears it. Answers 422 when the new amount is zero, and 409 when the kind or amount of a payment booked from a bank transaction (<code>bank/transactions/post</code>) changes.
    */
   public TaxPaymentsUpdateDeclarationsResponse taxPaymentsUpdate(
       TaxPaymentsUpdateDeclarationsRequest request, RequestOptions requestOptions) {
@@ -935,7 +935,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Deletes a recorded tax payment.
+   * Deletes a recorded tax payment. Answers 409 when the payment is booked from a bank transaction (<code>bank/transactions/post</code>).
    */
   public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
       TaxPaymentsDeleteDeclarationsRequest request) {
@@ -943,7 +943,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Deletes a recorded tax payment.
+   * Deletes a recorded tax payment. Answers 409 when the payment is booked from a bank transaction (<code>bank/transactions/post</code>).
    */
   public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
       TaxPaymentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1646,28 +1646,28 @@ public class DeclarationsClient {
   }
 
   /**
-   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it. Each field carries its <code>label</code> in the language of <code>Accept-Language</code> (English otherwise) when Nordlet has one, and a <code>select</code> field its allowed values in <code>options</code>. Set the values with <code>declarations/configs/update</code> {system, config: {key: value}}.
    */
   public ConfigsListDeclarationsResponse configsList() {
     return this.rawClient.configsList().body();
   }
 
   /**
-   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it. Each field carries its <code>label</code> in the language of <code>Accept-Language</code> (English otherwise) when Nordlet has one, and a <code>select</code> field its allowed values in <code>options</code>. Set the values with <code>declarations/configs/update</code> {system, config: {key: value}}.
    */
   public ConfigsListDeclarationsResponse configsList(RequestOptions requestOptions) {
     return this.rawClient.configsList(requestOptions).body();
   }
 
   /**
-   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it. Each field carries its <code>label</code> in the language of <code>Accept-Language</code> (English otherwise) when Nordlet has one, and a <code>select</code> field its allowed values in <code>options</code>. Set the values with <code>declarations/configs/update</code> {system, config: {key: value}}.
    */
   public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request) {
     return this.rawClient.configsList(request).body();
   }
 
   /**
-   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it.
+   * Lists the filing systems the company can configure: those of the company country (or of <code>country</code> when given), the EU-wide systems and the cross-border e-invoicing systems <code>it_sdi</code>, <code>pl_ksef</code> and <code>ro_efactura</code>. Each row carries the stored values, with a secret or certificate field shown as <code>__secret_set__</code> and the fields taken from the company profile filled from it. Each field carries its <code>label</code> in the language of <code>Accept-Language</code> (English otherwise) when Nordlet has one, and a <code>select</code> field its allowed values in <code>options</code>. Set the values with <code>declarations/configs/update</code> {system, config: {key: value}}.
    */
   public ConfigsListDeclarationsResponse configsList(ConfigsListDeclarationsRequest request,
       RequestOptions requestOptions) {

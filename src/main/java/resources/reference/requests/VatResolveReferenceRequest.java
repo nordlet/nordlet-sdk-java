@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestGoodsKind;
 import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestServiceKind;
+import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestSide;
 import com.nordlet.api.resources.reference.types.VatResolveReferenceRequestSupplyType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -36,6 +37,8 @@ public final class VatResolveReferenceRequest {
   private final Optional<Boolean> customerIsBusiness;
 
   private final Optional<VatResolveReferenceRequestSupplyType> supplyType;
+
+  private final Optional<VatResolveReferenceRequestSide> side;
 
   private final Optional<String> date;
 
@@ -65,7 +68,8 @@ public final class VatResolveReferenceRequest {
 
   private VatResolveReferenceRequest(Optional<String> partnerId,
       Optional<String> customerCountryCode, Optional<Boolean> customerIsBusiness,
-      Optional<VatResolveReferenceRequestSupplyType> supplyType, Optional<String> date,
+      Optional<VatResolveReferenceRequestSupplyType> supplyType,
+      Optional<VatResolveReferenceRequestSide> side, Optional<String> date,
       Optional<Boolean> belowDistanceSalesThreshold, Optional<Boolean> facilitatedByMarketplace,
       Optional<Boolean> actingAsMarketplace, Optional<Boolean> sellerEstablishedInEu,
       Optional<String> importedConsignmentValueEur,
@@ -78,6 +82,7 @@ public final class VatResolveReferenceRequest {
     this.customerCountryCode = customerCountryCode;
     this.customerIsBusiness = customerIsBusiness;
     this.supplyType = supplyType;
+    this.side = side;
     this.date = date;
     this.belowDistanceSalesThreshold = belowDistanceSalesThreshold;
     this.facilitatedByMarketplace = facilitatedByMarketplace;
@@ -111,6 +116,11 @@ public final class VatResolveReferenceRequest {
   @JsonProperty("supplyType")
   public Optional<VatResolveReferenceRequestSupplyType> getSupplyType() {
     return supplyType;
+  }
+
+  @JsonProperty("side")
+  public Optional<VatResolveReferenceRequestSide> getSide() {
+    return side;
   }
 
   @JsonProperty("date")
@@ -185,12 +195,12 @@ public final class VatResolveReferenceRequest {
   }
 
   private boolean equalTo(VatResolveReferenceRequest other) {
-    return partnerId.equals(other.partnerId) && customerCountryCode.equals(other.customerCountryCode) && customerIsBusiness.equals(other.customerIsBusiness) && supplyType.equals(other.supplyType) && date.equals(other.date) && belowDistanceSalesThreshold.equals(other.belowDistanceSalesThreshold) && facilitatedByMarketplace.equals(other.facilitatedByMarketplace) && actingAsMarketplace.equals(other.actingAsMarketplace) && sellerEstablishedInEu.equals(other.sellerEstablishedInEu) && importedConsignmentValueEur.equals(other.importedConsignmentValueEur) && serviceKind.equals(other.serviceKind) && serviceCountryCode.equals(other.serviceCountryCode) && underlyingSupplierGaveVatNumber.equals(other.underlyingSupplierGaveVatNumber) && underlyingSupplierChargesVat.equals(other.underlyingSupplierChargesVat) && goodsKind.equals(other.goodsKind) && goodsLocationCountryCode.equals(other.goodsLocationCountryCode);
+    return partnerId.equals(other.partnerId) && customerCountryCode.equals(other.customerCountryCode) && customerIsBusiness.equals(other.customerIsBusiness) && supplyType.equals(other.supplyType) && side.equals(other.side) && date.equals(other.date) && belowDistanceSalesThreshold.equals(other.belowDistanceSalesThreshold) && facilitatedByMarketplace.equals(other.facilitatedByMarketplace) && actingAsMarketplace.equals(other.actingAsMarketplace) && sellerEstablishedInEu.equals(other.sellerEstablishedInEu) && importedConsignmentValueEur.equals(other.importedConsignmentValueEur) && serviceKind.equals(other.serviceKind) && serviceCountryCode.equals(other.serviceCountryCode) && underlyingSupplierGaveVatNumber.equals(other.underlyingSupplierGaveVatNumber) && underlyingSupplierChargesVat.equals(other.underlyingSupplierChargesVat) && goodsKind.equals(other.goodsKind) && goodsLocationCountryCode.equals(other.goodsLocationCountryCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.customerCountryCode, this.customerIsBusiness, this.supplyType, this.date, this.belowDistanceSalesThreshold, this.facilitatedByMarketplace, this.actingAsMarketplace, this.sellerEstablishedInEu, this.importedConsignmentValueEur, this.serviceKind, this.serviceCountryCode, this.underlyingSupplierGaveVatNumber, this.underlyingSupplierChargesVat, this.goodsKind, this.goodsLocationCountryCode);
+    return Objects.hash(this.partnerId, this.customerCountryCode, this.customerIsBusiness, this.supplyType, this.side, this.date, this.belowDistanceSalesThreshold, this.facilitatedByMarketplace, this.actingAsMarketplace, this.sellerEstablishedInEu, this.importedConsignmentValueEur, this.serviceKind, this.serviceCountryCode, this.underlyingSupplierGaveVatNumber, this.underlyingSupplierChargesVat, this.goodsKind, this.goodsLocationCountryCode);
   }
 
   @java.lang.Override
@@ -213,6 +223,8 @@ public final class VatResolveReferenceRequest {
     private Optional<Boolean> customerIsBusiness = Optional.empty();
 
     private Optional<VatResolveReferenceRequestSupplyType> supplyType = Optional.empty();
+
+    private Optional<VatResolveReferenceRequestSide> side = Optional.empty();
 
     private Optional<String> date = Optional.empty();
 
@@ -249,6 +261,7 @@ public final class VatResolveReferenceRequest {
       customerCountryCode(other.getCustomerCountryCode());
       customerIsBusiness(other.getCustomerIsBusiness());
       supplyType(other.getSupplyType());
+      side(other.getSide());
       date(other.getDate());
       belowDistanceSalesThreshold(other.getBelowDistanceSalesThreshold());
       facilitatedByMarketplace(other.getFacilitatedByMarketplace());
@@ -317,6 +330,20 @@ public final class VatResolveReferenceRequest {
 
     public Builder supplyType(VatResolveReferenceRequestSupplyType supplyType) {
       this.supplyType = Optional.ofNullable(supplyType);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "side",
+        nulls = Nulls.SKIP
+    )
+    public Builder side(Optional<VatResolveReferenceRequestSide> side) {
+      this.side = side;
+      return this;
+    }
+
+    public Builder side(VatResolveReferenceRequestSide side) {
+      this.side = Optional.ofNullable(side);
       return this;
     }
 
@@ -490,7 +517,7 @@ public final class VatResolveReferenceRequest {
     }
 
     public VatResolveReferenceRequest build() {
-      return new VatResolveReferenceRequest(partnerId, customerCountryCode, customerIsBusiness, supplyType, date, belowDistanceSalesThreshold, facilitatedByMarketplace, actingAsMarketplace, sellerEstablishedInEu, importedConsignmentValueEur, serviceKind, serviceCountryCode, underlyingSupplierGaveVatNumber, underlyingSupplierChargesVat, goodsKind, goodsLocationCountryCode, additionalProperties);
+      return new VatResolveReferenceRequest(partnerId, customerCountryCode, customerIsBusiness, supplyType, side, date, belowDistanceSalesThreshold, facilitatedByMarketplace, actingAsMarketplace, sellerEstablishedInEu, importedConsignmentValueEur, serviceKind, serviceCountryCode, underlyingSupplierGaveVatNumber, underlyingSupplierChargesVat, goodsKind, goodsLocationCountryCode, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

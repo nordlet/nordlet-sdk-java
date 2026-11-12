@@ -56,6 +56,8 @@ public final class TransactionsUnmatchBankResponse {
 
   private final Optional<String> journalTransactionId;
 
+  private final Optional<String> ignoreReason;
+
   private final OffsetDateTime createdAt;
 
   private final Map<String, Object> additionalProperties;
@@ -65,7 +67,8 @@ public final class TransactionsUnmatchBankResponse {
       Optional<String> counterpartyIban, Optional<String> description, Optional<String> externalId,
       TransactionsUnmatchBankResponseStatus status, Optional<String> matchedDocumentType,
       Optional<String> matchedDocumentId, Optional<String> journalTransactionId,
-      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+      Optional<String> ignoreReason, OffsetDateTime createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.bankAccountId = bankAccountId;
     this.date = date;
@@ -79,6 +82,7 @@ public final class TransactionsUnmatchBankResponse {
     this.matchedDocumentType = matchedDocumentType;
     this.matchedDocumentId = matchedDocumentId;
     this.journalTransactionId = journalTransactionId;
+    this.ignoreReason = ignoreReason;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -169,6 +173,14 @@ public final class TransactionsUnmatchBankResponse {
     return journalTransactionId;
   }
 
+  @JsonIgnore
+  public Optional<String> getIgnoreReason() {
+    if (ignoreReason == null) {
+      return Optional.empty();
+    }
+    return ignoreReason;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -237,6 +249,15 @@ public final class TransactionsUnmatchBankResponse {
     return journalTransactionId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("ignoreReason")
+  private Optional<String> _getIgnoreReason() {
+    return ignoreReason;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -249,12 +270,12 @@ public final class TransactionsUnmatchBankResponse {
   }
 
   private boolean equalTo(TransactionsUnmatchBankResponse other) {
-    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && date.equals(other.date) && amount.equals(other.amount) && currency.equals(other.currency) && counterpartyName.equals(other.counterpartyName) && counterpartyIban.equals(other.counterpartyIban) && description.equals(other.description) && externalId.equals(other.externalId) && status.equals(other.status) && matchedDocumentType.equals(other.matchedDocumentType) && matchedDocumentId.equals(other.matchedDocumentId) && journalTransactionId.equals(other.journalTransactionId) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && date.equals(other.date) && amount.equals(other.amount) && currency.equals(other.currency) && counterpartyName.equals(other.counterpartyName) && counterpartyIban.equals(other.counterpartyIban) && description.equals(other.description) && externalId.equals(other.externalId) && status.equals(other.status) && matchedDocumentType.equals(other.matchedDocumentType) && matchedDocumentId.equals(other.matchedDocumentId) && journalTransactionId.equals(other.journalTransactionId) && ignoreReason.equals(other.ignoreReason) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.bankAccountId, this.date, this.amount, this.currency, this.counterpartyName, this.counterpartyIban, this.description, this.externalId, this.status, this.matchedDocumentType, this.matchedDocumentId, this.journalTransactionId, this.createdAt);
+    return Objects.hash(this.id, this.bankAccountId, this.date, this.amount, this.currency, this.counterpartyName, this.counterpartyIban, this.description, this.externalId, this.status, this.matchedDocumentType, this.matchedDocumentId, this.journalTransactionId, this.ignoreReason, this.createdAt);
   }
 
   @java.lang.Override
@@ -344,6 +365,12 @@ public final class TransactionsUnmatchBankResponse {
     _FinalStage journalTransactionId(String journalTransactionId);
 
     _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
+
+    _FinalStage ignoreReason(Optional<String> ignoreReason);
+
+    _FinalStage ignoreReason(String ignoreReason);
+
+    _FinalStage ignoreReason(Nullable<String> ignoreReason);
   }
 
   @JsonIgnoreProperties(
@@ -363,6 +390,8 @@ public final class TransactionsUnmatchBankResponse {
     private TransactionsUnmatchBankResponseStatus status;
 
     private OffsetDateTime createdAt;
+
+    private Optional<String> ignoreReason = Optional.empty();
 
     private Optional<String> journalTransactionId = Optional.empty();
 
@@ -399,6 +428,7 @@ public final class TransactionsUnmatchBankResponse {
       matchedDocumentType(other.getMatchedDocumentType());
       matchedDocumentId(other.getMatchedDocumentId());
       journalTransactionId(other.getJournalTransactionId());
+      ignoreReason(other.getIgnoreReason());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -449,6 +479,36 @@ public final class TransactionsUnmatchBankResponse {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull OffsetDateTime createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ignoreReason(Nullable<String> ignoreReason) {
+      if (ignoreReason.isNull()) {
+        this.ignoreReason = null;
+      }
+      else if (ignoreReason.isEmpty()) {
+        this.ignoreReason = Optional.empty();
+      }
+      else {
+        this.ignoreReason = Optional.of(ignoreReason.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage ignoreReason(String ignoreReason) {
+      this.ignoreReason = Optional.ofNullable(ignoreReason);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "ignoreReason",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage ignoreReason(Optional<String> ignoreReason) {
+      this.ignoreReason = ignoreReason;
       return this;
     }
 
@@ -664,7 +724,7 @@ public final class TransactionsUnmatchBankResponse {
 
     @java.lang.Override
     public TransactionsUnmatchBankResponse build() {
-      return new TransactionsUnmatchBankResponse(id, bankAccountId, date, amount, currency, counterpartyName, counterpartyIban, description, externalId, status, matchedDocumentType, matchedDocumentId, journalTransactionId, createdAt, additionalProperties);
+      return new TransactionsUnmatchBankResponse(id, bankAccountId, date, amount, currency, counterpartyName, counterpartyIban, description, externalId, status, matchedDocumentType, matchedDocumentId, journalTransactionId, ignoreReason, createdAt, additionalProperties);
     }
 
     @java.lang.Override

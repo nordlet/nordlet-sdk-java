@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -43,11 +44,23 @@ public final class CompaniesCreateAccountResponse {
 
   private final boolean cashBasis;
 
+  private final String countryCode;
+
+  private final String baseCurrency;
+
+  private final boolean isVatPayer;
+
+  private final Optional<CompaniesCreateAccountResponseVatPeriod> vatPeriod;
+
+  private final Optional<Long> fiscalYearEndMonth;
+
   private final Map<String, Object> additionalProperties;
 
   private CompaniesCreateAccountResponse(String id, String name, Optional<String> code,
       Optional<String> vatCode, String role, boolean isSandbox, boolean cashBasis,
-      Map<String, Object> additionalProperties) {
+      String countryCode, String baseCurrency, boolean isVatPayer,
+      Optional<CompaniesCreateAccountResponseVatPeriod> vatPeriod,
+      Optional<Long> fiscalYearEndMonth, Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.code = code;
@@ -55,6 +68,11 @@ public final class CompaniesCreateAccountResponse {
     this.role = role;
     this.isSandbox = isSandbox;
     this.cashBasis = cashBasis;
+    this.countryCode = countryCode;
+    this.baseCurrency = baseCurrency;
+    this.isVatPayer = isVatPayer;
+    this.vatPeriod = vatPeriod;
+    this.fiscalYearEndMonth = fiscalYearEndMonth;
     this.additionalProperties = additionalProperties;
   }
 
@@ -99,6 +117,37 @@ public final class CompaniesCreateAccountResponse {
     return cashBasis;
   }
 
+  @JsonProperty("countryCode")
+  public String getCountryCode() {
+    return countryCode;
+  }
+
+  @JsonProperty("baseCurrency")
+  public String getBaseCurrency() {
+    return baseCurrency;
+  }
+
+  @JsonProperty("isVatPayer")
+  public boolean getIsVatPayer() {
+    return isVatPayer;
+  }
+
+  @JsonIgnore
+  public Optional<CompaniesCreateAccountResponseVatPeriod> getVatPeriod() {
+    if (vatPeriod == null) {
+      return Optional.empty();
+    }
+    return vatPeriod;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getFiscalYearEndMonth() {
+    if (fiscalYearEndMonth == null) {
+      return Optional.empty();
+    }
+    return fiscalYearEndMonth;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -117,6 +166,24 @@ public final class CompaniesCreateAccountResponse {
     return vatCode;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatPeriod")
+  private Optional<CompaniesCreateAccountResponseVatPeriod> _getVatPeriod() {
+    return vatPeriod;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearEndMonth")
+  private Optional<Long> _getFiscalYearEndMonth() {
+    return fiscalYearEndMonth;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -129,12 +196,12 @@ public final class CompaniesCreateAccountResponse {
   }
 
   private boolean equalTo(CompaniesCreateAccountResponse other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis;
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && role.equals(other.role) && isSandbox == other.isSandbox && cashBasis == other.cashBasis && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isVatPayer == other.isVatPayer && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.role, this.isSandbox, this.cashBasis, this.countryCode, this.baseCurrency, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth);
   }
 
   @java.lang.Override
@@ -165,7 +232,19 @@ public final class CompaniesCreateAccountResponse {
   }
 
   public interface CashBasisStage {
-    _FinalStage cashBasis(boolean cashBasis);
+    CountryCodeStage cashBasis(boolean cashBasis);
+  }
+
+  public interface CountryCodeStage {
+    BaseCurrencyStage countryCode(@NotNull String countryCode);
+  }
+
+  public interface BaseCurrencyStage {
+    IsVatPayerStage baseCurrency(@NotNull String baseCurrency);
+  }
+
+  public interface IsVatPayerStage {
+    _FinalStage isVatPayer(boolean isVatPayer);
   }
 
   public interface _FinalStage {
@@ -186,12 +265,24 @@ public final class CompaniesCreateAccountResponse {
     _FinalStage vatCode(String vatCode);
 
     _FinalStage vatCode(Nullable<String> vatCode);
+
+    _FinalStage vatPeriod(Optional<CompaniesCreateAccountResponseVatPeriod> vatPeriod);
+
+    _FinalStage vatPeriod(CompaniesCreateAccountResponseVatPeriod vatPeriod);
+
+    _FinalStage vatPeriod(Nullable<CompaniesCreateAccountResponseVatPeriod> vatPeriod);
+
+    _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, RoleStage, IsSandboxStage, CashBasisStage, CountryCodeStage, BaseCurrencyStage, IsVatPayerStage, _FinalStage {
     private String id;
 
     private String name;
@@ -201,6 +292,16 @@ public final class CompaniesCreateAccountResponse {
     private boolean isSandbox;
 
     private boolean cashBasis;
+
+    private String countryCode;
+
+    private String baseCurrency;
+
+    private boolean isVatPayer;
+
+    private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<CompaniesCreateAccountResponseVatPeriod> vatPeriod = Optional.empty();
 
     private Optional<String> vatCode = Optional.empty();
 
@@ -221,6 +322,11 @@ public final class CompaniesCreateAccountResponse {
       role(other.getRole());
       isSandbox(other.getIsSandbox());
       cashBasis(other.getCashBasis());
+      countryCode(other.getCountryCode());
+      baseCurrency(other.getBaseCurrency());
+      isVatPayer(other.getIsVatPayer());
+      vatPeriod(other.getVatPeriod());
+      fiscalYearEndMonth(other.getFiscalYearEndMonth());
       return this;
     }
 
@@ -254,8 +360,89 @@ public final class CompaniesCreateAccountResponse {
 
     @java.lang.Override
     @JsonSetter("cashBasis")
-    public _FinalStage cashBasis(boolean cashBasis) {
+    public CountryCodeStage cashBasis(boolean cashBasis) {
       this.cashBasis = cashBasis;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("countryCode")
+    public BaseCurrencyStage countryCode(@NotNull String countryCode) {
+      this.countryCode = Objects.requireNonNull(countryCode, "countryCode must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseCurrency")
+    public IsVatPayerStage baseCurrency(@NotNull String baseCurrency) {
+      this.baseCurrency = Objects.requireNonNull(baseCurrency, "baseCurrency must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("isVatPayer")
+    public _FinalStage isVatPayer(boolean isVatPayer) {
+      this.isVatPayer = isVatPayer;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth) {
+      if (fiscalYearEndMonth.isNull()) {
+        this.fiscalYearEndMonth = null;
+      }
+      else if (fiscalYearEndMonth.isEmpty()) {
+        this.fiscalYearEndMonth = Optional.empty();
+      }
+      else {
+        this.fiscalYearEndMonth = Optional.of(fiscalYearEndMonth.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = Optional.ofNullable(fiscalYearEndMonth);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth) {
+      this.fiscalYearEndMonth = fiscalYearEndMonth;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(Nullable<CompaniesCreateAccountResponseVatPeriod> vatPeriod) {
+      if (vatPeriod.isNull()) {
+        this.vatPeriod = null;
+      }
+      else if (vatPeriod.isEmpty()) {
+        this.vatPeriod = Optional.empty();
+      }
+      else {
+        this.vatPeriod = Optional.of(vatPeriod.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriod(CompaniesCreateAccountResponseVatPeriod vatPeriod) {
+      this.vatPeriod = Optional.ofNullable(vatPeriod);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatPeriod",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatPeriod(Optional<CompaniesCreateAccountResponseVatPeriod> vatPeriod) {
+      this.vatPeriod = vatPeriod;
       return this;
     }
 
@@ -321,7 +508,7 @@ public final class CompaniesCreateAccountResponse {
 
     @java.lang.Override
     public CompaniesCreateAccountResponse build() {
-      return new CompaniesCreateAccountResponse(id, name, code, vatCode, role, isSandbox, cashBasis, additionalProperties);
+      return new CompaniesCreateAccountResponse(id, name, code, vatCode, role, isSandbox, cashBasis, countryCode, baseCurrency, isVatPayer, vatPeriod, fiscalYearEndMonth, additionalProperties);
     }
 
     @java.lang.Override

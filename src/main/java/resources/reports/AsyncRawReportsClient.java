@@ -42,6 +42,7 @@ import com.nordlet.api.resources.reports.requests.MonthlySummaryReportsRequest;
 import com.nordlet.api.resources.reports.requests.OnlineSalesReportsRequest;
 import com.nordlet.api.resources.reports.requests.OssReportsRequest;
 import com.nordlet.api.resources.reports.requests.PartnerBalancesReportsRequest;
+import com.nordlet.api.resources.reports.requests.PeriodChecklistReportsRequest;
 import com.nordlet.api.resources.reports.requests.PosSalesReportsRequest;
 import com.nordlet.api.resources.reports.requests.SieReportsRequest;
 import com.nordlet.api.resources.reports.requests.SizeCategoryReportsRequest;
@@ -72,6 +73,7 @@ import com.nordlet.api.resources.reports.types.MonthlySummaryReportsResponse;
 import com.nordlet.api.resources.reports.types.OnlineSalesReportsResponse;
 import com.nordlet.api.resources.reports.types.OssReportsResponse;
 import com.nordlet.api.resources.reports.types.PartnerBalancesReportsResponse;
+import com.nordlet.api.resources.reports.types.PeriodChecklistReportsResponse;
 import com.nordlet.api.resources.reports.types.PosSalesReportsResponse;
 import com.nordlet.api.resources.reports.types.SieReportsResponse;
 import com.nordlet.api.resources.reports.types.SizeCategoryReportsResponse;
@@ -1839,22 +1841,22 @@ public class AsyncRawReportsClient {
                                     }
 
                                     /**
-                                     * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                     * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> euPurchases(
-                                        EuPurchasesReportsRequest request) {
-                                      return euPurchases(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<PeriodChecklistReportsResponse>> periodChecklist(
+                                        PeriodChecklistReportsRequest request) {
+                                      return periodChecklist(request,null);
                                     }
 
                                     /**
-                                     * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                     * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> euPurchases(
-                                        EuPurchasesReportsRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<PeriodChecklistReportsResponse>> periodChecklist(
+                                        PeriodChecklistReportsRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/reports/eu-purchases");if (requestOptions != null) {
+                                        .addPathSegments("v1/reports/period-checklist");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1880,14 +1882,14 @@ public class AsyncRawReportsClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<PeriodChecklistReportsResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuPurchasesReportsResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PeriodChecklistReportsResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -1938,22 +1940,22 @@ public class AsyncRawReportsClient {
                                       }
 
                                       /**
-                                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+                                       * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> vatDetail(
-                                          VatDetailReportsRequest request) {
-                                        return vatDetail(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> euPurchases(
+                                          EuPurchasesReportsRequest request) {
+                                        return euPurchases(request,null);
                                       }
 
                                       /**
-                                       * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+                                       * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> vatDetail(
-                                          VatDetailReportsRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> euPurchases(
+                                          EuPurchasesReportsRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/reports/vat-detail");if (requestOptions != null) {
+                                          .addPathSegments("v1/reports/eu-purchases");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -1979,14 +1981,14 @@ public class AsyncRawReportsClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<EuPurchasesReportsResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatDetailReportsResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EuPurchasesReportsResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -2037,22 +2039,22 @@ public class AsyncRawReportsClient {
                                         }
 
                                         /**
-                                         * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+                                         * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> posSales(
-                                            PosSalesReportsRequest request) {
-                                          return posSales(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> vatDetail(
+                                            VatDetailReportsRequest request) {
+                                          return vatDetail(request,null);
                                         }
 
                                         /**
-                                         * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+                                         * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> posSales(
-                                            PosSalesReportsRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> vatDetail(
+                                            VatDetailReportsRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/reports/pos-sales");if (requestOptions != null) {
+                                            .addPathSegments("v1/reports/vat-detail");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -2078,14 +2080,14 @@ public class AsyncRawReportsClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<VatDetailReportsResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PosSalesReportsResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, VatDetailReportsResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -2136,22 +2138,22 @@ public class AsyncRawReportsClient {
                                           }
 
                                           /**
-                                           * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+                                           * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> onlineSales(
-                                              OnlineSalesReportsRequest request) {
-                                            return onlineSales(request,null);
+                                          public CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> posSales(
+                                              PosSalesReportsRequest request) {
+                                            return posSales(request,null);
                                           }
 
                                           /**
-                                           * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+                                           * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> onlineSales(
-                                              OnlineSalesReportsRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> posSales(
+                                              PosSalesReportsRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/reports/online-sales");if (requestOptions != null) {
+                                              .addPathSegments("v1/reports/pos-sales");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -2177,14 +2179,14 @@ public class AsyncRawReportsClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<PosSalesReportsResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OnlineSalesReportsResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PosSalesReportsResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2235,22 +2237,22 @@ public class AsyncRawReportsClient {
                                             }
 
                                             /**
-                                             * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                             * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> oss(
-                                                OssReportsRequest request) {
-                                              return oss(request,null);
+                                            public CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> onlineSales(
+                                                OnlineSalesReportsRequest request) {
+                                              return onlineSales(request,null);
                                             }
 
                                             /**
-                                             * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+                                             * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> oss(
-                                                OssReportsRequest request,
+                                            public CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> onlineSales(
+                                                OnlineSalesReportsRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/reports/oss");if (requestOptions != null) {
+                                                .addPathSegments("v1/reports/online-sales");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -2276,14 +2278,14 @@ public class AsyncRawReportsClient {
                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                 }
-                                                CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> future = new CompletableFuture<>();
+                                                CompletableFuture<NordletApiHttpResponse<OnlineSalesReportsResponse>> future = new CompletableFuture<>();
                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                   @Override
                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                     try (ResponseBody responseBody = response.body()) {
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OssReportsResponse.class), response));
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OnlineSalesReportsResponse.class), response));
                                                         return;
                                                       }
                                                       try {
@@ -2334,22 +2336,22 @@ public class AsyncRawReportsClient {
                                               }
 
                                               /**
-                                               * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+                                               * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> advanceReconciliation(
-                                                  AdvanceReconciliationReportsRequest request) {
-                                                return advanceReconciliation(request,null);
+                                              public CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> oss(
+                                                  OssReportsRequest request) {
+                                                return oss(request,null);
                                               }
 
                                               /**
-                                               * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
+                                               * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> advanceReconciliation(
-                                                  AdvanceReconciliationReportsRequest request,
+                                              public CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> oss(
+                                                  OssReportsRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/reports/advance-reconciliation");if (requestOptions != null) {
+                                                  .addPathSegments("v1/reports/oss");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -2375,14 +2377,14 @@ public class AsyncRawReportsClient {
                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                   }
-                                                  CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> future = new CompletableFuture<>();
+                                                  CompletableFuture<NordletApiHttpResponse<OssReportsResponse>> future = new CompletableFuture<>();
                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                     @Override
                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                       try (ResponseBody responseBody = response.body()) {
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AdvanceReconciliationReportsResponse.class), response));
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OssReportsResponse.class), response));
                                                           return;
                                                         }
                                                         try {
@@ -2433,22 +2435,22 @@ public class AsyncRawReportsClient {
                                                 }
 
                                                 /**
-                                                 * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+                                                 * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> writeOffActs(
-                                                    WriteOffActsReportsRequest request) {
-                                                  return writeOffActs(request,null);
+                                                public CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> advanceReconciliation(
+                                                    AdvanceReconciliationReportsRequest request) {
+                                                  return advanceReconciliation(request,null);
                                                 }
 
                                                 /**
-                                                 * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
+                                                 * Cash advances per employee for a period: the balance before <code>fromDate</code>, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the <code>cash.advances</code> posting rule.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> writeOffActs(
-                                                    WriteOffActsReportsRequest request,
+                                                public CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> advanceReconciliation(
+                                                    AdvanceReconciliationReportsRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/reports/write-off-acts");if (requestOptions != null) {
+                                                    .addPathSegments("v1/reports/advance-reconciliation");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -2474,14 +2476,14 @@ public class AsyncRawReportsClient {
                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                     }
-                                                    CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> future = new CompletableFuture<>();
+                                                    CompletableFuture<NordletApiHttpResponse<AdvanceReconciliationReportsResponse>> future = new CompletableFuture<>();
                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                       @Override
                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                         try (ResponseBody responseBody = response.body()) {
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WriteOffActsReportsResponse.class), response));
+                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AdvanceReconciliationReportsResponse.class), response));
                                                             return;
                                                           }
                                                           try {
@@ -2532,22 +2534,22 @@ public class AsyncRawReportsClient {
                                                   }
 
                                                   /**
-                                                   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+                                                   * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> costCenters(
-                                                      CostCentersReportsRequest request) {
-                                                    return costCenters(request,null);
+                                                  public CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> writeOffActs(
+                                                      WriteOffActsReportsRequest request) {
+                                                    return writeOffActs(request,null);
                                                   }
 
                                                   /**
-                                                   * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+                                                   * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; <code>warehouseId</code> limits the report to one warehouse.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> costCenters(
-                                                      CostCentersReportsRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> writeOffActs(
+                                                      WriteOffActsReportsRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/reports/cost-centers");if (requestOptions != null) {
+                                                      .addPathSegments("v1/reports/write-off-acts");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2573,14 +2575,14 @@ public class AsyncRawReportsClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<WriteOffActsReportsResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCentersReportsResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WriteOffActsReportsResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2631,22 +2633,22 @@ public class AsyncRawReportsClient {
                                                     }
 
                                                     /**
-                                                     * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+                                                     * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> costCenterActivity(
-                                                        CostCenterActivityReportsRequest request) {
-                                                      return costCenterActivity(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> costCenters(
+                                                        CostCentersReportsRequest request) {
+                                                      return costCenters(request,null);
                                                     }
 
                                                     /**
-                                                     * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
+                                                     * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> costCenterActivity(
-                                                        CostCenterActivityReportsRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> costCenters(
+                                                        CostCentersReportsRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/reports/cost-center-activity");if (requestOptions != null) {
+                                                        .addPathSegments("v1/reports/cost-centers");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2672,14 +2674,14 @@ public class AsyncRawReportsClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<CostCentersReportsResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterActivityReportsResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCentersReportsResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2730,22 +2732,22 @@ public class AsyncRawReportsClient {
                                                       }
 
                                                       /**
-                                                       * Net purchases in the base currency per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+                                                       * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> costCenterItems(
-                                                          CostCenterItemsReportsRequest request) {
-                                                        return costCenterItems(request,null);
+                                                      public CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> costCenterActivity(
+                                                          CostCenterActivityReportsRequest request) {
+                                                        return costCenterActivity(request,null);
                                                       }
 
                                                       /**
-                                                       * Net purchases in the base currency per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
+                                                       * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the <code>Accept-Language</code> header.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> costCenterItems(
-                                                          CostCenterItemsReportsRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> costCenterActivity(
+                                                          CostCenterActivityReportsRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/reports/cost-center-items");if (requestOptions != null) {
+                                                          .addPathSegments("v1/reports/cost-center-activity");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2771,14 +2773,14 @@ public class AsyncRawReportsClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<CostCenterActivityReportsResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterItemsReportsResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterActivityReportsResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2829,22 +2831,22 @@ public class AsyncRawReportsClient {
                                                         }
 
                                                         /**
-                                                         * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+                                                         * Net purchases in the base currency per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> jobsCreate(
-                                                            JobsCreateReportsRequest request) {
-                                                          return jobsCreate(request,null);
+                                                        public CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> costCenterItems(
+                                                            CostCenterItemsReportsRequest request) {
+                                                          return costCenterItems(request,null);
                                                         }
 
                                                         /**
-                                                         * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
+                                                         * Net purchases in the base currency per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; <code>costCenterId</code> limits the report to one cost centre. A line without an item is reported under its description.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> jobsCreate(
-                                                            JobsCreateReportsRequest request,
+                                                        public CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> costCenterItems(
+                                                            CostCenterItemsReportsRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/reports/jobs/create");if (requestOptions != null) {
+                                                            .addPathSegments("v1/reports/cost-center-items");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2870,14 +2872,14 @@ public class AsyncRawReportsClient {
                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                             }
-                                                            CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> future = new CompletableFuture<>();
+                                                            CompletableFuture<NordletApiHttpResponse<CostCenterItemsReportsResponse>> future = new CompletableFuture<>();
                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                               @Override
                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                 try (ResponseBody responseBody = response.body()) {
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsCreateReportsResponse.class), response));
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CostCenterItemsReportsResponse.class), response));
                                                                     return;
                                                                   }
                                                                   try {
@@ -2928,22 +2930,22 @@ public class AsyncRawReportsClient {
                                                           }
 
                                                           /**
-                                                           * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+                                                           * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> jobsGet(
-                                                              JobsGetReportsRequest request) {
-                                                            return jobsGet(request,null);
+                                                          public CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> jobsCreate(
+                                                              JobsCreateReportsRequest request) {
+                                                            return jobsCreate(request,null);
                                                           }
 
                                                           /**
-                                                           * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
+                                                           * Queue a report to be built in the background in one or more formats (<code>json</code>, <code>xlsx</code>, <code>pdf</code>) and stored as files; the job is returned at once with status <code>queued</code>. <code>reportType</code> is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and <code>params</code> is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with <code>reports/jobs/get</code>, download its outputs with <code>files/get</code>, and listen for <code>report.completed</code> or <code>report.failed</code>; a report that does not finish within ten minutes fails.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> jobsGet(
-                                                              JobsGetReportsRequest request,
+                                                          public CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> jobsCreate(
+                                                              JobsCreateReportsRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/reports/jobs/get");if (requestOptions != null) {
+                                                              .addPathSegments("v1/reports/jobs/create");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -2969,14 +2971,14 @@ public class AsyncRawReportsClient {
                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                               }
-                                                              CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> future = new CompletableFuture<>();
+                                                              CompletableFuture<NordletApiHttpResponse<JobsCreateReportsResponse>> future = new CompletableFuture<>();
                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                 @Override
                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                   try (ResponseBody responseBody = response.body()) {
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsGetReportsResponse.class), response));
+                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsCreateReportsResponse.class), response));
                                                                       return;
                                                                     }
                                                                     try {
@@ -3027,38 +3029,22 @@ public class AsyncRawReportsClient {
                                                             }
 
                                                             /**
-                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
-                                                                ) {
-                                                              return jobsList(JobsListReportsRequest.builder().build());
+                                                            public CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> jobsGet(
+                                                                JobsGetReportsRequest request) {
+                                                              return jobsGet(request,null);
                                                             }
 
                                                             /**
-                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                             * Return one report job with its status (<code>queued</code>, <code>running</code>, <code>completed</code> or <code>failed</code>), the error of a failed job and the output files of a completed one.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
-                                                                RequestOptions requestOptions) {
-                                                              return jobsList(JobsListReportsRequest.builder().build(),requestOptions);
-                                                            }
-
-                                                            /**
-                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
-                                                             */
-                                                            public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
-                                                                JobsListReportsRequest request) {
-                                                              return jobsList(request,null);
-                                                            }
-
-                                                            /**
-                                                             * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
-                                                             */
-                                                            public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
-                                                                JobsListReportsRequest request,
+                                                            public CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> jobsGet(
+                                                                JobsGetReportsRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/reports/jobs/list");if (requestOptions != null) {
+                                                                .addPathSegments("v1/reports/jobs/get");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -3084,14 +3070,14 @@ public class AsyncRawReportsClient {
                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                 }
-                                                                CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> future = new CompletableFuture<>();
+                                                                CompletableFuture<NordletApiHttpResponse<JobsGetReportsResponse>> future = new CompletableFuture<>();
                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                   @Override
                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                     try (ResponseBody responseBody = response.body()) {
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsListReportsResponse.class), response));
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsGetReportsResponse.class), response));
                                                                         return;
                                                                       }
                                                                       try {
@@ -3140,4 +3126,119 @@ public class AsyncRawReportsClient {
                                                                 });
                                                                 return future;
                                                               }
-                                                            }
+
+                                                              /**
+                                                               * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
+                                                                  ) {
+                                                                return jobsList(JobsListReportsRequest.builder().build());
+                                                              }
+
+                                                              /**
+                                                               * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
+                                                                  RequestOptions requestOptions) {
+                                                                return jobsList(JobsListReportsRequest.builder().build(),requestOptions);
+                                                              }
+
+                                                              /**
+                                                               * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
+                                                                  JobsListReportsRequest request) {
+                                                                return jobsList(request,null);
+                                                              }
+
+                                                              /**
+                                                               * List the company's report jobs, newest first; filterable by <code>status</code> and <code>reportType</code>, sortable by <code>createdAt</code>.
+                                                               */
+                                                              public CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> jobsList(
+                                                                  JobsListReportsRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/reports/jobs/list");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  CompletableFuture<NordletApiHttpResponse<JobsListReportsResponse>> future = new CompletableFuture<>();
+                                                                  client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                    @Override
+                                                                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                      try (ResponseBody responseBody = response.body()) {
+                                                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                        if (response.isSuccessful()) {
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JobsListReportsResponse.class), response));
+                                                                          return;
+                                                                        }
+                                                                        try {
+                                                                          switch (response.code()) {
+                                                                            case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                            case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                            return;
+                                                                          }
+                                                                        }
+                                                                        catch (JsonProcessingException ignored) {
+                                                                          // unable to map error response, throwing generic error
+                                                                        }
+                                                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                        future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                        return;
+                                                                      }
+                                                                      catch (JsonProcessingException e) {
+                                                                        future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                      }
+                                                                      catch (IOException e) {
+                                                                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                      }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                      future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                    }
+                                                                  });
+                                                                  return future;
+                                                                }
+                                                              }

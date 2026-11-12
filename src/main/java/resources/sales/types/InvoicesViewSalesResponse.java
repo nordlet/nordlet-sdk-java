@@ -65,6 +65,8 @@ public final class InvoicesViewSalesResponse {
 
   private final boolean cardPaymentReceived;
 
+  private final Optional<String> sentWith;
+
   private final InvoicesViewSalesResponseSeller seller;
 
   private final InvoicesViewSalesResponseBuyer buyer;
@@ -81,9 +83,9 @@ public final class InvoicesViewSalesResponse {
       String currency, String netTotal, String vatTotal, Optional<String> salesTaxPercent,
       String salesTaxTotal, String grossTotal, String paidAmount, Optional<String> paidOn,
       Optional<String> notes, Optional<String> payUrl, boolean cardPaymentReceived,
-      InvoicesViewSalesResponseSeller seller, InvoicesViewSalesResponseBuyer buyer,
-      List<InvoicesViewSalesResponseLinesItem> lines, Optional<String> token,
-      Map<String, Object> additionalProperties) {
+      Optional<String> sentWith, InvoicesViewSalesResponseSeller seller,
+      InvoicesViewSalesResponseBuyer buyer, List<InvoicesViewSalesResponseLinesItem> lines,
+      Optional<String> token, Map<String, Object> additionalProperties) {
     this.type = type;
     this.status = status;
     this.paymentStatus = paymentStatus;
@@ -101,6 +103,7 @@ public final class InvoicesViewSalesResponse {
     this.notes = notes;
     this.payUrl = payUrl;
     this.cardPaymentReceived = cardPaymentReceived;
+    this.sentWith = sentWith;
     this.seller = seller;
     this.buyer = buyer;
     this.lines = lines;
@@ -214,6 +217,14 @@ public final class InvoicesViewSalesResponse {
     return cardPaymentReceived;
   }
 
+  @JsonIgnore
+  public Optional<String> getSentWith() {
+    if (sentWith == null) {
+      return Optional.empty();
+    }
+    return sentWith;
+  }
+
   @JsonProperty("seller")
   public InvoicesViewSalesResponseSeller getSeller() {
     return seller;
@@ -304,6 +315,15 @@ public final class InvoicesViewSalesResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("sentWith")
+  private Optional<String> _getSentWith() {
+    return sentWith;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("token")
   private Optional<String> _getToken() {
     return token;
@@ -321,12 +341,12 @@ public final class InvoicesViewSalesResponse {
   }
 
   private boolean equalTo(InvoicesViewSalesResponse other) {
-    return type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && number.equals(other.number) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && paidOn.equals(other.paidOn) && notes.equals(other.notes) && payUrl.equals(other.payUrl) && cardPaymentReceived == other.cardPaymentReceived && seller.equals(other.seller) && buyer.equals(other.buyer) && lines.equals(other.lines) && token.equals(other.token);
+    return type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && number.equals(other.number) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && grossTotal.equals(other.grossTotal) && paidAmount.equals(other.paidAmount) && paidOn.equals(other.paidOn) && notes.equals(other.notes) && payUrl.equals(other.payUrl) && cardPaymentReceived == other.cardPaymentReceived && sentWith.equals(other.sentWith) && seller.equals(other.seller) && buyer.equals(other.buyer) && lines.equals(other.lines) && token.equals(other.token);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.status, this.paymentStatus, this.number, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.salesTaxPercent, this.salesTaxTotal, this.grossTotal, this.paidAmount, this.paidOn, this.notes, this.payUrl, this.cardPaymentReceived, this.seller, this.buyer, this.lines, this.token);
+    return Objects.hash(this.type, this.status, this.paymentStatus, this.number, this.issueDate, this.dueDate, this.currency, this.netTotal, this.vatTotal, this.salesTaxPercent, this.salesTaxTotal, this.grossTotal, this.paidAmount, this.paidOn, this.notes, this.payUrl, this.cardPaymentReceived, this.sentWith, this.seller, this.buyer, this.lines, this.token);
   }
 
   @java.lang.Override
@@ -437,6 +457,12 @@ public final class InvoicesViewSalesResponse {
 
     _FinalStage payUrl(Nullable<String> payUrl);
 
+    _FinalStage sentWith(Optional<String> sentWith);
+
+    _FinalStage sentWith(String sentWith);
+
+    _FinalStage sentWith(Nullable<String> sentWith);
+
     _FinalStage lines(List<InvoicesViewSalesResponseLinesItem> lines);
 
     _FinalStage addLines(InvoicesViewSalesResponseLinesItem lines);
@@ -482,6 +508,8 @@ public final class InvoicesViewSalesResponse {
 
     private List<InvoicesViewSalesResponseLinesItem> lines = new ArrayList<>();
 
+    private Optional<String> sentWith = Optional.empty();
+
     private Optional<String> payUrl = Optional.empty();
 
     private Optional<String> notes = Optional.empty();
@@ -521,6 +549,7 @@ public final class InvoicesViewSalesResponse {
       notes(other.getNotes());
       payUrl(other.getPayUrl());
       cardPaymentReceived(other.getCardPaymentReceived());
+      sentWith(other.getSentWith());
       seller(other.getSeller());
       buyer(other.getBuyer());
       lines(other.getLines());
@@ -667,6 +696,36 @@ public final class InvoicesViewSalesResponse {
       if (lines != null) {
         this.lines.addAll(lines);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sentWith(Nullable<String> sentWith) {
+      if (sentWith.isNull()) {
+        this.sentWith = null;
+      }
+      else if (sentWith.isEmpty()) {
+        this.sentWith = Optional.empty();
+      }
+      else {
+        this.sentWith = Optional.of(sentWith.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage sentWith(String sentWith) {
+      this.sentWith = Optional.ofNullable(sentWith);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "sentWith",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage sentWith(Optional<String> sentWith) {
+      this.sentWith = sentWith;
       return this;
     }
 
@@ -882,7 +941,7 @@ public final class InvoicesViewSalesResponse {
 
     @java.lang.Override
     public InvoicesViewSalesResponse build() {
-      return new InvoicesViewSalesResponse(type, status, paymentStatus, number, issueDate, dueDate, currency, netTotal, vatTotal, salesTaxPercent, salesTaxTotal, grossTotal, paidAmount, paidOn, notes, payUrl, cardPaymentReceived, seller, buyer, lines, token, additionalProperties);
+      return new InvoicesViewSalesResponse(type, status, paymentStatus, number, issueDate, dueDate, currency, netTotal, vatTotal, salesTaxPercent, salesTaxTotal, grossTotal, paidAmount, paidOn, notes, payUrl, cardPaymentReceived, sentWith, seller, buyer, lines, token, additionalProperties);
     }
 
     @java.lang.Override

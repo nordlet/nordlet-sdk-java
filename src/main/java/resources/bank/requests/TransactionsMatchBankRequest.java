@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.bank.types.TransactionsMatchBankRequestDocumentType;
+import com.nordlet.api.resources.bank.types.TransactionsMatchBankRequestRemainder;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -35,15 +36,19 @@ public final class TransactionsMatchBankRequest {
 
   private final Optional<String> invoiceAmount;
 
+  private final Optional<TransactionsMatchBankRequestRemainder> remainder;
+
   private final Map<String, Object> additionalProperties;
 
   private TransactionsMatchBankRequest(String transactionId,
       TransactionsMatchBankRequestDocumentType documentType, String documentId,
-      Optional<String> invoiceAmount, Map<String, Object> additionalProperties) {
+      Optional<String> invoiceAmount, Optional<TransactionsMatchBankRequestRemainder> remainder,
+      Map<String, Object> additionalProperties) {
     this.transactionId = transactionId;
     this.documentType = documentType;
     this.documentId = documentId;
     this.invoiceAmount = invoiceAmount;
+    this.remainder = remainder;
     this.additionalProperties = additionalProperties;
   }
 
@@ -67,6 +72,11 @@ public final class TransactionsMatchBankRequest {
     return invoiceAmount;
   }
 
+  @JsonProperty("remainder")
+  public Optional<TransactionsMatchBankRequestRemainder> getRemainder() {
+    return remainder;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -79,12 +89,12 @@ public final class TransactionsMatchBankRequest {
   }
 
   private boolean equalTo(TransactionsMatchBankRequest other) {
-    return transactionId.equals(other.transactionId) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && invoiceAmount.equals(other.invoiceAmount);
+    return transactionId.equals(other.transactionId) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && invoiceAmount.equals(other.invoiceAmount) && remainder.equals(other.remainder);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.transactionId, this.documentType, this.documentId, this.invoiceAmount);
+    return Objects.hash(this.transactionId, this.documentType, this.documentId, this.invoiceAmount, this.remainder);
   }
 
   @java.lang.Override
@@ -120,6 +130,10 @@ public final class TransactionsMatchBankRequest {
     _FinalStage invoiceAmount(Optional<String> invoiceAmount);
 
     _FinalStage invoiceAmount(String invoiceAmount);
+
+    _FinalStage remainder(Optional<TransactionsMatchBankRequestRemainder> remainder);
+
+    _FinalStage remainder(TransactionsMatchBankRequestRemainder remainder);
   }
 
   @JsonIgnoreProperties(
@@ -131,6 +145,8 @@ public final class TransactionsMatchBankRequest {
     private TransactionsMatchBankRequestDocumentType documentType;
 
     private String documentId;
+
+    private Optional<TransactionsMatchBankRequestRemainder> remainder = Optional.empty();
 
     private Optional<String> invoiceAmount = Optional.empty();
 
@@ -146,6 +162,7 @@ public final class TransactionsMatchBankRequest {
       documentType(other.getDocumentType());
       documentId(other.getDocumentId());
       invoiceAmount(other.getInvoiceAmount());
+      remainder(other.getRemainder());
       return this;
     }
 
@@ -172,6 +189,22 @@ public final class TransactionsMatchBankRequest {
     }
 
     @java.lang.Override
+    public _FinalStage remainder(TransactionsMatchBankRequestRemainder remainder) {
+      this.remainder = Optional.ofNullable(remainder);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "remainder",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage remainder(Optional<TransactionsMatchBankRequestRemainder> remainder) {
+      this.remainder = remainder;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage invoiceAmount(String invoiceAmount) {
       this.invoiceAmount = Optional.ofNullable(invoiceAmount);
       return this;
@@ -189,7 +222,7 @@ public final class TransactionsMatchBankRequest {
 
     @java.lang.Override
     public TransactionsMatchBankRequest build() {
-      return new TransactionsMatchBankRequest(transactionId, documentType, documentId, invoiceAmount, additionalProperties);
+      return new TransactionsMatchBankRequest(transactionId, documentType, documentId, invoiceAmount, remainder, additionalProperties);
     }
 
     @java.lang.Override

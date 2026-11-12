@@ -10,11 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -27,12 +30,16 @@ public final class TransactionsImportBankResponse {
 
   private final long skipped;
 
+  private final List<TransactionsImportBankResponseDuplicatesItem> duplicates;
+
   private final Map<String, Object> additionalProperties;
 
   private TransactionsImportBankResponse(long imported, long skipped,
+      List<TransactionsImportBankResponseDuplicatesItem> duplicates,
       Map<String, Object> additionalProperties) {
     this.imported = imported;
     this.skipped = skipped;
+    this.duplicates = duplicates;
     this.additionalProperties = additionalProperties;
   }
 
@@ -44,6 +51,11 @@ public final class TransactionsImportBankResponse {
   @JsonProperty("skipped")
   public long getSkipped() {
     return skipped;
+  }
+
+  @JsonProperty("duplicates")
+  public List<TransactionsImportBankResponseDuplicatesItem> getDuplicates() {
+    return duplicates;
   }
 
   @java.lang.Override
@@ -58,12 +70,12 @@ public final class TransactionsImportBankResponse {
   }
 
   private boolean equalTo(TransactionsImportBankResponse other) {
-    return imported == other.imported && skipped == other.skipped;
+    return imported == other.imported && skipped == other.skipped && duplicates.equals(other.duplicates);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.imported, this.skipped);
+    return Objects.hash(this.imported, this.skipped, this.duplicates);
   }
 
   @java.lang.Override
@@ -91,6 +103,12 @@ public final class TransactionsImportBankResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage duplicates(List<TransactionsImportBankResponseDuplicatesItem> duplicates);
+
+    _FinalStage addDuplicates(TransactionsImportBankResponseDuplicatesItem duplicates);
+
+    _FinalStage addAllDuplicates(List<TransactionsImportBankResponseDuplicatesItem> duplicates);
   }
 
   @JsonIgnoreProperties(
@@ -100,6 +118,8 @@ public final class TransactionsImportBankResponse {
     private long imported;
 
     private long skipped;
+
+    private List<TransactionsImportBankResponseDuplicatesItem> duplicates = new ArrayList<>();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,6 +131,7 @@ public final class TransactionsImportBankResponse {
     public Builder from(TransactionsImportBankResponse other) {
       imported(other.getImported());
       skipped(other.getSkipped());
+      duplicates(other.getDuplicates());
       return this;
     }
 
@@ -129,8 +150,36 @@ public final class TransactionsImportBankResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllDuplicates(
+        List<TransactionsImportBankResponseDuplicatesItem> duplicates) {
+      if (duplicates != null) {
+        this.duplicates.addAll(duplicates);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addDuplicates(TransactionsImportBankResponseDuplicatesItem duplicates) {
+      this.duplicates.add(duplicates);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "duplicates",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage duplicates(List<TransactionsImportBankResponseDuplicatesItem> duplicates) {
+      this.duplicates.clear();
+      if (duplicates != null) {
+        this.duplicates.addAll(duplicates);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public TransactionsImportBankResponse build() {
-      return new TransactionsImportBankResponse(imported, skipped, additionalProperties);
+      return new TransactionsImportBankResponse(imported, skipped, duplicates, additionalProperties);
     }
 
     @java.lang.Override

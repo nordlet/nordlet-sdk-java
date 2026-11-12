@@ -32,8 +32,6 @@ public final class AccountGetBillingResponseMonthToDate {
 
   private final long saleInvoices;
 
-  private final long ocrPages;
-
   private final double fileBytes;
 
   private final double databaseBytes;
@@ -45,13 +43,12 @@ public final class AccountGetBillingResponseMonthToDate {
   private final Map<String, Object> additionalProperties;
 
   private AccountGetBillingResponseMonthToDate(String from, String to, long apiRequests,
-      long saleInvoices, long ocrPages, double fileBytes, double databaseBytes,
-      long archivedCompanies, long estimatedTodayCents, Map<String, Object> additionalProperties) {
+      long saleInvoices, double fileBytes, double databaseBytes, long archivedCompanies,
+      long estimatedTodayCents, Map<String, Object> additionalProperties) {
     this.from = from;
     this.to = to;
     this.apiRequests = apiRequests;
     this.saleInvoices = saleInvoices;
-    this.ocrPages = ocrPages;
     this.fileBytes = fileBytes;
     this.databaseBytes = databaseBytes;
     this.archivedCompanies = archivedCompanies;
@@ -77,11 +74,6 @@ public final class AccountGetBillingResponseMonthToDate {
   @JsonProperty("saleInvoices")
   public long getSaleInvoices() {
     return saleInvoices;
-  }
-
-  @JsonProperty("ocrPages")
-  public long getOcrPages() {
-    return ocrPages;
   }
 
   @JsonProperty("fileBytes")
@@ -116,12 +108,12 @@ public final class AccountGetBillingResponseMonthToDate {
   }
 
   private boolean equalTo(AccountGetBillingResponseMonthToDate other) {
-    return from.equals(other.from) && to.equals(other.to) && apiRequests == other.apiRequests && saleInvoices == other.saleInvoices && ocrPages == other.ocrPages && fileBytes == other.fileBytes && databaseBytes == other.databaseBytes && archivedCompanies == other.archivedCompanies && estimatedTodayCents == other.estimatedTodayCents;
+    return from.equals(other.from) && to.equals(other.to) && apiRequests == other.apiRequests && saleInvoices == other.saleInvoices && fileBytes == other.fileBytes && databaseBytes == other.databaseBytes && archivedCompanies == other.archivedCompanies && estimatedTodayCents == other.estimatedTodayCents;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.from, this.to, this.apiRequests, this.saleInvoices, this.ocrPages, this.fileBytes, this.databaseBytes, this.archivedCompanies, this.estimatedTodayCents);
+    return Objects.hash(this.from, this.to, this.apiRequests, this.saleInvoices, this.fileBytes, this.databaseBytes, this.archivedCompanies, this.estimatedTodayCents);
   }
 
   @java.lang.Override
@@ -148,11 +140,7 @@ public final class AccountGetBillingResponseMonthToDate {
   }
 
   public interface SaleInvoicesStage {
-    OcrPagesStage saleInvoices(long saleInvoices);
-  }
-
-  public interface OcrPagesStage {
-    FileBytesStage ocrPages(long ocrPages);
+    FileBytesStage saleInvoices(long saleInvoices);
   }
 
   public interface FileBytesStage {
@@ -182,7 +170,7 @@ public final class AccountGetBillingResponseMonthToDate {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements FromStage, ToStage, ApiRequestsStage, SaleInvoicesStage, OcrPagesStage, FileBytesStage, DatabaseBytesStage, ArchivedCompaniesStage, EstimatedTodayCentsStage, _FinalStage {
+  public static final class Builder implements FromStage, ToStage, ApiRequestsStage, SaleInvoicesStage, FileBytesStage, DatabaseBytesStage, ArchivedCompaniesStage, EstimatedTodayCentsStage, _FinalStage {
     private String from;
 
     private String to;
@@ -190,8 +178,6 @@ public final class AccountGetBillingResponseMonthToDate {
     private long apiRequests;
 
     private long saleInvoices;
-
-    private long ocrPages;
 
     private double fileBytes;
 
@@ -213,7 +199,6 @@ public final class AccountGetBillingResponseMonthToDate {
       to(other.getTo());
       apiRequests(other.getApiRequests());
       saleInvoices(other.getSaleInvoices());
-      ocrPages(other.getOcrPages());
       fileBytes(other.getFileBytes());
       databaseBytes(other.getDatabaseBytes());
       archivedCompanies(other.getArchivedCompanies());
@@ -244,15 +229,8 @@ public final class AccountGetBillingResponseMonthToDate {
 
     @java.lang.Override
     @JsonSetter("saleInvoices")
-    public OcrPagesStage saleInvoices(long saleInvoices) {
+    public FileBytesStage saleInvoices(long saleInvoices) {
       this.saleInvoices = saleInvoices;
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("ocrPages")
-    public FileBytesStage ocrPages(long ocrPages) {
-      this.ocrPages = ocrPages;
       return this;
     }
 
@@ -286,7 +264,7 @@ public final class AccountGetBillingResponseMonthToDate {
 
     @java.lang.Override
     public AccountGetBillingResponseMonthToDate build() {
-      return new AccountGetBillingResponseMonthToDate(from, to, apiRequests, saleInvoices, ocrPages, fileBytes, databaseBytes, archivedCompanies, estimatedTodayCents, additionalProperties);
+      return new AccountGetBillingResponseMonthToDate(from, to, apiRequests, saleInvoices, fileBytes, databaseBytes, archivedCompanies, estimatedTodayCents, additionalProperties);
     }
 
     @java.lang.Override

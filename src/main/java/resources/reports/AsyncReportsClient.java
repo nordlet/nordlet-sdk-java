@@ -25,6 +25,7 @@ import com.nordlet.api.resources.reports.requests.MonthlySummaryReportsRequest;
 import com.nordlet.api.resources.reports.requests.OnlineSalesReportsRequest;
 import com.nordlet.api.resources.reports.requests.OssReportsRequest;
 import com.nordlet.api.resources.reports.requests.PartnerBalancesReportsRequest;
+import com.nordlet.api.resources.reports.requests.PeriodChecklistReportsRequest;
 import com.nordlet.api.resources.reports.requests.PosSalesReportsRequest;
 import com.nordlet.api.resources.reports.requests.SieReportsRequest;
 import com.nordlet.api.resources.reports.requests.SizeCategoryReportsRequest;
@@ -55,6 +56,7 @@ import com.nordlet.api.resources.reports.types.MonthlySummaryReportsResponse;
 import com.nordlet.api.resources.reports.types.OnlineSalesReportsResponse;
 import com.nordlet.api.resources.reports.types.OssReportsResponse;
 import com.nordlet.api.resources.reports.types.PartnerBalancesReportsResponse;
+import com.nordlet.api.resources.reports.types.PeriodChecklistReportsResponse;
 import com.nordlet.api.resources.reports.types.PosSalesReportsResponse;
 import com.nordlet.api.resources.reports.types.SieReportsResponse;
 import com.nordlet.api.resources.reports.types.SizeCategoryReportsResponse;
@@ -406,6 +408,22 @@ public class AsyncReportsClient {
   public CompletableFuture<FecReportsResponse> fec(FecReportsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.fec(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
+   */
+  public CompletableFuture<PeriodChecklistReportsResponse> periodChecklist(
+      PeriodChecklistReportsRequest request) {
+    return this.rawClient.periodChecklist(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
+   */
+  public CompletableFuture<PeriodChecklistReportsResponse> periodChecklist(
+      PeriodChecklistReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.periodChecklist(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

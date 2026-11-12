@@ -38,6 +38,7 @@ import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsReverseLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersDeleteLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersListLedgerRequest;
@@ -65,6 +66,7 @@ import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsReverseLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersDeleteLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersListLedgerResponse;
@@ -753,7 +755,7 @@ public class AsyncRawLedgerClient {
               }
 
               /**
-               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>). The lock is not refused for open items: <code>warnings</code> lists them as <code>reports/period-checklist</code> does, for the month, or for the fiscal year when the month is the fiscal year end.
                */
               public CompletableFuture<NordletApiHttpResponse<PeriodsLockLedgerResponse>> periodsLock(
                   PeriodsLockLedgerRequest request) {
@@ -761,7 +763,7 @@ public class AsyncRawLedgerClient {
               }
 
               /**
-               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+               * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>). The lock is not refused for open items: <code>warnings</code> lists them as <code>reports/period-checklist</code> does, for the month, or for the fiscal year when the month is the fiscal year end.
                */
               public CompletableFuture<NordletApiHttpResponse<PeriodsLockLedgerResponse>> periodsLock(
                   PeriodsLockLedgerRequest request, RequestOptions requestOptions) {
@@ -2411,7 +2413,7 @@ public class AsyncRawLedgerClient {
                                               }
 
                                               /**
-                                               * Returns a journal transaction with its entries, ordered by account code.
+                                               * Returns a journal transaction with its entries, ordered by account code. <code>reversedByTransactionId</code> is the transaction posted by <code>ledger/journal/transactions/reverse</code> for a manual transaction, else null.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<JournalTransactionsGetLedgerResponse>> journalTransactionsGet(
                                                   JournalTransactionsGetLedgerRequest request) {
@@ -2419,7 +2421,7 @@ public class AsyncRawLedgerClient {
                                               }
 
                                               /**
-                                               * Returns a journal transaction with its entries, ordered by account code.
+                                               * Returns a journal transaction with its entries, ordered by account code. <code>reversedByTransactionId</code> is the transaction posted by <code>ledger/journal/transactions/reverse</code> for a manual transaction, else null.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<JournalTransactionsGetLedgerResponse>> journalTransactionsGet(
                                                   JournalTransactionsGetLedgerRequest request,
@@ -2510,7 +2512,7 @@ public class AsyncRawLedgerClient {
                                                 }
 
                                                 /**
-                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
                                                  */
                                                 public CompletableFuture<NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse>> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request) {
@@ -2518,7 +2520,7 @@ public class AsyncRawLedgerClient {
                                                 }
 
                                                 /**
-                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
                                                  */
                                                 public CompletableFuture<NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse>> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request,
@@ -2609,38 +2611,22 @@ public class AsyncRawLedgerClient {
                                                   }
 
                                                   /**
-                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
-                                                      ) {
-                                                    return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build());
+                                                  public CompletableFuture<NordletApiHttpResponse<JournalTransactionsReverseLedgerResponse>> journalTransactionsReverse(
+                                                      JournalTransactionsReverseLedgerRequest request) {
+                                                    return journalTransactionsReverse(request,null);
                                                   }
 
                                                   /**
-                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
-                                                      RequestOptions requestOptions) {
-                                                    return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build(),requestOptions);
-                                                  }
-
-                                                  /**
-                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
-                                                   */
-                                                  public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
-                                                      StatementRowsSchemesLedgerRequest request) {
-                                                    return statementRowsSchemes(request,null);
-                                                  }
-
-                                                  /**
-                                                   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
-                                                   */
-                                                  public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
-                                                      StatementRowsSchemesLedgerRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<JournalTransactionsReverseLedgerResponse>> journalTransactionsReverse(
+                                                      JournalTransactionsReverseLedgerRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/ledger/statement-rows/schemes");if (requestOptions != null) {
+                                                      .addPathSegments("v1/ledger/journal/transactions/reverse");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2666,14 +2652,14 @@ public class AsyncRawLedgerClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<JournalTransactionsReverseLedgerResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSchemesLedgerResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, JournalTransactionsReverseLedgerResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2724,22 +2710,38 @@ public class AsyncRawLedgerClient {
                                                     }
 
                                                     /**
-                                                     * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> statementRowsList(
-                                                        StatementRowsListLedgerRequest request) {
-                                                      return statementRowsList(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
+                                                        ) {
+                                                      return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build());
                                                     }
 
                                                     /**
-                                                     * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> statementRowsList(
-                                                        StatementRowsListLedgerRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
+                                                        RequestOptions requestOptions) {
+                                                      return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build(),requestOptions);
+                                                    }
+
+                                                    /**
+                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                     */
+                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
+                                                        StatementRowsSchemesLedgerRequest request) {
+                                                      return statementRowsSchemes(request,null);
+                                                    }
+
+                                                    /**
+                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                     */
+                                                    public CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> statementRowsSchemes(
+                                                        StatementRowsSchemesLedgerRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/ledger/statement-rows/list");if (requestOptions != null) {
+                                                        .addPathSegments("v1/ledger/statement-rows/schemes");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2765,14 +2767,14 @@ public class AsyncRawLedgerClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<StatementRowsSchemesLedgerResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsListLedgerResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSchemesLedgerResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2823,22 +2825,22 @@ public class AsyncRawLedgerClient {
                                                       }
 
                                                       /**
-                                                       * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                       * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> statementRowsSet(
-                                                          StatementRowsSetLedgerRequest request) {
-                                                        return statementRowsSet(request,null);
+                                                      public CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> statementRowsList(
+                                                          StatementRowsListLedgerRequest request) {
+                                                        return statementRowsList(request,null);
                                                       }
 
                                                       /**
-                                                       * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                       * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> statementRowsSet(
-                                                          StatementRowsSetLedgerRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> statementRowsList(
+                                                          StatementRowsListLedgerRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/ledger/statement-rows/set");if (requestOptions != null) {
+                                                          .addPathSegments("v1/ledger/statement-rows/list");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2864,14 +2866,14 @@ public class AsyncRawLedgerClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<StatementRowsListLedgerResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSetLedgerResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsListLedgerResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2920,4 +2922,103 @@ public class AsyncRawLedgerClient {
                                                           });
                                                           return future;
                                                         }
-                                                      }
+
+                                                        /**
+                                                         * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                         */
+                                                        public CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> statementRowsSet(
+                                                            StatementRowsSetLedgerRequest request) {
+                                                          return statementRowsSet(request,null);
+                                                        }
+
+                                                        /**
+                                                         * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                         */
+                                                        public CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> statementRowsSet(
+                                                            StatementRowsSetLedgerRequest request,
+                                                            RequestOptions requestOptions) {
+                                                          HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                            .addPathSegments("v1/ledger/statement-rows/set");if (requestOptions != null) {
+                                                              requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                httpUrl.addQueryParameter(_key, _value);
+                                                              } );
+                                                            }
+                                                            RequestBody body;
+                                                            try {
+                                                              body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                            }
+                                                            catch(JsonProcessingException e) {
+                                                              throw new NordletApiException("Failed to serialize request", e);
+                                                            }
+                                                            Request okhttpRequest = new Request.Builder()
+                                                              .url(httpUrl.build())
+                                                              .method("POST", body)
+                                                              .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                              .addHeader("Content-Type", "application/json")
+                                                              .addHeader("Accept", "application/json")
+                                                              .build();
+                                                            OkHttpClient client = clientOptions.httpClient();
+                                                            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                              client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                            }
+                                                            if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                              okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                            }
+                                                            CompletableFuture<NordletApiHttpResponse<StatementRowsSetLedgerResponse>> future = new CompletableFuture<>();
+                                                            client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                              @Override
+                                                              public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                try (ResponseBody responseBody = response.body()) {
+                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                  if (response.isSuccessful()) {
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSetLedgerResponse.class), response));
+                                                                    return;
+                                                                  }
+                                                                  try {
+                                                                    switch (response.code()) {
+                                                                      case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                      case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                      return;
+                                                                    }
+                                                                  }
+                                                                  catch (JsonProcessingException ignored) {
+                                                                    // unable to map error response, throwing generic error
+                                                                  }
+                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                  future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                  return;
+                                                                }
+                                                                catch (JsonProcessingException e) {
+                                                                  future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                }
+                                                                catch (IOException e) {
+                                                                  future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                }
+                                                              }
+
+                                                              @Override
+                                                              public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                              }
+                                                            });
+                                                            return future;
+                                                          }
+                                                        }

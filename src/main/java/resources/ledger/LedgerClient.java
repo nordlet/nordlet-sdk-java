@@ -21,6 +21,7 @@ import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTransactionsReverseLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersDeleteLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.OwnersListLedgerRequest;
@@ -48,6 +49,7 @@ import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTransactionsReverseLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersDeleteLedgerResponse;
 import com.nordlet.api.resources.ledger.types.OwnersListLedgerResponse;
@@ -227,14 +229,14 @@ public class LedgerClient {
   }
 
   /**
-   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>). The lock is not refused for open items: <code>warnings</code> lists them as <code>reports/period-checklist</code> does, for the month, or for the fiscal year when the month is the fiscal year end.
    */
   public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request) {
     return this.rawClient.periodsLock(request).body();
   }
 
   /**
-   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>).
+   * Locks the month so that postings dated in it are refused with 409 (<code>ledger/journal/transactions/create</code>, <code>cash/orders/create</code> and <code>cash/expense-reports/create</code> among them). Before locking a month that is not locked yet, posts the pending ratable revenue recognition tranches scheduled up to the month end and emits <code>revenue_recognition.posted</code> when there were any; when the month is the company's fiscal year end and no year-end close is posted for that year, posts the year-end close that moves the income and expense balances of the fiscal year to the retained earnings account (posting rule <code>closing.retainedEarnings</code>). The lock is not refused for open items: <code>warnings</code> lists them as <code>reports/period-checklist</code> does, for the month, or for the fiscal year when the month is the fiscal year end.
    */
   public PeriodsLockLedgerResponse periodsLock(PeriodsLockLedgerRequest request,
       RequestOptions requestOptions) {
@@ -544,7 +546,7 @@ public class LedgerClient {
   }
 
   /**
-   * Returns a journal transaction with its entries, ordered by account code.
+   * Returns a journal transaction with its entries, ordered by account code. <code>reversedByTransactionId</code> is the transaction posted by <code>ledger/journal/transactions/reverse</code> for a manual transaction, else null.
    */
   public JournalTransactionsGetLedgerResponse journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request) {
@@ -552,7 +554,7 @@ public class LedgerClient {
   }
 
   /**
-   * Returns a journal transaction with its entries, ordered by account code.
+   * Returns a journal transaction with its entries, ordered by account code. <code>reversedByTransactionId</code> is the transaction posted by <code>ledger/journal/transactions/reverse</code> for a manual transaction, else null.
    */
   public JournalTransactionsGetLedgerResponse journalTransactionsGet(
       JournalTransactionsGetLedgerRequest request, RequestOptions requestOptions) {
@@ -560,7 +562,7 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
    */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request) {
@@ -568,11 +570,27 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount with more than two decimals, for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
    */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsCreate(request, requestOptions).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   */
+  public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
+      JournalTransactionsReverseLedgerRequest request) {
+    return this.rawClient.journalTransactionsReverse(request).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   */
+  public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
+      JournalTransactionsReverseLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTransactionsReverse(request, requestOptions).body();
   }
 
   /**

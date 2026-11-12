@@ -10,11 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
@@ -32,14 +35,18 @@ public final class PeriodsLockLedgerResponse {
 
   private final PeriodsLockLedgerResponseStatus status;
 
+  private final List<PeriodsLockLedgerResponseWarningsItem> warnings;
+
   private final Map<String, Object> additionalProperties;
 
   private PeriodsLockLedgerResponse(String id, long year, long month,
-      PeriodsLockLedgerResponseStatus status, Map<String, Object> additionalProperties) {
+      PeriodsLockLedgerResponseStatus status, List<PeriodsLockLedgerResponseWarningsItem> warnings,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.year = year;
     this.month = month;
     this.status = status;
+    this.warnings = warnings;
     this.additionalProperties = additionalProperties;
   }
 
@@ -63,6 +70,11 @@ public final class PeriodsLockLedgerResponse {
     return status;
   }
 
+  @JsonProperty("warnings")
+  public List<PeriodsLockLedgerResponseWarningsItem> getWarnings() {
+    return warnings;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -75,12 +87,12 @@ public final class PeriodsLockLedgerResponse {
   }
 
   private boolean equalTo(PeriodsLockLedgerResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && status.equals(other.status);
+    return id.equals(other.id) && year == other.year && month == other.month && status.equals(other.status) && warnings.equals(other.warnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.status);
+    return Objects.hash(this.id, this.year, this.month, this.status, this.warnings);
   }
 
   @java.lang.Override
@@ -116,6 +128,12 @@ public final class PeriodsLockLedgerResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage warnings(List<PeriodsLockLedgerResponseWarningsItem> warnings);
+
+    _FinalStage addWarnings(PeriodsLockLedgerResponseWarningsItem warnings);
+
+    _FinalStage addAllWarnings(List<PeriodsLockLedgerResponseWarningsItem> warnings);
   }
 
   @JsonIgnoreProperties(
@@ -130,6 +148,8 @@ public final class PeriodsLockLedgerResponse {
 
     private PeriodsLockLedgerResponseStatus status;
 
+    private List<PeriodsLockLedgerResponseWarningsItem> warnings = new ArrayList<>();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -142,6 +162,7 @@ public final class PeriodsLockLedgerResponse {
       year(other.getYear());
       month(other.getMonth());
       status(other.getStatus());
+      warnings(other.getWarnings());
       return this;
     }
 
@@ -174,8 +195,35 @@ public final class PeriodsLockLedgerResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllWarnings(List<PeriodsLockLedgerResponseWarningsItem> warnings) {
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addWarnings(PeriodsLockLedgerResponseWarningsItem warnings) {
+      this.warnings.add(warnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "warnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage warnings(List<PeriodsLockLedgerResponseWarningsItem> warnings) {
+      this.warnings.clear();
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
     public PeriodsLockLedgerResponse build() {
-      return new PeriodsLockLedgerResponse(id, year, month, status, additionalProperties);
+      return new PeriodsLockLedgerResponse(id, year, month, status, warnings, additionalProperties);
     }
 
     @java.lang.Override

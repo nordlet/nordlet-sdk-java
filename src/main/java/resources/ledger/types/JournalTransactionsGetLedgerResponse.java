@@ -50,6 +50,8 @@ public final class JournalTransactionsGetLedgerResponse {
 
   private final Optional<OffsetDateTime> postedAt;
 
+  private final Optional<String> reversedByTransactionId;
+
   private final List<JournalTransactionsGetLedgerResponseEntriesItem> entries;
 
   private final Map<String, Object> additionalProperties;
@@ -57,7 +59,7 @@ public final class JournalTransactionsGetLedgerResponse {
   private JournalTransactionsGetLedgerResponse(String id, String date, Optional<String> description,
       Optional<String> documentType, Optional<String> documentId, Optional<String> partnerId,
       JournalTransactionsGetLedgerResponseStatus status, OffsetDateTime createdAt,
-      Optional<OffsetDateTime> postedAt,
+      Optional<OffsetDateTime> postedAt, Optional<String> reversedByTransactionId,
       List<JournalTransactionsGetLedgerResponseEntriesItem> entries,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -69,6 +71,7 @@ public final class JournalTransactionsGetLedgerResponse {
     this.status = status;
     this.createdAt = createdAt;
     this.postedAt = postedAt;
+    this.reversedByTransactionId = reversedByTransactionId;
     this.entries = entries;
     this.additionalProperties = additionalProperties;
   }
@@ -133,6 +136,14 @@ public final class JournalTransactionsGetLedgerResponse {
     return postedAt;
   }
 
+  @JsonIgnore
+  public Optional<String> getReversedByTransactionId() {
+    if (reversedByTransactionId == null) {
+      return Optional.empty();
+    }
+    return reversedByTransactionId;
+  }
+
   @JsonProperty("entries")
   public List<JournalTransactionsGetLedgerResponseEntriesItem> getEntries() {
     return entries;
@@ -183,6 +194,15 @@ public final class JournalTransactionsGetLedgerResponse {
     return postedAt;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversedByTransactionId")
+  private Optional<String> _getReversedByTransactionId() {
+    return reversedByTransactionId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -195,12 +215,12 @@ public final class JournalTransactionsGetLedgerResponse {
   }
 
   private boolean equalTo(JournalTransactionsGetLedgerResponse other) {
-    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt) && entries.equals(other.entries);
+    return id.equals(other.id) && date.equals(other.date) && description.equals(other.description) && documentType.equals(other.documentType) && documentId.equals(other.documentId) && partnerId.equals(other.partnerId) && status.equals(other.status) && createdAt.equals(other.createdAt) && postedAt.equals(other.postedAt) && reversedByTransactionId.equals(other.reversedByTransactionId) && entries.equals(other.entries);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt, this.entries);
+    return Objects.hash(this.id, this.date, this.description, this.documentType, this.documentId, this.partnerId, this.status, this.createdAt, this.postedAt, this.reversedByTransactionId, this.entries);
   }
 
   @java.lang.Override
@@ -267,6 +287,12 @@ public final class JournalTransactionsGetLedgerResponse {
 
     _FinalStage postedAt(Nullable<OffsetDateTime> postedAt);
 
+    _FinalStage reversedByTransactionId(Optional<String> reversedByTransactionId);
+
+    _FinalStage reversedByTransactionId(String reversedByTransactionId);
+
+    _FinalStage reversedByTransactionId(Nullable<String> reversedByTransactionId);
+
     _FinalStage entries(List<JournalTransactionsGetLedgerResponseEntriesItem> entries);
 
     _FinalStage addEntries(JournalTransactionsGetLedgerResponseEntriesItem entries);
@@ -287,6 +313,8 @@ public final class JournalTransactionsGetLedgerResponse {
     private OffsetDateTime createdAt;
 
     private List<JournalTransactionsGetLedgerResponseEntriesItem> entries = new ArrayList<>();
+
+    private Optional<String> reversedByTransactionId = Optional.empty();
 
     private Optional<OffsetDateTime> postedAt = Optional.empty();
 
@@ -315,6 +343,7 @@ public final class JournalTransactionsGetLedgerResponse {
       status(other.getStatus());
       createdAt(other.getCreatedAt());
       postedAt(other.getPostedAt());
+      reversedByTransactionId(other.getReversedByTransactionId());
       entries(other.getEntries());
       return this;
     }
@@ -372,6 +401,36 @@ public final class JournalTransactionsGetLedgerResponse {
       if (entries != null) {
         this.entries.addAll(entries);
       }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedByTransactionId(Nullable<String> reversedByTransactionId) {
+      if (reversedByTransactionId.isNull()) {
+        this.reversedByTransactionId = null;
+      }
+      else if (reversedByTransactionId.isEmpty()) {
+        this.reversedByTransactionId = Optional.empty();
+      }
+      else {
+        this.reversedByTransactionId = Optional.of(reversedByTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedByTransactionId(String reversedByTransactionId) {
+      this.reversedByTransactionId = Optional.ofNullable(reversedByTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversedByTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversedByTransactionId(Optional<String> reversedByTransactionId) {
+      this.reversedByTransactionId = reversedByTransactionId;
       return this;
     }
 
@@ -527,7 +586,7 @@ public final class JournalTransactionsGetLedgerResponse {
 
     @java.lang.Override
     public JournalTransactionsGetLedgerResponse build() {
-      return new JournalTransactionsGetLedgerResponse(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, entries, additionalProperties);
+      return new JournalTransactionsGetLedgerResponse(id, date, description, documentType, documentId, partnerId, status, createdAt, postedAt, reversedByTransactionId, entries, additionalProperties);
     }
 
     @java.lang.Override

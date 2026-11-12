@@ -14,6 +14,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceStatus {
 
   public static final DocumentsConfirmCaptureResponseInvoiceStatus DRAFT = new DocumentsConfirmCaptureResponseInvoiceStatus(Value.DRAFT, "draft");
 
+  public static final DocumentsConfirmCaptureResponseInvoiceStatus REVERSED = new DocumentsConfirmCaptureResponseInvoiceStatus(Value.REVERSED, "reversed");
+
   private final Value value;
 
   private final String string;
@@ -50,6 +52,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceStatus {
         return visitor.visitRegistered();
       case DRAFT:
         return visitor.visitDraft();
+      case REVERSED:
+        return visitor.visitReversed();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -65,6 +69,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceStatus {
         return REGISTERED;
       case "draft":
         return DRAFT;
+      case "reversed":
+        return REVERSED;
       default:
         return new DocumentsConfirmCaptureResponseInvoiceStatus(Value.UNKNOWN, value);
     }
@@ -75,6 +81,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceStatus {
 
     REGISTERED,
 
+    REVERSED,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class DocumentsConfirmCaptureResponseInvoiceStatus {
     T visitDraft();
 
     T visitRegistered();
+
+    T visitReversed();
 
     T visitUnknown(String unknownType);
   }

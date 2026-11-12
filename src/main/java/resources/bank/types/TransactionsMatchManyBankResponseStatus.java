@@ -12,6 +12,8 @@ import java.lang.String;
 public final class TransactionsMatchManyBankResponseStatus {
   public static final TransactionsMatchManyBankResponseStatus NEW = new TransactionsMatchManyBankResponseStatus(Value.NEW, "new");
 
+  public static final TransactionsMatchManyBankResponseStatus IGNORED = new TransactionsMatchManyBankResponseStatus(Value.IGNORED, "ignored");
+
   public static final TransactionsMatchManyBankResponseStatus MATCHED = new TransactionsMatchManyBankResponseStatus(Value.MATCHED, "matched");
 
   private final Value value;
@@ -48,6 +50,8 @@ public final class TransactionsMatchManyBankResponseStatus {
     switch (value) {
       case NEW:
         return visitor.visitNew();
+      case IGNORED:
+        return visitor.visitIgnored();
       case MATCHED:
         return visitor.visitMatched();
       case UNKNOWN:
@@ -63,6 +67,8 @@ public final class TransactionsMatchManyBankResponseStatus {
     switch (value) {
       case "new":
         return NEW;
+      case "ignored":
+        return IGNORED;
       case "matched":
         return MATCHED;
       default:
@@ -75,6 +81,8 @@ public final class TransactionsMatchManyBankResponseStatus {
 
     MATCHED,
 
+    IGNORED,
+
     UNKNOWN
   }
 
@@ -82,6 +90,8 @@ public final class TransactionsMatchManyBankResponseStatus {
     T visitNew();
 
     T visitMatched();
+
+    T visitIgnored();
 
     T visitUnknown(String unknownType);
   }
