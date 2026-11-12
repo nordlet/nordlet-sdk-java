@@ -44,6 +44,10 @@ public final class TransactionsRecordBankResponse {
 
   private final Optional<String> counterpartyIban;
 
+  private final Optional<String> partnerId;
+
+  private final Optional<String> partnerName;
+
   private final Optional<String> description;
 
   private final Optional<String> externalId;
@@ -64,7 +68,8 @@ public final class TransactionsRecordBankResponse {
 
   private TransactionsRecordBankResponse(String id, String bankAccountId, String date,
       String amount, String currency, Optional<String> counterpartyName,
-      Optional<String> counterpartyIban, Optional<String> description, Optional<String> externalId,
+      Optional<String> counterpartyIban, Optional<String> partnerId, Optional<String> partnerName,
+      Optional<String> description, Optional<String> externalId,
       TransactionsRecordBankResponseStatus status, Optional<String> matchedDocumentType,
       Optional<String> matchedDocumentId, Optional<String> journalTransactionId,
       Optional<String> ignoreReason, OffsetDateTime createdAt,
@@ -76,6 +81,8 @@ public final class TransactionsRecordBankResponse {
     this.currency = currency;
     this.counterpartyName = counterpartyName;
     this.counterpartyIban = counterpartyIban;
+    this.partnerId = partnerId;
+    this.partnerName = partnerName;
     this.description = description;
     this.externalId = externalId;
     this.status = status;
@@ -126,6 +133,22 @@ public final class TransactionsRecordBankResponse {
       return Optional.empty();
     }
     return counterpartyIban;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartnerId() {
+    if (partnerId == null) {
+      return Optional.empty();
+    }
+    return partnerId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getPartnerName() {
+    if (partnerName == null) {
+      return Optional.empty();
+    }
+    return partnerName;
   }
 
   @JsonIgnore
@@ -208,6 +231,24 @@ public final class TransactionsRecordBankResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("partnerId")
+  private Optional<String> _getPartnerId() {
+    return partnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partnerName")
+  private Optional<String> _getPartnerName() {
+    return partnerName;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("description")
   private Optional<String> _getDescription() {
     return description;
@@ -270,12 +311,12 @@ public final class TransactionsRecordBankResponse {
   }
 
   private boolean equalTo(TransactionsRecordBankResponse other) {
-    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && date.equals(other.date) && amount.equals(other.amount) && currency.equals(other.currency) && counterpartyName.equals(other.counterpartyName) && counterpartyIban.equals(other.counterpartyIban) && description.equals(other.description) && externalId.equals(other.externalId) && status.equals(other.status) && matchedDocumentType.equals(other.matchedDocumentType) && matchedDocumentId.equals(other.matchedDocumentId) && journalTransactionId.equals(other.journalTransactionId) && ignoreReason.equals(other.ignoreReason) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && bankAccountId.equals(other.bankAccountId) && date.equals(other.date) && amount.equals(other.amount) && currency.equals(other.currency) && counterpartyName.equals(other.counterpartyName) && counterpartyIban.equals(other.counterpartyIban) && partnerId.equals(other.partnerId) && partnerName.equals(other.partnerName) && description.equals(other.description) && externalId.equals(other.externalId) && status.equals(other.status) && matchedDocumentType.equals(other.matchedDocumentType) && matchedDocumentId.equals(other.matchedDocumentId) && journalTransactionId.equals(other.journalTransactionId) && ignoreReason.equals(other.ignoreReason) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.bankAccountId, this.date, this.amount, this.currency, this.counterpartyName, this.counterpartyIban, this.description, this.externalId, this.status, this.matchedDocumentType, this.matchedDocumentId, this.journalTransactionId, this.ignoreReason, this.createdAt);
+    return Objects.hash(this.id, this.bankAccountId, this.date, this.amount, this.currency, this.counterpartyName, this.counterpartyIban, this.partnerId, this.partnerName, this.description, this.externalId, this.status, this.matchedDocumentType, this.matchedDocumentId, this.journalTransactionId, this.ignoreReason, this.createdAt);
   }
 
   @java.lang.Override
@@ -335,6 +376,18 @@ public final class TransactionsRecordBankResponse {
     _FinalStage counterpartyIban(String counterpartyIban);
 
     _FinalStage counterpartyIban(Nullable<String> counterpartyIban);
+
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage partnerId(Nullable<String> partnerId);
+
+    _FinalStage partnerName(Optional<String> partnerName);
+
+    _FinalStage partnerName(String partnerName);
+
+    _FinalStage partnerName(Nullable<String> partnerName);
 
     _FinalStage description(Optional<String> description);
 
@@ -403,6 +456,10 @@ public final class TransactionsRecordBankResponse {
 
     private Optional<String> description = Optional.empty();
 
+    private Optional<String> partnerName = Optional.empty();
+
+    private Optional<String> partnerId = Optional.empty();
+
     private Optional<String> counterpartyIban = Optional.empty();
 
     private Optional<String> counterpartyName = Optional.empty();
@@ -422,6 +479,8 @@ public final class TransactionsRecordBankResponse {
       currency(other.getCurrency());
       counterpartyName(other.getCounterpartyName());
       counterpartyIban(other.getCounterpartyIban());
+      partnerId(other.getPartnerId());
+      partnerName(other.getPartnerName());
       description(other.getDescription());
       externalId(other.getExternalId());
       status(other.getStatus());
@@ -663,6 +722,66 @@ public final class TransactionsRecordBankResponse {
     }
 
     @java.lang.Override
+    public _FinalStage partnerName(Nullable<String> partnerName) {
+      if (partnerName.isNull()) {
+        this.partnerName = null;
+      }
+      else if (partnerName.isEmpty()) {
+        this.partnerName = Optional.empty();
+      }
+      else {
+        this.partnerName = Optional.of(partnerName.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerName(String partnerName) {
+      this.partnerName = Optional.ofNullable(partnerName);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerName",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerName(Optional<String> partnerName) {
+      this.partnerName = partnerName;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(Nullable<String> partnerId) {
+      if (partnerId.isNull()) {
+        this.partnerId = null;
+      }
+      else if (partnerId.isEmpty()) {
+        this.partnerId = Optional.empty();
+      }
+      else {
+        this.partnerId = Optional.of(partnerId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage counterpartyIban(Nullable<String> counterpartyIban) {
       if (counterpartyIban.isNull()) {
         this.counterpartyIban = null;
@@ -724,7 +843,7 @@ public final class TransactionsRecordBankResponse {
 
     @java.lang.Override
     public TransactionsRecordBankResponse build() {
-      return new TransactionsRecordBankResponse(id, bankAccountId, date, amount, currency, counterpartyName, counterpartyIban, description, externalId, status, matchedDocumentType, matchedDocumentId, journalTransactionId, ignoreReason, createdAt, additionalProperties);
+      return new TransactionsRecordBankResponse(id, bankAccountId, date, amount, currency, counterpartyName, counterpartyIban, partnerId, partnerName, description, externalId, status, matchedDocumentType, matchedDocumentId, journalTransactionId, ignoreReason, createdAt, additionalProperties);
     }
 
     @java.lang.Override

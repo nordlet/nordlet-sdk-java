@@ -222,28 +222,28 @@ public class BankClient {
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList() {
     return this.rawClient.transactionsList().body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(RequestOptions requestOptions) {
     return this.rawClient.transactionsList(requestOptions).body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(TransactionsListBankRequest request) {
     return this.rawClient.transactionsList(request).body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(TransactionsListBankRequest request,
       RequestOptions requestOptions) {

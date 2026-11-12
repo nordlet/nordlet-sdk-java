@@ -541,14 +541,14 @@ public class RawBankClient {
             }
 
             /**
-             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
              */
             public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList() {
               return transactionsList(TransactionsListBankRequest.builder().build());
             }
 
             /**
-             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
              */
             public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
                 RequestOptions requestOptions) {
@@ -556,7 +556,7 @@ public class RawBankClient {
             }
 
             /**
-             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
              */
             public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
                 TransactionsListBankRequest request) {
@@ -564,7 +564,7 @@ public class RawBankClient {
             }
 
             /**
-             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName and externalId; sortable by date, createdAt and amount.
+             * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
              */
             public NordletApiHttpResponse<TransactionsListBankResponse> transactionsList(
                 TransactionsListBankRequest request, RequestOptions requestOptions) {
