@@ -104,14 +104,14 @@ public class AsyncRawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<NordletApiHttpResponse<AccountsListLedgerResponse>> accountsList() {
     return accountsList(AccountsListLedgerRequest.builder().build());
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<NordletApiHttpResponse<AccountsListLedgerResponse>> accountsList(
       RequestOptions requestOptions) {
@@ -119,7 +119,7 @@ public class AsyncRawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<NordletApiHttpResponse<AccountsListLedgerResponse>> accountsList(
       AccountsListLedgerRequest request) {
@@ -127,7 +127,7 @@ public class AsyncRawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<NordletApiHttpResponse<AccountsListLedgerResponse>> accountsList(
       AccountsListLedgerRequest request, RequestOptions requestOptions) {

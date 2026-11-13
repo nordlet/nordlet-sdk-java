@@ -159,28 +159,28 @@ public class CashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public ExpenseReportsListCashResponse expenseReportsList() {
     return this.rawClient.expenseReportsList().body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public ExpenseReportsListCashResponse expenseReportsList(RequestOptions requestOptions) {
     return this.rawClient.expenseReportsList(requestOptions).body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public ExpenseReportsListCashResponse expenseReportsList(ExpenseReportsListCashRequest request) {
     return this.rawClient.expenseReportsList(request).body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public ExpenseReportsListCashResponse expenseReportsList(ExpenseReportsListCashRequest request,
       RequestOptions requestOptions) {

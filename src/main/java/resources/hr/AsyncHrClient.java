@@ -545,14 +545,14 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList() {
     return this.rawClient.businessTripsList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       RequestOptions requestOptions) {
@@ -560,7 +560,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request) {
@@ -568,7 +568,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request, RequestOptions requestOptions) {

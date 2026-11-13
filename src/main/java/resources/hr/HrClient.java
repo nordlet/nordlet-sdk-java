@@ -526,28 +526,28 @@ public class HrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public BusinessTripsListHrResponse businessTripsList() {
     return this.rawClient.businessTripsList().body();
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public BusinessTripsListHrResponse businessTripsList(RequestOptions requestOptions) {
     return this.rawClient.businessTripsList(requestOptions).body();
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public BusinessTripsListHrResponse businessTripsList(BusinessTripsListHrRequest request) {
     return this.rawClient.businessTripsList(request).body();
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
    */
   public BusinessTripsListHrResponse businessTripsList(BusinessTripsListHrRequest request,
       RequestOptions requestOptions) {

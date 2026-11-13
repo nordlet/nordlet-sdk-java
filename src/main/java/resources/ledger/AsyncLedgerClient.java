@@ -82,21 +82,21 @@ public class AsyncLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<AccountsListLedgerResponse> accountsList() {
     return this.rawClient.accountsList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(RequestOptions requestOptions) {
     return this.rawClient.accountsList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request) {
@@ -104,7 +104,7 @@ public class AsyncLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>.
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public CompletableFuture<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request, RequestOptions requestOptions) {

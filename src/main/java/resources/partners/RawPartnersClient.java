@@ -1702,7 +1702,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             ) {
@@ -1710,7 +1710,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             RequestOptions requestOptions) {
@@ -1718,7 +1718,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             VatReviewsListPartnersRequest request) {
@@ -1726,7 +1726,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             VatReviewsListPartnersRequest request,

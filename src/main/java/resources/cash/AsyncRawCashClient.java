@@ -682,7 +682,7 @@ public class AsyncRawCashClient {
               }
 
               /**
-               * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+               * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
                */
               public CompletableFuture<NordletApiHttpResponse<ExpenseReportsListCashResponse>> expenseReportsList(
                   ) {
@@ -690,7 +690,7 @@ public class AsyncRawCashClient {
               }
 
               /**
-               * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+               * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
                */
               public CompletableFuture<NordletApiHttpResponse<ExpenseReportsListCashResponse>> expenseReportsList(
                   RequestOptions requestOptions) {
@@ -698,7 +698,7 @@ public class AsyncRawCashClient {
               }
 
               /**
-               * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+               * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
                */
               public CompletableFuture<NordletApiHttpResponse<ExpenseReportsListCashResponse>> expenseReportsList(
                   ExpenseReportsListCashRequest request) {
@@ -706,7 +706,7 @@ public class AsyncRawCashClient {
               }
 
               /**
-               * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+               * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
                */
               public CompletableFuture<NordletApiHttpResponse<ExpenseReportsListCashResponse>> expenseReportsList(
                   ExpenseReportsListCashRequest request, RequestOptions requestOptions) {

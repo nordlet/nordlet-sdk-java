@@ -162,14 +162,14 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList() {
     return this.rawClient.expenseReportsList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       RequestOptions requestOptions) {
@@ -177,7 +177,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request) {
@@ -185,7 +185,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code> and <code>date</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request, RequestOptions requestOptions) {

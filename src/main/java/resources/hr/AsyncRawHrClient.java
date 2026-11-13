@@ -2393,7 +2393,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   ) {
@@ -2401,7 +2401,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   RequestOptions requestOptions) {
@@ -2409,7 +2409,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   BusinessTripsListHrRequest request) {
@@ -2417,7 +2417,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code> and <code>payrollRunId</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   BusinessTripsListHrRequest request,

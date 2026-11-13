@@ -16,6 +16,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SALES_REVENUE_PRODUCTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SALES_REVENUE_PRODUCTS, "sales.revenueProducts");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_PAYMENT_DIFFERENCE_GAIN = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_PAYMENT_DIFFERENCE_GAIN, "bank.paymentDifferenceGain");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey POS_CASH_SURPLUS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.POS_CASH_SURPLUS, "pos.cashSurplus");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey POS_CASH_SHORTAGE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.POS_CASH_SHORTAGE, "pos.cashShortage");
@@ -55,6 +57,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
   public static final PostingRulesUpdateLedgerRequestRulesItemKey CASH_ADVANCES = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.CASH_ADVANCES, "cash.advances");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey INVENTORY_COGS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.INVENTORY_COGS, "inventory.cogs");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_PAYMENT_DIFFERENCE_LOSS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_PAYMENT_DIFFERENCE_LOSS, "bank.paymentDifferenceLoss");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_CARD_PAYMENTS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_CARD_PAYMENTS, "bank.cardPayments");
 
@@ -130,6 +134,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitAssetsDisposalLoss();
       case SALES_REVENUE_PRODUCTS:
         return visitor.visitSalesRevenueProducts();
+      case BANK_PAYMENT_DIFFERENCE_GAIN:
+        return visitor.visitBankPaymentDifferenceGain();
       case POS_CASH_SURPLUS:
         return visitor.visitPosCashSurplus();
       case POS_CASH_SHORTAGE:
@@ -170,6 +176,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitCashAdvances();
       case INVENTORY_COGS:
         return visitor.visitInventoryCogs();
+      case BANK_PAYMENT_DIFFERENCE_LOSS:
+        return visitor.visitBankPaymentDifferenceLoss();
       case BANK_CARD_PAYMENTS:
         return visitor.visitBankCardPayments();
       case SECURITIES_INTEREST_EXPENSE:
@@ -223,6 +231,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return ASSETS_DISPOSAL_LOSS;
       case "sales.revenueProducts":
         return SALES_REVENUE_PRODUCTS;
+      case "bank.paymentDifferenceGain":
+        return BANK_PAYMENT_DIFFERENCE_GAIN;
       case "pos.cashSurplus":
         return POS_CASH_SURPLUS;
       case "pos.cashShortage":
@@ -263,6 +273,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return CASH_ADVANCES;
       case "inventory.cogs":
         return INVENTORY_COGS;
+      case "bank.paymentDifferenceLoss":
+        return BANK_PAYMENT_DIFFERENCE_LOSS;
       case "bank.cardPayments":
         return BANK_CARD_PAYMENTS;
       case "securities.interestExpense":
@@ -340,6 +352,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     BANK_FX_GAIN,
 
     BANK_FX_LOSS,
+
+    BANK_PAYMENT_DIFFERENCE_GAIN,
+
+    BANK_PAYMENT_DIFFERENCE_LOSS,
 
     BANK_FEES,
 
@@ -426,6 +442,10 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitBankFxGain();
 
     T visitBankFxLoss();
+
+    T visitBankPaymentDifferenceGain();
+
+    T visitBankPaymentDifferenceLoss();
 
     T visitBankFees();
 

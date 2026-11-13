@@ -532,28 +532,28 @@ public class PartnersClient {
   }
 
   /**
-   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
    */
   public VatReviewsListPartnersResponse vatReviewsList() {
     return this.rawClient.vatReviewsList().body();
   }
 
   /**
-   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
    */
   public VatReviewsListPartnersResponse vatReviewsList(RequestOptions requestOptions) {
     return this.rawClient.vatReviewsList(requestOptions).body();
   }
 
   /**
-   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
    */
   public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request) {
     return this.rawClient.vatReviewsList(request).body();
   }
 
   /**
-   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code> and <code>reason</code>, sortable by <code>createdAt</code>.
+   * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
    */
   public VatReviewsListPartnersResponse vatReviewsList(VatReviewsListPartnersRequest request,
       RequestOptions requestOptions) {
