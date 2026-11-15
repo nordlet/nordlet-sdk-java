@@ -71,28 +71,28 @@ public class CashClient {
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public OrdersListCashResponse ordersList() {
     return this.rawClient.ordersList().body();
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public OrdersListCashResponse ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).body();
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public OrdersListCashResponse ordersList(OrdersListCashRequest request) {
     return this.rawClient.ordersList(request).body();
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public OrdersListCashResponse ordersList(OrdersListCashRequest request,
       RequestOptions requestOptions) {
@@ -159,28 +159,28 @@ public class CashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public ExpenseReportsListCashResponse expenseReportsList() {
     return this.rawClient.expenseReportsList().body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public ExpenseReportsListCashResponse expenseReportsList(RequestOptions requestOptions) {
     return this.rawClient.expenseReportsList(requestOptions).body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public ExpenseReportsListCashResponse expenseReportsList(ExpenseReportsListCashRequest request) {
     return this.rawClient.expenseReportsList(request).body();
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public ExpenseReportsListCashResponse expenseReportsList(ExpenseReportsListCashRequest request,
       RequestOptions requestOptions) {
@@ -188,21 +188,21 @@ public class CashClient {
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public AdvanceHoldersBalancesCashResponse advanceHoldersBalances() {
     return this.rawClient.advanceHoldersBalances().body();
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(RequestOptions requestOptions) {
     return this.rawClient.advanceHoldersBalances(requestOptions).body();
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request) {
@@ -210,7 +210,7 @@ public class CashClient {
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public AdvanceHoldersBalancesCashResponse advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request, RequestOptions requestOptions) {

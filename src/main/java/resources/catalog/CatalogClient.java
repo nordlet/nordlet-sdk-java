@@ -149,28 +149,28 @@ public class CatalogClient {
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public ItemsListCatalogResponse itemsList() {
     return this.rawClient.itemsList().body();
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public ItemsListCatalogResponse itemsList(RequestOptions requestOptions) {
     return this.rawClient.itemsList(requestOptions).body();
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public ItemsListCatalogResponse itemsList(ItemsListCatalogRequest request) {
     return this.rawClient.itemsList(request).body();
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public ItemsListCatalogResponse itemsList(ItemsListCatalogRequest request,
       RequestOptions requestOptions) {

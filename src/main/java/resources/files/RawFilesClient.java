@@ -199,28 +199,28 @@ public class RawFilesClient {
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public NordletApiHttpResponse<ListFilesResponse> list() {
         return list(ListFilesRequest.builder().build());
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public NordletApiHttpResponse<ListFilesResponse> list(RequestOptions requestOptions) {
         return list(ListFilesRequest.builder().build(),requestOptions);
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request) {
         return list(request,null);
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request,
           RequestOptions requestOptions) {

@@ -701,14 +701,14 @@ public class RawAgreementsClient {
                   }
 
                   /**
-                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code>, <code>createdAt</code>, <code>name</code>, <code>partyName</code> (the partner name, else the employee name, else the bank account name), <code>kind</code>, <code>endDate</code>, <code>status</code>, <code>value</code> and <code>documentRef</code> (default <code>startDate</code> descending).
                    */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList() {
                     return agreementsList(AgreementsListAgreementsRequest.builder().build());
                   }
 
                   /**
-                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code>, <code>createdAt</code>, <code>name</code>, <code>partyName</code> (the partner name, else the employee name, else the bank account name), <code>kind</code>, <code>endDate</code>, <code>status</code>, <code>value</code> and <code>documentRef</code> (default <code>startDate</code> descending).
                    */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       RequestOptions requestOptions) {
@@ -716,7 +716,7 @@ public class RawAgreementsClient {
                   }
 
                   /**
-                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code>, <code>createdAt</code>, <code>name</code>, <code>partyName</code> (the partner name, else the employee name, else the bank account name), <code>kind</code>, <code>endDate</code>, <code>status</code>, <code>value</code> and <code>documentRef</code> (default <code>startDate</code> descending).
                    */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       AgreementsListAgreementsRequest request) {
@@ -724,7 +724,7 @@ public class RawAgreementsClient {
                   }
 
                   /**
-                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code> and <code>createdAt</code> (default <code>startDate</code> descending).
+                   * List the company's agreements without their items, each with <code>partnerName</code>. Filterable by <code>number</code>, <code>name</code>, <code>partnerId</code>, <code>employeeId</code>, <code>bankAccountId</code>, <code>kind</code>, <code>typeId</code>, <code>status</code>, <code>startDate</code>, <code>endDate</code> and <code>value</code>; sortable by <code>number</code>, <code>startDate</code>, <code>createdAt</code>, <code>name</code>, <code>partyName</code> (the partner name, else the employee name, else the bank account name), <code>kind</code>, <code>endDate</code>, <code>status</code>, <code>value</code> and <code>documentRef</code> (default <code>startDate</code> descending).
                    */
                   public NordletApiHttpResponse<AgreementsListAgreementsResponse> agreementsList(
                       AgreementsListAgreementsRequest request, RequestOptions requestOptions) {

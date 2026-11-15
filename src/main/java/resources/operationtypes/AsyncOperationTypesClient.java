@@ -99,28 +99,28 @@ public class AsyncOperationTypesClient {
   }
 
   /**
-   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>accounts</code> (the debit account code, then the credit account code), <code>flags</code> (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), <code>isSale</code>, <code>isPurchase</code>, <code>sortOrder</code>, <code>isActive</code> and <code>createdAt</code>.
    */
   public CompletableFuture<ListOperationTypesResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
   /**
-   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>accounts</code> (the debit account code, then the credit account code), <code>flags</code> (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), <code>isSale</code>, <code>isPurchase</code>, <code>sortOrder</code>, <code>isActive</code> and <code>createdAt</code>.
    */
   public CompletableFuture<ListOperationTypesResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>accounts</code> (the debit account code, then the credit account code), <code>flags</code> (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), <code>isSale</code>, <code>isPurchase</code>, <code>sortOrder</code>, <code>isActive</code> and <code>createdAt</code>.
    */
   public CompletableFuture<ListOperationTypesResponse> list(ListOperationTypesRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
   /**
-   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>sortOrder</code> and <code>createdAt</code>.
+   * List operation types. Filterable by <code>code</code>, <code>name</code>, <code>isSale</code>, <code>isPurchase</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>accounts</code> (the debit account code, then the credit account code), <code>flags</code> (the names of the flags that are set, in the order isPurchase, isSale, isWriteOff, isInternalMovement, isPurchaseReturn, isSalesReturn, isConsignment, isProduction, isAssetIn, isAssetOut, isCashRegisterSale), <code>isSale</code>, <code>isPurchase</code>, <code>sortOrder</code>, <code>isActive</code> and <code>createdAt</code>.
    */
   public CompletableFuture<ListOperationTypesResponse> list(ListOperationTypesRequest request,
       RequestOptions requestOptions) {

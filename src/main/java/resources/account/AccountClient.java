@@ -14,6 +14,7 @@ import com.nordlet.api.resources.account.requests.BrandGetAccountRequest;
 import com.nordlet.api.resources.account.requests.BrandUpdateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesContextAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesConvertToLiveAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesCreateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesDeleteAccountRequest;
@@ -64,6 +65,7 @@ import com.nordlet.api.resources.account.types.BrandGetAccountResponse;
 import com.nordlet.api.resources.account.types.BrandUpdateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesContextAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesConvertToLiveAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesDeleteAccountResponse;
@@ -446,6 +448,35 @@ public class AccountClient {
   public CompaniesProfileAccountResponse companiesProfile(CompaniesProfileAccountRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.companiesProfile(request, requestOptions).body();
+  }
+
+  /**
+   * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
+   */
+  public CompaniesContextAccountResponse companiesContext() {
+    return this.rawClient.companiesContext().body();
+  }
+
+  /**
+   * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
+   */
+  public CompaniesContextAccountResponse companiesContext(RequestOptions requestOptions) {
+    return this.rawClient.companiesContext(requestOptions).body();
+  }
+
+  /**
+   * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
+   */
+  public CompaniesContextAccountResponse companiesContext(CompaniesContextAccountRequest request) {
+    return this.rawClient.companiesContext(request).body();
+  }
+
+  /**
+   * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
+   */
+  public CompaniesContextAccountResponse companiesContext(CompaniesContextAccountRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.companiesContext(request, requestOptions).body();
   }
 
   /**

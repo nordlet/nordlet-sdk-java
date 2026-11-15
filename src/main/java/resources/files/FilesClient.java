@@ -61,28 +61,28 @@ public class FilesClient {
   }
 
   /**
-   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
    */
   public ListFilesResponse list() {
     return this.rawClient.list().body();
   }
 
   /**
-   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
    */
   public ListFilesResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
   /**
-   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
    */
   public ListFilesResponse list(ListFilesRequest request) {
     return this.rawClient.list(request).body();
   }
 
   /**
-   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+   * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
    */
   public ListFilesResponse list(ListFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();

@@ -121,28 +121,28 @@ public class LeadsClient {
   }
 
   /**
-   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
    */
   public ListLeadsResponse list() {
     return this.rawClient.list().body();
   }
 
   /**
-   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
    */
   public ListLeadsResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
   /**
-   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
    */
   public ListLeadsResponse list(ListLeadsRequest request) {
     return this.rawClient.list(request).body();
   }
 
   /**
-   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+   * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
    */
   public ListLeadsResponse list(ListLeadsRequest request, RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();

@@ -59,6 +59,10 @@ public final class SubmissionsMarkDeclarationsResponse {
 
   private final long amendment;
 
+  private final Optional<String> authorityRef;
+
+  private final Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput;
+
   private final String origin;
 
   private final Optional<String> transportSystem;
@@ -99,7 +103,9 @@ public final class SubmissionsMarkDeclarationsResponse {
       Optional<Long> periodMonth, Optional<String> variant,
       SubmissionsMarkDeclarationsResponseStatus status, String fileName, Optional<String> fileId,
       Optional<String> externalRef, Optional<String> message, Optional<String> ruleKey,
-      Optional<String> period, Optional<String> documentKey, long amendment, String origin,
+      Optional<String> period, Optional<String> documentKey, long amendment,
+      Optional<String> authorityRef,
+      Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput, String origin,
       Optional<String> transportSystem,
       Optional<SubmissionsMarkDeclarationsResponseEnvironment> environment,
       Optional<OffsetDateTime> submittedAt, Optional<OffsetDateTime> acceptedAt,
@@ -123,6 +129,8 @@ public final class SubmissionsMarkDeclarationsResponse {
     this.period = period;
     this.documentKey = documentKey;
     this.amendment = amendment;
+    this.authorityRef = authorityRef;
+    this.correctionInput = correctionInput;
     this.origin = origin;
     this.transportSystem = transportSystem;
     this.environment = environment;
@@ -235,6 +243,22 @@ public final class SubmissionsMarkDeclarationsResponse {
   @JsonProperty("amendment")
   public long getAmendment() {
     return amendment;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAuthorityRef() {
+    if (authorityRef == null) {
+      return Optional.empty();
+    }
+    return authorityRef;
+  }
+
+  @JsonIgnore
+  public Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> getCorrectionInput() {
+    if (correctionInput == null) {
+      return Optional.empty();
+    }
+    return correctionInput;
   }
 
   @JsonProperty("origin")
@@ -434,6 +458,24 @@ public final class SubmissionsMarkDeclarationsResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("authorityRef")
+  private Optional<String> _getAuthorityRef() {
+    return authorityRef;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("correctionInput")
+  private Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> _getCorrectionInput() {
+    return correctionInput;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("transportSystem")
   private Optional<String> _getTransportSystem() {
     return transportSystem;
@@ -550,12 +592,12 @@ public final class SubmissionsMarkDeclarationsResponse {
   }
 
   private boolean equalTo(SubmissionsMarkDeclarationsResponse other) {
-    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && authorityRef.equals(other.authorityRef) && correctionInput.equals(other.correctionInput) && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.authorityRef, this.correctionInput, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -667,6 +709,20 @@ public final class SubmissionsMarkDeclarationsResponse {
     _FinalStage documentKey(String documentKey);
 
     _FinalStage documentKey(Nullable<String> documentKey);
+
+    _FinalStage authorityRef(Optional<String> authorityRef);
+
+    _FinalStage authorityRef(String authorityRef);
+
+    _FinalStage authorityRef(Nullable<String> authorityRef);
+
+    _FinalStage correctionInput(
+        Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput);
+
+    _FinalStage correctionInput(SubmissionsMarkDeclarationsResponseCorrectionInput correctionInput);
+
+    _FinalStage correctionInput(
+        Nullable<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput);
 
     _FinalStage transportSystem(Optional<String> transportSystem);
 
@@ -791,6 +847,10 @@ public final class SubmissionsMarkDeclarationsResponse {
 
     private Optional<String> transportSystem = Optional.empty();
 
+    private Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput = Optional.empty();
+
+    private Optional<String> authorityRef = Optional.empty();
+
     private Optional<String> documentKey = Optional.empty();
 
     private Optional<String> period = Optional.empty();
@@ -829,6 +889,8 @@ public final class SubmissionsMarkDeclarationsResponse {
       period(other.getPeriod());
       documentKey(other.getDocumentKey());
       amendment(other.getAmendment());
+      authorityRef(other.getAuthorityRef());
+      correctionInput(other.getCorrectionInput());
       origin(other.getOrigin());
       transportSystem(other.getTransportSystem());
       environment(other.getEnvironment());
@@ -1289,6 +1351,69 @@ public final class SubmissionsMarkDeclarationsResponse {
     }
 
     @java.lang.Override
+    public _FinalStage correctionInput(
+        Nullable<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput) {
+      if (correctionInput.isNull()) {
+        this.correctionInput = null;
+      }
+      else if (correctionInput.isEmpty()) {
+        this.correctionInput = Optional.empty();
+      }
+      else {
+        this.correctionInput = Optional.of(correctionInput.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correctionInput(
+        SubmissionsMarkDeclarationsResponseCorrectionInput correctionInput) {
+      this.correctionInput = Optional.ofNullable(correctionInput);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correctionInput",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correctionInput(
+        Optional<SubmissionsMarkDeclarationsResponseCorrectionInput> correctionInput) {
+      this.correctionInput = correctionInput;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorityRef(Nullable<String> authorityRef) {
+      if (authorityRef.isNull()) {
+        this.authorityRef = null;
+      }
+      else if (authorityRef.isEmpty()) {
+        this.authorityRef = Optional.empty();
+      }
+      else {
+        this.authorityRef = Optional.of(authorityRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorityRef(String authorityRef) {
+      this.authorityRef = Optional.ofNullable(authorityRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "authorityRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage authorityRef(Optional<String> authorityRef) {
+      this.authorityRef = authorityRef;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage documentKey(Nullable<String> documentKey) {
       if (documentKey.isNull()) {
         this.documentKey = null;
@@ -1530,7 +1655,7 @@ public final class SubmissionsMarkDeclarationsResponse {
 
     @java.lang.Override
     public SubmissionsMarkDeclarationsResponse build() {
-      return new SubmissionsMarkDeclarationsResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, additionalProperties);
+      return new SubmissionsMarkDeclarationsResponse(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, authorityRef, correctionInput, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

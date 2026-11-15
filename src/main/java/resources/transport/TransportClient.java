@@ -112,28 +112,28 @@ public class TransportClient {
   }
 
   /**
-   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
    */
   public WaybillsListTransportResponse waybillsList() {
     return this.rawClient.waybillsList().body();
   }
 
   /**
-   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
    */
   public WaybillsListTransportResponse waybillsList(RequestOptions requestOptions) {
     return this.rawClient.waybillsList(requestOptions).body();
   }
 
   /**
-   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
    */
   public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request) {
     return this.rawClient.waybillsList(request).body();
   }
 
   /**
-   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+   * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
    */
   public WaybillsListTransportResponse waybillsList(WaybillsListTransportRequest request,
       RequestOptions requestOptions) {

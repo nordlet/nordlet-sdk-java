@@ -59,6 +59,8 @@ public final class UpdateCalendarResponse {
 
   private final boolean canAmend;
 
+  private final Optional<UpdateCalendarResponseCorrection> correction;
+
   private final boolean canDownload;
 
   private final boolean automated;
@@ -70,7 +72,8 @@ public final class UpdateCalendarResponse {
       Optional<String> notes, boolean done, Optional<String> href,
       Optional<UpdateCalendarResponseSubmission> submission,
       List<UpdateCalendarResponseSubmissionsItem> submissions, boolean canSubmit, boolean canAmend,
-      boolean canDownload, boolean automated, Map<String, Object> additionalProperties) {
+      Optional<UpdateCalendarResponseCorrection> correction, boolean canDownload, boolean automated,
+      Map<String, Object> additionalProperties) {
     this.key = key;
     this.id = id;
     this.kind = kind;
@@ -85,6 +88,7 @@ public final class UpdateCalendarResponse {
     this.submissions = submissions;
     this.canSubmit = canSubmit;
     this.canAmend = canAmend;
+    this.correction = correction;
     this.canDownload = canDownload;
     this.automated = automated;
     this.additionalProperties = additionalProperties;
@@ -178,6 +182,14 @@ public final class UpdateCalendarResponse {
     return canAmend;
   }
 
+  @JsonIgnore
+  public Optional<UpdateCalendarResponseCorrection> getCorrection() {
+    if (correction == null) {
+      return Optional.empty();
+    }
+    return correction;
+  }
+
   @JsonProperty("canDownload")
   public boolean getCanDownload() {
     return canDownload;
@@ -242,6 +254,15 @@ public final class UpdateCalendarResponse {
     return submission;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("correction")
+  private Optional<UpdateCalendarResponseCorrection> _getCorrection() {
+    return correction;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -254,12 +275,12 @@ public final class UpdateCalendarResponse {
   }
 
   private boolean equalTo(UpdateCalendarResponse other) {
-    return key.equals(other.key) && id.equals(other.id) && kind.equals(other.kind) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && title.equals(other.title) && dueDate.equals(other.dueDate) && notes.equals(other.notes) && done == other.done && href.equals(other.href) && submission.equals(other.submission) && submissions.equals(other.submissions) && canSubmit == other.canSubmit && canAmend == other.canAmend && canDownload == other.canDownload && automated == other.automated;
+    return key.equals(other.key) && id.equals(other.id) && kind.equals(other.kind) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && title.equals(other.title) && dueDate.equals(other.dueDate) && notes.equals(other.notes) && done == other.done && href.equals(other.href) && submission.equals(other.submission) && submissions.equals(other.submissions) && canSubmit == other.canSubmit && canAmend == other.canAmend && correction.equals(other.correction) && canDownload == other.canDownload && automated == other.automated;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.id, this.kind, this.ruleKey, this.period, this.title, this.dueDate, this.notes, this.done, this.href, this.submission, this.submissions, this.canSubmit, this.canAmend, this.canDownload, this.automated);
+    return Objects.hash(this.key, this.id, this.kind, this.ruleKey, this.period, this.title, this.dueDate, this.notes, this.done, this.href, this.submission, this.submissions, this.canSubmit, this.canAmend, this.correction, this.canDownload, this.automated);
   }
 
   @java.lang.Override
@@ -357,6 +378,12 @@ public final class UpdateCalendarResponse {
     _FinalStage addSubmissions(UpdateCalendarResponseSubmissionsItem submissions);
 
     _FinalStage addAllSubmissions(List<UpdateCalendarResponseSubmissionsItem> submissions);
+
+    _FinalStage correction(Optional<UpdateCalendarResponseCorrection> correction);
+
+    _FinalStage correction(UpdateCalendarResponseCorrection correction);
+
+    _FinalStage correction(Nullable<UpdateCalendarResponseCorrection> correction);
   }
 
   @JsonIgnoreProperties(
@@ -380,6 +407,8 @@ public final class UpdateCalendarResponse {
     private boolean canDownload;
 
     private boolean automated;
+
+    private Optional<UpdateCalendarResponseCorrection> correction = Optional.empty();
 
     private List<UpdateCalendarResponseSubmissionsItem> submissions = new ArrayList<>();
 
@@ -417,6 +446,7 @@ public final class UpdateCalendarResponse {
       submissions(other.getSubmissions());
       canSubmit(other.getCanSubmit());
       canAmend(other.getCanAmend());
+      correction(other.getCorrection());
       canDownload(other.getCanDownload());
       automated(other.getAutomated());
       return this;
@@ -482,6 +512,36 @@ public final class UpdateCalendarResponse {
     @JsonSetter("automated")
     public _FinalStage automated(boolean automated) {
       this.automated = automated;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correction(Nullable<UpdateCalendarResponseCorrection> correction) {
+      if (correction.isNull()) {
+        this.correction = null;
+      }
+      else if (correction.isEmpty()) {
+        this.correction = Optional.empty();
+      }
+      else {
+        this.correction = Optional.of(correction.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correction(UpdateCalendarResponseCorrection correction) {
+      this.correction = Optional.ofNullable(correction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correction(Optional<UpdateCalendarResponseCorrection> correction) {
+      this.correction = correction;
       return this;
     }
 
@@ -694,7 +754,7 @@ public final class UpdateCalendarResponse {
 
     @java.lang.Override
     public UpdateCalendarResponse build() {
-      return new UpdateCalendarResponse(key, id, kind, ruleKey, period, title, dueDate, notes, done, href, submission, submissions, canSubmit, canAmend, canDownload, automated, additionalProperties);
+      return new UpdateCalendarResponse(key, id, kind, ruleKey, period, title, dueDate, notes, done, href, submission, submissions, canSubmit, canAmend, correction, canDownload, automated, additionalProperties);
     }
 
     @java.lang.Override

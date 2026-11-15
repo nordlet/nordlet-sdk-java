@@ -84,6 +84,8 @@ public final class AssetsListAssetsResponseRowsItem {
 
   private final Optional<String> disposalJournalTransactionId;
 
+  private final Optional<String> disposalSaleInvoiceId;
+
   private final OffsetDateTime createdAt;
 
   private final Map<String, Object> additionalProperties;
@@ -100,7 +102,8 @@ public final class AssetsListAssetsResponseRowsItem {
       Optional<String> disposalDate,
       Optional<AssetsListAssetsResponseRowsItemDisposalReason> disposalReason,
       Optional<String> disposalProceeds, Optional<String> disposalJournalTransactionId,
-      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+      Optional<String> disposalSaleInvoiceId, OffsetDateTime createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.groupId = groupId;
     this.code = code;
@@ -127,6 +130,7 @@ public final class AssetsListAssetsResponseRowsItem {
     this.disposalReason = disposalReason;
     this.disposalProceeds = disposalProceeds;
     this.disposalJournalTransactionId = disposalJournalTransactionId;
+    this.disposalSaleInvoiceId = disposalSaleInvoiceId;
     this.createdAt = createdAt;
     this.additionalProperties = additionalProperties;
   }
@@ -288,6 +292,14 @@ public final class AssetsListAssetsResponseRowsItem {
     return disposalJournalTransactionId;
   }
 
+  @JsonIgnore
+  public Optional<String> getDisposalSaleInvoiceId() {
+    if (disposalSaleInvoiceId == null) {
+      return Optional.empty();
+    }
+    return disposalSaleInvoiceId;
+  }
+
   @JsonProperty("createdAt")
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -374,6 +386,15 @@ public final class AssetsListAssetsResponseRowsItem {
     return disposalJournalTransactionId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("disposalSaleInvoiceId")
+  private Optional<String> _getDisposalSaleInvoiceId() {
+    return disposalSaleInvoiceId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -386,12 +407,12 @@ public final class AssetsListAssetsResponseRowsItem {
   }
 
   private boolean equalTo(AssetsListAssetsResponseRowsItem other) {
-    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && inputVatAmount.equals(other.inputVatAmount) && inputVatFirstUseDate.equals(other.inputVatFirstUseDate) && inputVatDeductiblePercent.equals(other.inputVatDeductiblePercent) && inputVatRealEstate == other.inputVatRealEstate && inputVatUseChanges.equals(other.inputVatUseChanges) && disposalDate.equals(other.disposalDate) && disposalReason.equals(other.disposalReason) && disposalProceeds.equals(other.disposalProceeds) && disposalJournalTransactionId.equals(other.disposalJournalTransactionId) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && groupId.equals(other.groupId) && code.equals(other.code) && name.equals(other.name) && acquisitionDate.equals(other.acquisitionDate) && depreciationStartDate.equals(other.depreciationStartDate) && acquisitionCost.equals(other.acquisitionCost) && salvageValue.equals(other.salvageValue) && usefulLifeMonths == other.usefulLifeMonths && totalCost.equals(other.totalCost) && accumulatedDepreciation.equals(other.accumulatedDepreciation) && netBookValue.equals(other.netBookValue) && depreciatedMonths == other.depreciatedMonths && totalLifeMonths == other.totalLifeMonths && status.equals(other.status) && notes.equals(other.notes) && documents.equals(other.documents) && inputVatAmount.equals(other.inputVatAmount) && inputVatFirstUseDate.equals(other.inputVatFirstUseDate) && inputVatDeductiblePercent.equals(other.inputVatDeductiblePercent) && inputVatRealEstate == other.inputVatRealEstate && inputVatUseChanges.equals(other.inputVatUseChanges) && disposalDate.equals(other.disposalDate) && disposalReason.equals(other.disposalReason) && disposalProceeds.equals(other.disposalProceeds) && disposalJournalTransactionId.equals(other.disposalJournalTransactionId) && disposalSaleInvoiceId.equals(other.disposalSaleInvoiceId) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.documents, this.inputVatAmount, this.inputVatFirstUseDate, this.inputVatDeductiblePercent, this.inputVatRealEstate, this.inputVatUseChanges, this.disposalDate, this.disposalReason, this.disposalProceeds, this.disposalJournalTransactionId, this.createdAt);
+    return Objects.hash(this.id, this.groupId, this.code, this.name, this.acquisitionDate, this.depreciationStartDate, this.acquisitionCost, this.salvageValue, this.usefulLifeMonths, this.totalCost, this.accumulatedDepreciation, this.netBookValue, this.depreciatedMonths, this.totalLifeMonths, this.status, this.notes, this.documents, this.inputVatAmount, this.inputVatFirstUseDate, this.inputVatDeductiblePercent, this.inputVatRealEstate, this.inputVatUseChanges, this.disposalDate, this.disposalReason, this.disposalProceeds, this.disposalJournalTransactionId, this.disposalSaleInvoiceId, this.createdAt);
   }
 
   @java.lang.Override
@@ -544,6 +565,12 @@ public final class AssetsListAssetsResponseRowsItem {
     _FinalStage disposalJournalTransactionId(String disposalJournalTransactionId);
 
     _FinalStage disposalJournalTransactionId(Nullable<String> disposalJournalTransactionId);
+
+    _FinalStage disposalSaleInvoiceId(Optional<String> disposalSaleInvoiceId);
+
+    _FinalStage disposalSaleInvoiceId(String disposalSaleInvoiceId);
+
+    _FinalStage disposalSaleInvoiceId(Nullable<String> disposalSaleInvoiceId);
   }
 
   @JsonIgnoreProperties(
@@ -583,6 +610,8 @@ public final class AssetsListAssetsResponseRowsItem {
     private boolean inputVatRealEstate;
 
     private OffsetDateTime createdAt;
+
+    private Optional<String> disposalSaleInvoiceId = Optional.empty();
 
     private Optional<String> disposalJournalTransactionId = Optional.empty();
 
@@ -638,6 +667,7 @@ public final class AssetsListAssetsResponseRowsItem {
       disposalReason(other.getDisposalReason());
       disposalProceeds(other.getDisposalProceeds());
       disposalJournalTransactionId(other.getDisposalJournalTransactionId());
+      disposalSaleInvoiceId(other.getDisposalSaleInvoiceId());
       createdAt(other.getCreatedAt());
       return this;
     }
@@ -758,6 +788,36 @@ public final class AssetsListAssetsResponseRowsItem {
     @JsonSetter("createdAt")
     public _FinalStage createdAt(@NotNull OffsetDateTime createdAt) {
       this.createdAt = Objects.requireNonNull(createdAt, "createdAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalSaleInvoiceId(Nullable<String> disposalSaleInvoiceId) {
+      if (disposalSaleInvoiceId.isNull()) {
+        this.disposalSaleInvoiceId = null;
+      }
+      else if (disposalSaleInvoiceId.isEmpty()) {
+        this.disposalSaleInvoiceId = Optional.empty();
+      }
+      else {
+        this.disposalSaleInvoiceId = Optional.of(disposalSaleInvoiceId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage disposalSaleInvoiceId(String disposalSaleInvoiceId) {
+      this.disposalSaleInvoiceId = Optional.ofNullable(disposalSaleInvoiceId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "disposalSaleInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage disposalSaleInvoiceId(Optional<String> disposalSaleInvoiceId) {
+      this.disposalSaleInvoiceId = disposalSaleInvoiceId;
       return this;
     }
 
@@ -1068,7 +1128,7 @@ public final class AssetsListAssetsResponseRowsItem {
 
     @java.lang.Override
     public AssetsListAssetsResponseRowsItem build() {
-      return new AssetsListAssetsResponseRowsItem(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, documents, inputVatAmount, inputVatFirstUseDate, inputVatDeductiblePercent, inputVatRealEstate, inputVatUseChanges, disposalDate, disposalReason, disposalProceeds, disposalJournalTransactionId, createdAt, additionalProperties);
+      return new AssetsListAssetsResponseRowsItem(id, groupId, code, name, acquisitionDate, depreciationStartDate, acquisitionCost, salvageValue, usefulLifeMonths, totalCost, accumulatedDepreciation, netBookValue, depreciatedMonths, totalLifeMonths, status, notes, documents, inputVatAmount, inputVatFirstUseDate, inputVatDeductiblePercent, inputVatRealEstate, inputVatUseChanges, disposalDate, disposalReason, disposalProceeds, disposalJournalTransactionId, disposalSaleInvoiceId, createdAt, additionalProperties);
     }
 
     @java.lang.Override

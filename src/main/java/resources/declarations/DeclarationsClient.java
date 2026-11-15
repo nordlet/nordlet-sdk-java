@@ -90,6 +90,7 @@ import com.nordlet.api.resources.declarations.requests.RoEtransportBuildDeclarat
 import com.nordlet.api.resources.declarations.requests.RoEtransportStatusDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.RoEtransportSubmitDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsConfirmDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.SubmissionsCorrectionPreviewDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsCreateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.SubmissionsMarkDeclarationsRequest;
@@ -102,6 +103,9 @@ import com.nordlet.api.resources.declarations.requests.TaxPaymentsCreateDeclarat
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsDeleteDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.VatProrataGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.VatProrataListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.VatProrataSetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.types.AnnualAccountsAttachmentsAddDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.AnnualAccountsAttachmentsDeleteDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.AnnualAccountsDistributionsCreateDeclarationsResponse;
@@ -186,6 +190,7 @@ import com.nordlet.api.resources.declarations.types.RoEtransportBuildDeclaration
 import com.nordlet.api.resources.declarations.types.RoEtransportStatusDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.RoEtransportSubmitDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsConfirmDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.SubmissionsCorrectionPreviewDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsCreateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.SubmissionsMarkDeclarationsResponse;
@@ -198,6 +203,9 @@ import com.nordlet.api.resources.declarations.types.TaxPaymentsCreateDeclaration
 import com.nordlet.api.resources.declarations.types.TaxPaymentsDeleteDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.VatProrataGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.VatProrataListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.VatProrataSetDeclarationsResponse;
 
 public class DeclarationsClient {
   protected final ClientOptions clientOptions;
@@ -948,6 +956,66 @@ public class DeclarationsClient {
   public TaxPaymentsDeleteDeclarationsResponse taxPaymentsDelete(
       TaxPaymentsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.taxPaymentsDelete(request, requestOptions).body();
+  }
+
+  /**
+   * Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+   */
+  public VatProrataSetDeclarationsResponse vatProrataSet(VatProrataSetDeclarationsRequest request) {
+    return this.rawClient.vatProrataSet(request).body();
+  }
+
+  /**
+   * Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+   */
+  public VatProrataSetDeclarationsResponse vatProrataSet(VatProrataSetDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatProrataSet(request, requestOptions).body();
+  }
+
+  /**
+   * Answers the percentage set with <code>declarations/vat-prorata/set</code> for the fiscal year; 404 when none is set.
+   */
+  public VatProrataGetDeclarationsResponse vatProrataGet(VatProrataGetDeclarationsRequest request) {
+    return this.rawClient.vatProrataGet(request).body();
+  }
+
+  /**
+   * Answers the percentage set with <code>declarations/vat-prorata/set</code> for the fiscal year; 404 when none is set.
+   */
+  public VatProrataGetDeclarationsResponse vatProrataGet(VatProrataGetDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatProrataGet(request, requestOptions).body();
+  }
+
+  /**
+   * Lists the percentages set with <code>declarations/vat-prorata/set</code>, oldest fiscal year first.
+   */
+  public VatProrataListDeclarationsResponse vatProrataList() {
+    return this.rawClient.vatProrataList().body();
+  }
+
+  /**
+   * Lists the percentages set with <code>declarations/vat-prorata/set</code>, oldest fiscal year first.
+   */
+  public VatProrataListDeclarationsResponse vatProrataList(RequestOptions requestOptions) {
+    return this.rawClient.vatProrataList(requestOptions).body();
+  }
+
+  /**
+   * Lists the percentages set with <code>declarations/vat-prorata/set</code>, oldest fiscal year first.
+   */
+  public VatProrataListDeclarationsResponse vatProrataList(
+      VatProrataListDeclarationsRequest request) {
+    return this.rawClient.vatProrataList(request).body();
+  }
+
+  /**
+   * Lists the percentages set with <code>declarations/vat-prorata/set</code>, oldest fiscal year first.
+   */
+  public VatProrataListDeclarationsResponse vatProrataList(
+      VatProrataListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatProrataList(request, requestOptions).body();
   }
 
   /**
@@ -1830,6 +1898,22 @@ public class DeclarationsClient {
   }
 
   /**
+   * Builds the file of a submitted or accepted submission again from the current data, the way it was built for that submission, and compares it with the file that was filed. <code>needed</code> is false when the two carry the same data: a correction would file the same return again. <code>changes</code> lists what differs, at most 500 entries (<code>changeCount</code> counts them all): for an XML file each element or attribute by its path below the root element (<code>field</code>), for another text file each line that is only in the filed file or only in the new one (<code>line</code>, its line number in that file); <code>filed</code> and <code>current</code> are the two values, null where the field or line is missing on that side. Dates and times of the moment a file was built (ISO date-times, and the dates of both builds written as YYYY-MM-DD, YYYYMMDD, DD.MM.YYYY or DDMMYYYY) are not counted as differences. A ZIP or PDF file is compared byte by byte and lists no <code>changes</code>. Answers 422 for a submission that is not submitted or accepted, whose deadline Nordlet cannot correct, or that has no stored file.
+   */
+  public SubmissionsCorrectionPreviewDeclarationsResponse submissionsCorrectionPreview(
+      SubmissionsCorrectionPreviewDeclarationsRequest request) {
+    return this.rawClient.submissionsCorrectionPreview(request).body();
+  }
+
+  /**
+   * Builds the file of a submitted or accepted submission again from the current data, the way it was built for that submission, and compares it with the file that was filed. <code>needed</code> is false when the two carry the same data: a correction would file the same return again. <code>changes</code> lists what differs, at most 500 entries (<code>changeCount</code> counts them all): for an XML file each element or attribute by its path below the root element (<code>field</code>), for another text file each line that is only in the filed file or only in the new one (<code>line</code>, its line number in that file); <code>filed</code> and <code>current</code> are the two values, null where the field or line is missing on that side. Dates and times of the moment a file was built (ISO date-times, and the dates of both builds written as YYYY-MM-DD, YYYYMMDD, DD.MM.YYYY or DDMMYYYY) are not counted as differences. A ZIP or PDF file is compared byte by byte and lists no <code>changes</code>. Answers 422 for a submission that is not submitted or accepted, whose deadline Nordlet cannot correct, or that has no stored file.
+   */
+  public SubmissionsCorrectionPreviewDeclarationsResponse submissionsCorrectionPreview(
+      SubmissionsCorrectionPreviewDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.submissionsCorrectionPreview(request, requestOptions).body();
+  }
+
+  /**
    * Builds the Lithuanian i.SAF register file of a month (<code>dataType</code> F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status <code>generated</code> for the obligation <code>lt-isaf</code>, the only obligation accepted. The XML alone comes from <code>declarations/lt/isaf/generate</code>; the submission is moved on with <code>declarations/submissions/mark</code>.
    */
   public SubmissionsCreateDeclarationsResponse submissionsCreate(
@@ -1862,21 +1946,21 @@ public class DeclarationsClient {
   }
 
   /**
-   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code>, <code>periodYear</code>, <code>obligation</code>, <code>period</code> (the year, then the month), <code>fileName</code>, <code>status</code> and <code>externalRef</code>. <code>canAmend</code> is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; <code>correction</code> names the fields <code>calendar/submit</code> with <code>amend: true</code> takes for it.
    */
   public SubmissionsListDeclarationsResponse submissionsList() {
     return this.rawClient.submissionsList().body();
   }
 
   /**
-   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code>, <code>periodYear</code>, <code>obligation</code>, <code>period</code> (the year, then the month), <code>fileName</code>, <code>status</code> and <code>externalRef</code>. <code>canAmend</code> is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; <code>correction</code> names the fields <code>calendar/submit</code> with <code>amend: true</code> takes for it.
    */
   public SubmissionsListDeclarationsResponse submissionsList(RequestOptions requestOptions) {
     return this.rawClient.submissionsList(requestOptions).body();
   }
 
   /**
-   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code>, <code>periodYear</code>, <code>obligation</code>, <code>period</code> (the year, then the month), <code>fileName</code>, <code>status</code> and <code>externalRef</code>. <code>canAmend</code> is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; <code>correction</code> names the fields <code>calendar/submit</code> with <code>amend: true</code> takes for it.
    */
   public SubmissionsListDeclarationsResponse submissionsList(
       SubmissionsListDeclarationsRequest request) {
@@ -1884,7 +1968,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code> or <code>periodYear</code>.
+   * Lists the declaration submissions of the company, newest first, filterable by <code>obligation</code>, <code>status</code>, <code>periodYear</code> and <code>periodMonth</code> and sortable by <code>createdAt</code>, <code>periodYear</code>, <code>obligation</code>, <code>period</code> (the year, then the month), <code>fileName</code>, <code>status</code> and <code>externalRef</code>. <code>canAmend</code> is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; <code>correction</code> names the fields <code>calendar/submit</code> with <code>amend: true</code> takes for it.
    */
   public SubmissionsListDeclarationsResponse submissionsList(
       SubmissionsListDeclarationsRequest request, RequestOptions requestOptions) {

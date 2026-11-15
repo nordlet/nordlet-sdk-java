@@ -36,6 +36,8 @@ public final class StockReceiveInventoryRequest {
 
   private final String unitCost;
 
+  private final Optional<String> counterAccountCode;
+
   private final Optional<String> lotNumber;
 
   private final Optional<String> expiryDate;
@@ -45,13 +47,15 @@ public final class StockReceiveInventoryRequest {
   private final Map<String, Object> additionalProperties;
 
   private StockReceiveInventoryRequest(String warehouseId, String itemId, String date,
-      String quantity, String unitCost, Optional<String> lotNumber, Optional<String> expiryDate,
-      Optional<String> notes, Map<String, Object> additionalProperties) {
+      String quantity, String unitCost, Optional<String> counterAccountCode,
+      Optional<String> lotNumber, Optional<String> expiryDate, Optional<String> notes,
+      Map<String, Object> additionalProperties) {
     this.warehouseId = warehouseId;
     this.itemId = itemId;
     this.date = date;
     this.quantity = quantity;
     this.unitCost = unitCost;
+    this.counterAccountCode = counterAccountCode;
     this.lotNumber = lotNumber;
     this.expiryDate = expiryDate;
     this.notes = notes;
@@ -83,6 +87,11 @@ public final class StockReceiveInventoryRequest {
     return unitCost;
   }
 
+  @JsonProperty("counterAccountCode")
+  public Optional<String> getCounterAccountCode() {
+    return counterAccountCode;
+  }
+
   @JsonProperty("lotNumber")
   public Optional<String> getLotNumber() {
     return lotNumber;
@@ -110,12 +119,12 @@ public final class StockReceiveInventoryRequest {
   }
 
   private boolean equalTo(StockReceiveInventoryRequest other) {
-    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && notes.equals(other.notes);
+    return warehouseId.equals(other.warehouseId) && itemId.equals(other.itemId) && date.equals(other.date) && quantity.equals(other.quantity) && unitCost.equals(other.unitCost) && counterAccountCode.equals(other.counterAccountCode) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.unitCost, this.lotNumber, this.expiryDate, this.notes);
+    return Objects.hash(this.warehouseId, this.itemId, this.date, this.quantity, this.unitCost, this.counterAccountCode, this.lotNumber, this.expiryDate, this.notes);
   }
 
   @java.lang.Override
@@ -156,6 +165,10 @@ public final class StockReceiveInventoryRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage counterAccountCode(Optional<String> counterAccountCode);
+
+    _FinalStage counterAccountCode(String counterAccountCode);
+
     _FinalStage lotNumber(Optional<String> lotNumber);
 
     _FinalStage lotNumber(String lotNumber);
@@ -189,6 +202,8 @@ public final class StockReceiveInventoryRequest {
 
     private Optional<String> lotNumber = Optional.empty();
 
+    private Optional<String> counterAccountCode = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -202,6 +217,7 @@ public final class StockReceiveInventoryRequest {
       date(other.getDate());
       quantity(other.getQuantity());
       unitCost(other.getUnitCost());
+      counterAccountCode(other.getCounterAccountCode());
       lotNumber(other.getLotNumber());
       expiryDate(other.getExpiryDate());
       notes(other.getNotes());
@@ -292,8 +308,24 @@ public final class StockReceiveInventoryRequest {
     }
 
     @java.lang.Override
+    public _FinalStage counterAccountCode(String counterAccountCode) {
+      this.counterAccountCode = Optional.ofNullable(counterAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "counterAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage counterAccountCode(Optional<String> counterAccountCode) {
+      this.counterAccountCode = counterAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
     public StockReceiveInventoryRequest build() {
-      return new StockReceiveInventoryRequest(warehouseId, itemId, date, quantity, unitCost, lotNumber, expiryDate, notes, additionalProperties);
+      return new StockReceiveInventoryRequest(warehouseId, itemId, date, quantity, unitCost, counterAccountCode, lotNumber, expiryDate, notes, additionalProperties);
     }
 
     @java.lang.Override

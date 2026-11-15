@@ -100,14 +100,14 @@ public class AsyncProductionClient {
   }
 
   /**
-   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>createdAt</code>, <code>costPerHour</code>, <code>costAccountCode</code>, <code>maintenanceIntervalDays</code> and <code>nextMaintenanceDate</code>.
    */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList() {
     return this.rawClient.workCentersList().thenApply(response -> response.body());
   }
 
   /**
-   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>createdAt</code>, <code>costPerHour</code>, <code>costAccountCode</code>, <code>maintenanceIntervalDays</code> and <code>nextMaintenanceDate</code>.
    */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       RequestOptions requestOptions) {
@@ -115,7 +115,7 @@ public class AsyncProductionClient {
   }
 
   /**
-   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>createdAt</code>, <code>costPerHour</code>, <code>costAccountCode</code>, <code>maintenanceIntervalDays</code> and <code>nextMaintenanceDate</code>.
    */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       WorkCentersListProductionRequest request) {
@@ -123,7 +123,7 @@ public class AsyncProductionClient {
   }
 
   /**
-   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List work centers. <code>nextMaintenanceDate</code> is the latest completed maintenance date (the creation date when there is none) plus <code>maintenanceIntervalDays</code>, null without an interval. Filterable by <code>code</code>, <code>name</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>createdAt</code>, <code>costPerHour</code>, <code>costAccountCode</code>, <code>maintenanceIntervalDays</code> and <code>nextMaintenanceDate</code>.
    */
   public CompletableFuture<WorkCentersListProductionResponse> workCentersList(
       WorkCentersListProductionRequest request, RequestOptions requestOptions) {
@@ -304,28 +304,28 @@ public class AsyncProductionClient {
   }
 
   /**
-   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>finishedItemName</code> (the name of the finished item) and <code>routingCode</code> (the code of the routing).
    */
   public CompletableFuture<BomsListProductionResponse> bomsList() {
     return this.rawClient.bomsList().thenApply(response -> response.body());
   }
 
   /**
-   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>finishedItemName</code> (the name of the finished item) and <code>routingCode</code> (the code of the routing).
    */
   public CompletableFuture<BomsListProductionResponse> bomsList(RequestOptions requestOptions) {
     return this.rawClient.bomsList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>finishedItemName</code> (the name of the finished item) and <code>routingCode</code> (the code of the routing).
    */
   public CompletableFuture<BomsListProductionResponse> bomsList(BomsListProductionRequest request) {
     return this.rawClient.bomsList(request).thenApply(response -> response.body());
   }
 
   /**
-   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code> and <code>name</code>.
+   * List bills of materials without their lines. Filterable by <code>code</code>, <code>name</code>, <code>finishedItemId</code> and <code>isActive</code>; sortable by <code>code</code>, <code>name</code>, <code>finishedItemName</code> (the name of the finished item) and <code>routingCode</code> (the code of the routing).
    */
   public CompletableFuture<BomsListProductionResponse> bomsList(BomsListProductionRequest request,
       RequestOptions requestOptions) {

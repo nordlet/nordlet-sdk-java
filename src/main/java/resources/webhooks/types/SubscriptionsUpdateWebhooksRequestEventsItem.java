@@ -10,69 +10,31 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class SubscriptionsUpdateWebhooksRequestEventsItem {
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_REVERSED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_REVERSED, "purchase_invoice.reversed");
+
   public static final SubscriptionsUpdateWebhooksRequestEventsItem REPORT_COMPLETED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REPORT_COMPLETED, "report.completed");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem VAT_REVIEW_RESOLVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.VAT_REVIEW_RESOLVED, "vat_review.resolved");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_EINVOICE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_EINVOICE_SENT, "sale_invoice.einvoice_sent");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem REPORT_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REPORT_FAILED, "report.failed");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem ALL = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ALL, "*");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem POS_REPORT_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.POS_REPORT_CREATED, "pos_report.created");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALES_ORDER_FULFILLED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALES_ORDER_FULFILLED, "sales_order.fulfilled");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem GOODS_RECEIPT_POSTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.GOODS_RECEIPT_POSTED, "goods_receipt.posted");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem ITEM_DELETED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ITEM_DELETED, "item.deleted");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem RECURRING_INVOICE_GENERATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.RECURRING_INVOICE_GENERATED, "recurring_invoice.generated");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem LEAD_CONVERTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.LEAD_CONVERTED, "lead.converted");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SETTLEMENT_IMPORTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SETTLEMENT_IMPORTED, "settlement.imported");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem REFUND_LIABILITY_ACTUAL = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REFUND_LIABILITY_ACTUAL, "refund_liability.actual");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem REVENUE_RECOGNITION_MODIFIED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REVENUE_RECOGNITION_MODIFIED, "revenue_recognition.modified");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_SENT, "sale_invoice.sent");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_QUOTE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_QUOTE_SENT, "sale_invoice.quote_sent");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PAID, "sale_invoice.paid");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_SENT, "sale_invoice.peppol_sent");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem BANK_FEED_SYNCED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.BANK_FEED_SYNCED, "bank_feed.synced");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem PRICE_LIST_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PRICE_LIST_UPDATED, "price_list.updated");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem STOCK_REORDER_NEEDED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.STOCK_REORDER_NEEDED, "stock.reorder_needed");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem ITEM_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ITEM_CREATED, "item.created");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem FILING_REJECTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.FILING_REJECTED, "filing.rejected");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_ORDER_APPROVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_ORDER_APPROVED, "purchase_order.approved");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_FAILED, "sale_invoice.peppol_failed");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem INTERCOMPANY_INVOICE_MIRRORED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.INTERCOMPANY_INVOICE_MIRRORED, "intercompany.invoice_mirrored");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_REJECTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_REJECTED, "sale_invoice.peppol_rejected");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_REGISTERED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_REGISTERED, "purchase_invoice.registered");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem DOCUMENT_CAPTURE_PEPPOL_RECEIVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.DOCUMENT_CAPTURE_PEPPOL_RECEIVED, "document_capture.peppol_received");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_PAID, "purchase_invoice.paid");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SETTLEMENT_POSTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SETTLEMENT_POSTED, "settlement.posted");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_ORDER_RECEIVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_ORDER_RECEIVED, "purchase_order.received");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem STOCK_CHANGED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.STOCK_CHANGED, "stock.changed");
 
@@ -80,29 +42,73 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_ISSUED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_ISSUED, "sale_invoice.issued");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem REFUND_LIABILITY_TRUED_UP = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REFUND_LIABILITY_TRUED_UP, "refund_liability.trued_up");
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_REVERSED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_REVERSED, "sale_invoice.reversed");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem REVENUE_RECOGNITION_POSTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REVENUE_RECOGNITION_POSTED, "revenue_recognition.posted");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SETTLEMENT_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SETTLEMENT_UPDATED, "settlement.updated");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem LEAD_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.LEAD_CREATED, "lead.created");
-
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_DELIVERED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_DELIVERED, "sale_invoice.peppol_delivered");
 
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem FILING_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.FILING_FAILED, "filing.failed");
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem JOURNAL_TRANSACTION_REVERSED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.JOURNAL_TRANSACTION_REVERSED, "journal_transaction.reversed");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PARTNER_INQUIRY_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PARTNER_INQUIRY_CREATED, "partner_inquiry.created");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem VAT_REVIEW_OPENED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.VAT_REVIEW_OPENED, "vat_review.opened");
-
-  public static final SubscriptionsUpdateWebhooksRequestEventsItem ITEM_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ITEM_UPDATED, "item.updated");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem AGREEMENT_INVOICE_GENERATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.AGREEMENT_INVOICE_GENERATED, "agreement.invoice_generated");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem SALES_ORDER_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALES_ORDER_CREATED, "sales_order.created");
 
   public static final SubscriptionsUpdateWebhooksRequestEventsItem PAYROLL_RUN_REVERSED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PAYROLL_RUN_REVERSED, "payroll_run.reversed");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_EINVOICE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_EINVOICE_SENT, "sale_invoice.einvoice_sent");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem REPORT_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REPORT_FAILED, "report.failed");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem ALL = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ALL, "*");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALES_ORDER_FULFILLED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALES_ORDER_FULFILLED, "sales_order.fulfilled");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem GOODS_RECEIPT_POSTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.GOODS_RECEIPT_POSTED, "goods_receipt.posted");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem ITEM_DELETED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ITEM_DELETED, "item.deleted");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem LEAD_CONVERTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.LEAD_CONVERTED, "lead.converted");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SETTLEMENT_IMPORTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SETTLEMENT_IMPORTED, "settlement.imported");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem REFUND_LIABILITY_ACTUAL = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REFUND_LIABILITY_ACTUAL, "refund_liability.actual");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_SENT, "sale_invoice.sent");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PAID, "sale_invoice.paid");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_SENT = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_SENT, "sale_invoice.peppol_sent");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem PRICE_LIST_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PRICE_LIST_UPDATED, "price_list.updated");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem STOCK_REORDER_NEEDED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.STOCK_REORDER_NEEDED, "stock.reorder_needed");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem FILING_REJECTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.FILING_REJECTED, "filing.rejected");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_ORDER_APPROVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_ORDER_APPROVED, "purchase_order.approved");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem INTERCOMPANY_INVOICE_MIRRORED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.INTERCOMPANY_INVOICE_MIRRORED, "intercompany.invoice_mirrored");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem SALE_INVOICE_PEPPOL_REJECTED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.SALE_INVOICE_PEPPOL_REJECTED, "sale_invoice.peppol_rejected");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_INVOICE_PAID = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_INVOICE_PAID, "purchase_invoice.paid");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem PURCHASE_ORDER_RECEIVED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.PURCHASE_ORDER_RECEIVED, "purchase_order.received");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem REFUND_LIABILITY_TRUED_UP = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.REFUND_LIABILITY_TRUED_UP, "refund_liability.trued_up");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem LEAD_CREATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.LEAD_CREATED, "lead.created");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem FILING_FAILED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.FILING_FAILED, "filing.failed");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem VAT_REVIEW_OPENED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.VAT_REVIEW_OPENED, "vat_review.opened");
+
+  public static final SubscriptionsUpdateWebhooksRequestEventsItem ITEM_UPDATED = new SubscriptionsUpdateWebhooksRequestEventsItem(Value.ITEM_UPDATED, "item.updated");
 
   private final Value value;
 
@@ -136,100 +142,106 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
+      case PURCHASE_INVOICE_REVERSED:
+        return visitor.visitPurchaseInvoiceReversed();
       case REPORT_COMPLETED:
         return visitor.visitReportCompleted();
       case VAT_REVIEW_RESOLVED:
         return visitor.visitVatReviewResolved();
-      case SALE_INVOICE_EINVOICE_SENT:
-        return visitor.visitSaleInvoiceEinvoiceSent();
-      case REPORT_FAILED:
-        return visitor.visitReportFailed();
-      case ALL:
-        return visitor.visitAll();
       case POS_REPORT_CREATED:
         return visitor.visitPosReportCreated();
-      case SALES_ORDER_FULFILLED:
-        return visitor.visitSalesOrderFulfilled();
-      case GOODS_RECEIPT_POSTED:
-        return visitor.visitGoodsReceiptPosted();
-      case ITEM_DELETED:
-        return visitor.visitItemDeleted();
       case RECURRING_INVOICE_GENERATED:
         return visitor.visitRecurringInvoiceGenerated();
-      case LEAD_CONVERTED:
-        return visitor.visitLeadConverted();
-      case SETTLEMENT_IMPORTED:
-        return visitor.visitSettlementImported();
-      case REFUND_LIABILITY_ACTUAL:
-        return visitor.visitRefundLiabilityActual();
       case REVENUE_RECOGNITION_MODIFIED:
         return visitor.visitRevenueRecognitionModified();
-      case SALE_INVOICE_SENT:
-        return visitor.visitSaleInvoiceSent();
       case SALE_INVOICE_QUOTE_SENT:
         return visitor.visitSaleInvoiceQuoteSent();
-      case SALE_INVOICE_PAID:
-        return visitor.visitSaleInvoicePaid();
-      case SALE_INVOICE_PEPPOL_SENT:
-        return visitor.visitSaleInvoicePeppolSent();
       case BANK_FEED_SYNCED:
         return visitor.visitBankFeedSynced();
-      case PRICE_LIST_UPDATED:
-        return visitor.visitPriceListUpdated();
-      case STOCK_REORDER_NEEDED:
-        return visitor.visitStockReorderNeeded();
       case ITEM_CREATED:
         return visitor.visitItemCreated();
-      case FILING_REJECTED:
-        return visitor.visitFilingRejected();
-      case PURCHASE_ORDER_APPROVED:
-        return visitor.visitPurchaseOrderApproved();
       case SALE_INVOICE_PEPPOL_FAILED:
         return visitor.visitSaleInvoicePeppolFailed();
-      case INTERCOMPANY_INVOICE_MIRRORED:
-        return visitor.visitIntercompanyInvoiceMirrored();
-      case SALE_INVOICE_PEPPOL_REJECTED:
-        return visitor.visitSaleInvoicePeppolRejected();
       case PURCHASE_INVOICE_REGISTERED:
         return visitor.visitPurchaseInvoiceRegistered();
       case DOCUMENT_CAPTURE_PEPPOL_RECEIVED:
         return visitor.visitDocumentCapturePeppolReceived();
-      case PURCHASE_INVOICE_PAID:
-        return visitor.visitPurchaseInvoicePaid();
       case SETTLEMENT_POSTED:
         return visitor.visitSettlementPosted();
-      case PURCHASE_ORDER_RECEIVED:
-        return visitor.visitPurchaseOrderReceived();
       case STOCK_CHANGED:
         return visitor.visitStockChanged();
       case PAYROLL_RUN_APPROVED:
         return visitor.visitPayrollRunApproved();
       case SALE_INVOICE_ISSUED:
         return visitor.visitSaleInvoiceIssued();
-      case REFUND_LIABILITY_TRUED_UP:
-        return visitor.visitRefundLiabilityTruedUp();
+      case SALE_INVOICE_REVERSED:
+        return visitor.visitSaleInvoiceReversed();
       case REVENUE_RECOGNITION_POSTED:
         return visitor.visitRevenueRecognitionPosted();
       case SETTLEMENT_UPDATED:
         return visitor.visitSettlementUpdated();
-      case LEAD_CREATED:
-        return visitor.visitLeadCreated();
       case SALE_INVOICE_PEPPOL_DELIVERED:
         return visitor.visitSaleInvoicePeppolDelivered();
-      case FILING_FAILED:
-        return visitor.visitFilingFailed();
+      case JOURNAL_TRANSACTION_REVERSED:
+        return visitor.visitJournalTransactionReversed();
       case PARTNER_INQUIRY_CREATED:
         return visitor.visitPartnerInquiryCreated();
-      case VAT_REVIEW_OPENED:
-        return visitor.visitVatReviewOpened();
-      case ITEM_UPDATED:
-        return visitor.visitItemUpdated();
       case AGREEMENT_INVOICE_GENERATED:
         return visitor.visitAgreementInvoiceGenerated();
       case SALES_ORDER_CREATED:
         return visitor.visitSalesOrderCreated();
       case PAYROLL_RUN_REVERSED:
         return visitor.visitPayrollRunReversed();
+      case SALE_INVOICE_EINVOICE_SENT:
+        return visitor.visitSaleInvoiceEinvoiceSent();
+      case REPORT_FAILED:
+        return visitor.visitReportFailed();
+      case ALL:
+        return visitor.visitAll();
+      case SALES_ORDER_FULFILLED:
+        return visitor.visitSalesOrderFulfilled();
+      case GOODS_RECEIPT_POSTED:
+        return visitor.visitGoodsReceiptPosted();
+      case ITEM_DELETED:
+        return visitor.visitItemDeleted();
+      case LEAD_CONVERTED:
+        return visitor.visitLeadConverted();
+      case SETTLEMENT_IMPORTED:
+        return visitor.visitSettlementImported();
+      case REFUND_LIABILITY_ACTUAL:
+        return visitor.visitRefundLiabilityActual();
+      case SALE_INVOICE_SENT:
+        return visitor.visitSaleInvoiceSent();
+      case SALE_INVOICE_PAID:
+        return visitor.visitSaleInvoicePaid();
+      case SALE_INVOICE_PEPPOL_SENT:
+        return visitor.visitSaleInvoicePeppolSent();
+      case PRICE_LIST_UPDATED:
+        return visitor.visitPriceListUpdated();
+      case STOCK_REORDER_NEEDED:
+        return visitor.visitStockReorderNeeded();
+      case FILING_REJECTED:
+        return visitor.visitFilingRejected();
+      case PURCHASE_ORDER_APPROVED:
+        return visitor.visitPurchaseOrderApproved();
+      case INTERCOMPANY_INVOICE_MIRRORED:
+        return visitor.visitIntercompanyInvoiceMirrored();
+      case SALE_INVOICE_PEPPOL_REJECTED:
+        return visitor.visitSaleInvoicePeppolRejected();
+      case PURCHASE_INVOICE_PAID:
+        return visitor.visitPurchaseInvoicePaid();
+      case PURCHASE_ORDER_RECEIVED:
+        return visitor.visitPurchaseOrderReceived();
+      case REFUND_LIABILITY_TRUED_UP:
+        return visitor.visitRefundLiabilityTruedUp();
+      case LEAD_CREATED:
+        return visitor.visitLeadCreated();
+      case FILING_FAILED:
+        return visitor.visitFilingFailed();
+      case VAT_REVIEW_OPENED:
+        return visitor.visitVatReviewOpened();
+      case ITEM_UPDATED:
+        return visitor.visitItemUpdated();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -241,100 +253,106 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
   )
   public static SubscriptionsUpdateWebhooksRequestEventsItem valueOf(String value) {
     switch (value) {
+      case "purchase_invoice.reversed":
+        return PURCHASE_INVOICE_REVERSED;
       case "report.completed":
         return REPORT_COMPLETED;
       case "vat_review.resolved":
         return VAT_REVIEW_RESOLVED;
-      case "sale_invoice.einvoice_sent":
-        return SALE_INVOICE_EINVOICE_SENT;
-      case "report.failed":
-        return REPORT_FAILED;
-      case "*":
-        return ALL;
       case "pos_report.created":
         return POS_REPORT_CREATED;
-      case "sales_order.fulfilled":
-        return SALES_ORDER_FULFILLED;
-      case "goods_receipt.posted":
-        return GOODS_RECEIPT_POSTED;
-      case "item.deleted":
-        return ITEM_DELETED;
       case "recurring_invoice.generated":
         return RECURRING_INVOICE_GENERATED;
-      case "lead.converted":
-        return LEAD_CONVERTED;
-      case "settlement.imported":
-        return SETTLEMENT_IMPORTED;
-      case "refund_liability.actual":
-        return REFUND_LIABILITY_ACTUAL;
       case "revenue_recognition.modified":
         return REVENUE_RECOGNITION_MODIFIED;
-      case "sale_invoice.sent":
-        return SALE_INVOICE_SENT;
       case "sale_invoice.quote_sent":
         return SALE_INVOICE_QUOTE_SENT;
-      case "sale_invoice.paid":
-        return SALE_INVOICE_PAID;
-      case "sale_invoice.peppol_sent":
-        return SALE_INVOICE_PEPPOL_SENT;
       case "bank_feed.synced":
         return BANK_FEED_SYNCED;
-      case "price_list.updated":
-        return PRICE_LIST_UPDATED;
-      case "stock.reorder_needed":
-        return STOCK_REORDER_NEEDED;
       case "item.created":
         return ITEM_CREATED;
-      case "filing.rejected":
-        return FILING_REJECTED;
-      case "purchase_order.approved":
-        return PURCHASE_ORDER_APPROVED;
       case "sale_invoice.peppol_failed":
         return SALE_INVOICE_PEPPOL_FAILED;
-      case "intercompany.invoice_mirrored":
-        return INTERCOMPANY_INVOICE_MIRRORED;
-      case "sale_invoice.peppol_rejected":
-        return SALE_INVOICE_PEPPOL_REJECTED;
       case "purchase_invoice.registered":
         return PURCHASE_INVOICE_REGISTERED;
       case "document_capture.peppol_received":
         return DOCUMENT_CAPTURE_PEPPOL_RECEIVED;
-      case "purchase_invoice.paid":
-        return PURCHASE_INVOICE_PAID;
       case "settlement.posted":
         return SETTLEMENT_POSTED;
-      case "purchase_order.received":
-        return PURCHASE_ORDER_RECEIVED;
       case "stock.changed":
         return STOCK_CHANGED;
       case "payroll_run.approved":
         return PAYROLL_RUN_APPROVED;
       case "sale_invoice.issued":
         return SALE_INVOICE_ISSUED;
-      case "refund_liability.trued_up":
-        return REFUND_LIABILITY_TRUED_UP;
+      case "sale_invoice.reversed":
+        return SALE_INVOICE_REVERSED;
       case "revenue_recognition.posted":
         return REVENUE_RECOGNITION_POSTED;
       case "settlement.updated":
         return SETTLEMENT_UPDATED;
-      case "lead.created":
-        return LEAD_CREATED;
       case "sale_invoice.peppol_delivered":
         return SALE_INVOICE_PEPPOL_DELIVERED;
-      case "filing.failed":
-        return FILING_FAILED;
+      case "journal_transaction.reversed":
+        return JOURNAL_TRANSACTION_REVERSED;
       case "partner_inquiry.created":
         return PARTNER_INQUIRY_CREATED;
-      case "vat_review.opened":
-        return VAT_REVIEW_OPENED;
-      case "item.updated":
-        return ITEM_UPDATED;
       case "agreement.invoice_generated":
         return AGREEMENT_INVOICE_GENERATED;
       case "sales_order.created":
         return SALES_ORDER_CREATED;
       case "payroll_run.reversed":
         return PAYROLL_RUN_REVERSED;
+      case "sale_invoice.einvoice_sent":
+        return SALE_INVOICE_EINVOICE_SENT;
+      case "report.failed":
+        return REPORT_FAILED;
+      case "*":
+        return ALL;
+      case "sales_order.fulfilled":
+        return SALES_ORDER_FULFILLED;
+      case "goods_receipt.posted":
+        return GOODS_RECEIPT_POSTED;
+      case "item.deleted":
+        return ITEM_DELETED;
+      case "lead.converted":
+        return LEAD_CONVERTED;
+      case "settlement.imported":
+        return SETTLEMENT_IMPORTED;
+      case "refund_liability.actual":
+        return REFUND_LIABILITY_ACTUAL;
+      case "sale_invoice.sent":
+        return SALE_INVOICE_SENT;
+      case "sale_invoice.paid":
+        return SALE_INVOICE_PAID;
+      case "sale_invoice.peppol_sent":
+        return SALE_INVOICE_PEPPOL_SENT;
+      case "price_list.updated":
+        return PRICE_LIST_UPDATED;
+      case "stock.reorder_needed":
+        return STOCK_REORDER_NEEDED;
+      case "filing.rejected":
+        return FILING_REJECTED;
+      case "purchase_order.approved":
+        return PURCHASE_ORDER_APPROVED;
+      case "intercompany.invoice_mirrored":
+        return INTERCOMPANY_INVOICE_MIRRORED;
+      case "sale_invoice.peppol_rejected":
+        return SALE_INVOICE_PEPPOL_REJECTED;
+      case "purchase_invoice.paid":
+        return PURCHASE_INVOICE_PAID;
+      case "purchase_order.received":
+        return PURCHASE_ORDER_RECEIVED;
+      case "refund_liability.trued_up":
+        return REFUND_LIABILITY_TRUED_UP;
+      case "lead.created":
+        return LEAD_CREATED;
+      case "filing.failed":
+        return FILING_FAILED;
+      case "vat_review.opened":
+        return VAT_REVIEW_OPENED;
+      case "item.updated":
+        return ITEM_UPDATED;
       default:
         return new SubscriptionsUpdateWebhooksRequestEventsItem(Value.UNKNOWN, value);
     }
@@ -361,6 +379,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
     ITEM_UPDATED,
 
+    JOURNAL_TRANSACTION_REVERSED,
+
     LEAD_CONVERTED,
 
     LEAD_CREATED,
@@ -378,6 +398,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     PURCHASE_INVOICE_PAID,
 
     PURCHASE_INVOICE_REGISTERED,
+
+    PURCHASE_INVOICE_REVERSED,
 
     PURCHASE_ORDER_APPROVED,
 
@@ -412,6 +434,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     SALE_INVOICE_PEPPOL_SENT,
 
     SALE_INVOICE_QUOTE_SENT,
+
+    SALE_INVOICE_REVERSED,
 
     SALE_INVOICE_SENT,
 
@@ -459,6 +483,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
 
     T visitItemUpdated();
 
+    T visitJournalTransactionReversed();
+
     T visitLeadConverted();
 
     T visitLeadCreated();
@@ -476,6 +502,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     T visitPurchaseInvoicePaid();
 
     T visitPurchaseInvoiceRegistered();
+
+    T visitPurchaseInvoiceReversed();
 
     T visitPurchaseOrderApproved();
 
@@ -510,6 +538,8 @@ public final class SubscriptionsUpdateWebhooksRequestEventsItem {
     T visitSaleInvoicePeppolSent();
 
     T visitSaleInvoiceQuoteSent();
+
+    T visitSaleInvoiceReversed();
 
     T visitSaleInvoiceSent();
 

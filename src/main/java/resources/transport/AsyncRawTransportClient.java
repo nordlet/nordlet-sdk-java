@@ -550,7 +550,7 @@ public class AsyncRawTransportClient {
             }
 
             /**
-             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
              */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 ) {
@@ -558,7 +558,7 @@ public class AsyncRawTransportClient {
             }
 
             /**
-             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
              */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 RequestOptions requestOptions) {
@@ -566,7 +566,7 @@ public class AsyncRawTransportClient {
             }
 
             /**
-             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
              */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 WaybillsListTransportRequest request) {
@@ -574,7 +574,7 @@ public class AsyncRawTransportClient {
             }
 
             /**
-             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code> and <code>fullNumber</code>.
+             * List waybills with the consignee's name. Filterable by <code>status</code>, <code>consigneePartnerId</code>, <code>documentDate</code>, <code>fullNumber</code> and <code>dispatchAt</code>; sortable by <code>createdAt</code>, <code>dispatchAt</code>, <code>fullNumber</code>, <code>consigneeName</code> (the name of the consignee), <code>vehiclePlate</code>, <code>unloadAddress</code>, <code>status</code> and <code>valueEur</code>.
              */
             public CompletableFuture<NordletApiHttpResponse<WaybillsListTransportResponse>> waybillsList(
                 WaybillsListTransportRequest request, RequestOptions requestOptions) {

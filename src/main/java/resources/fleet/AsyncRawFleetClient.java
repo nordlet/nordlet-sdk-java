@@ -358,14 +358,14 @@ public class AsyncRawFleetClient {
         }
 
         /**
-         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code>, <code>createdAt</code>, <code>fixedAssetCode</code> (the code of the linked fixed asset), <code>fuelType</code>, <code>marketValue</code>, <code>technicalInspectionDue</code>, <code>insuranceDue</code>, <code>status</code> and <code>assignedEmployeeName</code> (the name of the employee the vehicle is assigned to today).
          */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList() {
           return vehiclesList(VehiclesListFleetRequest.builder().build());
         }
 
         /**
-         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code>, <code>createdAt</code>, <code>fixedAssetCode</code> (the code of the linked fixed asset), <code>fuelType</code>, <code>marketValue</code>, <code>technicalInspectionDue</code>, <code>insuranceDue</code>, <code>status</code> and <code>assignedEmployeeName</code> (the name of the employee the vehicle is assigned to today).
          */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             RequestOptions requestOptions) {
@@ -373,7 +373,7 @@ public class AsyncRawFleetClient {
         }
 
         /**
-         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code>, <code>createdAt</code>, <code>fixedAssetCode</code> (the code of the linked fixed asset), <code>fuelType</code>, <code>marketValue</code>, <code>technicalInspectionDue</code>, <code>insuranceDue</code>, <code>status</code> and <code>assignedEmployeeName</code> (the name of the employee the vehicle is assigned to today).
          */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             VehiclesListFleetRequest request) {
@@ -381,7 +381,7 @@ public class AsyncRawFleetClient {
         }
 
         /**
-         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code> and <code>createdAt</code>.
+         * List vehicles with their current assignment. Filterable by <code>plateNumber</code>, <code>make</code>, <code>model</code> and <code>status</code>; sortable by <code>plateNumber</code>, <code>make</code>, <code>createdAt</code>, <code>fixedAssetCode</code> (the code of the linked fixed asset), <code>fuelType</code>, <code>marketValue</code>, <code>technicalInspectionDue</code>, <code>insuranceDue</code>, <code>status</code> and <code>assignedEmployeeName</code> (the name of the employee the vehicle is assigned to today).
          */
         public CompletableFuture<NordletApiHttpResponse<VehiclesListFleetResponse>> vehiclesList(
             VehiclesListFleetRequest request, RequestOptions requestOptions) {

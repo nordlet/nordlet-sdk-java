@@ -480,14 +480,14 @@ public class AsyncRawLeadsClient {
           }
 
           /**
-           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list() {
             return list(ListLeadsRequest.builder().build());
           }
 
           /**
-           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               RequestOptions requestOptions) {
@@ -495,7 +495,7 @@ public class AsyncRawLeadsClient {
           }
 
           /**
-           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               ListLeadsRequest request) {
@@ -503,7 +503,7 @@ public class AsyncRawLeadsClient {
           }
 
           /**
-           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>status</code>, <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
+           * Lists leads with their source and type names; filterable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>sourceId</code>, <code>typeId</code>, <code>countryCode</code>, <code>assignedUserId</code>, <code>partnerId</code>, <code>estimatedValue</code> and <code>createdAt</code>, sortable by <code>name</code>, <code>contactName</code>, <code>email</code>, <code>phone</code>, <code>status</code>, <code>typeName</code> (the name of the lead type), <code>sourceName</code> (the name of the lead source), <code>estimatedValue</code>, <code>createdAt</code> and <code>updatedAt</code>.
            */
           public CompletableFuture<NordletApiHttpResponse<ListLeadsResponse>> list(
               ListLeadsRequest request, RequestOptions requestOptions) {

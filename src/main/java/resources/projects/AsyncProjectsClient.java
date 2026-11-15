@@ -91,28 +91,28 @@ public class AsyncProjectsClient {
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public CompletableFuture<ListProjectsResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public CompletableFuture<ListProjectsResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public CompletableFuture<ListProjectsResponse> list(ListProjectsRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public CompletableFuture<ListProjectsResponse> list(ListProjectsRequest request,
       RequestOptions requestOptions) {

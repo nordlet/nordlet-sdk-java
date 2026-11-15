@@ -174,14 +174,14 @@ public class InventoryClient {
   }
 
   /**
-   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>. With <code>counterAccountCode</code> the receipt also posts a journal entry (debit the <code>inventory.stock</code> posting rule account, credit the counter-account; 422 for an unknown or non-postable account, 409 when the accounting period of <code>date</code> is locked) and answers its <code>journalTransactionId</code>; without it nothing is posted and <code>warnings</code> holds <code>stock_receipt_not_posted</code>, because a purchase invoice already receives its goods into stock and must not be posted twice.
    */
   public StockReceiveInventoryResponse stockReceive(StockReceiveInventoryRequest request) {
     return this.rawClient.stockReceive(request).body();
   }
 
   /**
-   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>.
+   * Record a manual receipt of an item into a warehouse at <code>unitCost</code> (document type <code>manual_receipt</code>); the quantity must be positive (422). A lot- or serial-tracked item needs <code>lotNumber</code> (422); an unknown lot is created, and <code>expiryDate</code> is stored on a lot that has none. A serial-tracked item is received one unit at a time (422), and 409 when that serial number is already in stock. Open shortages of the item in the warehouse (negative stock policy <code>allow</code>) are settled from the receipt. Emits <code>stock.changed</code>. Receipts against a purchase order go through <code>purchases/receipts/create</code>. With <code>counterAccountCode</code> the receipt also posts a journal entry (debit the <code>inventory.stock</code> posting rule account, credit the counter-account; 422 for an unknown or non-postable account, 409 when the accounting period of <code>date</code> is locked) and answers its <code>journalTransactionId</code>; without it nothing is posted and <code>warnings</code> holds <code>stock_receipt_not_posted</code>, because a purchase invoice already receives its goods into stock and must not be posted twice.
    */
   public StockReceiveInventoryResponse stockReceive(StockReceiveInventoryRequest request,
       RequestOptions requestOptions) {
@@ -263,21 +263,21 @@ public class InventoryClient {
   }
 
   /**
-   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost, itemName (the name of the item), warehouseName (the name of the warehouse), direction, documentType; default newest first.
    */
   public StockMovementsListInventoryResponse stockMovementsList() {
     return this.rawClient.stockMovementsList().body();
   }
 
   /**
-   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost, itemName (the name of the item), warehouseName (the name of the warehouse), direction, documentType; default newest first.
    */
   public StockMovementsListInventoryResponse stockMovementsList(RequestOptions requestOptions) {
     return this.rawClient.stockMovementsList(requestOptions).body();
   }
 
   /**
-   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost, itemName (the name of the item), warehouseName (the name of the warehouse), direction, documentType; default newest first.
    */
   public StockMovementsListInventoryResponse stockMovementsList(
       StockMovementsListInventoryRequest request) {
@@ -285,7 +285,7 @@ public class InventoryClient {
   }
 
   /**
-   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost; default newest first.
+   * List the stock movements. Filterable: itemId, warehouseId, lotId, direction, documentType, date, quantity, totalCost. Sortable: date, createdAt, quantity, totalCost, itemName (the name of the item), warehouseName (the name of the warehouse), direction, documentType; default newest first.
    */
   public StockMovementsListInventoryResponse stockMovementsList(
       StockMovementsListInventoryRequest request, RequestOptions requestOptions) {
@@ -293,28 +293,28 @@ public class InventoryClient {
   }
 
   /**
-   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt, itemName (the name of the item), onHand; default newest first.
    */
   public LotsListInventoryResponse lotsList() {
     return this.rawClient.lotsList().body();
   }
 
   /**
-   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt, itemName (the name of the item), onHand; default newest first.
    */
   public LotsListInventoryResponse lotsList(RequestOptions requestOptions) {
     return this.rawClient.lotsList(requestOptions).body();
   }
 
   /**
-   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt, itemName (the name of the item), onHand; default newest first.
    */
   public LotsListInventoryResponse lotsList(LotsListInventoryRequest request) {
     return this.rawClient.lotsList(request).body();
   }
 
   /**
-   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt; default newest first.
+   * List the lots with their quantity on hand (the remaining quantity of the lot's incoming movements). Filterable: itemId, lotNumber, expiryDate. Sortable: lotNumber, expiryDate, createdAt, itemName (the name of the item), onHand; default newest first.
    */
   public LotsListInventoryResponse lotsList(LotsListInventoryRequest request,
       RequestOptions requestOptions) {
@@ -383,28 +383,28 @@ public class InventoryClient {
   }
 
   /**
-   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount, method, notes, goodsReceiptNumber (the number of the goods receipt); default newest first.
    */
   public LandedCostsListInventoryResponse landedCostsList() {
     return this.rawClient.landedCostsList().body();
   }
 
   /**
-   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount, method, notes, goodsReceiptNumber (the number of the goods receipt); default newest first.
    */
   public LandedCostsListInventoryResponse landedCostsList(RequestOptions requestOptions) {
     return this.rawClient.landedCostsList(requestOptions).body();
   }
 
   /**
-   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount, method, notes, goodsReceiptNumber (the number of the goods receipt); default newest first.
    */
   public LandedCostsListInventoryResponse landedCostsList(LandedCostsListInventoryRequest request) {
     return this.rawClient.landedCostsList(request).body();
   }
 
   /**
-   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount; default newest first.
+   * List the landed costs without their lines. Filterable: date, method, goodsReceiptId, sourceInvoiceId. Sortable: date, createdAt, amount, method, notes, goodsReceiptNumber (the number of the goods receipt); default newest first.
    */
   public LandedCostsListInventoryResponse landedCostsList(LandedCostsListInventoryRequest request,
       RequestOptions requestOptions) {
@@ -460,21 +460,21 @@ public class InventoryClient {
   }
 
   /**
-   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty, reorderQty, itemName (the name of the item), warehouseName (the name of the warehouse, empty for all warehouses); default newest first.
    */
   public ReorderRulesListInventoryResponse reorderRulesList() {
     return this.rawClient.reorderRulesList().body();
   }
 
   /**
-   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty, reorderQty, itemName (the name of the item), warehouseName (the name of the warehouse, empty for all warehouses); default newest first.
    */
   public ReorderRulesListInventoryResponse reorderRulesList(RequestOptions requestOptions) {
     return this.rawClient.reorderRulesList(requestOptions).body();
   }
 
   /**
-   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty, reorderQty, itemName (the name of the item), warehouseName (the name of the warehouse, empty for all warehouses); default newest first.
    */
   public ReorderRulesListInventoryResponse reorderRulesList(
       ReorderRulesListInventoryRequest request) {
@@ -482,7 +482,7 @@ public class InventoryClient {
   }
 
   /**
-   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty; default newest first.
+   * List the reorder rules. Filterable: itemId, warehouseId, isActive. Sortable: createdAt, minQty, reorderQty, itemName (the name of the item), warehouseName (the name of the warehouse, empty for all warehouses); default newest first.
    */
   public ReorderRulesListInventoryResponse reorderRulesList(
       ReorderRulesListInventoryRequest request, RequestOptions requestOptions) {

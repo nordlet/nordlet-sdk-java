@@ -89,28 +89,28 @@ public class ProjectsClient {
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public ListProjectsResponse list() {
     return this.rawClient.list().body();
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public ListProjectsResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public ListProjectsResponse list(ListProjectsRequest request) {
     return this.rawClient.list(request).body();
   }
 
   /**
-   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+   * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
    */
   public ListProjectsResponse list(ListProjectsRequest request, RequestOptions requestOptions) {
     return this.rawClient.list(request, requestOptions).body();

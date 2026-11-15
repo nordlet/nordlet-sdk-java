@@ -46,9 +46,13 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SECURITIES_GAIN = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SECURITIES_GAIN, "securities.gain");
 
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_ADVANCES_PAID = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_ADVANCES_PAID, "purchases.advancesPaid");
+
   public static final PostingRulesUpdateLedgerRequestRulesItemKey REVENUE_REFUND_LIABILITY = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.REVENUE_REFUND_LIABILITY, "revenue.refundLiability");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey SALES_VAT_PAYABLE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.SALES_VAT_PAYABLE, "sales.vatPayable");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_FX_UNREALISED_GAIN = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_FX_UNREALISED_GAIN, "bank.fxUnrealisedGain");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_GOODS_FOR_RESALE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_GOODS_FOR_RESALE, "purchases.goodsForResale");
 
@@ -79,6 +83,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PURCHASES_DEFAULT_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PURCHASES_DEFAULT_EXPENSE, "purchases.defaultExpense");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey PRODUCTION_SCRAP = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.PRODUCTION_SCRAP, "production.scrap");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_FX_UNREALISED_LOSS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_FX_UNREALISED_LOSS, "bank.fxUnrealisedLoss");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey TAX_CORPORATE_EXPENSE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.TAX_CORPORATE_EXPENSE, "tax.corporateExpense");
+
+  public static final PostingRulesUpdateLedgerRequestRulesItemKey TAX_CORPORATE_PAYABLE = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.TAX_CORPORATE_PAYABLE, "tax.corporatePayable");
 
   public static final PostingRulesUpdateLedgerRequestRulesItemKey BANK_TOP_UPS = new PostingRulesUpdateLedgerRequestRulesItemKey(Value.BANK_TOP_UPS, "bank.topUps");
 
@@ -164,10 +174,14 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitAssetsDisposalProceeds();
       case SECURITIES_GAIN:
         return visitor.visitSecuritiesGain();
+      case PURCHASES_ADVANCES_PAID:
+        return visitor.visitPurchasesAdvancesPaid();
       case REVENUE_REFUND_LIABILITY:
         return visitor.visitRevenueRefundLiability();
       case SALES_VAT_PAYABLE:
         return visitor.visitSalesVatPayable();
+      case BANK_FX_UNREALISED_GAIN:
+        return visitor.visitBankFxUnrealisedGain();
       case PURCHASES_GOODS_FOR_RESALE:
         return visitor.visitPurchasesGoodsForResale();
       case SECURITIES_LOSS:
@@ -198,6 +212,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return visitor.visitPurchasesDefaultExpense();
       case PRODUCTION_SCRAP:
         return visitor.visitProductionScrap();
+      case BANK_FX_UNREALISED_LOSS:
+        return visitor.visitBankFxUnrealisedLoss();
+      case TAX_CORPORATE_EXPENSE:
+        return visitor.visitTaxCorporateExpense();
+      case TAX_CORPORATE_PAYABLE:
+        return visitor.visitTaxCorporatePayable();
       case BANK_TOP_UPS:
         return visitor.visitBankTopUps();
       case SECURITIES_FEES:
@@ -261,10 +281,14 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return ASSETS_DISPOSAL_PROCEEDS;
       case "securities.gain":
         return SECURITIES_GAIN;
+      case "purchases.advancesPaid":
+        return PURCHASES_ADVANCES_PAID;
       case "revenue.refundLiability":
         return REVENUE_REFUND_LIABILITY;
       case "sales.vatPayable":
         return SALES_VAT_PAYABLE;
+      case "bank.fxUnrealisedGain":
+        return BANK_FX_UNREALISED_GAIN;
       case "purchases.goodsForResale":
         return PURCHASES_GOODS_FOR_RESALE;
       case "securities.loss":
@@ -295,6 +319,12 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
         return PURCHASES_DEFAULT_EXPENSE;
       case "production.scrap":
         return PRODUCTION_SCRAP;
+      case "bank.fxUnrealisedLoss":
+        return BANK_FX_UNREALISED_LOSS;
+      case "tax.corporateExpense":
+        return TAX_CORPORATE_EXPENSE;
+      case "tax.corporatePayable":
+        return TAX_CORPORATE_PAYABLE;
       case "bank.topUps":
         return BANK_TOP_UPS;
       case "securities.fees":
@@ -329,6 +359,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     PURCHASES_PAYABLES,
 
+    PURCHASES_ADVANCES_PAID,
+
     PURCHASES_VAT_RECEIVABLE,
 
     PURCHASES_GOODS_FOR_RESALE,
@@ -352,6 +384,14 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     BANK_FX_GAIN,
 
     BANK_FX_LOSS,
+
+    BANK_FX_UNREALISED_GAIN,
+
+    BANK_FX_UNREALISED_LOSS,
+
+    TAX_CORPORATE_EXPENSE,
+
+    TAX_CORPORATE_PAYABLE,
 
     BANK_PAYMENT_DIFFERENCE_GAIN,
 
@@ -419,6 +459,8 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
 
     T visitPurchasesPayables();
 
+    T visitPurchasesAdvancesPaid();
+
     T visitPurchasesVatReceivable();
 
     T visitPurchasesGoodsForResale();
@@ -442,6 +484,14 @@ public final class PostingRulesUpdateLedgerRequestRulesItemKey {
     T visitBankFxGain();
 
     T visitBankFxLoss();
+
+    T visitBankFxUnrealisedGain();
+
+    T visitBankFxUnrealisedLoss();
+
+    T visitTaxCorporateExpense();
+
+    T visitTaxCorporatePayable();
 
     T visitBankPaymentDifferenceGain();
 

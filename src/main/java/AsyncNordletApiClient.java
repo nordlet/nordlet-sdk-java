@@ -40,6 +40,7 @@ import com.nordlet.api.resources.public_.AsyncPublicClient;
 import com.nordlet.api.resources.purchases.AsyncPurchasesClient;
 import com.nordlet.api.resources.reference.AsyncReferenceClient;
 import com.nordlet.api.resources.reports.AsyncReportsClient;
+import com.nordlet.api.resources.review.AsyncReviewClient;
 import com.nordlet.api.resources.sales.AsyncSalesClient;
 import com.nordlet.api.resources.transport.AsyncTransportClient;
 import com.nordlet.api.resources.webhooks.AsyncWebhooksClient;
@@ -77,6 +78,8 @@ public class AsyncNordletApiClient {
   protected final Supplier<AsyncPlatformSellersClient> platformSellersClient;
 
   protected final Supplier<AsyncMigrationClient> migrationClient;
+
+  protected final Supplier<AsyncReviewClient> reviewClient;
 
   protected final Supplier<AsyncAssetsClient> assetsClient;
 
@@ -139,6 +142,7 @@ public class AsyncNordletApiClient {
     this.officersClient = Suppliers.memoize(() -> new AsyncOfficersClient(clientOptions));
     this.platformSellersClient = Suppliers.memoize(() -> new AsyncPlatformSellersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new AsyncMigrationClient(clientOptions));
+    this.reviewClient = Suppliers.memoize(() -> new AsyncReviewClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AsyncAssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new AsyncHrClient(clientOptions));
     this.fleetClient = Suppliers.memoize(() -> new AsyncFleetClient(clientOptions));
@@ -221,6 +225,10 @@ public class AsyncNordletApiClient {
 
   public AsyncMigrationClient migration() {
     return this.migrationClient.get();
+  }
+
+  public AsyncReviewClient review() {
+    return this.reviewClient.get();
   }
 
   public AsyncAssetsClient assets() {

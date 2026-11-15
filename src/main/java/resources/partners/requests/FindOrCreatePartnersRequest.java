@@ -106,6 +106,8 @@ public final class FindOrCreatePartnersRequest {
 
   private final Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass;
 
+  private final Optional<String> iban;
+
   private final Map<String, Object> additionalProperties;
 
   private FindOrCreatePartnersRequest(Optional<FindOrCreatePartnersRequestType> type, String name,
@@ -125,7 +127,7 @@ public final class FindOrCreatePartnersRequest {
       Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
       Optional<Boolean> isActive,
       Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass,
-      Map<String, Object> additionalProperties) {
+      Optional<String> iban, Map<String, Object> additionalProperties) {
     this.type = type;
     this.name = name;
     this.code = code;
@@ -162,6 +164,7 @@ public final class FindOrCreatePartnersRequest {
     this.isGroupMember = isGroupMember;
     this.isActive = isActive;
     this.legalCountryClass = legalCountryClass;
+    this.iban = iban;
     this.additionalProperties = additionalProperties;
   }
 
@@ -351,6 +354,11 @@ public final class FindOrCreatePartnersRequest {
     return legalCountryClass;
   }
 
+  @JsonProperty("iban")
+  public Optional<String> getIban() {
+    return iban;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -363,12 +371,12 @@ public final class FindOrCreatePartnersRequest {
   }
 
   private boolean equalTo(FindOrCreatePartnersRequest other) {
-    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
+    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass) && iban.equals(other.iban);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
+    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.iban);
   }
 
   @java.lang.Override
@@ -542,6 +550,10 @@ public final class FindOrCreatePartnersRequest {
         Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass);
 
     _FinalStage legalCountryClass(FindOrCreatePartnersRequestLegalCountryClass legalCountryClass);
+
+    _FinalStage iban(Optional<String> iban);
+
+    _FinalStage iban(String iban);
   }
 
   @JsonIgnoreProperties(
@@ -549,6 +561,8 @@ public final class FindOrCreatePartnersRequest {
   )
   public static final class Builder implements NameStage, _FinalStage {
     private String name;
+
+    private Optional<String> iban = Optional.empty();
 
     private Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass = Optional.empty();
 
@@ -664,6 +678,7 @@ public final class FindOrCreatePartnersRequest {
       isGroupMember(other.getIsGroupMember());
       isActive(other.getIsActive());
       legalCountryClass(other.getLegalCountryClass());
+      iban(other.getIban());
       return this;
     }
 
@@ -671,6 +686,22 @@ public final class FindOrCreatePartnersRequest {
     @JsonSetter("name")
     public _FinalStage name(@NotNull String name) {
       this.name = Objects.requireNonNull(name, "name must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage iban(String iban) {
+      this.iban = Optional.ofNullable(iban);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "iban",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage iban(Optional<String> iban) {
+      this.iban = iban;
       return this;
     }
 
@@ -1256,7 +1287,7 @@ public final class FindOrCreatePartnersRequest {
 
     @java.lang.Override
     public FindOrCreatePartnersRequest build() {
-      return new FindOrCreatePartnersRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
+      return new FindOrCreatePartnersRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, iban, additionalProperties);
     }
 
     @java.lang.Override

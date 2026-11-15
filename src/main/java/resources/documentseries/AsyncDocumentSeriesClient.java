@@ -99,28 +99,28 @@ public class AsyncDocumentSeriesClient {
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public CompletableFuture<ListDocumentSeriesResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public CompletableFuture<ListDocumentSeriesResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public CompletableFuture<ListDocumentSeriesResponse> list(ListDocumentSeriesRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public CompletableFuture<ListDocumentSeriesResponse> list(ListDocumentSeriesRequest request,
       RequestOptions requestOptions) {

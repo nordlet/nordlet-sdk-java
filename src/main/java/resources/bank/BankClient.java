@@ -222,28 +222,28 @@ public class BankClient {
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt, amount, bankAccountName (the name of the bank account), partnerName (the name of the partner, else the counterparty name), description and status. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList() {
     return this.rawClient.transactionsList().body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt, amount, bankAccountName (the name of the bank account), partnerName (the name of the partner, else the counterparty name), description and status. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(RequestOptions requestOptions) {
     return this.rawClient.transactionsList(requestOptions).body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt, amount, bankAccountName (the name of the bank account), partnerName (the name of the partner, else the counterparty name), description and status. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(TransactionsListBankRequest request) {
     return this.rawClient.transactionsList(request).body();
   }
 
   /**
-   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt and amount. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
+   * List the bank transactions of the company. Filterable by id, bankAccountId, status, matchedDocumentId, date, amount, counterpartyIban, counterpartyName, partnerId and externalId; sortable by date, createdAt, amount, bankAccountName (the name of the bank account), partnerName (the name of the partner, else the counterparty name), description and status. <code>counterpartyName</code> is the name as the bank wrote it; <code>partnerId</code> and <code>partnerName</code> are the partner the line belongs to.
    */
   public TransactionsListBankResponse transactionsList(TransactionsListBankRequest request,
       RequestOptions requestOptions) {
@@ -251,14 +251,14 @@ public class BankClient {
   }
 
   /**
-   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or to <code>remainder.accountCode</code>, which a supplier overpayment must name, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code>, else to the <code>bank.paymentDifferenceLoss</code> posting rule (a customer underpayment, a supplier overpayment, a credit note refund beyond its balance) or the <code>bank.paymentDifferenceGain</code> rule (a supplier underpayment, a customer overpayment, a credit note refund below its balance), and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice, an approved payroll run or an expense report (the last two in company currency only) for outgoing money. An expense report is paid to the employee by debiting the cash advances account (<code>cash.advances</code>) against the bank account, which settles the employee's advance balance in <code>cash/advance-holders/balances</code>; a report already paid in full or a payment above its remaining amount answers 409. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or, for a supplier overpayment, to the <code>purchases.advancesPaid</code> posting rule, or to <code>remainder.accountCode</code> when given, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code>, else to the <code>bank.paymentDifferenceLoss</code> posting rule (a customer underpayment, a supplier overpayment, a credit note refund beyond its balance) or the <code>bank.paymentDifferenceGain</code> rule (a supplier underpayment, a customer overpayment, a credit note refund below its balance), and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
    */
   public TransactionsMatchBankResponse transactionsMatch(TransactionsMatchBankRequest request) {
     return this.rawClient.transactionsMatch(request).body();
   }
 
   /**
-   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice or an approved payroll run (company currency only) for outgoing money. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or to <code>remainder.accountCode</code>, which a supplier overpayment must name, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code>, else to the <code>bank.paymentDifferenceLoss</code> posting rule (a customer underpayment, a supplier overpayment, a credit note refund beyond its balance) or the <code>bank.paymentDifferenceGain</code> rule (a supplier underpayment, a customer overpayment, a credit note refund below its balance), and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
+   * Match one new bank transaction to a document: an issued sale invoice or advance for incoming money; an issued sale credit note, a registered purchase invoice, an approved payroll run or an expense report (the last two in company currency only) for outgoing money. An expense report is paid to the employee by debiting the cash advances account (<code>cash.advances</code>) against the bank account, which settles the employee's advance balance in <code>cash/advance-holders/balances</code>; a report already paid in full or a payment above its remaining amount answers 409. Posts the payment journal transaction between the bank account and the receivable or payable account the invoice was posted to (the account of its operation type, else the posting rule) or the net payable account, with any exchange difference on the gain or loss account, raises the paid amount of the document and sets the line to matched. A payment in another currency is converted into the invoice currency at the rate of the line date, and the difference against the invoice's own rate is the exchange difference; <code>invoiceAmount</code> states the amount settled instead; in the same currency it must equal the payment (422). <code>remainder</code> settles a payment that differs from the remaining balance of a sale or purchase invoice in its own currency: <code>advance</code> books an overpayment beyond the balance to the advances-received posting rule (customer payments) or, for a supplier overpayment, to the <code>purchases.advancesPaid</code> posting rule, or to <code>remainder.accountCode</code> when given, on the line's partner; <code>write_off</code> books the over- or underpayment to <code>remainder.accountCode</code>, else to the <code>bank.paymentDifferenceLoss</code> posting rule (a customer underpayment, a supplier overpayment, a credit note refund beyond its balance) or the <code>bank.paymentDifferenceGain</code> rule (a supplier underpayment, a customer overpayment, a credit note refund below its balance), and settles the invoice in full; <code>leave_open</code> settles an underpayment as a partial payment and leaves the rest open. Answers 409 when the line is already matched or ignored, when the amount (converted, beyond one cent of the payment) exceeds the remaining balance of the document and no <code>remainder</code> is given, or when the accounting period of the line date is locked. A document that becomes fully paid is announced as <code>sale_invoice.paid</code> or <code>purchase_invoice.paid</code>.
    */
   public TransactionsMatchBankResponse transactionsMatch(TransactionsMatchBankRequest request,
       RequestOptions requestOptions) {
@@ -374,14 +374,14 @@ public class BankClient {
   }
 
   /**
-   * Build a SEPA credit transfer file (pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in EUR and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+   * Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as <code>xml</code>; nothing is posted or marked paid.
    */
   public PaymentsExportBankResponse paymentsExport(PaymentsExportBankRequest request) {
     return this.rawClient.paymentsExport(request).body();
   }
 
   /**
-   * Build a SEPA credit transfer file (pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in EUR and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+   * Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as <code>xml</code>; nothing is posted or marked paid.
    */
   public PaymentsExportBankResponse paymentsExport(PaymentsExportBankRequest request,
       RequestOptions requestOptions) {
@@ -647,28 +647,28 @@ public class BankClient {
   }
 
   /**
-   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
    */
   public MandatesListBankResponse mandatesList() {
     return this.rawClient.mandatesList().body();
   }
 
   /**
-   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
    */
   public MandatesListBankResponse mandatesList(RequestOptions requestOptions) {
     return this.rawClient.mandatesList(requestOptions).body();
   }
 
   /**
-   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
    */
   public MandatesListBankResponse mandatesList(MandatesListBankRequest request) {
     return this.rawClient.mandatesList(request).body();
   }
 
   /**
-   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt and signatureDate.
+   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
    */
   public MandatesListBankResponse mandatesList(MandatesListBankRequest request,
       RequestOptions requestOptions) {
@@ -676,21 +676,21 @@ public class BankClient {
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public DirectDebitsCandidatesBankResponse directDebitsCandidates() {
     return this.rawClient.directDebitsCandidates().body();
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public DirectDebitsCandidatesBankResponse directDebitsCandidates(RequestOptions requestOptions) {
     return this.rawClient.directDebitsCandidates(requestOptions).body();
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public DirectDebitsCandidatesBankResponse directDebitsCandidates(
       DirectDebitsCandidatesBankRequest request) {
@@ -698,7 +698,7 @@ public class BankClient {
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal and createdAt.
+   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public DirectDebitsCandidatesBankResponse directDebitsCandidates(
       DirectDebitsCandidatesBankRequest request, RequestOptions requestOptions) {
@@ -721,7 +721,7 @@ public class BankClient {
   }
 
   /**
-   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons. A transaction that is already matched answers 409.
+   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
    */
   public TransactionsSuggestMatchesBankResponse transactionsSuggestMatches(
       TransactionsSuggestMatchesBankRequest request) {
@@ -729,7 +729,7 @@ public class BankClient {
   }
 
   /**
-   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons. A transaction that is already matched answers 409.
+   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
    */
   public TransactionsSuggestMatchesBankResponse transactionsSuggestMatches(
       TransactionsSuggestMatchesBankRequest request, RequestOptions requestOptions) {
@@ -752,28 +752,28 @@ public class BankClient {
   }
 
   /**
-   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
    */
   public SettlementsListBankResponse settlementsList() {
     return this.rawClient.settlementsList().body();
   }
 
   /**
-   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
    */
   public SettlementsListBankResponse settlementsList(RequestOptions requestOptions) {
     return this.rawClient.settlementsList(requestOptions).body();
   }
 
   /**
-   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
    */
   public SettlementsListBankResponse settlementsList(SettlementsListBankRequest request) {
     return this.rawClient.settlementsList(request).body();
   }
 
   /**
-   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt and netTotal.
+   * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
    */
   public SettlementsListBankResponse settlementsList(SettlementsListBankRequest request,
       RequestOptions requestOptions) {
@@ -931,14 +931,14 @@ public class BankClient {
   }
 
   /**
-   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
    */
   public SecuritiesOperationsListBankResponse securitiesOperationsList() {
     return this.rawClient.securitiesOperationsList().body();
   }
 
   /**
-   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
    */
   public SecuritiesOperationsListBankResponse securitiesOperationsList(
       RequestOptions requestOptions) {
@@ -946,7 +946,7 @@ public class BankClient {
   }
 
   /**
-   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
    */
   public SecuritiesOperationsListBankResponse securitiesOperationsList(
       SecuritiesOperationsListBankRequest request) {
@@ -954,7 +954,7 @@ public class BankClient {
   }
 
   /**
-   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code> and <code>createdAt</code>.
+   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
    */
   public SecuritiesOperationsListBankResponse securitiesOperationsList(
       SecuritiesOperationsListBankRequest request, RequestOptions requestOptions) {

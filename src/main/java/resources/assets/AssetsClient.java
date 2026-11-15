@@ -199,28 +199,28 @@ public class AssetsClient {
   }
 
   /**
-   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
    */
   public AssetsListAssetsResponse assetsList() {
     return this.rawClient.assetsList().body();
   }
 
   /**
-   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
    */
   public AssetsListAssetsResponse assetsList(RequestOptions requestOptions) {
     return this.rawClient.assetsList(requestOptions).body();
   }
 
   /**
-   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
    */
   public AssetsListAssetsResponse assetsList(AssetsListAssetsRequest request) {
     return this.rawClient.assetsList(request).body();
   }
 
   /**
-   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code> and <code>acquisitionCost</code>.
+   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
    */
   public AssetsListAssetsResponse assetsList(AssetsListAssetsRequest request,
       RequestOptions requestOptions) {
@@ -243,14 +243,14 @@ public class AssetsClient {
   }
 
   /**
-   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
    */
   public AssetsDisposeAssetsResponse assetsDispose(AssetsDisposeAssetsRequest request) {
     return this.rawClient.assetsDispose(request).body();
   }
 
   /**
-   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+   * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
    */
   public AssetsDisposeAssetsResponse assetsDispose(AssetsDisposeAssetsRequest request,
       RequestOptions requestOptions) {

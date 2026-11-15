@@ -153,28 +153,28 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public CompletableFuture<ItemsListCatalogResponse> itemsList() {
     return this.rawClient.itemsList().thenApply(response -> response.body());
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(RequestOptions requestOptions) {
     return this.rawClient.itemsList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request) {
     return this.rawClient.itemsList(request).thenApply(response -> response.body());
   }
 
   /**
-   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+   * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
    */
   public CompletableFuture<ItemsListCatalogResponse> itemsList(ItemsListCatalogRequest request,
       RequestOptions requestOptions) {

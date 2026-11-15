@@ -34,6 +34,10 @@ public final class RunsApprovePayrollRequest {
 
   private final Optional<String> payableAccountCode;
 
+  private final Optional<String> incomeTaxAccountCode;
+
+  private final Optional<String> socialContributionsAccountCode;
+
   private final Optional<String> gpmAccountCode;
 
   private final Optional<String> sodraAccountCode;
@@ -46,6 +50,7 @@ public final class RunsApprovePayrollRequest {
 
   private RunsApprovePayrollRequest(String id, Optional<String> wageAccountCode,
       Optional<String> employerAccountCode, Optional<String> payableAccountCode,
+      Optional<String> incomeTaxAccountCode, Optional<String> socialContributionsAccountCode,
       Optional<String> gpmAccountCode, Optional<String> sodraAccountCode,
       Optional<String> employerSocialAccountCode, Optional<String> deductionAccountCode,
       Map<String, Object> additionalProperties) {
@@ -53,6 +58,8 @@ public final class RunsApprovePayrollRequest {
     this.wageAccountCode = wageAccountCode;
     this.employerAccountCode = employerAccountCode;
     this.payableAccountCode = payableAccountCode;
+    this.incomeTaxAccountCode = incomeTaxAccountCode;
+    this.socialContributionsAccountCode = socialContributionsAccountCode;
     this.gpmAccountCode = gpmAccountCode;
     this.sodraAccountCode = sodraAccountCode;
     this.employerSocialAccountCode = employerSocialAccountCode;
@@ -78,6 +85,16 @@ public final class RunsApprovePayrollRequest {
   @JsonProperty("payableAccountCode")
   public Optional<String> getPayableAccountCode() {
     return payableAccountCode;
+  }
+
+  @JsonProperty("incomeTaxAccountCode")
+  public Optional<String> getIncomeTaxAccountCode() {
+    return incomeTaxAccountCode;
+  }
+
+  @JsonProperty("socialContributionsAccountCode")
+  public Optional<String> getSocialContributionsAccountCode() {
+    return socialContributionsAccountCode;
   }
 
   @JsonProperty("gpmAccountCode")
@@ -112,12 +129,12 @@ public final class RunsApprovePayrollRequest {
   }
 
   private boolean equalTo(RunsApprovePayrollRequest other) {
-    return id.equals(other.id) && wageAccountCode.equals(other.wageAccountCode) && employerAccountCode.equals(other.employerAccountCode) && payableAccountCode.equals(other.payableAccountCode) && gpmAccountCode.equals(other.gpmAccountCode) && sodraAccountCode.equals(other.sodraAccountCode) && employerSocialAccountCode.equals(other.employerSocialAccountCode) && deductionAccountCode.equals(other.deductionAccountCode);
+    return id.equals(other.id) && wageAccountCode.equals(other.wageAccountCode) && employerAccountCode.equals(other.employerAccountCode) && payableAccountCode.equals(other.payableAccountCode) && incomeTaxAccountCode.equals(other.incomeTaxAccountCode) && socialContributionsAccountCode.equals(other.socialContributionsAccountCode) && gpmAccountCode.equals(other.gpmAccountCode) && sodraAccountCode.equals(other.sodraAccountCode) && employerSocialAccountCode.equals(other.employerSocialAccountCode) && deductionAccountCode.equals(other.deductionAccountCode);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.wageAccountCode, this.employerAccountCode, this.payableAccountCode, this.gpmAccountCode, this.sodraAccountCode, this.employerSocialAccountCode, this.deductionAccountCode);
+    return Objects.hash(this.id, this.wageAccountCode, this.employerAccountCode, this.payableAccountCode, this.incomeTaxAccountCode, this.socialContributionsAccountCode, this.gpmAccountCode, this.sodraAccountCode, this.employerSocialAccountCode, this.deductionAccountCode);
   }
 
   @java.lang.Override
@@ -154,6 +171,14 @@ public final class RunsApprovePayrollRequest {
 
     _FinalStage payableAccountCode(String payableAccountCode);
 
+    _FinalStage incomeTaxAccountCode(Optional<String> incomeTaxAccountCode);
+
+    _FinalStage incomeTaxAccountCode(String incomeTaxAccountCode);
+
+    _FinalStage socialContributionsAccountCode(Optional<String> socialContributionsAccountCode);
+
+    _FinalStage socialContributionsAccountCode(String socialContributionsAccountCode);
+
     _FinalStage gpmAccountCode(Optional<String> gpmAccountCode);
 
     _FinalStage gpmAccountCode(String gpmAccountCode);
@@ -185,6 +210,10 @@ public final class RunsApprovePayrollRequest {
 
     private Optional<String> gpmAccountCode = Optional.empty();
 
+    private Optional<String> socialContributionsAccountCode = Optional.empty();
+
+    private Optional<String> incomeTaxAccountCode = Optional.empty();
+
     private Optional<String> payableAccountCode = Optional.empty();
 
     private Optional<String> employerAccountCode = Optional.empty();
@@ -203,6 +232,8 @@ public final class RunsApprovePayrollRequest {
       wageAccountCode(other.getWageAccountCode());
       employerAccountCode(other.getEmployerAccountCode());
       payableAccountCode(other.getPayableAccountCode());
+      incomeTaxAccountCode(other.getIncomeTaxAccountCode());
+      socialContributionsAccountCode(other.getSocialContributionsAccountCode());
       gpmAccountCode(other.getGpmAccountCode());
       sodraAccountCode(other.getSodraAccountCode());
       employerSocialAccountCode(other.getEmployerSocialAccountCode());
@@ -282,6 +313,39 @@ public final class RunsApprovePayrollRequest {
     }
 
     @java.lang.Override
+    public _FinalStage socialContributionsAccountCode(String socialContributionsAccountCode) {
+      this.socialContributionsAccountCode = Optional.ofNullable(socialContributionsAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "socialContributionsAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage socialContributionsAccountCode(
+        Optional<String> socialContributionsAccountCode) {
+      this.socialContributionsAccountCode = socialContributionsAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage incomeTaxAccountCode(String incomeTaxAccountCode) {
+      this.incomeTaxAccountCode = Optional.ofNullable(incomeTaxAccountCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "incomeTaxAccountCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage incomeTaxAccountCode(Optional<String> incomeTaxAccountCode) {
+      this.incomeTaxAccountCode = incomeTaxAccountCode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage payableAccountCode(String payableAccountCode) {
       this.payableAccountCode = Optional.ofNullable(payableAccountCode);
       return this;
@@ -331,7 +395,7 @@ public final class RunsApprovePayrollRequest {
 
     @java.lang.Override
     public RunsApprovePayrollRequest build() {
-      return new RunsApprovePayrollRequest(id, wageAccountCode, employerAccountCode, payableAccountCode, gpmAccountCode, sodraAccountCode, employerSocialAccountCode, deductionAccountCode, additionalProperties);
+      return new RunsApprovePayrollRequest(id, wageAccountCode, employerAccountCode, payableAccountCode, incomeTaxAccountCode, socialContributionsAccountCode, gpmAccountCode, sodraAccountCode, employerSocialAccountCode, deductionAccountCode, additionalProperties);
     }
 
     @java.lang.Override

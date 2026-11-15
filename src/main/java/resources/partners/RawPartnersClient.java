@@ -1702,7 +1702,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>, <code>partnerName</code> (the name of the partner), <code>vatCode</code>, <code>reason</code>, <code>details</code> (the service message for a service error, else the name found in VIES) and <code>resolution</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             ) {
@@ -1710,7 +1710,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>, <code>partnerName</code> (the name of the partner), <code>vatCode</code>, <code>reason</code>, <code>details</code> (the service message for a service error, else the name found in VIES) and <code>resolution</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             RequestOptions requestOptions) {
@@ -1718,7 +1718,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>, <code>partnerName</code> (the name of the partner), <code>vatCode</code>, <code>reason</code>, <code>details</code> (the service message for a service error, else the name found in VIES) and <code>resolution</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             VatReviewsListPartnersRequest request) {
@@ -1726,7 +1726,7 @@ public class RawPartnersClient {
                                         }
 
                                         /**
-                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>.
+                                         * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>, <code>partnerName</code> (the name of the partner), <code>vatCode</code>, <code>reason</code>, <code>details</code> (the service message for a service error, else the name found in VIES) and <code>resolution</code>.
                                          */
                                         public NordletApiHttpResponse<VatReviewsListPartnersResponse> vatReviewsList(
                                             VatReviewsListPartnersRequest request,
@@ -1870,7 +1870,7 @@ public class RawPartnersClient {
                                             }
 
                                             /**
-                                             * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                             * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
                                              */
                                             public NordletApiHttpResponse<CreatePartnersResponse> create(
                                                 CreatePartnersRequest request) {
@@ -1878,7 +1878,7 @@ public class RawPartnersClient {
                                             }
 
                                             /**
-                                             * Creates a partner. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+                                             * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
                                              */
                                             public NordletApiHttpResponse<CreatePartnersResponse> create(
                                                 CreatePartnersRequest request,
@@ -1946,7 +1946,7 @@ public class RawPartnersClient {
                                               }
 
                                               /**
-                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created. An <code>iban</code> (check digits validated as in <code>partners/bank-accounts/create</code>, 422 when they fail) is added as a bank account of the returned partner when the partner does not have it yet; it becomes the default account when the partner has none.
                                                */
                                               public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
                                                   FindOrCreatePartnersRequest request) {
@@ -1954,7 +1954,7 @@ public class RawPartnersClient {
                                               }
 
                                               /**
-                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created.
+                                               * Returns the live partner matched by <code>code</code>, then <code>vatCode</code> (compared without spaces, dots and dashes and without regard to case), then <code>email</code> (at least one is required), or creates one from the body with the same validation and VIES check as <code>partners/create</code>; <code>created</code> says which happened. Without <code>isCustomer</code> a new partner is a customer unless <code>isSupplier</code> is true. A creation that loses a race on the partner code returns the partner the other call created. An <code>iban</code> (check digits validated as in <code>partners/bank-accounts/create</code>, 422 when they fail) is added as a bank account of the returned partner when the partner does not have it yet; it becomes the default account when the partner has none.
                                                */
                                               public NordletApiHttpResponse<FindOrCreatePartnersResponse> findOrCreate(
                                                   FindOrCreatePartnersRequest request,
@@ -2402,7 +2402,7 @@ public class RawPartnersClient {
                                                           }
 
                                                           /**
-                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code>, <code>rating</code>, <code>vatCode</code>, <code>vatValid</code> and <code>roles</code> (customer and supplier flags).
                                                            */
                                                           public NordletApiHttpResponse<ListPartnersResponse> list(
                                                               ) {
@@ -2410,7 +2410,7 @@ public class RawPartnersClient {
                                                           }
 
                                                           /**
-                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code>, <code>rating</code>, <code>vatCode</code>, <code>vatValid</code> and <code>roles</code> (customer and supplier flags).
                                                            */
                                                           public NordletApiHttpResponse<ListPartnersResponse> list(
                                                               RequestOptions requestOptions) {
@@ -2418,7 +2418,7 @@ public class RawPartnersClient {
                                                           }
 
                                                           /**
-                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code>, <code>rating</code>, <code>vatCode</code>, <code>vatValid</code> and <code>roles</code> (customer and supplier flags).
                                                            */
                                                           public NordletApiHttpResponse<ListPartnersResponse> list(
                                                               ListPartnersRequest request) {
@@ -2426,7 +2426,7 @@ public class RawPartnersClient {
                                                           }
 
                                                           /**
-                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code> and <code>rating</code>.
+                                                           * Lists live partners; filterable by <code>name</code>, <code>code</code>, <code>vatCode</code>, <code>email</code>, <code>type</code>, <code>isCustomer</code>, <code>isSupplier</code>, <code>isActive</code>, <code>legalCountryClass</code>, <code>isEmployee</code>, <code>groupId</code>, <code>statusId</code> and <code>nextCallDate</code>, sortable by <code>name</code>, <code>code</code>, <code>createdAt</code>, <code>nextCallDate</code>, <code>rating</code>, <code>vatCode</code>, <code>vatValid</code> and <code>roles</code> (customer and supplier flags).
                                                            */
                                                           public NordletApiHttpResponse<ListPartnersResponse> list(
                                                               ListPartnersRequest request,

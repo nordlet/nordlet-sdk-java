@@ -157,7 +157,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request) {
@@ -165,7 +165,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request, RequestOptions requestOptions) {
@@ -173,7 +173,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesUpdateHrResponse> employeesUpdate(
       EmployeesUpdateHrRequest request) {
@@ -181,7 +181,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+   * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesUpdateHrResponse> employeesUpdate(
       EmployeesUpdateHrRequest request, RequestOptions requestOptions) {
@@ -235,28 +235,28 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
    */
   public CompletableFuture<EmployeesListHrResponse> employeesList() {
     return this.rawClient.employeesList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
    */
   public CompletableFuture<EmployeesListHrResponse> employeesList(RequestOptions requestOptions) {
     return this.rawClient.employeesList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
    */
   public CompletableFuture<EmployeesListHrResponse> employeesList(EmployeesListHrRequest request) {
     return this.rawClient.employeesList(request).thenApply(response -> response.body());
   }
 
   /**
-   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+   * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
    */
   public CompletableFuture<EmployeesListHrResponse> employeesList(EmployeesListHrRequest request,
       RequestOptions requestOptions) {
@@ -466,14 +466,14 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
    */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList() {
     return this.rawClient.perDiemRatesList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
    */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       RequestOptions requestOptions) {
@@ -481,7 +481,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
    */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       PerDiemRatesListHrRequest request) {
@@ -489,7 +489,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+   * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
    */
   public CompletableFuture<PerDiemRatesListHrResponse> perDiemRatesList(
       PerDiemRatesListHrRequest request, RequestOptions requestOptions) {
@@ -545,14 +545,14 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList() {
     return this.rawClient.businessTripsList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       RequestOptions requestOptions) {
@@ -560,7 +560,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request) {
@@ -568,7 +568,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+   * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
    */
   public CompletableFuture<BusinessTripsListHrResponse> businessTripsList(
       BusinessTripsListHrRequest request, RequestOptions requestOptions) {

@@ -39,6 +39,7 @@ import com.nordlet.api.resources.sales.requests.InvoicesPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolStatusSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesPeppolXmlSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesReverseSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUpdateSalesRequest;
@@ -93,6 +94,7 @@ import com.nordlet.api.resources.sales.types.InvoicesPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolStatusSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesPeppolXmlSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesReverseSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesResponse;
@@ -134,7 +136,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. <code>warnings</code> lists what does not refuse the document but needs a look: <code>vat_type_not_valid_on_date</code> (a line VAT type is not valid on the issue date, else today), <code>vat_type_domestic_for_eu_partner</code> (a domestic VAT type for a partner VAT-registered in another EU country), <code>vat_type_intra_eu_for_domestic_partner</code> (an intra-EU VAT type for a partner in the company country) and <code>vat_type_intra_eu_without_vat_number</code> (an intra-EU VAT type for a partner without a VAT number).
+   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. <code>warnings</code> lists what does not refuse the document but needs a look, each with a <code>fix</code> naming the call or field that resolves it: <code>partner_vat_invalid</code> (the VAT number of the partner failed its VIES check), <code>vat_type_not_valid_on_date</code> (a line VAT type is not valid on the issue date, else today), <code>vat_type_domestic_for_eu_partner</code> (a domestic VAT type for a partner VAT-registered in another EU country), <code>vat_type_intra_eu_for_domestic_partner</code> (an intra-EU VAT type for a partner in the company country) and <code>vat_type_intra_eu_without_vat_number</code> (an intra-EU VAT type for a partner without a VAT number).
    */
   public CompletableFuture<InvoicesCreateSalesResponse> invoicesCreate(
       InvoicesCreateSalesRequest request) {
@@ -142,7 +144,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. <code>warnings</code> lists what does not refuse the document but needs a look: <code>vat_type_not_valid_on_date</code> (a line VAT type is not valid on the issue date, else today), <code>vat_type_domestic_for_eu_partner</code> (a domestic VAT type for a partner VAT-registered in another EU country), <code>vat_type_intra_eu_for_domestic_partner</code> (an intra-EU VAT type for a partner in the company country) and <code>vat_type_intra_eu_without_vat_number</code> (an intra-EU VAT type for a partner without a VAT number).
+   * Create a draft sale document - an invoice, credit note, proforma or advance invoice (<code>type</code>) - with its lines; the totals are computed from the lines and <code>discountPercent</code>, and the number is assigned by <code>sales/invoices/issue</code>. Answers 422 when a credit note credits a proforma, another credit note or a document that is not issued, when the credited document has another partner or currency, when an OSS or IOSS document has no EU <code>vatCountryCode</code>, when the lines carry VAT but the company is not a VAT payer or the VAT scheme charges none, or when the operation type or document series is for another document type. <code>warnings</code> lists what does not refuse the document but needs a look, each with a <code>fix</code> naming the call or field that resolves it: <code>partner_vat_invalid</code> (the VAT number of the partner failed its VIES check), <code>vat_type_not_valid_on_date</code> (a line VAT type is not valid on the issue date, else today), <code>vat_type_domestic_for_eu_partner</code> (a domestic VAT type for a partner VAT-registered in another EU country), <code>vat_type_intra_eu_for_domestic_partner</code> (an intra-EU VAT type for a partner in the company country) and <code>vat_type_intra_eu_without_vat_number</code> (an intra-EU VAT type for a partner without a VAT number).
    */
   public CompletableFuture<InvoicesCreateSalesResponse> invoicesCreate(
       InvoicesCreateSalesRequest request, RequestOptions requestOptions) {
@@ -340,7 +342,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request) {
@@ -348,11 +350,27 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked or the accounting period is locked, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request, RequestOptions requestOptions) {
     return this.rawClient.invoicesIssue(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Undoes an issued invoice or advance invoice: posts a journal entry dated the issue date that mirrors the invoice's entry (debits and credits swapped), cancels its pending revenue recognition and sets the status to <code>reversed</code> with the reason. The invoice keeps its number, which stays used, and leaves the VAT returns, the national lists, the reports, partner balances and debt aging. Emits <code>sale_invoice.reversed</code>. Answers 409 pointing to a credit note when the document is not issued, is a credit note, is locked, was e-mailed, was sent over Peppol or to an e-invoicing or tax authority system (or carries national marks registered at issue), has payments matched to it, is credited by a credit note, has an advance applied, moved goods in or out of stock, has revenue recognised or a refund liability, is the sale invoice of an asset disposal (naming the asset), was mirrored to another company of the group, or when the accounting period of its issue date is locked (naming the period).
+   */
+  public CompletableFuture<InvoicesReverseSalesResponse> invoicesReverse(
+      InvoicesReverseSalesRequest request) {
+    return this.rawClient.invoicesReverse(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Undoes an issued invoice or advance invoice: posts a journal entry dated the issue date that mirrors the invoice's entry (debits and credits swapped), cancels its pending revenue recognition and sets the status to <code>reversed</code> with the reason. The invoice keeps its number, which stays used, and leaves the VAT returns, the national lists, the reports, partner balances and debt aging. Emits <code>sale_invoice.reversed</code>. Answers 409 pointing to a credit note when the document is not issued, is a credit note, is locked, was e-mailed, was sent over Peppol or to an e-invoicing or tax authority system (or carries national marks registered at issue), has payments matched to it, is credited by a credit note, has an advance applied, moved goods in or out of stock, has revenue recognised or a refund liability, is the sale invoice of an asset disposal (naming the asset), was mirrored to another company of the group, or when the accounting period of its issue date is locked (naming the period).
+   */
+  public CompletableFuture<InvoicesReverseSalesResponse> invoicesReverse(
+      InvoicesReverseSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesReverse(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
@@ -498,21 +516,21 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList() {
     return this.rawClient.invoicesList().thenApply(response -> response.body());
   }
 
   /**
-   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(RequestOptions requestOptions) {
     return this.rawClient.invoicesList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(
       InvoicesListSalesRequest request) {
@@ -520,7 +538,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status and paymentStatus.
+   * List the sale documents of the company with the partner name. An advance invoice also carries <code>advanceUnappliedAmount</code>: its gross total less the amounts applied with <code>sales/invoices/apply-advance</code> and the issued credit notes on it (null on other documents). Filterable by partnerId, type, status, paymentStatus, fullNumber, issueDate, currency, agreementId, creditedInvoiceId, operationTypeId, documentSeriesId, lockedAt, grossTotal, netTotal, vatTotal, dueDate, orderNumber, seriesLabel, locale and recurringInvoiceId; sortable by createdAt, issueDate, fullNumber, grossTotal, netTotal, vatTotal, status, paymentStatus, seriesLabel, partnerName (the name of the partner) and creditedInvoiceReference (the reference of the credited invoice).
    */
   public CompletableFuture<InvoicesListSalesResponse> invoicesList(InvoicesListSalesRequest request,
       RequestOptions requestOptions) {
@@ -711,14 +729,14 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
    */
   public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList() {
     return this.rawClient.invoiceTemplatesList().thenApply(response -> response.body());
   }
 
   /**
-   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
    */
   public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
       RequestOptions requestOptions) {
@@ -726,7 +744,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
    */
   public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
       InvoiceTemplatesListSalesRequest request) {
@@ -734,7 +752,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType and createdAt.
+   * List invoice templates. Filterable by name, documentType and partnerId; sortable by name, documentType, createdAt, currency, paymentTermDays and lines (the number of lines).
    */
   public CompletableFuture<InvoiceTemplatesListSalesResponse> invoiceTemplatesList(
       InvoiceTemplatesListSalesRequest request, RequestOptions requestOptions) {
@@ -822,14 +840,14 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one (409 when <code>asOfDate</code> is after the company's current date); each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
    */
   public CompletableFuture<RecurringInvoicesRunSalesResponse> recurringInvoicesRun() {
     return this.rawClient.recurringInvoicesRun().thenApply(response -> response.body());
   }
 
   /**
-   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one (409 when <code>asOfDate</code> is after the company's current date); each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
    */
   public CompletableFuture<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
       RequestOptions requestOptions) {
@@ -837,7 +855,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one (409 when <code>asOfDate</code> is after the company's current date); each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
    */
   public CompletableFuture<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
       RecurringInvoicesRunSalesRequest request) {
@@ -845,7 +863,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one; each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
+   * Generate every invoice due up to <code>asOfDate</code> (default today) from the active schedules of the company, catching up to 60 missed occurrences per schedule, as <code>sales/recurring-invoices/generate</code> does for one (409 when <code>asOfDate</code> is after the company's current date); each generated invoice emits <code>recurring_invoice.generated</code>. The answer lists what was generated and the schedules that failed; a failure is also stored as the schedule's <code>lastError</code>.
    */
   public CompletableFuture<RecurringInvoicesRunSalesResponse> recurringInvoicesRun(
       RecurringInvoicesRunSalesRequest request, RequestOptions requestOptions) {
@@ -853,14 +871,14 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
    */
   public CompletableFuture<RecurringInvoicesListSalesResponse> recurringInvoicesList() {
     return this.rawClient.recurringInvoicesList().thenApply(response -> response.body());
   }
 
   /**
-   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
    */
   public CompletableFuture<RecurringInvoicesListSalesResponse> recurringInvoicesList(
       RequestOptions requestOptions) {
@@ -868,7 +886,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
    */
   public CompletableFuture<RecurringInvoicesListSalesResponse> recurringInvoicesList(
       RecurringInvoicesListSalesRequest request) {
@@ -876,7 +894,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency and createdAt.
+   * List recurring invoice schedules with the names of their template and partner. Filterable by status, partnerId, templateId, frequency, nextRunDate and autoIssue; sortable by nextRunDate, startDate, status, frequency, createdAt, templateName (the name of the template), partnerName (the name of the partner), interval and occurrences.
    */
   public CompletableFuture<RecurringInvoicesListSalesResponse> recurringInvoicesList(
       RecurringInvoicesListSalesRequest request, RequestOptions requestOptions) {

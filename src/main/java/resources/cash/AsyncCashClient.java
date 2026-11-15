@@ -72,28 +72,28 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public CompletableFuture<OrdersListCashResponse> ordersList() {
     return this.rawClient.ordersList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public CompletableFuture<OrdersListCashResponse> ordersList(RequestOptions requestOptions) {
     return this.rawClient.ordersList(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request) {
     return this.rawClient.ordersList(request).thenApply(response -> response.body());
   }
 
   /**
-   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code> and <code>amount</code>.
+   * Lists cash orders. Filterable by <code>type</code>, <code>date</code>, <code>partnerId</code>, <code>employeeId</code>, <code>fullNumber</code> and <code>amount</code>; sortable by <code>date</code>, <code>fullNumber</code>, <code>createdAt</code>, <code>amount</code>, <code>type</code>, <code>purpose</code>, <code>counterAccountCode</code> and <code>counterpartyName</code> (the name of the partner, else the name of the employee).
    */
   public CompletableFuture<OrdersListCashResponse> ordersList(OrdersListCashRequest request,
       RequestOptions requestOptions) {
@@ -162,14 +162,14 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList() {
     return this.rawClient.expenseReportsList().thenApply(response -> response.body());
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       RequestOptions requestOptions) {
@@ -177,7 +177,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request) {
@@ -185,7 +185,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code> and <code>number</code>.
+   * Lists expense reports without their lines. Filterable by <code>employeeId</code>, <code>date</code> and <code>number</code>; sortable by <code>date</code>, <code>number</code>, <code>total</code> and <code>employeeName</code> (the first and last name of the employee).
    */
   public CompletableFuture<ExpenseReportsListCashResponse> expenseReportsList(
       ExpenseReportsListCashRequest request, RequestOptions requestOptions) {
@@ -193,14 +193,14 @@ public class AsyncCashClient {
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances() {
     return this.rawClient.advanceHoldersBalances().thenApply(response -> response.body());
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       RequestOptions requestOptions) {
@@ -208,7 +208,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request) {
@@ -216,7 +216,7 @@ public class AsyncCashClient {
   }
 
   /**
-   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
+   * Returns, per employee, the cash advances issued to them (disbursements posted to the <code>cash.advances</code> account with the employee set, and bank payments matched to their expense reports), the amounts returned (receipts on the same account), the total settled by expense reports and the open balance (issued less returned less settled).
    */
   public CompletableFuture<AdvanceHoldersBalancesCashResponse> advanceHoldersBalances(
       AdvanceHoldersBalancesCashRequest request, RequestOptions requestOptions) {

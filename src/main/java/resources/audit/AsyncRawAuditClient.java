@@ -50,14 +50,14 @@ public class AsyncRawAuditClient {
   }
 
   /**
-   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code>, <code>id</code>, <code>actor</code> (the actor type, then the start of the actor id), <code>action</code>, <code>entity</code> (the entity, then the start of the entity id) and <code>diff</code> (the recorded change as text), newest first by default.
    */
   public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list() {
     return list(ListAuditRequest.builder().build());
   }
 
   /**
-   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code>, <code>id</code>, <code>actor</code> (the actor type, then the start of the actor id), <code>action</code>, <code>entity</code> (the entity, then the start of the entity id) and <code>diff</code> (the recorded change as text), newest first by default.
    */
   public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(
       RequestOptions requestOptions) {
@@ -65,7 +65,7 @@ public class AsyncRawAuditClient {
   }
 
   /**
-   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code>, <code>id</code>, <code>actor</code> (the actor type, then the start of the actor id), <code>action</code>, <code>entity</code> (the entity, then the start of the entity id) and <code>diff</code> (the recorded change as text), newest first by default.
    */
   public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(
       ListAuditRequest request) {
@@ -73,7 +73,7 @@ public class AsyncRawAuditClient {
   }
 
   /**
-   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code> and <code>id</code>, newest first by default.
+   * List the audit log of the company: who did what to which entity, with the recorded change in <code>diff</code>. Filterable by <code>action</code>, <code>entity</code>, <code>entityId</code>, <code>actorType</code> and <code>actorId</code>; sortable by <code>createdAt</code>, <code>id</code>, <code>actor</code> (the actor type, then the start of the actor id), <code>action</code>, <code>entity</code> (the entity, then the start of the entity id) and <code>diff</code> (the recorded change as text), newest first by default.
    */
   public CompletableFuture<NordletApiHttpResponse<ListAuditResponse>> list(ListAuditRequest request,
       RequestOptions requestOptions) {

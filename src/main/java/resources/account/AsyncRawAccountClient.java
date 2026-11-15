@@ -31,6 +31,7 @@ import com.nordlet.api.resources.account.requests.BrandGetAccountRequest;
 import com.nordlet.api.resources.account.requests.BrandUpdateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesActivateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesArchiveAccountRequest;
+import com.nordlet.api.resources.account.requests.CompaniesContextAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesConvertToLiveAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesCreateAccountRequest;
 import com.nordlet.api.resources.account.requests.CompaniesDeleteAccountRequest;
@@ -81,6 +82,7 @@ import com.nordlet.api.resources.account.types.BrandGetAccountResponse;
 import com.nordlet.api.resources.account.types.BrandUpdateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesActivateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesArchiveAccountResponse;
+import com.nordlet.api.resources.account.types.CompaniesContextAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesConvertToLiveAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountResponse;
 import com.nordlet.api.resources.account.types.CompaniesDeleteAccountResponse;
@@ -1895,38 +1897,38 @@ public class AsyncRawAccountClient {
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                     * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                    public CompletableFuture<NordletApiHttpResponse<CompaniesContextAccountResponse>> companiesContext(
                                         ) {
-                                      return companiesUpdate(CompaniesUpdateAccountRequest.builder().build());
+                                      return companiesContext(CompaniesContextAccountRequest.builder().build());
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                     * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                    public CompletableFuture<NordletApiHttpResponse<CompaniesContextAccountResponse>> companiesContext(
                                         RequestOptions requestOptions) {
-                                      return companiesUpdate(CompaniesUpdateAccountRequest.builder().build(),requestOptions);
+                                      return companiesContext(CompaniesContextAccountRequest.builder().build(),requestOptions);
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                     * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
-                                        CompaniesUpdateAccountRequest request) {
-                                      return companiesUpdate(request,null);
+                                    public CompletableFuture<NordletApiHttpResponse<CompaniesContextAccountResponse>> companiesContext(
+                                        CompaniesContextAccountRequest request) {
+                                      return companiesContext(request,null);
                                     }
 
                                     /**
-                                     * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                     * Return what an agent needs to start working in the active company in one answer: the <code>profile</code> (as <code>account/companies/profile</code>), the accounting <code>periods</code> that are open and locked, the <code>postingRules</code> (rule key to account code), the <code>bankAccounts</code>, the <code>vatTypesUsed</code> on the company's invoice lines with their line counts, the country's <code>filings</code> due from 45 days back to 120 days ahead with their calendar <code>key</code> (as <code>calendar/list</code> returns it), the filing <code>system</code>, whether the file can be built (<code>canDownload</code>) or sent (<code>canSubmit</code>) and the <code>missingSettings</code> of the filing system (<code>declarations/configs/update</code> with the <code>system</code> and the <code>keys</code> that have no stored value; a filing may not need every key of its system), and the <code>payroll</code> options: the employee fields (<code>hr/employees/fields</code>) the country's payroll engine reads. An API key reads the company named in the <code>x-nordlet-company</code> header and needs the <code>account:read</code> scope.
                                      */
-                                    public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
-                                        CompaniesUpdateAccountRequest request,
+                                    public CompletableFuture<NordletApiHttpResponse<CompaniesContextAccountResponse>> companiesContext(
+                                        CompaniesContextAccountRequest request,
                                         RequestOptions requestOptions) {
                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                        .addPathSegments("v1/account/companies/update");if (requestOptions != null) {
+                                        .addPathSegments("v1/account/companies/context");if (requestOptions != null) {
                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                             httpUrl.addQueryParameter(_key, _value);
                                           } );
@@ -1952,14 +1954,14 @@ public class AsyncRawAccountClient {
                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                         }
-                                        CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> future = new CompletableFuture<>();
+                                        CompletableFuture<NordletApiHttpResponse<CompaniesContextAccountResponse>> future = new CompletableFuture<>();
                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                           @Override
                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                             try (ResponseBody responseBody = response.body()) {
                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                               if (response.isSuccessful()) {
-                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesUpdateAccountResponse.class), response));
+                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesContextAccountResponse.class), response));
                                                 return;
                                               }
                                               try {
@@ -2010,22 +2012,38 @@ public class AsyncRawAccountClient {
                                       }
 
                                       /**
-                                       * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+                                       * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> companiesArchive(
-                                          CompaniesArchiveAccountRequest request) {
-                                        return companiesArchive(request,null);
+                                      public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                          ) {
+                                        return companiesUpdate(CompaniesUpdateAccountRequest.builder().build());
                                       }
 
                                       /**
-                                       * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
+                                       * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
                                        */
-                                      public CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> companiesArchive(
-                                          CompaniesArchiveAccountRequest request,
+                                      public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                          RequestOptions requestOptions) {
+                                        return companiesUpdate(CompaniesUpdateAccountRequest.builder().build(),requestOptions);
+                                      }
+
+                                      /**
+                                       * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                       */
+                                      public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                          CompaniesUpdateAccountRequest request) {
+                                        return companiesUpdate(request,null);
+                                      }
+
+                                      /**
+                                       * Change the profile of the active company; owners and admins may call it. Only the fields sent are changed, and the nullable ones can be sent as null to clear them. <code>logo</code> stores a base64-encoded image as a file of the company and sets <code>logoFileId</code>. The country, base currency, sandbox flag and cash-basis flag are fixed at creation. An API key changes the company named in the <code>x-nordlet-company</code> header, needs the <code>account:write</code> scope and the owner or admin role there, and may send only <code>code</code>, <code>vatCode</code>, <code>smeExemptionNumber</code>, <code>legalForm</code>, <code>registryName</code>, <code>incorporatedOn</code>, <code>shareCapital</code>, <code>address</code>, <code>email</code>, <code>phone</code>, <code>accountsKeptBy</code>, <code>bookkeeperName</code>, <code>auditorName</code>, <code>auditorRegistrationNumber</code>, <code>auditRequired</code>; any other field is refused with 403.
+                                       */
+                                      public CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> companiesUpdate(
+                                          CompaniesUpdateAccountRequest request,
                                           RequestOptions requestOptions) {
                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                          .addPathSegments("v1/account/companies/archive");if (requestOptions != null) {
+                                          .addPathSegments("v1/account/companies/update");if (requestOptions != null) {
                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                               httpUrl.addQueryParameter(_key, _value);
                                             } );
@@ -2051,14 +2069,14 @@ public class AsyncRawAccountClient {
                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                           }
-                                          CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> future = new CompletableFuture<>();
+                                          CompletableFuture<NordletApiHttpResponse<CompaniesUpdateAccountResponse>> future = new CompletableFuture<>();
                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                             @Override
                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                               try (ResponseBody responseBody = response.body()) {
                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                 if (response.isSuccessful()) {
-                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesArchiveAccountResponse.class), response));
+                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesUpdateAccountResponse.class), response));
                                                   return;
                                                 }
                                                 try {
@@ -2109,22 +2127,22 @@ public class AsyncRawAccountClient {
                                         }
 
                                         /**
-                                         * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+                                         * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> companiesDelete(
-                                            CompaniesDeleteAccountRequest request) {
-                                          return companiesDelete(request,null);
+                                        public CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> companiesArchive(
+                                            CompaniesArchiveAccountRequest request) {
+                                          return companiesArchive(request,null);
                                         }
 
                                         /**
-                                         * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
+                                         * Set the company named by <code>companyId</code> to <code>archived</code>; the caller must be its owner. Every session that had it active loses it. Refused with 409 unless the company is active; <code>account/companies/activate</code> reverses it.
                                          */
-                                        public CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> companiesDelete(
-                                            CompaniesDeleteAccountRequest request,
+                                        public CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> companiesArchive(
+                                            CompaniesArchiveAccountRequest request,
                                             RequestOptions requestOptions) {
                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                            .addPathSegments("v1/account/companies/delete");if (requestOptions != null) {
+                                            .addPathSegments("v1/account/companies/archive");if (requestOptions != null) {
                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                 httpUrl.addQueryParameter(_key, _value);
                                               } );
@@ -2150,14 +2168,14 @@ public class AsyncRawAccountClient {
                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                             }
-                                            CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> future = new CompletableFuture<>();
+                                            CompletableFuture<NordletApiHttpResponse<CompaniesArchiveAccountResponse>> future = new CompletableFuture<>();
                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                               @Override
                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                 try (ResponseBody responseBody = response.body()) {
                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                   if (response.isSuccessful()) {
-                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesDeleteAccountResponse.class), response));
+                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesArchiveAccountResponse.class), response));
                                                     return;
                                                   }
                                                   try {
@@ -2208,22 +2226,22 @@ public class AsyncRawAccountClient {
                                           }
 
                                           /**
-                                           * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+                                           * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> companiesConvertToLive(
-                                              CompaniesConvertToLiveAccountRequest request) {
-                                            return companiesConvertToLive(request,null);
+                                          public CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> companiesDelete(
+                                              CompaniesDeleteAccountRequest request) {
+                                            return companiesDelete(request,null);
                                           }
 
                                           /**
-                                           * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+                                           * Set the company named by <code>companyId</code> to <code>deleted</code>; the caller must be its owner, and every session that had it active loses it. A sandbox company is purged at once; any other is purged by the scheduled purge after <code>purgeAfter</code> (10 days) and can be restored until then with <code>account/companies/activate</code>. Refused with 409 when it is already deleted.
                                            */
-                                          public CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> companiesConvertToLive(
-                                              CompaniesConvertToLiveAccountRequest request,
+                                          public CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> companiesDelete(
+                                              CompaniesDeleteAccountRequest request,
                                               RequestOptions requestOptions) {
                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                              .addPathSegments("v1/account/companies/convert-to-live");if (requestOptions != null) {
+                                              .addPathSegments("v1/account/companies/delete");if (requestOptions != null) {
                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                   httpUrl.addQueryParameter(_key, _value);
                                                 } );
@@ -2249,14 +2267,14 @@ public class AsyncRawAccountClient {
                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                               }
-                                              CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> future = new CompletableFuture<>();
+                                              CompletableFuture<NordletApiHttpResponse<CompaniesDeleteAccountResponse>> future = new CompletableFuture<>();
                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                 @Override
                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                   try (ResponseBody responseBody = response.body()) {
                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                     if (response.isSuccessful()) {
-                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesConvertToLiveAccountResponse.class), response));
+                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesDeleteAccountResponse.class), response));
                                                       return;
                                                     }
                                                     try {
@@ -2307,22 +2325,22 @@ public class AsyncRawAccountClient {
                                             }
 
                                             /**
-                                             * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+                                             * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> companiesActivate(
-                                                CompaniesActivateAccountRequest request) {
-                                              return companiesActivate(request,null);
+                                            public CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> companiesConvertToLive(
+                                                CompaniesConvertToLiveAccountRequest request) {
+                                              return companiesConvertToLive(request,null);
                                             }
 
                                             /**
-                                             * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
+                                             * Turn the sandbox company <code>companyId</code> into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
                                              */
-                                            public CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> companiesActivate(
-                                                CompaniesActivateAccountRequest request,
+                                            public CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> companiesConvertToLive(
+                                                CompaniesConvertToLiveAccountRequest request,
                                                 RequestOptions requestOptions) {
                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                .addPathSegments("v1/account/companies/activate");if (requestOptions != null) {
+                                                .addPathSegments("v1/account/companies/convert-to-live");if (requestOptions != null) {
                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                     httpUrl.addQueryParameter(_key, _value);
                                                   } );
@@ -2348,14 +2366,14 @@ public class AsyncRawAccountClient {
                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                 }
-                                                CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> future = new CompletableFuture<>();
+                                                CompletableFuture<NordletApiHttpResponse<CompaniesConvertToLiveAccountResponse>> future = new CompletableFuture<>();
                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                   @Override
                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                     try (ResponseBody responseBody = response.body()) {
                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                       if (response.isSuccessful()) {
-                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesActivateAccountResponse.class), response));
+                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesConvertToLiveAccountResponse.class), response));
                                                         return;
                                                       }
                                                       try {
@@ -2406,22 +2424,22 @@ public class AsyncRawAccountClient {
                                               }
 
                                               /**
-                                               * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
+                                               * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> apiKeysCreate(
-                                                  ApiKeysCreateAccountRequest request) {
-                                                return apiKeysCreate(request,null);
+                                              public CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> companiesActivate(
+                                                  CompaniesActivateAccountRequest request) {
+                                                return companiesActivate(request,null);
                                               }
 
                                               /**
-                                               * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
+                                               * Set an archived or deleted company named by <code>companyId</code> back to <code>active</code>; the caller must be its owner. Refused with 409 when it is already active.
                                                */
-                                              public CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> apiKeysCreate(
-                                                  ApiKeysCreateAccountRequest request,
+                                              public CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> companiesActivate(
+                                                  CompaniesActivateAccountRequest request,
                                                   RequestOptions requestOptions) {
                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                  .addPathSegments("v1/account/api-keys/create");if (requestOptions != null) {
+                                                  .addPathSegments("v1/account/companies/activate");if (requestOptions != null) {
                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                       httpUrl.addQueryParameter(_key, _value);
                                                     } );
@@ -2447,14 +2465,14 @@ public class AsyncRawAccountClient {
                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                   }
-                                                  CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> future = new CompletableFuture<>();
+                                                  CompletableFuture<NordletApiHttpResponse<CompaniesActivateAccountResponse>> future = new CompletableFuture<>();
                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                     @Override
                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                       try (ResponseBody responseBody = response.body()) {
                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                         if (response.isSuccessful()) {
-                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysCreateAccountResponse.class), response));
+                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CompaniesActivateAccountResponse.class), response));
                                                           return;
                                                         }
                                                         try {
@@ -2505,38 +2523,22 @@ public class AsyncRawAccountClient {
                                                 }
 
                                                 /**
-                                                 * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
+                                                 * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
-                                                    ) {
-                                                  return apiKeysList(ApiKeysListAccountRequest.builder().build());
+                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> apiKeysCreate(
+                                                    ApiKeysCreateAccountRequest request) {
+                                                  return apiKeysCreate(request,null);
                                                 }
 
                                                 /**
-                                                 * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
+                                                 * Create an API key for the signed-in person and return the key itself once. Owners, admins and developers of the active company may call it. The key works in every company the person is a member of, with the rights of their role in each; every call names the company in the <code>x-nordlet-company</code> header. <code>scopes</code> defaults to the caller's scopes in the active company and may not exceed them (403); in each company the key's scopes are further limited to the person's role there. <code>expiresInDays</code> defaults to 90. The list shows the key's last four characters as <code>lastFour</code>.
                                                  */
-                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
-                                                    RequestOptions requestOptions) {
-                                                  return apiKeysList(ApiKeysListAccountRequest.builder().build(),requestOptions);
-                                                }
-
-                                                /**
-                                                 * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
-                                                 */
-                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
-                                                    ApiKeysListAccountRequest request) {
-                                                  return apiKeysList(request,null);
-                                                }
-
-                                                /**
-                                                 * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
-                                                 */
-                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
-                                                    ApiKeysListAccountRequest request,
+                                                public CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> apiKeysCreate(
+                                                    ApiKeysCreateAccountRequest request,
                                                     RequestOptions requestOptions) {
                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                    .addPathSegments("v1/account/api-keys/list");if (requestOptions != null) {
+                                                    .addPathSegments("v1/account/api-keys/create");if (requestOptions != null) {
                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                         httpUrl.addQueryParameter(_key, _value);
                                                       } );
@@ -2562,14 +2564,14 @@ public class AsyncRawAccountClient {
                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                     }
-                                                    CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> future = new CompletableFuture<>();
+                                                    CompletableFuture<NordletApiHttpResponse<ApiKeysCreateAccountResponse>> future = new CompletableFuture<>();
                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                       @Override
                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                         try (ResponseBody responseBody = response.body()) {
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysListAccountResponse.class), response));
+                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysCreateAccountResponse.class), response));
                                                             return;
                                                           }
                                                           try {
@@ -2620,22 +2622,38 @@ public class AsyncRawAccountClient {
                                                   }
 
                                                   /**
-                                                   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
+                                                   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> apiKeysRotate(
-                                                      ApiKeysRotateAccountRequest request) {
-                                                    return apiKeysRotate(request,null);
+                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
+                                                      ) {
+                                                    return apiKeysList(ApiKeysListAccountRequest.builder().build());
                                                   }
 
                                                   /**
-                                                   * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
+                                                   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
                                                    */
-                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> apiKeysRotate(
-                                                      ApiKeysRotateAccountRequest request,
+                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
+                                                      RequestOptions requestOptions) {
+                                                    return apiKeysList(ApiKeysListAccountRequest.builder().build(),requestOptions);
+                                                  }
+
+                                                  /**
+                                                   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
+                                                   */
+                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
+                                                      ApiKeysListAccountRequest request) {
+                                                    return apiKeysList(request,null);
+                                                  }
+
+                                                  /**
+                                                   * List the signed-in person's API keys, including expired and revoked ones. <code>lastFour</code> is the last four characters of the key (null for keys created before it was recorded); for an app connected through OAuth it is those of the current access token.
+                                                   */
+                                                  public CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> apiKeysList(
+                                                      ApiKeysListAccountRequest request,
                                                       RequestOptions requestOptions) {
                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                      .addPathSegments("v1/account/api-keys/rotate");if (requestOptions != null) {
+                                                      .addPathSegments("v1/account/api-keys/list");if (requestOptions != null) {
                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                           httpUrl.addQueryParameter(_key, _value);
                                                         } );
@@ -2661,14 +2679,14 @@ public class AsyncRawAccountClient {
                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                       }
-                                                      CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> future = new CompletableFuture<>();
+                                                      CompletableFuture<NordletApiHttpResponse<ApiKeysListAccountResponse>> future = new CompletableFuture<>();
                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                         @Override
                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                           try (ResponseBody responseBody = response.body()) {
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysRotateAccountResponse.class), response));
+                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysListAccountResponse.class), response));
                                                               return;
                                                             }
                                                             try {
@@ -2719,22 +2737,22 @@ public class AsyncRawAccountClient {
                                                     }
 
                                                     /**
-                                                     * Revoke one of the signed-in person's API keys at once.
+                                                     * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> apiKeysRevoke(
-                                                        ApiKeysRevokeAccountRequest request) {
-                                                      return apiKeysRevoke(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> apiKeysRotate(
+                                                        ApiKeysRotateAccountRequest request) {
+                                                      return apiKeysRotate(request,null);
                                                     }
 
                                                     /**
-                                                     * Revoke one of the signed-in person's API keys at once.
+                                                     * Create a new key with the name and scopes of the signed-in person's key <code>id</code> and return it once; the old key keeps working for <code>overlapHours</code> and then expires, and its <code>replacedByKeyId</code> points to the new one. <code>expiresInDays</code> applies to the new key and defaults to 90. Refused with 409 when the old key is revoked or belongs to an app connected through OAuth, which renews its own access.
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> apiKeysRevoke(
-                                                        ApiKeysRevokeAccountRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> apiKeysRotate(
+                                                        ApiKeysRotateAccountRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/account/api-keys/revoke");if (requestOptions != null) {
+                                                        .addPathSegments("v1/account/api-keys/rotate");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2760,14 +2778,14 @@ public class AsyncRawAccountClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<ApiKeysRotateAccountResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysRevokeAccountResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysRotateAccountResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2818,22 +2836,22 @@ public class AsyncRawAccountClient {
                                                       }
 
                                                       /**
-                                                       * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+                                                       * Revoke one of the signed-in person's API keys at once.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> consentAccept(
-                                                          ConsentAcceptAccountRequest request) {
-                                                        return consentAccept(request,null);
+                                                      public CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> apiKeysRevoke(
+                                                          ApiKeysRevokeAccountRequest request) {
+                                                        return apiKeysRevoke(request,null);
                                                       }
 
                                                       /**
-                                                       * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
+                                                       * Revoke one of the signed-in person's API keys at once.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> consentAccept(
-                                                          ConsentAcceptAccountRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> apiKeysRevoke(
+                                                          ApiKeysRevokeAccountRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/account/consent/accept");if (requestOptions != null) {
+                                                          .addPathSegments("v1/account/api-keys/revoke");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2859,14 +2877,14 @@ public class AsyncRawAccountClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<ApiKeysRevokeAccountResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConsentAcceptAccountResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ApiKeysRevokeAccountResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2917,22 +2935,22 @@ public class AsyncRawAccountClient {
                                                         }
 
                                                         /**
-                                                         * Set the signed-in user's name; null or a blank string clears it.
+                                                         * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> profileUpdate(
-                                                            ProfileUpdateAccountRequest request) {
-                                                          return profileUpdate(request,null);
+                                                        public CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> consentAccept(
+                                                            ConsentAcceptAccountRequest request) {
+                                                          return consentAccept(request,null);
                                                         }
 
                                                         /**
-                                                         * Set the signed-in user's name; null or a blank string clears it.
+                                                         * Record the signed-in user's acceptance of the current Terms of Service and Data Processing Agreement versions and return the consent state.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> profileUpdate(
-                                                            ProfileUpdateAccountRequest request,
+                                                        public CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> consentAccept(
+                                                            ConsentAcceptAccountRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/account/profile/update");if (requestOptions != null) {
+                                                            .addPathSegments("v1/account/consent/accept");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2958,14 +2976,14 @@ public class AsyncRawAccountClient {
                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                             }
-                                                            CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> future = new CompletableFuture<>();
+                                                            CompletableFuture<NordletApiHttpResponse<ConsentAcceptAccountResponse>> future = new CompletableFuture<>();
                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                               @Override
                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                 try (ResponseBody responseBody = response.body()) {
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ProfileUpdateAccountResponse.class), response));
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ConsentAcceptAccountResponse.class), response));
                                                                     return;
                                                                   }
                                                                   try {
@@ -3016,38 +3034,22 @@ public class AsyncRawAccountClient {
                                                           }
 
                                                           /**
-                                                           * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+                                                           * Set the signed-in user's name; null or a blank string clears it.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
-                                                              ) {
-                                                            return brandGet(BrandGetAccountRequest.builder().build());
+                                                          public CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> profileUpdate(
+                                                              ProfileUpdateAccountRequest request) {
+                                                            return profileUpdate(request,null);
                                                           }
 
                                                           /**
-                                                           * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+                                                           * Set the signed-in user's name; null or a blank string clears it.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
-                                                              RequestOptions requestOptions) {
-                                                            return brandGet(BrandGetAccountRequest.builder().build(),requestOptions);
-                                                          }
-
-                                                          /**
-                                                           * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
-                                                           */
-                                                          public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
-                                                              BrandGetAccountRequest request) {
-                                                            return brandGet(request,null);
-                                                          }
-
-                                                          /**
-                                                           * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
-                                                           */
-                                                          public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
-                                                              BrandGetAccountRequest request,
+                                                          public CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> profileUpdate(
+                                                              ProfileUpdateAccountRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/account/brand/get");if (requestOptions != null) {
+                                                              .addPathSegments("v1/account/profile/update");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -3073,14 +3075,14 @@ public class AsyncRawAccountClient {
                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                               }
-                                                              CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> future = new CompletableFuture<>();
+                                                              CompletableFuture<NordletApiHttpResponse<ProfileUpdateAccountResponse>> future = new CompletableFuture<>();
                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                 @Override
                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                   try (ResponseBody responseBody = response.body()) {
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BrandGetAccountResponse.class), response));
+                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ProfileUpdateAccountResponse.class), response));
                                                                       return;
                                                                     }
                                                                     try {
@@ -3131,22 +3133,38 @@ public class AsyncRawAccountClient {
                                                             }
 
                                                             /**
-                                                             * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
+                                                             * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> brandUpdate(
-                                                                BrandUpdateAccountRequest request) {
-                                                              return brandUpdate(request,null);
+                                                            public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
+                                                                ) {
+                                                              return brandGet(BrandGetAccountRequest.builder().build());
                                                             }
 
                                                             /**
-                                                             * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
+                                                             * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> brandUpdate(
-                                                                BrandUpdateAccountRequest request,
+                                                            public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
+                                                                RequestOptions requestOptions) {
+                                                              return brandGet(BrandGetAccountRequest.builder().build(),requestOptions);
+                                                            }
+
+                                                            /**
+                                                             * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+                                                             */
+                                                            public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
+                                                                BrandGetAccountRequest request) {
+                                                              return brandGet(request,null);
+                                                            }
+
+                                                            /**
+                                                             * Return the brand settings of the signed-in white-label partner: <code>name</code>, <code>logoUrl</code>, <code>color</code> and <code>footer</code>, each null when not set. Refused with 403 when the user is not a white-label partner.
+                                                             */
+                                                            public CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> brandGet(
+                                                                BrandGetAccountRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/account/brand/update");if (requestOptions != null) {
+                                                                .addPathSegments("v1/account/brand/get");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -3172,14 +3190,14 @@ public class AsyncRawAccountClient {
                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                 }
-                                                                CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> future = new CompletableFuture<>();
+                                                                CompletableFuture<NordletApiHttpResponse<BrandGetAccountResponse>> future = new CompletableFuture<>();
                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                   @Override
                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                     try (ResponseBody responseBody = response.body()) {
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BrandUpdateAccountResponse.class), response));
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BrandGetAccountResponse.class), response));
                                                                         return;
                                                                       }
                                                                       try {
@@ -3230,22 +3248,22 @@ public class AsyncRawAccountClient {
                                                               }
 
                                                               /**
-                                                               * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
+                                                               * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> emailChangeRequest(
-                                                                  EmailChangeRequestAccountRequest request) {
-                                                                return emailChangeRequest(request,null);
+                                                              public CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> brandUpdate(
+                                                                  BrandUpdateAccountRequest request) {
+                                                                return brandUpdate(request,null);
                                                               }
 
                                                               /**
-                                                               * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
+                                                               * Set the brand settings of the signed-in white-label partner; all four fields are sent and null clears one. They apply to every company the user pays for: the invoice, quote and payment reminder e-mails show <code>logoUrl</code> (an https address of an image) in the header, use <code>color</code> (<code>#rrggbb</code>) for the top line, the brand name and the buttons, and print <code>footer</code>, or <code>name</code> when there is no footer, in place of the Nordlet footer line; the public invoice page prints <code>name</code> in its &quot;Sent with&quot; line and leaves the line out when there is no name (<code>sentWith</code> of <code>public/invoices/get</code>); filled official form PDFs carry <code>name</code> as their producer and creator. Refused with 403 when the user is not a white-label partner.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> emailChangeRequest(
-                                                                  EmailChangeRequestAccountRequest request,
+                                                              public CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> brandUpdate(
+                                                                  BrandUpdateAccountRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/account/email/change-request");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/account/brand/update");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -3271,14 +3289,14 @@ public class AsyncRawAccountClient {
                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                   }
-                                                                  CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> future = new CompletableFuture<>();
+                                                                  CompletableFuture<NordletApiHttpResponse<BrandUpdateAccountResponse>> future = new CompletableFuture<>();
                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                     @Override
                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                       try (ResponseBody responseBody = response.body()) {
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmailChangeRequestAccountResponse.class), response));
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, BrandUpdateAccountResponse.class), response));
                                                                           return;
                                                                         }
                                                                         try {
@@ -3329,38 +3347,22 @@ public class AsyncRawAccountClient {
                                                                 }
 
                                                                 /**
-                                                                 * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
+                                                                 * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
                                                                  */
-                                                                public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
-                                                                    ) {
-                                                                  return sessionsList(SessionsListAccountRequest.builder().build());
+                                                                public CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> emailChangeRequest(
+                                                                    EmailChangeRequestAccountRequest request) {
+                                                                  return emailChangeRequest(request,null);
                                                                 }
 
                                                                 /**
-                                                                 * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
+                                                                 * Send a confirmation link for the change to <code>newEmail</code> to the user's current address. When it is consumed with <code>account/login-link/consume</code>, a second link goes to <code>newEmail</code>, and the address changes when that one is consumed. When an unused link for <code>newEmail</code> was created within the last minute, the call answers <code>sent</code> without sending another. Refused with 422 when it is already the user's address and with 429 (<code>rate_limited</code>) after five requests by the user within 24 hours. When another account has <code>newEmail</code>, the call answers the same, the confirmation link signs the user in and no link goes to <code>newEmail</code>.
                                                                  */
-                                                                public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
-                                                                    RequestOptions requestOptions) {
-                                                                  return sessionsList(SessionsListAccountRequest.builder().build(),requestOptions);
-                                                                }
-
-                                                                /**
-                                                                 * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
-                                                                 */
-                                                                public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
-                                                                    SessionsListAccountRequest request) {
-                                                                  return sessionsList(request,null);
-                                                                }
-
-                                                                /**
-                                                                 * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
-                                                                 */
-                                                                public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
-                                                                    SessionsListAccountRequest request,
+                                                                public CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> emailChangeRequest(
+                                                                    EmailChangeRequestAccountRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/account/sessions/list");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/account/email/change-request");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -3386,14 +3388,14 @@ public class AsyncRawAccountClient {
                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                     }
-                                                                    CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> future = new CompletableFuture<>();
+                                                                    CompletableFuture<NordletApiHttpResponse<EmailChangeRequestAccountResponse>> future = new CompletableFuture<>();
                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                       @Override
                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                         try (ResponseBody responseBody = response.body()) {
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsListAccountResponse.class), response));
+                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmailChangeRequestAccountResponse.class), response));
                                                                             return;
                                                                           }
                                                                           try {
@@ -3444,22 +3446,38 @@ public class AsyncRawAccountClient {
                                                                   }
 
                                                                   /**
-                                                                   * Delete one of the signed-in user's sessions.
+                                                                   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
                                                                    */
-                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> sessionsRevoke(
-                                                                      SessionsRevokeAccountRequest request) {
-                                                                    return sessionsRevoke(request,null);
+                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
+                                                                      ) {
+                                                                    return sessionsList(SessionsListAccountRequest.builder().build());
                                                                   }
 
                                                                   /**
-                                                                   * Delete one of the signed-in user's sessions.
+                                                                   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
                                                                    */
-                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> sessionsRevoke(
-                                                                      SessionsRevokeAccountRequest request,
+                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
+                                                                      RequestOptions requestOptions) {
+                                                                    return sessionsList(SessionsListAccountRequest.builder().build(),requestOptions);
+                                                                  }
+
+                                                                  /**
+                                                                   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
+                                                                      SessionsListAccountRequest request) {
+                                                                    return sessionsList(request,null);
+                                                                  }
+
+                                                                  /**
+                                                                   * List the signed-in user's sessions that have not expired: a session ends 30 days after sign-in or after 7 days without a call. <code>current</code> marks the one the call was made with.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> sessionsList(
+                                                                      SessionsListAccountRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/account/sessions/revoke");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/account/sessions/list");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -3485,14 +3503,14 @@ public class AsyncRawAccountClient {
                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                       }
-                                                                      CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> future = new CompletableFuture<>();
+                                                                      CompletableFuture<NordletApiHttpResponse<SessionsListAccountResponse>> future = new CompletableFuture<>();
                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                         @Override
                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                           try (ResponseBody responseBody = response.body()) {
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsRevokeAccountResponse.class), response));
+                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsListAccountResponse.class), response));
                                                                               return;
                                                                             }
                                                                             try {
@@ -3543,38 +3561,22 @@ public class AsyncRawAccountClient {
                                                                     }
 
                                                                     /**
-                                                                     * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                                     * Delete one of the signed-in user's sessions.
                                                                      */
-                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
-                                                                        ) {
-                                                                      return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build());
+                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> sessionsRevoke(
+                                                                        SessionsRevokeAccountRequest request) {
+                                                                      return sessionsRevoke(request,null);
                                                                     }
 
                                                                     /**
-                                                                     * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
+                                                                     * Delete one of the signed-in user's sessions.
                                                                      */
-                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
-                                                                        RequestOptions requestOptions) {
-                                                                      return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build(),requestOptions);
-                                                                    }
-
-                                                                    /**
-                                                                     * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
-                                                                     */
-                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
-                                                                        SessionsRevokeOthersAccountRequest request) {
-                                                                      return sessionsRevokeOthers(request,null);
-                                                                    }
-
-                                                                    /**
-                                                                     * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
-                                                                     */
-                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
-                                                                        SessionsRevokeOthersAccountRequest request,
+                                                                    public CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> sessionsRevoke(
+                                                                        SessionsRevokeAccountRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/account/sessions/revoke-others");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/account/sessions/revoke");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -3600,14 +3602,14 @@ public class AsyncRawAccountClient {
                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                         }
-                                                                        CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> future = new CompletableFuture<>();
+                                                                        CompletableFuture<NordletApiHttpResponse<SessionsRevokeAccountResponse>> future = new CompletableFuture<>();
                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                           @Override
                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                             try (ResponseBody responseBody = response.body()) {
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsRevokeOthersAccountResponse.class), response));
+                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsRevokeAccountResponse.class), response));
                                                                                 return;
                                                                               }
                                                                               try {
@@ -3658,38 +3660,38 @@ public class AsyncRawAccountClient {
                                                                       }
 
                                                                       /**
-                                                                       * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                       * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                      public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
                                                                           ) {
-                                                                        return export(ExportAccountRequest.builder().build());
+                                                                        return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build());
                                                                       }
 
                                                                       /**
-                                                                       * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                       * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                      public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
                                                                           RequestOptions requestOptions) {
-                                                                        return export(ExportAccountRequest.builder().build(),requestOptions);
+                                                                        return sessionsRevokeOthers(SessionsRevokeOthersAccountRequest.builder().build(),requestOptions);
                                                                       }
 
                                                                       /**
-                                                                       * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                       * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
-                                                                          ExportAccountRequest request) {
-                                                                        return export(request,null);
+                                                                      public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
+                                                                          SessionsRevokeOthersAccountRequest request) {
+                                                                        return sessionsRevokeOthers(request,null);
                                                                       }
 
                                                                       /**
-                                                                       * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                       * Delete every session of the signed-in user except the one the call was made with, and return how many were deleted.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
-                                                                          ExportAccountRequest request,
+                                                                      public CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> sessionsRevokeOthers(
+                                                                          SessionsRevokeOthersAccountRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/account/export");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/account/sessions/revoke-others");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -3715,14 +3717,14 @@ public class AsyncRawAccountClient {
                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                           }
-                                                                          CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> future = new CompletableFuture<>();
+                                                                          CompletableFuture<NordletApiHttpResponse<SessionsRevokeOthersAccountResponse>> future = new CompletableFuture<>();
                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                             @Override
                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExportAccountResponse.class), response));
+                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SessionsRevokeOthersAccountResponse.class), response));
                                                                                   return;
                                                                                 }
                                                                                 try {
@@ -3773,22 +3775,38 @@ public class AsyncRawAccountClient {
                                                                         }
 
                                                                         /**
-                                                                         * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+                                                                         * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
                                                                          */
-                                                                        public CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> delete(
-                                                                            DeleteAccountRequest request) {
-                                                                          return delete(request,null);
+                                                                        public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                            ) {
+                                                                          return export(ExportAccountRequest.builder().build());
                                                                         }
 
                                                                         /**
-                                                                         * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+                                                                         * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
                                                                          */
-                                                                        public CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> delete(
-                                                                            DeleteAccountRequest request,
+                                                                        public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                            RequestOptions requestOptions) {
+                                                                          return export(ExportAccountRequest.builder().build(),requestOptions);
+                                                                        }
+
+                                                                        /**
+                                                                         * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                         */
+                                                                        public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                            ExportAccountRequest request) {
+                                                                          return export(request,null);
+                                                                        }
+
+                                                                        /**
+                                                                         * Return the user's profile, consent state, memberships, unexpired sessions, sign-in events, API keys (without the keys), connected OAuth apps, referral points, billing accounts (<code>billing</code> is the <code>app</code> site's, <code>billingAccounts</code> has one per site), credit transactions and every audit entry they made in their companies.
+                                                                         */
+                                                                        public CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> export(
+                                                                            ExportAccountRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/account/delete");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/account/export");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -3814,14 +3832,14 @@ public class AsyncRawAccountClient {
                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                             }
-                                                                            CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> future = new CompletableFuture<>();
+                                                                            CompletableFuture<NordletApiHttpResponse<ExportAccountResponse>> future = new CompletableFuture<>();
                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                               @Override
                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteAccountResponse.class), response));
+                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ExportAccountResponse.class), response));
                                                                                     return;
                                                                                   }
                                                                                   try {
@@ -3872,38 +3890,22 @@ public class AsyncRawAccountClient {
                                                                           }
 
                                                                           /**
-                                                                           * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                           * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
                                                                            */
-                                                                          public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
-                                                                              ) {
-                                                                            return referralGet(ReferralGetAccountRequest.builder().build());
+                                                                          public CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> delete(
+                                                                              DeleteAccountRequest request) {
+                                                                            return delete(request,null);
                                                                           }
 
                                                                           /**
-                                                                           * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                           * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
                                                                            */
-                                                                          public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
-                                                                              RequestOptions requestOptions) {
-                                                                            return referralGet(ReferralGetAccountRequest.builder().build(),requestOptions);
-                                                                          }
-
-                                                                          /**
-                                                                           * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
-                                                                           */
-                                                                          public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
-                                                                              ReferralGetAccountRequest request) {
-                                                                            return referralGet(request,null);
-                                                                          }
-
-                                                                          /**
-                                                                           * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
-                                                                           */
-                                                                          public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
-                                                                              ReferralGetAccountRequest request,
+                                                                          public CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> delete(
+                                                                              DeleteAccountRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/account/referral/get");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/account/delete");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -3929,14 +3931,14 @@ public class AsyncRawAccountClient {
                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                               }
-                                                                              CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> future = new CompletableFuture<>();
+                                                                              CompletableFuture<NordletApiHttpResponse<DeleteAccountResponse>> future = new CompletableFuture<>();
                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                 @Override
                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReferralGetAccountResponse.class), response));
+                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteAccountResponse.class), response));
                                                                                       return;
                                                                                     }
                                                                                     try {
@@ -3987,22 +3989,38 @@ public class AsyncRawAccountClient {
                                                                             }
 
                                                                             /**
-                                                                             * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+                                                                             * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
                                                                              */
-                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> referralConvert(
-                                                                                ReferralConvertAccountRequest request) {
-                                                                              return referralConvert(request,null);
+                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
+                                                                                ) {
+                                                                              return referralGet(ReferralGetAccountRequest.builder().build());
                                                                             }
 
                                                                             /**
-                                                                             * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
+                                                                             * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
                                                                              */
-                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> referralConvert(
-                                                                                ReferralConvertAccountRequest request,
+                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
+                                                                                RequestOptions requestOptions) {
+                                                                              return referralGet(ReferralGetAccountRequest.builder().build(),requestOptions);
+                                                                            }
+
+                                                                            /**
+                                                                             * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                             */
+                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
+                                                                                ReferralGetAccountRequest request) {
+                                                                              return referralGet(request,null);
+                                                                            }
+
+                                                                            /**
+                                                                             * Return the user's referral code (allocated on first call) and sign-up link, their points balance, the number of accounts they referred and the last 50 points entries. <code>rates.perEur</code> is the points the referrer earns per euro a referred user tops up, <code>rates.pointCents</code> the credit one point converts to with <code>account/referral/convert</code>.
+                                                                             */
+                                                                            public CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> referralGet(
+                                                                                ReferralGetAccountRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/account/referral/convert");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/account/referral/get");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -4028,14 +4046,14 @@ public class AsyncRawAccountClient {
                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                 }
-                                                                                CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> future = new CompletableFuture<>();
+                                                                                CompletableFuture<NordletApiHttpResponse<ReferralGetAccountResponse>> future = new CompletableFuture<>();
                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                   @Override
                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReferralConvertAccountResponse.class), response));
+                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReferralGetAccountResponse.class), response));
                                                                                         return;
                                                                                       }
                                                                                       try {
@@ -4086,22 +4104,22 @@ public class AsyncRawAccountClient {
                                                                               }
 
                                                                               /**
-                                                                               * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+                                                                               * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
                                                                                */
-                                                                              public CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> tableSettingsGet(
-                                                                                  TableSettingsGetAccountRequest request) {
-                                                                                return tableSettingsGet(request,null);
+                                                                              public CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> referralConvert(
+                                                                                  ReferralConvertAccountRequest request) {
+                                                                                return referralConvert(request,null);
                                                                               }
 
                                                                               /**
-                                                                               * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
+                                                                               * Convert <code>points</code> of the user's referral points into credit on their billing account at <code>rates.pointCents</code> per point, booked as an <code>adjustment</code> credit transaction; a billing account past its trial is set to active when the new balance allows. Refused with 422 when the user has fewer points than requested.
                                                                                */
-                                                                              public CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> tableSettingsGet(
-                                                                                  TableSettingsGetAccountRequest request,
+                                                                              public CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> referralConvert(
+                                                                                  ReferralConvertAccountRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/account/table-settings/get");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/account/referral/convert");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -4127,14 +4145,14 @@ public class AsyncRawAccountClient {
                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                   }
-                                                                                  CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> future = new CompletableFuture<>();
+                                                                                  CompletableFuture<NordletApiHttpResponse<ReferralConvertAccountResponse>> future = new CompletableFuture<>();
                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                     @Override
                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsGetAccountResponse.class), response));
+                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ReferralConvertAccountResponse.class), response));
                                                                                           return;
                                                                                         }
                                                                                         try {
@@ -4185,22 +4203,22 @@ public class AsyncRawAccountClient {
                                                                                 }
 
                                                                                 /**
-                                                                                 * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+                                                                                 * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
                                                                                  */
-                                                                                public CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> tableSettingsSet(
-                                                                                    TableSettingsSetAccountRequest request) {
-                                                                                  return tableSettingsSet(request,null);
+                                                                                public CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> tableSettingsGet(
+                                                                                    TableSettingsGetAccountRequest request) {
+                                                                                  return tableSettingsGet(request,null);
                                                                                 }
 
                                                                                 /**
-                                                                                 * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
+                                                                                 * Return the signed-in user's saved column list and page size for the table <code>tableKey</code>; both are null when nothing is saved.
                                                                                  */
-                                                                                public CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> tableSettingsSet(
-                                                                                    TableSettingsSetAccountRequest request,
+                                                                                public CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> tableSettingsGet(
+                                                                                    TableSettingsGetAccountRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/account/table-settings/set");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/account/table-settings/get");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -4226,14 +4244,14 @@ public class AsyncRawAccountClient {
                                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                     }
-                                                                                    CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> future = new CompletableFuture<>();
+                                                                                    CompletableFuture<NordletApiHttpResponse<TableSettingsGetAccountResponse>> future = new CompletableFuture<>();
                                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                       @Override
                                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                         try (ResponseBody responseBody = response.body()) {
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsSetAccountResponse.class), response));
+                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsGetAccountResponse.class), response));
                                                                                             return;
                                                                                           }
                                                                                           try {
@@ -4284,38 +4302,22 @@ public class AsyncRawAccountClient {
                                                                                   }
 
                                                                                   /**
-                                                                                   * List the signed-in user's saved table settings.
+                                                                                   * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
                                                                                    */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
-                                                                                      ) {
-                                                                                    return tableSettingsList(TableSettingsListAccountRequest.builder().build());
+                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> tableSettingsSet(
+                                                                                      TableSettingsSetAccountRequest request) {
+                                                                                    return tableSettingsSet(request,null);
                                                                                   }
 
                                                                                   /**
-                                                                                   * List the signed-in user's saved table settings.
+                                                                                   * Save the signed-in user's column list and page size for the table <code>tableKey</code>; only the fields sent are changed, and null clears one.
                                                                                    */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
-                                                                                      RequestOptions requestOptions) {
-                                                                                    return tableSettingsList(TableSettingsListAccountRequest.builder().build(),requestOptions);
-                                                                                  }
-
-                                                                                  /**
-                                                                                   * List the signed-in user's saved table settings.
-                                                                                   */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
-                                                                                      TableSettingsListAccountRequest request) {
-                                                                                    return tableSettingsList(request,null);
-                                                                                  }
-
-                                                                                  /**
-                                                                                   * List the signed-in user's saved table settings.
-                                                                                   */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
-                                                                                      TableSettingsListAccountRequest request,
+                                                                                  public CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> tableSettingsSet(
+                                                                                      TableSettingsSetAccountRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/account/table-settings/list");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/account/table-settings/set");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -4341,14 +4343,14 @@ public class AsyncRawAccountClient {
                                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                       }
-                                                                                      CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> future = new CompletableFuture<>();
+                                                                                      CompletableFuture<NordletApiHttpResponse<TableSettingsSetAccountResponse>> future = new CompletableFuture<>();
                                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                         @Override
                                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                           try (ResponseBody responseBody = response.body()) {
                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                             if (response.isSuccessful()) {
-                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsListAccountResponse.class), response));
+                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsSetAccountResponse.class), response));
                                                                                               return;
                                                                                             }
                                                                                             try {
@@ -4399,22 +4401,38 @@ public class AsyncRawAccountClient {
                                                                                     }
 
                                                                                     /**
-                                                                                     * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+                                                                                     * List the signed-in user's saved table settings.
                                                                                      */
-                                                                                    public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> oauthAuthorizeDescribe(
-                                                                                        OauthAuthorizeDescribeAccountRequest request) {
-                                                                                      return oauthAuthorizeDescribe(request,null);
+                                                                                    public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
+                                                                                        ) {
+                                                                                      return tableSettingsList(TableSettingsListAccountRequest.builder().build());
                                                                                     }
 
                                                                                     /**
-                                                                                     * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
+                                                                                     * List the signed-in user's saved table settings.
                                                                                      */
-                                                                                    public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> oauthAuthorizeDescribe(
-                                                                                        OauthAuthorizeDescribeAccountRequest request,
+                                                                                    public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
+                                                                                        RequestOptions requestOptions) {
+                                                                                      return tableSettingsList(TableSettingsListAccountRequest.builder().build(),requestOptions);
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * List the signed-in user's saved table settings.
+                                                                                     */
+                                                                                    public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
+                                                                                        TableSettingsListAccountRequest request) {
+                                                                                      return tableSettingsList(request,null);
+                                                                                    }
+
+                                                                                    /**
+                                                                                     * List the signed-in user's saved table settings.
+                                                                                     */
+                                                                                    public CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> tableSettingsList(
+                                                                                        TableSettingsListAccountRequest request,
                                                                                         RequestOptions requestOptions) {
                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                        .addPathSegments("v1/account/oauth/authorize/describe");if (requestOptions != null) {
+                                                                                        .addPathSegments("v1/account/table-settings/list");if (requestOptions != null) {
                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                           } );
@@ -4440,14 +4458,14 @@ public class AsyncRawAccountClient {
                                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                         }
-                                                                                        CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> future = new CompletableFuture<>();
+                                                                                        CompletableFuture<NordletApiHttpResponse<TableSettingsListAccountResponse>> future = new CompletableFuture<>();
                                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                           @Override
                                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                             try (ResponseBody responseBody = response.body()) {
                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                               if (response.isSuccessful()) {
-                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDescribeAccountResponse.class), response));
+                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TableSettingsListAccountResponse.class), response));
                                                                                                 return;
                                                                                               }
                                                                                               try {
@@ -4498,22 +4516,22 @@ public class AsyncRawAccountClient {
                                                                                       }
 
                                                                                       /**
-                                                                                       * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                       * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
                                                                                        */
-                                                                                      public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> oauthAuthorizeApprove(
-                                                                                          OauthAuthorizeApproveAccountRequest request) {
-                                                                                        return oauthAuthorizeApprove(request,null);
+                                                                                      public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> oauthAuthorizeDescribe(
+                                                                                          OauthAuthorizeDescribeAccountRequest request) {
+                                                                                        return oauthAuthorizeDescribe(request,null);
                                                                                       }
 
                                                                                       /**
-                                                                                       * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                       * Check an OAuth authorization request of an app that wants to connect to Nordlet (such as Claude) and return the name the app registered, the address the signed-in person is sent back to and the scopes asked for. Refused with 422 when the request is invalid: unknown app, redirect address not registered for it, no PKCE (S256), unknown scope or a resource other than the MCP server.
                                                                                        */
-                                                                                      public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> oauthAuthorizeApprove(
-                                                                                          OauthAuthorizeApproveAccountRequest request,
+                                                                                      public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> oauthAuthorizeDescribe(
+                                                                                          OauthAuthorizeDescribeAccountRequest request,
                                                                                           RequestOptions requestOptions) {
                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                          .addPathSegments("v1/account/oauth/authorize/approve");if (requestOptions != null) {
+                                                                                          .addPathSegments("v1/account/oauth/authorize/describe");if (requestOptions != null) {
                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                             } );
@@ -4539,14 +4557,14 @@ public class AsyncRawAccountClient {
                                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                           }
-                                                                                          CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> future = new CompletableFuture<>();
+                                                                                          CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDescribeAccountResponse>> future = new CompletableFuture<>();
                                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                             @Override
                                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                 if (response.isSuccessful()) {
-                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeApproveAccountResponse.class), response));
+                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDescribeAccountResponse.class), response));
                                                                                                   return;
                                                                                                 }
                                                                                                 try {
@@ -4597,22 +4615,22 @@ public class AsyncRawAccountClient {
                                                                                         }
 
                                                                                         /**
-                                                                                         * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                         * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
                                                                                          */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> oauthAuthorizeDeny(
-                                                                                            OauthAuthorizeDenyAccountRequest request) {
-                                                                                          return oauthAuthorizeDeny(request,null);
+                                                                                        public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> oauthAuthorizeApprove(
+                                                                                            OauthAuthorizeApproveAccountRequest request) {
+                                                                                          return oauthAuthorizeApprove(request,null);
                                                                                         }
 
                                                                                         /**
-                                                                                         * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
+                                                                                         * Allow the app of an OAuth authorization request to act for the signed-in person and return the app's redirect address with a one-time authorization code (valid for 5 minutes). The app exchanges the code at <code>/oauth/token</code> for an access token that works like an API key of the person: in every company they are a member of, with the rights of their role there. The connection is listed among the person's API keys under the app's name and is revoked there. Refused with 422 like <code>account/oauth/authorize/describe</code>.
                                                                                          */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> oauthAuthorizeDeny(
-                                                                                            OauthAuthorizeDenyAccountRequest request,
+                                                                                        public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> oauthAuthorizeApprove(
+                                                                                            OauthAuthorizeApproveAccountRequest request,
                                                                                             RequestOptions requestOptions) {
                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                            .addPathSegments("v1/account/oauth/authorize/deny");if (requestOptions != null) {
+                                                                                            .addPathSegments("v1/account/oauth/authorize/approve");if (requestOptions != null) {
                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                               } );
@@ -4638,14 +4656,14 @@ public class AsyncRawAccountClient {
                                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                             }
-                                                                                            CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> future = new CompletableFuture<>();
+                                                                                            CompletableFuture<NordletApiHttpResponse<OauthAuthorizeApproveAccountResponse>> future = new CompletableFuture<>();
                                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                               @Override
                                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                   if (response.isSuccessful()) {
-                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDenyAccountResponse.class), response));
+                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeApproveAccountResponse.class), response));
                                                                                                     return;
                                                                                                   }
                                                                                                   try {
@@ -4696,38 +4714,22 @@ public class AsyncRawAccountClient {
                                                                                           }
 
                                                                                           /**
-                                                                                           * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+                                                                                           * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
                                                                                            */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
-                                                                                              ) {
-                                                                                            return twoFactorGet(TwoFactorGetAccountRequest.builder().build());
+                                                                                          public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> oauthAuthorizeDeny(
+                                                                                              OauthAuthorizeDenyAccountRequest request) {
+                                                                                            return oauthAuthorizeDeny(request,null);
                                                                                           }
 
                                                                                           /**
-                                                                                           * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
+                                                                                           * Refuse an OAuth authorization request and return the app's redirect address with the error <code>access_denied</code>. Refused with 422 like <code>account/oauth/authorize/describe</code>.
                                                                                            */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
-                                                                                              RequestOptions requestOptions) {
-                                                                                            return twoFactorGet(TwoFactorGetAccountRequest.builder().build(),requestOptions);
-                                                                                          }
-
-                                                                                          /**
-                                                                                           * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
-                                                                                           */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
-                                                                                              TwoFactorGetAccountRequest request) {
-                                                                                            return twoFactorGet(request,null);
-                                                                                          }
-
-                                                                                          /**
-                                                                                           * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
-                                                                                           */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
-                                                                                              TwoFactorGetAccountRequest request,
+                                                                                          public CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> oauthAuthorizeDeny(
+                                                                                              OauthAuthorizeDenyAccountRequest request,
                                                                                               RequestOptions requestOptions) {
                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                              .addPathSegments("v1/account/two-factor/get");if (requestOptions != null) {
+                                                                                              .addPathSegments("v1/account/oauth/authorize/deny");if (requestOptions != null) {
                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                 } );
@@ -4753,14 +4755,14 @@ public class AsyncRawAccountClient {
                                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                               }
-                                                                                              CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> future = new CompletableFuture<>();
+                                                                                              CompletableFuture<NordletApiHttpResponse<OauthAuthorizeDenyAccountResponse>> future = new CompletableFuture<>();
                                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                 @Override
                                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                     if (response.isSuccessful()) {
-                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorGetAccountResponse.class), response));
+                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, OauthAuthorizeDenyAccountResponse.class), response));
                                                                                                       return;
                                                                                                     }
                                                                                                     try {
@@ -4811,38 +4813,38 @@ public class AsyncRawAccountClient {
                                                                                             }
 
                                                                                             /**
-                                                                                             * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                             * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
                                                                                                 ) {
-                                                                                              return twoFactorSetup(TwoFactorSetupAccountRequest.builder().build());
+                                                                                              return twoFactorGet(TwoFactorGetAccountRequest.builder().build());
                                                                                             }
 
                                                                                             /**
-                                                                                             * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                             * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
                                                                                                 RequestOptions requestOptions) {
-                                                                                              return twoFactorSetup(TwoFactorSetupAccountRequest.builder().build(),requestOptions);
+                                                                                              return twoFactorGet(TwoFactorGetAccountRequest.builder().build(),requestOptions);
                                                                                             }
 
                                                                                             /**
-                                                                                             * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                             * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
-                                                                                                TwoFactorSetupAccountRequest request) {
-                                                                                              return twoFactorSetup(request,null);
+                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
+                                                                                                TwoFactorGetAccountRequest request) {
+                                                                                              return twoFactorGet(request,null);
                                                                                             }
 
                                                                                             /**
-                                                                                             * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                             * Return the signed-in user's two-factor authentication state: <code>enabled</code>, <code>required</code> (true for platform administrators, who cannot use platform administration without it), the number of unused recovery codes and, while a setup started with <code>two-factor/setup</code> is not finished, the key to add to an authenticator app as <code>setup</code>.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
-                                                                                                TwoFactorSetupAccountRequest request,
+                                                                                            public CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> twoFactorGet(
+                                                                                                TwoFactorGetAccountRequest request,
                                                                                                 RequestOptions requestOptions) {
                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                .addPathSegments("v1/account/two-factor/setup");if (requestOptions != null) {
+                                                                                                .addPathSegments("v1/account/two-factor/get");if (requestOptions != null) {
                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                   } );
@@ -4868,14 +4870,14 @@ public class AsyncRawAccountClient {
                                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                 }
-                                                                                                CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> future = new CompletableFuture<>();
+                                                                                                CompletableFuture<NordletApiHttpResponse<TwoFactorGetAccountResponse>> future = new CompletableFuture<>();
                                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                   @Override
                                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                       if (response.isSuccessful()) {
-                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorSetupAccountResponse.class), response));
+                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorGetAccountResponse.class), response));
                                                                                                         return;
                                                                                                       }
                                                                                                       try {
@@ -4926,22 +4928,38 @@ public class AsyncRawAccountClient {
                                                                                               }
 
                                                                                               /**
-                                                                                               * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
+                                                                                               * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> twoFactorEnable(
-                                                                                                  TwoFactorEnableAccountRequest request) {
-                                                                                                return twoFactorEnable(request,null);
+                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                                  ) {
+                                                                                                return twoFactorSetup(TwoFactorSetupAccountRequest.builder().build());
                                                                                               }
 
                                                                                               /**
-                                                                                               * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
+                                                                                               * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> twoFactorEnable(
-                                                                                                  TwoFactorEnableAccountRequest request,
+                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                                  RequestOptions requestOptions) {
+                                                                                                return twoFactorSetup(TwoFactorSetupAccountRequest.builder().build(),requestOptions);
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                               */
+                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                                  TwoFactorSetupAccountRequest request) {
+                                                                                                return twoFactorSetup(request,null);
+                                                                                              }
+
+                                                                                              /**
+                                                                                               * Start setting up two-factor authentication: create a new key for an authenticator app (time-based codes, RFC 6238: SHA-1, 6 digits, 30 seconds) and return it with its <code>otpauth://</code> address. Nothing changes at sign-in until <code>two-factor/enable</code> is called with a code from the app. Refused with 409 when two-factor authentication is already on.
+                                                                                               */
+                                                                                              public CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> twoFactorSetup(
+                                                                                                  TwoFactorSetupAccountRequest request,
                                                                                                   RequestOptions requestOptions) {
                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                  .addPathSegments("v1/account/two-factor/enable");if (requestOptions != null) {
+                                                                                                  .addPathSegments("v1/account/two-factor/setup");if (requestOptions != null) {
                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                     } );
@@ -4967,14 +4985,14 @@ public class AsyncRawAccountClient {
                                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                   }
-                                                                                                  CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> future = new CompletableFuture<>();
+                                                                                                  CompletableFuture<NordletApiHttpResponse<TwoFactorSetupAccountResponse>> future = new CompletableFuture<>();
                                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                     @Override
                                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                         if (response.isSuccessful()) {
-                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorEnableAccountResponse.class), response));
+                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorSetupAccountResponse.class), response));
                                                                                                           return;
                                                                                                         }
                                                                                                         try {
@@ -5025,22 +5043,22 @@ public class AsyncRawAccountClient {
                                                                                                 }
 
                                                                                                 /**
-                                                                                                 * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
+                                                                                                 * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
                                                                                                  */
-                                                                                                public CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> twoFactorVerify(
-                                                                                                    TwoFactorVerifyAccountRequest request) {
-                                                                                                  return twoFactorVerify(request,null);
+                                                                                                public CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> twoFactorEnable(
+                                                                                                    TwoFactorEnableAccountRequest request) {
+                                                                                                  return twoFactorEnable(request,null);
                                                                                                 }
 
                                                                                                 /**
-                                                                                                 * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
+                                                                                                 * Turn on two-factor authentication with a current code from the authenticator app set up by <code>two-factor/setup</code>. Returns 10 recovery codes, shown only this once; each one works once in place of a code. The user's other sessions are deleted. From then on a session created by a sign-in link can make no call other than <code>two-factor/verify</code> and <code>account/logout</code> until a code is entered. A wrong code answers 422; after 5 wrong codes the session is deleted (401).
                                                                                                  */
-                                                                                                public CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> twoFactorVerify(
-                                                                                                    TwoFactorVerifyAccountRequest request,
+                                                                                                public CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> twoFactorEnable(
+                                                                                                    TwoFactorEnableAccountRequest request,
                                                                                                     RequestOptions requestOptions) {
                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                    .addPathSegments("v1/account/two-factor/verify");if (requestOptions != null) {
+                                                                                                    .addPathSegments("v1/account/two-factor/enable");if (requestOptions != null) {
                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                       } );
@@ -5066,14 +5084,14 @@ public class AsyncRawAccountClient {
                                                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                     }
-                                                                                                    CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> future = new CompletableFuture<>();
+                                                                                                    CompletableFuture<NordletApiHttpResponse<TwoFactorEnableAccountResponse>> future = new CompletableFuture<>();
                                                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                       @Override
                                                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                         try (ResponseBody responseBody = response.body()) {
                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                           if (response.isSuccessful()) {
-                                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorVerifyAccountResponse.class), response));
+                                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorEnableAccountResponse.class), response));
                                                                                                             return;
                                                                                                           }
                                                                                                           try {
@@ -5124,22 +5142,22 @@ public class AsyncRawAccountClient {
                                                                                                   }
 
                                                                                                   /**
-                                                                                                   * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
+                                                                                                   * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
                                                                                                    */
-                                                                                                  public CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> twoFactorRecoveryCodesRegenerate(
-                                                                                                      TwoFactorRecoveryCodesRegenerateAccountRequest request) {
-                                                                                                    return twoFactorRecoveryCodesRegenerate(request,null);
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> twoFactorVerify(
+                                                                                                      TwoFactorVerifyAccountRequest request) {
+                                                                                                    return twoFactorVerify(request,null);
                                                                                                   }
 
                                                                                                   /**
-                                                                                                   * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
+                                                                                                   * Finish signing in when <code>account/login-link/consume</code> answered <code>twoFactorRequired</code>: send a current code from the authenticator app or an unused recovery code. A wrong code answers 422; after 5 wrong codes the session is deleted (401) and the user signs in again with a new link.
                                                                                                    */
-                                                                                                  public CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> twoFactorRecoveryCodesRegenerate(
-                                                                                                      TwoFactorRecoveryCodesRegenerateAccountRequest request,
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> twoFactorVerify(
+                                                                                                      TwoFactorVerifyAccountRequest request,
                                                                                                       RequestOptions requestOptions) {
                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                      .addPathSegments("v1/account/two-factor/recovery-codes/regenerate");if (requestOptions != null) {
+                                                                                                      .addPathSegments("v1/account/two-factor/verify");if (requestOptions != null) {
                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                         } );
@@ -5165,14 +5183,14 @@ public class AsyncRawAccountClient {
                                                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                       }
-                                                                                                      CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> future = new CompletableFuture<>();
+                                                                                                      CompletableFuture<NordletApiHttpResponse<TwoFactorVerifyAccountResponse>> future = new CompletableFuture<>();
                                                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                         @Override
                                                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                           try (ResponseBody responseBody = response.body()) {
                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                             if (response.isSuccessful()) {
-                                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorRecoveryCodesRegenerateAccountResponse.class), response));
+                                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorVerifyAccountResponse.class), response));
                                                                                                               return;
                                                                                                             }
                                                                                                             try {
@@ -5223,22 +5241,22 @@ public class AsyncRawAccountClient {
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+                                                                                                     * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
                                                                                                      */
-                                                                                                    public CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> twoFactorDisable(
-                                                                                                        TwoFactorDisableAccountRequest request) {
-                                                                                                      return twoFactorDisable(request,null);
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> twoFactorRecoveryCodesRegenerate(
+                                                                                                        TwoFactorRecoveryCodesRegenerateAccountRequest request) {
+                                                                                                      return twoFactorRecoveryCodesRegenerate(request,null);
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+                                                                                                     * Replace the recovery codes with 10 new ones, shown only this once, after a current code from the authenticator app. The earlier codes stop working.
                                                                                                      */
-                                                                                                    public CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> twoFactorDisable(
-                                                                                                        TwoFactorDisableAccountRequest request,
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> twoFactorRecoveryCodesRegenerate(
+                                                                                                        TwoFactorRecoveryCodesRegenerateAccountRequest request,
                                                                                                         RequestOptions requestOptions) {
                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                        .addPathSegments("v1/account/two-factor/disable");if (requestOptions != null) {
+                                                                                                        .addPathSegments("v1/account/two-factor/recovery-codes/regenerate");if (requestOptions != null) {
                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                           } );
@@ -5264,14 +5282,14 @@ public class AsyncRawAccountClient {
                                                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                         }
-                                                                                                        CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> future = new CompletableFuture<>();
+                                                                                                        CompletableFuture<NordletApiHttpResponse<TwoFactorRecoveryCodesRegenerateAccountResponse>> future = new CompletableFuture<>();
                                                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                           @Override
                                                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                             try (ResponseBody responseBody = response.body()) {
                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                               if (response.isSuccessful()) {
-                                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorDisableAccountResponse.class), response));
+                                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorRecoveryCodesRegenerateAccountResponse.class), response));
                                                                                                                 return;
                                                                                                               }
                                                                                                               try {
@@ -5320,4 +5338,103 @@ public class AsyncRawAccountClient {
                                                                                                         });
                                                                                                         return future;
                                                                                                       }
-                                                                                                    }
+
+                                                                                                      /**
+                                                                                                       * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+                                                                                                       */
+                                                                                                      public CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> twoFactorDisable(
+                                                                                                          TwoFactorDisableAccountRequest request) {
+                                                                                                        return twoFactorDisable(request,null);
+                                                                                                      }
+
+                                                                                                      /**
+                                                                                                       * Turn off two-factor authentication after a current code from the authenticator app or an unused recovery code; the key and the recovery codes are deleted. Refused with 422 for a platform administrator, for whom it is required.
+                                                                                                       */
+                                                                                                      public CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> twoFactorDisable(
+                                                                                                          TwoFactorDisableAccountRequest request,
+                                                                                                          RequestOptions requestOptions) {
+                                                                                                        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                          .addPathSegments("v1/account/two-factor/disable");if (requestOptions != null) {
+                                                                                                            requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                              httpUrl.addQueryParameter(_key, _value);
+                                                                                                            } );
+                                                                                                          }
+                                                                                                          RequestBody body;
+                                                                                                          try {
+                                                                                                            body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                          }
+                                                                                                          catch(JsonProcessingException e) {
+                                                                                                            throw new NordletApiException("Failed to serialize request", e);
+                                                                                                          }
+                                                                                                          Request okhttpRequest = new Request.Builder()
+                                                                                                            .url(httpUrl.build())
+                                                                                                            .method("POST", body)
+                                                                                                            .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                            .addHeader("Content-Type", "application/json")
+                                                                                                            .addHeader("Accept", "application/json")
+                                                                                                            .build();
+                                                                                                          OkHttpClient client = clientOptions.httpClient();
+                                                                                                          if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                            client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                          }
+                                                                                                          if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                            okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                          }
+                                                                                                          CompletableFuture<NordletApiHttpResponse<TwoFactorDisableAccountResponse>> future = new CompletableFuture<>();
+                                                                                                          client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                                            @Override
+                                                                                                            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                                              try (ResponseBody responseBody = response.body()) {
+                                                                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                if (response.isSuccessful()) {
+                                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TwoFactorDisableAccountResponse.class), response));
+                                                                                                                  return;
+                                                                                                                }
+                                                                                                                try {
+                                                                                                                  switch (response.code()) {
+                                                                                                                    case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                    case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                    return;
+                                                                                                                  }
+                                                                                                                }
+                                                                                                                catch (JsonProcessingException ignored) {
+                                                                                                                  // unable to map error response, throwing generic error
+                                                                                                                }
+                                                                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                                                return;
+                                                                                                              }
+                                                                                                              catch (JsonProcessingException e) {
+                                                                                                                future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                                              }
+                                                                                                              catch (IOException e) {
+                                                                                                                future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                              }
+                                                                                                            }
+
+                                                                                                            @Override
+                                                                                                            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                                              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                            }
+                                                                                                          });
+                                                                                                          return future;
+                                                                                                        }
+                                                                                                      }

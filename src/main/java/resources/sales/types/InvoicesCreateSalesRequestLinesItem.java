@@ -47,6 +47,8 @@ public final class InvoicesCreateSalesRequestLinesItem {
 
   private final Optional<InvoicesCreateSalesRequestLinesItemRecognition> recognition;
 
+  private final Optional<String> assetId;
+
   private final Optional<String> vatExemptionBasis;
 
   private final Optional<String> standaloneSellingPrice;
@@ -61,8 +63,9 @@ public final class InvoicesCreateSalesRequestLinesItem {
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId,
       Optional<InvoicesCreateSalesRequestLinesItemRecognition> recognition,
-      Optional<String> vatExemptionBasis, Optional<String> standaloneSellingPrice,
-      Optional<String> refundEstimatePercent, Map<String, Object> additionalProperties) {
+      Optional<String> assetId, Optional<String> vatExemptionBasis,
+      Optional<String> standaloneSellingPrice, Optional<String> refundEstimatePercent,
+      Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
@@ -74,6 +77,7 @@ public final class InvoicesCreateSalesRequestLinesItem {
     this.costCenterId = costCenterId;
     this.projectId = projectId;
     this.recognition = recognition;
+    this.assetId = assetId;
     this.vatExemptionBasis = vatExemptionBasis;
     this.standaloneSellingPrice = standaloneSellingPrice;
     this.refundEstimatePercent = refundEstimatePercent;
@@ -135,6 +139,14 @@ public final class InvoicesCreateSalesRequestLinesItem {
     return recognition;
   }
 
+  /**
+   * @return A fixed asset sold on this line: the line net is booked to the assets.disposalProceeds posting rule account and <code>assets/assets/dispose</code> takes the proceeds from the issued invoice. Only on an invoice (422), only for an asset that is not disposed, and not with revenue recognition over time.
+   */
+  @JsonProperty("assetId")
+  public Optional<String> getAssetId() {
+    return assetId;
+  }
+
   @JsonProperty("vatExemptionBasis")
   public Optional<String> getVatExemptionBasis() {
     return vatExemptionBasis;
@@ -162,12 +174,12 @@ public final class InvoicesCreateSalesRequestLinesItem {
   }
 
   private boolean equalTo(InvoicesCreateSalesRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && vatExemptionBasis.equals(other.vatExemptionBasis) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && assetId.equals(other.assetId) && vatExemptionBasis.equals(other.vatExemptionBasis) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.vatExemptionBasis, this.standaloneSellingPrice, this.refundEstimatePercent);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.assetId, this.vatExemptionBasis, this.standaloneSellingPrice, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -205,6 +217,8 @@ public final class InvoicesCreateSalesRequestLinesItem {
 
     private Optional<InvoicesCreateSalesRequestLinesItemRecognition> recognition = Optional.empty();
 
+    private Optional<String> assetId = Optional.empty();
+
     private Optional<String> vatExemptionBasis = Optional.empty();
 
     private Optional<String> standaloneSellingPrice = Optional.empty();
@@ -229,6 +243,7 @@ public final class InvoicesCreateSalesRequestLinesItem {
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
       recognition(other.getRecognition());
+      assetId(other.getAssetId());
       vatExemptionBasis(other.getVatExemptionBasis());
       standaloneSellingPrice(other.getStandaloneSellingPrice());
       refundEstimatePercent(other.getRefundEstimatePercent());
@@ -390,6 +405,23 @@ public final class InvoicesCreateSalesRequestLinesItem {
       return this;
     }
 
+    /**
+     * <p>A fixed asset sold on this line: the line net is booked to the assets.disposalProceeds posting rule account and <code>assets/assets/dispose</code> takes the proceeds from the issued invoice. Only on an invoice (422), only for an asset that is not disposed, and not with revenue recognition over time.</p>
+     */
+    @JsonSetter(
+        value = "assetId",
+        nulls = Nulls.SKIP
+    )
+    public Builder assetId(Optional<String> assetId) {
+      this.assetId = assetId;
+      return this;
+    }
+
+    public Builder assetId(String assetId) {
+      this.assetId = Optional.ofNullable(assetId);
+      return this;
+    }
+
     @JsonSetter(
         value = "vatExemptionBasis",
         nulls = Nulls.SKIP
@@ -433,7 +465,7 @@ public final class InvoicesCreateSalesRequestLinesItem {
     }
 
     public InvoicesCreateSalesRequestLinesItem build() {
-      return new InvoicesCreateSalesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, vatExemptionBasis, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
+      return new InvoicesCreateSalesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, assetId, vatExemptionBasis, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

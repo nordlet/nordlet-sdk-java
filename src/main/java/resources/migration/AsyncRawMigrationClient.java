@@ -52,7 +52,7 @@ public class AsyncRawMigrationClient {
   }
 
   /**
-   * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
+   * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored. When the package has problems in several rows of <code>journal</code>, <code>openReceivables</code>, <code>openPayables</code>, <code>fixedAssets</code> or <code>stock</code>, the 422 lists every one of them, each under its row (<code>journal[2]</code>) in <code>fieldErrors</code>; a problem in <code>accounts</code>, <code>partners</code>, <code>items</code>, <code>assetGroups</code>, <code>openingBalances</code> or the package as a whole is reported alone, because the rows after it depend on it.
    */
   public CompletableFuture<NordletApiHttpResponse<BooksValidateMigrationResponse>> booksValidate(
       BooksValidateMigrationRequest request) {
@@ -60,7 +60,7 @@ public class AsyncRawMigrationClient {
   }
 
   /**
-   * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
+   * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored. When the package has problems in several rows of <code>journal</code>, <code>openReceivables</code>, <code>openPayables</code>, <code>fixedAssets</code> or <code>stock</code>, the 422 lists every one of them, each under its row (<code>journal[2]</code>) in <code>fieldErrors</code>; a problem in <code>accounts</code>, <code>partners</code>, <code>items</code>, <code>assetGroups</code>, <code>openingBalances</code> or the package as a whole is reported alone, because the rows after it depend on it.
    */
   public CompletableFuture<NordletApiHttpResponse<BooksValidateMigrationResponse>> booksValidate(
       BooksValidateMigrationRequest request, RequestOptions requestOptions) {

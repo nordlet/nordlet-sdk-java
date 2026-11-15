@@ -28,12 +28,15 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
 
   private final String message;
 
+  private final String fix;
+
   private final Map<String, Object> additionalProperties;
 
-  private InvoicesRegisterPurchasesResponseWarningsItem(String code, String message,
+  private InvoicesRegisterPurchasesResponseWarningsItem(String code, String message, String fix,
       Map<String, Object> additionalProperties) {
     this.code = code;
     this.message = message;
+    this.fix = fix;
     this.additionalProperties = additionalProperties;
   }
 
@@ -45,6 +48,11 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
   @JsonProperty("message")
   public String getMessage() {
     return message;
+  }
+
+  @JsonProperty("fix")
+  public String getFix() {
+    return fix;
   }
 
   @java.lang.Override
@@ -59,12 +67,12 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
   }
 
   private boolean equalTo(InvoicesRegisterPurchasesResponseWarningsItem other) {
-    return code.equals(other.code) && message.equals(other.message);
+    return code.equals(other.code) && message.equals(other.message) && fix.equals(other.fix);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.code, this.message);
+    return Objects.hash(this.code, this.message, this.fix);
   }
 
   @java.lang.Override
@@ -83,7 +91,11 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
   }
 
   public interface MessageStage {
-    _FinalStage message(@NotNull String message);
+    FixStage message(@NotNull String message);
+  }
+
+  public interface FixStage {
+    _FinalStage fix(@NotNull String fix);
   }
 
   public interface _FinalStage {
@@ -97,10 +109,12 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CodeStage, MessageStage, _FinalStage {
+  public static final class Builder implements CodeStage, MessageStage, FixStage, _FinalStage {
     private String code;
 
     private String message;
+
+    private String fix;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,6 +126,7 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
     public Builder from(InvoicesRegisterPurchasesResponseWarningsItem other) {
       code(other.getCode());
       message(other.getMessage());
+      fix(other.getFix());
       return this;
     }
 
@@ -124,14 +139,21 @@ public final class InvoicesRegisterPurchasesResponseWarningsItem {
 
     @java.lang.Override
     @JsonSetter("message")
-    public _FinalStage message(@NotNull String message) {
+    public FixStage message(@NotNull String message) {
       this.message = Objects.requireNonNull(message, "message must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("fix")
+    public _FinalStage fix(@NotNull String fix) {
+      this.fix = Objects.requireNonNull(fix, "fix must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     public InvoicesRegisterPurchasesResponseWarningsItem build() {
-      return new InvoicesRegisterPurchasesResponseWarningsItem(code, message, additionalProperties);
+      return new InvoicesRegisterPurchasesResponseWarningsItem(code, message, fix, additionalProperties);
     }
 
     @java.lang.Override

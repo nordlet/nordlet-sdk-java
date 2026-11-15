@@ -40,6 +40,7 @@ import com.nordlet.api.resources.public_.PublicClient;
 import com.nordlet.api.resources.purchases.PurchasesClient;
 import com.nordlet.api.resources.reference.ReferenceClient;
 import com.nordlet.api.resources.reports.ReportsClient;
+import com.nordlet.api.resources.review.ReviewClient;
 import com.nordlet.api.resources.sales.SalesClient;
 import com.nordlet.api.resources.transport.TransportClient;
 import com.nordlet.api.resources.webhooks.WebhooksClient;
@@ -77,6 +78,8 @@ public class NordletApiClient {
   protected final Supplier<PlatformSellersClient> platformSellersClient;
 
   protected final Supplier<MigrationClient> migrationClient;
+
+  protected final Supplier<ReviewClient> reviewClient;
 
   protected final Supplier<AssetsClient> assetsClient;
 
@@ -139,6 +142,7 @@ public class NordletApiClient {
     this.officersClient = Suppliers.memoize(() -> new OfficersClient(clientOptions));
     this.platformSellersClient = Suppliers.memoize(() -> new PlatformSellersClient(clientOptions));
     this.migrationClient = Suppliers.memoize(() -> new MigrationClient(clientOptions));
+    this.reviewClient = Suppliers.memoize(() -> new ReviewClient(clientOptions));
     this.assetsClient = Suppliers.memoize(() -> new AssetsClient(clientOptions));
     this.hrClient = Suppliers.memoize(() -> new HrClient(clientOptions));
     this.fleetClient = Suppliers.memoize(() -> new FleetClient(clientOptions));
@@ -221,6 +225,10 @@ public class NordletApiClient {
 
   public MigrationClient migration() {
     return this.migrationClient.get();
+  }
+
+  public ReviewClient review() {
+    return this.reviewClient.get();
   }
 
   public AssetsClient assets() {

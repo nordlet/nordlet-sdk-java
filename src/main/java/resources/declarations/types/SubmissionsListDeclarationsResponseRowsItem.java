@@ -59,6 +59,10 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
 
   private final long amendment;
 
+  private final Optional<String> authorityRef;
+
+  private final Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput;
+
   private final String origin;
 
   private final Optional<String> transportSystem;
@@ -93,6 +97,10 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
 
   private final OffsetDateTime updatedAt;
 
+  private final boolean canAmend;
+
+  private final Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> correction;
+
   private final Map<String, Object> additionalProperties;
 
   private SubmissionsListDeclarationsResponseRowsItem(String id, String obligation, long periodYear,
@@ -100,7 +108,9 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
       SubmissionsListDeclarationsResponseRowsItemStatus status, String fileName,
       Optional<String> fileId, Optional<String> externalRef, Optional<String> message,
       Optional<String> ruleKey, Optional<String> period, Optional<String> documentKey,
-      long amendment, String origin, Optional<String> transportSystem,
+      long amendment, Optional<String> authorityRef,
+      Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput,
+      String origin, Optional<String> transportSystem,
       Optional<SubmissionsListDeclarationsResponseRowsItemEnvironment> environment,
       Optional<OffsetDateTime> submittedAt, Optional<OffsetDateTime> acceptedAt,
       Optional<OffsetDateTime> rejectedAt, Optional<OffsetDateTime> checkedAt,
@@ -108,6 +118,7 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
       boolean confirmationPending, Optional<String> sentSha256,
       Optional<String> certificateFingerprint, Optional<String> submittedByActorType,
       Optional<String> submittedByActorId, OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      boolean canAmend, Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> correction,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.obligation = obligation;
@@ -123,6 +134,8 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     this.period = period;
     this.documentKey = documentKey;
     this.amendment = amendment;
+    this.authorityRef = authorityRef;
+    this.correctionInput = correctionInput;
     this.origin = origin;
     this.transportSystem = transportSystem;
     this.environment = environment;
@@ -140,6 +153,8 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     this.submittedByActorId = submittedByActorId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.canAmend = canAmend;
+    this.correction = correction;
     this.additionalProperties = additionalProperties;
   }
 
@@ -235,6 +250,22 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
   @JsonProperty("amendment")
   public long getAmendment() {
     return amendment;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAuthorityRef() {
+    if (authorityRef == null) {
+      return Optional.empty();
+    }
+    return authorityRef;
+  }
+
+  @JsonIgnore
+  public Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> getCorrectionInput() {
+    if (correctionInput == null) {
+      return Optional.empty();
+    }
+    return correctionInput;
   }
 
   @JsonProperty("origin")
@@ -358,6 +389,19 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     return updatedAt;
   }
 
+  @JsonProperty("canAmend")
+  public boolean getCanAmend() {
+    return canAmend;
+  }
+
+  @JsonIgnore
+  public Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> getCorrection() {
+    if (correction == null) {
+      return Optional.empty();
+    }
+    return correction;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -428,6 +472,25 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
   @JsonProperty("documentKey")
   private Optional<String> _getDocumentKey() {
     return documentKey;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("authorityRef")
+  private Optional<String> _getAuthorityRef() {
+    return authorityRef;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("correctionInput")
+  private Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> _getCorrectionInput(
+      ) {
+    return correctionInput;
   }
 
   @JsonInclude(
@@ -538,6 +601,15 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     return submittedByActorId;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("correction")
+  private Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> _getCorrection() {
+    return correction;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -550,12 +622,12 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
   }
 
   private boolean equalTo(SubmissionsListDeclarationsResponseRowsItem other) {
-    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && obligation.equals(other.obligation) && periodYear == other.periodYear && periodMonth.equals(other.periodMonth) && variant.equals(other.variant) && status.equals(other.status) && fileName.equals(other.fileName) && fileId.equals(other.fileId) && externalRef.equals(other.externalRef) && message.equals(other.message) && ruleKey.equals(other.ruleKey) && period.equals(other.period) && documentKey.equals(other.documentKey) && amendment == other.amendment && authorityRef.equals(other.authorityRef) && correctionInput.equals(other.correctionInput) && origin.equals(other.origin) && transportSystem.equals(other.transportSystem) && environment.equals(other.environment) && submittedAt.equals(other.submittedAt) && acceptedAt.equals(other.acceptedAt) && rejectedAt.equals(other.rejectedAt) && checkedAt.equals(other.checkedAt) && nextCheckAt.equals(other.nextCheckAt) && attempts == other.attempts && deliveryError.equals(other.deliveryError) && confirmationPending == other.confirmationPending && sentSha256.equals(other.sentSha256) && certificateFingerprint.equals(other.certificateFingerprint) && submittedByActorType.equals(other.submittedByActorType) && submittedByActorId.equals(other.submittedByActorId) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && canAmend == other.canAmend && correction.equals(other.correction);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.obligation, this.periodYear, this.periodMonth, this.variant, this.status, this.fileName, this.fileId, this.externalRef, this.message, this.ruleKey, this.period, this.documentKey, this.amendment, this.authorityRef, this.correctionInput, this.origin, this.transportSystem, this.environment, this.submittedAt, this.acceptedAt, this.rejectedAt, this.checkedAt, this.nextCheckAt, this.attempts, this.deliveryError, this.confirmationPending, this.sentSha256, this.certificateFingerprint, this.submittedByActorType, this.submittedByActorId, this.createdAt, this.updatedAt, this.canAmend, this.correction);
   }
 
   @java.lang.Override
@@ -610,7 +682,11 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
   }
 
   public interface UpdatedAtStage {
-    _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt);
+    CanAmendStage updatedAt(@NotNull OffsetDateTime updatedAt);
+  }
+
+  public interface CanAmendStage {
+    _FinalStage canAmend(boolean canAmend);
   }
 
   public interface _FinalStage {
@@ -667,6 +743,21 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     _FinalStage documentKey(String documentKey);
 
     _FinalStage documentKey(Nullable<String> documentKey);
+
+    _FinalStage authorityRef(Optional<String> authorityRef);
+
+    _FinalStage authorityRef(String authorityRef);
+
+    _FinalStage authorityRef(Nullable<String> authorityRef);
+
+    _FinalStage correctionInput(
+        Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput);
+
+    _FinalStage correctionInput(
+        SubmissionsListDeclarationsResponseRowsItemCorrectionInput correctionInput);
+
+    _FinalStage correctionInput(
+        Nullable<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput);
 
     _FinalStage transportSystem(Optional<String> transportSystem);
 
@@ -741,12 +832,20 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     _FinalStage submittedByActorId(String submittedByActorId);
 
     _FinalStage submittedByActorId(Nullable<String> submittedByActorId);
+
+    _FinalStage correction(
+        Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> correction);
+
+    _FinalStage correction(SubmissionsListDeclarationsResponseRowsItemCorrection correction);
+
+    _FinalStage correction(
+        Nullable<SubmissionsListDeclarationsResponseRowsItemCorrection> correction);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, ConfirmationPendingStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, ObligationStage, PeriodYearStage, StatusStage, FileNameStage, AmendmentStage, OriginStage, AttemptsStage, ConfirmationPendingStage, CreatedAtStage, UpdatedAtStage, CanAmendStage, _FinalStage {
     private String id;
 
     private String obligation;
@@ -768,6 +867,10 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     private OffsetDateTime createdAt;
 
     private OffsetDateTime updatedAt;
+
+    private boolean canAmend;
+
+    private Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> correction = Optional.empty();
 
     private Optional<String> submittedByActorId = Optional.empty();
 
@@ -792,6 +895,10 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     private Optional<SubmissionsListDeclarationsResponseRowsItemEnvironment> environment = Optional.empty();
 
     private Optional<String> transportSystem = Optional.empty();
+
+    private Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput = Optional.empty();
+
+    private Optional<String> authorityRef = Optional.empty();
 
     private Optional<String> documentKey = Optional.empty();
 
@@ -831,6 +938,8 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
       period(other.getPeriod());
       documentKey(other.getDocumentKey());
       amendment(other.getAmendment());
+      authorityRef(other.getAuthorityRef());
+      correctionInput(other.getCorrectionInput());
       origin(other.getOrigin());
       transportSystem(other.getTransportSystem());
       environment(other.getEnvironment());
@@ -848,6 +957,8 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
       submittedByActorId(other.getSubmittedByActorId());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
+      canAmend(other.getCanAmend());
+      correction(other.getCorrection());
       return this;
     }
 
@@ -923,8 +1034,48 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("updatedAt")
-    public _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt) {
+    public CanAmendStage updatedAt(@NotNull OffsetDateTime updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("canAmend")
+    public _FinalStage canAmend(boolean canAmend) {
+      this.canAmend = canAmend;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correction(
+        Nullable<SubmissionsListDeclarationsResponseRowsItemCorrection> correction) {
+      if (correction.isNull()) {
+        this.correction = null;
+      }
+      else if (correction.isEmpty()) {
+        this.correction = Optional.empty();
+      }
+      else {
+        this.correction = Optional.of(correction.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correction(
+        SubmissionsListDeclarationsResponseRowsItemCorrection correction) {
+      this.correction = Optional.ofNullable(correction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correction(
+        Optional<SubmissionsListDeclarationsResponseRowsItemCorrection> correction) {
+      this.correction = correction;
       return this;
     }
 
@@ -1292,6 +1443,69 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage correctionInput(
+        Nullable<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput) {
+      if (correctionInput.isNull()) {
+        this.correctionInput = null;
+      }
+      else if (correctionInput.isEmpty()) {
+        this.correctionInput = Optional.empty();
+      }
+      else {
+        this.correctionInput = Optional.of(correctionInput.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correctionInput(
+        SubmissionsListDeclarationsResponseRowsItemCorrectionInput correctionInput) {
+      this.correctionInput = Optional.ofNullable(correctionInput);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correctionInput",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correctionInput(
+        Optional<SubmissionsListDeclarationsResponseRowsItemCorrectionInput> correctionInput) {
+      this.correctionInput = correctionInput;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorityRef(Nullable<String> authorityRef) {
+      if (authorityRef.isNull()) {
+        this.authorityRef = null;
+      }
+      else if (authorityRef.isEmpty()) {
+        this.authorityRef = Optional.empty();
+      }
+      else {
+        this.authorityRef = Optional.of(authorityRef.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage authorityRef(String authorityRef) {
+      this.authorityRef = Optional.ofNullable(authorityRef);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "authorityRef",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage authorityRef(Optional<String> authorityRef) {
+      this.authorityRef = authorityRef;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage documentKey(Nullable<String> documentKey) {
       if (documentKey.isNull()) {
         this.documentKey = null;
@@ -1533,7 +1747,7 @@ public final class SubmissionsListDeclarationsResponseRowsItem {
 
     @java.lang.Override
     public SubmissionsListDeclarationsResponseRowsItem build() {
-      return new SubmissionsListDeclarationsResponseRowsItem(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, additionalProperties);
+      return new SubmissionsListDeclarationsResponseRowsItem(id, obligation, periodYear, periodMonth, variant, status, fileName, fileId, externalRef, message, ruleKey, period, documentKey, amendment, authorityRef, correctionInput, origin, transportSystem, environment, submittedAt, acceptedAt, rejectedAt, checkedAt, nextCheckAt, attempts, deliveryError, confirmationPending, sentSha256, certificateFingerprint, submittedByActorType, submittedByActorId, createdAt, updatedAt, canAmend, correction, additionalProperties);
     }
 
     @java.lang.Override

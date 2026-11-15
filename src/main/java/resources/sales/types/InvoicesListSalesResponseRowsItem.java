@@ -69,6 +69,12 @@ public final class InvoicesListSalesResponseRowsItem {
 
   private final Optional<String> journalTransactionId;
 
+  private final Optional<OffsetDateTime> reversedAt;
+
+  private final Optional<String> reversalJournalTransactionId;
+
+  private final Optional<String> reversalReason;
+
   private final Optional<String> appliedToInvoiceId;
 
   private final Optional<String> creditedInvoiceId;
@@ -171,10 +177,11 @@ public final class InvoicesListSalesResponseRowsItem {
       Optional<Long> number, Optional<String> fullNumber, Optional<String> issueDate,
       Optional<String> dueDate, String currency, Optional<String> fxRate, String netTotal,
       String vatTotal, String grossTotal, Optional<String> salesTaxPercent, String salesTaxTotal,
-      String paidAmount, Optional<String> journalTransactionId, Optional<String> appliedToInvoiceId,
-      Optional<String> creditedInvoiceId, Optional<String> creditedInvoiceReference,
-      Optional<String> creditedInvoiceDate, Optional<String> agreementId,
-      Optional<InvoicesListSalesResponseRowsItemVatScheme> vatScheme,
+      String paidAmount, Optional<String> journalTransactionId, Optional<OffsetDateTime> reversedAt,
+      Optional<String> reversalJournalTransactionId, Optional<String> reversalReason,
+      Optional<String> appliedToInvoiceId, Optional<String> creditedInvoiceId,
+      Optional<String> creditedInvoiceReference, Optional<String> creditedInvoiceDate,
+      Optional<String> agreementId, Optional<InvoicesListSalesResponseRowsItemVatScheme> vatScheme,
       Optional<String> intrastatTransportMode, Optional<String> intrastatDeliveryTerms,
       Optional<String> intrastatRegion, Optional<String> intrastatNatureOfTransaction,
       Optional<String> vatCountryCode, boolean deemedSupplier, Optional<String> notes,
@@ -212,6 +219,9 @@ public final class InvoicesListSalesResponseRowsItem {
     this.salesTaxTotal = salesTaxTotal;
     this.paidAmount = paidAmount;
     this.journalTransactionId = journalTransactionId;
+    this.reversedAt = reversedAt;
+    this.reversalJournalTransactionId = reversalJournalTransactionId;
+    this.reversalReason = reversalReason;
     this.appliedToInvoiceId = appliedToInvoiceId;
     this.creditedInvoiceId = creditedInvoiceId;
     this.creditedInvoiceReference = creditedInvoiceReference;
@@ -379,6 +389,30 @@ public final class InvoicesListSalesResponseRowsItem {
       return Optional.empty();
     }
     return journalTransactionId;
+  }
+
+  @JsonIgnore
+  public Optional<OffsetDateTime> getReversedAt() {
+    if (reversedAt == null) {
+      return Optional.empty();
+    }
+    return reversedAt;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalJournalTransactionId() {
+    if (reversalJournalTransactionId == null) {
+      return Optional.empty();
+    }
+    return reversalJournalTransactionId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getReversalReason() {
+    if (reversalReason == null) {
+      return Optional.empty();
+    }
+    return reversalReason;
   }
 
   @JsonIgnore
@@ -818,6 +852,33 @@ public final class InvoicesListSalesResponseRowsItem {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("reversedAt")
+  private Optional<OffsetDateTime> _getReversedAt() {
+    return reversedAt;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalJournalTransactionId")
+  private Optional<String> _getReversalJournalTransactionId() {
+    return reversalJournalTransactionId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("reversalReason")
+  private Optional<String> _getReversalReason() {
+    return reversalReason;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("appliedToInvoiceId")
   private Optional<String> _getAppliedToInvoiceId() {
     return appliedToInvoiceId;
@@ -1195,12 +1256,12 @@ public final class InvoicesListSalesResponseRowsItem {
   }
 
   private boolean equalTo(InvoicesListSalesResponseRowsItem other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && payLinkEnabled == other.payLinkEnabled && debtRemindersEnabled == other.debtRemindersEnabled && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && partnerName.equals(other.partnerName) && advanceUnappliedAmount.equals(other.advanceUnappliedAmount);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && type.equals(other.type) && status.equals(other.status) && paymentStatus.equals(other.paymentStatus) && series.equals(other.series) && number.equals(other.number) && fullNumber.equals(other.fullNumber) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && fxRate.equals(other.fxRate) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxTotal.equals(other.salesTaxTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason) && appliedToInvoiceId.equals(other.appliedToInvoiceId) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier == other.deemedSupplier && notes.equals(other.notes) && documentRef.equals(other.documentRef) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && locale.equals(other.locale) && recurringInvoiceId.equals(other.recurringInvoiceId) && lockedAt.equals(other.lockedAt) && lockedBy.equals(other.lockedBy) && payToken.equals(other.payToken) && payLinkEnabled == other.payLinkEnabled && debtRemindersEnabled == other.debtRemindersEnabled && einvoiceSystem.equals(other.einvoiceSystem) && einvoiceTransport.equals(other.einvoiceTransport) && einvoiceMessageId.equals(other.einvoiceMessageId) && einvoiceNumber.equals(other.einvoiceNumber) && einvoiceStatus.equals(other.einvoiceStatus) && einvoiceDetail.equals(other.einvoiceDetail) && einvoiceSentAt.equals(other.einvoiceSentAt) && einvoiceCheckedAt.equals(other.einvoiceCheckedAt) && peppolMessageId.equals(other.peppolMessageId) && peppolStatus.equals(other.peppolStatus) && peppolDetail.equals(other.peppolDetail) && peppolSentAt.equals(other.peppolSentAt) && peppolCheckedAt.equals(other.peppolCheckedAt) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt) && partnerName.equals(other.partnerName) && advanceUnappliedAmount.equals(other.advanceUnappliedAmount);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.salesTaxPercent, this.salesTaxTotal, this.paidAmount, this.journalTransactionId, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.payLinkEnabled, this.debtRemindersEnabled, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.partnerName, this.advanceUnappliedAmount);
+    return Objects.hash(this.id, this.partnerId, this.type, this.status, this.paymentStatus, this.series, this.number, this.fullNumber, this.issueDate, this.dueDate, this.currency, this.fxRate, this.netTotal, this.vatTotal, this.grossTotal, this.salesTaxPercent, this.salesTaxTotal, this.paidAmount, this.journalTransactionId, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason, this.appliedToInvoiceId, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.locale, this.recurringInvoiceId, this.lockedAt, this.lockedBy, this.payToken, this.payLinkEnabled, this.debtRemindersEnabled, this.einvoiceSystem, this.einvoiceTransport, this.einvoiceMessageId, this.einvoiceNumber, this.einvoiceStatus, this.einvoiceDetail, this.einvoiceSentAt, this.einvoiceCheckedAt, this.peppolMessageId, this.peppolStatus, this.peppolDetail, this.peppolSentAt, this.peppolCheckedAt, this.createdAt, this.updatedAt, this.partnerName, this.advanceUnappliedAmount);
   }
 
   @java.lang.Override
@@ -1337,6 +1398,24 @@ public final class InvoicesListSalesResponseRowsItem {
     _FinalStage journalTransactionId(String journalTransactionId);
 
     _FinalStage journalTransactionId(Nullable<String> journalTransactionId);
+
+    _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt);
+
+    _FinalStage reversedAt(OffsetDateTime reversedAt);
+
+    _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt);
+
+    _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId);
+
+    _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId);
+
+    _FinalStage reversalReason(Optional<String> reversalReason);
+
+    _FinalStage reversalReason(String reversalReason);
+
+    _FinalStage reversalReason(Nullable<String> reversalReason);
 
     _FinalStage appliedToInvoiceId(Optional<String> appliedToInvoiceId);
 
@@ -1708,6 +1787,12 @@ public final class InvoicesListSalesResponseRowsItem {
 
     private Optional<String> appliedToInvoiceId = Optional.empty();
 
+    private Optional<String> reversalReason = Optional.empty();
+
+    private Optional<String> reversalJournalTransactionId = Optional.empty();
+
+    private Optional<OffsetDateTime> reversedAt = Optional.empty();
+
     private Optional<String> journalTransactionId = Optional.empty();
 
     private Optional<String> salesTaxPercent = Optional.empty();
@@ -1751,6 +1836,9 @@ public final class InvoicesListSalesResponseRowsItem {
       salesTaxTotal(other.getSalesTaxTotal());
       paidAmount(other.getPaidAmount());
       journalTransactionId(other.getJournalTransactionId());
+      reversedAt(other.getReversedAt());
+      reversalJournalTransactionId(other.getReversalJournalTransactionId());
+      reversalReason(other.getReversalReason());
       appliedToInvoiceId(other.getAppliedToInvoiceId());
       creditedInvoiceId(other.getCreditedInvoiceId());
       creditedInvoiceReference(other.getCreditedInvoiceReference());
@@ -3163,6 +3251,96 @@ public final class InvoicesListSalesResponseRowsItem {
     }
 
     @java.lang.Override
+    public _FinalStage reversalReason(Nullable<String> reversalReason) {
+      if (reversalReason.isNull()) {
+        this.reversalReason = null;
+      }
+      else if (reversalReason.isEmpty()) {
+        this.reversalReason = Optional.empty();
+      }
+      else {
+        this.reversalReason = Optional.of(reversalReason.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalReason(String reversalReason) {
+      this.reversalReason = Optional.ofNullable(reversalReason);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalReason",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalReason(Optional<String> reversalReason) {
+      this.reversalReason = reversalReason;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(Nullable<String> reversalJournalTransactionId) {
+      if (reversalJournalTransactionId.isNull()) {
+        this.reversalJournalTransactionId = null;
+      }
+      else if (reversalJournalTransactionId.isEmpty()) {
+        this.reversalJournalTransactionId = Optional.empty();
+      }
+      else {
+        this.reversalJournalTransactionId = Optional.of(reversalJournalTransactionId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversalJournalTransactionId(String reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = Optional.ofNullable(reversalJournalTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversalJournalTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversalJournalTransactionId(Optional<String> reversalJournalTransactionId) {
+      this.reversalJournalTransactionId = reversalJournalTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(Nullable<OffsetDateTime> reversedAt) {
+      if (reversedAt.isNull()) {
+        this.reversedAt = null;
+      }
+      else if (reversedAt.isEmpty()) {
+        this.reversedAt = Optional.empty();
+      }
+      else {
+        this.reversedAt = Optional.of(reversedAt.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage reversedAt(OffsetDateTime reversedAt) {
+      this.reversedAt = Optional.ofNullable(reversedAt);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "reversedAt",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage reversedAt(Optional<OffsetDateTime> reversedAt) {
+      this.reversedAt = reversedAt;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage journalTransactionId(Nullable<String> journalTransactionId) {
       if (journalTransactionId.isNull()) {
         this.journalTransactionId = null;
@@ -3404,7 +3582,7 @@ public final class InvoicesListSalesResponseRowsItem {
 
     @java.lang.Override
     public InvoicesListSalesResponseRowsItem build() {
-      return new InvoicesListSalesResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, salesTaxPercent, salesTaxTotal, paidAmount, journalTransactionId, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, payLinkEnabled, debtRemindersEnabled, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, partnerName, advanceUnappliedAmount, additionalProperties);
+      return new InvoicesListSalesResponseRowsItem(id, partnerId, type, status, paymentStatus, series, number, fullNumber, issueDate, dueDate, currency, fxRate, netTotal, vatTotal, grossTotal, salesTaxPercent, salesTaxTotal, paidAmount, journalTransactionId, reversedAt, reversalJournalTransactionId, reversalReason, appliedToInvoiceId, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, locale, recurringInvoiceId, lockedAt, lockedBy, payToken, payLinkEnabled, debtRemindersEnabled, einvoiceSystem, einvoiceTransport, einvoiceMessageId, einvoiceNumber, einvoiceStatus, einvoiceDetail, einvoiceSentAt, einvoiceCheckedAt, peppolMessageId, peppolStatus, peppolDetail, peppolSentAt, peppolCheckedAt, createdAt, updatedAt, partnerName, advanceUnappliedAmount, additionalProperties);
     }
 
     @java.lang.Override

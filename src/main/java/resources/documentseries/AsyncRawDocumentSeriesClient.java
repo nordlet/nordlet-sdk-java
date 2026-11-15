@@ -450,14 +450,14 @@ public class AsyncRawDocumentSeriesClient {
           }
 
           /**
-           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
            */
           public CompletableFuture<NordletApiHttpResponse<ListDocumentSeriesResponse>> list() {
             return list(ListDocumentSeriesRequest.builder().build());
           }
 
           /**
-           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
            */
           public CompletableFuture<NordletApiHttpResponse<ListDocumentSeriesResponse>> list(
               RequestOptions requestOptions) {
@@ -465,7 +465,7 @@ public class AsyncRawDocumentSeriesClient {
           }
 
           /**
-           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
            */
           public CompletableFuture<NordletApiHttpResponse<ListDocumentSeriesResponse>> list(
               ListDocumentSeriesRequest request) {
@@ -473,7 +473,7 @@ public class AsyncRawDocumentSeriesClient {
           }
 
           /**
-           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+           * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
            */
           public CompletableFuture<NordletApiHttpResponse<ListDocumentSeriesResponse>> list(
               ListDocumentSeriesRequest request, RequestOptions requestOptions) {

@@ -427,7 +427,7 @@ public class AsyncRawHrClient {
         }
 
         /**
-         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
          */
         public CompletableFuture<NordletApiHttpResponse<EmployeesCreateHrResponse>> employeesCreate(
             EmployeesCreateHrRequest request) {
@@ -435,7 +435,7 @@ public class AsyncRawHrClient {
         }
 
         /**
-         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+         * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
          */
         public CompletableFuture<NordletApiHttpResponse<EmployeesCreateHrResponse>> employeesCreate(
             EmployeesCreateHrRequest request, RequestOptions requestOptions) {
@@ -525,7 +525,7 @@ public class AsyncRawHrClient {
           }
 
           /**
-           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
            */
           public CompletableFuture<NordletApiHttpResponse<EmployeesUpdateHrResponse>> employeesUpdate(
               EmployeesUpdateHrRequest request) {
@@ -533,7 +533,7 @@ public class AsyncRawHrClient {
           }
 
           /**
-           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616) is refused with 422.
+           * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). <code>status</code> and <code>terminationDate</code> are set here too. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
            */
           public CompletableFuture<NordletApiHttpResponse<EmployeesUpdateHrResponse>> employeesUpdate(
               EmployeesUpdateHrRequest request, RequestOptions requestOptions) {
@@ -835,7 +835,7 @@ public class AsyncRawHrClient {
                 }
 
                 /**
-                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
                  */
                 public CompletableFuture<NordletApiHttpResponse<EmployeesListHrResponse>> employeesList(
                     ) {
@@ -843,7 +843,7 @@ public class AsyncRawHrClient {
                 }
 
                 /**
-                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
                  */
                 public CompletableFuture<NordletApiHttpResponse<EmployeesListHrResponse>> employeesList(
                     RequestOptions requestOptions) {
@@ -851,7 +851,7 @@ public class AsyncRawHrClient {
                 }
 
                 /**
-                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
                  */
                 public CompletableFuture<NordletApiHttpResponse<EmployeesListHrResponse>> employeesList(
                     EmployeesListHrRequest request) {
@@ -859,7 +859,7 @@ public class AsyncRawHrClient {
                 }
 
                 /**
-                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code> and <code>createdAt</code>.
+                 * Lists the employees that are not deleted; filterable by <code>firstName</code>, <code>lastName</code>, <code>code</code>, <code>status</code> and <code>email</code>, sortable by <code>lastName</code>, <code>code</code>, <code>email</code>, <code>hireDate</code>, <code>status</code>, <code>createdAt</code> and <code>activeContractNo</code> (the number of the latest active contract).
                  */
                 public CompletableFuture<NordletApiHttpResponse<EmployeesListHrResponse>> employeesList(
                     EmployeesListHrRequest request, RequestOptions requestOptions) {
@@ -1981,7 +1981,7 @@ public class AsyncRawHrClient {
                                       }
 
                                       /**
-                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
                                        */
                                       public CompletableFuture<NordletApiHttpResponse<PerDiemRatesListHrResponse>> perDiemRatesList(
                                           ) {
@@ -1989,7 +1989,7 @@ public class AsyncRawHrClient {
                                       }
 
                                       /**
-                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
                                        */
                                       public CompletableFuture<NordletApiHttpResponse<PerDiemRatesListHrResponse>> perDiemRatesList(
                                           RequestOptions requestOptions) {
@@ -1997,7 +1997,7 @@ public class AsyncRawHrClient {
                                       }
 
                                       /**
-                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
                                        */
                                       public CompletableFuture<NordletApiHttpResponse<PerDiemRatesListHrResponse>> perDiemRatesList(
                                           PerDiemRatesListHrRequest request) {
@@ -2005,7 +2005,7 @@ public class AsyncRawHrClient {
                                       }
 
                                       /**
-                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code> and <code>validFrom</code>.
+                                       * Lists per diem rates; filterable by <code>countryCode</code>, sortable by <code>countryCode</code>, <code>validFrom</code> and <code>dailyAmount</code>.
                                        */
                                       public CompletableFuture<NordletApiHttpResponse<PerDiemRatesListHrResponse>> perDiemRatesList(
                                           PerDiemRatesListHrRequest request,
@@ -2393,7 +2393,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   ) {
@@ -2401,7 +2401,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   RequestOptions requestOptions) {
@@ -2409,7 +2409,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   BusinessTripsListHrRequest request) {
@@ -2417,7 +2417,7 @@ public class AsyncRawHrClient {
                                               }
 
                                               /**
-                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>.
+                                               * Lists business trips; filterable by <code>employeeId</code>, <code>status</code>, <code>payrollRunId</code> and <code>purpose</code>, sortable by <code>startDate</code>, <code>employeeName</code> (the first and last name of the employee), <code>destinationCountryCode</code>, <code>purpose</code>, <code>perDiemAmount</code> and <code>status</code>.
                                                */
                                               public CompletableFuture<NordletApiHttpResponse<BusinessTripsListHrResponse>> businessTripsList(
                                                   BusinessTripsListHrRequest request,

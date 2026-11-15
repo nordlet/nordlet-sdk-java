@@ -95,28 +95,28 @@ public class DocumentSeriesClient {
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public ListDocumentSeriesResponse list() {
     return this.rawClient.list().body();
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public ListDocumentSeriesResponse list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).body();
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public ListDocumentSeriesResponse list(ListDocumentSeriesRequest request) {
     return this.rawClient.list(request).body();
   }
 
   /**
-   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, documentType and createdAt.
+   * List document series. Filterable by documentType, prefix, operationTypeId and isActive; sortable by prefix, name, label, documentType, operationTypeName (the code and name of the operation type), nextNumber, numberLength, isDefault, isActive and createdAt.
    */
   public ListDocumentSeriesResponse list(ListDocumentSeriesRequest request,
       RequestOptions requestOptions) {

@@ -32,6 +32,8 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
 
   private final Optional<String> projectId;
 
+  private final Optional<String> partnerId;
+
   private final Optional<String> debit;
 
   private final Optional<String> credit;
@@ -41,12 +43,13 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
   private final Map<String, Object> additionalProperties;
 
   private JournalTransactionsCreateLedgerRequestEntriesItem(String accountCode,
-      Optional<String> costCenterId, Optional<String> projectId, Optional<String> debit,
-      Optional<String> credit, Optional<String> description,
+      Optional<String> costCenterId, Optional<String> projectId, Optional<String> partnerId,
+      Optional<String> debit, Optional<String> credit, Optional<String> description,
       Map<String, Object> additionalProperties) {
     this.accountCode = accountCode;
     this.costCenterId = costCenterId;
     this.projectId = projectId;
+    this.partnerId = partnerId;
     this.debit = debit;
     this.credit = credit;
     this.description = description;
@@ -66,6 +69,11 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
   @JsonProperty("projectId")
   public Optional<String> getProjectId() {
     return projectId;
+  }
+
+  @JsonProperty("partnerId")
+  public Optional<String> getPartnerId() {
+    return partnerId;
   }
 
   @JsonProperty("debit")
@@ -95,12 +103,12 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
   }
 
   private boolean equalTo(JournalTransactionsCreateLedgerRequestEntriesItem other) {
-    return accountCode.equals(other.accountCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
+    return accountCode.equals(other.accountCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && partnerId.equals(other.partnerId) && debit.equals(other.debit) && credit.equals(other.credit) && description.equals(other.description);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.accountCode, this.costCenterId, this.projectId, this.debit, this.credit, this.description);
+    return Objects.hash(this.accountCode, this.costCenterId, this.projectId, this.partnerId, this.debit, this.credit, this.description);
   }
 
   @java.lang.Override
@@ -133,6 +141,10 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
 
     _FinalStage projectId(String projectId);
 
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
     _FinalStage debit(Optional<String> debit);
 
     _FinalStage debit(String debit);
@@ -158,6 +170,8 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
 
     private Optional<String> debit = Optional.empty();
 
+    private Optional<String> partnerId = Optional.empty();
+
     private Optional<String> projectId = Optional.empty();
 
     private Optional<String> costCenterId = Optional.empty();
@@ -173,6 +187,7 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
       accountCode(other.getAccountCode());
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
+      partnerId(other.getPartnerId());
       debit(other.getDebit());
       credit(other.getCredit());
       description(other.getDescription());
@@ -235,6 +250,22 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
     }
 
     @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage projectId(String projectId) {
       this.projectId = Optional.ofNullable(projectId);
       return this;
@@ -268,7 +299,7 @@ public final class JournalTransactionsCreateLedgerRequestEntriesItem {
 
     @java.lang.Override
     public JournalTransactionsCreateLedgerRequestEntriesItem build() {
-      return new JournalTransactionsCreateLedgerRequestEntriesItem(accountCode, costCenterId, projectId, debit, credit, description, additionalProperties);
+      return new JournalTransactionsCreateLedgerRequestEntriesItem(accountCode, costCenterId, projectId, partnerId, debit, credit, description, additionalProperties);
     }
 
     @java.lang.Override

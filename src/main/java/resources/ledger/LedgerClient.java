@@ -11,6 +11,7 @@ import com.nordlet.api.resources.ledger.requests.AccountsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsSwitchChartLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccrualsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsDeleteLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsListLedgerRequest;
@@ -18,6 +19,8 @@ import com.nordlet.api.resources.ledger.requests.CostCenterGroupsUpdateLedgerReq
 import com.nordlet.api.resources.ledger.requests.CostCentersCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.FxRevaluationReverseLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.FxRevaluationRunLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
@@ -34,11 +37,13 @@ import com.nordlet.api.resources.ledger.requests.PostingRulesUpdateLedgerRequest
 import com.nordlet.api.resources.ledger.requests.StatementRowsListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.StatementRowsSchemesLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.StatementRowsSetLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.TaxProvisionPostLedgerRequest;
 import com.nordlet.api.resources.ledger.types.AccountsApplyTemplateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsSwitchChartLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccrualsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsDeleteLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsListLedgerResponse;
@@ -46,6 +51,8 @@ import com.nordlet.api.resources.ledger.types.CostCenterGroupsUpdateLedgerRespon
 import com.nordlet.api.resources.ledger.types.CostCentersCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.FxRevaluationReverseLedgerResponse;
+import com.nordlet.api.resources.ledger.types.FxRevaluationRunLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
@@ -62,6 +69,7 @@ import com.nordlet.api.resources.ledger.types.PostingRulesUpdateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsSchemesLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsSetLedgerResponse;
+import com.nordlet.api.resources.ledger.types.TaxProvisionPostLedgerResponse;
 
 public class LedgerClient {
   protected final ClientOptions clientOptions;
@@ -81,28 +89,28 @@ public class LedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public AccountsListLedgerResponse accountsList() {
     return this.rawClient.accountsList().body();
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public AccountsListLedgerResponse accountsList(RequestOptions requestOptions) {
     return this.rawClient.accountsList(requestOptions).body();
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request) {
     return this.rawClient.accountsList(request).body();
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public AccountsListLedgerResponse accountsList(AccountsListLedgerRequest request,
       RequestOptions requestOptions) {
@@ -259,14 +267,14 @@ public class LedgerClient {
   }
 
   /**
-   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
    */
   public JournalTransactionsListLedgerResponse journalTransactionsList() {
     return this.rawClient.journalTransactionsList().body();
   }
 
   /**
-   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
    */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       RequestOptions requestOptions) {
@@ -274,7 +282,7 @@ public class LedgerClient {
   }
 
   /**
-   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
    */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       JournalTransactionsListLedgerRequest request) {
@@ -282,7 +290,7 @@ public class LedgerClient {
   }
 
   /**
-   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
    */
   public JournalTransactionsListLedgerResponse journalTransactionsList(
       JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
@@ -517,28 +525,28 @@ public class LedgerClient {
   }
 
   /**
-   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
    */
   public OwnersListLedgerResponse ownersList() {
     return this.rawClient.ownersList().body();
   }
 
   /**
-   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
    */
   public OwnersListLedgerResponse ownersList(RequestOptions requestOptions) {
     return this.rawClient.ownersList(requestOptions).body();
   }
 
   /**
-   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
    */
   public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request) {
     return this.rawClient.ownersList(request).body();
   }
 
   /**
-   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
    */
   public OwnersListLedgerResponse ownersList(OwnersListLedgerRequest request,
       RequestOptions requestOptions) {
@@ -562,7 +570,7 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, an entry <code>partnerId</code> must be a partner of the company (422), and the debits must equal the credits. An entry with a <code>partnerId</code> on the receivable or payable account (posting rules <code>sales.receivable</code>, <code>purchases.payables</code>) is counted by <code>reports/partner-balances</code> and <code>reports/debt-aging</code>. Answers 422 for an unknown or non-postable account, an unknown cost center or project, debits that differ from the credits, an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
    */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request) {
@@ -570,7 +578,7 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+   * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, an entry <code>partnerId</code> must be a partner of the company (422), and the debits must equal the credits. An entry with a <code>partnerId</code> on the receivable or payable account (posting rules <code>sales.receivable</code>, <code>purchases.payables</code>) is counted by <code>reports/partner-balances</code> and <code>reports/debt-aging</code>. Answers 422 for an unknown or non-postable account, an unknown cost center or project, debits that differ from the credits, an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
    */
   public JournalTransactionsCreateLedgerResponse journalTransactionsCreate(
       JournalTransactionsCreateLedgerRequest request, RequestOptions requestOptions) {
@@ -578,7 +586,7 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
    */
   public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
       JournalTransactionsReverseLedgerRequest request) {
@@ -586,11 +594,72 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
    */
   public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
       JournalTransactionsReverseLedgerRequest request, RequestOptions requestOptions) {
     return this.rawClient.journalTransactionsReverse(request, requestOptions).body();
+  }
+
+  /**
+   * Revalues the open sale and purchase documents in a currency other than the base currency (open amount at <code>date</code>, payments up to <code>date</code> deducted) and the balances of the foreign-currency bank accounts at the stored exchange rate of <code>date</code> against the rate of each document or the booked base balance, and posts one journal transaction dated <code>date</code> (<code>documentType</code> <code>fx_revaluation</code>): the difference on each receivable or payable account with the partner on the entry, and the unrealised gain or loss on the <code>bank.fxUnrealisedGain</code> and <code>bank.fxUnrealisedLoss</code> posting rule accounts. A second transaction (<code>documentType</code> <code>fx_revaluation_reversal</code>) reverses it on the next calendar day. Nothing is posted and <code>runId</code> is null when nothing differs. The payment match keeps booking the realised difference against the rate of the document. Runs only on request, once per <code>date</code>: 409 when <code>date</code> is already revalued (reverse that run first) and when <code>date</code> or the next day is in a locked accounting period; 422 when a stored rate is missing.
+   */
+  public FxRevaluationRunLedgerResponse fxRevaluationRun(FxRevaluationRunLedgerRequest request) {
+    return this.rawClient.fxRevaluationRun(request).body();
+  }
+
+  /**
+   * Revalues the open sale and purchase documents in a currency other than the base currency (open amount at <code>date</code>, payments up to <code>date</code> deducted) and the balances of the foreign-currency bank accounts at the stored exchange rate of <code>date</code> against the rate of each document or the booked base balance, and posts one journal transaction dated <code>date</code> (<code>documentType</code> <code>fx_revaluation</code>): the difference on each receivable or payable account with the partner on the entry, and the unrealised gain or loss on the <code>bank.fxUnrealisedGain</code> and <code>bank.fxUnrealisedLoss</code> posting rule accounts. A second transaction (<code>documentType</code> <code>fx_revaluation_reversal</code>) reverses it on the next calendar day. Nothing is posted and <code>runId</code> is null when nothing differs. The payment match keeps booking the realised difference against the rate of the document. Runs only on request, once per <code>date</code>: 409 when <code>date</code> is already revalued (reverse that run first) and when <code>date</code> or the next day is in a locked accounting period; 422 when a stored rate is missing.
+   */
+  public FxRevaluationRunLedgerResponse fxRevaluationRun(FxRevaluationRunLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.fxRevaluationRun(request, requestOptions).body();
+  }
+
+  /**
+   * Cancels the run <code>id</code> of <code>ledger/fx-revaluation/run</code>: posts a mirror of the revaluation transaction on the run date (<code>documentType</code> <code>fx_revaluation_undo</code>) and a mirror of its next-day reversal on the reversal date (<code>documentType</code> <code>fx_revaluation_undo_reversal</code>), so the net effect is zero, and frees the date for a new run. Answers 404 for an unknown run, 409 when the run is already reversed or when the run date or the next day is in a locked accounting period.
+   */
+  public FxRevaluationReverseLedgerResponse fxRevaluationReverse(
+      FxRevaluationReverseLedgerRequest request) {
+    return this.rawClient.fxRevaluationReverse(request).body();
+  }
+
+  /**
+   * Cancels the run <code>id</code> of <code>ledger/fx-revaluation/run</code>: posts a mirror of the revaluation transaction on the run date (<code>documentType</code> <code>fx_revaluation_undo</code>) and a mirror of its next-day reversal on the reversal date (<code>documentType</code> <code>fx_revaluation_undo_reversal</code>), so the net effect is zero, and frees the date for a new run. Answers 404 for an unknown run, 409 when the run is already reversed or when the run date or the next day is in a locked accounting period.
+   */
+  public FxRevaluationReverseLedgerResponse fxRevaluationReverse(
+      FxRevaluationReverseLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.fxRevaluationReverse(request, requestOptions).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>accrual</code>) dated <code>date</code> from <code>lines</code> (each line either a debit or a credit, whole cents, balanced; an optional <code>partnerId</code> is counted by the partner reports on the receivable and payable accounts) and a mirror transaction (<code>documentType</code> <code>accrual_reversal</code>, <code>documentId</code> the accrual) dated the first day of the next month. 422 for an unknown or non-postable account, an unknown partner, an unbalanced or one-sided line; 409 when the accounting period of <code>date</code> or of the reversal date is locked.
+   */
+  public AccrualsCreateLedgerResponse accrualsCreate(AccrualsCreateLedgerRequest request) {
+    return this.rawClient.accrualsCreate(request).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>accrual</code>) dated <code>date</code> from <code>lines</code> (each line either a debit or a credit, whole cents, balanced; an optional <code>partnerId</code> is counted by the partner reports on the receivable and payable accounts) and a mirror transaction (<code>documentType</code> <code>accrual_reversal</code>, <code>documentId</code> the accrual) dated the first day of the next month. 422 for an unknown or non-postable account, an unknown partner, an unbalanced or one-sided line; 409 when the accounting period of <code>date</code> or of the reversal date is locked.
+   */
+  public AccrualsCreateLedgerResponse accrualsCreate(AccrualsCreateLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.accrualsCreate(request, requestOptions).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>tax_provision</code>, <code>documentId</code> the fiscal year) dated the last day of the fiscal year <code>fiscalYear</code>: debit the <code>tax.corporateExpense</code> posting rule account, credit <code>tax.corporatePayable</code>. <code>amount</code> defaults to the tax payable of the year's corporate tax return for Lithuanian (PLN204) and Romanian (D101) companies; for other countries it is required (422). 422 when the amount is zero or not whole cents; 409 when the accounting period is locked and when the year already has a provision that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public TaxProvisionPostLedgerResponse taxProvisionPost(TaxProvisionPostLedgerRequest request) {
+    return this.rawClient.taxProvisionPost(request).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>tax_provision</code>, <code>documentId</code> the fiscal year) dated the last day of the fiscal year <code>fiscalYear</code>: debit the <code>tax.corporateExpense</code> posting rule account, credit <code>tax.corporatePayable</code>. <code>amount</code> defaults to the tax payable of the year's corporate tax return for Lithuanian (PLN204) and Romanian (D101) companies; for other countries it is required (422). 422 when the amount is zero or not whole cents; 409 when the accounting period is locked and when the year already has a provision that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public TaxProvisionPostLedgerResponse taxProvisionPost(TaxProvisionPostLedgerRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.taxProvisionPost(request, requestOptions).body();
   }
 
   /**

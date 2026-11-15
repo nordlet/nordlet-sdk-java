@@ -10,13 +10,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -28,12 +32,20 @@ public final class StockReceiveInventoryResponse {
 
   private final String totalCost;
 
+  private final Optional<String> journalTransactionId;
+
+  private final List<StockReceiveInventoryResponseWarningsItem> warnings;
+
   private final Map<String, Object> additionalProperties;
 
   private StockReceiveInventoryResponse(String movementId, String totalCost,
+      Optional<String> journalTransactionId,
+      List<StockReceiveInventoryResponseWarningsItem> warnings,
       Map<String, Object> additionalProperties) {
     this.movementId = movementId;
     this.totalCost = totalCost;
+    this.journalTransactionId = journalTransactionId;
+    this.warnings = warnings;
     this.additionalProperties = additionalProperties;
   }
 
@@ -45,6 +57,16 @@ public final class StockReceiveInventoryResponse {
   @JsonProperty("totalCost")
   public String getTotalCost() {
     return totalCost;
+  }
+
+  @JsonProperty("journalTransactionId")
+  public Optional<String> getJournalTransactionId() {
+    return journalTransactionId;
+  }
+
+  @JsonProperty("warnings")
+  public List<StockReceiveInventoryResponseWarningsItem> getWarnings() {
+    return warnings;
   }
 
   @java.lang.Override
@@ -59,12 +81,12 @@ public final class StockReceiveInventoryResponse {
   }
 
   private boolean equalTo(StockReceiveInventoryResponse other) {
-    return movementId.equals(other.movementId) && totalCost.equals(other.totalCost);
+    return movementId.equals(other.movementId) && totalCost.equals(other.totalCost) && journalTransactionId.equals(other.journalTransactionId) && warnings.equals(other.warnings);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.movementId, this.totalCost);
+    return Objects.hash(this.movementId, this.totalCost, this.journalTransactionId, this.warnings);
   }
 
   @java.lang.Override
@@ -92,6 +114,16 @@ public final class StockReceiveInventoryResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage journalTransactionId(Optional<String> journalTransactionId);
+
+    _FinalStage journalTransactionId(String journalTransactionId);
+
+    _FinalStage warnings(List<StockReceiveInventoryResponseWarningsItem> warnings);
+
+    _FinalStage addWarnings(StockReceiveInventoryResponseWarningsItem warnings);
+
+    _FinalStage addAllWarnings(List<StockReceiveInventoryResponseWarningsItem> warnings);
   }
 
   @JsonIgnoreProperties(
@@ -101,6 +133,10 @@ public final class StockReceiveInventoryResponse {
     private String movementId;
 
     private String totalCost;
+
+    private List<StockReceiveInventoryResponseWarningsItem> warnings = new ArrayList<>();
+
+    private Optional<String> journalTransactionId = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,6 +148,8 @@ public final class StockReceiveInventoryResponse {
     public Builder from(StockReceiveInventoryResponse other) {
       movementId(other.getMovementId());
       totalCost(other.getTotalCost());
+      journalTransactionId(other.getJournalTransactionId());
+      warnings(other.getWarnings());
       return this;
     }
 
@@ -130,8 +168,51 @@ public final class StockReceiveInventoryResponse {
     }
 
     @java.lang.Override
+    public _FinalStage addAllWarnings(List<StockReceiveInventoryResponseWarningsItem> warnings) {
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addWarnings(StockReceiveInventoryResponseWarningsItem warnings) {
+      this.warnings.add(warnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "warnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage warnings(List<StockReceiveInventoryResponseWarningsItem> warnings) {
+      this.warnings.clear();
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage journalTransactionId(String journalTransactionId) {
+      this.journalTransactionId = Optional.ofNullable(journalTransactionId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "journalTransactionId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage journalTransactionId(Optional<String> journalTransactionId) {
+      this.journalTransactionId = journalTransactionId;
+      return this;
+    }
+
+    @java.lang.Override
     public StockReceiveInventoryResponse build() {
-      return new StockReceiveInventoryResponse(movementId, totalCost, additionalProperties);
+      return new StockReceiveInventoryResponse(movementId, totalCost, journalTransactionId, warnings, additionalProperties);
     }
 
     @java.lang.Override

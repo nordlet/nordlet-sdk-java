@@ -28,6 +28,7 @@ import com.nordlet.api.resources.ledger.requests.AccountsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsSwitchChartLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.AccountsUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.AccrualsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsDeleteLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCenterGroupsListLedgerRequest;
@@ -35,6 +36,8 @@ import com.nordlet.api.resources.ledger.requests.CostCenterGroupsUpdateLedgerReq
 import com.nordlet.api.resources.ledger.requests.CostCentersCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.FxRevaluationReverseLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.FxRevaluationRunLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
@@ -51,11 +54,13 @@ import com.nordlet.api.resources.ledger.requests.PostingRulesUpdateLedgerRequest
 import com.nordlet.api.resources.ledger.requests.StatementRowsListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.StatementRowsSchemesLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.StatementRowsSetLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.TaxProvisionPostLedgerRequest;
 import com.nordlet.api.resources.ledger.types.AccountsApplyTemplateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsSwitchChartLedgerResponse;
 import com.nordlet.api.resources.ledger.types.AccountsUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.AccrualsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsDeleteLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCenterGroupsListLedgerResponse;
@@ -63,6 +68,8 @@ import com.nordlet.api.resources.ledger.types.CostCenterGroupsUpdateLedgerRespon
 import com.nordlet.api.resources.ledger.types.CostCentersCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.FxRevaluationReverseLedgerResponse;
+import com.nordlet.api.resources.ledger.types.FxRevaluationRunLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
@@ -79,6 +86,7 @@ import com.nordlet.api.resources.ledger.types.PostingRulesUpdateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsSchemesLedgerResponse;
 import com.nordlet.api.resources.ledger.types.StatementRowsSetLedgerResponse;
+import com.nordlet.api.resources.ledger.types.TaxProvisionPostLedgerResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -99,14 +107,14 @@ public class RawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList() {
     return accountsList(AccountsListLedgerRequest.builder().build());
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       RequestOptions requestOptions) {
@@ -114,7 +122,7 @@ public class RawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request) {
@@ -122,7 +130,7 @@ public class RawLedgerClient {
   }
 
   /**
-   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code> and <code>name</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
+   * Lists the company's chart of accounts. Filterable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>; sortable by <code>code</code>, <code>name</code>, <code>type</code> and <code>isPostable</code>. A <code>name</code> filter with <code>contains</code> matches the stored name and the name shown in the language of the request (<code>displayName</code>).
    */
   public NordletApiHttpResponse<AccountsListLedgerResponse> accountsList(
       AccountsListLedgerRequest request, RequestOptions requestOptions) {
@@ -759,7 +767,7 @@ public class RawLedgerClient {
                   }
 
                   /**
-                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
                    */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       ) {
@@ -767,7 +775,7 @@ public class RawLedgerClient {
                   }
 
                   /**
-                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
                    */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       RequestOptions requestOptions) {
@@ -775,7 +783,7 @@ public class RawLedgerClient {
                   }
 
                   /**
-                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
                    */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       JournalTransactionsListLedgerRequest request) {
@@ -783,7 +791,7 @@ public class RawLedgerClient {
                   }
 
                   /**
-                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code> and <code>createdAt</code>.
+                   * Lists journal transactions with the partner name. Filterable by <code>date</code>, <code>status</code>, <code>documentType</code>, <code>partnerId</code> and <code>documentId</code>; sortable by <code>date</code>, <code>createdAt</code>, <code>description</code>, <code>partnerName</code> (the name of the partner), <code>documentType</code> and <code>status</code>.
                    */
                   public NordletApiHttpResponse<JournalTransactionsListLedgerResponse> journalTransactionsList(
                       JournalTransactionsListLedgerRequest request, RequestOptions requestOptions) {
@@ -1807,7 +1815,7 @@ public class RawLedgerClient {
                                             }
 
                                             /**
-                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
                                              */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 ) {
@@ -1815,7 +1823,7 @@ public class RawLedgerClient {
                                             }
 
                                             /**
-                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
                                              */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 RequestOptions requestOptions) {
@@ -1823,7 +1831,7 @@ public class RawLedgerClient {
                                             }
 
                                             /**
-                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
                                              */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 OwnersListLedgerRequest request) {
@@ -1831,7 +1839,7 @@ public class RawLedgerClient {
                                             }
 
                                             /**
-                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code> and <code>createdAt</code>.
+                                             * Lists the company's owners. Filterable by <code>name</code> and <code>code</code>; sortable by <code>name</code>, <code>createdAt</code>, <code>code</code>, <code>sharesQuantity</code>, <code>sharesAmount</code>, <code>sharesType</code>, <code>sharesAcquisitionDate</code>, <code>partnerLiability</code> and <code>withholdingTaxPercent</code>.
                                              */
                                             public NordletApiHttpResponse<OwnersListLedgerResponse> ownersList(
                                                 OwnersListLedgerRequest request,
@@ -1975,7 +1983,7 @@ public class RawLedgerClient {
                                                 }
 
                                                 /**
-                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, an entry <code>partnerId</code> must be a partner of the company (422), and the debits must equal the credits. An entry with a <code>partnerId</code> on the receivable or payable account (posting rules <code>sales.receivable</code>, <code>purchases.payables</code>) is counted by <code>reports/partner-balances</code> and <code>reports/debt-aging</code>. Answers 422 for an unknown or non-postable account, an unknown cost center or project, debits that differ from the credits, an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
                                                  */
                                                 public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request) {
@@ -1983,7 +1991,7 @@ public class RawLedgerClient {
                                                 }
 
                                                 /**
-                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, and the debits must equal the credits. Answers 422 for an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
+                                                 * Posts a manual journal transaction (<code>documentType</code> <code>manual</code>, status <code>posted</code>) in the company's base currency. Every <code>accountCode</code> must be a postable account of the chart, cost centers must exist and be active, projects must exist, an entry <code>partnerId</code> must be a partner of the company (422), and the debits must equal the credits. An entry with a <code>partnerId</code> on the receivable or payable account (posting rules <code>sales.receivable</code>, <code>purchases.payables</code>) is counted by <code>reports/partner-balances</code> and <code>reports/debt-aging</code>. Answers 422 for an unknown or non-postable account, an unknown cost center or project, debits that differ from the credits, an amount that is not whole cents (a third or fourth decimal other than zero; <code>10.5000</code> is accepted), for a <code>currency</code> other than the base currency and for an inactive cost center, and 409 when the accounting period of <code>date</code> is locked.
                                                  */
                                                 public NordletApiHttpResponse<JournalTransactionsCreateLedgerResponse> journalTransactionsCreate(
                                                     JournalTransactionsCreateLedgerRequest request,
@@ -2051,7 +2059,7 @@ public class RawLedgerClient {
                                                   }
 
                                                   /**
-                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
                                                    */
                                                   public NordletApiHttpResponse<JournalTransactionsReverseLedgerResponse> journalTransactionsReverse(
                                                       JournalTransactionsReverseLedgerRequest request) {
@@ -2059,7 +2067,7 @@ public class RawLedgerClient {
                                                   }
 
                                                   /**
-                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is not manual, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+                                                   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
                                                    */
                                                   public NordletApiHttpResponse<JournalTransactionsReverseLedgerResponse> journalTransactionsReverse(
                                                       JournalTransactionsReverseLedgerRequest request,
@@ -2127,38 +2135,22 @@ public class RawLedgerClient {
                                                     }
 
                                                     /**
-                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                     * Revalues the open sale and purchase documents in a currency other than the base currency (open amount at <code>date</code>, payments up to <code>date</code> deducted) and the balances of the foreign-currency bank accounts at the stored exchange rate of <code>date</code> against the rate of each document or the booked base balance, and posts one journal transaction dated <code>date</code> (<code>documentType</code> <code>fx_revaluation</code>): the difference on each receivable or payable account with the partner on the entry, and the unrealised gain or loss on the <code>bank.fxUnrealisedGain</code> and <code>bank.fxUnrealisedLoss</code> posting rule accounts. A second transaction (<code>documentType</code> <code>fx_revaluation_reversal</code>) reverses it on the next calendar day. Nothing is posted and <code>runId</code> is null when nothing differs. The payment match keeps booking the realised difference against the rate of the document. Runs only on request, once per <code>date</code>: 409 when <code>date</code> is already revalued (reverse that run first) and when <code>date</code> or the next day is in a locked accounting period; 422 when a stored rate is missing.
                                                      */
-                                                    public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
-                                                        ) {
-                                                      return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build());
+                                                    public NordletApiHttpResponse<FxRevaluationRunLedgerResponse> fxRevaluationRun(
+                                                        FxRevaluationRunLedgerRequest request) {
+                                                      return fxRevaluationRun(request,null);
                                                     }
 
                                                     /**
-                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                     * Revalues the open sale and purchase documents in a currency other than the base currency (open amount at <code>date</code>, payments up to <code>date</code> deducted) and the balances of the foreign-currency bank accounts at the stored exchange rate of <code>date</code> against the rate of each document or the booked base balance, and posts one journal transaction dated <code>date</code> (<code>documentType</code> <code>fx_revaluation</code>): the difference on each receivable or payable account with the partner on the entry, and the unrealised gain or loss on the <code>bank.fxUnrealisedGain</code> and <code>bank.fxUnrealisedLoss</code> posting rule accounts. A second transaction (<code>documentType</code> <code>fx_revaluation_reversal</code>) reverses it on the next calendar day. Nothing is posted and <code>runId</code> is null when nothing differs. The payment match keeps booking the realised difference against the rate of the document. Runs only on request, once per <code>date</code>: 409 when <code>date</code> is already revalued (reverse that run first) and when <code>date</code> or the next day is in a locked accounting period; 422 when a stored rate is missing.
                                                      */
-                                                    public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
-                                                        RequestOptions requestOptions) {
-                                                      return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build(),requestOptions);
-                                                    }
-
-                                                    /**
-                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
-                                                     */
-                                                    public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
-                                                        StatementRowsSchemesLedgerRequest request) {
-                                                      return statementRowsSchemes(request,null);
-                                                    }
-
-                                                    /**
-                                                     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
-                                                     */
-                                                    public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
-                                                        StatementRowsSchemesLedgerRequest request,
+                                                    public NordletApiHttpResponse<FxRevaluationRunLedgerResponse> fxRevaluationRun(
+                                                        FxRevaluationRunLedgerRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/ledger/statement-rows/schemes");if (requestOptions != null) {
+                                                        .addPathSegments("v1/ledger/fx-revaluation/run");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2188,7 +2180,7 @@ public class RawLedgerClient {
                                                           ResponseBody responseBody = response.body();
                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                           if (response.isSuccessful()) {
-                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSchemesLedgerResponse.class), response);
+                                                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FxRevaluationRunLedgerResponse.class), response);
                                                           }
                                                           try {
                                                             switch (response.code()) {
@@ -2219,22 +2211,22 @@ public class RawLedgerClient {
                                                       }
 
                                                       /**
-                                                       * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                       * Cancels the run <code>id</code> of <code>ledger/fx-revaluation/run</code>: posts a mirror of the revaluation transaction on the run date (<code>documentType</code> <code>fx_revaluation_undo</code>) and a mirror of its next-day reversal on the reversal date (<code>documentType</code> <code>fx_revaluation_undo_reversal</code>), so the net effect is zero, and frees the date for a new run. Answers 404 for an unknown run, 409 when the run is already reversed or when the run date or the next day is in a locked accounting period.
                                                        */
-                                                      public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
-                                                          StatementRowsListLedgerRequest request) {
-                                                        return statementRowsList(request,null);
+                                                      public NordletApiHttpResponse<FxRevaluationReverseLedgerResponse> fxRevaluationReverse(
+                                                          FxRevaluationReverseLedgerRequest request) {
+                                                        return fxRevaluationReverse(request,null);
                                                       }
 
                                                       /**
-                                                       * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                       * Cancels the run <code>id</code> of <code>ledger/fx-revaluation/run</code>: posts a mirror of the revaluation transaction on the run date (<code>documentType</code> <code>fx_revaluation_undo</code>) and a mirror of its next-day reversal on the reversal date (<code>documentType</code> <code>fx_revaluation_undo_reversal</code>), so the net effect is zero, and frees the date for a new run. Answers 404 for an unknown run, 409 when the run is already reversed or when the run date or the next day is in a locked accounting period.
                                                        */
-                                                      public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
-                                                          StatementRowsListLedgerRequest request,
+                                                      public NordletApiHttpResponse<FxRevaluationReverseLedgerResponse> fxRevaluationReverse(
+                                                          FxRevaluationReverseLedgerRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/ledger/statement-rows/list");if (requestOptions != null) {
+                                                          .addPathSegments("v1/ledger/fx-revaluation/reverse");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2264,7 +2256,7 @@ public class RawLedgerClient {
                                                             ResponseBody responseBody = response.body();
                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                             if (response.isSuccessful()) {
-                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsListLedgerResponse.class), response);
+                                                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FxRevaluationReverseLedgerResponse.class), response);
                                                             }
                                                             try {
                                                               switch (response.code()) {
@@ -2295,22 +2287,22 @@ public class RawLedgerClient {
                                                         }
 
                                                         /**
-                                                         * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                         * Posts a journal transaction (<code>documentType</code> <code>accrual</code>) dated <code>date</code> from <code>lines</code> (each line either a debit or a credit, whole cents, balanced; an optional <code>partnerId</code> is counted by the partner reports on the receivable and payable accounts) and a mirror transaction (<code>documentType</code> <code>accrual_reversal</code>, <code>documentId</code> the accrual) dated the first day of the next month. 422 for an unknown or non-postable account, an unknown partner, an unbalanced or one-sided line; 409 when the accounting period of <code>date</code> or of the reversal date is locked.
                                                          */
-                                                        public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
-                                                            StatementRowsSetLedgerRequest request) {
-                                                          return statementRowsSet(request,null);
+                                                        public NordletApiHttpResponse<AccrualsCreateLedgerResponse> accrualsCreate(
+                                                            AccrualsCreateLedgerRequest request) {
+                                                          return accrualsCreate(request,null);
                                                         }
 
                                                         /**
-                                                         * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                         * Posts a journal transaction (<code>documentType</code> <code>accrual</code>) dated <code>date</code> from <code>lines</code> (each line either a debit or a credit, whole cents, balanced; an optional <code>partnerId</code> is counted by the partner reports on the receivable and payable accounts) and a mirror transaction (<code>documentType</code> <code>accrual_reversal</code>, <code>documentId</code> the accrual) dated the first day of the next month. 422 for an unknown or non-postable account, an unknown partner, an unbalanced or one-sided line; 409 when the accounting period of <code>date</code> or of the reversal date is locked.
                                                          */
-                                                        public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
-                                                            StatementRowsSetLedgerRequest request,
+                                                        public NordletApiHttpResponse<AccrualsCreateLedgerResponse> accrualsCreate(
+                                                            AccrualsCreateLedgerRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/ledger/statement-rows/set");if (requestOptions != null) {
+                                                            .addPathSegments("v1/ledger/accruals/create");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2340,7 +2332,7 @@ public class RawLedgerClient {
                                                               ResponseBody responseBody = response.body();
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSetLedgerResponse.class), response);
+                                                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccrualsCreateLedgerResponse.class), response);
                                                               }
                                                               try {
                                                                 switch (response.code()) {
@@ -2369,4 +2361,324 @@ public class RawLedgerClient {
                                                               throw new NordletApiException("Network error executing HTTP request", e);
                                                             }
                                                           }
-                                                        }
+
+                                                          /**
+                                                           * Posts a journal transaction (<code>documentType</code> <code>tax_provision</code>, <code>documentId</code> the fiscal year) dated the last day of the fiscal year <code>fiscalYear</code>: debit the <code>tax.corporateExpense</code> posting rule account, credit <code>tax.corporatePayable</code>. <code>amount</code> defaults to the tax payable of the year's corporate tax return for Lithuanian (PLN204) and Romanian (D101) companies; for other countries it is required (422). 422 when the amount is zero or not whole cents; 409 when the accounting period is locked and when the year already has a provision that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+                                                           */
+                                                          public NordletApiHttpResponse<TaxProvisionPostLedgerResponse> taxProvisionPost(
+                                                              TaxProvisionPostLedgerRequest request) {
+                                                            return taxProvisionPost(request,null);
+                                                          }
+
+                                                          /**
+                                                           * Posts a journal transaction (<code>documentType</code> <code>tax_provision</code>, <code>documentId</code> the fiscal year) dated the last day of the fiscal year <code>fiscalYear</code>: debit the <code>tax.corporateExpense</code> posting rule account, credit <code>tax.corporatePayable</code>. <code>amount</code> defaults to the tax payable of the year's corporate tax return for Lithuanian (PLN204) and Romanian (D101) companies; for other countries it is required (422). 422 when the amount is zero or not whole cents; 409 when the accounting period is locked and when the year already has a provision that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+                                                           */
+                                                          public NordletApiHttpResponse<TaxProvisionPostLedgerResponse> taxProvisionPost(
+                                                              TaxProvisionPostLedgerRequest request,
+                                                              RequestOptions requestOptions) {
+                                                            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                              .addPathSegments("v1/ledger/tax-provision/post");if (requestOptions != null) {
+                                                                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                  httpUrl.addQueryParameter(_key, _value);
+                                                                } );
+                                                              }
+                                                              RequestBody body;
+                                                              try {
+                                                                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                              }
+                                                              catch(JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to serialize request", e);
+                                                              }
+                                                              Request okhttpRequest = new Request.Builder()
+                                                                .url(httpUrl.build())
+                                                                .method("POST", body)
+                                                                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                .addHeader("Content-Type", "application/json")
+                                                                .addHeader("Accept", "application/json")
+                                                                .build();
+                                                              OkHttpClient client = clientOptions.httpClient();
+                                                              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                              }
+                                                              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                              }
+                                                              try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                ResponseBody responseBody = response.body();
+                                                                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                if (response.isSuccessful()) {
+                                                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaxProvisionPostLedgerResponse.class), response);
+                                                                }
+                                                                try {
+                                                                  switch (response.code()) {
+                                                                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                  }
+                                                                }
+                                                                catch (JsonProcessingException ignored) {
+                                                                  // unable to map error response, throwing generic error
+                                                                }
+                                                                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                              }
+                                                              catch (JsonProcessingException e) {
+                                                                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                              }
+                                                              catch (IOException e) {
+                                                                throw new NordletApiException("Network error executing HTTP request", e);
+                                                              }
+                                                            }
+
+                                                            /**
+                                                             * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                             */
+                                                            public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                                ) {
+                                                              return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build());
+                                                            }
+
+                                                            /**
+                                                             * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                             */
+                                                            public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                                RequestOptions requestOptions) {
+                                                              return statementRowsSchemes(StatementRowsSchemesLedgerRequest.builder().build(),requestOptions);
+                                                            }
+
+                                                            /**
+                                                             * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                             */
+                                                            public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                                StatementRowsSchemesLedgerRequest request) {
+                                                              return statementRowsSchemes(request,null);
+                                                            }
+
+                                                            /**
+                                                             * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+                                                             */
+                                                            public NordletApiHttpResponse<StatementRowsSchemesLedgerResponse> statementRowsSchemes(
+                                                                StatementRowsSchemesLedgerRequest request,
+                                                                RequestOptions requestOptions) {
+                                                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                .addPathSegments("v1/ledger/statement-rows/schemes");if (requestOptions != null) {
+                                                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                    httpUrl.addQueryParameter(_key, _value);
+                                                                  } );
+                                                                }
+                                                                RequestBody body;
+                                                                try {
+                                                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                }
+                                                                catch(JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to serialize request", e);
+                                                                }
+                                                                Request okhttpRequest = new Request.Builder()
+                                                                  .url(httpUrl.build())
+                                                                  .method("POST", body)
+                                                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                  .addHeader("Content-Type", "application/json")
+                                                                  .addHeader("Accept", "application/json")
+                                                                  .build();
+                                                                OkHttpClient client = clientOptions.httpClient();
+                                                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                }
+                                                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                }
+                                                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                  ResponseBody responseBody = response.body();
+                                                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                  if (response.isSuccessful()) {
+                                                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSchemesLedgerResponse.class), response);
+                                                                  }
+                                                                  try {
+                                                                    switch (response.code()) {
+                                                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                    }
+                                                                  }
+                                                                  catch (JsonProcessingException ignored) {
+                                                                    // unable to map error response, throwing generic error
+                                                                  }
+                                                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                }
+                                                                catch (JsonProcessingException e) {
+                                                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                }
+                                                                catch (IOException e) {
+                                                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                                                }
+                                                              }
+
+                                                              /**
+                                                               * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                               */
+                                                              public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
+                                                                  StatementRowsListLedgerRequest request) {
+                                                                return statementRowsList(request,null);
+                                                              }
+
+                                                              /**
+                                                               * Every postable account of the company with the row of <code>scheme</code> it falls into, by a mapping (<code>ledger/statement-rows/set</code>) or by the layout default, and the amount it carries there: the balance up to <code>toDate</code> on a balance-sheet row, the movement from <code>fromDate</code> to <code>toDate</code> on an income-statement row. <code>toDate</code> defaults to today and <code>fromDate</code> to 1 January of that year. <code>rows</code> holds the row totals and <code>unmapped</code> the accounts with a balance but no row.
+                                                               */
+                                                              public NordletApiHttpResponse<StatementRowsListLedgerResponse> statementRowsList(
+                                                                  StatementRowsListLedgerRequest request,
+                                                                  RequestOptions requestOptions) {
+                                                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                  .addPathSegments("v1/ledger/statement-rows/list");if (requestOptions != null) {
+                                                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                      httpUrl.addQueryParameter(_key, _value);
+                                                                    } );
+                                                                  }
+                                                                  RequestBody body;
+                                                                  try {
+                                                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                  }
+                                                                  catch(JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to serialize request", e);
+                                                                  }
+                                                                  Request okhttpRequest = new Request.Builder()
+                                                                    .url(httpUrl.build())
+                                                                    .method("POST", body)
+                                                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                    .addHeader("Content-Type", "application/json")
+                                                                    .addHeader("Accept", "application/json")
+                                                                    .build();
+                                                                  OkHttpClient client = clientOptions.httpClient();
+                                                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                  }
+                                                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                  }
+                                                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                    ResponseBody responseBody = response.body();
+                                                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                    if (response.isSuccessful()) {
+                                                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsListLedgerResponse.class), response);
+                                                                    }
+                                                                    try {
+                                                                      switch (response.code()) {
+                                                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                      }
+                                                                    }
+                                                                    catch (JsonProcessingException ignored) {
+                                                                      // unable to map error response, throwing generic error
+                                                                    }
+                                                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                  }
+                                                                  catch (JsonProcessingException e) {
+                                                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                  }
+                                                                  catch (IOException e) {
+                                                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                                                  }
+                                                                }
+
+                                                                /**
+                                                                 * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                                 */
+                                                                public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
+                                                                    StatementRowsSetLedgerRequest request) {
+                                                                  return statementRowsSet(request,null);
+                                                                }
+
+                                                                /**
+                                                                 * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+                                                                 */
+                                                                public NordletApiHttpResponse<StatementRowsSetLedgerResponse> statementRowsSet(
+                                                                    StatementRowsSetLedgerRequest request,
+                                                                    RequestOptions requestOptions) {
+                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                    .addPathSegments("v1/ledger/statement-rows/set");if (requestOptions != null) {
+                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                      } );
+                                                                    }
+                                                                    RequestBody body;
+                                                                    try {
+                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                    }
+                                                                    catch(JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                    }
+                                                                    Request okhttpRequest = new Request.Builder()
+                                                                      .url(httpUrl.build())
+                                                                      .method("POST", body)
+                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                      .addHeader("Content-Type", "application/json")
+                                                                      .addHeader("Accept", "application/json")
+                                                                      .build();
+                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                    }
+                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                    }
+                                                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                                                      ResponseBody responseBody = response.body();
+                                                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                      if (response.isSuccessful()) {
+                                                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, StatementRowsSetLedgerResponse.class), response);
+                                                                      }
+                                                                      try {
+                                                                        switch (response.code()) {
+                                                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                                                        }
+                                                                      }
+                                                                      catch (JsonProcessingException ignored) {
+                                                                        // unable to map error response, throwing generic error
+                                                                      }
+                                                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                                                    }
+                                                                    catch (JsonProcessingException e) {
+                                                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                                                    }
+                                                                    catch (IOException e) {
+                                                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                                                    }
+                                                                  }
+                                                                }

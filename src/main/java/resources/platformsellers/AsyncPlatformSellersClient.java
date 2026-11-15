@@ -36,28 +36,28 @@ public class AsyncPlatformSellersClient {
   }
 
   /**
-   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them. Filterable by kind and vatCode; sortable by createdAt, lastName, entityName, name (the full name of an individual, else the entity name), kind, country (the country code of the address) and vatCode.
    */
   public CompletableFuture<ListPlatformSellersResponse> list() {
     return this.rawClient.list().thenApply(response -> response.body());
   }
 
   /**
-   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them. Filterable by kind and vatCode; sortable by createdAt, lastName, entityName, name (the full name of an individual, else the entity name), kind, country (the country code of the address) and vatCode.
    */
   public CompletableFuture<ListPlatformSellersResponse> list(RequestOptions requestOptions) {
     return this.rawClient.list(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them. Filterable by kind and vatCode; sortable by createdAt, lastName, entityName, name (the full name of an individual, else the entity name), kind, country (the country code of the address) and vatCode.
    */
   public CompletableFuture<ListPlatformSellersResponse> list(ListPlatformSellersRequest request) {
     return this.rawClient.list(request).thenApply(response -> response.body());
   }
 
   /**
-   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+   * Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them. Filterable by kind and vatCode; sortable by createdAt, lastName, entityName, name (the full name of an individual, else the entity name), kind, country (the country code of the address) and vatCode.
    */
   public CompletableFuture<ListPlatformSellersResponse> list(ListPlatformSellersRequest request,
       RequestOptions requestOptions) {

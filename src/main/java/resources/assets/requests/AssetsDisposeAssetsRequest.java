@@ -35,17 +35,21 @@ public final class AssetsDisposeAssetsRequest {
 
   private final Optional<String> proceeds;
 
+  private final Optional<String> saleInvoiceId;
+
   private final Optional<String> notes;
 
   private final Map<String, Object> additionalProperties;
 
   private AssetsDisposeAssetsRequest(String id, String date,
-      AssetsDisposeAssetsRequestReason reason, Optional<String> proceeds, Optional<String> notes,
+      AssetsDisposeAssetsRequestReason reason, Optional<String> proceeds,
+      Optional<String> saleInvoiceId, Optional<String> notes,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.date = date;
     this.reason = reason;
     this.proceeds = proceeds;
+    this.saleInvoiceId = saleInvoiceId;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
   }
@@ -73,6 +77,14 @@ public final class AssetsDisposeAssetsRequest {
     return proceeds;
   }
 
+  /**
+   * @return The issued sales invoice that sold the asset
+   */
+  @JsonProperty("saleInvoiceId")
+  public Optional<String> getSaleInvoiceId() {
+    return saleInvoiceId;
+  }
+
   @JsonProperty("notes")
   public Optional<String> getNotes() {
     return notes;
@@ -90,12 +102,12 @@ public final class AssetsDisposeAssetsRequest {
   }
 
   private boolean equalTo(AssetsDisposeAssetsRequest other) {
-    return id.equals(other.id) && date.equals(other.date) && reason.equals(other.reason) && proceeds.equals(other.proceeds) && notes.equals(other.notes);
+    return id.equals(other.id) && date.equals(other.date) && reason.equals(other.reason) && proceeds.equals(other.proceeds) && saleInvoiceId.equals(other.saleInvoiceId) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.date, this.reason, this.proceeds, this.notes);
+    return Objects.hash(this.id, this.date, this.reason, this.proceeds, this.saleInvoiceId, this.notes);
   }
 
   @java.lang.Override
@@ -135,6 +147,13 @@ public final class AssetsDisposeAssetsRequest {
 
     _FinalStage proceeds(String proceeds);
 
+    /**
+     * <p>The issued sales invoice that sold the asset</p>
+     */
+    _FinalStage saleInvoiceId(Optional<String> saleInvoiceId);
+
+    _FinalStage saleInvoiceId(String saleInvoiceId);
+
     _FinalStage notes(Optional<String> notes);
 
     _FinalStage notes(String notes);
@@ -152,6 +171,8 @@ public final class AssetsDisposeAssetsRequest {
 
     private Optional<String> notes = Optional.empty();
 
+    private Optional<String> saleInvoiceId = Optional.empty();
+
     private Optional<String> proceeds = Optional.empty();
 
     @JsonAnySetter
@@ -166,6 +187,7 @@ public final class AssetsDisposeAssetsRequest {
       date(other.getDate());
       reason(other.getReason());
       proceeds(other.getProceeds());
+      saleInvoiceId(other.getSaleInvoiceId());
       notes(other.getNotes());
       return this;
     }
@@ -208,6 +230,29 @@ public final class AssetsDisposeAssetsRequest {
     }
 
     /**
+     * <p>The issued sales invoice that sold the asset</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage saleInvoiceId(String saleInvoiceId) {
+      this.saleInvoiceId = Optional.ofNullable(saleInvoiceId);
+      return this;
+    }
+
+    /**
+     * <p>The issued sales invoice that sold the asset</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "saleInvoiceId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage saleInvoiceId(Optional<String> saleInvoiceId) {
+      this.saleInvoiceId = saleInvoiceId;
+      return this;
+    }
+
+    /**
      * <p>Sale price excluding VAT; 0 when scrapped or written off</p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
@@ -232,7 +277,7 @@ public final class AssetsDisposeAssetsRequest {
 
     @java.lang.Override
     public AssetsDisposeAssetsRequest build() {
-      return new AssetsDisposeAssetsRequest(id, date, reason, proceeds, notes, additionalProperties);
+      return new AssetsDisposeAssetsRequest(id, date, reason, proceeds, saleInvoiceId, notes, additionalProperties);
     }
 
     @java.lang.Override

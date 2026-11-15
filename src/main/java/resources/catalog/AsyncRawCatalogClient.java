@@ -504,14 +504,14 @@ public class AsyncRawCatalogClient {
           }
 
           /**
-           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
            */
           public CompletableFuture<NordletApiHttpResponse<ItemsListCatalogResponse>> itemsList() {
             return itemsList(ItemsListCatalogRequest.builder().build());
           }
 
           /**
-           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
            */
           public CompletableFuture<NordletApiHttpResponse<ItemsListCatalogResponse>> itemsList(
               RequestOptions requestOptions) {
@@ -519,7 +519,7 @@ public class AsyncRawCatalogClient {
           }
 
           /**
-           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
            */
           public CompletableFuture<NordletApiHttpResponse<ItemsListCatalogResponse>> itemsList(
               ItemsListCatalogRequest request) {
@@ -527,7 +527,7 @@ public class AsyncRawCatalogClient {
           }
 
           /**
-           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, createdAt, updatedAt, salePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
+           * List the active items. Filterable: name, code, barcode, type, vatClassifierCode, groupId, kindId, externalId, manufacturer, department. Sortable: name, code, type, unit, vatRatePercent, createdAt, updatedAt, salePriceExclVat, purchasePriceExclVat; default name ascending. Rows carry no components; <code>catalog/items/get</code> returns them.
            */
           public CompletableFuture<NordletApiHttpResponse<ItemsListCatalogResponse>> itemsList(
               ItemsListCatalogRequest request, RequestOptions requestOptions) {

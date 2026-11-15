@@ -285,28 +285,28 @@ public class RawProjectsClient {
         }
 
         /**
-         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
          */
         public NordletApiHttpResponse<ListProjectsResponse> list() {
           return list(ListProjectsRequest.builder().build());
         }
 
         /**
-         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
          */
         public NordletApiHttpResponse<ListProjectsResponse> list(RequestOptions requestOptions) {
           return list(ListProjectsRequest.builder().build(),requestOptions);
         }
 
         /**
-         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
          */
         public NordletApiHttpResponse<ListProjectsResponse> list(ListProjectsRequest request) {
           return list(request,null);
         }
 
         /**
-         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code> and <code>createdAt</code>.
+         * List projects. Filterable by <code>code</code>, <code>name</code>, <code>status</code> and <code>partnerId</code>; sortable by <code>code</code>, <code>name</code>, <code>status</code>, <code>createdAt</code>, and by the all-time figures of <code>projects/report</code>: <code>revenue</code>, <code>costs</code>, <code>profit</code>, <code>unbilledHours</code> and <code>unbilledAmount</code>.
          */
         public NordletApiHttpResponse<ListProjectsResponse> list(ListProjectsRequest request,
             RequestOptions requestOptions) {

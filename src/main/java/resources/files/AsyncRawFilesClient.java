@@ -252,14 +252,14 @@ public class AsyncRawFilesClient {
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list() {
         return list(ListFilesRequest.builder().build());
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           RequestOptions requestOptions) {
@@ -267,7 +267,7 @@ public class AsyncRawFilesClient {
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           ListFilesRequest request) {
@@ -275,7 +275,7 @@ public class AsyncRawFilesClient {
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code> and <code>sizeBytes</code>.
+       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
        */
       public CompletableFuture<NordletApiHttpResponse<ListFilesResponse>> list(
           ListFilesRequest request, RequestOptions requestOptions) {

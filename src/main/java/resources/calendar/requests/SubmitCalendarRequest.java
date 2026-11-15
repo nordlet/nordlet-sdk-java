@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.calendar.types.SubmitCalendarRequestCorrection;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,12 +33,19 @@ public final class SubmitCalendarRequest {
 
   private final Optional<Boolean> amend;
 
+  private final Optional<SubmitCalendarRequestCorrection> correction;
+
+  private final Optional<List<String>> documentKeys;
+
   private final Map<String, Object> additionalProperties;
 
   private SubmitCalendarRequest(String key, Optional<Boolean> amend,
+      Optional<SubmitCalendarRequestCorrection> correction, Optional<List<String>> documentKeys,
       Map<String, Object> additionalProperties) {
     this.key = key;
     this.amend = amend;
+    this.correction = correction;
+    this.documentKeys = documentKeys;
     this.additionalProperties = additionalProperties;
   }
 
@@ -48,6 +57,16 @@ public final class SubmitCalendarRequest {
   @JsonProperty("amend")
   public Optional<Boolean> getAmend() {
     return amend;
+  }
+
+  @JsonProperty("correction")
+  public Optional<SubmitCalendarRequestCorrection> getCorrection() {
+    return correction;
+  }
+
+  @JsonProperty("documentKeys")
+  public Optional<List<String>> getDocumentKeys() {
+    return documentKeys;
   }
 
   @java.lang.Override
@@ -62,12 +81,12 @@ public final class SubmitCalendarRequest {
   }
 
   private boolean equalTo(SubmitCalendarRequest other) {
-    return key.equals(other.key) && amend.equals(other.amend);
+    return key.equals(other.key) && amend.equals(other.amend) && correction.equals(other.correction) && documentKeys.equals(other.documentKeys);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.amend);
+    return Objects.hash(this.key, this.amend, this.correction, this.documentKeys);
   }
 
   @java.lang.Override
@@ -95,6 +114,14 @@ public final class SubmitCalendarRequest {
     _FinalStage amend(Optional<Boolean> amend);
 
     _FinalStage amend(Boolean amend);
+
+    _FinalStage correction(Optional<SubmitCalendarRequestCorrection> correction);
+
+    _FinalStage correction(SubmitCalendarRequestCorrection correction);
+
+    _FinalStage documentKeys(Optional<List<String>> documentKeys);
+
+    _FinalStage documentKeys(List<String> documentKeys);
   }
 
   @JsonIgnoreProperties(
@@ -102,6 +129,10 @@ public final class SubmitCalendarRequest {
   )
   public static final class Builder implements KeyStage, _FinalStage {
     private String key;
+
+    private Optional<List<String>> documentKeys = Optional.empty();
+
+    private Optional<SubmitCalendarRequestCorrection> correction = Optional.empty();
 
     private Optional<Boolean> amend = Optional.empty();
 
@@ -115,6 +146,8 @@ public final class SubmitCalendarRequest {
     public Builder from(SubmitCalendarRequest other) {
       key(other.getKey());
       amend(other.getAmend());
+      correction(other.getCorrection());
+      documentKeys(other.getDocumentKeys());
       return this;
     }
 
@@ -122,6 +155,38 @@ public final class SubmitCalendarRequest {
     @JsonSetter("key")
     public _FinalStage key(@NotNull String key) {
       this.key = Objects.requireNonNull(key, "key must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage documentKeys(List<String> documentKeys) {
+      this.documentKeys = Optional.ofNullable(documentKeys);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "documentKeys",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage documentKeys(Optional<List<String>> documentKeys) {
+      this.documentKeys = documentKeys;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage correction(SubmitCalendarRequestCorrection correction) {
+      this.correction = Optional.ofNullable(correction);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "correction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage correction(Optional<SubmitCalendarRequestCorrection> correction) {
+      this.correction = correction;
       return this;
     }
 
@@ -143,7 +208,7 @@ public final class SubmitCalendarRequest {
 
     @java.lang.Override
     public SubmitCalendarRequest build() {
-      return new SubmitCalendarRequest(key, amend, additionalProperties);
+      return new SubmitCalendarRequest(key, amend, correction, documentKeys, additionalProperties);
     }
 
     @java.lang.Override
