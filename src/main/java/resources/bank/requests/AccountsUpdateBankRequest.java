@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.AccountsUpdateBankRequestPaymentFileSettings;
 import com.nordlet.api.resources.bank.types.AccountsUpdateBankRequestType;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -36,6 +37,12 @@ public final class AccountsUpdateBankRequest {
 
   private final Optional<String> iban;
 
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<AccountsUpdateBankRequestPaymentFileSettings> paymentFileSettings;
+
   private final Optional<String> accountCode;
 
   private final Optional<Boolean> isActive;
@@ -44,12 +51,17 @@ public final class AccountsUpdateBankRequest {
 
   private AccountsUpdateBankRequest(String id, Optional<String> name,
       Optional<AccountsUpdateBankRequestType> type, Optional<String> iban,
+      Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<AccountsUpdateBankRequestPaymentFileSettings> paymentFileSettings,
       Optional<String> accountCode, Optional<Boolean> isActive,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.type = type;
     this.iban = iban;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.paymentFileSettings = paymentFileSettings;
     this.accountCode = accountCode;
     this.isActive = isActive;
     this.additionalProperties = additionalProperties;
@@ -75,6 +87,30 @@ public final class AccountsUpdateBankRequest {
     return iban;
   }
 
+  /**
+   * @return Sort code, routing number or other national bank code, for an account without an IBAN
+   */
+  @JsonProperty("bankCode")
+  public Optional<String> getBankCode() {
+    return bankCode;
+  }
+
+  /**
+   * @return Account number, for an account without an IBAN
+   */
+  @JsonProperty("bankAccountNumber")
+  public Optional<String> getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
+   */
+  @JsonProperty("paymentFileSettings")
+  public Optional<AccountsUpdateBankRequestPaymentFileSettings> getPaymentFileSettings() {
+    return paymentFileSettings;
+  }
+
   @JsonProperty("accountCode")
   public Optional<String> getAccountCode() {
     return accountCode;
@@ -97,12 +133,12 @@ public final class AccountsUpdateBankRequest {
   }
 
   private boolean equalTo(AccountsUpdateBankRequest other) {
-    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && accountCode.equals(other.accountCode) && isActive.equals(other.isActive);
+    return id.equals(other.id) && name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && paymentFileSettings.equals(other.paymentFileSettings) && accountCode.equals(other.accountCode) && isActive.equals(other.isActive);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.type, this.iban, this.accountCode, this.isActive);
+    return Objects.hash(this.id, this.name, this.type, this.iban, this.bankCode, this.bankAccountNumber, this.paymentFileSettings, this.accountCode, this.isActive);
   }
 
   @java.lang.Override
@@ -139,6 +175,29 @@ public final class AccountsUpdateBankRequest {
 
     _FinalStage iban(String iban);
 
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     */
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     */
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     */
+    _FinalStage paymentFileSettings(
+        Optional<AccountsUpdateBankRequestPaymentFileSettings> paymentFileSettings);
+
+    _FinalStage paymentFileSettings(
+        AccountsUpdateBankRequestPaymentFileSettings paymentFileSettings);
+
     _FinalStage accountCode(Optional<String> accountCode);
 
     _FinalStage accountCode(String accountCode);
@@ -158,6 +217,12 @@ public final class AccountsUpdateBankRequest {
 
     private Optional<String> accountCode = Optional.empty();
 
+    private Optional<AccountsUpdateBankRequestPaymentFileSettings> paymentFileSettings = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
     private Optional<String> iban = Optional.empty();
 
     private Optional<AccountsUpdateBankRequestType> type = Optional.empty();
@@ -176,6 +241,9 @@ public final class AccountsUpdateBankRequest {
       name(other.getName());
       type(other.getType());
       iban(other.getIban());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      paymentFileSettings(other.getPaymentFileSettings());
       accountCode(other.getAccountCode());
       isActive(other.getIsActive());
       return this;
@@ -217,6 +285,77 @@ public final class AccountsUpdateBankRequest {
     )
     public _FinalStage accountCode(Optional<String> accountCode) {
       this.accountCode = accountCode;
+      return this;
+    }
+
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage paymentFileSettings(
+        AccountsUpdateBankRequestPaymentFileSettings paymentFileSettings) {
+      this.paymentFileSettings = Optional.ofNullable(paymentFileSettings);
+      return this;
+    }
+
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentFileSettings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentFileSettings(
+        Optional<AccountsUpdateBankRequestPaymentFileSettings> paymentFileSettings) {
+      this.paymentFileSettings = paymentFileSettings;
+      return this;
+    }
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
       return this;
     }
 
@@ -270,7 +409,7 @@ public final class AccountsUpdateBankRequest {
 
     @java.lang.Override
     public AccountsUpdateBankRequest build() {
-      return new AccountsUpdateBankRequest(id, name, type, iban, accountCode, isActive, additionalProperties);
+      return new AccountsUpdateBankRequest(id, name, type, iban, bankCode, bankAccountNumber, paymentFileSettings, accountCode, isActive, additionalProperties);
     }
 
     @java.lang.Override

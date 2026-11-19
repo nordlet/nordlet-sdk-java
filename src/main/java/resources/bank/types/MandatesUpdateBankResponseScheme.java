@@ -12,7 +12,13 @@ import java.lang.String;
 public final class MandatesUpdateBankResponseScheme {
   public static final MandatesUpdateBankResponseScheme CORE = new MandatesUpdateBankResponseScheme(Value.CORE, "CORE");
 
+  public static final MandatesUpdateBankResponseScheme CCD = new MandatesUpdateBankResponseScheme(Value.CCD, "CCD");
+
   public static final MandatesUpdateBankResponseScheme B2B = new MandatesUpdateBankResponseScheme(Value.B2B, "B2B");
+
+  public static final MandatesUpdateBankResponseScheme PPD = new MandatesUpdateBankResponseScheme(Value.PPD, "PPD");
+
+  public static final MandatesUpdateBankResponseScheme BACS = new MandatesUpdateBankResponseScheme(Value.BACS, "BACS");
 
   private final Value value;
 
@@ -48,8 +54,14 @@ public final class MandatesUpdateBankResponseScheme {
     switch (value) {
       case CORE:
         return visitor.visitCore();
+      case CCD:
+        return visitor.visitCcd();
       case B2B:
         return visitor.visitB2B();
+      case PPD:
+        return visitor.visitPpd();
+      case BACS:
+        return visitor.visitBacs();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -63,8 +75,14 @@ public final class MandatesUpdateBankResponseScheme {
     switch (value) {
       case "CORE":
         return CORE;
+      case "CCD":
+        return CCD;
       case "B2B":
         return B2B;
+      case "PPD":
+        return PPD;
+      case "BACS":
+        return BACS;
       default:
         return new MandatesUpdateBankResponseScheme(Value.UNKNOWN, value);
     }
@@ -75,6 +93,12 @@ public final class MandatesUpdateBankResponseScheme {
 
     B2B,
 
+    BACS,
+
+    PPD,
+
+    CCD,
+
     UNKNOWN
   }
 
@@ -82,6 +106,12 @@ public final class MandatesUpdateBankResponseScheme {
     T visitCore();
 
     T visitB2B();
+
+    T visitBacs();
+
+    T visitPpd();
+
+    T visitCcd();
 
     T visitUnknown(String unknownType);
   }

@@ -2058,7 +2058,7 @@ public class AsyncRawCatalogClient {
                                         }
 
                                         /**
-                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (the base currency of the company when omitted) and notes. Fields omitted from the request are cleared on an existing record.
                                          */
                                         public CompletableFuture<NordletApiHttpResponse<ItemsSuppliersUpsertCatalogResponse>> itemsSuppliersUpsert(
                                             ItemsSuppliersUpsertCatalogRequest request) {
@@ -2066,7 +2066,7 @@ public class AsyncRawCatalogClient {
                                         }
 
                                         /**
-                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+                                         * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (the base currency of the company when omitted) and notes. Fields omitted from the request are cleared on an existing record.
                                          */
                                         public CompletableFuture<NordletApiHttpResponse<ItemsSuppliersUpsertCatalogResponse>> itemsSuppliersUpsert(
                                             ItemsSuppliersUpsertCatalogRequest request,
@@ -2767,7 +2767,7 @@ public class AsyncRawCatalogClient {
                                                       }
 
                                                       /**
-                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                                       * Create a price list (in the base currency of the company and active when omitted). 409 when the code already exists.
                                                        */
                                                       public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
                                                           PriceListsCreateCatalogRequest request) {
@@ -2775,7 +2775,7 @@ public class AsyncRawCatalogClient {
                                                       }
 
                                                       /**
-                                                       * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+                                                       * Create a price list (in the base currency of the company and active when omitted). 409 when the code already exists.
                                                        */
                                                       public CompletableFuture<NordletApiHttpResponse<PriceListsCreateCatalogResponse>> priceListsCreate(
                                                           PriceListsCreateCatalogRequest request,

@@ -20,6 +20,8 @@ public final class InvoicesReverseSalesResponseVatScheme {
 
   public static final InvoicesReverseSalesResponseVatScheme OUT_OF_SCOPE = new InvoicesReverseSalesResponseVatScheme(Value.OUT_OF_SCOPE, "out_of_scope");
 
+  public static final InvoicesReverseSalesResponseVatScheme OSS_NON_UNION = new InvoicesReverseSalesResponseVatScheme(Value.OSS_NON_UNION, "oss_non_union");
+
   public static final InvoicesReverseSalesResponseVatScheme EXPORT = new InvoicesReverseSalesResponseVatScheme(Value.EXPORT, "export");
 
   public static final InvoicesReverseSalesResponseVatScheme MARKETPLACE_DEEMED = new InvoicesReverseSalesResponseVatScheme(Value.MARKETPLACE_DEEMED, "marketplace_deemed");
@@ -70,6 +72,8 @@ public final class InvoicesReverseSalesResponseVatScheme {
         return visitor.visitOssUnion();
       case OUT_OF_SCOPE:
         return visitor.visitOutOfScope();
+      case OSS_NON_UNION:
+        return visitor.visitOssNonUnion();
       case EXPORT:
         return visitor.visitExport();
       case MARKETPLACE_DEEMED:
@@ -99,6 +103,8 @@ public final class InvoicesReverseSalesResponseVatScheme {
         return OSS_UNION;
       case "out_of_scope":
         return OUT_OF_SCOPE;
+      case "oss_non_union":
+        return OSS_NON_UNION;
       case "export":
         return EXPORT;
       case "marketplace_deemed":
@@ -121,6 +127,8 @@ public final class InvoicesReverseSalesResponseVatScheme {
 
     OSS_UNION,
 
+    OSS_NON_UNION,
+
     IOSS,
 
     MARKETPLACE_DEEMED,
@@ -142,6 +150,8 @@ public final class InvoicesReverseSalesResponseVatScheme {
     T visitReverseCharge();
 
     T visitOssUnion();
+
+    T visitOssNonUnion();
 
     T visitIoss();
 

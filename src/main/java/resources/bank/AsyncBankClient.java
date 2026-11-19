@@ -26,6 +26,7 @@ import com.nordlet.api.resources.bank.requests.ImportTemplatesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesListBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesListBuiltinBankRequest;
 import com.nordlet.api.resources.bank.requests.ImportTemplatesUpdateBankRequest;
+import com.nordlet.api.resources.bank.requests.MandatesAuddisExportBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCancelBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesCreateBankRequest;
 import com.nordlet.api.resources.bank.requests.MandatesGetBankRequest;
@@ -80,6 +81,7 @@ import com.nordlet.api.resources.bank.types.ImportTemplatesGetBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesListBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesListBuiltinBankResponse;
 import com.nordlet.api.resources.bank.types.ImportTemplatesUpdateBankResponse;
+import com.nordlet.api.resources.bank.types.MandatesAuddisExportBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCancelBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankResponse;
 import com.nordlet.api.resources.bank.types.MandatesGetBankResponse;
@@ -134,7 +136,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> is refused with 422; an account with the same IBAN already existing answers 409.
+   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. Where the country has no IBAN the account is identified by <code>bankCode</code> (sort code, routing number) and <code>bankAccountNumber</code>, stored without spaces and hyphens. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> or an account number is refused with 422; an account with the same IBAN already existing answers 409.
    */
   public CompletableFuture<AccountsCreateBankResponse> accountsCreate(
       AccountsCreateBankRequest request) {
@@ -142,7 +144,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> is refused with 422; an account with the same IBAN already existing answers 409.
+   * Create a bank, Stripe or broker account. <code>currency</code> defaults to the company base currency and <code>accountCode</code> to the default bank account of the chart of accounts. Where the country has no IBAN the account is identified by <code>bankCode</code> (sort code, routing number) and <code>bankAccountNumber</code>, stored without spaces and hyphens. A <code>documentRef</code> also creates a bank agreement with that document attached. A Stripe account with an <code>iban</code> or an account number is refused with 422; an account with the same IBAN already existing answers 409.
    */
   public CompletableFuture<AccountsCreateBankResponse> accountsCreate(
       AccountsCreateBankRequest request, RequestOptions requestOptions) {
@@ -179,7 +181,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an <code>iban</code> together with it is refused with 422.
+   * Change the name, type, IBAN, bank code and account number, payment file settings (<code>paymentFileSettings</code> replaces the stored settings as a whole), ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN and the account number, and sending an <code>iban</code> together with it is refused with 422.
    */
   public CompletableFuture<AccountsUpdateBankResponse> accountsUpdate(
       AccountsUpdateBankRequest request) {
@@ -187,7 +189,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Change the name, type, IBAN, ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN, and sending an <code>iban</code> together with it is refused with 422.
+   * Change the name, type, IBAN, bank code and account number, payment file settings (<code>paymentFileSettings</code> replaces the stored settings as a whole), ledger account code or active flag of a bank account. Setting type to stripe clears the IBAN and the account number, and sending an <code>iban</code> together with it is refused with 422.
    */
   public CompletableFuture<AccountsUpdateBankResponse> accountsUpdate(
       AccountsUpdateBankRequest request, RequestOptions requestOptions) {
@@ -386,7 +388,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
    */
   public CompletableFuture<PaymentsExportBankResponse> paymentsExport(
       PaymentsExportBankRequest request) {
@@ -394,7 +396,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a credit transfer file (ISO 20022 pain.001.001.03) that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code> (default: today), to the partner's default bank account. The bank account needs an IBAN and every invoice must be in the currency of the bank account and have a partner bank account on file (422 otherwise, see <code>partners/bank-accounts/create</code>); an invoice that is already paid answers 409. A file in EUR is a SEPA credit transfer (service level SEPA); a file in another currency is a generic pain.001 without the SEPA service level, in the currency of the account. The file is returned as <code>xml</code>; nothing is posted or marked paid.
+   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
    */
   public CompletableFuture<PaymentsExportBankResponse> paymentsExport(
       PaymentsExportBankRequest request, RequestOptions requestOptions) {
@@ -607,7 +609,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used. <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+   * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
    */
   public CompletableFuture<MandatesCreateBankResponse> mandatesCreate(
       MandatesCreateBankRequest request) {
@@ -615,7 +617,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Record a SEPA direct debit mandate a partner has signed: debtor IBAN and BIC, scheme (CORE or B2B), recurrent or one-off, and the signature date. <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used. <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+   * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
    */
   public CompletableFuture<MandatesCreateBankResponse> mandatesCreate(
       MandatesCreateBankRequest request, RequestOptions requestOptions) {
@@ -639,7 +641,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+   * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
    */
   public CompletableFuture<MandatesCancelBankResponse> mandatesCancel(
       MandatesCancelBankRequest request) {
@@ -647,7 +649,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Cancel an active mandate. A mandate that is already cancelled or completed answers 409.
+   * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
    */
   public CompletableFuture<MandatesCancelBankResponse> mandatesCancel(
       MandatesCancelBankRequest request, RequestOptions requestOptions) {
@@ -699,14 +701,14 @@ public class AsyncBankClient {
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+   * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates() {
     return this.rawClient.directDebitsCandidates().thenApply(response -> response.body());
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+   * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
       RequestOptions requestOptions) {
@@ -714,7 +716,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+   * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
       DirectDebitsCandidatesBankRequest request) {
@@ -722,7 +724,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * List the issued EUR sale invoices that are unpaid or partly paid and whose partner holds an active mandate, each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+   * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
    */
   public CompletableFuture<DirectDebitsCandidatesBankResponse> directDebitsCandidates(
       DirectDebitsCandidatesBankRequest request, RequestOptions requestOptions) {
@@ -730,7 +732,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on <code>collectionDate</code> (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid <code>sepaCreditorId</code> (422, see <code>account/companies/update</code>); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+   * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
    */
   public CompletableFuture<DirectDebitsExportBankResponse> directDebitsExport(
       DirectDebitsExportBankRequest request) {
@@ -738,11 +740,27 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a SEPA direct debit file (pain.008.001.02) that collects the remaining amount of each issued EUR sale invoice into the bank account on <code>collectionDate</code> (default: today) under the partner's most recently signed active mandate. The bank account needs an IBAN and the company a valid <code>sepaCreditorId</code> (422, see <code>account/companies/update</code>); an invoice whose partner has no active mandate, or whose mandate expired (36 months without a collection), answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. The sequence type is OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted.
+   * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
    */
   public CompletableFuture<DirectDebitsExportBankResponse> directDebitsExport(
       DirectDebitsExportBankRequest request, RequestOptions requestOptions) {
     return this.rawClient.directDebitsExport(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
+   */
+  public CompletableFuture<MandatesAuddisExportBankResponse> mandatesAuddisExport(
+      MandatesAuddisExportBankRequest request) {
+    return this.rawClient.mandatesAuddisExport(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
+   */
+  public CompletableFuture<MandatesAuddisExportBankResponse> mandatesAuddisExport(
+      MandatesAuddisExportBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.mandatesAuddisExport(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

@@ -38,14 +38,13 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
   private final Optional<List<String>> options;
 
-  private final Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField;
+  private final Optional<String> companyField;
 
   private final Map<String, Object> additionalProperties;
 
   private ConfigsListDeclarationsResponseRowsItemFieldsItem(String key, Optional<String> label,
       ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind, Optional<Boolean> multiline,
-      Optional<List<String>> options,
-      Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField,
+      Optional<List<String>> options, Optional<String> companyField,
       Map<String, Object> additionalProperties) {
     this.key = key;
     this.label = label;
@@ -85,10 +84,10 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
   }
 
   /**
-   * @return The company profile field the value is taken from; change it with <code>account/companies/update</code>
+   * @return The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code>
    */
   @JsonProperty("companyField")
-  public Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> getCompanyField() {
+  public Optional<String> getCompanyField() {
     return companyField;
   }
 
@@ -154,13 +153,11 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     _FinalStage options(List<String> options);
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      */
-    _FinalStage companyField(
-        Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField);
+    _FinalStage companyField(Optional<String> companyField);
 
-    _FinalStage companyField(
-        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField companyField);
+    _FinalStage companyField(String companyField);
   }
 
   @JsonIgnoreProperties(
@@ -171,7 +168,7 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
 
     private ConfigsListDeclarationsResponseRowsItemFieldsItemKind kind;
 
-    private Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField = Optional.empty();
+    private Optional<String> companyField = Optional.empty();
 
     private Optional<List<String>> options = Optional.empty();
 
@@ -211,26 +208,24 @@ public final class ConfigsListDeclarationsResponseRowsItemFieldsItem {
     }
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override
-    public _FinalStage companyField(
-        ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField companyField) {
+    public _FinalStage companyField(String companyField) {
       this.companyField = Optional.ofNullable(companyField);
       return this;
     }
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      */
     @java.lang.Override
     @JsonSetter(
         value = "companyField",
         nulls = Nulls.SKIP
     )
-    public _FinalStage companyField(
-        Optional<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> companyField) {
+    public _FinalStage companyField(Optional<String> companyField) {
       this.companyField = companyField;
       return this;
     }

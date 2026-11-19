@@ -158,6 +158,9 @@ public final class AgreementsCreateAgreementsRequest {
     return billingPeriod;
   }
 
+  /**
+   * @return Defaults to the company's base currency
+   */
   @JsonProperty("currency")
   public Optional<String> getCurrency() {
     return currency;
@@ -270,6 +273,9 @@ public final class AgreementsCreateAgreementsRequest {
 
     _FinalStage billingPeriod(AgreementsCreateAgreementsRequestBillingPeriod billingPeriod);
 
+    /**
+     * <p>Defaults to the company's base currency</p>
+     */
     _FinalStage currency(Optional<String> currency);
 
     _FinalStage currency(String currency);
@@ -435,12 +441,19 @@ public final class AgreementsCreateAgreementsRequest {
       return this;
     }
 
+    /**
+     * <p>Defaults to the company's base currency</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
     @java.lang.Override
     public _FinalStage currency(String currency) {
       this.currency = Optional.ofNullable(currency);
       return this;
     }
 
+    /**
+     * <p>Defaults to the company's base currency</p>
+     */
     @java.lang.Override
     @JsonSetter(
         value = "currency",

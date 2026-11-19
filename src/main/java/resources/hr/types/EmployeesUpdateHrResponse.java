@@ -52,6 +52,12 @@ public final class EmployeesUpdateHrResponse {
 
   private final Optional<String> iban;
 
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<EmployeesUpdateHrResponseBankAccountType> bankAccountType;
+
   private final Optional<String> socialInsuranceNo;
 
   private final Optional<String> socialInsuranceStart;
@@ -82,6 +88,8 @@ public final class EmployeesUpdateHrResponse {
       String lastName, Optional<String> personalCode, Optional<String> birthDate,
       Optional<String> email, Optional<String> phone,
       Optional<EmployeesUpdateHrResponseAddress> address, Optional<String> iban,
+      Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<EmployeesUpdateHrResponseBankAccountType> bankAccountType,
       Optional<String> socialInsuranceNo, Optional<String> socialInsuranceStart,
       Optional<String> hireDate, Optional<String> terminationDate, boolean applyAllowance,
       Optional<String> allowanceOverride, boolean pensionAccumulation,
@@ -98,6 +106,9 @@ public final class EmployeesUpdateHrResponse {
     this.phone = phone;
     this.address = address;
     this.iban = iban;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.bankAccountType = bankAccountType;
     this.socialInsuranceNo = socialInsuranceNo;
     this.socialInsuranceStart = socialInsuranceStart;
     this.hireDate = hireDate;
@@ -182,6 +193,33 @@ public final class EmployeesUpdateHrResponse {
       return Optional.empty();
     }
     return iban;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankCode() {
+    if (bankCode == null) {
+      return Optional.empty();
+    }
+    return bankCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountNumber() {
+    if (bankAccountNumber == null) {
+      return Optional.empty();
+    }
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Checking or savings account; a US ACH file needs it
+   */
+  @JsonIgnore
+  public Optional<EmployeesUpdateHrResponseBankAccountType> getBankAccountType() {
+    if (bankAccountType == null) {
+      return Optional.empty();
+    }
+    return bankAccountType;
   }
 
   @JsonIgnore
@@ -332,6 +370,33 @@ public final class EmployeesUpdateHrResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("bankCode")
+  private Optional<String> _getBankCode() {
+    return bankCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountNumber")
+  private Optional<String> _getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountType")
+  private Optional<EmployeesUpdateHrResponseBankAccountType> _getBankAccountType() {
+    return bankAccountType;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("socialInsuranceNo")
   private Optional<String> _getSocialInsuranceNo() {
     return socialInsuranceNo;
@@ -403,12 +468,12 @@ public final class EmployeesUpdateHrResponse {
   }
 
   private boolean equalTo(EmployeesUpdateHrResponse other) {
-    return id.equals(other.id) && code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && terminationDate.equals(other.terminationDate) && applyAllowance == other.applyAllowance && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation == other.pensionAccumulation && payrollOptions.equals(other.payrollOptions) && status.equals(other.status) && notes.equals(other.notes) && attributes.equals(other.attributes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && code.equals(other.code) && firstName.equals(other.firstName) && lastName.equals(other.lastName) && personalCode.equals(other.personalCode) && birthDate.equals(other.birthDate) && email.equals(other.email) && phone.equals(other.phone) && address.equals(other.address) && iban.equals(other.iban) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && bankAccountType.equals(other.bankAccountType) && socialInsuranceNo.equals(other.socialInsuranceNo) && socialInsuranceStart.equals(other.socialInsuranceStart) && hireDate.equals(other.hireDate) && terminationDate.equals(other.terminationDate) && applyAllowance == other.applyAllowance && allowanceOverride.equals(other.allowanceOverride) && pensionAccumulation == other.pensionAccumulation && payrollOptions.equals(other.payrollOptions) && status.equals(other.status) && notes.equals(other.notes) && attributes.equals(other.attributes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.terminationDate, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.payrollOptions, this.status, this.notes, this.attributes, this.createdAt);
+    return Objects.hash(this.id, this.code, this.firstName, this.lastName, this.personalCode, this.birthDate, this.email, this.phone, this.address, this.iban, this.bankCode, this.bankAccountNumber, this.bankAccountType, this.socialInsuranceNo, this.socialInsuranceStart, this.hireDate, this.terminationDate, this.applyAllowance, this.allowanceOverride, this.pensionAccumulation, this.payrollOptions, this.status, this.notes, this.attributes, this.createdAt);
   }
 
   @java.lang.Override
@@ -499,6 +564,27 @@ public final class EmployeesUpdateHrResponse {
 
     _FinalStage iban(Nullable<String> iban);
 
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    _FinalStage bankCode(Nullable<String> bankCode);
+
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber);
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    _FinalStage bankAccountType(Optional<EmployeesUpdateHrResponseBankAccountType> bankAccountType);
+
+    _FinalStage bankAccountType(EmployeesUpdateHrResponseBankAccountType bankAccountType);
+
+    _FinalStage bankAccountType(Nullable<EmployeesUpdateHrResponseBankAccountType> bankAccountType);
+
     _FinalStage socialInsuranceNo(Optional<String> socialInsuranceNo);
 
     _FinalStage socialInsuranceNo(String socialInsuranceNo);
@@ -582,6 +668,12 @@ public final class EmployeesUpdateHrResponse {
 
     private Optional<String> socialInsuranceNo = Optional.empty();
 
+    private Optional<EmployeesUpdateHrResponseBankAccountType> bankAccountType = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
     private Optional<String> iban = Optional.empty();
 
     private Optional<EmployeesUpdateHrResponseAddress> address = Optional.empty();
@@ -614,6 +706,9 @@ public final class EmployeesUpdateHrResponse {
       phone(other.getPhone());
       address(other.getAddress());
       iban(other.getIban());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      bankAccountType(other.getBankAccountType());
       socialInsuranceNo(other.getSocialInsuranceNo());
       socialInsuranceStart(other.getSocialInsuranceStart());
       hireDate(other.getHireDate());
@@ -917,6 +1012,109 @@ public final class EmployeesUpdateHrResponse {
       return this;
     }
 
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankAccountType(
+        Nullable<EmployeesUpdateHrResponseBankAccountType> bankAccountType) {
+      if (bankAccountType.isNull()) {
+        this.bankAccountType = null;
+      }
+      else if (bankAccountType.isEmpty()) {
+        this.bankAccountType = Optional.empty();
+      }
+      else {
+        this.bankAccountType = Optional.of(bankAccountType.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankAccountType(EmployeesUpdateHrResponseBankAccountType bankAccountType) {
+      this.bankAccountType = Optional.ofNullable(bankAccountType);
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountType(
+        Optional<EmployeesUpdateHrResponseBankAccountType> bankAccountType) {
+      this.bankAccountType = bankAccountType;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber) {
+      if (bankAccountNumber.isNull()) {
+        this.bankAccountNumber = null;
+      }
+      else if (bankAccountNumber.isEmpty()) {
+        this.bankAccountNumber = Optional.empty();
+      }
+      else {
+        this.bankAccountNumber = Optional.of(bankAccountNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(Nullable<String> bankCode) {
+      if (bankCode.isNull()) {
+        this.bankCode = null;
+      }
+      else if (bankCode.isEmpty()) {
+        this.bankCode = Optional.empty();
+      }
+      else {
+        this.bankCode = Optional.of(bankCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage iban(Nullable<String> iban) {
       if (iban.isNull()) {
@@ -1129,7 +1327,7 @@ public final class EmployeesUpdateHrResponse {
 
     @java.lang.Override
     public EmployeesUpdateHrResponse build() {
-      return new EmployeesUpdateHrResponse(id, code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, socialInsuranceNo, socialInsuranceStart, hireDate, terminationDate, applyAllowance, allowanceOverride, pensionAccumulation, payrollOptions, status, notes, attributes, createdAt, additionalProperties);
+      return new EmployeesUpdateHrResponse(id, code, firstName, lastName, personalCode, birthDate, email, phone, address, iban, bankCode, bankAccountNumber, bankAccountType, socialInsuranceNo, socialInsuranceStart, hireDate, terminationDate, applyAllowance, allowanceOverride, pensionAccumulation, payrollOptions, status, notes, attributes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

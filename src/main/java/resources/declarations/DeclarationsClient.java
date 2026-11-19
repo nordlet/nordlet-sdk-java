@@ -47,6 +47,14 @@ import com.nordlet.api.resources.declarations.requests.EuSmeThresholdsListDeclar
 import com.nordlet.api.resources.declarations.requests.EuUnionTurnoverGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuVatReturnComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuVatReturnPacksListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbCorporationTaxComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbHmrcAuthorizeUrlGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbHmrcConnectDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbVatLiabilitiesListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbVatObligationsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbVatPaymentsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbVatPenaltiesGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbVatReturnsGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.IeB1GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.IeCt1GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.ItSdiPurchasePreviewDeclarationsRequest;
@@ -103,6 +111,15 @@ import com.nordlet.api.resources.declarations.requests.TaxPaymentsCreateDeclarat
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsDeleteDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.Us940GetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.Us941GetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsDeFranchiseTaxComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsDeGrossReceiptsGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsDeUnemploymentGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsDeWithholdingGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsStateSalesGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsW2ListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsWorkweeksListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataSetDeclarationsRequest;
@@ -147,6 +164,13 @@ import com.nordlet.api.resources.declarations.types.EuSmeThresholdsListDeclarati
 import com.nordlet.api.resources.declarations.types.EuUnionTurnoverGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuVatReturnComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuVatReturnPacksListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbCorporationTaxComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbHmrcAuthorizeUrlGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbHmrcConnectDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbVatLiabilitiesListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbVatObligationsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbVatPaymentsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbVatReturnsGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.IeB1GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.IeCt1GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.ItSdiPurchasePreviewDeclarationsResponse;
@@ -203,9 +227,21 @@ import com.nordlet.api.resources.declarations.types.TaxPaymentsCreateDeclaration
 import com.nordlet.api.resources.declarations.types.TaxPaymentsDeleteDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.Us940GetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.Us941GetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsDeFranchiseTaxComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsDeGrossReceiptsGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsDeUnemploymentGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsDeWithholdingGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsStateSalesGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsW2ListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsWorkweeksListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataSetDeclarationsResponse;
+import java.lang.Object;
+import java.lang.String;
+import java.util.Map;
 
 public class DeclarationsClient {
   protected final ClientOptions clientOptions;
@@ -507,14 +543,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V; for a UK company, the HMRC digital platform reporting rules and the jurisdictions HMRC lists as reportable for the year) and why the others are excluded, the data still missing, and how the company files the report in its Member State or with HMRC.
    */
   public EuDac7PreviewDeclarationsResponse euDac7Preview(EuDac7PreviewDeclarationsRequest request) {
     return this.rawClient.euDac7Preview(request).body();
   }
 
   /**
-   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+   * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V; for a UK company, the HMRC digital platform reporting rules and the jurisdictions HMRC lists as reportable for the year) and why the others are excluded, the data still missing, and how the company files the report in its Member State or with HMRC.
    */
   public EuDac7PreviewDeclarationsResponse euDac7Preview(EuDac7PreviewDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -522,14 +558,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company, or the HMRC digital platform report (OECD DPI XML 1.0, file name equal to the MessageRefId) for a UK company, and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
    */
   public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request) {
     return this.rawClient.euDac7Xml(request).body();
   }
 
   /**
-   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
+   * Builds the DAC7 (DPI) XML report of a year for the Member State of the company, or the HMRC digital platform report (OECD DPI XML 1.0, file name equal to the MessageRefId) for a UK company, and returns it base64-encoded with the file name the administration expects. Answers 422 when no DAC7 filing channel exists for the company country. The sellers and the missing data behind it come from <code>declarations/eu/dac7/preview</code>.
    */
   public EuDac7XmlDeclarationsResponse euDac7Xml(EuDac7XmlDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -1711,6 +1747,288 @@ public class DeclarationsClient {
   public LiLohnlistenGenerateDeclarationsResponse liLohnlistenGenerate(
       LiLohnlistenGenerateDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.liLohnlistenGenerate(request, requestOptions).body();
+  }
+
+  /**
+   * Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the <code>read:vat</code> and <code>write:vat</code> scopes. HMRC sends the browser back to Nordlet's registered address with <code>code</code> and <code>state</code>, which are passed to <code>declarations/gb/hmrc/connect</code>. Answers 503 when Nordlet's HMRC application is not set up.
+   */
+  public GbHmrcAuthorizeUrlGetDeclarationsResponse gbHmrcAuthorizeUrlGet() {
+    return this.rawClient.gbHmrcAuthorizeUrlGet().body();
+  }
+
+  /**
+   * Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the <code>read:vat</code> and <code>write:vat</code> scopes. HMRC sends the browser back to Nordlet's registered address with <code>code</code> and <code>state</code>, which are passed to <code>declarations/gb/hmrc/connect</code>. Answers 503 when Nordlet's HMRC application is not set up.
+   */
+  public GbHmrcAuthorizeUrlGetDeclarationsResponse gbHmrcAuthorizeUrlGet(
+      RequestOptions requestOptions) {
+    return this.rawClient.gbHmrcAuthorizeUrlGet(requestOptions).body();
+  }
+
+  /**
+   * Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the <code>read:vat</code> and <code>write:vat</code> scopes. HMRC sends the browser back to Nordlet's registered address with <code>code</code> and <code>state</code>, which are passed to <code>declarations/gb/hmrc/connect</code>. Answers 503 when Nordlet's HMRC application is not set up.
+   */
+  public GbHmrcAuthorizeUrlGetDeclarationsResponse gbHmrcAuthorizeUrlGet(
+      GbHmrcAuthorizeUrlGetDeclarationsRequest request) {
+    return this.rawClient.gbHmrcAuthorizeUrlGet(request).body();
+  }
+
+  /**
+   * Starts connecting the company to HMRC's VAT (MTD) API: returns the HMRC sign-in address the user opens in the browser to grant Nordlet the <code>read:vat</code> and <code>write:vat</code> scopes. HMRC sends the browser back to Nordlet's registered address with <code>code</code> and <code>state</code>, which are passed to <code>declarations/gb/hmrc/connect</code>. Answers 503 when Nordlet's HMRC application is not set up.
+   */
+  public GbHmrcAuthorizeUrlGetDeclarationsResponse gbHmrcAuthorizeUrlGet(
+      GbHmrcAuthorizeUrlGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbHmrcAuthorizeUrlGet(request, requestOptions).body();
+  }
+
+  /**
+   * Finishes connecting the company to HMRC: trades the <code>code</code> HMRC returned for the company's tokens and stores them in the <code>gb-hmrc-vat</code> settings. <code>state</code> must be the one of the sign-in address from <code>declarations/gb/hmrc/authorize-url/get</code>, else 422. HMRC lets the connection last 18 months; Nordlet renews the 4-hour access token itself.
+   */
+  public GbHmrcConnectDeclarationsResponse gbHmrcConnect(GbHmrcConnectDeclarationsRequest request) {
+    return this.rawClient.gbHmrcConnect(request).body();
+  }
+
+  /**
+   * Finishes connecting the company to HMRC: trades the <code>code</code> HMRC returned for the company's tokens and stores them in the <code>gb-hmrc-vat</code> settings. <code>state</code> must be the one of the sign-in address from <code>declarations/gb/hmrc/authorize-url/get</code>, else 422. HMRC lets the connection last 18 months; Nordlet renews the 4-hour access token itself.
+   */
+  public GbHmrcConnectDeclarationsResponse gbHmrcConnect(GbHmrcConnectDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.gbHmrcConnect(request, requestOptions).body();
+  }
+
+  /**
+   * Computes UK Corporation Tax for an accounting period of at most 12 months from its taxable total profits: the small profits rate when the augmented profits (taxable total profits plus <code>exemptDistributions</code>) do not exceed the lower limit, the main rate less marginal relief between the limits, the main rate above the upper limit. The limits are reduced by days for a period shorter than 12 months and divided by one plus <code>associatedCompanies</code> (those that carried on a trade or business in the period). A period that straddles 1 April of a year whose limits differ is split into parts by financial year. A <code>closeInvestmentHolding</code> company pays the main rate. Financial years 2022 to 2026 are known; another answers 422.
+   */
+  public GbCorporationTaxComputeDeclarationsResponse gbCorporationTaxCompute(
+      GbCorporationTaxComputeDeclarationsRequest request) {
+    return this.rawClient.gbCorporationTaxCompute(request).body();
+  }
+
+  /**
+   * Computes UK Corporation Tax for an accounting period of at most 12 months from its taxable total profits: the small profits rate when the augmented profits (taxable total profits plus <code>exemptDistributions</code>) do not exceed the lower limit, the main rate less marginal relief between the limits, the main rate above the upper limit. The limits are reduced by days for a period shorter than 12 months and divided by one plus <code>associatedCompanies</code> (those that carried on a trade or business in the period). A period that straddles 1 April of a year whose limits differ is split into parts by financial year. A <code>closeInvestmentHolding</code> company pays the main rate. Financial years 2022 to 2026 are known; another answers 422.
+   */
+  public GbCorporationTaxComputeDeclarationsResponse gbCorporationTaxCompute(
+      GbCorporationTaxComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbCorporationTaxCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Lists the company's VAT return periods as HMRC holds them: open (<code>status</code> O) or fulfilled (F). Without <code>status</code>, <code>from</code> and <code>to</code> are required and at most 366 days apart. <code>device</code> carries the facts of the user's browser that HMRC requires.
+   */
+  public GbVatObligationsListDeclarationsResponse gbVatObligationsList(
+      GbVatObligationsListDeclarationsRequest request) {
+    return this.rawClient.gbVatObligationsList(request).body();
+  }
+
+  /**
+   * Lists the company's VAT return periods as HMRC holds them: open (<code>status</code> O) or fulfilled (F). Without <code>status</code>, <code>from</code> and <code>to</code> are required and at most 366 days apart. <code>device</code> carries the facts of the user's browser that HMRC requires.
+   */
+  public GbVatObligationsListDeclarationsResponse gbVatObligationsList(
+      GbVatObligationsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbVatObligationsList(request, requestOptions).body();
+  }
+
+  /**
+   * Reads a VAT return the company submitted to HMRC, by the <code>periodKey</code> of its obligation. Answers 404 when HMRC has no return for the period.
+   */
+  public GbVatReturnsGetDeclarationsResponse gbVatReturnsGet(
+      GbVatReturnsGetDeclarationsRequest request) {
+    return this.rawClient.gbVatReturnsGet(request).body();
+  }
+
+  /**
+   * Reads a VAT return the company submitted to HMRC, by the <code>periodKey</code> of its obligation. Answers 404 when HMRC has no return for the period.
+   */
+  public GbVatReturnsGetDeclarationsResponse gbVatReturnsGet(
+      GbVatReturnsGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbVatReturnsGet(request, requestOptions).body();
+  }
+
+  /**
+   * Lists the company's VAT liabilities HMRC holds whose period ends between <code>from</code> (2017-12-01 or later) and <code>to</code> (today or earlier), at most 365 days apart.
+   */
+  public GbVatLiabilitiesListDeclarationsResponse gbVatLiabilitiesList(
+      GbVatLiabilitiesListDeclarationsRequest request) {
+    return this.rawClient.gbVatLiabilitiesList(request).body();
+  }
+
+  /**
+   * Lists the company's VAT liabilities HMRC holds whose period ends between <code>from</code> (2017-12-01 or later) and <code>to</code> (today or earlier), at most 365 days apart.
+   */
+  public GbVatLiabilitiesListDeclarationsResponse gbVatLiabilitiesList(
+      GbVatLiabilitiesListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbVatLiabilitiesList(request, requestOptions).body();
+  }
+
+  /**
+   * Lists the VAT payments HMRC received from the company between <code>from</code> (2017-12-01 or later) and <code>to</code> (today or earlier), at most 365 days apart.
+   */
+  public GbVatPaymentsListDeclarationsResponse gbVatPaymentsList(
+      GbVatPaymentsListDeclarationsRequest request) {
+    return this.rawClient.gbVatPaymentsList(request).body();
+  }
+
+  /**
+   * Lists the VAT payments HMRC received from the company between <code>from</code> (2017-12-01 or later) and <code>to</code> (today or earlier), at most 365 days apart.
+   */
+  public GbVatPaymentsListDeclarationsResponse gbVatPaymentsList(
+      GbVatPaymentsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbVatPaymentsList(request, requestOptions).body();
+  }
+
+  /**
+   * Returns the penalties HMRC applied to the company's VAT account in the last 24 months as HMRC answers them: <code>totalisations</code>, <code>lateSubmissionPenalty</code> and <code>latePaymentPenalty</code>.
+   */
+  public Map<String, Object> gbVatPenaltiesGet(GbVatPenaltiesGetDeclarationsRequest request) {
+    return this.rawClient.gbVatPenaltiesGet(request).body();
+  }
+
+  /**
+   * Returns the penalties HMRC applied to the company's VAT account in the last 24 months as HMRC answers them: <code>totalisations</code>, <code>lateSubmissionPenalty</code> and <code>latePaymentPenalty</code>.
+   */
+  public Map<String, Object> gbVatPenaltiesGet(GbVatPenaltiesGetDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.gbVatPenaltiesGet(request, requestOptions).body();
+  }
+
+  /**
+   * The Form 941 figures of a quarter from the approved US payroll runs whose pay date (the period end without one) falls in it: line 1 the employees paid for the pay period that includes the 12th of the quarter's last month, line 2 the wages, line 3 the federal income tax withheld, lines 5a, 5c and 5d the social security, Medicare and Additional Medicare wages with their tax at 12.4%, 2.9% and 0.9%, line 7 the fractions of cents between those and the amounts withheld and owed, lines 10 and 12, and line 16 the liability of each month by pay date with the liability of each pay date for Schedule B. <code>deposits</code> (the deposits made for the quarter) fills line 13 and line 14 or 15. Lines 5b, 5f, 8, 9 and 11 are not filled. Answers 422 for a company outside the US.
+   */
+  public Us941GetDeclarationsResponse us941Get(Us941GetDeclarationsRequest request) {
+    return this.rawClient.us941Get(request).body();
+  }
+
+  /**
+   * The Form 941 figures of a quarter from the approved US payroll runs whose pay date (the period end without one) falls in it: line 1 the employees paid for the pay period that includes the 12th of the quarter's last month, line 2 the wages, line 3 the federal income tax withheld, lines 5a, 5c and 5d the social security, Medicare and Additional Medicare wages with their tax at 12.4%, 2.9% and 0.9%, line 7 the fractions of cents between those and the amounts withheld and owed, lines 10 and 12, and line 16 the liability of each month by pay date with the liability of each pay date for Schedule B. <code>deposits</code> (the deposits made for the quarter) fills line 13 and line 14 or 15. Lines 5b, 5f, 8, 9 and 11 are not filled. Answers 422 for a company outside the US.
+   */
+  public Us941GetDeclarationsResponse us941Get(Us941GetDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.us941Get(request, requestOptions).body();
+  }
+
+  /**
+   * The Form 940 figures of a year from the approved US payroll runs paid in it: line 1a the state of the employees paid (the <code>usWorkState</code> employee option) or line 1b when there are several, line 3 the payments to employees, line 5 the part of each employee's payments above $7,000, line 7 the taxable FUTA wages, line 8 at 0.6%, line 12, and Part 5 with the liability of each quarter when line 12 is more than $500. Exempt payments (line 4), the state unemployment tax adjustments (lines 9 and 10) and the credit reduction of Schedule A (line 11) are not filled. Answers 422 for a company outside the US.
+   */
+  public Us940GetDeclarationsResponse us940Get(Us940GetDeclarationsRequest request) {
+    return this.rawClient.us940Get(request).body();
+  }
+
+  /**
+   * The Form 940 figures of a year from the approved US payroll runs paid in it: line 1a the state of the employees paid (the <code>usWorkState</code> employee option) or line 1b when there are several, line 3 the payments to employees, line 5 the part of each employee's payments above $7,000, line 7 the taxable FUTA wages, line 8 at 0.6%, line 12, and Part 5 with the liability of each quarter when line 12 is more than $500. Exempt payments (line 4), the state unemployment tax adjustments (lines 9 and 10) and the credit reduction of Schedule A (line 11) are not filled. Answers 422 for a company outside the US.
+   */
+  public Us940GetDeclarationsResponse us940Get(Us940GetDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.us940Get(request, requestOptions).body();
+  }
+
+  /**
+   * The Forms W-2 of a year, one per employee paid in an approved US payroll run of the year, and the Form W-3 totals: box a the employee's <code>personalCode</code> (the social security number), box e the name, boxes 1 to 6 the wages, the federal income tax, the social security wages and tax and the Medicare wages and tax (with the Additional Medicare Tax), and boxes 15 to 17 for Delaware with the company's <code>deWithholdingAccount</code>; W-3 box c the number of forms and box e the company's <code>ein</code>. Answers 422 for a company outside the US.
+   */
+  public UsW2ListDeclarationsResponse usW2List(UsW2ListDeclarationsRequest request) {
+    return this.rawClient.usW2List(request).body();
+  }
+
+  /**
+   * The Forms W-2 of a year, one per employee paid in an approved US payroll run of the year, and the Form W-3 totals: box a the employee's <code>personalCode</code> (the social security number), box e the name, boxes 1 to 6 the wages, the federal income tax, the social security wages and tax and the Medicare wages and tax (with the Additional Medicare Tax), and boxes 15 to 17 for Delaware with the company's <code>deWithholdingAccount</code>; W-3 box c the number of forms and box e the company's <code>ein</code>. Answers 422 for a company outside the US.
+   */
+  public UsW2ListDeclarationsResponse usW2List(UsW2ListDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.usW2List(request, requestOptions).body();
+  }
+
+  /**
+   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+   */
+  public UsDeWithholdingGetDeclarationsResponse usDeWithholdingGet(
+      UsDeWithholdingGetDeclarationsRequest request) {
+    return this.rawClient.usDeWithholdingGet(request).body();
+  }
+
+  /**
+   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+   */
+  public UsDeWithholdingGetDeclarationsResponse usDeWithholdingGet(
+      UsDeWithholdingGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usDeWithholdingGet(request, requestOptions).body();
+  }
+
+  /**
+   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. Answers 422 for a company outside the US.
+   */
+  public UsDeUnemploymentGetDeclarationsResponse usDeUnemploymentGet(
+      UsDeUnemploymentGetDeclarationsRequest request) {
+    return this.rawClient.usDeUnemploymentGet(request).body();
+  }
+
+  /**
+   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. Answers 422 for a company outside the US.
+   */
+  public UsDeUnemploymentGetDeclarationsResponse usDeUnemploymentGet(
+      UsDeUnemploymentGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usDeUnemploymentGet(request, requestOptions).body();
+  }
+
+  /**
+   * The Delaware gross receipts tax of a month (YYYY-MM) or a quarter (YYYY-Qn) for one business activity of the company's license: the net amounts of the sale invoices issued in the period (credit notes subtracted, advance invoices left out because the final invoice carries the sale, amounts in another currency at the rate stored on the invoice), less <code>excludedReceipts</code> (receipts from outside Delaware and from related entities, which the caller states), less the monthly or quarterly deduction of the activity, at the rate of the activity in 30 Del. C. chapters 23, 25, 27 and 29. An invoice in another currency without a stored rate is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public UsDeGrossReceiptsGetDeclarationsResponse usDeGrossReceiptsGet(
+      UsDeGrossReceiptsGetDeclarationsRequest request) {
+    return this.rawClient.usDeGrossReceiptsGet(request).body();
+  }
+
+  /**
+   * The Delaware gross receipts tax of a month (YYYY-MM) or a quarter (YYYY-Qn) for one business activity of the company's license: the net amounts of the sale invoices issued in the period (credit notes subtracted, advance invoices left out because the final invoice carries the sale, amounts in another currency at the rate stored on the invoice), less <code>excludedReceipts</code> (receipts from outside Delaware and from related entities, which the caller states), less the monthly or quarterly deduction of the activity, at the rate of the activity in 30 Del. C. chapters 23, 25, 27 and 29. An invoice in another currency without a stored rate is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public UsDeGrossReceiptsGetDeclarationsResponse usDeGrossReceiptsGet(
+      UsDeGrossReceiptsGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usDeGrossReceiptsGet(request, requestOptions).body();
+  }
+
+  /**
+   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (<code>subdivision</code>, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public UsStateSalesGetDeclarationsResponse usStateSalesGet(
+      UsStateSalesGetDeclarationsRequest request) {
+    return this.rawClient.usStateSalesGet(request).body();
+  }
+
+  /**
+   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (<code>subdivision</code>, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public UsStateSalesGetDeclarationsResponse usStateSalesGet(
+      UsStateSalesGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usStateSalesGet(request, requestOptions).body();
+  }
+
+  /**
+   * The Delaware franchise tax of a domestic corporation for its annual franchise tax report, by 8 Del. C. § 503: the authorized shares method on the total of <code>authorizedShares</code>, and, when <code>issuedShares</code> and <code>totalGrossAssets</code> (the total assets of Form 1120 Schedule L) are given, the assumed par value capital method, where a share class without <code>parValue</code> has no par value; <code>tax</code> is the lesser of the two (at least $175 and $400, at most $200,000), or $250,000 for a Large Corporate Filer. <code>annualReportFee</code> is the filing fee of a non-exempt domestic corporation, paid with the report. Answers 422 for a company outside the US.
+   */
+  public UsDeFranchiseTaxComputeDeclarationsResponse usDeFranchiseTaxCompute(
+      UsDeFranchiseTaxComputeDeclarationsRequest request) {
+    return this.rawClient.usDeFranchiseTaxCompute(request).body();
+  }
+
+  /**
+   * The Delaware franchise tax of a domestic corporation for its annual franchise tax report, by 8 Del. C. § 503: the authorized shares method on the total of <code>authorizedShares</code>, and, when <code>issuedShares</code> and <code>totalGrossAssets</code> (the total assets of Form 1120 Schedule L) are given, the assumed par value capital method, where a share class without <code>parValue</code> has no par value; <code>tax</code> is the lesser of the two (at least $175 and $400, at most $200,000), or $250,000 for a Large Corporate Filer. <code>annualReportFee</code> is the filing fee of a non-exempt domestic corporation, paid with the report. Answers 422 for a company outside the US.
+   */
+  public UsDeFranchiseTaxComputeDeclarationsResponse usDeFranchiseTaxCompute(
+      UsDeFranchiseTaxComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usDeFranchiseTaxCompute(request, requestOptions).body();
+  }
+
+  /**
+   * The hours worked in each workweek that touches the period, per employee of a US company (or the one <code>employeeId</code>), for the overtime and records of the Fair Labor Standards Act: the workweek starts on the employee's <code>usWorkweekStart</code> day and runs 7 days; the hours are those entered on the work and business-trip days of the timesheets; <code>overtimeHours</code> are the hours above 40 in the workweek, 0 for an employee whose <code>usFlsaExempt</code> is yes. An employee without <code>usWorkweekStart</code> is left out with a warning. Overtime pay is entered on the payroll run as an addition of payment type <code>overtime-pay</code> with its hours. Answers 422 for a company outside the US.
+   */
+  public UsWorkweeksListDeclarationsResponse usWorkweeksList(
+      UsWorkweeksListDeclarationsRequest request) {
+    return this.rawClient.usWorkweeksList(request).body();
+  }
+
+  /**
+   * The hours worked in each workweek that touches the period, per employee of a US company (or the one <code>employeeId</code>), for the overtime and records of the Fair Labor Standards Act: the workweek starts on the employee's <code>usWorkweekStart</code> day and runs 7 days; the hours are those entered on the work and business-trip days of the timesheets; <code>overtimeHours</code> are the hours above 40 in the workweek, 0 for an employee whose <code>usFlsaExempt</code> is yes. An employee without <code>usWorkweekStart</code> is left out with a warning. Overtime pay is entered on the payroll run as an addition of payment type <code>overtime-pay</code> with its hours. Answers 422 for a company outside the US.
+   */
+  public UsWorkweeksListDeclarationsResponse usWorkweeksList(
+      UsWorkweeksListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usWorkweeksList(request, requestOptions).body();
   }
 
   /**

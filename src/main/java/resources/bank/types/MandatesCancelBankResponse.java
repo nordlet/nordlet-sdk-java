@@ -44,9 +44,15 @@ public final class MandatesCancelBankResponse {
 
   private final String debtorName;
 
-  private final String iban;
+  private final Optional<String> iban;
 
   private final Optional<String> bic;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<MandatesCancelBankResponseAccountType> accountType;
 
   private final String signatureDate;
 
@@ -54,7 +60,11 @@ public final class MandatesCancelBankResponse {
 
   private final Optional<String> lastCollectionDate;
 
-  private final String expiresOn;
+  private final Optional<String> expiresOn;
+
+  private final Optional<String> lodgedOn;
+
+  private final Optional<String> cancellationLodgedOn;
 
   private final Optional<OffsetDateTime> cancelledAt;
 
@@ -66,10 +76,13 @@ public final class MandatesCancelBankResponse {
 
   private MandatesCancelBankResponse(String id, String partnerId, String reference,
       MandatesCancelBankResponseScheme scheme, MandatesCancelBankResponseSequenceType sequenceType,
-      MandatesCancelBankResponseStatus status, String debtorName, String iban, Optional<String> bic,
-      String signatureDate, long collectionsCount, Optional<String> lastCollectionDate,
-      String expiresOn, Optional<OffsetDateTime> cancelledAt, Optional<String> notes,
-      OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
+      MandatesCancelBankResponseStatus status, String debtorName, Optional<String> iban,
+      Optional<String> bic, Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<MandatesCancelBankResponseAccountType> accountType, String signatureDate,
+      long collectionsCount, Optional<String> lastCollectionDate, Optional<String> expiresOn,
+      Optional<String> lodgedOn, Optional<String> cancellationLodgedOn,
+      Optional<OffsetDateTime> cancelledAt, Optional<String> notes, OffsetDateTime createdAt,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.reference = reference;
@@ -79,10 +92,15 @@ public final class MandatesCancelBankResponse {
     this.debtorName = debtorName;
     this.iban = iban;
     this.bic = bic;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.accountType = accountType;
     this.signatureDate = signatureDate;
     this.collectionsCount = collectionsCount;
     this.lastCollectionDate = lastCollectionDate;
     this.expiresOn = expiresOn;
+    this.lodgedOn = lodgedOn;
+    this.cancellationLodgedOn = cancellationLodgedOn;
     this.cancelledAt = cancelledAt;
     this.notes = notes;
     this.createdAt = createdAt;
@@ -124,8 +142,11 @@ public final class MandatesCancelBankResponse {
     return debtorName;
   }
 
-  @JsonProperty("iban")
-  public String getIban() {
+  @JsonIgnore
+  public Optional<String> getIban() {
+    if (iban == null) {
+      return Optional.empty();
+    }
     return iban;
   }
 
@@ -135,6 +156,33 @@ public final class MandatesCancelBankResponse {
       return Optional.empty();
     }
     return bic;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankCode() {
+    if (bankCode == null) {
+      return Optional.empty();
+    }
+    return bankCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountNumber() {
+    if (bankAccountNumber == null) {
+      return Optional.empty();
+    }
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Checking or savings account; a US ACH file needs it
+   */
+  @JsonIgnore
+  public Optional<MandatesCancelBankResponseAccountType> getAccountType() {
+    if (accountType == null) {
+      return Optional.empty();
+    }
+    return accountType;
   }
 
   @JsonProperty("signatureDate")
@@ -155,9 +203,28 @@ public final class MandatesCancelBankResponse {
     return lastCollectionDate;
   }
 
-  @JsonProperty("expiresOn")
-  public String getExpiresOn() {
+  @JsonIgnore
+  public Optional<String> getExpiresOn() {
+    if (expiresOn == null) {
+      return Optional.empty();
+    }
     return expiresOn;
+  }
+
+  @JsonIgnore
+  public Optional<String> getLodgedOn() {
+    if (lodgedOn == null) {
+      return Optional.empty();
+    }
+    return lodgedOn;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCancellationLodgedOn() {
+    if (cancellationLodgedOn == null) {
+      return Optional.empty();
+    }
+    return cancellationLodgedOn;
   }
 
   @JsonIgnore
@@ -185,6 +252,15 @@ public final class MandatesCancelBankResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("iban")
+  private Optional<String> _getIban() {
+    return iban;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("bic")
   private Optional<String> _getBic() {
     return bic;
@@ -194,9 +270,63 @@ public final class MandatesCancelBankResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("bankCode")
+  private Optional<String> _getBankCode() {
+    return bankCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountNumber")
+  private Optional<String> _getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("accountType")
+  private Optional<MandatesCancelBankResponseAccountType> _getAccountType() {
+    return accountType;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("lastCollectionDate")
   private Optional<String> _getLastCollectionDate() {
     return lastCollectionDate;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("expiresOn")
+  private Optional<String> _getExpiresOn() {
+    return expiresOn;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("lodgedOn")
+  private Optional<String> _getLodgedOn() {
+    return lodgedOn;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("cancellationLodgedOn")
+  private Optional<String> _getCancellationLodgedOn() {
+    return cancellationLodgedOn;
   }
 
   @JsonInclude(
@@ -229,12 +359,12 @@ public final class MandatesCancelBankResponse {
   }
 
   private boolean equalTo(MandatesCancelBankResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && reference.equals(other.reference) && scheme.equals(other.scheme) && sequenceType.equals(other.sequenceType) && status.equals(other.status) && debtorName.equals(other.debtorName) && iban.equals(other.iban) && bic.equals(other.bic) && signatureDate.equals(other.signatureDate) && collectionsCount == other.collectionsCount && lastCollectionDate.equals(other.lastCollectionDate) && expiresOn.equals(other.expiresOn) && cancelledAt.equals(other.cancelledAt) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && reference.equals(other.reference) && scheme.equals(other.scheme) && sequenceType.equals(other.sequenceType) && status.equals(other.status) && debtorName.equals(other.debtorName) && iban.equals(other.iban) && bic.equals(other.bic) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && accountType.equals(other.accountType) && signatureDate.equals(other.signatureDate) && collectionsCount == other.collectionsCount && lastCollectionDate.equals(other.lastCollectionDate) && expiresOn.equals(other.expiresOn) && lodgedOn.equals(other.lodgedOn) && cancellationLodgedOn.equals(other.cancellationLodgedOn) && cancelledAt.equals(other.cancelledAt) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.reference, this.scheme, this.sequenceType, this.status, this.debtorName, this.iban, this.bic, this.signatureDate, this.collectionsCount, this.lastCollectionDate, this.expiresOn, this.cancelledAt, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.partnerId, this.reference, this.scheme, this.sequenceType, this.status, this.debtorName, this.iban, this.bic, this.bankCode, this.bankAccountNumber, this.accountType, this.signatureDate, this.collectionsCount, this.lastCollectionDate, this.expiresOn, this.lodgedOn, this.cancellationLodgedOn, this.cancelledAt, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -273,11 +403,7 @@ public final class MandatesCancelBankResponse {
   }
 
   public interface DebtorNameStage {
-    IbanStage debtorName(@NotNull String debtorName);
-  }
-
-  public interface IbanStage {
-    SignatureDateStage iban(@NotNull String iban);
+    SignatureDateStage debtorName(@NotNull String debtorName);
   }
 
   public interface SignatureDateStage {
@@ -285,11 +411,7 @@ public final class MandatesCancelBankResponse {
   }
 
   public interface CollectionsCountStage {
-    ExpiresOnStage collectionsCount(long collectionsCount);
-  }
-
-  public interface ExpiresOnStage {
-    CreatedAtStage expiresOn(@NotNull String expiresOn);
+    CreatedAtStage collectionsCount(long collectionsCount);
   }
 
   public interface CreatedAtStage {
@@ -303,17 +425,62 @@ public final class MandatesCancelBankResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage iban(Optional<String> iban);
+
+    _FinalStage iban(String iban);
+
+    _FinalStage iban(Nullable<String> iban);
+
     _FinalStage bic(Optional<String> bic);
 
     _FinalStage bic(String bic);
 
     _FinalStage bic(Nullable<String> bic);
 
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    _FinalStage bankCode(Nullable<String> bankCode);
+
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber);
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    _FinalStage accountType(Optional<MandatesCancelBankResponseAccountType> accountType);
+
+    _FinalStage accountType(MandatesCancelBankResponseAccountType accountType);
+
+    _FinalStage accountType(Nullable<MandatesCancelBankResponseAccountType> accountType);
+
     _FinalStage lastCollectionDate(Optional<String> lastCollectionDate);
 
     _FinalStage lastCollectionDate(String lastCollectionDate);
 
     _FinalStage lastCollectionDate(Nullable<String> lastCollectionDate);
+
+    _FinalStage expiresOn(Optional<String> expiresOn);
+
+    _FinalStage expiresOn(String expiresOn);
+
+    _FinalStage expiresOn(Nullable<String> expiresOn);
+
+    _FinalStage lodgedOn(Optional<String> lodgedOn);
+
+    _FinalStage lodgedOn(String lodgedOn);
+
+    _FinalStage lodgedOn(Nullable<String> lodgedOn);
+
+    _FinalStage cancellationLodgedOn(Optional<String> cancellationLodgedOn);
+
+    _FinalStage cancellationLodgedOn(String cancellationLodgedOn);
+
+    _FinalStage cancellationLodgedOn(Nullable<String> cancellationLodgedOn);
 
     _FinalStage cancelledAt(Optional<OffsetDateTime> cancelledAt);
 
@@ -331,7 +498,7 @@ public final class MandatesCancelBankResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, ReferenceStage, SchemeStage, SequenceTypeStage, StatusStage, DebtorNameStage, IbanStage, SignatureDateStage, CollectionsCountStage, ExpiresOnStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, PartnerIdStage, ReferenceStage, SchemeStage, SequenceTypeStage, StatusStage, DebtorNameStage, SignatureDateStage, CollectionsCountStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String partnerId;
@@ -346,13 +513,9 @@ public final class MandatesCancelBankResponse {
 
     private String debtorName;
 
-    private String iban;
-
     private String signatureDate;
 
     private long collectionsCount;
-
-    private String expiresOn;
 
     private OffsetDateTime createdAt;
 
@@ -360,9 +523,23 @@ public final class MandatesCancelBankResponse {
 
     private Optional<OffsetDateTime> cancelledAt = Optional.empty();
 
+    private Optional<String> cancellationLodgedOn = Optional.empty();
+
+    private Optional<String> lodgedOn = Optional.empty();
+
+    private Optional<String> expiresOn = Optional.empty();
+
     private Optional<String> lastCollectionDate = Optional.empty();
 
+    private Optional<MandatesCancelBankResponseAccountType> accountType = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
     private Optional<String> bic = Optional.empty();
+
+    private Optional<String> iban = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -381,10 +558,15 @@ public final class MandatesCancelBankResponse {
       debtorName(other.getDebtorName());
       iban(other.getIban());
       bic(other.getBic());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      accountType(other.getAccountType());
       signatureDate(other.getSignatureDate());
       collectionsCount(other.getCollectionsCount());
       lastCollectionDate(other.getLastCollectionDate());
       expiresOn(other.getExpiresOn());
+      lodgedOn(other.getLodgedOn());
+      cancellationLodgedOn(other.getCancellationLodgedOn());
       cancelledAt(other.getCancelledAt());
       notes(other.getNotes());
       createdAt(other.getCreatedAt());
@@ -435,15 +617,8 @@ public final class MandatesCancelBankResponse {
 
     @java.lang.Override
     @JsonSetter("debtorName")
-    public IbanStage debtorName(@NotNull String debtorName) {
+    public SignatureDateStage debtorName(@NotNull String debtorName) {
       this.debtorName = Objects.requireNonNull(debtorName, "debtorName must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("iban")
-    public SignatureDateStage iban(@NotNull String iban) {
-      this.iban = Objects.requireNonNull(iban, "iban must not be null");
       return this;
     }
 
@@ -456,15 +631,8 @@ public final class MandatesCancelBankResponse {
 
     @java.lang.Override
     @JsonSetter("collectionsCount")
-    public ExpiresOnStage collectionsCount(long collectionsCount) {
+    public CreatedAtStage collectionsCount(long collectionsCount) {
       this.collectionsCount = collectionsCount;
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("expiresOn")
-    public CreatedAtStage expiresOn(@NotNull String expiresOn) {
-      this.expiresOn = Objects.requireNonNull(expiresOn, "expiresOn must not be null");
       return this;
     }
 
@@ -536,6 +704,96 @@ public final class MandatesCancelBankResponse {
     }
 
     @java.lang.Override
+    public _FinalStage cancellationLodgedOn(Nullable<String> cancellationLodgedOn) {
+      if (cancellationLodgedOn.isNull()) {
+        this.cancellationLodgedOn = null;
+      }
+      else if (cancellationLodgedOn.isEmpty()) {
+        this.cancellationLodgedOn = Optional.empty();
+      }
+      else {
+        this.cancellationLodgedOn = Optional.of(cancellationLodgedOn.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage cancellationLodgedOn(String cancellationLodgedOn) {
+      this.cancellationLodgedOn = Optional.ofNullable(cancellationLodgedOn);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "cancellationLodgedOn",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage cancellationLodgedOn(Optional<String> cancellationLodgedOn) {
+      this.cancellationLodgedOn = cancellationLodgedOn;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lodgedOn(Nullable<String> lodgedOn) {
+      if (lodgedOn.isNull()) {
+        this.lodgedOn = null;
+      }
+      else if (lodgedOn.isEmpty()) {
+        this.lodgedOn = Optional.empty();
+      }
+      else {
+        this.lodgedOn = Optional.of(lodgedOn.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage lodgedOn(String lodgedOn) {
+      this.lodgedOn = Optional.ofNullable(lodgedOn);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "lodgedOn",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage lodgedOn(Optional<String> lodgedOn) {
+      this.lodgedOn = lodgedOn;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresOn(Nullable<String> expiresOn) {
+      if (expiresOn.isNull()) {
+        this.expiresOn = null;
+      }
+      else if (expiresOn.isEmpty()) {
+        this.expiresOn = Optional.empty();
+      }
+      else {
+        this.expiresOn = Optional.of(expiresOn.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage expiresOn(String expiresOn) {
+      this.expiresOn = Optional.ofNullable(expiresOn);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "expiresOn",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage expiresOn(Optional<String> expiresOn) {
+      this.expiresOn = expiresOn;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage lastCollectionDate(Nullable<String> lastCollectionDate) {
       if (lastCollectionDate.isNull()) {
         this.lastCollectionDate = null;
@@ -562,6 +820,107 @@ public final class MandatesCancelBankResponse {
     )
     public _FinalStage lastCollectionDate(Optional<String> lastCollectionDate) {
       this.lastCollectionDate = lastCollectionDate;
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage accountType(Nullable<MandatesCancelBankResponseAccountType> accountType) {
+      if (accountType.isNull()) {
+        this.accountType = null;
+      }
+      else if (accountType.isEmpty()) {
+        this.accountType = Optional.empty();
+      }
+      else {
+        this.accountType = Optional.of(accountType.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage accountType(MandatesCancelBankResponseAccountType accountType) {
+      this.accountType = Optional.ofNullable(accountType);
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "accountType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage accountType(Optional<MandatesCancelBankResponseAccountType> accountType) {
+      this.accountType = accountType;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber) {
+      if (bankAccountNumber.isNull()) {
+        this.bankAccountNumber = null;
+      }
+      else if (bankAccountNumber.isEmpty()) {
+        this.bankAccountNumber = Optional.empty();
+      }
+      else {
+        this.bankAccountNumber = Optional.of(bankAccountNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(Nullable<String> bankCode) {
+      if (bankCode.isNull()) {
+        this.bankCode = null;
+      }
+      else if (bankCode.isEmpty()) {
+        this.bankCode = Optional.empty();
+      }
+      else {
+        this.bankCode = Optional.of(bankCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
       return this;
     }
 
@@ -596,8 +955,38 @@ public final class MandatesCancelBankResponse {
     }
 
     @java.lang.Override
+    public _FinalStage iban(Nullable<String> iban) {
+      if (iban.isNull()) {
+        this.iban = null;
+      }
+      else if (iban.isEmpty()) {
+        this.iban = Optional.empty();
+      }
+      else {
+        this.iban = Optional.of(iban.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage iban(String iban) {
+      this.iban = Optional.ofNullable(iban);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "iban",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage iban(Optional<String> iban) {
+      this.iban = iban;
+      return this;
+    }
+
+    @java.lang.Override
     public MandatesCancelBankResponse build() {
-      return new MandatesCancelBankResponse(id, partnerId, reference, scheme, sequenceType, status, debtorName, iban, bic, signatureDate, collectionsCount, lastCollectionDate, expiresOn, cancelledAt, notes, createdAt, additionalProperties);
+      return new MandatesCancelBankResponse(id, partnerId, reference, scheme, sequenceType, status, debtorName, iban, bic, bankCode, bankAccountNumber, accountType, signatureDate, collectionsCount, lastCollectionDate, expiresOn, lodgedOn, cancellationLodgedOn, cancelledAt, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

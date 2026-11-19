@@ -52,6 +52,8 @@ public final class GetPartnersResponse {
 
   private final Optional<String> birthDate;
 
+  private final Optional<Boolean> isBusiness;
+
   private final boolean isCustomer;
 
   private final boolean isSupplier;
@@ -119,8 +121,8 @@ public final class GetPartnersResponse {
   private GetPartnersResponse(String id, GetPartnersResponseType type, String name,
       Optional<String> code, Optional<String> vatCode, Optional<String> peppolId,
       Optional<String> email, Optional<String> phone, Optional<String> selfEmploymentCertNo,
-      Optional<String> birthDate, boolean isCustomer, boolean isSupplier,
-      Optional<Long> paymentTermDays, Optional<String> invoiceCurrency,
+      Optional<String> birthDate, Optional<Boolean> isBusiness, boolean isCustomer,
+      boolean isSupplier, Optional<Long> paymentTermDays, Optional<String> invoiceCurrency,
       Optional<String> invoiceLocale, Optional<String> creditLimit, Optional<String> priceListId,
       Optional<String> groupId, Optional<String> statusId, Optional<Boolean> vatValid,
       Optional<OffsetDateTime> vatValidatedAt, Optional<GetPartnersResponseAddress> address,
@@ -142,6 +144,7 @@ public final class GetPartnersResponse {
     this.phone = phone;
     this.selfEmploymentCertNo = selfEmploymentCertNo;
     this.birthDate = birthDate;
+    this.isBusiness = isBusiness;
     this.isCustomer = isCustomer;
     this.isSupplier = isSupplier;
     this.paymentTermDays = paymentTermDays;
@@ -245,6 +248,14 @@ public final class GetPartnersResponse {
       return Optional.empty();
     }
     return birthDate;
+  }
+
+  @JsonIgnore
+  public Optional<Boolean> getIsBusiness() {
+    if (isBusiness == null) {
+      return Optional.empty();
+    }
+    return isBusiness;
   }
 
   @JsonProperty("isCustomer")
@@ -538,6 +549,15 @@ public final class GetPartnersResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("isBusiness")
+  private Optional<Boolean> _getIsBusiness() {
+    return isBusiness;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("paymentTermDays")
   private Optional<Long> _getPaymentTermDays() {
     return paymentTermDays;
@@ -753,12 +773,12 @@ public final class GetPartnersResponse {
   }
 
   private boolean equalTo(GetPartnersResponse other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer == other.isCustomer && isSupplier == other.isSupplier && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && vatValid.equals(other.vatValid) && vatValidatedAt.equals(other.vatValidatedAt) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder == other.autoDebtReminder && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee == other.isEmployee && isGroupMember == other.isGroupMember && isActive == other.isActive && legalCountryClass.equals(other.legalCountryClass) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer == other.isCustomer && isSupplier == other.isSupplier && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && vatValid.equals(other.vatValid) && vatValidatedAt.equals(other.vatValidatedAt) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder == other.autoDebtReminder && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee == other.isEmployee && isGroupMember == other.isGroupMember && isActive == other.isActive && legalCountryClass.equals(other.legalCountryClass) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.vatValid, this.vatValidatedAt, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.vatValid, this.vatValidatedAt, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -864,6 +884,12 @@ public final class GetPartnersResponse {
     _FinalStage birthDate(String birthDate);
 
     _FinalStage birthDate(Nullable<String> birthDate);
+
+    _FinalStage isBusiness(Optional<Boolean> isBusiness);
+
+    _FinalStage isBusiness(Boolean isBusiness);
+
+    _FinalStage isBusiness(Nullable<Boolean> isBusiness);
 
     _FinalStage paymentTermDays(Optional<Long> paymentTermDays);
 
@@ -1079,6 +1105,8 @@ public final class GetPartnersResponse {
 
     private Optional<Long> paymentTermDays = Optional.empty();
 
+    private Optional<Boolean> isBusiness = Optional.empty();
+
     private Optional<String> birthDate = Optional.empty();
 
     private Optional<String> selfEmploymentCertNo = Optional.empty();
@@ -1111,6 +1139,7 @@ public final class GetPartnersResponse {
       phone(other.getPhone());
       selfEmploymentCertNo(other.getSelfEmploymentCertNo());
       birthDate(other.getBirthDate());
+      isBusiness(other.getIsBusiness());
       isCustomer(other.getIsCustomer());
       isSupplier(other.getIsSupplier());
       paymentTermDays(other.getPaymentTermDays());
@@ -1918,6 +1947,36 @@ public final class GetPartnersResponse {
     }
 
     @java.lang.Override
+    public _FinalStage isBusiness(Nullable<Boolean> isBusiness) {
+      if (isBusiness.isNull()) {
+        this.isBusiness = null;
+      }
+      else if (isBusiness.isEmpty()) {
+        this.isBusiness = Optional.empty();
+      }
+      else {
+        this.isBusiness = Optional.of(isBusiness.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage isBusiness(Boolean isBusiness) {
+      this.isBusiness = Optional.ofNullable(isBusiness);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "isBusiness",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isBusiness(Optional<Boolean> isBusiness) {
+      this.isBusiness = isBusiness;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage birthDate(Nullable<String> birthDate) {
       if (birthDate.isNull()) {
         this.birthDate = null;
@@ -2129,7 +2188,7 @@ public final class GetPartnersResponse {
 
     @java.lang.Override
     public GetPartnersResponse build() {
-      return new GetPartnersResponse(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, vatValid, vatValidatedAt, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, createdAt, updatedAt, additionalProperties);
+      return new GetPartnersResponse(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, vatValid, vatValidatedAt, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

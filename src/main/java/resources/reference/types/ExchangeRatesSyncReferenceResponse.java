@@ -26,13 +26,16 @@ import org.jetbrains.annotations.NotNull;
 public final class ExchangeRatesSyncReferenceResponse {
   private final String date;
 
+  private final String baseCurrency;
+
   private final long imported;
 
   private final Map<String, Object> additionalProperties;
 
-  private ExchangeRatesSyncReferenceResponse(String date, long imported,
+  private ExchangeRatesSyncReferenceResponse(String date, String baseCurrency, long imported,
       Map<String, Object> additionalProperties) {
     this.date = date;
+    this.baseCurrency = baseCurrency;
     this.imported = imported;
     this.additionalProperties = additionalProperties;
   }
@@ -40,6 +43,11 @@ public final class ExchangeRatesSyncReferenceResponse {
   @JsonProperty("date")
   public String getDate() {
     return date;
+  }
+
+  @JsonProperty("baseCurrency")
+  public String getBaseCurrency() {
+    return baseCurrency;
   }
 
   @JsonProperty("imported")
@@ -59,12 +67,12 @@ public final class ExchangeRatesSyncReferenceResponse {
   }
 
   private boolean equalTo(ExchangeRatesSyncReferenceResponse other) {
-    return date.equals(other.date) && imported == other.imported;
+    return date.equals(other.date) && baseCurrency.equals(other.baseCurrency) && imported == other.imported;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.date, this.imported);
+    return Objects.hash(this.date, this.baseCurrency, this.imported);
   }
 
   @java.lang.Override
@@ -77,9 +85,13 @@ public final class ExchangeRatesSyncReferenceResponse {
   }
 
   public interface DateStage {
-    ImportedStage date(@NotNull String date);
+    BaseCurrencyStage date(@NotNull String date);
 
     Builder from(ExchangeRatesSyncReferenceResponse other);
+  }
+
+  public interface BaseCurrencyStage {
+    ImportedStage baseCurrency(@NotNull String baseCurrency);
   }
 
   public interface ImportedStage {
@@ -97,8 +109,10 @@ public final class ExchangeRatesSyncReferenceResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements DateStage, ImportedStage, _FinalStage {
+  public static final class Builder implements DateStage, BaseCurrencyStage, ImportedStage, _FinalStage {
     private String date;
+
+    private String baseCurrency;
 
     private long imported;
 
@@ -111,14 +125,22 @@ public final class ExchangeRatesSyncReferenceResponse {
     @java.lang.Override
     public Builder from(ExchangeRatesSyncReferenceResponse other) {
       date(other.getDate());
+      baseCurrency(other.getBaseCurrency());
       imported(other.getImported());
       return this;
     }
 
     @java.lang.Override
     @JsonSetter("date")
-    public ImportedStage date(@NotNull String date) {
+    public BaseCurrencyStage date(@NotNull String date) {
       this.date = Objects.requireNonNull(date, "date must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseCurrency")
+    public ImportedStage baseCurrency(@NotNull String baseCurrency) {
+      this.baseCurrency = Objects.requireNonNull(baseCurrency, "baseCurrency must not be null");
       return this;
     }
 
@@ -131,7 +153,7 @@ public final class ExchangeRatesSyncReferenceResponse {
 
     @java.lang.Override
     public ExchangeRatesSyncReferenceResponse build() {
-      return new ExchangeRatesSyncReferenceResponse(date, imported, additionalProperties);
+      return new ExchangeRatesSyncReferenceResponse(date, baseCurrency, imported, additionalProperties);
     }
 
     @java.lang.Override

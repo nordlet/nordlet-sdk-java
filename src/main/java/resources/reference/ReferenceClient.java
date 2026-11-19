@@ -75,21 +75,21 @@ public class ReferenceClient {
   }
 
   /**
-   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   * Fetches the official exchange rates for <code>date</code> (default: the company's current date) quoted against the company's base currency and stores them in the rate table shared by all companies, replacing the rates already stored for the same base, currency and date. A company that keeps its books in GBP gets the HMRC monthly rates of the month of <code>date</code> (units per 1 GBP, dated the first day of the month), one in USD the Federal Reserve H.10 rates of the two weeks up to <code>date</code> (units per 1 USD), and every other company the euro rates the Bank of Lithuania publishes for <code>date</code> (units per 1 EUR). <code>baseCurrency</code> in the answer names the base the rates are quoted against. Answers 404 when no rates are published for the date.
    */
   public ExchangeRatesSyncReferenceResponse exchangeRatesSync() {
     return this.rawClient.exchangeRatesSync().body();
   }
 
   /**
-   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   * Fetches the official exchange rates for <code>date</code> (default: the company's current date) quoted against the company's base currency and stores them in the rate table shared by all companies, replacing the rates already stored for the same base, currency and date. A company that keeps its books in GBP gets the HMRC monthly rates of the month of <code>date</code> (units per 1 GBP, dated the first day of the month), one in USD the Federal Reserve H.10 rates of the two weeks up to <code>date</code> (units per 1 USD), and every other company the euro rates the Bank of Lithuania publishes for <code>date</code> (units per 1 EUR). <code>baseCurrency</code> in the answer names the base the rates are quoted against. Answers 404 when no rates are published for the date.
    */
   public ExchangeRatesSyncReferenceResponse exchangeRatesSync(RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesSync(requestOptions).body();
   }
 
   /**
-   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   * Fetches the official exchange rates for <code>date</code> (default: the company's current date) quoted against the company's base currency and stores them in the rate table shared by all companies, replacing the rates already stored for the same base, currency and date. A company that keeps its books in GBP gets the HMRC monthly rates of the month of <code>date</code> (units per 1 GBP, dated the first day of the month), one in USD the Federal Reserve H.10 rates of the two weeks up to <code>date</code> (units per 1 USD), and every other company the euro rates the Bank of Lithuania publishes for <code>date</code> (units per 1 EUR). <code>baseCurrency</code> in the answer names the base the rates are quoted against. Answers 404 when no rates are published for the date.
    */
   public ExchangeRatesSyncReferenceResponse exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request) {
@@ -97,7 +97,7 @@ public class ReferenceClient {
   }
 
   /**
-   * Fetches the euro exchange rates the Bank of Lithuania web service publishes for <code>date</code> (default: the company's current date) and stores them in the rate table shared by all companies, replacing the rates already stored for that date. Answers 404 when no rates are published for the date.
+   * Fetches the official exchange rates for <code>date</code> (default: the company's current date) quoted against the company's base currency and stores them in the rate table shared by all companies, replacing the rates already stored for the same base, currency and date. A company that keeps its books in GBP gets the HMRC monthly rates of the month of <code>date</code> (units per 1 GBP, dated the first day of the month), one in USD the Federal Reserve H.10 rates of the two weeks up to <code>date</code> (units per 1 USD), and every other company the euro rates the Bank of Lithuania publishes for <code>date</code> (units per 1 EUR). <code>baseCurrency</code> in the answer names the base the rates are quoted against. Answers 404 when no rates are published for the date.
    */
   public ExchangeRatesSyncReferenceResponse exchangeRatesSync(
       ExchangeRatesSyncReferenceRequest request, RequestOptions requestOptions) {
@@ -105,21 +105,21 @@ public class ReferenceClient {
   }
 
   /**
-   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   * Lists the stored official exchange rates, which are shared by all companies. <code>rate</code> is the units of <code>currencyCode</code> per one unit of <code>baseCurrency</code>: EUR rates come from the Bank of Lithuania, GBP rates from HMRC, USD rates from the Federal Reserve. Filterable by <code>baseCurrency</code>, <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code>, <code>baseCurrency</code> and <code>currencyCode</code>.
    */
   public ExchangeRatesListReferenceResponse exchangeRatesList() {
     return this.rawClient.exchangeRatesList().body();
   }
 
   /**
-   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   * Lists the stored official exchange rates, which are shared by all companies. <code>rate</code> is the units of <code>currencyCode</code> per one unit of <code>baseCurrency</code>: EUR rates come from the Bank of Lithuania, GBP rates from HMRC, USD rates from the Federal Reserve. Filterable by <code>baseCurrency</code>, <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code>, <code>baseCurrency</code> and <code>currencyCode</code>.
    */
   public ExchangeRatesListReferenceResponse exchangeRatesList(RequestOptions requestOptions) {
     return this.rawClient.exchangeRatesList(requestOptions).body();
   }
 
   /**
-   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   * Lists the stored official exchange rates, which are shared by all companies. <code>rate</code> is the units of <code>currencyCode</code> per one unit of <code>baseCurrency</code>: EUR rates come from the Bank of Lithuania, GBP rates from HMRC, USD rates from the Federal Reserve. Filterable by <code>baseCurrency</code>, <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code>, <code>baseCurrency</code> and <code>currencyCode</code>.
    */
   public ExchangeRatesListReferenceResponse exchangeRatesList(
       ExchangeRatesListReferenceRequest request) {
@@ -127,7 +127,7 @@ public class ReferenceClient {
   }
 
   /**
-   * Lists the stored euro exchange rates, which are shared by all companies. Filterable by <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code> and <code>currencyCode</code>.
+   * Lists the stored official exchange rates, which are shared by all companies. <code>rate</code> is the units of <code>currencyCode</code> per one unit of <code>baseCurrency</code>: EUR rates come from the Bank of Lithuania, GBP rates from HMRC, USD rates from the Federal Reserve. Filterable by <code>baseCurrency</code>, <code>currencyCode</code> and <code>date</code>; sortable by <code>date</code>, <code>baseCurrency</code> and <code>currencyCode</code>.
    */
   public ExchangeRatesListReferenceResponse exchangeRatesList(
       ExchangeRatesListReferenceRequest request, RequestOptions requestOptions) {
@@ -492,7 +492,7 @@ public class ReferenceClient {
   }
 
   /**
-   * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+   * Replace the VAT rate mapping this company uses for one EU country, or for a country outside the EEA whose rates come from its VAT types (GB). Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
   public EuVatRatesSetOverridesReferenceResponse euVatRatesSetOverrides(
       EuVatRatesSetOverridesReferenceRequest request) {
@@ -500,7 +500,7 @@ public class ReferenceClient {
   }
 
   /**
-   * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+   * Replace the VAT rate mapping this company uses for one EU country, or for a country outside the EEA whose rates come from its VAT types (GB). Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
    */
   public EuVatRatesSetOverridesReferenceResponse euVatRatesSetOverrides(
       EuVatRatesSetOverridesReferenceRequest request, RequestOptions requestOptions) {

@@ -34,7 +34,13 @@ public final class BankAccountsCreatePartnersResponse {
 
   private final String partnerId;
 
-  private final String iban;
+  private final Optional<String> iban;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<BankAccountsCreatePartnersResponseAccountType> accountType;
 
   private final Optional<String> bankName;
 
@@ -48,12 +54,17 @@ public final class BankAccountsCreatePartnersResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private BankAccountsCreatePartnersResponse(String id, String partnerId, String iban,
+  private BankAccountsCreatePartnersResponse(String id, String partnerId, Optional<String> iban,
+      Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<BankAccountsCreatePartnersResponseAccountType> accountType,
       Optional<String> bankName, Optional<String> bic, String currency, boolean isDefault,
       OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
     this.id = id;
     this.partnerId = partnerId;
     this.iban = iban;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.accountType = accountType;
     this.bankName = bankName;
     this.bic = bic;
     this.currency = currency;
@@ -72,9 +83,39 @@ public final class BankAccountsCreatePartnersResponse {
     return partnerId;
   }
 
-  @JsonProperty("iban")
-  public String getIban() {
+  @JsonIgnore
+  public Optional<String> getIban() {
+    if (iban == null) {
+      return Optional.empty();
+    }
     return iban;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankCode() {
+    if (bankCode == null) {
+      return Optional.empty();
+    }
+    return bankCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getBankAccountNumber() {
+    if (bankAccountNumber == null) {
+      return Optional.empty();
+    }
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Checking or savings account; a US ACH file needs it
+   */
+  @JsonIgnore
+  public Optional<BankAccountsCreatePartnersResponseAccountType> getAccountType() {
+    if (accountType == null) {
+      return Optional.empty();
+    }
+    return accountType;
   }
 
   @JsonIgnore
@@ -112,6 +153,42 @@ public final class BankAccountsCreatePartnersResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("iban")
+  private Optional<String> _getIban() {
+    return iban;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankCode")
+  private Optional<String> _getBankCode() {
+    return bankCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("bankAccountNumber")
+  private Optional<String> _getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("accountType")
+  private Optional<BankAccountsCreatePartnersResponseAccountType> _getAccountType() {
+    return accountType;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("bankName")
   private Optional<String> _getBankName() {
     return bankName;
@@ -138,12 +215,12 @@ public final class BankAccountsCreatePartnersResponse {
   }
 
   private boolean equalTo(BankAccountsCreatePartnersResponse other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && iban.equals(other.iban) && bankName.equals(other.bankName) && bic.equals(other.bic) && currency.equals(other.currency) && isDefault == other.isDefault && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && iban.equals(other.iban) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && accountType.equals(other.accountType) && bankName.equals(other.bankName) && bic.equals(other.bic) && currency.equals(other.currency) && isDefault == other.isDefault && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.iban, this.bankName, this.bic, this.currency, this.isDefault, this.createdAt);
+    return Objects.hash(this.id, this.partnerId, this.iban, this.bankCode, this.bankAccountNumber, this.accountType, this.bankName, this.bic, this.currency, this.isDefault, this.createdAt);
   }
 
   @java.lang.Override
@@ -162,11 +239,7 @@ public final class BankAccountsCreatePartnersResponse {
   }
 
   public interface PartnerIdStage {
-    IbanStage partnerId(@NotNull String partnerId);
-  }
-
-  public interface IbanStage {
-    CurrencyStage iban(@NotNull String iban);
+    CurrencyStage partnerId(@NotNull String partnerId);
   }
 
   public interface CurrencyStage {
@@ -188,6 +261,33 @@ public final class BankAccountsCreatePartnersResponse {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage iban(Optional<String> iban);
+
+    _FinalStage iban(String iban);
+
+    _FinalStage iban(Nullable<String> iban);
+
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    _FinalStage bankCode(Nullable<String> bankCode);
+
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber);
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    _FinalStage accountType(Optional<BankAccountsCreatePartnersResponseAccountType> accountType);
+
+    _FinalStage accountType(BankAccountsCreatePartnersResponseAccountType accountType);
+
+    _FinalStage accountType(Nullable<BankAccountsCreatePartnersResponseAccountType> accountType);
+
     _FinalStage bankName(Optional<String> bankName);
 
     _FinalStage bankName(String bankName);
@@ -204,12 +304,10 @@ public final class BankAccountsCreatePartnersResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, PartnerIdStage, IbanStage, CurrencyStage, IsDefaultStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, PartnerIdStage, CurrencyStage, IsDefaultStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String partnerId;
-
-    private String iban;
 
     private String currency;
 
@@ -220,6 +318,14 @@ public final class BankAccountsCreatePartnersResponse {
     private Optional<String> bic = Optional.empty();
 
     private Optional<String> bankName = Optional.empty();
+
+    private Optional<BankAccountsCreatePartnersResponseAccountType> accountType = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
+    private Optional<String> iban = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -232,6 +338,9 @@ public final class BankAccountsCreatePartnersResponse {
       id(other.getId());
       partnerId(other.getPartnerId());
       iban(other.getIban());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      accountType(other.getAccountType());
       bankName(other.getBankName());
       bic(other.getBic());
       currency(other.getCurrency());
@@ -249,15 +358,8 @@ public final class BankAccountsCreatePartnersResponse {
 
     @java.lang.Override
     @JsonSetter("partnerId")
-    public IbanStage partnerId(@NotNull String partnerId) {
+    public CurrencyStage partnerId(@NotNull String partnerId) {
       this.partnerId = Objects.requireNonNull(partnerId, "partnerId must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("iban")
-    public CurrencyStage iban(@NotNull String iban) {
-      this.iban = Objects.requireNonNull(iban, "iban must not be null");
       return this;
     }
 
@@ -342,9 +444,142 @@ public final class BankAccountsCreatePartnersResponse {
       return this;
     }
 
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage accountType(
+        Nullable<BankAccountsCreatePartnersResponseAccountType> accountType) {
+      if (accountType.isNull()) {
+        this.accountType = null;
+      }
+      else if (accountType.isEmpty()) {
+        this.accountType = Optional.empty();
+      }
+      else {
+        this.accountType = Optional.of(accountType.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage accountType(BankAccountsCreatePartnersResponseAccountType accountType) {
+      this.accountType = Optional.ofNullable(accountType);
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "accountType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage accountType(
+        Optional<BankAccountsCreatePartnersResponseAccountType> accountType) {
+      this.accountType = accountType;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(Nullable<String> bankAccountNumber) {
+      if (bankAccountNumber.isNull()) {
+        this.bankAccountNumber = null;
+      }
+      else if (bankAccountNumber.isEmpty()) {
+        this.bankAccountNumber = Optional.empty();
+      }
+      else {
+        this.bankAccountNumber = Optional.of(bankAccountNumber.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(Nullable<String> bankCode) {
+      if (bankCode.isNull()) {
+        this.bankCode = null;
+      }
+      else if (bankCode.isEmpty()) {
+        this.bankCode = Optional.empty();
+      }
+      else {
+        this.bankCode = Optional.of(bankCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage iban(Nullable<String> iban) {
+      if (iban.isNull()) {
+        this.iban = null;
+      }
+      else if (iban.isEmpty()) {
+        this.iban = Optional.empty();
+      }
+      else {
+        this.iban = Optional.of(iban.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage iban(String iban) {
+      this.iban = Optional.ofNullable(iban);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "iban",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage iban(Optional<String> iban) {
+      this.iban = iban;
+      return this;
+    }
+
     @java.lang.Override
     public BankAccountsCreatePartnersResponse build() {
-      return new BankAccountsCreatePartnersResponse(id, partnerId, iban, bankName, bic, currency, isDefault, createdAt, additionalProperties);
+      return new BankAccountsCreatePartnersResponse(id, partnerId, iban, bankCode, bankAccountNumber, accountType, bankName, bic, currency, isDefault, createdAt, additionalProperties);
     }
 
     @java.lang.Override

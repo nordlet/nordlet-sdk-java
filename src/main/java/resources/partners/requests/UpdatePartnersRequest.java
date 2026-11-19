@@ -57,6 +57,8 @@ public final class UpdatePartnersRequest {
 
   private final Optional<String> birthDate;
 
+  private final Optional<Boolean> isBusiness;
+
   private final Optional<Boolean> isCustomer;
 
   private final Optional<Boolean> isSupplier;
@@ -117,7 +119,8 @@ public final class UpdatePartnersRequest {
       Optional<String> name, Optional<String> code, Optional<String> vatCode,
       Optional<String> peppolId, Optional<String> email, Optional<String> phone,
       Optional<String> selfEmploymentCertNo, Optional<String> birthDate,
-      Optional<Boolean> isCustomer, Optional<Boolean> isSupplier, Optional<Long> paymentTermDays,
+      Optional<Boolean> isBusiness, Optional<Boolean> isCustomer, Optional<Boolean> isSupplier,
+      Optional<Long> paymentTermDays,
       Optional<UpdatePartnersRequestInvoiceCurrency> invoiceCurrency,
       Optional<UpdatePartnersRequestInvoiceLocale> invoiceLocale, Optional<String> creditLimit,
       Optional<String> priceListId, Optional<String> groupId, Optional<String> statusId,
@@ -141,6 +144,7 @@ public final class UpdatePartnersRequest {
     this.phone = phone;
     this.selfEmploymentCertNo = selfEmploymentCertNo;
     this.birthDate = birthDate;
+    this.isBusiness = isBusiness;
     this.isCustomer = isCustomer;
     this.isSupplier = isSupplier;
     this.paymentTermDays = paymentTermDays;
@@ -240,6 +244,17 @@ public final class UpdatePartnersRequest {
       return Optional.empty();
     }
     return birthDate;
+  }
+
+  /**
+   * @return Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
+   */
+  @JsonIgnore
+  public Optional<Boolean> getIsBusiness() {
+    if (isBusiness == null) {
+      return Optional.empty();
+    }
+    return isBusiness;
   }
 
   @JsonProperty("isCustomer")
@@ -510,6 +525,15 @@ public final class UpdatePartnersRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("isBusiness")
+  private Optional<Boolean> _getIsBusiness() {
+    return isBusiness;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("paymentTermDays")
   private Optional<Long> _getPaymentTermDays() {
     return paymentTermDays;
@@ -698,12 +722,12 @@ public final class UpdatePartnersRequest {
   }
 
   private boolean equalTo(UpdatePartnersRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
   }
 
   @java.lang.Override
@@ -777,6 +801,15 @@ public final class UpdatePartnersRequest {
     _FinalStage birthDate(String birthDate);
 
     _FinalStage birthDate(Nullable<String> birthDate);
+
+    /**
+     * <p>Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof</p>
+     */
+    _FinalStage isBusiness(Optional<Boolean> isBusiness);
+
+    _FinalStage isBusiness(Boolean isBusiness);
+
+    _FinalStage isBusiness(Nullable<Boolean> isBusiness);
 
     _FinalStage isCustomer(Optional<Boolean> isCustomer);
 
@@ -998,6 +1031,8 @@ public final class UpdatePartnersRequest {
 
     private Optional<Boolean> isCustomer = Optional.empty();
 
+    private Optional<Boolean> isBusiness = Optional.empty();
+
     private Optional<String> birthDate = Optional.empty();
 
     private Optional<String> selfEmploymentCertNo = Optional.empty();
@@ -1034,6 +1069,7 @@ public final class UpdatePartnersRequest {
       phone(other.getPhone());
       selfEmploymentCertNo(other.getSelfEmploymentCertNo());
       birthDate(other.getBirthDate());
+      isBusiness(other.getIsBusiness());
       isCustomer(other.getIsCustomer());
       isSupplier(other.getIsSupplier());
       paymentTermDays(other.getPaymentTermDays());
@@ -1812,6 +1848,47 @@ public final class UpdatePartnersRequest {
       return this;
     }
 
+    /**
+     * <p>Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage isBusiness(Nullable<Boolean> isBusiness) {
+      if (isBusiness.isNull()) {
+        this.isBusiness = null;
+      }
+      else if (isBusiness.isEmpty()) {
+        this.isBusiness = Optional.empty();
+      }
+      else {
+        this.isBusiness = Optional.of(isBusiness.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage isBusiness(Boolean isBusiness) {
+      this.isBusiness = Optional.ofNullable(isBusiness);
+      return this;
+    }
+
+    /**
+     * <p>Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "isBusiness",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage isBusiness(Optional<Boolean> isBusiness) {
+      this.isBusiness = isBusiness;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage birthDate(Nullable<String> birthDate) {
       if (birthDate.isNull()) {
@@ -2056,7 +2133,7 @@ public final class UpdatePartnersRequest {
 
     @java.lang.Override
     public UpdatePartnersRequest build() {
-      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
+      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
     }
 
     @java.lang.Override

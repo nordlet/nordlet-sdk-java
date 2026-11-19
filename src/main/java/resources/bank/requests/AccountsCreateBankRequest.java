@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.AccountsCreateBankRequestPaymentFileSettings;
 import com.nordlet.api.resources.bank.types.AccountsCreateBankRequestType;
 import java.lang.Object;
 import java.lang.String;
@@ -33,6 +34,12 @@ public final class AccountsCreateBankRequest {
 
   private final Optional<String> iban;
 
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<AccountsCreateBankRequestPaymentFileSettings> paymentFileSettings;
+
   private final Optional<String> currency;
 
   private final Optional<String> accountCode;
@@ -42,11 +49,16 @@ public final class AccountsCreateBankRequest {
   private final Map<String, Object> additionalProperties;
 
   private AccountsCreateBankRequest(String name, Optional<AccountsCreateBankRequestType> type,
-      Optional<String> iban, Optional<String> currency, Optional<String> accountCode,
-      Optional<String> documentRef, Map<String, Object> additionalProperties) {
+      Optional<String> iban, Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<AccountsCreateBankRequestPaymentFileSettings> paymentFileSettings,
+      Optional<String> currency, Optional<String> accountCode, Optional<String> documentRef,
+      Map<String, Object> additionalProperties) {
     this.name = name;
     this.type = type;
     this.iban = iban;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.paymentFileSettings = paymentFileSettings;
     this.currency = currency;
     this.accountCode = accountCode;
     this.documentRef = documentRef;
@@ -66,6 +78,30 @@ public final class AccountsCreateBankRequest {
   @JsonProperty("iban")
   public Optional<String> getIban() {
     return iban;
+  }
+
+  /**
+   * @return Sort code, routing number or other national bank code, for an account without an IBAN
+   */
+  @JsonProperty("bankCode")
+  public Optional<String> getBankCode() {
+    return bankCode;
+  }
+
+  /**
+   * @return Account number, for an account without an IBAN
+   */
+  @JsonProperty("bankAccountNumber")
+  public Optional<String> getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account
+   */
+  @JsonProperty("paymentFileSettings")
+  public Optional<AccountsCreateBankRequestPaymentFileSettings> getPaymentFileSettings() {
+    return paymentFileSettings;
   }
 
   @JsonProperty("currency")
@@ -95,12 +131,12 @@ public final class AccountsCreateBankRequest {
   }
 
   private boolean equalTo(AccountsCreateBankRequest other) {
-    return name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && documentRef.equals(other.documentRef);
+    return name.equals(other.name) && type.equals(other.type) && iban.equals(other.iban) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && paymentFileSettings.equals(other.paymentFileSettings) && currency.equals(other.currency) && accountCode.equals(other.accountCode) && documentRef.equals(other.documentRef);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.type, this.iban, this.currency, this.accountCode, this.documentRef);
+    return Objects.hash(this.name, this.type, this.iban, this.bankCode, this.bankAccountNumber, this.paymentFileSettings, this.currency, this.accountCode, this.documentRef);
   }
 
   @java.lang.Override
@@ -133,6 +169,29 @@ public final class AccountsCreateBankRequest {
 
     _FinalStage iban(String iban);
 
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     */
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     */
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     */
+    _FinalStage paymentFileSettings(
+        Optional<AccountsCreateBankRequestPaymentFileSettings> paymentFileSettings);
+
+    _FinalStage paymentFileSettings(
+        AccountsCreateBankRequestPaymentFileSettings paymentFileSettings);
+
     _FinalStage currency(Optional<String> currency);
 
     _FinalStage currency(String currency);
@@ -158,6 +217,12 @@ public final class AccountsCreateBankRequest {
 
     private Optional<String> currency = Optional.empty();
 
+    private Optional<AccountsCreateBankRequestPaymentFileSettings> paymentFileSettings = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
     private Optional<String> iban = Optional.empty();
 
     private Optional<AccountsCreateBankRequestType> type = Optional.empty();
@@ -173,6 +238,9 @@ public final class AccountsCreateBankRequest {
       name(other.getName());
       type(other.getType());
       iban(other.getIban());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      paymentFileSettings(other.getPaymentFileSettings());
       currency(other.getCurrency());
       accountCode(other.getAccountCode());
       documentRef(other.getDocumentRef());
@@ -234,6 +302,77 @@ public final class AccountsCreateBankRequest {
       return this;
     }
 
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage paymentFileSettings(
+        AccountsCreateBankRequestPaymentFileSettings paymentFileSettings) {
+      this.paymentFileSettings = Optional.ofNullable(paymentFileSettings);
+      return this;
+    }
+
+    /**
+     * <p>What the bank gave the company for payment files from this account: the Bacs service user number for a UK account, the ACH Immediate Origin and Company Identification for a US account</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentFileSettings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentFileSettings(
+        Optional<AccountsCreateBankRequestPaymentFileSettings> paymentFileSettings) {
+      this.paymentFileSettings = paymentFileSettings;
+      return this;
+    }
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    /**
+     * <p>Account number, for an account without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    /**
+     * <p>Sort code, routing number or other national bank code, for an account without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage iban(String iban) {
       this.iban = Optional.ofNullable(iban);
@@ -268,7 +407,7 @@ public final class AccountsCreateBankRequest {
 
     @java.lang.Override
     public AccountsCreateBankRequest build() {
-      return new AccountsCreateBankRequest(name, type, iban, currency, accountCode, documentRef, additionalProperties);
+      return new AccountsCreateBankRequest(name, type, iban, bankCode, bankAccountNumber, paymentFileSettings, currency, accountCode, documentRef, additionalProperties);
     }
 
     @java.lang.Override

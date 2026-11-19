@@ -56,6 +56,8 @@ public final class ContractsListHrResponseRowsItem {
 
   private final ContractsListHrResponseRowsItemSalaryType salaryType;
 
+  private final ContractsListHrResponseRowsItemPayFrequency payFrequency;
+
   private final String workHours;
 
   private final ContractsListHrResponseRowsItemWorkHoursUnit workHoursUnit;
@@ -72,7 +74,8 @@ public final class ContractsListHrResponseRowsItem {
       Optional<String> departmentId, Optional<String> scheduleId, Optional<String> agreementId,
       String contractNo, ContractsListHrResponseRowsItemType type, String startDate,
       Optional<String> endDate, Optional<String> endReason, String baseSalary,
-      ContractsListHrResponseRowsItemSalaryType salaryType, String workHours,
+      ContractsListHrResponseRowsItemSalaryType salaryType,
+      ContractsListHrResponseRowsItemPayFrequency payFrequency, String workHours,
       ContractsListHrResponseRowsItemWorkHoursUnit workHoursUnit,
       ContractsListHrResponseRowsItemStatus status, Optional<String> notes,
       OffsetDateTime createdAt, Map<String, Object> additionalProperties) {
@@ -89,6 +92,7 @@ public final class ContractsListHrResponseRowsItem {
     this.endReason = endReason;
     this.baseSalary = baseSalary;
     this.salaryType = salaryType;
+    this.payFrequency = payFrequency;
     this.workHours = workHours;
     this.workHoursUnit = workHoursUnit;
     this.status = status;
@@ -178,6 +182,11 @@ public final class ContractsListHrResponseRowsItem {
   @JsonProperty("salaryType")
   public ContractsListHrResponseRowsItemSalaryType getSalaryType() {
     return salaryType;
+  }
+
+  @JsonProperty("payFrequency")
+  public ContractsListHrResponseRowsItemPayFrequency getPayFrequency() {
+    return payFrequency;
   }
 
   @JsonProperty("workHours")
@@ -283,12 +292,12 @@ public final class ContractsListHrResponseRowsItem {
   }
 
   private boolean equalTo(ContractsListHrResponseRowsItem other) {
-    return id.equals(other.id) && employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && endReason.equals(other.endReason) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHours.equals(other.workHours) && workHoursUnit.equals(other.workHoursUnit) && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
+    return id.equals(other.id) && employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && endReason.equals(other.endReason) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && payFrequency.equals(other.payFrequency) && workHours.equals(other.workHours) && workHoursUnit.equals(other.workHoursUnit) && status.equals(other.status) && notes.equals(other.notes) && createdAt.equals(other.createdAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.endReason, this.baseSalary, this.salaryType, this.workHours, this.workHoursUnit, this.status, this.notes, this.createdAt);
+    return Objects.hash(this.id, this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.endReason, this.baseSalary, this.salaryType, this.payFrequency, this.workHours, this.workHoursUnit, this.status, this.notes, this.createdAt);
   }
 
   @java.lang.Override
@@ -327,7 +336,11 @@ public final class ContractsListHrResponseRowsItem {
   }
 
   public interface SalaryTypeStage {
-    WorkHoursStage salaryType(@NotNull ContractsListHrResponseRowsItemSalaryType salaryType);
+    PayFrequencyStage salaryType(@NotNull ContractsListHrResponseRowsItemSalaryType salaryType);
+  }
+
+  public interface PayFrequencyStage {
+    WorkHoursStage payFrequency(@NotNull ContractsListHrResponseRowsItemPayFrequency payFrequency);
   }
 
   public interface WorkHoursStage {
@@ -399,7 +412,7 @@ public final class ContractsListHrResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, EmployeeIdStage, ContractNoStage, TypeStage, StartDateStage, BaseSalaryStage, SalaryTypeStage, WorkHoursStage, WorkHoursUnitStage, StatusStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, EmployeeIdStage, ContractNoStage, TypeStage, StartDateStage, BaseSalaryStage, SalaryTypeStage, PayFrequencyStage, WorkHoursStage, WorkHoursUnitStage, StatusStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private String employeeId;
@@ -413,6 +426,8 @@ public final class ContractsListHrResponseRowsItem {
     private String baseSalary;
 
     private ContractsListHrResponseRowsItemSalaryType salaryType;
+
+    private ContractsListHrResponseRowsItemPayFrequency payFrequency;
 
     private String workHours;
 
@@ -457,6 +472,7 @@ public final class ContractsListHrResponseRowsItem {
       endReason(other.getEndReason());
       baseSalary(other.getBaseSalary());
       salaryType(other.getSalaryType());
+      payFrequency(other.getPayFrequency());
       workHours(other.getWorkHours());
       workHoursUnit(other.getWorkHoursUnit());
       status(other.getStatus());
@@ -509,9 +525,17 @@ public final class ContractsListHrResponseRowsItem {
 
     @java.lang.Override
     @JsonSetter("salaryType")
-    public WorkHoursStage salaryType(
+    public PayFrequencyStage salaryType(
         @NotNull ContractsListHrResponseRowsItemSalaryType salaryType) {
       this.salaryType = Objects.requireNonNull(salaryType, "salaryType must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("payFrequency")
+    public WorkHoursStage payFrequency(
+        @NotNull ContractsListHrResponseRowsItemPayFrequency payFrequency) {
+      this.payFrequency = Objects.requireNonNull(payFrequency, "payFrequency must not be null");
       return this;
     }
 
@@ -756,7 +780,7 @@ public final class ContractsListHrResponseRowsItem {
 
     @java.lang.Override
     public ContractsListHrResponseRowsItem build() {
-      return new ContractsListHrResponseRowsItem(id, employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, endReason, baseSalary, salaryType, workHours, workHoursUnit, status, notes, createdAt, additionalProperties);
+      return new ContractsListHrResponseRowsItem(id, employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, endReason, baseSalary, salaryType, payFrequency, workHours, workHoursUnit, status, notes, createdAt, additionalProperties);
     }
 
     @java.lang.Override

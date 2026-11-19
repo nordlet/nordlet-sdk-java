@@ -15,6 +15,7 @@ import com.nordlet.api.resources.partners.requests.BankAccountsCreatePartnersReq
 import com.nordlet.api.resources.partners.requests.BankAccountsDeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.BankAccountsListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.BankAccountsUpdatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.CompaniesHouseGetPartnersRequest;
 import com.nordlet.api.resources.partners.requests.ContactsCreatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.ContactsDeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.ContactsListPartnersRequest;
@@ -57,6 +58,7 @@ import com.nordlet.api.resources.partners.types.BankAccountsCreatePartnersRespon
 import com.nordlet.api.resources.partners.types.BankAccountsDeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.BankAccountsListPartnersResponse;
 import com.nordlet.api.resources.partners.types.BankAccountsUpdatePartnersResponse;
+import com.nordlet.api.resources.partners.types.CompaniesHouseGetPartnersResponse;
 import com.nordlet.api.resources.partners.types.ContactsCreatePartnersResponse;
 import com.nordlet.api.resources.partners.types.ContactsDeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.ContactsListPartnersResponse;
@@ -268,7 +270,7 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+   * Adds a bank account to the partner in <code>partnerId</code>, identified by <code>iban</code> or, where the country has no IBAN, by <code>bankAccountNumber</code> with <code>bankCode</code> (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
    */
   public CompletableFuture<BankAccountsCreatePartnersResponse> bankAccountsCreate(
       BankAccountsCreatePartnersRequest request) {
@@ -276,7 +278,7 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Adds a bank account to the partner in <code>partnerId</code>. The IBAN is stored without spaces in upper case; an IBAN whose check digits fail (ISO 13616) is refused with 422 and one the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
+   * Adds a bank account to the partner in <code>partnerId</code>, identified by <code>iban</code> or, where the country has no IBAN, by <code>bankAccountNumber</code> with <code>bankCode</code> (sort code, routing number); one of them is required (422). The IBAN is stored without spaces in upper case and the bank code and account number without spaces and hyphens; an IBAN whose check digits fail (ISO 13616) is refused with 422 and an account the partner already has with 409. With <code>isDefault</code> true the partner's other accounts lose their default mark.
    */
   public CompletableFuture<BankAccountsCreatePartnersResponse> bankAccountsCreate(
       BankAccountsCreatePartnersRequest request, RequestOptions requestOptions) {
@@ -518,21 +520,21 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   * Checks a VAT number against VIES, or a UK number (<code>GB</code> and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as <code>requestIdentifier</code> when the company's own <code>vatCode</code> is a UK number HMRC knows. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
    */
   public CompletableFuture<ValidateVatPartnersResponse> validateVat() {
     return this.rawClient.validateVat().thenApply(response -> response.body());
   }
 
   /**
-   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   * Checks a VAT number against VIES, or a UK number (<code>GB</code> and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as <code>requestIdentifier</code> when the company's own <code>vatCode</code> is a UK number HMRC knows. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
    */
   public CompletableFuture<ValidateVatPartnersResponse> validateVat(RequestOptions requestOptions) {
     return this.rawClient.validateVat(requestOptions).thenApply(response -> response.body());
   }
 
   /**
-   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   * Checks a VAT number against VIES, or a UK number (<code>GB</code> and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as <code>requestIdentifier</code> when the company's own <code>vatCode</code> is a UK number HMRC knows. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
    */
   public CompletableFuture<ValidateVatPartnersResponse> validateVat(
       ValidateVatPartnersRequest request) {
@@ -540,11 +542,27 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Checks a VAT number against VIES, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters is refused with 422, as is a partner without a VAT code, and a VIES outage answers 503. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
+   * Checks a VAT number against VIES, or a UK number (<code>GB</code> and 9 or 12 digits) with HMRC's Check a UK VAT number service, either a free <code>vatCode</code> or the VAT code of the partner in <code>partnerId</code> (exactly one of the two); a code without an EU country prefix and 2 to 12 alphanumeric characters or a UK prefix and 9 or 12 digits is refused with 422, as is a partner without a VAT code, and a VIES or HMRC outage, or a UK check that is not set up, answers 503. A UK check gives HMRC's consultation number as <code>requestIdentifier</code> when the company's own <code>vatCode</code> is a UK number HMRC knows. With a partner the outcome is written to it (<code>vatValid</code>, <code>vatValidatedAt</code>): an invalid number or a VIES name that shares no word with the partner's name opens or refreshes the partner's VAT review (<code>vat_review.opened</code>), a VIES failure opens one with reason <code>service_error</code>, and a valid matching number resolves the open review as <code>revalidated</code> (<code>vat_review.resolved</code>). Reviews are listed and closed with <code>partners/vat-reviews/list</code> and <code>partners/vat-reviews/resolve</code>.
    */
   public CompletableFuture<ValidateVatPartnersResponse> validateVat(
       ValidateVatPartnersRequest request, RequestOptions requestOptions) {
     return this.rawClient.validateVat(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Reads a UK company from the Companies House register by <code>companyNumber</code> (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (<code>subdivision</code> from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+   */
+  public CompletableFuture<CompaniesHouseGetPartnersResponse> companiesHouseGet(
+      CompaniesHouseGetPartnersRequest request) {
+    return this.rawClient.companiesHouseGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Reads a UK company from the Companies House register by <code>companyNumber</code> (letters and digits; spaces are removed and letters upper-cased): its name, status, type, incorporation and cessation dates, registered office address (<code>subdivision</code> from the office's country: England, Wales, Scotland or Northern Ireland), accounting reference date, the next due dates of its accounts and confirmation statement, and SIC codes. Nothing is stored. A number Companies House does not know answers 404; a lookup that is not set up, Companies House being unreachable or its rate limit answers 503.
+   */
+  public CompletableFuture<CompaniesHouseGetPartnersResponse> companiesHouseGet(
+      CompaniesHouseGetPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.companiesHouseGet(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
@@ -595,14 +613,14 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>).
    */
   public CompletableFuture<CreatePartnersResponse> create(CreatePartnersRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
   /**
-   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked against VIES at once and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that is not an EU VAT number is stored unchecked (see <code>partners/validate-vat</code>).
+   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>).
    */
   public CompletableFuture<CreatePartnersResponse> create(CreatePartnersRequest request,
       RequestOptions requestOptions) {
@@ -641,14 +659,14 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
    */
   public CompletableFuture<UpdatePartnersResponse> update(UpdatePartnersRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
   /**
-   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that is not an EU VAT number, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
    */
   public CompletableFuture<UpdatePartnersResponse> update(UpdatePartnersRequest request,
       RequestOptions requestOptions) {

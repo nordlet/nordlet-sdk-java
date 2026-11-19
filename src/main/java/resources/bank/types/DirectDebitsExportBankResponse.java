@@ -24,26 +24,42 @@ import org.jetbrains.annotations.NotNull;
     builder = DirectDebitsExportBankResponse.Builder.class
 )
 public final class DirectDebitsExportBankResponse {
+  private final DirectDebitsExportBankResponseFormat format;
+
   private final String messageId;
 
   private final String fileName;
+
+  private final String contentType;
 
   private final long transactionCount;
 
   private final String controlSum;
 
-  private final String xml;
+  private final String content;
+
+  private final String collectionDate;
 
   private final Map<String, Object> additionalProperties;
 
-  private DirectDebitsExportBankResponse(String messageId, String fileName, long transactionCount,
-      String controlSum, String xml, Map<String, Object> additionalProperties) {
+  private DirectDebitsExportBankResponse(DirectDebitsExportBankResponseFormat format,
+      String messageId, String fileName, String contentType, long transactionCount,
+      String controlSum, String content, String collectionDate,
+      Map<String, Object> additionalProperties) {
+    this.format = format;
     this.messageId = messageId;
     this.fileName = fileName;
+    this.contentType = contentType;
     this.transactionCount = transactionCount;
     this.controlSum = controlSum;
-    this.xml = xml;
+    this.content = content;
+    this.collectionDate = collectionDate;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("format")
+  public DirectDebitsExportBankResponseFormat getFormat() {
+    return format;
   }
 
   @JsonProperty("messageId")
@@ -56,6 +72,11 @@ public final class DirectDebitsExportBankResponse {
     return fileName;
   }
 
+  @JsonProperty("contentType")
+  public String getContentType() {
+    return contentType;
+  }
+
   @JsonProperty("transactionCount")
   public long getTransactionCount() {
     return transactionCount;
@@ -66,9 +87,14 @@ public final class DirectDebitsExportBankResponse {
     return controlSum;
   }
 
-  @JsonProperty("xml")
-  public String getXml() {
-    return xml;
+  @JsonProperty("content")
+  public String getContent() {
+    return content;
+  }
+
+  @JsonProperty("collectionDate")
+  public String getCollectionDate() {
+    return collectionDate;
   }
 
   @java.lang.Override
@@ -83,12 +109,12 @@ public final class DirectDebitsExportBankResponse {
   }
 
   private boolean equalTo(DirectDebitsExportBankResponse other) {
-    return messageId.equals(other.messageId) && fileName.equals(other.fileName) && transactionCount == other.transactionCount && controlSum.equals(other.controlSum) && xml.equals(other.xml);
+    return format.equals(other.format) && messageId.equals(other.messageId) && fileName.equals(other.fileName) && contentType.equals(other.contentType) && transactionCount == other.transactionCount && controlSum.equals(other.controlSum) && content.equals(other.content) && collectionDate.equals(other.collectionDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.messageId, this.fileName, this.transactionCount, this.controlSum, this.xml);
+    return Objects.hash(this.format, this.messageId, this.fileName, this.contentType, this.transactionCount, this.controlSum, this.content, this.collectionDate);
   }
 
   @java.lang.Override
@@ -96,18 +122,26 @@ public final class DirectDebitsExportBankResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static MessageIdStage builder() {
+  public static FormatStage builder() {
     return new Builder();
   }
 
-  public interface MessageIdStage {
-    FileNameStage messageId(@NotNull String messageId);
+  public interface FormatStage {
+    MessageIdStage format(@NotNull DirectDebitsExportBankResponseFormat format);
 
     Builder from(DirectDebitsExportBankResponse other);
   }
 
+  public interface MessageIdStage {
+    FileNameStage messageId(@NotNull String messageId);
+  }
+
   public interface FileNameStage {
-    TransactionCountStage fileName(@NotNull String fileName);
+    ContentTypeStage fileName(@NotNull String fileName);
+  }
+
+  public interface ContentTypeStage {
+    TransactionCountStage contentType(@NotNull String contentType);
   }
 
   public interface TransactionCountStage {
@@ -115,11 +149,15 @@ public final class DirectDebitsExportBankResponse {
   }
 
   public interface ControlSumStage {
-    XmlStage controlSum(@NotNull String controlSum);
+    ContentStage controlSum(@NotNull String controlSum);
   }
 
-  public interface XmlStage {
-    _FinalStage xml(@NotNull String xml);
+  public interface ContentStage {
+    CollectionDateStage content(@NotNull String content);
+  }
+
+  public interface CollectionDateStage {
+    _FinalStage collectionDate(@NotNull String collectionDate);
   }
 
   public interface _FinalStage {
@@ -133,16 +171,22 @@ public final class DirectDebitsExportBankResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements MessageIdStage, FileNameStage, TransactionCountStage, ControlSumStage, XmlStage, _FinalStage {
+  public static final class Builder implements FormatStage, MessageIdStage, FileNameStage, ContentTypeStage, TransactionCountStage, ControlSumStage, ContentStage, CollectionDateStage, _FinalStage {
+    private DirectDebitsExportBankResponseFormat format;
+
     private String messageId;
 
     private String fileName;
+
+    private String contentType;
 
     private long transactionCount;
 
     private String controlSum;
 
-    private String xml;
+    private String content;
+
+    private String collectionDate;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -152,11 +196,21 @@ public final class DirectDebitsExportBankResponse {
 
     @java.lang.Override
     public Builder from(DirectDebitsExportBankResponse other) {
+      format(other.getFormat());
       messageId(other.getMessageId());
       fileName(other.getFileName());
+      contentType(other.getContentType());
       transactionCount(other.getTransactionCount());
       controlSum(other.getControlSum());
-      xml(other.getXml());
+      content(other.getContent());
+      collectionDate(other.getCollectionDate());
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("format")
+    public MessageIdStage format(@NotNull DirectDebitsExportBankResponseFormat format) {
+      this.format = Objects.requireNonNull(format, "format must not be null");
       return this;
     }
 
@@ -169,8 +223,15 @@ public final class DirectDebitsExportBankResponse {
 
     @java.lang.Override
     @JsonSetter("fileName")
-    public TransactionCountStage fileName(@NotNull String fileName) {
+    public ContentTypeStage fileName(@NotNull String fileName) {
       this.fileName = Objects.requireNonNull(fileName, "fileName must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("contentType")
+    public TransactionCountStage contentType(@NotNull String contentType) {
+      this.contentType = Objects.requireNonNull(contentType, "contentType must not be null");
       return this;
     }
 
@@ -183,21 +244,28 @@ public final class DirectDebitsExportBankResponse {
 
     @java.lang.Override
     @JsonSetter("controlSum")
-    public XmlStage controlSum(@NotNull String controlSum) {
+    public ContentStage controlSum(@NotNull String controlSum) {
       this.controlSum = Objects.requireNonNull(controlSum, "controlSum must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("xml")
-    public _FinalStage xml(@NotNull String xml) {
-      this.xml = Objects.requireNonNull(xml, "xml must not be null");
+    @JsonSetter("content")
+    public CollectionDateStage content(@NotNull String content) {
+      this.content = Objects.requireNonNull(content, "content must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("collectionDate")
+    public _FinalStage collectionDate(@NotNull String collectionDate) {
+      this.collectionDate = Objects.requireNonNull(collectionDate, "collectionDate must not be null");
       return this;
     }
 
     @java.lang.Override
     public DirectDebitsExportBankResponse build() {
-      return new DirectDebitsExportBankResponse(messageId, fileName, transactionCount, controlSum, xml, additionalProperties);
+      return new DirectDebitsExportBankResponse(format, messageId, fileName, contentType, transactionCount, controlSum, content, collectionDate, additionalProperties);
     }
 
     @java.lang.Override

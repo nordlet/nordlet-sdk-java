@@ -33,15 +33,18 @@ public final class EmployeesCreateHrRequestAddress {
 
   private final Optional<String> countryCode;
 
+  private final Optional<String> subdivision;
+
   private final Map<String, Object> additionalProperties;
 
   private EmployeesCreateHrRequestAddress(Optional<String> street, Optional<String> city,
-      Optional<String> postalCode, Optional<String> countryCode,
+      Optional<String> postalCode, Optional<String> countryCode, Optional<String> subdivision,
       Map<String, Object> additionalProperties) {
     this.street = street;
     this.city = city;
     this.postalCode = postalCode;
     this.countryCode = countryCode;
+    this.subdivision = subdivision;
     this.additionalProperties = additionalProperties;
   }
 
@@ -65,6 +68,14 @@ public final class EmployeesCreateHrRequestAddress {
     return countryCode;
   }
 
+  /**
+   * @return ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT
+   */
+  @JsonProperty("subdivision")
+  public Optional<String> getSubdivision() {
+    return subdivision;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -77,12 +88,12 @@ public final class EmployeesCreateHrRequestAddress {
   }
 
   private boolean equalTo(EmployeesCreateHrRequestAddress other) {
-    return street.equals(other.street) && city.equals(other.city) && postalCode.equals(other.postalCode) && countryCode.equals(other.countryCode);
+    return street.equals(other.street) && city.equals(other.city) && postalCode.equals(other.postalCode) && countryCode.equals(other.countryCode) && subdivision.equals(other.subdivision);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.street, this.city, this.postalCode, this.countryCode);
+    return Objects.hash(this.street, this.city, this.postalCode, this.countryCode, this.subdivision);
   }
 
   @java.lang.Override
@@ -106,6 +117,8 @@ public final class EmployeesCreateHrRequestAddress {
 
     private Optional<String> countryCode = Optional.empty();
 
+    private Optional<String> subdivision = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -117,6 +130,7 @@ public final class EmployeesCreateHrRequestAddress {
       city(other.getCity());
       postalCode(other.getPostalCode());
       countryCode(other.getCountryCode());
+      subdivision(other.getSubdivision());
       return this;
     }
 
@@ -176,8 +190,25 @@ public final class EmployeesCreateHrRequestAddress {
       return this;
     }
 
+    /**
+     * <p>ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT</p>
+     */
+    @JsonSetter(
+        value = "subdivision",
+        nulls = Nulls.SKIP
+    )
+    public Builder subdivision(Optional<String> subdivision) {
+      this.subdivision = subdivision;
+      return this;
+    }
+
+    public Builder subdivision(String subdivision) {
+      this.subdivision = Optional.ofNullable(subdivision);
+      return this;
+    }
+
     public EmployeesCreateHrRequestAddress build() {
-      return new EmployeesCreateHrRequestAddress(street, city, postalCode, countryCode, additionalProperties);
+      return new EmployeesCreateHrRequestAddress(street, city, postalCode, countryCode, subdivision, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

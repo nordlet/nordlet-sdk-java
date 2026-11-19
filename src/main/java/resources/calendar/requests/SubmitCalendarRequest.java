@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.calendar.types.SubmitCalendarRequestCorrection;
+import com.nordlet.api.resources.calendar.types.SubmitCalendarRequestDevice;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -37,15 +38,18 @@ public final class SubmitCalendarRequest {
 
   private final Optional<List<String>> documentKeys;
 
+  private final Optional<SubmitCalendarRequestDevice> device;
+
   private final Map<String, Object> additionalProperties;
 
   private SubmitCalendarRequest(String key, Optional<Boolean> amend,
       Optional<SubmitCalendarRequestCorrection> correction, Optional<List<String>> documentKeys,
-      Map<String, Object> additionalProperties) {
+      Optional<SubmitCalendarRequestDevice> device, Map<String, Object> additionalProperties) {
     this.key = key;
     this.amend = amend;
     this.correction = correction;
     this.documentKeys = documentKeys;
+    this.device = device;
     this.additionalProperties = additionalProperties;
   }
 
@@ -69,6 +73,14 @@ public final class SubmitCalendarRequest {
     return documentKeys;
   }
 
+  /**
+   * @return Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: <code>navigator.userAgent</code>, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as <code>UTC±hh:mm</code>.
+   */
+  @JsonProperty("device")
+  public Optional<SubmitCalendarRequestDevice> getDevice() {
+    return device;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -81,12 +93,12 @@ public final class SubmitCalendarRequest {
   }
 
   private boolean equalTo(SubmitCalendarRequest other) {
-    return key.equals(other.key) && amend.equals(other.amend) && correction.equals(other.correction) && documentKeys.equals(other.documentKeys);
+    return key.equals(other.key) && amend.equals(other.amend) && correction.equals(other.correction) && documentKeys.equals(other.documentKeys) && device.equals(other.device);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.key, this.amend, this.correction, this.documentKeys);
+    return Objects.hash(this.key, this.amend, this.correction, this.documentKeys, this.device);
   }
 
   @java.lang.Override
@@ -122,6 +134,13 @@ public final class SubmitCalendarRequest {
     _FinalStage documentKeys(Optional<List<String>> documentKeys);
 
     _FinalStage documentKeys(List<String> documentKeys);
+
+    /**
+     * <p>Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: <code>navigator.userAgent</code>, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as <code>UTC±hh:mm</code>.</p>
+     */
+    _FinalStage device(Optional<SubmitCalendarRequestDevice> device);
+
+    _FinalStage device(SubmitCalendarRequestDevice device);
   }
 
   @JsonIgnoreProperties(
@@ -129,6 +148,8 @@ public final class SubmitCalendarRequest {
   )
   public static final class Builder implements KeyStage, _FinalStage {
     private String key;
+
+    private Optional<SubmitCalendarRequestDevice> device = Optional.empty();
 
     private Optional<List<String>> documentKeys = Optional.empty();
 
@@ -148,6 +169,7 @@ public final class SubmitCalendarRequest {
       amend(other.getAmend());
       correction(other.getCorrection());
       documentKeys(other.getDocumentKeys());
+      device(other.getDevice());
       return this;
     }
 
@@ -155,6 +177,29 @@ public final class SubmitCalendarRequest {
     @JsonSetter("key")
     public _FinalStage key(@NotNull String key) {
       this.key = Objects.requireNonNull(key, "key must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: <code>navigator.userAgent</code>, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as <code>UTC±hh:mm</code>.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage device(SubmitCalendarRequestDevice device) {
+      this.device = Optional.ofNullable(device);
+      return this;
+    }
+
+    /**
+     * <p>Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: <code>navigator.userAgent</code>, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as <code>UTC±hh:mm</code>.</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "device",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage device(Optional<SubmitCalendarRequestDevice> device) {
+      this.device = device;
       return this;
     }
 
@@ -208,7 +253,7 @@ public final class SubmitCalendarRequest {
 
     @java.lang.Override
     public SubmitCalendarRequest build() {
-      return new SubmitCalendarRequest(key, amend, correction, documentKeys, additionalProperties);
+      return new SubmitCalendarRequest(key, amend, correction, documentKeys, device, additionalProperties);
     }
 
     @java.lang.Override

@@ -464,7 +464,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (the base currency of the company when omitted) and notes. Fields omitted from the request are cleared on an existing record.
    */
   public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
       ItemsSuppliersUpsertCatalogRequest request) {
@@ -472,7 +472,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (EUR when omitted) and notes. Fields omitted from the request are cleared on an existing record.
+   * Create or replace the supplier record of an item for a partner (one per item and partner): supplier code, purchase price excluding VAT, currency (the base currency of the company when omitted) and notes. Fields omitted from the request are cleared on an existing record.
    */
   public CompletableFuture<ItemsSuppliersUpsertCatalogResponse> itemsSuppliersUpsert(
       ItemsSuppliersUpsertCatalogRequest request, RequestOptions requestOptions) {
@@ -591,7 +591,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+   * Create a price list (in the base currency of the company and active when omitted). 409 when the code already exists.
    */
   public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
       PriceListsCreateCatalogRequest request) {
@@ -599,7 +599,7 @@ public class AsyncCatalogClient {
   }
 
   /**
-   * Create a price list (currency EUR and active when omitted). 409 when the code already exists.
+   * Create a price list (in the base currency of the company and active when omitted). 409 when the code already exists.
    */
   public CompletableFuture<PriceListsCreateCatalogResponse> priceListsCreate(
       PriceListsCreateCatalogRequest request, RequestOptions requestOptions) {

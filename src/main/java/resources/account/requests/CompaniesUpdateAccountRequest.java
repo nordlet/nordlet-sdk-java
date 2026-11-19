@@ -19,6 +19,7 @@ import com.nordlet.api.core.ObjectMappers;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestAccountsKeptBy;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestAddress;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestDefaultInvoiceLocale;
+import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestFiscalYearWeekRule;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestLogo;
 import com.nordlet.api.resources.account.types.CompaniesUpdateAccountRequestVatPeriod;
 import java.lang.Boolean;
@@ -43,11 +44,21 @@ public final class CompaniesUpdateAccountRequest {
 
   private final Optional<String> smeExemptionNumber;
 
+  private final Optional<Map<String, Optional<String>>> identifiers;
+
   private final Optional<Boolean> isVatPayer;
 
   private final Optional<CompaniesUpdateAccountRequestVatPeriod> vatPeriod;
 
+  private final Optional<Long> vatPeriodEndMonth;
+
   private final Optional<Long> fiscalYearEndMonth;
+
+  private final Optional<Long> fiscalYearEndDay;
+
+  private final Optional<Long> fiscalYearWeekday;
+
+  private final Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule;
 
   private final Optional<String> timeZone;
 
@@ -106,8 +117,12 @@ public final class CompaniesUpdateAccountRequest {
   private final Map<String, Object> additionalProperties;
 
   private CompaniesUpdateAccountRequest(Optional<String> name, Optional<String> code,
-      Optional<String> vatCode, Optional<String> smeExemptionNumber, Optional<Boolean> isVatPayer,
-      Optional<CompaniesUpdateAccountRequestVatPeriod> vatPeriod, Optional<Long> fiscalYearEndMonth,
+      Optional<String> vatCode, Optional<String> smeExemptionNumber,
+      Optional<Map<String, Optional<String>>> identifiers, Optional<Boolean> isVatPayer,
+      Optional<CompaniesUpdateAccountRequestVatPeriod> vatPeriod, Optional<Long> vatPeriodEndMonth,
+      Optional<Long> fiscalYearEndMonth, Optional<Long> fiscalYearEndDay,
+      Optional<Long> fiscalYearWeekday,
+      Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule,
       Optional<String> timeZone, Optional<Map<String, Optional<String>>> filingOptions,
       Optional<CompaniesUpdateAccountRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
@@ -126,9 +141,14 @@ public final class CompaniesUpdateAccountRequest {
     this.code = code;
     this.vatCode = vatCode;
     this.smeExemptionNumber = smeExemptionNumber;
+    this.identifiers = identifiers;
     this.isVatPayer = isVatPayer;
     this.vatPeriod = vatPeriod;
+    this.vatPeriodEndMonth = vatPeriodEndMonth;
     this.fiscalYearEndMonth = fiscalYearEndMonth;
+    this.fiscalYearEndDay = fiscalYearEndDay;
+    this.fiscalYearWeekday = fiscalYearWeekday;
+    this.fiscalYearWeekRule = fiscalYearWeekRule;
     this.timeZone = timeZone;
     this.filingOptions = filingOptions;
     this.address = address;
@@ -188,6 +208,17 @@ public final class CompaniesUpdateAccountRequest {
     return smeExemptionNumber;
   }
 
+  /**
+   * @return Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))
+   */
+  @JsonIgnore
+  public Optional<Map<String, Optional<String>>> getIdentifiers() {
+    if (identifiers == null) {
+      return Optional.empty();
+    }
+    return identifiers;
+  }
+
   @JsonProperty("isVatPayer")
   public Optional<Boolean> getIsVatPayer() {
     return isVatPayer;
@@ -201,12 +232,56 @@ public final class CompaniesUpdateAccountRequest {
     return vatPeriod;
   }
 
+  /**
+   * @return A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+   */
+  @JsonIgnore
+  public Optional<Long> getVatPeriodEndMonth() {
+    if (vatPeriodEndMonth == null) {
+      return Optional.empty();
+    }
+    return vatPeriodEndMonth;
+  }
+
   @JsonIgnore
   public Optional<Long> getFiscalYearEndMonth() {
     if (fiscalYearEndMonth == null) {
       return Optional.empty();
     }
     return fiscalYearEndMonth;
+  }
+
+  /**
+   * @return Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted
+   */
+  @JsonIgnore
+  public Optional<Long> getFiscalYearEndDay() {
+    if (fiscalYearEndDay == null) {
+      return Optional.empty();
+    }
+    return fiscalYearEndDay;
+  }
+
+  /**
+   * @return For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+   */
+  @JsonIgnore
+  public Optional<Long> getFiscalYearWeekday() {
+    if (fiscalYearWeekday == null) {
+      return Optional.empty();
+    }
+    return fiscalYearWeekday;
+  }
+
+  /**
+   * @return With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month
+   */
+  @JsonIgnore
+  public Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> getFiscalYearWeekRule() {
+    if (fiscalYearWeekRule == null) {
+      return Optional.empty();
+    }
+    return fiscalYearWeekRule;
   }
 
   @JsonProperty("timeZone")
@@ -456,6 +531,15 @@ public final class CompaniesUpdateAccountRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("identifiers")
+  private Optional<Map<String, Optional<String>>> _getIdentifiers() {
+    return identifiers;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("vatPeriod")
   private Optional<CompaniesUpdateAccountRequestVatPeriod> _getVatPeriod() {
     return vatPeriod;
@@ -465,9 +549,45 @@ public final class CompaniesUpdateAccountRequest {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("vatPeriodEndMonth")
+  private Optional<Long> _getVatPeriodEndMonth() {
+    return vatPeriodEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("fiscalYearEndMonth")
   private Optional<Long> _getFiscalYearEndMonth() {
     return fiscalYearEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearEndDay")
+  private Optional<Long> _getFiscalYearEndDay() {
+    return fiscalYearEndDay;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearWeekday")
+  private Optional<Long> _getFiscalYearWeekday() {
+    return fiscalYearWeekday;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearWeekRule")
+  private Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> _getFiscalYearWeekRule() {
+    return fiscalYearWeekRule;
   }
 
   @JsonInclude(
@@ -680,12 +800,12 @@ public final class CompaniesUpdateAccountRequest {
   }
 
   private boolean equalTo(CompaniesUpdateAccountRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && logo.equals(other.logo);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && identifiers.equals(other.identifiers) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && vatPeriodEndMonth.equals(other.vatPeriodEndMonth) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && fiscalYearEndDay.equals(other.fiscalYearEndDay) && fiscalYearWeekday.equals(other.fiscalYearWeekday) && fiscalYearWeekRule.equals(other.fiscalYearWeekRule) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && logo.equals(other.logo);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.logo);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.identifiers, this.isVatPayer, this.vatPeriod, this.vatPeriodEndMonth, this.fiscalYearEndMonth, this.fiscalYearEndDay, this.fiscalYearWeekday, this.fiscalYearWeekRule, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.logo);
   }
 
   @java.lang.Override
@@ -709,11 +829,21 @@ public final class CompaniesUpdateAccountRequest {
 
     private Optional<String> smeExemptionNumber = Optional.empty();
 
+    private Optional<Map<String, Optional<String>>> identifiers = Optional.empty();
+
     private Optional<Boolean> isVatPayer = Optional.empty();
 
     private Optional<CompaniesUpdateAccountRequestVatPeriod> vatPeriod = Optional.empty();
 
+    private Optional<Long> vatPeriodEndMonth = Optional.empty();
+
     private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<Long> fiscalYearEndDay = Optional.empty();
+
+    private Optional<Long> fiscalYearWeekday = Optional.empty();
+
+    private Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule = Optional.empty();
 
     private Optional<String> timeZone = Optional.empty();
 
@@ -780,9 +910,14 @@ public final class CompaniesUpdateAccountRequest {
       code(other.getCode());
       vatCode(other.getVatCode());
       smeExemptionNumber(other.getSmeExemptionNumber());
+      identifiers(other.getIdentifiers());
       isVatPayer(other.getIsVatPayer());
       vatPeriod(other.getVatPeriod());
+      vatPeriodEndMonth(other.getVatPeriodEndMonth());
       fiscalYearEndMonth(other.getFiscalYearEndMonth());
+      fiscalYearEndDay(other.getFiscalYearEndDay());
+      fiscalYearWeekday(other.getFiscalYearWeekday());
+      fiscalYearWeekRule(other.getFiscalYearWeekRule());
       timeZone(other.getTimeZone());
       filingOptions(other.getFilingOptions());
       address(other.getAddress());
@@ -908,6 +1043,36 @@ public final class CompaniesUpdateAccountRequest {
       return this;
     }
 
+    /**
+     * <p>Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))</p>
+     */
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public Builder identifiers(Optional<Map<String, Optional<String>>> identifiers) {
+      this.identifiers = identifiers;
+      return this;
+    }
+
+    public Builder identifiers(Map<String, Optional<String>> identifiers) {
+      this.identifiers = Optional.ofNullable(identifiers);
+      return this;
+    }
+
+    public Builder identifiers(Nullable<Map<String, Optional<String>>> identifiers) {
+      if (identifiers.isNull()) {
+        this.identifiers = null;
+      }
+      else if (identifiers.isEmpty()) {
+        this.identifiers = Optional.empty();
+      }
+      else {
+        this.identifiers = Optional.of(identifiers.get());
+      }
+      return this;
+    }
+
     @JsonSetter(
         value = "isVatPayer",
         nulls = Nulls.SKIP
@@ -949,6 +1114,36 @@ public final class CompaniesUpdateAccountRequest {
       return this;
     }
 
+    /**
+     * <p>A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters</p>
+     */
+    @JsonSetter(
+        value = "vatPeriodEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public Builder vatPeriodEndMonth(Optional<Long> vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = vatPeriodEndMonth;
+      return this;
+    }
+
+    public Builder vatPeriodEndMonth(Long vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = Optional.ofNullable(vatPeriodEndMonth);
+      return this;
+    }
+
+    public Builder vatPeriodEndMonth(Nullable<Long> vatPeriodEndMonth) {
+      if (vatPeriodEndMonth.isNull()) {
+        this.vatPeriodEndMonth = null;
+      }
+      else if (vatPeriodEndMonth.isEmpty()) {
+        this.vatPeriodEndMonth = Optional.empty();
+      }
+      else {
+        this.vatPeriodEndMonth = Optional.of(vatPeriodEndMonth.get());
+      }
+      return this;
+    }
+
     @JsonSetter(
         value = "fiscalYearEndMonth",
         nulls = Nulls.SKIP
@@ -972,6 +1167,99 @@ public final class CompaniesUpdateAccountRequest {
       }
       else {
         this.fiscalYearEndMonth = Optional.of(fiscalYearEndMonth.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted</p>
+     */
+    @JsonSetter(
+        value = "fiscalYearEndDay",
+        nulls = Nulls.SKIP
+    )
+    public Builder fiscalYearEndDay(Optional<Long> fiscalYearEndDay) {
+      this.fiscalYearEndDay = fiscalYearEndDay;
+      return this;
+    }
+
+    public Builder fiscalYearEndDay(Long fiscalYearEndDay) {
+      this.fiscalYearEndDay = Optional.ofNullable(fiscalYearEndDay);
+      return this;
+    }
+
+    public Builder fiscalYearEndDay(Nullable<Long> fiscalYearEndDay) {
+      if (fiscalYearEndDay.isNull()) {
+        this.fiscalYearEndDay = null;
+      }
+      else if (fiscalYearEndDay.isEmpty()) {
+        this.fiscalYearEndDay = Optional.empty();
+      }
+      else {
+        this.fiscalYearEndDay = Optional.of(fiscalYearEndDay.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday</p>
+     */
+    @JsonSetter(
+        value = "fiscalYearWeekday",
+        nulls = Nulls.SKIP
+    )
+    public Builder fiscalYearWeekday(Optional<Long> fiscalYearWeekday) {
+      this.fiscalYearWeekday = fiscalYearWeekday;
+      return this;
+    }
+
+    public Builder fiscalYearWeekday(Long fiscalYearWeekday) {
+      this.fiscalYearWeekday = Optional.ofNullable(fiscalYearWeekday);
+      return this;
+    }
+
+    public Builder fiscalYearWeekday(Nullable<Long> fiscalYearWeekday) {
+      if (fiscalYearWeekday.isNull()) {
+        this.fiscalYearWeekday = null;
+      }
+      else if (fiscalYearWeekday.isEmpty()) {
+        this.fiscalYearWeekday = Optional.empty();
+      }
+      else {
+        this.fiscalYearWeekday = Optional.of(fiscalYearWeekday.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month</p>
+     */
+    @JsonSetter(
+        value = "fiscalYearWeekRule",
+        nulls = Nulls.SKIP
+    )
+    public Builder fiscalYearWeekRule(
+        Optional<CompaniesUpdateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = fiscalYearWeekRule;
+      return this;
+    }
+
+    public Builder fiscalYearWeekRule(
+        CompaniesUpdateAccountRequestFiscalYearWeekRule fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = Optional.ofNullable(fiscalYearWeekRule);
+      return this;
+    }
+
+    public Builder fiscalYearWeekRule(
+        Nullable<CompaniesUpdateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule) {
+      if (fiscalYearWeekRule.isNull()) {
+        this.fiscalYearWeekRule = null;
+      }
+      else if (fiscalYearWeekRule.isEmpty()) {
+        this.fiscalYearWeekRule = Optional.empty();
+      }
+      else {
+        this.fiscalYearWeekRule = Optional.of(fiscalYearWeekRule.get());
       }
       return this;
     }
@@ -1661,7 +1949,7 @@ public final class CompaniesUpdateAccountRequest {
     }
 
     public CompaniesUpdateAccountRequest build() {
-      return new CompaniesUpdateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, logo, additionalProperties);
+      return new CompaniesUpdateAccountRequest(name, code, vatCode, smeExemptionNumber, identifiers, isVatPayer, vatPeriod, vatPeriodEndMonth, fiscalYearEndMonth, fiscalYearEndDay, fiscalYearWeekday, fiscalYearWeekRule, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, logo, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -37,6 +38,16 @@ public final class RunsApprovePayrollResponse {
   private final long year;
 
   private final long month;
+
+  private final RunsApprovePayrollResponseFrequency frequency;
+
+  private final String periodStart;
+
+  private final String periodEnd;
+
+  private final long taxYear;
+
+  private final Optional<Long> taxPeriod;
 
   private final String countryCode;
 
@@ -78,10 +89,11 @@ public final class RunsApprovePayrollResponse {
 
   private final Map<String, Object> additionalProperties;
 
-  private RunsApprovePayrollResponse(String id, long year, long month, String countryCode,
-      Optional<String> payDate, RunsApprovePayrollResponseStatus status, String grossTotal,
-      String taxAllowanceTotal, String incomeTaxTotal, String employeeContributionsTotal,
-      String employerContributionsTotal,
+  private RunsApprovePayrollResponse(String id, long year, long month,
+      RunsApprovePayrollResponseFrequency frequency, String periodStart, String periodEnd,
+      long taxYear, Optional<Long> taxPeriod, String countryCode, Optional<String> payDate,
+      RunsApprovePayrollResponseStatus status, String grossTotal, String taxAllowanceTotal,
+      String incomeTaxTotal, String employeeContributionsTotal, String employerContributionsTotal,
       List<RunsApprovePayrollResponseComponentTotalsItem> componentTotals, String netTotal,
       String paidAmount, Optional<String> journalTransactionId, Optional<String> notes,
       List<String> warnings, OffsetDateTime createdAt, Optional<OffsetDateTime> approvedAt,
@@ -90,6 +102,11 @@ public final class RunsApprovePayrollResponse {
     this.id = id;
     this.year = year;
     this.month = month;
+    this.frequency = frequency;
+    this.periodStart = periodStart;
+    this.periodEnd = periodEnd;
+    this.taxYear = taxYear;
+    this.taxPeriod = taxPeriod;
     this.countryCode = countryCode;
     this.payDate = payDate;
     this.status = status;
@@ -125,6 +142,34 @@ public final class RunsApprovePayrollResponse {
   @JsonProperty("month")
   public long getMonth() {
     return month;
+  }
+
+  @JsonProperty("frequency")
+  public RunsApprovePayrollResponseFrequency getFrequency() {
+    return frequency;
+  }
+
+  @JsonProperty("periodStart")
+  public String getPeriodStart() {
+    return periodStart;
+  }
+
+  @JsonProperty("periodEnd")
+  public String getPeriodEnd() {
+    return periodEnd;
+  }
+
+  @JsonProperty("taxYear")
+  public long getTaxYear() {
+    return taxYear;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getTaxPeriod() {
+    if (taxPeriod == null) {
+      return Optional.empty();
+    }
+    return taxPeriod;
   }
 
   @JsonProperty("countryCode")
@@ -247,6 +292,15 @@ public final class RunsApprovePayrollResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("taxPeriod")
+  private Optional<Long> _getTaxPeriod() {
+    return taxPeriod;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("payDate")
   private Optional<String> _getPayDate() {
     return payDate;
@@ -318,12 +372,12 @@ public final class RunsApprovePayrollResponse {
   }
 
   private boolean equalTo(RunsApprovePayrollResponse other) {
-    return id.equals(other.id) && year == other.year && month == other.month && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason);
+    return id.equals(other.id) && year == other.year && month == other.month && frequency.equals(other.frequency) && periodStart.equals(other.periodStart) && periodEnd.equals(other.periodEnd) && taxYear == other.taxYear && taxPeriod.equals(other.taxPeriod) && countryCode.equals(other.countryCode) && payDate.equals(other.payDate) && status.equals(other.status) && grossTotal.equals(other.grossTotal) && taxAllowanceTotal.equals(other.taxAllowanceTotal) && incomeTaxTotal.equals(other.incomeTaxTotal) && employeeContributionsTotal.equals(other.employeeContributionsTotal) && employerContributionsTotal.equals(other.employerContributionsTotal) && componentTotals.equals(other.componentTotals) && netTotal.equals(other.netTotal) && paidAmount.equals(other.paidAmount) && journalTransactionId.equals(other.journalTransactionId) && notes.equals(other.notes) && warnings.equals(other.warnings) && createdAt.equals(other.createdAt) && approvedAt.equals(other.approvedAt) && reversedAt.equals(other.reversedAt) && reversalJournalTransactionId.equals(other.reversalJournalTransactionId) && reversalReason.equals(other.reversalReason);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.year, this.month, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.paidAmount, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason);
+    return Objects.hash(this.id, this.year, this.month, this.frequency, this.periodStart, this.periodEnd, this.taxYear, this.taxPeriod, this.countryCode, this.payDate, this.status, this.grossTotal, this.taxAllowanceTotal, this.incomeTaxTotal, this.employeeContributionsTotal, this.employerContributionsTotal, this.componentTotals, this.netTotal, this.paidAmount, this.journalTransactionId, this.notes, this.warnings, this.createdAt, this.approvedAt, this.reversedAt, this.reversalJournalTransactionId, this.reversalReason);
   }
 
   @java.lang.Override
@@ -346,7 +400,23 @@ public final class RunsApprovePayrollResponse {
   }
 
   public interface MonthStage {
-    CountryCodeStage month(long month);
+    FrequencyStage month(long month);
+  }
+
+  public interface FrequencyStage {
+    PeriodStartStage frequency(@NotNull RunsApprovePayrollResponseFrequency frequency);
+  }
+
+  public interface PeriodStartStage {
+    PeriodEndStage periodStart(@NotNull String periodStart);
+  }
+
+  public interface PeriodEndStage {
+    TaxYearStage periodEnd(@NotNull String periodEnd);
+  }
+
+  public interface TaxYearStage {
+    CountryCodeStage taxYear(long taxYear);
   }
 
   public interface CountryCodeStage {
@@ -396,6 +466,12 @@ public final class RunsApprovePayrollResponse {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage taxPeriod(Optional<Long> taxPeriod);
+
+    _FinalStage taxPeriod(Long taxPeriod);
+
+    _FinalStage taxPeriod(Nullable<Long> taxPeriod);
 
     _FinalStage payDate(Optional<String> payDate);
 
@@ -457,12 +533,20 @@ public final class RunsApprovePayrollResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, YearStage, MonthStage, CountryCodeStage, StatusStage, GrossTotalStage, TaxAllowanceTotalStage, IncomeTaxTotalStage, EmployeeContributionsTotalStage, EmployerContributionsTotalStage, NetTotalStage, PaidAmountStage, CreatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, YearStage, MonthStage, FrequencyStage, PeriodStartStage, PeriodEndStage, TaxYearStage, CountryCodeStage, StatusStage, GrossTotalStage, TaxAllowanceTotalStage, IncomeTaxTotalStage, EmployeeContributionsTotalStage, EmployerContributionsTotalStage, NetTotalStage, PaidAmountStage, CreatedAtStage, _FinalStage {
     private String id;
 
     private long year;
 
     private long month;
+
+    private RunsApprovePayrollResponseFrequency frequency;
+
+    private String periodStart;
+
+    private String periodEnd;
+
+    private long taxYear;
 
     private String countryCode;
 
@@ -502,6 +586,8 @@ public final class RunsApprovePayrollResponse {
 
     private Optional<String> payDate = Optional.empty();
 
+    private Optional<Long> taxPeriod = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -513,6 +599,11 @@ public final class RunsApprovePayrollResponse {
       id(other.getId());
       year(other.getYear());
       month(other.getMonth());
+      frequency(other.getFrequency());
+      periodStart(other.getPeriodStart());
+      periodEnd(other.getPeriodEnd());
+      taxYear(other.getTaxYear());
+      taxPeriod(other.getTaxPeriod());
       countryCode(other.getCountryCode());
       payDate(other.getPayDate());
       status(other.getStatus());
@@ -551,8 +642,36 @@ public final class RunsApprovePayrollResponse {
 
     @java.lang.Override
     @JsonSetter("month")
-    public CountryCodeStage month(long month) {
+    public FrequencyStage month(long month) {
       this.month = month;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("frequency")
+    public PeriodStartStage frequency(@NotNull RunsApprovePayrollResponseFrequency frequency) {
+      this.frequency = Objects.requireNonNull(frequency, "frequency must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("periodStart")
+    public PeriodEndStage periodStart(@NotNull String periodStart) {
+      this.periodStart = Objects.requireNonNull(periodStart, "periodStart must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("periodEnd")
+    public TaxYearStage periodEnd(@NotNull String periodEnd) {
+      this.periodEnd = Objects.requireNonNull(periodEnd, "periodEnd must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("taxYear")
+    public CountryCodeStage taxYear(long taxYear) {
+      this.taxYear = taxYear;
       return this;
     }
 
@@ -895,8 +1014,38 @@ public final class RunsApprovePayrollResponse {
     }
 
     @java.lang.Override
+    public _FinalStage taxPeriod(Nullable<Long> taxPeriod) {
+      if (taxPeriod.isNull()) {
+        this.taxPeriod = null;
+      }
+      else if (taxPeriod.isEmpty()) {
+        this.taxPeriod = Optional.empty();
+      }
+      else {
+        this.taxPeriod = Optional.of(taxPeriod.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage taxPeriod(Long taxPeriod) {
+      this.taxPeriod = Optional.ofNullable(taxPeriod);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "taxPeriod",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage taxPeriod(Optional<Long> taxPeriod) {
+      this.taxPeriod = taxPeriod;
+      return this;
+    }
+
+    @java.lang.Override
     public RunsApprovePayrollResponse build() {
-      return new RunsApprovePayrollResponse(id, year, month, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, paidAmount, journalTransactionId, notes, warnings, createdAt, approvedAt, reversedAt, reversalJournalTransactionId, reversalReason, additionalProperties);
+      return new RunsApprovePayrollResponse(id, year, month, frequency, periodStart, periodEnd, taxYear, taxPeriod, countryCode, payDate, status, grossTotal, taxAllowanceTotal, incomeTaxTotal, employeeContributionsTotal, employerContributionsTotal, componentTotals, netTotal, paidAmount, journalTransactionId, notes, warnings, createdAt, approvedAt, reversedAt, reversalJournalTransactionId, reversalReason, additionalProperties);
     }
 
     @java.lang.Override

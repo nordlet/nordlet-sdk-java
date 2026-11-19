@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.payroll.types.RunsCreatePayrollRequestFrequency;
 import com.nordlet.api.resources.payroll.types.RunsCreatePayrollRequestGrossOverridesItem;
 import com.nordlet.api.resources.payroll.types.RunsCreatePayrollRequestLinesItem;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -29,9 +31,13 @@ import java.util.Optional;
     builder = RunsCreatePayrollRequest.Builder.class
 )
 public final class RunsCreatePayrollRequest {
-  private final long year;
+  private final Optional<RunsCreatePayrollRequestFrequency> frequency;
 
-  private final long month;
+  private final Optional<Long> year;
+
+  private final Optional<Long> month;
+
+  private final Optional<String> periodStart;
 
   private final Optional<Boolean> includeNatura;
 
@@ -45,12 +51,16 @@ public final class RunsCreatePayrollRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private RunsCreatePayrollRequest(long year, long month, Optional<Boolean> includeNatura,
+  private RunsCreatePayrollRequest(Optional<RunsCreatePayrollRequestFrequency> frequency,
+      Optional<Long> year, Optional<Long> month, Optional<String> periodStart,
+      Optional<Boolean> includeNatura,
       Optional<List<RunsCreatePayrollRequestGrossOverridesItem>> grossOverrides,
       Optional<List<RunsCreatePayrollRequestLinesItem>> lines, Optional<String> notes,
       Optional<String> payDate, Map<String, Object> additionalProperties) {
+    this.frequency = frequency;
     this.year = year;
     this.month = month;
+    this.periodStart = periodStart;
     this.includeNatura = includeNatura;
     this.grossOverrides = grossOverrides;
     this.lines = lines;
@@ -59,14 +69,24 @@ public final class RunsCreatePayrollRequest {
     this.additionalProperties = additionalProperties;
   }
 
+  @JsonProperty("frequency")
+  public Optional<RunsCreatePayrollRequestFrequency> getFrequency() {
+    return frequency;
+  }
+
   @JsonProperty("year")
-  public long getYear() {
+  public Optional<Long> getYear() {
     return year;
   }
 
   @JsonProperty("month")
-  public long getMonth() {
+  public Optional<Long> getMonth() {
     return month;
+  }
+
+  @JsonProperty("periodStart")
+  public Optional<String> getPeriodStart() {
+    return periodStart;
   }
 
   @JsonProperty("includeNatura")
@@ -106,12 +126,12 @@ public final class RunsCreatePayrollRequest {
   }
 
   private boolean equalTo(RunsCreatePayrollRequest other) {
-    return year == other.year && month == other.month && includeNatura.equals(other.includeNatura) && grossOverrides.equals(other.grossOverrides) && lines.equals(other.lines) && notes.equals(other.notes) && payDate.equals(other.payDate);
+    return frequency.equals(other.frequency) && year.equals(other.year) && month.equals(other.month) && periodStart.equals(other.periodStart) && includeNatura.equals(other.includeNatura) && grossOverrides.equals(other.grossOverrides) && lines.equals(other.lines) && notes.equals(other.notes) && payDate.equals(other.payDate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.month, this.includeNatura, this.grossOverrides, this.lines, this.notes, this.payDate);
+    return Objects.hash(this.frequency, this.year, this.month, this.periodStart, this.includeNatura, this.grossOverrides, this.lines, this.notes, this.payDate);
   }
 
   @java.lang.Override
@@ -119,66 +139,31 @@ public final class RunsCreatePayrollRequest {
     return ObjectMappers.stringify(this);
   }
 
-  public static YearStage builder() {
+  public static Builder builder() {
     return new Builder();
-  }
-
-  public interface YearStage {
-    MonthStage year(long year);
-
-    Builder from(RunsCreatePayrollRequest other);
-  }
-
-  public interface MonthStage {
-    _FinalStage month(long month);
-  }
-
-  public interface _FinalStage {
-    RunsCreatePayrollRequest build();
-
-    _FinalStage additionalProperty(String key, Object value);
-
-    _FinalStage additionalProperties(Map<String, Object> additionalProperties);
-
-    _FinalStage includeNatura(Optional<Boolean> includeNatura);
-
-    _FinalStage includeNatura(Boolean includeNatura);
-
-    _FinalStage grossOverrides(
-        Optional<List<RunsCreatePayrollRequestGrossOverridesItem>> grossOverrides);
-
-    _FinalStage grossOverrides(List<RunsCreatePayrollRequestGrossOverridesItem> grossOverrides);
-
-    _FinalStage lines(Optional<List<RunsCreatePayrollRequestLinesItem>> lines);
-
-    _FinalStage lines(List<RunsCreatePayrollRequestLinesItem> lines);
-
-    _FinalStage notes(Optional<String> notes);
-
-    _FinalStage notes(String notes);
-
-    _FinalStage payDate(Optional<String> payDate);
-
-    _FinalStage payDate(String payDate);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements YearStage, MonthStage, _FinalStage {
-    private long year;
+  public static final class Builder {
+    private Optional<RunsCreatePayrollRequestFrequency> frequency = Optional.empty();
 
-    private long month;
+    private Optional<Long> year = Optional.empty();
 
-    private Optional<String> payDate = Optional.empty();
+    private Optional<Long> month = Optional.empty();
 
-    private Optional<String> notes = Optional.empty();
+    private Optional<String> periodStart = Optional.empty();
 
-    private Optional<List<RunsCreatePayrollRequestLinesItem>> lines = Optional.empty();
+    private Optional<Boolean> includeNatura = Optional.empty();
 
     private Optional<List<RunsCreatePayrollRequestGrossOverridesItem>> grossOverrides = Optional.empty();
 
-    private Optional<Boolean> includeNatura = Optional.empty();
+    private Optional<List<RunsCreatePayrollRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<String> notes = Optional.empty();
+
+    private Optional<String> payDate = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -186,10 +171,11 @@ public final class RunsCreatePayrollRequest {
     private Builder() {
     }
 
-    @java.lang.Override
     public Builder from(RunsCreatePayrollRequest other) {
+      frequency(other.getFrequency());
       year(other.getYear());
       month(other.getMonth());
+      periodStart(other.getPeriodStart());
       includeNatura(other.getIncludeNatura());
       grossOverrides(other.getGrossOverrides());
       lines(other.getLines());
@@ -198,114 +184,142 @@ public final class RunsCreatePayrollRequest {
       return this;
     }
 
-    @java.lang.Override
-    @JsonSetter("year")
-    public MonthStage year(long year) {
+    @JsonSetter(
+        value = "frequency",
+        nulls = Nulls.SKIP
+    )
+    public Builder frequency(Optional<RunsCreatePayrollRequestFrequency> frequency) {
+      this.frequency = frequency;
+      return this;
+    }
+
+    public Builder frequency(RunsCreatePayrollRequestFrequency frequency) {
+      this.frequency = Optional.ofNullable(frequency);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "year",
+        nulls = Nulls.SKIP
+    )
+    public Builder year(Optional<Long> year) {
       this.year = year;
       return this;
     }
 
-    @java.lang.Override
-    @JsonSetter("month")
-    public _FinalStage month(long month) {
+    public Builder year(Long year) {
+      this.year = Optional.ofNullable(year);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "month",
+        nulls = Nulls.SKIP
+    )
+    public Builder month(Optional<Long> month) {
       this.month = month;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage payDate(String payDate) {
-      this.payDate = Optional.ofNullable(payDate);
+    public Builder month(Long month) {
+      this.month = Optional.ofNullable(month);
       return this;
     }
 
-    @java.lang.Override
     @JsonSetter(
-        value = "payDate",
+        value = "periodStart",
         nulls = Nulls.SKIP
     )
-    public _FinalStage payDate(Optional<String> payDate) {
-      this.payDate = payDate;
+    public Builder periodStart(Optional<String> periodStart) {
+      this.periodStart = periodStart;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage notes(String notes) {
-      this.notes = Optional.ofNullable(notes);
+    public Builder periodStart(String periodStart) {
+      this.periodStart = Optional.ofNullable(periodStart);
       return this;
     }
 
-    @java.lang.Override
     @JsonSetter(
-        value = "notes",
+        value = "includeNatura",
         nulls = Nulls.SKIP
     )
-    public _FinalStage notes(Optional<String> notes) {
-      this.notes = notes;
+    public Builder includeNatura(Optional<Boolean> includeNatura) {
+      this.includeNatura = includeNatura;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage lines(List<RunsCreatePayrollRequestLinesItem> lines) {
-      this.lines = Optional.ofNullable(lines);
+    public Builder includeNatura(Boolean includeNatura) {
+      this.includeNatura = Optional.ofNullable(includeNatura);
       return this;
     }
 
-    @java.lang.Override
-    @JsonSetter(
-        value = "lines",
-        nulls = Nulls.SKIP
-    )
-    public _FinalStage lines(Optional<List<RunsCreatePayrollRequestLinesItem>> lines) {
-      this.lines = lines;
-      return this;
-    }
-
-    @java.lang.Override
-    public _FinalStage grossOverrides(
-        List<RunsCreatePayrollRequestGrossOverridesItem> grossOverrides) {
-      this.grossOverrides = Optional.ofNullable(grossOverrides);
-      return this;
-    }
-
-    @java.lang.Override
     @JsonSetter(
         value = "grossOverrides",
         nulls = Nulls.SKIP
     )
-    public _FinalStage grossOverrides(
+    public Builder grossOverrides(
         Optional<List<RunsCreatePayrollRequestGrossOverridesItem>> grossOverrides) {
       this.grossOverrides = grossOverrides;
       return this;
     }
 
-    @java.lang.Override
-    public _FinalStage includeNatura(Boolean includeNatura) {
-      this.includeNatura = Optional.ofNullable(includeNatura);
+    public Builder grossOverrides(List<RunsCreatePayrollRequestGrossOverridesItem> grossOverrides) {
+      this.grossOverrides = Optional.ofNullable(grossOverrides);
       return this;
     }
 
-    @java.lang.Override
     @JsonSetter(
-        value = "includeNatura",
+        value = "lines",
         nulls = Nulls.SKIP
     )
-    public _FinalStage includeNatura(Optional<Boolean> includeNatura) {
-      this.includeNatura = includeNatura;
+    public Builder lines(Optional<List<RunsCreatePayrollRequestLinesItem>> lines) {
+      this.lines = lines;
       return this;
     }
 
-    @java.lang.Override
-    public RunsCreatePayrollRequest build() {
-      return new RunsCreatePayrollRequest(year, month, includeNatura, grossOverrides, lines, notes, payDate, additionalProperties);
+    public Builder lines(List<RunsCreatePayrollRequestLinesItem> lines) {
+      this.lines = Optional.ofNullable(lines);
+      return this;
     }
 
-    @java.lang.Override
+    @JsonSetter(
+        value = "notes",
+        nulls = Nulls.SKIP
+    )
+    public Builder notes(Optional<String> notes) {
+      this.notes = notes;
+      return this;
+    }
+
+    public Builder notes(String notes) {
+      this.notes = Optional.ofNullable(notes);
+      return this;
+    }
+
+    @JsonSetter(
+        value = "payDate",
+        nulls = Nulls.SKIP
+    )
+    public Builder payDate(Optional<String> payDate) {
+      this.payDate = payDate;
+      return this;
+    }
+
+    public Builder payDate(String payDate) {
+      this.payDate = Optional.ofNullable(payDate);
+      return this;
+    }
+
+    public RunsCreatePayrollRequest build() {
+      return new RunsCreatePayrollRequest(frequency, year, month, periodStart, includeNatura, grossOverrides, lines, notes, payDate, additionalProperties);
+    }
+
     public Builder additionalProperty(String key, Object value) {
       this.additionalProperties.put(key, value);
       return this;
     }
 
-    @java.lang.Override
     public Builder additionalProperties(Map<String, Object> additionalProperties) {
       this.additionalProperties.putAll(additionalProperties);
       return this;

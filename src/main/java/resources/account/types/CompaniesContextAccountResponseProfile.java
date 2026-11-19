@@ -20,6 +20,7 @@ import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -38,6 +39,8 @@ public final class CompaniesContextAccountResponseProfile {
 
   private final Optional<String> vatCode;
 
+  private final Map<String, String> identifiers;
+
   private final Optional<String> smeExemptionNumber;
 
   private final boolean isVatPayer;
@@ -50,7 +53,7 @@ public final class CompaniesContextAccountResponseProfile {
 
   private final String chartTemplate;
 
-  private final String countryChartTemplate;
+  private final Optional<String> countryChartTemplate;
 
   private final String baseCurrency;
 
@@ -102,7 +105,15 @@ public final class CompaniesContextAccountResponseProfile {
 
   private final Optional<CompaniesContextAccountResponseProfileVatPeriod> vatPeriod;
 
+  private final Optional<Long> vatPeriodEndMonth;
+
   private final Optional<Long> fiscalYearEndMonth;
+
+  private final Optional<Long> fiscalYearEndDay;
+
+  private final Optional<Long> fiscalYearWeekday;
+
+  private final Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule;
 
   private final String timeZone;
 
@@ -119,9 +130,10 @@ public final class CompaniesContextAccountResponseProfile {
   private final Map<String, Object> additionalProperties;
 
   private CompaniesContextAccountResponseProfile(String id, String name, Optional<String> code,
-      Optional<String> vatCode, Optional<String> smeExemptionNumber, boolean isVatPayer,
-      boolean isSandbox, boolean cashBasis, String countryCode, String chartTemplate,
-      String countryChartTemplate, String baseCurrency, String defaultInvoiceCurrency,
+      Optional<String> vatCode, Map<String, String> identifiers,
+      Optional<String> smeExemptionNumber, boolean isVatPayer, boolean isSandbox, boolean cashBasis,
+      String countryCode, String chartTemplate, Optional<String> countryChartTemplate,
+      String baseCurrency, String defaultInvoiceCurrency,
       CompaniesContextAccountResponseProfileStatus status,
       Optional<CompaniesContextAccountResponseProfileAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
@@ -133,14 +145,18 @@ public final class CompaniesContextAccountResponseProfile {
       Optional<String> shareCapital,
       Optional<CompaniesContextAccountResponseProfileAccountsKeptBy> accountsKeptBy,
       Optional<CompaniesContextAccountResponseProfileVatPeriod> vatPeriod,
-      Optional<Long> fiscalYearEndMonth, String timeZone,
-      Optional<Map<String, Optional<String>>> filingOptions, Optional<String> bookkeeperName,
-      Optional<String> auditorName, Optional<String> auditorRegistrationNumber,
-      boolean auditRequired, Map<String, Object> additionalProperties) {
+      Optional<Long> vatPeriodEndMonth, Optional<Long> fiscalYearEndMonth,
+      Optional<Long> fiscalYearEndDay, Optional<Long> fiscalYearWeekday,
+      Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule,
+      String timeZone, Optional<Map<String, Optional<String>>> filingOptions,
+      Optional<String> bookkeeperName, Optional<String> auditorName,
+      Optional<String> auditorRegistrationNumber, boolean auditRequired,
+      Map<String, Object> additionalProperties) {
     this.id = id;
     this.name = name;
     this.code = code;
     this.vatCode = vatCode;
+    this.identifiers = identifiers;
     this.smeExemptionNumber = smeExemptionNumber;
     this.isVatPayer = isVatPayer;
     this.isSandbox = isSandbox;
@@ -173,7 +189,11 @@ public final class CompaniesContextAccountResponseProfile {
     this.shareCapital = shareCapital;
     this.accountsKeptBy = accountsKeptBy;
     this.vatPeriod = vatPeriod;
+    this.vatPeriodEndMonth = vatPeriodEndMonth;
     this.fiscalYearEndMonth = fiscalYearEndMonth;
+    this.fiscalYearEndDay = fiscalYearEndDay;
+    this.fiscalYearWeekday = fiscalYearWeekday;
+    this.fiscalYearWeekRule = fiscalYearWeekRule;
     this.timeZone = timeZone;
     this.filingOptions = filingOptions;
     this.bookkeeperName = bookkeeperName;
@@ -207,6 +227,11 @@ public final class CompaniesContextAccountResponseProfile {
       return Optional.empty();
     }
     return vatCode;
+  }
+
+  @JsonProperty("identifiers")
+  public Map<String, String> getIdentifiers() {
+    return identifiers;
   }
 
   @JsonIgnore
@@ -246,10 +271,13 @@ public final class CompaniesContextAccountResponseProfile {
   }
 
   /**
-   * @return Chart of accounts template of the company country
+   * @return Chart of accounts template of the company country; null when Nordlet has no chart for it
    */
-  @JsonProperty("countryChartTemplate")
-  public String getCountryChartTemplate() {
+  @JsonIgnore
+  public Optional<String> getCountryChartTemplate() {
+    if (countryChartTemplate == null) {
+      return Optional.empty();
+    }
     return countryChartTemplate;
   }
 
@@ -445,11 +473,44 @@ public final class CompaniesContextAccountResponseProfile {
   }
 
   @JsonIgnore
+  public Optional<Long> getVatPeriodEndMonth() {
+    if (vatPeriodEndMonth == null) {
+      return Optional.empty();
+    }
+    return vatPeriodEndMonth;
+  }
+
+  @JsonIgnore
   public Optional<Long> getFiscalYearEndMonth() {
     if (fiscalYearEndMonth == null) {
       return Optional.empty();
     }
     return fiscalYearEndMonth;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getFiscalYearEndDay() {
+    if (fiscalYearEndDay == null) {
+      return Optional.empty();
+    }
+    return fiscalYearEndDay;
+  }
+
+  @JsonIgnore
+  public Optional<Long> getFiscalYearWeekday() {
+    if (fiscalYearWeekday == null) {
+      return Optional.empty();
+    }
+    return fiscalYearWeekday;
+  }
+
+  @JsonIgnore
+  public Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> getFiscalYearWeekRule(
+      ) {
+    if (fiscalYearWeekRule == null) {
+      return Optional.empty();
+    }
+    return fiscalYearWeekRule;
   }
 
   @JsonProperty("timeZone")
@@ -519,6 +580,15 @@ public final class CompaniesContextAccountResponseProfile {
   @JsonProperty("smeExemptionNumber")
   private Optional<String> _getSmeExemptionNumber() {
     return smeExemptionNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("countryChartTemplate")
+  private Optional<String> _getCountryChartTemplate() {
+    return countryChartTemplate;
   }
 
   @JsonInclude(
@@ -705,9 +775,46 @@ public final class CompaniesContextAccountResponseProfile {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("vatPeriodEndMonth")
+  private Optional<Long> _getVatPeriodEndMonth() {
+    return vatPeriodEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("fiscalYearEndMonth")
   private Optional<Long> _getFiscalYearEndMonth() {
     return fiscalYearEndMonth;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearEndDay")
+  private Optional<Long> _getFiscalYearEndDay() {
+    return fiscalYearEndDay;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearWeekday")
+  private Optional<Long> _getFiscalYearWeekday() {
+    return fiscalYearWeekday;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("fiscalYearWeekRule")
+  private Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> _getFiscalYearWeekRule(
+      ) {
+    return fiscalYearWeekRule;
   }
 
   @JsonInclude(
@@ -758,12 +865,12 @@ public final class CompaniesContextAccountResponseProfile {
   }
 
   private boolean equalTo(CompaniesContextAccountResponseProfile other) {
-    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && cashBasis == other.cashBasis && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && nextInvoiceNumber.equals(other.nextInvoiceNumber) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
+    return id.equals(other.id) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && identifiers.equals(other.identifiers) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer == other.isVatPayer && isSandbox == other.isSandbox && cashBasis == other.cashBasis && countryCode.equals(other.countryCode) && chartTemplate.equals(other.chartTemplate) && countryChartTemplate.equals(other.countryChartTemplate) && baseCurrency.equals(other.baseCurrency) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && status.equals(other.status) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && nextInvoiceNumber.equals(other.nextInvoiceNumber) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && logoFileId.equals(other.logoFileId) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && vatPeriod.equals(other.vatPeriod) && vatPeriodEndMonth.equals(other.vatPeriodEndMonth) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && fiscalYearEndDay.equals(other.fiscalYearEndDay) && fiscalYearWeekday.equals(other.fiscalYearWeekday) && fiscalYearWeekRule.equals(other.fiscalYearWeekRule) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired == other.auditRequired;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.cashBasis, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.nextInvoiceNumber, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
+    return Objects.hash(this.id, this.name, this.code, this.vatCode, this.identifiers, this.smeExemptionNumber, this.isVatPayer, this.isSandbox, this.cashBasis, this.countryCode, this.chartTemplate, this.countryChartTemplate, this.baseCurrency, this.defaultInvoiceCurrency, this.status, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.nextInvoiceNumber, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.logoFileId, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.vatPeriod, this.vatPeriodEndMonth, this.fiscalYearEndMonth, this.fiscalYearEndDay, this.fiscalYearWeekday, this.fiscalYearWeekRule, this.timeZone, this.filingOptions, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired);
   }
 
   @java.lang.Override
@@ -805,14 +912,7 @@ public final class CompaniesContextAccountResponseProfile {
     /**
      * <p>Chart of accounts template the company was seeded with</p>
      */
-    CountryChartTemplateStage chartTemplate(@NotNull String chartTemplate);
-  }
-
-  public interface CountryChartTemplateStage {
-    /**
-     * <p>Chart of accounts template of the company country</p>
-     */
-    BaseCurrencyStage countryChartTemplate(@NotNull String countryChartTemplate);
+    BaseCurrencyStage chartTemplate(@NotNull String chartTemplate);
   }
 
   public interface BaseCurrencyStage {
@@ -868,11 +968,26 @@ public final class CompaniesContextAccountResponseProfile {
 
     _FinalStage vatCode(Nullable<String> vatCode);
 
+    _FinalStage identifiers(Map<String, String> identifiers);
+
+    _FinalStage putAllIdentifiers(Map<String, String> identifiers);
+
+    _FinalStage identifiers(String key, String value);
+
     _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber);
 
     _FinalStage smeExemptionNumber(String smeExemptionNumber);
 
     _FinalStage smeExemptionNumber(Nullable<String> smeExemptionNumber);
+
+    /**
+     * <p>Chart of accounts template of the company country; null when Nordlet has no chart for it</p>
+     */
+    _FinalStage countryChartTemplate(Optional<String> countryChartTemplate);
+
+    _FinalStage countryChartTemplate(String countryChartTemplate);
+
+    _FinalStage countryChartTemplate(Nullable<String> countryChartTemplate);
 
     _FinalStage address(Optional<CompaniesContextAccountResponseProfileAddress> address);
 
@@ -996,11 +1111,38 @@ public final class CompaniesContextAccountResponseProfile {
 
     _FinalStage vatPeriod(Nullable<CompaniesContextAccountResponseProfileVatPeriod> vatPeriod);
 
+    _FinalStage vatPeriodEndMonth(Optional<Long> vatPeriodEndMonth);
+
+    _FinalStage vatPeriodEndMonth(Long vatPeriodEndMonth);
+
+    _FinalStage vatPeriodEndMonth(Nullable<Long> vatPeriodEndMonth);
+
     _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth);
 
     _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth);
 
     _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth);
+
+    _FinalStage fiscalYearEndDay(Optional<Long> fiscalYearEndDay);
+
+    _FinalStage fiscalYearEndDay(Long fiscalYearEndDay);
+
+    _FinalStage fiscalYearEndDay(Nullable<Long> fiscalYearEndDay);
+
+    _FinalStage fiscalYearWeekday(Optional<Long> fiscalYearWeekday);
+
+    _FinalStage fiscalYearWeekday(Long fiscalYearWeekday);
+
+    _FinalStage fiscalYearWeekday(Nullable<Long> fiscalYearWeekday);
+
+    _FinalStage fiscalYearWeekRule(
+        Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule);
+
+    _FinalStage fiscalYearWeekRule(
+        CompaniesContextAccountResponseProfileFiscalYearWeekRule fiscalYearWeekRule);
+
+    _FinalStage fiscalYearWeekRule(
+        Nullable<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule);
 
     _FinalStage filingOptions(Optional<Map<String, Optional<String>>> filingOptions);
 
@@ -1030,7 +1172,7 @@ public final class CompaniesContextAccountResponseProfile {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CashBasisStage, CountryCodeStage, ChartTemplateStage, CountryChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, InvoicePrefixStage, NextInvoiceNumberStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
+  public static final class Builder implements IdStage, NameStage, IsVatPayerStage, IsSandboxStage, CashBasisStage, CountryCodeStage, ChartTemplateStage, BaseCurrencyStage, DefaultInvoiceCurrencyStage, StatusStage, InvoicePrefixStage, NextInvoiceNumberStage, TimeZoneStage, AuditRequiredStage, _FinalStage {
     private String id;
 
     private String name;
@@ -1044,8 +1186,6 @@ public final class CompaniesContextAccountResponseProfile {
     private String countryCode;
 
     private String chartTemplate;
-
-    private String countryChartTemplate;
 
     private String baseCurrency;
 
@@ -1069,7 +1209,15 @@ public final class CompaniesContextAccountResponseProfile {
 
     private Optional<Map<String, Optional<String>>> filingOptions = Optional.empty();
 
+    private Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule = Optional.empty();
+
+    private Optional<Long> fiscalYearWeekday = Optional.empty();
+
+    private Optional<Long> fiscalYearEndDay = Optional.empty();
+
     private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<Long> vatPeriodEndMonth = Optional.empty();
 
     private Optional<CompaniesContextAccountResponseProfileVatPeriod> vatPeriod = Optional.empty();
 
@@ -1111,7 +1259,11 @@ public final class CompaniesContextAccountResponseProfile {
 
     private Optional<CompaniesContextAccountResponseProfileAddress> address = Optional.empty();
 
+    private Optional<String> countryChartTemplate = Optional.empty();
+
     private Optional<String> smeExemptionNumber = Optional.empty();
+
+    private Map<String, String> identifiers = new LinkedHashMap<>();
 
     private Optional<String> vatCode = Optional.empty();
 
@@ -1129,6 +1281,7 @@ public final class CompaniesContextAccountResponseProfile {
       name(other.getName());
       code(other.getCode());
       vatCode(other.getVatCode());
+      identifiers(other.getIdentifiers());
       smeExemptionNumber(other.getSmeExemptionNumber());
       isVatPayer(other.getIsVatPayer());
       isSandbox(other.getIsSandbox());
@@ -1161,7 +1314,11 @@ public final class CompaniesContextAccountResponseProfile {
       shareCapital(other.getShareCapital());
       accountsKeptBy(other.getAccountsKeptBy());
       vatPeriod(other.getVatPeriod());
+      vatPeriodEndMonth(other.getVatPeriodEndMonth());
       fiscalYearEndMonth(other.getFiscalYearEndMonth());
+      fiscalYearEndDay(other.getFiscalYearEndDay());
+      fiscalYearWeekday(other.getFiscalYearWeekday());
+      fiscalYearWeekRule(other.getFiscalYearWeekRule());
       timeZone(other.getTimeZone());
       filingOptions(other.getFilingOptions());
       bookkeeperName(other.getBookkeeperName());
@@ -1219,19 +1376,8 @@ public final class CompaniesContextAccountResponseProfile {
      */
     @java.lang.Override
     @JsonSetter("chartTemplate")
-    public CountryChartTemplateStage chartTemplate(@NotNull String chartTemplate) {
+    public BaseCurrencyStage chartTemplate(@NotNull String chartTemplate) {
       this.chartTemplate = Objects.requireNonNull(chartTemplate, "chartTemplate must not be null");
-      return this;
-    }
-
-    /**
-     * <p>Chart of accounts template of the company country</p>
-     * @return Reference to {@code this} so that method calls can be chained together.
-     */
-    @java.lang.Override
-    @JsonSetter("countryChartTemplate")
-    public BaseCurrencyStage countryChartTemplate(@NotNull String countryChartTemplate) {
-      this.countryChartTemplate = Objects.requireNonNull(countryChartTemplate, "countryChartTemplate must not be null");
       return this;
     }
 
@@ -1413,6 +1559,99 @@ public final class CompaniesContextAccountResponseProfile {
     }
 
     @java.lang.Override
+    public _FinalStage fiscalYearWeekRule(
+        Nullable<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule) {
+      if (fiscalYearWeekRule.isNull()) {
+        this.fiscalYearWeekRule = null;
+      }
+      else if (fiscalYearWeekRule.isEmpty()) {
+        this.fiscalYearWeekRule = Optional.empty();
+      }
+      else {
+        this.fiscalYearWeekRule = Optional.of(fiscalYearWeekRule.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearWeekRule(
+        CompaniesContextAccountResponseProfileFiscalYearWeekRule fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = Optional.ofNullable(fiscalYearWeekRule);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearWeekRule",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearWeekRule(
+        Optional<CompaniesContextAccountResponseProfileFiscalYearWeekRule> fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = fiscalYearWeekRule;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearWeekday(Nullable<Long> fiscalYearWeekday) {
+      if (fiscalYearWeekday.isNull()) {
+        this.fiscalYearWeekday = null;
+      }
+      else if (fiscalYearWeekday.isEmpty()) {
+        this.fiscalYearWeekday = Optional.empty();
+      }
+      else {
+        this.fiscalYearWeekday = Optional.of(fiscalYearWeekday.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearWeekday(Long fiscalYearWeekday) {
+      this.fiscalYearWeekday = Optional.ofNullable(fiscalYearWeekday);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearWeekday",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearWeekday(Optional<Long> fiscalYearWeekday) {
+      this.fiscalYearWeekday = fiscalYearWeekday;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndDay(Nullable<Long> fiscalYearEndDay) {
+      if (fiscalYearEndDay.isNull()) {
+        this.fiscalYearEndDay = null;
+      }
+      else if (fiscalYearEndDay.isEmpty()) {
+        this.fiscalYearEndDay = Optional.empty();
+      }
+      else {
+        this.fiscalYearEndDay = Optional.of(fiscalYearEndDay.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage fiscalYearEndDay(Long fiscalYearEndDay) {
+      this.fiscalYearEndDay = Optional.ofNullable(fiscalYearEndDay);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearEndDay",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearEndDay(Optional<Long> fiscalYearEndDay) {
+      this.fiscalYearEndDay = fiscalYearEndDay;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage fiscalYearEndMonth(Nullable<Long> fiscalYearEndMonth) {
       if (fiscalYearEndMonth.isNull()) {
         this.fiscalYearEndMonth = null;
@@ -1439,6 +1678,36 @@ public final class CompaniesContextAccountResponseProfile {
     )
     public _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth) {
       this.fiscalYearEndMonth = fiscalYearEndMonth;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriodEndMonth(Nullable<Long> vatPeriodEndMonth) {
+      if (vatPeriodEndMonth.isNull()) {
+        this.vatPeriodEndMonth = null;
+      }
+      else if (vatPeriodEndMonth.isEmpty()) {
+        this.vatPeriodEndMonth = Optional.empty();
+      }
+      else {
+        this.vatPeriodEndMonth = Optional.of(vatPeriodEndMonth.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatPeriodEndMonth(Long vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = Optional.ofNullable(vatPeriodEndMonth);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatPeriodEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatPeriodEndMonth(Optional<Long> vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = vatPeriodEndMonth;
       return this;
     }
 
@@ -2047,6 +2316,47 @@ public final class CompaniesContextAccountResponseProfile {
       return this;
     }
 
+    /**
+     * <p>Chart of accounts template of the company country; null when Nordlet has no chart for it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage countryChartTemplate(Nullable<String> countryChartTemplate) {
+      if (countryChartTemplate.isNull()) {
+        this.countryChartTemplate = null;
+      }
+      else if (countryChartTemplate.isEmpty()) {
+        this.countryChartTemplate = Optional.empty();
+      }
+      else {
+        this.countryChartTemplate = Optional.of(countryChartTemplate.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Chart of accounts template of the company country; null when Nordlet has no chart for it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage countryChartTemplate(String countryChartTemplate) {
+      this.countryChartTemplate = Optional.ofNullable(countryChartTemplate);
+      return this;
+    }
+
+    /**
+     * <p>Chart of accounts template of the company country; null when Nordlet has no chart for it</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "countryChartTemplate",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage countryChartTemplate(Optional<String> countryChartTemplate) {
+      this.countryChartTemplate = countryChartTemplate;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage smeExemptionNumber(Nullable<String> smeExemptionNumber) {
       if (smeExemptionNumber.isNull()) {
@@ -2074,6 +2384,33 @@ public final class CompaniesContextAccountResponseProfile {
     )
     public _FinalStage smeExemptionNumber(Optional<String> smeExemptionNumber) {
       this.smeExemptionNumber = smeExemptionNumber;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage identifiers(String key, String value) {
+      this.identifiers.put(key, value);
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage putAllIdentifiers(Map<String, String> identifiers) {
+      if (identifiers != null) {
+        this.identifiers.putAll(identifiers);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage identifiers(Map<String, String> identifiers) {
+      this.identifiers.clear();
+      if (identifiers != null) {
+        this.identifiers.putAll(identifiers);
+      }
       return this;
     }
 
@@ -2139,7 +2476,7 @@ public final class CompaniesContextAccountResponseProfile {
 
     @java.lang.Override
     public CompaniesContextAccountResponseProfile build() {
-      return new CompaniesContextAccountResponseProfile(id, name, code, vatCode, smeExemptionNumber, isVatPayer, isSandbox, cashBasis, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, nextInvoiceNumber, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
+      return new CompaniesContextAccountResponseProfile(id, name, code, vatCode, identifiers, smeExemptionNumber, isVatPayer, isSandbox, cashBasis, countryCode, chartTemplate, countryChartTemplate, baseCurrency, defaultInvoiceCurrency, status, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, nextInvoiceNumber, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, logoFileId, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, vatPeriod, vatPeriodEndMonth, fiscalYearEndMonth, fiscalYearEndDay, fiscalYearWeekday, fiscalYearWeekRule, timeZone, filingOptions, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, additionalProperties);
     }
 
     @java.lang.Override

@@ -24,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
     builder = ExchangeRatesListReferenceResponseRowsItem.Builder.class
 )
 public final class ExchangeRatesListReferenceResponseRowsItem {
+  private final String baseCurrency;
+
   private final String currencyCode;
 
   private final String date;
@@ -32,12 +34,18 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
 
   private final Map<String, Object> additionalProperties;
 
-  private ExchangeRatesListReferenceResponseRowsItem(String currencyCode, String date, String rate,
-      Map<String, Object> additionalProperties) {
+  private ExchangeRatesListReferenceResponseRowsItem(String baseCurrency, String currencyCode,
+      String date, String rate, Map<String, Object> additionalProperties) {
+    this.baseCurrency = baseCurrency;
     this.currencyCode = currencyCode;
     this.date = date;
     this.rate = rate;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("baseCurrency")
+  public String getBaseCurrency() {
+    return baseCurrency;
   }
 
   @JsonProperty("currencyCode")
@@ -67,12 +75,12 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
   }
 
   private boolean equalTo(ExchangeRatesListReferenceResponseRowsItem other) {
-    return currencyCode.equals(other.currencyCode) && date.equals(other.date) && rate.equals(other.rate);
+    return baseCurrency.equals(other.baseCurrency) && currencyCode.equals(other.currencyCode) && date.equals(other.date) && rate.equals(other.rate);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.currencyCode, this.date, this.rate);
+    return Objects.hash(this.baseCurrency, this.currencyCode, this.date, this.rate);
   }
 
   @java.lang.Override
@@ -80,14 +88,18 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
     return ObjectMappers.stringify(this);
   }
 
-  public static CurrencyCodeStage builder() {
+  public static BaseCurrencyStage builder() {
     return new Builder();
+  }
+
+  public interface BaseCurrencyStage {
+    CurrencyCodeStage baseCurrency(@NotNull String baseCurrency);
+
+    Builder from(ExchangeRatesListReferenceResponseRowsItem other);
   }
 
   public interface CurrencyCodeStage {
     DateStage currencyCode(@NotNull String currencyCode);
-
-    Builder from(ExchangeRatesListReferenceResponseRowsItem other);
   }
 
   public interface DateStage {
@@ -109,7 +121,9 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements CurrencyCodeStage, DateStage, RateStage, _FinalStage {
+  public static final class Builder implements BaseCurrencyStage, CurrencyCodeStage, DateStage, RateStage, _FinalStage {
+    private String baseCurrency;
+
     private String currencyCode;
 
     private String date;
@@ -124,9 +138,17 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
 
     @java.lang.Override
     public Builder from(ExchangeRatesListReferenceResponseRowsItem other) {
+      baseCurrency(other.getBaseCurrency());
       currencyCode(other.getCurrencyCode());
       date(other.getDate());
       rate(other.getRate());
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("baseCurrency")
+    public CurrencyCodeStage baseCurrency(@NotNull String baseCurrency) {
+      this.baseCurrency = Objects.requireNonNull(baseCurrency, "baseCurrency must not be null");
       return this;
     }
 
@@ -153,7 +175,7 @@ public final class ExchangeRatesListReferenceResponseRowsItem {
 
     @java.lang.Override
     public ExchangeRatesListReferenceResponseRowsItem build() {
-      return new ExchangeRatesListReferenceResponseRowsItem(currencyCode, date, rate, additionalProperties);
+      return new ExchangeRatesListReferenceResponseRowsItem(baseCurrency, currencyCode, date, rate, additionalProperties);
     }
 
     @java.lang.Override

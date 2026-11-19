@@ -1145,7 +1145,7 @@ public class AsyncRawHrClient {
                       }
 
                       /**
-                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>; <code>payFrequency</code> (default <code>monthly</code>) is the pay period of the payroll runs that pay the contract, one of <code>payroll/frequencies/list</code>. Answers 422 when the end date is before the start or the company country's payroll engine does not calculate the pay frequency, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
                        */
                       public CompletableFuture<NordletApiHttpResponse<ContractsCreateHrResponse>> contractsCreate(
                           ContractsCreateHrRequest request) {
@@ -1153,7 +1153,7 @@ public class AsyncRawHrClient {
                       }
 
                       /**
-                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
+                       * Creates an employment contract for an employee. A <code>permanent</code> contract takes no <code>endDate</code> and a <code>fixed_term</code> one requires it; the number comes from <code>contractNo</code> or, with <code>agreementId</code>, from the employee's agreement; <code>workHours</code> defaults by <code>salaryType</code>; <code>payFrequency</code> (default <code>monthly</code>) is the pay period of the payroll runs that pay the contract, one of <code>payroll/frequencies/list</code>. Answers 422 when the end date is before the start or the company country's payroll engine does not calculate the pay frequency, and 409 when the employee already has a contract overlapping the period (end it with <code>hr/contracts/end</code> first) or the contract number already exists.
                        */
                       public CompletableFuture<NordletApiHttpResponse<ContractsCreateHrResponse>> contractsCreate(
                           ContractsCreateHrRequest request, RequestOptions requestOptions) {
@@ -3316,7 +3316,7 @@ public class AsyncRawHrClient {
                                                                 }
 
                                                                 /**
-                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheets of the months a run's period touches for the paid days, the days worked and the business-trip days of the period.
                                                                  */
                                                                 public CompletableFuture<NordletApiHttpResponse<TimesheetsUpsertHrResponse>> timesheetsUpsert(
                                                                     TimesheetsUpsertHrRequest request) {
@@ -3324,7 +3324,7 @@ public class AsyncRawHrClient {
                                                                 }
 
                                                                 /**
-                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+                                                                 * Creates or replaces the timesheet of an employee for a month from the given days; <code>workedDays</code> and <code>workedHours</code> count the <code>work</code> and <code>business_trip</code> days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. <code>payroll/runs/create</code> reads the timesheets of the months a run's period touches for the paid days, the days worked and the business-trip days of the period.
                                                                  */
                                                                 public CompletableFuture<NordletApiHttpResponse<TimesheetsUpsertHrResponse>> timesheetsUpsert(
                                                                     TimesheetsUpsertHrRequest request,

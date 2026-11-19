@@ -17,6 +17,7 @@ import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestAcco
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestAddress;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestCountryCode;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestDefaultInvoiceLocale;
+import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestFiscalYearWeekRule;
 import com.nordlet.api.resources.account.types.CompaniesCreateAccountRequestVatPeriod;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,11 +42,21 @@ public final class CompaniesCreateAccountRequest {
 
   private final Optional<String> smeExemptionNumber;
 
+  private final Optional<Map<String, String>> identifiers;
+
   private final Optional<Boolean> isVatPayer;
 
   private final Optional<CompaniesCreateAccountRequestVatPeriod> vatPeriod;
 
+  private final Optional<Long> vatPeriodEndMonth;
+
   private final Optional<Long> fiscalYearEndMonth;
+
+  private final Optional<Long> fiscalYearEndDay;
+
+  private final Optional<Long> fiscalYearWeekday;
+
+  private final Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule;
 
   private final Optional<String> timeZone;
 
@@ -110,8 +121,12 @@ public final class CompaniesCreateAccountRequest {
   private final Map<String, Object> additionalProperties;
 
   private CompaniesCreateAccountRequest(String name, Optional<String> code,
-      Optional<String> vatCode, Optional<String> smeExemptionNumber, Optional<Boolean> isVatPayer,
-      Optional<CompaniesCreateAccountRequestVatPeriod> vatPeriod, Optional<Long> fiscalYearEndMonth,
+      Optional<String> vatCode, Optional<String> smeExemptionNumber,
+      Optional<Map<String, String>> identifiers, Optional<Boolean> isVatPayer,
+      Optional<CompaniesCreateAccountRequestVatPeriod> vatPeriod, Optional<Long> vatPeriodEndMonth,
+      Optional<Long> fiscalYearEndMonth, Optional<Long> fiscalYearEndDay,
+      Optional<Long> fiscalYearWeekday,
+      Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule,
       Optional<String> timeZone, Optional<Map<String, String>> filingOptions,
       Optional<CompaniesCreateAccountRequestAddress> address, Optional<String> email,
       Optional<String> phone, Optional<String> iban, Optional<String> bankName,
@@ -132,9 +147,14 @@ public final class CompaniesCreateAccountRequest {
     this.code = code;
     this.vatCode = vatCode;
     this.smeExemptionNumber = smeExemptionNumber;
+    this.identifiers = identifiers;
     this.isVatPayer = isVatPayer;
     this.vatPeriod = vatPeriod;
+    this.vatPeriodEndMonth = vatPeriodEndMonth;
     this.fiscalYearEndMonth = fiscalYearEndMonth;
+    this.fiscalYearEndDay = fiscalYearEndDay;
+    this.fiscalYearWeekday = fiscalYearWeekday;
+    this.fiscalYearWeekRule = fiscalYearWeekRule;
     this.timeZone = timeZone;
     this.filingOptions = filingOptions;
     this.address = address;
@@ -188,6 +208,14 @@ public final class CompaniesCreateAccountRequest {
     return smeExemptionNumber;
   }
 
+  /**
+   * @return Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))
+   */
+  @JsonProperty("identifiers")
+  public Optional<Map<String, String>> getIdentifiers() {
+    return identifiers;
+  }
+
   @JsonProperty("isVatPayer")
   public Optional<Boolean> getIsVatPayer() {
     return isVatPayer;
@@ -198,9 +226,41 @@ public final class CompaniesCreateAccountRequest {
     return vatPeriod;
   }
 
+  /**
+   * @return A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+   */
+  @JsonProperty("vatPeriodEndMonth")
+  public Optional<Long> getVatPeriodEndMonth() {
+    return vatPeriodEndMonth;
+  }
+
   @JsonProperty("fiscalYearEndMonth")
   public Optional<Long> getFiscalYearEndMonth() {
     return fiscalYearEndMonth;
+  }
+
+  /**
+   * @return Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted
+   */
+  @JsonProperty("fiscalYearEndDay")
+  public Optional<Long> getFiscalYearEndDay() {
+    return fiscalYearEndDay;
+  }
+
+  /**
+   * @return For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+   */
+  @JsonProperty("fiscalYearWeekday")
+  public Optional<Long> getFiscalYearWeekday() {
+    return fiscalYearWeekday;
+  }
+
+  /**
+   * @return With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month
+   */
+  @JsonProperty("fiscalYearWeekRule")
+  public Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> getFiscalYearWeekRule() {
+    return fiscalYearWeekRule;
   }
 
   @JsonProperty("timeZone")
@@ -392,12 +452,12 @@ public final class CompaniesCreateAccountRequest {
   }
 
   private boolean equalTo(CompaniesCreateAccountRequest other) {
-    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox) && cashBasis.equals(other.cashBasis);
+    return name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && smeExemptionNumber.equals(other.smeExemptionNumber) && identifiers.equals(other.identifiers) && isVatPayer.equals(other.isVatPayer) && vatPeriod.equals(other.vatPeriod) && vatPeriodEndMonth.equals(other.vatPeriodEndMonth) && fiscalYearEndMonth.equals(other.fiscalYearEndMonth) && fiscalYearEndDay.equals(other.fiscalYearEndDay) && fiscalYearWeekday.equals(other.fiscalYearWeekday) && fiscalYearWeekRule.equals(other.fiscalYearWeekRule) && timeZone.equals(other.timeZone) && filingOptions.equals(other.filingOptions) && address.equals(other.address) && email.equals(other.email) && phone.equals(other.phone) && iban.equals(other.iban) && bankName.equals(other.bankName) && bankBic.equals(other.bankBic) && bankCode.equals(other.bankCode) && bankBranchCode.equals(other.bankBranchCode) && bankAccountNumber.equals(other.bankAccountNumber) && invoicePrefix.equals(other.invoicePrefix) && defaultInvoiceLocale.equals(other.defaultInvoiceLocale) && defaultInvoiceNote.equals(other.defaultInvoiceNote) && peppolId.equals(other.peppolId) && sepaCreditorId.equals(other.sepaCreditorId) && defaultInvoiceCurrency.equals(other.defaultInvoiceCurrency) && legalForm.equals(other.legalForm) && registryName.equals(other.registryName) && incorporatedOn.equals(other.incorporatedOn) && shareCapital.equals(other.shareCapital) && accountsKeptBy.equals(other.accountsKeptBy) && bookkeeperName.equals(other.bookkeeperName) && auditorName.equals(other.auditorName) && auditorRegistrationNumber.equals(other.auditorRegistrationNumber) && auditRequired.equals(other.auditRequired) && countryCode.equals(other.countryCode) && baseCurrency.equals(other.baseCurrency) && isSandbox.equals(other.isSandbox) && cashBasis.equals(other.cashBasis);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.isVatPayer, this.vatPeriod, this.fiscalYearEndMonth, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox, this.cashBasis);
+    return Objects.hash(this.name, this.code, this.vatCode, this.smeExemptionNumber, this.identifiers, this.isVatPayer, this.vatPeriod, this.vatPeriodEndMonth, this.fiscalYearEndMonth, this.fiscalYearEndDay, this.fiscalYearWeekday, this.fiscalYearWeekRule, this.timeZone, this.filingOptions, this.address, this.email, this.phone, this.iban, this.bankName, this.bankBic, this.bankCode, this.bankBranchCode, this.bankAccountNumber, this.invoicePrefix, this.defaultInvoiceLocale, this.defaultInvoiceNote, this.peppolId, this.sepaCreditorId, this.defaultInvoiceCurrency, this.legalForm, this.registryName, this.incorporatedOn, this.shareCapital, this.accountsKeptBy, this.bookkeeperName, this.auditorName, this.auditorRegistrationNumber, this.auditRequired, this.countryCode, this.baseCurrency, this.isSandbox, this.cashBasis);
   }
 
   @java.lang.Override
@@ -434,6 +494,13 @@ public final class CompaniesCreateAccountRequest {
 
     _FinalStage smeExemptionNumber(String smeExemptionNumber);
 
+    /**
+     * <p>Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))</p>
+     */
+    _FinalStage identifiers(Optional<Map<String, String>> identifiers);
+
+    _FinalStage identifiers(Map<String, String> identifiers);
+
     _FinalStage isVatPayer(Optional<Boolean> isVatPayer);
 
     _FinalStage isVatPayer(Boolean isVatPayer);
@@ -442,9 +509,39 @@ public final class CompaniesCreateAccountRequest {
 
     _FinalStage vatPeriod(CompaniesCreateAccountRequestVatPeriod vatPeriod);
 
+    /**
+     * <p>A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters</p>
+     */
+    _FinalStage vatPeriodEndMonth(Optional<Long> vatPeriodEndMonth);
+
+    _FinalStage vatPeriodEndMonth(Long vatPeriodEndMonth);
+
     _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth);
 
     _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth);
+
+    /**
+     * <p>Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted</p>
+     */
+    _FinalStage fiscalYearEndDay(Optional<Long> fiscalYearEndDay);
+
+    _FinalStage fiscalYearEndDay(Long fiscalYearEndDay);
+
+    /**
+     * <p>For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday</p>
+     */
+    _FinalStage fiscalYearWeekday(Optional<Long> fiscalYearWeekday);
+
+    _FinalStage fiscalYearWeekday(Long fiscalYearWeekday);
+
+    /**
+     * <p>With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month</p>
+     */
+    _FinalStage fiscalYearWeekRule(
+        Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule);
+
+    _FinalStage fiscalYearWeekRule(
+        CompaniesCreateAccountRequestFiscalYearWeekRule fiscalYearWeekRule);
 
     _FinalStage timeZone(Optional<String> timeZone);
 
@@ -663,11 +760,21 @@ public final class CompaniesCreateAccountRequest {
 
     private Optional<String> timeZone = Optional.empty();
 
+    private Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule = Optional.empty();
+
+    private Optional<Long> fiscalYearWeekday = Optional.empty();
+
+    private Optional<Long> fiscalYearEndDay = Optional.empty();
+
     private Optional<Long> fiscalYearEndMonth = Optional.empty();
+
+    private Optional<Long> vatPeriodEndMonth = Optional.empty();
 
     private Optional<CompaniesCreateAccountRequestVatPeriod> vatPeriod = Optional.empty();
 
     private Optional<Boolean> isVatPayer = Optional.empty();
+
+    private Optional<Map<String, String>> identifiers = Optional.empty();
 
     private Optional<String> smeExemptionNumber = Optional.empty();
 
@@ -687,9 +794,14 @@ public final class CompaniesCreateAccountRequest {
       code(other.getCode());
       vatCode(other.getVatCode());
       smeExemptionNumber(other.getSmeExemptionNumber());
+      identifiers(other.getIdentifiers());
       isVatPayer(other.getIsVatPayer());
       vatPeriod(other.getVatPeriod());
+      vatPeriodEndMonth(other.getVatPeriodEndMonth());
       fiscalYearEndMonth(other.getFiscalYearEndMonth());
+      fiscalYearEndDay(other.getFiscalYearEndDay());
+      fiscalYearWeekday(other.getFiscalYearWeekday());
+      fiscalYearWeekRule(other.getFiscalYearWeekRule());
       timeZone(other.getTimeZone());
       filingOptions(other.getFilingOptions());
       address(other.getAddress());
@@ -1276,6 +1388,77 @@ public final class CompaniesCreateAccountRequest {
       return this;
     }
 
+    /**
+     * <p>With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage fiscalYearWeekRule(
+        CompaniesCreateAccountRequestFiscalYearWeekRule fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = Optional.ofNullable(fiscalYearWeekRule);
+      return this;
+    }
+
+    /**
+     * <p>With <code>fiscalYearWeekday</code>: <code>last</code> ends the year on the last such weekday of <code>fiscalYearEndMonth</code>, <code>nearest</code> on the one nearest the last day of that month</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearWeekRule",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearWeekRule(
+        Optional<CompaniesCreateAccountRequestFiscalYearWeekRule> fiscalYearWeekRule) {
+      this.fiscalYearWeekRule = fiscalYearWeekRule;
+      return this;
+    }
+
+    /**
+     * <p>For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage fiscalYearWeekday(Long fiscalYearWeekday) {
+      this.fiscalYearWeekday = Optional.ofNullable(fiscalYearWeekday);
+      return this;
+    }
+
+    /**
+     * <p>For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearWeekday",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearWeekday(Optional<Long> fiscalYearWeekday) {
+      this.fiscalYearWeekday = fiscalYearWeekday;
+      return this;
+    }
+
+    /**
+     * <p>Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage fiscalYearEndDay(Long fiscalYearEndDay) {
+      this.fiscalYearEndDay = Optional.ofNullable(fiscalYearEndDay);
+      return this;
+    }
+
+    /**
+     * <p>Day of <code>fiscalYearEndMonth</code> the fiscal year ends on; the last day of the month when omitted</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "fiscalYearEndDay",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage fiscalYearEndDay(Optional<Long> fiscalYearEndDay) {
+      this.fiscalYearEndDay = fiscalYearEndDay;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage fiscalYearEndMonth(Long fiscalYearEndMonth) {
       this.fiscalYearEndMonth = Optional.ofNullable(fiscalYearEndMonth);
@@ -1289,6 +1472,29 @@ public final class CompaniesCreateAccountRequest {
     )
     public _FinalStage fiscalYearEndMonth(Optional<Long> fiscalYearEndMonth) {
       this.fiscalYearEndMonth = fiscalYearEndMonth;
+      return this;
+    }
+
+    /**
+     * <p>A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage vatPeriodEndMonth(Long vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = Optional.ofNullable(vatPeriodEndMonth);
+      return this;
+    }
+
+    /**
+     * <p>A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatPeriodEndMonth",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatPeriodEndMonth(Optional<Long> vatPeriodEndMonth) {
+      this.vatPeriodEndMonth = vatPeriodEndMonth;
       return this;
     }
 
@@ -1321,6 +1527,29 @@ public final class CompaniesCreateAccountRequest {
     )
     public _FinalStage isVatPayer(Optional<Boolean> isVatPayer) {
       this.isVatPayer = isVatPayer;
+      return this;
+    }
+
+    /**
+     * <p>Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage identifiers(Map<String, String> identifiers) {
+      this.identifiers = Optional.ofNullable(identifiers);
+      return this;
+    }
+
+    /**
+     * <p>Registration numbers of the company other than <code>code</code> and <code>vatCode</code>, by key: <code>utr</code> (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); <code>taxOfficeNumber</code> (GB, PAYE tax office number, 3 digits); <code>taxOfficeReference</code> (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); <code>accountsOfficeReference</code> (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); <code>ein</code> (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); <code>deBusinessLicense</code> (US, Delaware business license number); <code>deWithholdingAccount</code> (US, Delaware withholding account number, 9 digits, the federal EIN); <code>deUnemploymentAccount</code> (US, Delaware unemployment insurance account number); <code>deUnemploymentRate</code> (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); <code>deEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in Delaware)); <code>deForeignEntityFileNumber</code> (US, Delaware Division of Corporations file number (formed in another state))</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage identifiers(Optional<Map<String, String>> identifiers) {
+      this.identifiers = identifiers;
       return this;
     }
 
@@ -1374,7 +1603,7 @@ public final class CompaniesCreateAccountRequest {
 
     @java.lang.Override
     public CompaniesCreateAccountRequest build() {
-      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, isVatPayer, vatPeriod, fiscalYearEndMonth, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, cashBasis, additionalProperties);
+      return new CompaniesCreateAccountRequest(name, code, vatCode, smeExemptionNumber, identifiers, isVatPayer, vatPeriod, vatPeriodEndMonth, fiscalYearEndMonth, fiscalYearEndDay, fiscalYearWeekday, fiscalYearWeekRule, timeZone, filingOptions, address, email, phone, iban, bankName, bankBic, bankCode, bankBranchCode, bankAccountNumber, invoicePrefix, defaultInvoiceLocale, defaultInvoiceNote, peppolId, sepaCreditorId, defaultInvoiceCurrency, legalForm, registryName, incorporatedOn, shareCapital, accountsKeptBy, bookkeeperName, auditorName, auditorRegistrationNumber, auditRequired, countryCode, baseCurrency, isSandbox, cashBasis, additionalProperties);
     }
 
     @java.lang.Override

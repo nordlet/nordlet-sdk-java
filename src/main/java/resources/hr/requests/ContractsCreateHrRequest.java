@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.hr.types.ContractsCreateHrRequestPayFrequency;
 import com.nordlet.api.resources.hr.types.ContractsCreateHrRequestSalaryType;
 import com.nordlet.api.resources.hr.types.ContractsCreateHrRequestType;
 import java.lang.Object;
@@ -50,6 +51,8 @@ public final class ContractsCreateHrRequest {
 
   private final Optional<ContractsCreateHrRequestSalaryType> salaryType;
 
+  private final Optional<ContractsCreateHrRequestPayFrequency> payFrequency;
+
   private final Optional<String> workHours;
 
   private final Optional<String> notes;
@@ -60,7 +63,8 @@ public final class ContractsCreateHrRequest {
       Optional<String> departmentId, Optional<String> scheduleId, Optional<String> agreementId,
       Optional<String> contractNo, Optional<ContractsCreateHrRequestType> type, String startDate,
       Optional<String> endDate, String baseSalary,
-      Optional<ContractsCreateHrRequestSalaryType> salaryType, Optional<String> workHours,
+      Optional<ContractsCreateHrRequestSalaryType> salaryType,
+      Optional<ContractsCreateHrRequestPayFrequency> payFrequency, Optional<String> workHours,
       Optional<String> notes, Map<String, Object> additionalProperties) {
     this.employeeId = employeeId;
     this.positionId = positionId;
@@ -73,6 +77,7 @@ public final class ContractsCreateHrRequest {
     this.endDate = endDate;
     this.baseSalary = baseSalary;
     this.salaryType = salaryType;
+    this.payFrequency = payFrequency;
     this.workHours = workHours;
     this.notes = notes;
     this.additionalProperties = additionalProperties;
@@ -133,6 +138,11 @@ public final class ContractsCreateHrRequest {
     return salaryType;
   }
 
+  @JsonProperty("payFrequency")
+  public Optional<ContractsCreateHrRequestPayFrequency> getPayFrequency() {
+    return payFrequency;
+  }
+
   @JsonProperty("workHours")
   public Optional<String> getWorkHours() {
     return workHours;
@@ -155,12 +165,12 @@ public final class ContractsCreateHrRequest {
   }
 
   private boolean equalTo(ContractsCreateHrRequest other) {
-    return employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && workHours.equals(other.workHours) && notes.equals(other.notes);
+    return employeeId.equals(other.employeeId) && positionId.equals(other.positionId) && departmentId.equals(other.departmentId) && scheduleId.equals(other.scheduleId) && agreementId.equals(other.agreementId) && contractNo.equals(other.contractNo) && type.equals(other.type) && startDate.equals(other.startDate) && endDate.equals(other.endDate) && baseSalary.equals(other.baseSalary) && salaryType.equals(other.salaryType) && payFrequency.equals(other.payFrequency) && workHours.equals(other.workHours) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.baseSalary, this.salaryType, this.workHours, this.notes);
+    return Objects.hash(this.employeeId, this.positionId, this.departmentId, this.scheduleId, this.agreementId, this.contractNo, this.type, this.startDate, this.endDate, this.baseSalary, this.salaryType, this.payFrequency, this.workHours, this.notes);
   }
 
   @java.lang.Override
@@ -225,6 +235,10 @@ public final class ContractsCreateHrRequest {
 
     _FinalStage salaryType(ContractsCreateHrRequestSalaryType salaryType);
 
+    _FinalStage payFrequency(Optional<ContractsCreateHrRequestPayFrequency> payFrequency);
+
+    _FinalStage payFrequency(ContractsCreateHrRequestPayFrequency payFrequency);
+
     _FinalStage workHours(Optional<String> workHours);
 
     _FinalStage workHours(String workHours);
@@ -247,6 +261,8 @@ public final class ContractsCreateHrRequest {
     private Optional<String> notes = Optional.empty();
 
     private Optional<String> workHours = Optional.empty();
+
+    private Optional<ContractsCreateHrRequestPayFrequency> payFrequency = Optional.empty();
 
     private Optional<ContractsCreateHrRequestSalaryType> salaryType = Optional.empty();
 
@@ -283,6 +299,7 @@ public final class ContractsCreateHrRequest {
       endDate(other.getEndDate());
       baseSalary(other.getBaseSalary());
       salaryType(other.getSalaryType());
+      payFrequency(other.getPayFrequency());
       workHours(other.getWorkHours());
       notes(other.getNotes());
       return this;
@@ -338,6 +355,22 @@ public final class ContractsCreateHrRequest {
     )
     public _FinalStage workHours(Optional<String> workHours) {
       this.workHours = workHours;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage payFrequency(ContractsCreateHrRequestPayFrequency payFrequency) {
+      this.payFrequency = Optional.ofNullable(payFrequency);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "payFrequency",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage payFrequency(Optional<ContractsCreateHrRequestPayFrequency> payFrequency) {
+      this.payFrequency = payFrequency;
       return this;
     }
 
@@ -471,7 +504,7 @@ public final class ContractsCreateHrRequest {
 
     @java.lang.Override
     public ContractsCreateHrRequest build() {
-      return new ContractsCreateHrRequest(employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, baseSalary, salaryType, workHours, notes, additionalProperties);
+      return new ContractsCreateHrRequest(employeeId, positionId, departmentId, scheduleId, agreementId, contractNo, type, startDate, endDate, baseSalary, salaryType, payFrequency, workHours, notes, additionalProperties);
     }
 
     @java.lang.Override

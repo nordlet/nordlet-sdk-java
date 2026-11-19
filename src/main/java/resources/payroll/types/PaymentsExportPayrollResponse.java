@@ -24,26 +24,38 @@ import org.jetbrains.annotations.NotNull;
     builder = PaymentsExportPayrollResponse.Builder.class
 )
 public final class PaymentsExportPayrollResponse {
+  private final PaymentsExportPayrollResponseFormat format;
+
   private final String messageId;
 
   private final String fileName;
+
+  private final String contentType;
 
   private final long transactionCount;
 
   private final String controlSum;
 
-  private final String xml;
+  private final String content;
 
   private final Map<String, Object> additionalProperties;
 
-  private PaymentsExportPayrollResponse(String messageId, String fileName, long transactionCount,
-      String controlSum, String xml, Map<String, Object> additionalProperties) {
+  private PaymentsExportPayrollResponse(PaymentsExportPayrollResponseFormat format,
+      String messageId, String fileName, String contentType, long transactionCount,
+      String controlSum, String content, Map<String, Object> additionalProperties) {
+    this.format = format;
     this.messageId = messageId;
     this.fileName = fileName;
+    this.contentType = contentType;
     this.transactionCount = transactionCount;
     this.controlSum = controlSum;
-    this.xml = xml;
+    this.content = content;
     this.additionalProperties = additionalProperties;
+  }
+
+  @JsonProperty("format")
+  public PaymentsExportPayrollResponseFormat getFormat() {
+    return format;
   }
 
   @JsonProperty("messageId")
@@ -56,6 +68,11 @@ public final class PaymentsExportPayrollResponse {
     return fileName;
   }
 
+  @JsonProperty("contentType")
+  public String getContentType() {
+    return contentType;
+  }
+
   @JsonProperty("transactionCount")
   public long getTransactionCount() {
     return transactionCount;
@@ -66,9 +83,9 @@ public final class PaymentsExportPayrollResponse {
     return controlSum;
   }
 
-  @JsonProperty("xml")
-  public String getXml() {
-    return xml;
+  @JsonProperty("content")
+  public String getContent() {
+    return content;
   }
 
   @java.lang.Override
@@ -83,12 +100,12 @@ public final class PaymentsExportPayrollResponse {
   }
 
   private boolean equalTo(PaymentsExportPayrollResponse other) {
-    return messageId.equals(other.messageId) && fileName.equals(other.fileName) && transactionCount == other.transactionCount && controlSum.equals(other.controlSum) && xml.equals(other.xml);
+    return format.equals(other.format) && messageId.equals(other.messageId) && fileName.equals(other.fileName) && contentType.equals(other.contentType) && transactionCount == other.transactionCount && controlSum.equals(other.controlSum) && content.equals(other.content);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.messageId, this.fileName, this.transactionCount, this.controlSum, this.xml);
+    return Objects.hash(this.format, this.messageId, this.fileName, this.contentType, this.transactionCount, this.controlSum, this.content);
   }
 
   @java.lang.Override
@@ -96,18 +113,26 @@ public final class PaymentsExportPayrollResponse {
     return ObjectMappers.stringify(this);
   }
 
-  public static MessageIdStage builder() {
+  public static FormatStage builder() {
     return new Builder();
   }
 
-  public interface MessageIdStage {
-    FileNameStage messageId(@NotNull String messageId);
+  public interface FormatStage {
+    MessageIdStage format(@NotNull PaymentsExportPayrollResponseFormat format);
 
     Builder from(PaymentsExportPayrollResponse other);
   }
 
+  public interface MessageIdStage {
+    FileNameStage messageId(@NotNull String messageId);
+  }
+
   public interface FileNameStage {
-    TransactionCountStage fileName(@NotNull String fileName);
+    ContentTypeStage fileName(@NotNull String fileName);
+  }
+
+  public interface ContentTypeStage {
+    TransactionCountStage contentType(@NotNull String contentType);
   }
 
   public interface TransactionCountStage {
@@ -115,11 +140,11 @@ public final class PaymentsExportPayrollResponse {
   }
 
   public interface ControlSumStage {
-    XmlStage controlSum(@NotNull String controlSum);
+    ContentStage controlSum(@NotNull String controlSum);
   }
 
-  public interface XmlStage {
-    _FinalStage xml(@NotNull String xml);
+  public interface ContentStage {
+    _FinalStage content(@NotNull String content);
   }
 
   public interface _FinalStage {
@@ -133,16 +158,20 @@ public final class PaymentsExportPayrollResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements MessageIdStage, FileNameStage, TransactionCountStage, ControlSumStage, XmlStage, _FinalStage {
+  public static final class Builder implements FormatStage, MessageIdStage, FileNameStage, ContentTypeStage, TransactionCountStage, ControlSumStage, ContentStage, _FinalStage {
+    private PaymentsExportPayrollResponseFormat format;
+
     private String messageId;
 
     private String fileName;
+
+    private String contentType;
 
     private long transactionCount;
 
     private String controlSum;
 
-    private String xml;
+    private String content;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -152,11 +181,20 @@ public final class PaymentsExportPayrollResponse {
 
     @java.lang.Override
     public Builder from(PaymentsExportPayrollResponse other) {
+      format(other.getFormat());
       messageId(other.getMessageId());
       fileName(other.getFileName());
+      contentType(other.getContentType());
       transactionCount(other.getTransactionCount());
       controlSum(other.getControlSum());
-      xml(other.getXml());
+      content(other.getContent());
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("format")
+    public MessageIdStage format(@NotNull PaymentsExportPayrollResponseFormat format) {
+      this.format = Objects.requireNonNull(format, "format must not be null");
       return this;
     }
 
@@ -169,8 +207,15 @@ public final class PaymentsExportPayrollResponse {
 
     @java.lang.Override
     @JsonSetter("fileName")
-    public TransactionCountStage fileName(@NotNull String fileName) {
+    public ContentTypeStage fileName(@NotNull String fileName) {
       this.fileName = Objects.requireNonNull(fileName, "fileName must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("contentType")
+    public TransactionCountStage contentType(@NotNull String contentType) {
+      this.contentType = Objects.requireNonNull(contentType, "contentType must not be null");
       return this;
     }
 
@@ -183,21 +228,21 @@ public final class PaymentsExportPayrollResponse {
 
     @java.lang.Override
     @JsonSetter("controlSum")
-    public XmlStage controlSum(@NotNull String controlSum) {
+    public ContentStage controlSum(@NotNull String controlSum) {
       this.controlSum = Objects.requireNonNull(controlSum, "controlSum must not be null");
       return this;
     }
 
     @java.lang.Override
-    @JsonSetter("xml")
-    public _FinalStage xml(@NotNull String xml) {
-      this.xml = Objects.requireNonNull(xml, "xml must not be null");
+    @JsonSetter("content")
+    public _FinalStage content(@NotNull String content) {
+      this.content = Objects.requireNonNull(content, "content must not be null");
       return this;
     }
 
     @java.lang.Override
     public PaymentsExportPayrollResponse build() {
-      return new PaymentsExportPayrollResponse(messageId, fileName, transactionCount, controlSum, xml, additionalProperties);
+      return new PaymentsExportPayrollResponse(format, messageId, fileName, contentType, transactionCount, controlSum, content, additionalProperties);
     }
 
     @java.lang.Override

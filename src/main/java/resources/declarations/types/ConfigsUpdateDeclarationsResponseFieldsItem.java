@@ -38,14 +38,13 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
 
   private final Optional<List<String>> options;
 
-  private final Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField;
+  private final Optional<String> companyField;
 
   private final Map<String, Object> additionalProperties;
 
   private ConfigsUpdateDeclarationsResponseFieldsItem(String key, Optional<String> label,
       ConfigsUpdateDeclarationsResponseFieldsItemKind kind, Optional<Boolean> multiline,
-      Optional<List<String>> options,
-      Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField,
+      Optional<List<String>> options, Optional<String> companyField,
       Map<String, Object> additionalProperties) {
     this.key = key;
     this.label = label;
@@ -85,10 +84,10 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
   }
 
   /**
-   * @return The company profile field the value is taken from; change it with <code>account/companies/update</code>
+   * @return The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code>
    */
   @JsonProperty("companyField")
-  public Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> getCompanyField() {
+  public Optional<String> getCompanyField() {
     return companyField;
   }
 
@@ -154,12 +153,11 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     _FinalStage options(List<String> options);
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      */
-    _FinalStage companyField(
-        Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField);
+    _FinalStage companyField(Optional<String> companyField);
 
-    _FinalStage companyField(ConfigsUpdateDeclarationsResponseFieldsItemCompanyField companyField);
+    _FinalStage companyField(String companyField);
   }
 
   @JsonIgnoreProperties(
@@ -170,7 +168,7 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
 
     private ConfigsUpdateDeclarationsResponseFieldsItemKind kind;
 
-    private Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField = Optional.empty();
+    private Optional<String> companyField = Optional.empty();
 
     private Optional<List<String>> options = Optional.empty();
 
@@ -210,26 +208,24 @@ public final class ConfigsUpdateDeclarationsResponseFieldsItem {
     }
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override
-    public _FinalStage companyField(
-        ConfigsUpdateDeclarationsResponseFieldsItemCompanyField companyField) {
+    public _FinalStage companyField(String companyField) {
       this.companyField = Optional.ofNullable(companyField);
       return this;
     }
 
     /**
-     * <p>The company profile field the value is taken from; change it with <code>account/companies/update</code></p>
+     * <p>The company profile field the value is taken from: <code>code</code>, <code>vatCode</code>, or <code>identifiers.&lt;key&gt;</code> for an entry of <code>identifiers</code>; change it with <code>account/companies/update</code></p>
      */
     @java.lang.Override
     @JsonSetter(
         value = "companyField",
         nulls = Nulls.SKIP
     )
-    public _FinalStage companyField(
-        Optional<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> companyField) {
+    public _FinalStage companyField(Optional<String> companyField) {
       this.companyField = companyField;
       return this;
     }

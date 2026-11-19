@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.MandatesCreateBankRequestAccountType;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankRequestScheme;
 import com.nordlet.api.resources.bank.types.MandatesCreateBankRequestSequenceType;
 import java.lang.Object;
@@ -30,9 +31,15 @@ import org.jetbrains.annotations.NotNull;
 public final class MandatesCreateBankRequest {
   private final String partnerId;
 
-  private final String iban;
+  private final Optional<String> iban;
 
   private final Optional<String> bic;
+
+  private final Optional<String> bankCode;
+
+  private final Optional<String> bankAccountNumber;
+
+  private final Optional<MandatesCreateBankRequestAccountType> accountType;
 
   private final Optional<MandatesCreateBankRequestScheme> scheme;
 
@@ -48,7 +55,9 @@ public final class MandatesCreateBankRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private MandatesCreateBankRequest(String partnerId, String iban, Optional<String> bic,
+  private MandatesCreateBankRequest(String partnerId, Optional<String> iban, Optional<String> bic,
+      Optional<String> bankCode, Optional<String> bankAccountNumber,
+      Optional<MandatesCreateBankRequestAccountType> accountType,
       Optional<MandatesCreateBankRequestScheme> scheme,
       Optional<MandatesCreateBankRequestSequenceType> sequenceType, String signatureDate,
       Optional<String> reference, Optional<String> debtorName, Optional<String> notes,
@@ -56,6 +65,9 @@ public final class MandatesCreateBankRequest {
     this.partnerId = partnerId;
     this.iban = iban;
     this.bic = bic;
+    this.bankCode = bankCode;
+    this.bankAccountNumber = bankAccountNumber;
+    this.accountType = accountType;
     this.scheme = scheme;
     this.sequenceType = sequenceType;
     this.signatureDate = signatureDate;
@@ -71,13 +83,37 @@ public final class MandatesCreateBankRequest {
   }
 
   @JsonProperty("iban")
-  public String getIban() {
+  public Optional<String> getIban() {
     return iban;
   }
 
   @JsonProperty("bic")
   public Optional<String> getBic() {
     return bic;
+  }
+
+  /**
+   * @return Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN
+   */
+  @JsonProperty("bankCode")
+  public Optional<String> getBankCode() {
+    return bankCode;
+  }
+
+  /**
+   * @return Account number, for a mandate without an IBAN
+   */
+  @JsonProperty("bankAccountNumber")
+  public Optional<String> getBankAccountNumber() {
+    return bankAccountNumber;
+  }
+
+  /**
+   * @return Checking or savings account; a US ACH file needs it
+   */
+  @JsonProperty("accountType")
+  public Optional<MandatesCreateBankRequestAccountType> getAccountType() {
+    return accountType;
   }
 
   @JsonProperty("scheme")
@@ -122,12 +158,12 @@ public final class MandatesCreateBankRequest {
   }
 
   private boolean equalTo(MandatesCreateBankRequest other) {
-    return partnerId.equals(other.partnerId) && iban.equals(other.iban) && bic.equals(other.bic) && scheme.equals(other.scheme) && sequenceType.equals(other.sequenceType) && signatureDate.equals(other.signatureDate) && reference.equals(other.reference) && debtorName.equals(other.debtorName) && notes.equals(other.notes);
+    return partnerId.equals(other.partnerId) && iban.equals(other.iban) && bic.equals(other.bic) && bankCode.equals(other.bankCode) && bankAccountNumber.equals(other.bankAccountNumber) && accountType.equals(other.accountType) && scheme.equals(other.scheme) && sequenceType.equals(other.sequenceType) && signatureDate.equals(other.signatureDate) && reference.equals(other.reference) && debtorName.equals(other.debtorName) && notes.equals(other.notes);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.iban, this.bic, this.scheme, this.sequenceType, this.signatureDate, this.reference, this.debtorName, this.notes);
+    return Objects.hash(this.partnerId, this.iban, this.bic, this.bankCode, this.bankAccountNumber, this.accountType, this.scheme, this.sequenceType, this.signatureDate, this.reference, this.debtorName, this.notes);
   }
 
   @java.lang.Override
@@ -140,13 +176,9 @@ public final class MandatesCreateBankRequest {
   }
 
   public interface PartnerIdStage {
-    IbanStage partnerId(@NotNull String partnerId);
+    SignatureDateStage partnerId(@NotNull String partnerId);
 
     Builder from(MandatesCreateBankRequest other);
-  }
-
-  public interface IbanStage {
-    SignatureDateStage iban(@NotNull String iban);
   }
 
   public interface SignatureDateStage {
@@ -160,9 +192,34 @@ public final class MandatesCreateBankRequest {
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
 
+    _FinalStage iban(Optional<String> iban);
+
+    _FinalStage iban(String iban);
+
     _FinalStage bic(Optional<String> bic);
 
     _FinalStage bic(String bic);
+
+    /**
+     * <p>Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN</p>
+     */
+    _FinalStage bankCode(Optional<String> bankCode);
+
+    _FinalStage bankCode(String bankCode);
+
+    /**
+     * <p>Account number, for a mandate without an IBAN</p>
+     */
+    _FinalStage bankAccountNumber(Optional<String> bankAccountNumber);
+
+    _FinalStage bankAccountNumber(String bankAccountNumber);
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    _FinalStage accountType(Optional<MandatesCreateBankRequestAccountType> accountType);
+
+    _FinalStage accountType(MandatesCreateBankRequestAccountType accountType);
 
     _FinalStage scheme(Optional<MandatesCreateBankRequestScheme> scheme);
 
@@ -188,10 +245,8 @@ public final class MandatesCreateBankRequest {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements PartnerIdStage, IbanStage, SignatureDateStage, _FinalStage {
+  public static final class Builder implements PartnerIdStage, SignatureDateStage, _FinalStage {
     private String partnerId;
-
-    private String iban;
 
     private String signatureDate;
 
@@ -205,7 +260,15 @@ public final class MandatesCreateBankRequest {
 
     private Optional<MandatesCreateBankRequestScheme> scheme = Optional.empty();
 
+    private Optional<MandatesCreateBankRequestAccountType> accountType = Optional.empty();
+
+    private Optional<String> bankAccountNumber = Optional.empty();
+
+    private Optional<String> bankCode = Optional.empty();
+
     private Optional<String> bic = Optional.empty();
+
+    private Optional<String> iban = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -218,6 +281,9 @@ public final class MandatesCreateBankRequest {
       partnerId(other.getPartnerId());
       iban(other.getIban());
       bic(other.getBic());
+      bankCode(other.getBankCode());
+      bankAccountNumber(other.getBankAccountNumber());
+      accountType(other.getAccountType());
       scheme(other.getScheme());
       sequenceType(other.getSequenceType());
       signatureDate(other.getSignatureDate());
@@ -229,15 +295,8 @@ public final class MandatesCreateBankRequest {
 
     @java.lang.Override
     @JsonSetter("partnerId")
-    public IbanStage partnerId(@NotNull String partnerId) {
+    public SignatureDateStage partnerId(@NotNull String partnerId) {
       this.partnerId = Objects.requireNonNull(partnerId, "partnerId must not be null");
-      return this;
-    }
-
-    @java.lang.Override
-    @JsonSetter("iban")
-    public SignatureDateStage iban(@NotNull String iban) {
-      this.iban = Objects.requireNonNull(iban, "iban must not be null");
       return this;
     }
 
@@ -328,6 +387,75 @@ public final class MandatesCreateBankRequest {
       return this;
     }
 
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage accountType(MandatesCreateBankRequestAccountType accountType) {
+      this.accountType = Optional.ofNullable(accountType);
+      return this;
+    }
+
+    /**
+     * <p>Checking or savings account; a US ACH file needs it</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "accountType",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage accountType(Optional<MandatesCreateBankRequestAccountType> accountType) {
+      this.accountType = accountType;
+      return this;
+    }
+
+    /**
+     * <p>Account number, for a mandate without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankAccountNumber(String bankAccountNumber) {
+      this.bankAccountNumber = Optional.ofNullable(bankAccountNumber);
+      return this;
+    }
+
+    /**
+     * <p>Account number, for a mandate without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankAccountNumber",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankAccountNumber(Optional<String> bankAccountNumber) {
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
+    }
+
+    /**
+     * <p>Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage bankCode(String bankCode) {
+      this.bankCode = Optional.ofNullable(bankCode);
+      return this;
+    }
+
+    /**
+     * <p>Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "bankCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage bankCode(Optional<String> bankCode) {
+      this.bankCode = bankCode;
+      return this;
+    }
+
     @java.lang.Override
     public _FinalStage bic(String bic) {
       this.bic = Optional.ofNullable(bic);
@@ -345,8 +473,24 @@ public final class MandatesCreateBankRequest {
     }
 
     @java.lang.Override
+    public _FinalStage iban(String iban) {
+      this.iban = Optional.ofNullable(iban);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "iban",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage iban(Optional<String> iban) {
+      this.iban = iban;
+      return this;
+    }
+
+    @java.lang.Override
     public MandatesCreateBankRequest build() {
-      return new MandatesCreateBankRequest(partnerId, iban, bic, scheme, sequenceType, signatureDate, reference, debtorName, notes, additionalProperties);
+      return new MandatesCreateBankRequest(partnerId, iban, bic, bankCode, bankAccountNumber, accountType, scheme, sequenceType, signatureDate, reference, debtorName, notes, additionalProperties);
     }
 
     @java.lang.Override
