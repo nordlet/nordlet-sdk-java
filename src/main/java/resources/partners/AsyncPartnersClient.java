@@ -41,6 +41,9 @@ import com.nordlet.api.resources.partners.requests.InquiriesListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.InquiriesUpdatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.ListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.MergePartnersRequest;
+import com.nordlet.api.resources.partners.requests.SalesTaxExemptionsCancelPartnersRequest;
+import com.nordlet.api.resources.partners.requests.SalesTaxExemptionsCreatePartnersRequest;
+import com.nordlet.api.resources.partners.requests.SalesTaxExemptionsListPartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesCreatePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesDeletePartnersRequest;
 import com.nordlet.api.resources.partners.requests.StatusesListPartnersRequest;
@@ -84,6 +87,9 @@ import com.nordlet.api.resources.partners.types.InquiriesListPartnersResponse;
 import com.nordlet.api.resources.partners.types.InquiriesUpdatePartnersResponse;
 import com.nordlet.api.resources.partners.types.ListPartnersResponse;
 import com.nordlet.api.resources.partners.types.MergePartnersResponse;
+import com.nordlet.api.resources.partners.types.SalesTaxExemptionsCancelPartnersResponse;
+import com.nordlet.api.resources.partners.types.SalesTaxExemptionsCreatePartnersResponse;
+import com.nordlet.api.resources.partners.types.SalesTaxExemptionsListPartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesCreatePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesDeletePartnersResponse;
 import com.nordlet.api.resources.partners.types.StatusesListPartnersResponse;
@@ -566,6 +572,69 @@ public class AsyncPartnersClient {
   }
 
   /**
+   * Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (<code>state</code>, such as <code>US-OH</code>; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; <code>otherReason</code> explains L), <code>reasonDetail</code> for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; <code>otherBusinessType</code> explains 20), the ID number of section 5 and the state or country that issued it, <code>singlePurchaseReference</code> (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and <code>receivedOn</code>, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose <code>orderNumber</code> is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+   */
+  public CompletableFuture<SalesTaxExemptionsCreatePartnersResponse> salesTaxExemptionsCreate(
+      SalesTaxExemptionsCreatePartnersRequest request) {
+    return this.rawClient.salesTaxExemptionsCreate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (<code>state</code>, such as <code>US-OH</code>; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; <code>otherReason</code> explains L), <code>reasonDetail</code> for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; <code>otherBusinessType</code> explains 20), the ID number of section 5 and the state or country that issued it, <code>singlePurchaseReference</code> (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and <code>receivedOn</code>, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose <code>orderNumber</code> is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+   */
+  public CompletableFuture<SalesTaxExemptionsCreatePartnersResponse> salesTaxExemptionsCreate(
+      SalesTaxExemptionsCreatePartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.salesTaxExemptionsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the certificates of exemption recorded with <code>partners/sales-tax-exemptions/create</code>, of one partner when <code>partnerId</code> is given, by state and the day they were received. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsListPartnersResponse> salesTaxExemptionsList() {
+    return this.rawClient.salesTaxExemptionsList().thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the certificates of exemption recorded with <code>partners/sales-tax-exemptions/create</code>, of one partner when <code>partnerId</code> is given, by state and the day they were received. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsListPartnersResponse> salesTaxExemptionsList(
+      RequestOptions requestOptions) {
+    return this.rawClient.salesTaxExemptionsList(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the certificates of exemption recorded with <code>partners/sales-tax-exemptions/create</code>, of one partner when <code>partnerId</code> is given, by state and the day they were received. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsListPartnersResponse> salesTaxExemptionsList(
+      SalesTaxExemptionsListPartnersRequest request) {
+    return this.rawClient.salesTaxExemptionsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the certificates of exemption recorded with <code>partners/sales-tax-exemptions/create</code>, of one partner when <code>partnerId</code> is given, by state and the day they were received. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsListPartnersResponse> salesTaxExemptionsList(
+      SalesTaxExemptionsListPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.salesTaxExemptionsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Records that the customer cancelled a certificate of exemption on <code>cancelledOn</code>; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsCancelPartnersResponse> salesTaxExemptionsCancel(
+      SalesTaxExemptionsCancelPartnersRequest request) {
+    return this.rawClient.salesTaxExemptionsCancel(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Records that the customer cancelled a certificate of exemption on <code>cancelledOn</code>; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+   */
+  public CompletableFuture<SalesTaxExemptionsCancelPartnersResponse> salesTaxExemptionsCancel(
+      SalesTaxExemptionsCancelPartnersRequest request, RequestOptions requestOptions) {
+    return this.rawClient.salesTaxExemptionsCancel(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
    * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason <code>invalid</code>, <code>name_mismatch</code> or <code>service_error</code>; filterable by <code>partnerId</code>, <code>status</code>, <code>reason</code> and <code>vatCode</code>, sortable by <code>createdAt</code>, <code>partnerName</code> (the name of the partner), <code>vatCode</code>, <code>reason</code>, <code>details</code> (the service message for a service error, else the name found in VIES) and <code>resolution</code>.
    */
   public CompletableFuture<VatReviewsListPartnersResponse> vatReviewsList() {
@@ -613,14 +682,14 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>).
+   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>). An entry of <code>identifiers</code> that is not a partner identifier of the company's country or does not have its format is refused with 422.
    */
   public CompletableFuture<CreatePartnersResponse> create(CreatePartnersRequest request) {
     return this.rawClient.create(request).thenApply(response -> response.body());
   }
 
   /**
-   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>).
+   * Creates a partner; without <code>isCustomer</code> it is a customer unless <code>isSupplier</code> is true. <code>groupId</code>, <code>statusId</code> and <code>priceListId</code> must belong to the company; without <code>legalCountryClass</code> the class is derived from the address country (<code>lt</code>, <code>eu</code> or <code>non_eu</code>); <code>documentRef</code> attaches an uploaded file that is not yet linked to a record; a <code>code</code> already used by a live partner of the company is refused with 409. A <code>vatCode</code> is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (<code>vat_review.opened</code>), while a code that neither service can check is stored unchecked (see <code>partners/validate-vat</code>). An entry of <code>identifiers</code> that is not a partner identifier of the company's country or does not have its format is refused with 422.
    */
   public CompletableFuture<CreatePartnersResponse> create(CreatePartnersRequest request,
       RequestOptions requestOptions) {
@@ -659,14 +728,14 @@ public class AsyncPartnersClient {
   }
 
   /**
-   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   * Changes the given fields of a partner; the clearable fields accept null. <code>identifiers</code> replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
    */
   public CompletableFuture<UpdatePartnersResponse> update(UpdatePartnersRequest request) {
     return this.rawClient.update(request).thenApply(response -> response.body());
   }
 
   /**
-   * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
+   * Changes the given fields of a partner; the clearable fields accept null. <code>identifiers</code> replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives <code>legalCountryClass</code> unless the class is given, and a <code>code</code> already used by another live partner of the company is refused with 409. A changed <code>vatCode</code> resets the VIES result and is checked at once as in <code>partners/create</code>; a removed code, or one that neither service can check, resolves the partner's open VAT review as <code>superseded</code> (<code>vat_review.resolved</code>).
    */
   public CompletableFuture<UpdatePartnersResponse> update(UpdatePartnersRequest request,
       RequestOptions requestOptions) {

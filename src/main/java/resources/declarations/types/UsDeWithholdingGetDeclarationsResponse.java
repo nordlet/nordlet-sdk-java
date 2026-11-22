@@ -34,15 +34,19 @@ public final class UsDeWithholdingGetDeclarationsResponse {
 
   private final String taxWithheld;
 
+  private final UsDeWithholdingGetDeclarationsResponseWthTax wthTax;
+
   private final Map<String, Object> additionalProperties;
 
   private UsDeWithholdingGetDeclarationsResponse(String from, String to, double employees,
-      String wages, String taxWithheld, Map<String, Object> additionalProperties) {
+      String wages, String taxWithheld, UsDeWithholdingGetDeclarationsResponseWthTax wthTax,
+      Map<String, Object> additionalProperties) {
     this.from = from;
     this.to = to;
     this.employees = employees;
     this.wages = wages;
     this.taxWithheld = taxWithheld;
+    this.wthTax = wthTax;
     this.additionalProperties = additionalProperties;
   }
 
@@ -71,6 +75,11 @@ public final class UsDeWithholdingGetDeclarationsResponse {
     return taxWithheld;
   }
 
+  @JsonProperty("wthTax")
+  public UsDeWithholdingGetDeclarationsResponseWthTax getWthTax() {
+    return wthTax;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -83,12 +92,12 @@ public final class UsDeWithholdingGetDeclarationsResponse {
   }
 
   private boolean equalTo(UsDeWithholdingGetDeclarationsResponse other) {
-    return from.equals(other.from) && to.equals(other.to) && employees == other.employees && wages.equals(other.wages) && taxWithheld.equals(other.taxWithheld);
+    return from.equals(other.from) && to.equals(other.to) && employees == other.employees && wages.equals(other.wages) && taxWithheld.equals(other.taxWithheld) && wthTax.equals(other.wthTax);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.from, this.to, this.employees, this.wages, this.taxWithheld);
+    return Objects.hash(this.from, this.to, this.employees, this.wages, this.taxWithheld, this.wthTax);
   }
 
   @java.lang.Override
@@ -119,7 +128,11 @@ public final class UsDeWithholdingGetDeclarationsResponse {
   }
 
   public interface TaxWithheldStage {
-    _FinalStage taxWithheld(@NotNull String taxWithheld);
+    WthTaxStage taxWithheld(@NotNull String taxWithheld);
+  }
+
+  public interface WthTaxStage {
+    _FinalStage wthTax(@NotNull UsDeWithholdingGetDeclarationsResponseWthTax wthTax);
   }
 
   public interface _FinalStage {
@@ -133,7 +146,7 @@ public final class UsDeWithholdingGetDeclarationsResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements FromStage, ToStage, EmployeesStage, WagesStage, TaxWithheldStage, _FinalStage {
+  public static final class Builder implements FromStage, ToStage, EmployeesStage, WagesStage, TaxWithheldStage, WthTaxStage, _FinalStage {
     private String from;
 
     private String to;
@@ -143,6 +156,8 @@ public final class UsDeWithholdingGetDeclarationsResponse {
     private String wages;
 
     private String taxWithheld;
+
+    private UsDeWithholdingGetDeclarationsResponseWthTax wthTax;
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -157,6 +172,7 @@ public final class UsDeWithholdingGetDeclarationsResponse {
       employees(other.getEmployees());
       wages(other.getWages());
       taxWithheld(other.getTaxWithheld());
+      wthTax(other.getWthTax());
       return this;
     }
 
@@ -190,14 +206,21 @@ public final class UsDeWithholdingGetDeclarationsResponse {
 
     @java.lang.Override
     @JsonSetter("taxWithheld")
-    public _FinalStage taxWithheld(@NotNull String taxWithheld) {
+    public WthTaxStage taxWithheld(@NotNull String taxWithheld) {
       this.taxWithheld = Objects.requireNonNull(taxWithheld, "taxWithheld must not be null");
       return this;
     }
 
     @java.lang.Override
+    @JsonSetter("wthTax")
+    public _FinalStage wthTax(@NotNull UsDeWithholdingGetDeclarationsResponseWthTax wthTax) {
+      this.wthTax = Objects.requireNonNull(wthTax, "wthTax must not be null");
+      return this;
+    }
+
+    @java.lang.Override
     public UsDeWithholdingGetDeclarationsResponse build() {
-      return new UsDeWithholdingGetDeclarationsResponse(from, to, employees, wages, taxWithheld, additionalProperties);
+      return new UsDeWithholdingGetDeclarationsResponse(from, to, employees, wages, taxWithheld, wthTax, additionalProperties);
     }
 
     @java.lang.Override

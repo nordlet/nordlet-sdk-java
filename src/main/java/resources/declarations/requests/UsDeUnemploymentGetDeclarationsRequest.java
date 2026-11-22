@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
@@ -17,6 +18,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
@@ -27,12 +29,22 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
 
   private final long quarter;
 
+  private final Optional<String> approvedCredit;
+
+  private final Optional<String> interest;
+
+  private final Optional<String> penalty;
+
   private final Map<String, Object> additionalProperties;
 
   private UsDeUnemploymentGetDeclarationsRequest(long year, long quarter,
+      Optional<String> approvedCredit, Optional<String> interest, Optional<String> penalty,
       Map<String, Object> additionalProperties) {
     this.year = year;
     this.quarter = quarter;
+    this.approvedCredit = approvedCredit;
+    this.interest = interest;
+    this.penalty = penalty;
     this.additionalProperties = additionalProperties;
   }
 
@@ -44,6 +56,21 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
   @JsonProperty("quarter")
   public long getQuarter() {
     return quarter;
+  }
+
+  @JsonProperty("approvedCredit")
+  public Optional<String> getApprovedCredit() {
+    return approvedCredit;
+  }
+
+  @JsonProperty("interest")
+  public Optional<String> getInterest() {
+    return interest;
+  }
+
+  @JsonProperty("penalty")
+  public Optional<String> getPenalty() {
+    return penalty;
   }
 
   @java.lang.Override
@@ -58,12 +85,12 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
   }
 
   private boolean equalTo(UsDeUnemploymentGetDeclarationsRequest other) {
-    return year == other.year && quarter == other.quarter;
+    return year == other.year && quarter == other.quarter && approvedCredit.equals(other.approvedCredit) && interest.equals(other.interest) && penalty.equals(other.penalty);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.quarter);
+    return Objects.hash(this.year, this.quarter, this.approvedCredit, this.interest, this.penalty);
   }
 
   @java.lang.Override
@@ -91,6 +118,18 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
     _FinalStage additionalProperty(String key, Object value);
 
     _FinalStage additionalProperties(Map<String, Object> additionalProperties);
+
+    _FinalStage approvedCredit(Optional<String> approvedCredit);
+
+    _FinalStage approvedCredit(String approvedCredit);
+
+    _FinalStage interest(Optional<String> interest);
+
+    _FinalStage interest(String interest);
+
+    _FinalStage penalty(Optional<String> penalty);
+
+    _FinalStage penalty(String penalty);
   }
 
   @JsonIgnoreProperties(
@@ -100,6 +139,12 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
     private long year;
 
     private long quarter;
+
+    private Optional<String> penalty = Optional.empty();
+
+    private Optional<String> interest = Optional.empty();
+
+    private Optional<String> approvedCredit = Optional.empty();
 
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
@@ -111,6 +156,9 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
     public Builder from(UsDeUnemploymentGetDeclarationsRequest other) {
       year(other.getYear());
       quarter(other.getQuarter());
+      approvedCredit(other.getApprovedCredit());
+      interest(other.getInterest());
+      penalty(other.getPenalty());
       return this;
     }
 
@@ -129,8 +177,56 @@ public final class UsDeUnemploymentGetDeclarationsRequest {
     }
 
     @java.lang.Override
+    public _FinalStage penalty(String penalty) {
+      this.penalty = Optional.ofNullable(penalty);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "penalty",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage penalty(Optional<String> penalty) {
+      this.penalty = penalty;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage interest(String interest) {
+      this.interest = Optional.ofNullable(interest);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "interest",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage interest(Optional<String> interest) {
+      this.interest = interest;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage approvedCredit(String approvedCredit) {
+      this.approvedCredit = Optional.ofNullable(approvedCredit);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "approvedCredit",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage approvedCredit(Optional<String> approvedCredit) {
+      this.approvedCredit = approvedCredit;
+      return this;
+    }
+
+    @java.lang.Override
     public UsDeUnemploymentGetDeclarationsRequest build() {
-      return new UsDeUnemploymentGetDeclarationsRequest(year, quarter, additionalProperties);
+      return new UsDeUnemploymentGetDeclarationsRequest(year, quarter, approvedCredit, interest, penalty, additionalProperties);
     }
 
     @java.lang.Override

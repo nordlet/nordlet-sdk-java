@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestDeliveryAddress;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestLinesItem;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestLocale;
 import com.nordlet.api.resources.sales.types.InvoicesCreateSalesRequestType;
@@ -95,6 +96,10 @@ public final class InvoicesCreateSalesRequest {
 
   private final Optional<String> salesTaxPercent;
 
+  private final Optional<String> salesTaxJurisdiction;
+
+  private final Optional<InvoicesCreateSalesRequestDeliveryAddress> deliveryAddress;
+
   private final List<InvoicesCreateSalesRequestLinesItem> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -113,8 +118,9 @@ public final class InvoicesCreateSalesRequest {
       Optional<String> seriesLabel, Optional<String> orderNumber, Optional<String> issuedByName,
       Optional<String> issuedByTitle, Optional<String> receivedByName,
       Optional<String> receivedByTitle, Optional<String> discountPercent,
-      Optional<String> salesTaxPercent, List<InvoicesCreateSalesRequestLinesItem> lines,
-      Map<String, Object> additionalProperties) {
+      Optional<String> salesTaxPercent, Optional<String> salesTaxJurisdiction,
+      Optional<InvoicesCreateSalesRequestDeliveryAddress> deliveryAddress,
+      List<InvoicesCreateSalesRequestLinesItem> lines, Map<String, Object> additionalProperties) {
     this.partnerId = partnerId;
     this.type = type;
     this.currency = currency;
@@ -146,6 +152,8 @@ public final class InvoicesCreateSalesRequest {
     this.receivedByTitle = receivedByTitle;
     this.discountPercent = discountPercent;
     this.salesTaxPercent = salesTaxPercent;
+    this.salesTaxJurisdiction = salesTaxJurisdiction;
+    this.deliveryAddress = deliveryAddress;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -316,11 +324,27 @@ public final class InvoicesCreateSalesRequest {
   }
 
   /**
-   * @return Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+   * @return Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
    */
   @JsonProperty("salesTaxPercent")
   public Optional<String> getSalesTaxPercent() {
     return salesTaxPercent;
+  }
+
+  /**
+   * @return The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code>; unset means the state of <code>deliveryAddress</code> (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (<code>partners/sales-tax-exemptions/create</code>) that covers the sale, no sales tax is charged and the document keeps the certificate's id in <code>salesTaxExemptionId</code>.
+   */
+  @JsonProperty("salesTaxJurisdiction")
+  public Optional<String> getSalesTaxJurisdiction() {
+    return salesTaxJurisdiction;
+  }
+
+  /**
+   * @return Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when <code>salesTaxJurisdiction</code> is not given.
+   */
+  @JsonProperty("deliveryAddress")
+  public Optional<InvoicesCreateSalesRequestDeliveryAddress> getDeliveryAddress() {
+    return deliveryAddress;
   }
 
   @JsonProperty("lines")
@@ -340,12 +364,12 @@ public final class InvoicesCreateSalesRequest {
   }
 
   private boolean equalTo(InvoicesCreateSalesRequest other) {
-    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && salesTaxPercent.equals(other.salesTaxPercent) && lines.equals(other.lines);
+    return partnerId.equals(other.partnerId) && type.equals(other.type) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && creditedInvoiceId.equals(other.creditedInvoiceId) && creditedInvoiceReference.equals(other.creditedInvoiceReference) && creditedInvoiceDate.equals(other.creditedInvoiceDate) && agreementId.equals(other.agreementId) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && discountPercent.equals(other.discountPercent) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxJurisdiction.equals(other.salesTaxJurisdiction) && deliveryAddress.equals(other.deliveryAddress) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.salesTaxPercent, this.lines);
+    return Objects.hash(this.partnerId, this.type, this.currency, this.issueDate, this.dueDate, this.creditedInvoiceId, this.creditedInvoiceReference, this.creditedInvoiceDate, this.agreementId, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.documentRef, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.discountPercent, this.salesTaxPercent, this.salesTaxJurisdiction, this.deliveryAddress, this.lines);
   }
 
   @java.lang.Override
@@ -502,11 +526,26 @@ public final class InvoicesCreateSalesRequest {
     _FinalStage discountPercent(String discountPercent);
 
     /**
-     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     * <p>Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.</p>
      */
     _FinalStage salesTaxPercent(Optional<String> salesTaxPercent);
 
     _FinalStage salesTaxPercent(String salesTaxPercent);
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code>; unset means the state of <code>deliveryAddress</code> (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (<code>partners/sales-tax-exemptions/create</code>) that covers the sale, no sales tax is charged and the document keeps the certificate's id in <code>salesTaxExemptionId</code>.</p>
+     */
+    _FinalStage salesTaxJurisdiction(Optional<String> salesTaxJurisdiction);
+
+    _FinalStage salesTaxJurisdiction(String salesTaxJurisdiction);
+
+    /**
+     * <p>Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when <code>salesTaxJurisdiction</code> is not given.</p>
+     */
+    _FinalStage deliveryAddress(
+        Optional<InvoicesCreateSalesRequestDeliveryAddress> deliveryAddress);
+
+    _FinalStage deliveryAddress(InvoicesCreateSalesRequestDeliveryAddress deliveryAddress);
 
     _FinalStage lines(List<InvoicesCreateSalesRequestLinesItem> lines);
 
@@ -522,6 +561,10 @@ public final class InvoicesCreateSalesRequest {
     private String partnerId;
 
     private List<InvoicesCreateSalesRequestLinesItem> lines = new ArrayList<>();
+
+    private Optional<InvoicesCreateSalesRequestDeliveryAddress> deliveryAddress = Optional.empty();
+
+    private Optional<String> salesTaxJurisdiction = Optional.empty();
 
     private Optional<String> salesTaxPercent = Optional.empty();
 
@@ -622,6 +665,8 @@ public final class InvoicesCreateSalesRequest {
       receivedByTitle(other.getReceivedByTitle());
       discountPercent(other.getDiscountPercent());
       salesTaxPercent(other.getSalesTaxPercent());
+      salesTaxJurisdiction(other.getSalesTaxJurisdiction());
+      deliveryAddress(other.getDeliveryAddress());
       lines(other.getLines());
       return this;
     }
@@ -661,7 +706,54 @@ public final class InvoicesCreateSalesRequest {
     }
 
     /**
-     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     * <p>Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when <code>salesTaxJurisdiction</code> is not given.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage deliveryAddress(InvoicesCreateSalesRequestDeliveryAddress deliveryAddress) {
+      this.deliveryAddress = Optional.ofNullable(deliveryAddress);
+      return this;
+    }
+
+    /**
+     * <p>Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when <code>salesTaxJurisdiction</code> is not given.</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "deliveryAddress",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deliveryAddress(
+        Optional<InvoicesCreateSalesRequestDeliveryAddress> deliveryAddress) {
+      this.deliveryAddress = deliveryAddress;
+      return this;
+    }
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code>; unset means the state of <code>deliveryAddress</code> (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (<code>partners/sales-tax-exemptions/create</code>) that covers the sale, no sales tax is charged and the document keeps the certificate's id in <code>salesTaxExemptionId</code>.</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage salesTaxJurisdiction(String salesTaxJurisdiction) {
+      this.salesTaxJurisdiction = Optional.ofNullable(salesTaxJurisdiction);
+      return this;
+    }
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code>; unset means the state of <code>deliveryAddress</code> (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (<code>partners/sales-tax-exemptions/create</code>) that covers the sale, no sales tax is charged and the document keeps the certificate's id in <code>salesTaxExemptionId</code>.</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "salesTaxJurisdiction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage salesTaxJurisdiction(Optional<String> salesTaxJurisdiction) {
+      this.salesTaxJurisdiction = salesTaxJurisdiction;
+      return this;
+    }
+
+    /**
+     * <p>Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.</p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override
@@ -671,7 +763,7 @@ public final class InvoicesCreateSalesRequest {
     }
 
     /**
-     * <p>Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.</p>
+     * <p>Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.</p>
      */
     @java.lang.Override
     @JsonSetter(
@@ -1184,7 +1276,7 @@ public final class InvoicesCreateSalesRequest {
 
     @java.lang.Override
     public InvoicesCreateSalesRequest build() {
-      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, salesTaxPercent, lines, additionalProperties);
+      return new InvoicesCreateSalesRequest(partnerId, type, currency, issueDate, dueDate, creditedInvoiceId, creditedInvoiceReference, creditedInvoiceDate, agreementId, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, documentRef, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, discountPercent, salesTaxPercent, salesTaxJurisdiction, deliveryAddress, lines, additionalProperties);
     }
 
     @java.lang.Override

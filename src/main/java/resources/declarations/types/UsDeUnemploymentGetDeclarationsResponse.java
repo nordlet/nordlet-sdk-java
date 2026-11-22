@@ -41,11 +41,21 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
 
   private final List<UsDeUnemploymentGetDeclarationsResponseEmployeesItem> employees;
 
+  private final UsDeUnemploymentGetDeclarationsResponseUc8 uc8;
+
+  private final UsDeUnemploymentGetDeclarationsResponseUc8A uc8A;
+
+  private final List<String> warnings;
+
+  private final String source;
+
   private final Map<String, Object> additionalProperties;
 
   private UsDeUnemploymentGetDeclarationsResponse(double year, double quarter, String totalWages,
       String excessWages, String taxableWages, String contributions,
       List<UsDeUnemploymentGetDeclarationsResponseEmployeesItem> employees,
+      UsDeUnemploymentGetDeclarationsResponseUc8 uc8,
+      UsDeUnemploymentGetDeclarationsResponseUc8A uc8A, List<String> warnings, String source,
       Map<String, Object> additionalProperties) {
     this.year = year;
     this.quarter = quarter;
@@ -54,6 +64,10 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
     this.taxableWages = taxableWages;
     this.contributions = contributions;
     this.employees = employees;
+    this.uc8 = uc8;
+    this.uc8A = uc8A;
+    this.warnings = warnings;
+    this.source = source;
     this.additionalProperties = additionalProperties;
   }
 
@@ -92,6 +106,26 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
     return employees;
   }
 
+  @JsonProperty("uc8")
+  public UsDeUnemploymentGetDeclarationsResponseUc8 getUc8() {
+    return uc8;
+  }
+
+  @JsonProperty("uc8a")
+  public UsDeUnemploymentGetDeclarationsResponseUc8A getUc8A() {
+    return uc8A;
+  }
+
+  @JsonProperty("warnings")
+  public List<String> getWarnings() {
+    return warnings;
+  }
+
+  @JsonProperty("source")
+  public String getSource() {
+    return source;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -104,12 +138,12 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
   }
 
   private boolean equalTo(UsDeUnemploymentGetDeclarationsResponse other) {
-    return year == other.year && quarter == other.quarter && totalWages.equals(other.totalWages) && excessWages.equals(other.excessWages) && taxableWages.equals(other.taxableWages) && contributions.equals(other.contributions) && employees.equals(other.employees);
+    return year == other.year && quarter == other.quarter && totalWages.equals(other.totalWages) && excessWages.equals(other.excessWages) && taxableWages.equals(other.taxableWages) && contributions.equals(other.contributions) && employees.equals(other.employees) && uc8.equals(other.uc8) && uc8A.equals(other.uc8A) && warnings.equals(other.warnings) && source.equals(other.source);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.quarter, this.totalWages, this.excessWages, this.taxableWages, this.contributions, this.employees);
+    return Objects.hash(this.year, this.quarter, this.totalWages, this.excessWages, this.taxableWages, this.contributions, this.employees, this.uc8, this.uc8A, this.warnings, this.source);
   }
 
   @java.lang.Override
@@ -144,7 +178,19 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
   }
 
   public interface ContributionsStage {
-    _FinalStage contributions(@NotNull String contributions);
+    Uc8Stage contributions(@NotNull String contributions);
+  }
+
+  public interface Uc8Stage {
+    Uc8AStage uc8(@NotNull UsDeUnemploymentGetDeclarationsResponseUc8 uc8);
+  }
+
+  public interface Uc8AStage {
+    SourceStage uc8A(@NotNull UsDeUnemploymentGetDeclarationsResponseUc8A uc8A);
+  }
+
+  public interface SourceStage {
+    _FinalStage source(@NotNull String source);
   }
 
   public interface _FinalStage {
@@ -160,12 +206,18 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
 
     _FinalStage addAllEmployees(
         List<UsDeUnemploymentGetDeclarationsResponseEmployeesItem> employees);
+
+    _FinalStage warnings(List<String> warnings);
+
+    _FinalStage addWarnings(String warnings);
+
+    _FinalStage addAllWarnings(List<String> warnings);
   }
 
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements YearStage, QuarterStage, TotalWagesStage, ExcessWagesStage, TaxableWagesStage, ContributionsStage, _FinalStage {
+  public static final class Builder implements YearStage, QuarterStage, TotalWagesStage, ExcessWagesStage, TaxableWagesStage, ContributionsStage, Uc8Stage, Uc8AStage, SourceStage, _FinalStage {
     private double year;
 
     private double quarter;
@@ -177,6 +229,14 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
     private String taxableWages;
 
     private String contributions;
+
+    private UsDeUnemploymentGetDeclarationsResponseUc8 uc8;
+
+    private UsDeUnemploymentGetDeclarationsResponseUc8A uc8A;
+
+    private String source;
+
+    private List<String> warnings = new ArrayList<>();
 
     private List<UsDeUnemploymentGetDeclarationsResponseEmployeesItem> employees = new ArrayList<>();
 
@@ -195,6 +255,10 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
       taxableWages(other.getTaxableWages());
       contributions(other.getContributions());
       employees(other.getEmployees());
+      uc8(other.getUc8());
+      uc8A(other.getUc8A());
+      warnings(other.getWarnings());
+      source(other.getSource());
       return this;
     }
 
@@ -235,8 +299,56 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
 
     @java.lang.Override
     @JsonSetter("contributions")
-    public _FinalStage contributions(@NotNull String contributions) {
+    public Uc8Stage contributions(@NotNull String contributions) {
       this.contributions = Objects.requireNonNull(contributions, "contributions must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("uc8")
+    public Uc8AStage uc8(@NotNull UsDeUnemploymentGetDeclarationsResponseUc8 uc8) {
+      this.uc8 = Objects.requireNonNull(uc8, "uc8 must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("uc8a")
+    public SourceStage uc8A(@NotNull UsDeUnemploymentGetDeclarationsResponseUc8A uc8A) {
+      this.uc8A = Objects.requireNonNull(uc8A, "uc8A must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("source")
+    public _FinalStage source(@NotNull String source) {
+      this.source = Objects.requireNonNull(source, "source must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addAllWarnings(List<String> warnings) {
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage addWarnings(String warnings) {
+      this.warnings.add(warnings);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "warnings",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage warnings(List<String> warnings) {
+      this.warnings.clear();
+      if (warnings != null) {
+        this.warnings.addAll(warnings);
+      }
       return this;
     }
 
@@ -272,7 +384,7 @@ public final class UsDeUnemploymentGetDeclarationsResponse {
 
     @java.lang.Override
     public UsDeUnemploymentGetDeclarationsResponse build() {
-      return new UsDeUnemploymentGetDeclarationsResponse(year, quarter, totalWages, excessWages, taxableWages, contributions, employees, additionalProperties);
+      return new UsDeUnemploymentGetDeclarationsResponse(year, quarter, totalWages, excessWages, taxableWages, contributions, employees, uc8, uc8A, warnings, source, additionalProperties);
     }
 
     @java.lang.Override

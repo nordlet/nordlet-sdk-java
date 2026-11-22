@@ -50,6 +50,12 @@ import com.nordlet.api.resources.declarations.requests.EuVatReturnPacksListDecla
 import com.nordlet.api.resources.declarations.requests.GbCorporationTaxComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.GbHmrcAuthorizeUrlGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.GbHmrcConnectDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbP11DItemsCreateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbP11DItemsDeleteDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbP11DItemsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbP45GetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbReturnFactsGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.GbReturnFactsSetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.GbVatLiabilitiesListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.GbVatObligationsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.GbVatPaymentsListDeclarationsRequest;
@@ -111,12 +117,17 @@ import com.nordlet.api.resources.declarations.requests.TaxPaymentsCreateDeclarat
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsDeleteDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.TaxPaymentsUpdateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.Us1099NecListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.Us940GetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.Us941GetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsDeFranchiseTaxComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsDeGrossReceiptsGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsDeUnemploymentGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsDeWithholdingGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsDeWithholdingReconciliationGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsFlsaRecordsListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsIncomeTaxReturnGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.UsSalesTaxGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsStateSalesGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsW2ListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsWorkweeksListDeclarationsRequest;
@@ -167,6 +178,12 @@ import com.nordlet.api.resources.declarations.types.EuVatReturnPacksListDeclarat
 import com.nordlet.api.resources.declarations.types.GbCorporationTaxComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.GbHmrcAuthorizeUrlGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.GbHmrcConnectDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbP11DItemsCreateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbP11DItemsDeleteDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbP11DItemsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbP45GetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbReturnFactsGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.GbReturnFactsSetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.GbVatLiabilitiesListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.GbVatObligationsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.GbVatPaymentsListDeclarationsResponse;
@@ -227,12 +244,17 @@ import com.nordlet.api.resources.declarations.types.TaxPaymentsCreateDeclaration
 import com.nordlet.api.resources.declarations.types.TaxPaymentsDeleteDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.TaxPaymentsUpdateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.Us1099NecListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.Us940GetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.Us941GetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsDeFranchiseTaxComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsDeGrossReceiptsGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsDeUnemploymentGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsDeWithholdingGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsDeWithholdingReconciliationGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsFlsaRecordsListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsIncomeTaxReturnGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.UsSalesTaxGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsStateSalesGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsW2ListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsWorkweeksListDeclarationsResponse;
@@ -1839,6 +1861,102 @@ public class AsyncDeclarationsClient {
   }
 
   /**
+   * The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. <code>year</code> is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+   */
+  public CompletableFuture<GbReturnFactsGetDeclarationsResponse> gbReturnFactsGet(
+      GbReturnFactsGetDeclarationsRequest request) {
+    return this.rawClient.gbReturnFactsGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. <code>year</code> is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+   */
+  public CompletableFuture<GbReturnFactsGetDeclarationsResponse> gbReturnFactsGet(
+      GbReturnFactsGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbReturnFactsGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the facts of one accounting period for the Company Tax Return. The <code>gb-ct-return</code> and <code>gb-annual-accounts</code> filings built afterwards read them; a key left out stays unanswered.
+   */
+  public CompletableFuture<GbReturnFactsSetDeclarationsResponse> gbReturnFactsSet(
+      GbReturnFactsSetDeclarationsRequest request) {
+    return this.rawClient.gbReturnFactsSet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Replace the facts of one accounting period for the Company Tax Return. The <code>gb-ct-return</code> and <code>gb-annual-accounts</code> filings built afterwards read them; a key left out stays unanswered.
+   */
+  public CompletableFuture<GbReturnFactsSetDeclarationsResponse> gbReturnFactsSet(
+      GbReturnFactsSetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbReturnFactsSet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of <code>taxYear</code>. <code>item.type</code> chooses the P11D section (A <code>asset-transferred</code>; B <code>payment</code>, <code>tax-on-notional-payments</code>; C <code>vouchers-or-credit-cards</code>; D <code>living-accommodation</code>; E <code>mileage-allowance</code>; F <code>car</code>; G <code>vans</code>; H <code>loan</code>; I <code>medical</code>; J <code>relocation</code>; K <code>services</code>; L <code>asset-available</code>; M <code>other-class-1a</code>, <code>other-non-class-1a</code>, <code>tax-paid-not-deducted</code>; N <code>expenses-travel-and-subsistence</code>, <code>expenses-entertainment</code>, <code>expenses-home-telephone</code>, <code>expenses-non-qualifying-relocation</code>, <code>expenses-other</code>). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The <code>gb-p11db</code> filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+   */
+  public CompletableFuture<GbP11DItemsCreateDeclarationsResponse> gbP11DItemsCreate(
+      GbP11DItemsCreateDeclarationsRequest request) {
+    return this.rawClient.gbP11DItemsCreate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of <code>taxYear</code>. <code>item.type</code> chooses the P11D section (A <code>asset-transferred</code>; B <code>payment</code>, <code>tax-on-notional-payments</code>; C <code>vouchers-or-credit-cards</code>; D <code>living-accommodation</code>; E <code>mileage-allowance</code>; F <code>car</code>; G <code>vans</code>; H <code>loan</code>; I <code>medical</code>; J <code>relocation</code>; K <code>services</code>; L <code>asset-available</code>; M <code>other-class-1a</code>, <code>other-non-class-1a</code>, <code>tax-paid-not-deducted</code>; N <code>expenses-travel-and-subsistence</code>, <code>expenses-entertainment</code>, <code>expenses-home-telephone</code>, <code>expenses-non-qualifying-relocation</code>, <code>expenses-other</code>). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The <code>gb-p11db</code> filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+   */
+  public CompletableFuture<GbP11DItemsCreateDeclarationsResponse> gbP11DItemsCreate(
+      GbP11DItemsCreateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbP11DItemsCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+   */
+  public CompletableFuture<GbP11DItemsListDeclarationsResponse> gbP11DItemsList(
+      GbP11DItemsListDeclarationsRequest request) {
+    return this.rawClient.gbP11DItemsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+   */
+  public CompletableFuture<GbP11DItemsListDeclarationsResponse> gbP11DItemsList(
+      GbP11DItemsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbP11DItemsList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Deletes a P11D item.
+   */
+  public CompletableFuture<GbP11DItemsDeleteDeclarationsResponse> gbP11DItemsDelete(
+      GbP11DItemsDeleteDeclarationsRequest request) {
+    return this.rawClient.gbP11DItemsDelete(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Deletes a P11D item.
+   */
+  public CompletableFuture<GbP11DItemsDeleteDeclarationsResponse> gbP11DItemsDelete(
+      GbP11DItemsDeleteDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbP11DItemsDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Gives the P45 figures of an employee who has left (<code>terminationDate</code> set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+   */
+  public CompletableFuture<GbP45GetDeclarationsResponse> gbP45Get(
+      GbP45GetDeclarationsRequest request) {
+    return this.rawClient.gbP45Get(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Gives the P45 figures of an employee who has left (<code>terminationDate</code> set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+   */
+  public CompletableFuture<GbP45GetDeclarationsResponse> gbP45Get(
+      GbP45GetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.gbP45Get(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
    * Lists the company's VAT return periods as HMRC holds them: open (<code>status</code> O) or fulfilled (F). Without <code>status</code>, <code>from</code> and <code>to</code> are required and at most 366 days apart. <code>device</code> carries the facts of the user's browser that HMRC requires.
    */
   public CompletableFuture<GbVatObligationsListDeclarationsResponse> gbVatObligationsList(
@@ -1967,7 +2085,39 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+   * The federal income tax return of the fiscal year that ends in <code>year</code>, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option <code>usLlcTaxReturn</code>. <code>page1</code> gives the income and deduction lines filled from the statement rows of the form (<code>ledger/statement-rows/list</code> with <code>scheme</code>) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. <code>scheduleL</code> gives each Schedule L line at the beginning and end of the year, <code>otherLines</code> the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without <code>usLlcTaxReturn</code>.
+   */
+  public CompletableFuture<UsIncomeTaxReturnGetDeclarationsResponse> usIncomeTaxReturnGet(
+      UsIncomeTaxReturnGetDeclarationsRequest request) {
+    return this.rawClient.usIncomeTaxReturnGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The federal income tax return of the fiscal year that ends in <code>year</code>, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option <code>usLlcTaxReturn</code>. <code>page1</code> gives the income and deduction lines filled from the statement rows of the form (<code>ledger/statement-rows/list</code> with <code>scheme</code>) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. <code>scheduleL</code> gives each Schedule L line at the beginning and end of the year, <code>otherLines</code> the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without <code>usLlcTaxReturn</code>.
+   */
+  public CompletableFuture<UsIncomeTaxReturnGetDeclarationsResponse> usIncomeTaxReturnGet(
+      UsIncomeTaxReturnGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usIncomeTaxReturnGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The Forms 1099-NEC of a calendar year: one per partner marked with <code>identifiers.nonemployeeCompensation</code> = <code>yes</code> whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (<code>c-corporation</code>, <code>s-corporation</code>, <code>llc-c</code>, <code>llc-s</code>) is listed in <code>excluded</code>. The recipient name type is <code>I</code> for a partner of type <code>person</code> and <code>B</code> otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+   */
+  public CompletableFuture<Us1099NecListDeclarationsResponse> us1099NecList(
+      Us1099NecListDeclarationsRequest request) {
+    return this.rawClient.us1099NecList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The Forms 1099-NEC of a calendar year: one per partner marked with <code>identifiers.nonemployeeCompensation</code> = <code>yes</code> whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (<code>c-corporation</code>, <code>s-corporation</code>, <code>llc-c</code>, <code>llc-s</code>) is listed in <code>excluded</code>. The recipient name type is <code>I</code> for a partner of type <code>person</code> and <code>B</code> otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+   */
+  public CompletableFuture<Us1099NecListDeclarationsResponse> us1099NecList(
+      Us1099NecListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.us1099NecList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and <code>wthTax</code>, the boxes of Form WTH-TAX (taxpayer ID <code>deWithholdingAccount</code>, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsDeWithholdingGetDeclarationsResponse> usDeWithholdingGet(
       UsDeWithholdingGetDeclarationsRequest request) {
@@ -1975,7 +2125,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+   * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and <code>wthTax</code>, the boxes of Form WTH-TAX (taxpayer ID <code>deWithholdingAccount</code>, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsDeWithholdingGetDeclarationsResponse> usDeWithholdingGet(
       UsDeWithholdingGetDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1983,7 +2133,23 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. Answers 422 for a company outside the US.
+   * The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. <code>taxPaid</code> is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsDeWithholdingReconciliationGetDeclarationsResponse> usDeWithholdingReconciliationGet(
+      UsDeWithholdingReconciliationGetDeclarationsRequest request) {
+    return this.rawClient.usDeWithholdingReconciliationGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. <code>taxPaid</code> is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsDeWithholdingReconciliationGetDeclarationsResponse> usDeWithholdingReconciliationGet(
+      UsDeWithholdingReconciliationGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usDeWithholdingReconciliationGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. <code>uc8</code> gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are <code>approvedCredit</code>, <code>interest</code> and <code>penalty</code> when given, otherwise null and counted as zero. <code>uc8a</code> gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsDeUnemploymentGetDeclarationsResponse> usDeUnemploymentGet(
       UsDeUnemploymentGetDeclarationsRequest request) {
@@ -1991,7 +2157,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. Answers 422 for a company outside the US.
+   * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (<code>personalCode</code>) and the wages of the quarter. <code>uc8</code> gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are <code>approvedCredit</code>, <code>interest</code> and <code>penalty</code> when given, otherwise null and counted as zero. <code>uc8a</code> gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsDeUnemploymentGetDeclarationsResponse> usDeUnemploymentGet(
       UsDeUnemploymentGetDeclarationsRequest request, RequestOptions requestOptions) {
@@ -2015,7 +2181,7 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (<code>subdivision</code>, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's <code>deliveryAddress</code>, else of the customer's address (<code>subdivision</code>), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsStateSalesGetDeclarationsResponse> usStateSalesGet(
       UsStateSalesGetDeclarationsRequest request) {
@@ -2023,11 +2189,27 @@ public class AsyncDeclarationsClient {
   }
 
   /**
-   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (<code>subdivision</code>, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+   * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's <code>deliveryAddress</code>, else of the customer's address (<code>subdivision</code>), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
    */
   public CompletableFuture<UsStateSalesGetDeclarationsResponse> usStateSalesGet(
       UsStateSalesGetDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.usStateSalesGet(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The sales tax a US company charged between two issue dates, per state (<code>salesTaxJurisdiction</code> of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into <code>taxableSales</code> and <code>exemptSales</code> (documents charged no sales tax under the customer's certificate of exemption, <code>salesTaxExemptionId</code>), and their sales tax, which <code>sales/invoices/issue</code> credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsSalesTaxGetDeclarationsResponse> usSalesTaxGet(
+      UsSalesTaxGetDeclarationsRequest request) {
+    return this.rawClient.usSalesTaxGet(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The sales tax a US company charged between two issue dates, per state (<code>salesTaxJurisdiction</code> of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into <code>taxableSales</code> and <code>exemptSales</code> (documents charged no sales tax under the customer's certificate of exemption, <code>salesTaxExemptionId</code>), and their sales tax, which <code>sales/invoices/issue</code> credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsSalesTaxGetDeclarationsResponse> usSalesTaxGet(
+      UsSalesTaxGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usSalesTaxGet(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
@@ -2060,6 +2242,22 @@ public class AsyncDeclarationsClient {
   public CompletableFuture<UsWorkweeksListDeclarationsResponse> usWorkweeksList(
       UsWorkweeksListDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.usWorkweeksList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one <code>employeeId</code>) over the period: name and <code>code</code>, home address with zip code, date of birth when the employee is under 19 on <code>from</code>, <code>usSex</code>, the occupation (the position of a contract of the period), the day and time the workweek begins (<code>usWorkweekStart</code>, <code>usWorkweekStartTime</code>), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in <code>warnings</code>. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsFlsaRecordsListDeclarationsResponse> usFlsaRecordsList(
+      UsFlsaRecordsListDeclarationsRequest request) {
+    return this.rawClient.usFlsaRecordsList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one <code>employeeId</code>) over the period: name and <code>code</code>, home address with zip code, date of birth when the employee is under 19 on <code>from</code>, <code>usSex</code>, the occupation (the position of a contract of the period), the day and time the workweek begins (<code>usWorkweekStart</code>, <code>usWorkweekStartTime</code>), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in <code>warnings</code>. Answers 422 for a company outside the US.
+   */
+  public CompletableFuture<UsFlsaRecordsListDeclarationsResponse> usFlsaRecordsList(
+      UsFlsaRecordsListDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.usFlsaRecordsList(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**

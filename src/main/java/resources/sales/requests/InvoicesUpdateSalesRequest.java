@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestDeliveryAddress;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestLinesItem;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestLocale;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesRequestVatScheme;
@@ -88,6 +89,10 @@ public final class InvoicesUpdateSalesRequest {
 
   private final Optional<String> salesTaxPercent;
 
+  private final Optional<String> salesTaxJurisdiction;
+
+  private final Optional<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress;
+
   private final Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines;
 
   private final Map<String, Object> additionalProperties;
@@ -104,6 +109,8 @@ public final class InvoicesUpdateSalesRequest {
       Optional<String> discountPercent, Optional<String> orderNumber, Optional<String> issuedByName,
       Optional<String> issuedByTitle, Optional<String> receivedByName,
       Optional<String> receivedByTitle, Optional<String> salesTaxPercent,
+      Optional<String> salesTaxJurisdiction,
+      Optional<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress,
       Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines,
       Map<String, Object> additionalProperties) {
     this.id = id;
@@ -133,6 +140,8 @@ public final class InvoicesUpdateSalesRequest {
     this.receivedByName = receivedByName;
     this.receivedByTitle = receivedByTitle;
     this.salesTaxPercent = salesTaxPercent;
+    this.salesTaxJurisdiction = salesTaxJurisdiction;
+    this.deliveryAddress = deliveryAddress;
     this.lines = lines;
     this.additionalProperties = additionalProperties;
   }
@@ -329,6 +338,25 @@ public final class InvoicesUpdateSalesRequest {
     return salesTaxPercent;
   }
 
+  /**
+   * @return The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code>
+   */
+  @JsonIgnore
+  public Optional<String> getSalesTaxJurisdiction() {
+    if (salesTaxJurisdiction == null) {
+      return Optional.empty();
+    }
+    return salesTaxJurisdiction;
+  }
+
+  @JsonIgnore
+  public Optional<InvoicesUpdateSalesRequestDeliveryAddress> getDeliveryAddress() {
+    if (deliveryAddress == null) {
+      return Optional.empty();
+    }
+    return deliveryAddress;
+  }
+
   @JsonProperty("lines")
   public Optional<List<InvoicesUpdateSalesRequestLinesItem>> getLines() {
     return lines;
@@ -505,6 +533,24 @@ public final class InvoicesUpdateSalesRequest {
     return salesTaxPercent;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("salesTaxJurisdiction")
+  private Optional<String> _getSalesTaxJurisdiction() {
+    return salesTaxJurisdiction;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deliveryAddress")
+  private Optional<InvoicesUpdateSalesRequestDeliveryAddress> _getDeliveryAddress() {
+    return deliveryAddress;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -517,12 +563,12 @@ public final class InvoicesUpdateSalesRequest {
   }
 
   private boolean equalTo(InvoicesUpdateSalesRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && salesTaxPercent.equals(other.salesTaxPercent) && lines.equals(other.lines);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && agreementId.equals(other.agreementId) && currency.equals(other.currency) && issueDate.equals(other.issueDate) && dueDate.equals(other.dueDate) && vatScheme.equals(other.vatScheme) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && vatCountryCode.equals(other.vatCountryCode) && deemedSupplier.equals(other.deemedSupplier) && notes.equals(other.notes) && locale.equals(other.locale) && payLinkEnabled.equals(other.payLinkEnabled) && debtRemindersEnabled.equals(other.debtRemindersEnabled) && operationTypeId.equals(other.operationTypeId) && documentSeriesId.equals(other.documentSeriesId) && seriesLabel.equals(other.seriesLabel) && discountPercent.equals(other.discountPercent) && orderNumber.equals(other.orderNumber) && issuedByName.equals(other.issuedByName) && issuedByTitle.equals(other.issuedByTitle) && receivedByName.equals(other.receivedByName) && receivedByTitle.equals(other.receivedByTitle) && salesTaxPercent.equals(other.salesTaxPercent) && salesTaxJurisdiction.equals(other.salesTaxJurisdiction) && deliveryAddress.equals(other.deliveryAddress) && lines.equals(other.lines);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.salesTaxPercent, this.lines);
+    return Objects.hash(this.id, this.partnerId, this.agreementId, this.currency, this.issueDate, this.dueDate, this.vatScheme, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.vatCountryCode, this.deemedSupplier, this.notes, this.locale, this.payLinkEnabled, this.debtRemindersEnabled, this.operationTypeId, this.documentSeriesId, this.seriesLabel, this.discountPercent, this.orderNumber, this.issuedByName, this.issuedByTitle, this.receivedByName, this.receivedByTitle, this.salesTaxPercent, this.salesTaxJurisdiction, this.deliveryAddress, this.lines);
   }
 
   @java.lang.Override
@@ -689,6 +735,23 @@ public final class InvoicesUpdateSalesRequest {
 
     _FinalStage salesTaxPercent(Nullable<String> salesTaxPercent);
 
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code></p>
+     */
+    _FinalStage salesTaxJurisdiction(Optional<String> salesTaxJurisdiction);
+
+    _FinalStage salesTaxJurisdiction(String salesTaxJurisdiction);
+
+    _FinalStage salesTaxJurisdiction(Nullable<String> salesTaxJurisdiction);
+
+    _FinalStage deliveryAddress(
+        Optional<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress);
+
+    _FinalStage deliveryAddress(InvoicesUpdateSalesRequestDeliveryAddress deliveryAddress);
+
+    _FinalStage deliveryAddress(
+        Nullable<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress);
+
     _FinalStage lines(Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines);
 
     _FinalStage lines(List<InvoicesUpdateSalesRequestLinesItem> lines);
@@ -701,6 +764,10 @@ public final class InvoicesUpdateSalesRequest {
     private String id;
 
     private Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress = Optional.empty();
+
+    private Optional<String> salesTaxJurisdiction = Optional.empty();
 
     private Optional<String> salesTaxPercent = Optional.empty();
 
@@ -789,6 +856,8 @@ public final class InvoicesUpdateSalesRequest {
       receivedByName(other.getReceivedByName());
       receivedByTitle(other.getReceivedByTitle());
       salesTaxPercent(other.getSalesTaxPercent());
+      salesTaxJurisdiction(other.getSalesTaxJurisdiction());
+      deliveryAddress(other.getDeliveryAddress());
       lines(other.getLines());
       return this;
     }
@@ -813,6 +882,79 @@ public final class InvoicesUpdateSalesRequest {
     )
     public _FinalStage lines(Optional<List<InvoicesUpdateSalesRequestLinesItem>> lines) {
       this.lines = lines;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deliveryAddress(
+        Nullable<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress) {
+      if (deliveryAddress.isNull()) {
+        this.deliveryAddress = null;
+      }
+      else if (deliveryAddress.isEmpty()) {
+        this.deliveryAddress = Optional.empty();
+      }
+      else {
+        this.deliveryAddress = Optional.of(deliveryAddress.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deliveryAddress(InvoicesUpdateSalesRequestDeliveryAddress deliveryAddress) {
+      this.deliveryAddress = Optional.ofNullable(deliveryAddress);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deliveryAddress",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deliveryAddress(
+        Optional<InvoicesUpdateSalesRequestDeliveryAddress> deliveryAddress) {
+      this.deliveryAddress = deliveryAddress;
+      return this;
+    }
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code></p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage salesTaxJurisdiction(Nullable<String> salesTaxJurisdiction) {
+      if (salesTaxJurisdiction.isNull()) {
+        this.salesTaxJurisdiction = null;
+      }
+      else if (salesTaxJurisdiction.isEmpty()) {
+        this.salesTaxJurisdiction = Optional.empty();
+      }
+      else {
+        this.salesTaxJurisdiction = Optional.of(salesTaxJurisdiction.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code></p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage salesTaxJurisdiction(String salesTaxJurisdiction) {
+      this.salesTaxJurisdiction = Optional.ofNullable(salesTaxJurisdiction);
+      return this;
+    }
+
+    /**
+     * <p>The US state the sales tax is collected for, as an ISO 3166-2 code such as <code>US-CA</code></p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "salesTaxJurisdiction",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage salesTaxJurisdiction(Optional<String> salesTaxJurisdiction) {
+      this.salesTaxJurisdiction = salesTaxJurisdiction;
       return this;
     }
 
@@ -1500,7 +1642,7 @@ public final class InvoicesUpdateSalesRequest {
 
     @java.lang.Override
     public InvoicesUpdateSalesRequest build() {
-      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, salesTaxPercent, lines, additionalProperties);
+      return new InvoicesUpdateSalesRequest(id, partnerId, agreementId, currency, issueDate, dueDate, vatScheme, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, vatCountryCode, deemedSupplier, notes, locale, payLinkEnabled, debtRemindersEnabled, operationTypeId, documentSeriesId, seriesLabel, discountPercent, orderNumber, issuedByName, issuedByTitle, receivedByName, receivedByTitle, salesTaxPercent, salesTaxJurisdiction, deliveryAddress, lines, additionalProperties);
     }
 
     @java.lang.Override

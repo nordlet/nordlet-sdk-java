@@ -1237,7 +1237,7 @@ public class AsyncRawSalesClient {
                         }
 
                         /**
-                         * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+                         * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; <code>salesTaxJurisdiction</code> is resolved again as in <code>sales/invoices/create</code> when the partner, the delivery address, the percent or the jurisdiction changes; <code>deliveryAddress</code> null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
                          */
                         public CompletableFuture<NordletApiHttpResponse<InvoicesUpdateSalesResponse>> invoicesUpdate(
                             InvoicesUpdateSalesRequest request) {
@@ -1245,7 +1245,7 @@ public class AsyncRawSalesClient {
                         }
 
                         /**
-                         * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+                         * Change a draft sale document. Fields left out keep their value, <code>lines</code> replaces every line, a changed <code>discountPercent</code> recomputes the existing lines, and <code>salesTaxPercent</code> (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; <code>salesTaxJurisdiction</code> is resolved again as in <code>sales/invoices/create</code> when the partner, the delivery address, the percent or the jurisdiction changes; <code>deliveryAddress</code> null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of <code>sales/invoices/create</code> (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
                          */
                         public CompletableFuture<NordletApiHttpResponse<InvoicesUpdateSalesResponse>> invoicesUpdate(
                             InvoicesUpdateSalesRequest request, RequestOptions requestOptions) {

@@ -113,6 +113,8 @@ public final class UpdatePartnersRequest {
 
   private final Optional<UpdatePartnersRequestLegalCountryClass> legalCountryClass;
 
+  private final Optional<Map<String, Optional<String>>> identifiers;
+
   private final Map<String, Object> additionalProperties;
 
   private UpdatePartnersRequest(String id, Optional<UpdatePartnersRequestType> type,
@@ -133,6 +135,7 @@ public final class UpdatePartnersRequest {
       Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
       Optional<Boolean> isActive,
       Optional<UpdatePartnersRequestLegalCountryClass> legalCountryClass,
+      Optional<Map<String, Optional<String>>> identifiers,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
@@ -172,6 +175,7 @@ public final class UpdatePartnersRequest {
     this.isGroupMember = isGroupMember;
     this.isActive = isActive;
     this.legalCountryClass = legalCountryClass;
+    this.identifiers = identifiers;
     this.additionalProperties = additionalProperties;
   }
 
@@ -458,6 +462,17 @@ public final class UpdatePartnersRequest {
     return legalCountryClass;
   }
 
+  /**
+   * @return Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+   */
+  @JsonIgnore
+  public Optional<Map<String, Optional<String>>> getIdentifiers() {
+    if (identifiers == null) {
+      return Optional.empty();
+    }
+    return identifiers;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -710,6 +725,15 @@ public final class UpdatePartnersRequest {
     return legalCountryClass;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("identifiers")
+  private Optional<Map<String, Optional<String>>> _getIdentifiers() {
+    return identifiers;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -722,12 +746,12 @@ public final class UpdatePartnersRequest {
   }
 
   private boolean equalTo(UpdatePartnersRequest other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass) && identifiers.equals(other.identifiers);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.identifiers);
   }
 
   @java.lang.Override
@@ -969,6 +993,15 @@ public final class UpdatePartnersRequest {
 
     _FinalStage legalCountryClass(
         Nullable<UpdatePartnersRequestLegalCountryClass> legalCountryClass);
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     */
+    _FinalStage identifiers(Optional<Map<String, Optional<String>>> identifiers);
+
+    _FinalStage identifiers(Map<String, Optional<String>> identifiers);
+
+    _FinalStage identifiers(Nullable<Map<String, Optional<String>>> identifiers);
   }
 
   @JsonIgnoreProperties(
@@ -976,6 +1009,8 @@ public final class UpdatePartnersRequest {
   )
   public static final class Builder implements IdStage, _FinalStage {
     private String id;
+
+    private Optional<Map<String, Optional<String>>> identifiers = Optional.empty();
 
     private Optional<UpdatePartnersRequestLegalCountryClass> legalCountryClass = Optional.empty();
 
@@ -1097,6 +1132,7 @@ public final class UpdatePartnersRequest {
       isGroupMember(other.getIsGroupMember());
       isActive(other.getIsActive());
       legalCountryClass(other.getLegalCountryClass());
+      identifiers(other.getIdentifiers());
       return this;
     }
 
@@ -1104,6 +1140,47 @@ public final class UpdatePartnersRequest {
     @JsonSetter("id")
     public _FinalStage id(@NotNull String id) {
       this.id = Objects.requireNonNull(id, "id must not be null");
+      return this;
+    }
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage identifiers(Nullable<Map<String, Optional<String>>> identifiers) {
+      if (identifiers.isNull()) {
+        this.identifiers = null;
+      }
+      else if (identifiers.isEmpty()) {
+        this.identifiers = Optional.empty();
+      }
+      else {
+        this.identifiers = Optional.of(identifiers.get());
+      }
+      return this;
+    }
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage identifiers(Map<String, Optional<String>> identifiers) {
+      this.identifiers = Optional.ofNullable(identifiers);
+      return this;
+    }
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage identifiers(Optional<Map<String, Optional<String>>> identifiers) {
+      this.identifiers = identifiers;
       return this;
     }
 
@@ -2133,7 +2210,7 @@ public final class UpdatePartnersRequest {
 
     @java.lang.Override
     public UpdatePartnersRequest build() {
-      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, additionalProperties);
+      return new UpdatePartnersRequest(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, identifiers, additionalProperties);
     }
 
     @java.lang.Override

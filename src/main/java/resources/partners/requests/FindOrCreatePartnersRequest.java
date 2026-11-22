@@ -108,6 +108,8 @@ public final class FindOrCreatePartnersRequest {
 
   private final Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass;
 
+  private final Optional<Map<String, String>> identifiers;
+
   private final Optional<String> iban;
 
   private final Map<String, Object> additionalProperties;
@@ -129,7 +131,8 @@ public final class FindOrCreatePartnersRequest {
       Optional<Long> rating, Optional<Boolean> isEmployee, Optional<Boolean> isGroupMember,
       Optional<Boolean> isActive,
       Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass,
-      Optional<String> iban, Map<String, Object> additionalProperties) {
+      Optional<Map<String, String>> identifiers, Optional<String> iban,
+      Map<String, Object> additionalProperties) {
     this.type = type;
     this.name = name;
     this.code = code;
@@ -167,6 +170,7 @@ public final class FindOrCreatePartnersRequest {
     this.isGroupMember = isGroupMember;
     this.isActive = isActive;
     this.legalCountryClass = legalCountryClass;
+    this.identifiers = identifiers;
     this.iban = iban;
     this.additionalProperties = additionalProperties;
   }
@@ -365,6 +369,14 @@ public final class FindOrCreatePartnersRequest {
     return legalCountryClass;
   }
 
+  /**
+   * @return Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+   */
+  @JsonProperty("identifiers")
+  public Optional<Map<String, String>> getIdentifiers() {
+    return identifiers;
+  }
+
   @JsonProperty("iban")
   public Optional<String> getIban() {
     return iban;
@@ -382,12 +394,12 @@ public final class FindOrCreatePartnersRequest {
   }
 
   private boolean equalTo(FindOrCreatePartnersRequest other) {
-    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass) && iban.equals(other.iban);
+    return type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer.equals(other.isCustomer) && isSupplier.equals(other.isSupplier) && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder.equals(other.autoDebtReminder) && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee.equals(other.isEmployee) && isGroupMember.equals(other.isGroupMember) && isActive.equals(other.isActive) && legalCountryClass.equals(other.legalCountryClass) && identifiers.equals(other.identifiers) && iban.equals(other.iban);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.iban);
+    return Objects.hash(this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.identifiers, this.iban);
   }
 
   @java.lang.Override
@@ -569,6 +581,13 @@ public final class FindOrCreatePartnersRequest {
 
     _FinalStage legalCountryClass(FindOrCreatePartnersRequestLegalCountryClass legalCountryClass);
 
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     */
+    _FinalStage identifiers(Optional<Map<String, String>> identifiers);
+
+    _FinalStage identifiers(Map<String, String> identifiers);
+
     _FinalStage iban(Optional<String> iban);
 
     _FinalStage iban(String iban);
@@ -581,6 +600,8 @@ public final class FindOrCreatePartnersRequest {
     private String name;
 
     private Optional<String> iban = Optional.empty();
+
+    private Optional<Map<String, String>> identifiers = Optional.empty();
 
     private Optional<FindOrCreatePartnersRequestLegalCountryClass> legalCountryClass = Optional.empty();
 
@@ -699,6 +720,7 @@ public final class FindOrCreatePartnersRequest {
       isGroupMember(other.getIsGroupMember());
       isActive(other.getIsActive());
       legalCountryClass(other.getLegalCountryClass());
+      identifiers(other.getIdentifiers());
       iban(other.getIban());
       return this;
     }
@@ -723,6 +745,29 @@ public final class FindOrCreatePartnersRequest {
     )
     public _FinalStage iban(Optional<String> iban) {
       this.iban = iban;
+      return this;
+    }
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     * @return Reference to {@code this} so that method calls can be chained together.
+     */
+    @java.lang.Override
+    public _FinalStage identifiers(Map<String, String> identifiers) {
+      this.identifiers = Optional.ofNullable(identifiers);
+      return this;
+    }
+
+    /**
+     * <p>Tax data of the partner by key, checked against the company's country: <code>tin</code> (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); <code>tinType</code> (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); <code>taxClassification</code> (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); <code>nonemployeeCompensation</code> (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)</p>
+     */
+    @java.lang.Override
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage identifiers(Optional<Map<String, String>> identifiers) {
+      this.identifiers = identifiers;
       return this;
     }
 
@@ -1331,7 +1376,7 @@ public final class FindOrCreatePartnersRequest {
 
     @java.lang.Override
     public FindOrCreatePartnersRequest build() {
-      return new FindOrCreatePartnersRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, iban, additionalProperties);
+      return new FindOrCreatePartnersRequest(type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, identifiers, iban, additionalProperties);
     }
 
     @java.lang.Override

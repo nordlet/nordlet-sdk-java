@@ -22,6 +22,7 @@ import java.lang.Object;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -112,6 +113,8 @@ public final class FindOrCreatePartnersResponsePartner {
 
   private final Optional<FindOrCreatePartnersResponsePartnerLegalCountryClass> legalCountryClass;
 
+  private final Map<String, String> identifiers;
+
   private final OffsetDateTime createdAt;
 
   private final OffsetDateTime updatedAt;
@@ -135,7 +138,7 @@ public final class FindOrCreatePartnersResponsePartner {
       Optional<String> firstCallDate, Optional<String> lastCallDate, Optional<String> nextCallDate,
       Optional<Long> rating, boolean isEmployee, boolean isGroupMember, boolean isActive,
       Optional<FindOrCreatePartnersResponsePartnerLegalCountryClass> legalCountryClass,
-      OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      Map<String, String> identifiers, OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.type = type;
@@ -177,6 +180,7 @@ public final class FindOrCreatePartnersResponsePartner {
     this.isGroupMember = isGroupMember;
     this.isActive = isActive;
     this.legalCountryClass = legalCountryClass;
+    this.identifiers = identifiers;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.additionalProperties = additionalProperties;
@@ -474,6 +478,11 @@ public final class FindOrCreatePartnersResponsePartner {
       return Optional.empty();
     }
     return legalCountryClass;
+  }
+
+  @JsonProperty("identifiers")
+  public Map<String, String> getIdentifiers() {
+    return identifiers;
   }
 
   @JsonProperty("createdAt")
@@ -778,12 +787,12 @@ public final class FindOrCreatePartnersResponsePartner {
   }
 
   private boolean equalTo(FindOrCreatePartnersResponsePartner other) {
-    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer == other.isCustomer && isSupplier == other.isSupplier && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && vatValid.equals(other.vatValid) && vatValidatedAt.equals(other.vatValidatedAt) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder == other.autoDebtReminder && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee == other.isEmployee && isGroupMember == other.isGroupMember && isActive == other.isActive && legalCountryClass.equals(other.legalCountryClass) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && type.equals(other.type) && name.equals(other.name) && code.equals(other.code) && vatCode.equals(other.vatCode) && peppolId.equals(other.peppolId) && email.equals(other.email) && phone.equals(other.phone) && selfEmploymentCertNo.equals(other.selfEmploymentCertNo) && birthDate.equals(other.birthDate) && isBusiness.equals(other.isBusiness) && isCustomer == other.isCustomer && isSupplier == other.isSupplier && paymentTermDays.equals(other.paymentTermDays) && invoiceCurrency.equals(other.invoiceCurrency) && invoiceLocale.equals(other.invoiceLocale) && creditLimit.equals(other.creditLimit) && priceListId.equals(other.priceListId) && groupId.equals(other.groupId) && statusId.equals(other.statusId) && vatValid.equals(other.vatValid) && vatValidatedAt.equals(other.vatValidatedAt) && address.equals(other.address) && correspondenceAddress.equals(other.correspondenceAddress) && notes.equals(other.notes) && documentRef.equals(other.documentRef) && shortName.equals(other.shortName) && website.equals(other.website) && fax.equals(other.fax) && eoriCode.equals(other.eoriCode) && autoDebtReminder == other.autoDebtReminder && lateInterestPercent.equals(other.lateInterestPercent) && firstCallDate.equals(other.firstCallDate) && lastCallDate.equals(other.lastCallDate) && nextCallDate.equals(other.nextCallDate) && rating.equals(other.rating) && isEmployee == other.isEmployee && isGroupMember == other.isGroupMember && isActive == other.isActive && legalCountryClass.equals(other.legalCountryClass) && identifiers.equals(other.identifiers) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.vatValid, this.vatValidatedAt, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.type, this.name, this.code, this.vatCode, this.peppolId, this.email, this.phone, this.selfEmploymentCertNo, this.birthDate, this.isBusiness, this.isCustomer, this.isSupplier, this.paymentTermDays, this.invoiceCurrency, this.invoiceLocale, this.creditLimit, this.priceListId, this.groupId, this.statusId, this.vatValid, this.vatValidatedAt, this.address, this.correspondenceAddress, this.notes, this.documentRef, this.shortName, this.website, this.fax, this.eoriCode, this.autoDebtReminder, this.lateInterestPercent, this.firstCallDate, this.lastCallDate, this.nextCallDate, this.rating, this.isEmployee, this.isGroupMember, this.isActive, this.legalCountryClass, this.identifiers, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -1039,6 +1048,12 @@ public final class FindOrCreatePartnersResponsePartner {
 
     _FinalStage legalCountryClass(
         Nullable<FindOrCreatePartnersResponsePartnerLegalCountryClass> legalCountryClass);
+
+    _FinalStage identifiers(Map<String, String> identifiers);
+
+    _FinalStage putAllIdentifiers(Map<String, String> identifiers);
+
+    _FinalStage identifiers(String key, String value);
   }
 
   @JsonIgnoreProperties(
@@ -1066,6 +1081,8 @@ public final class FindOrCreatePartnersResponsePartner {
     private OffsetDateTime createdAt;
 
     private OffsetDateTime updatedAt;
+
+    private Map<String, String> identifiers = new LinkedHashMap<>();
 
     private Optional<FindOrCreatePartnersResponsePartnerLegalCountryClass> legalCountryClass = Optional.empty();
 
@@ -1177,6 +1194,7 @@ public final class FindOrCreatePartnersResponsePartner {
       isGroupMember(other.getIsGroupMember());
       isActive(other.getIsActive());
       legalCountryClass(other.getLegalCountryClass());
+      identifiers(other.getIdentifiers());
       createdAt(other.getCreatedAt());
       updatedAt(other.getUpdatedAt());
       return this;
@@ -1256,6 +1274,33 @@ public final class FindOrCreatePartnersResponsePartner {
     @JsonSetter("updatedAt")
     public _FinalStage updatedAt(@NotNull OffsetDateTime updatedAt) {
       this.updatedAt = Objects.requireNonNull(updatedAt, "updatedAt must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage identifiers(String key, String value) {
+      this.identifiers.put(key, value);
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage putAllIdentifiers(Map<String, String> identifiers) {
+      if (identifiers != null) {
+        this.identifiers.putAll(identifiers);
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "identifiers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage identifiers(Map<String, String> identifiers) {
+      this.identifiers.clear();
+      if (identifiers != null) {
+        this.identifiers.putAll(identifiers);
+      }
       return this;
     }
 
@@ -2197,7 +2242,7 @@ public final class FindOrCreatePartnersResponsePartner {
 
     @java.lang.Override
     public FindOrCreatePartnersResponsePartner build() {
-      return new FindOrCreatePartnersResponsePartner(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, vatValid, vatValidatedAt, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, createdAt, updatedAt, additionalProperties);
+      return new FindOrCreatePartnersResponsePartner(id, type, name, code, vatCode, peppolId, email, phone, selfEmploymentCertNo, birthDate, isBusiness, isCustomer, isSupplier, paymentTermDays, invoiceCurrency, invoiceLocale, creditLimit, priceListId, groupId, statusId, vatValid, vatValidatedAt, address, correspondenceAddress, notes, documentRef, shortName, website, fax, eoriCode, autoDebtReminder, lateInterestPercent, firstCallDate, lastCallDate, nextCallDate, rating, isEmployee, isGroupMember, isActive, legalCountryClass, identifiers, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override
