@@ -12,6 +12,8 @@ import java.lang.String;
 public final class PeriodChecklistReportsResponseItemsItemCode {
   public static final PeriodChecklistReportsResponseItemsItemCode DEPRECIATION_NOT_POSTED = new PeriodChecklistReportsResponseItemsItemCode(Value.DEPRECIATION_NOT_POSTED, "depreciation_not_posted");
 
+  public static final PeriodChecklistReportsResponseItemsItemCode BANK_LEDGER_DIFFERS_FROM_STATEMENT = new PeriodChecklistReportsResponseItemsItemCode(Value.BANK_LEDGER_DIFFERS_FROM_STATEMENT, "bank_ledger_differs_from_statement");
+
   public static final PeriodChecklistReportsResponseItemsItemCode DRAFT_PURCHASE_DOCUMENTS = new PeriodChecklistReportsResponseItemsItemCode(Value.DRAFT_PURCHASE_DOCUMENTS, "draft_purchase_documents");
 
   public static final PeriodChecklistReportsResponseItemsItemCode RECURRING_INVOICES_NOT_GENERATED = new PeriodChecklistReportsResponseItemsItemCode(Value.RECURRING_INVOICES_NOT_GENERATED, "recurring_invoices_not_generated");
@@ -24,9 +26,13 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
 
   public static final PeriodChecklistReportsResponseItemsItemCode UNBOOKED_BANK_LINES = new PeriodChecklistReportsResponseItemsItemCode(Value.UNBOOKED_BANK_LINES, "unbooked_bank_lines");
 
+  public static final PeriodChecklistReportsResponseItemsItemCode VAT_OUTSIDE_RETURNS = new PeriodChecklistReportsResponseItemsItemCode(Value.VAT_OUTSIDE_RETURNS, "vat_outside_returns");
+
   public static final PeriodChecklistReportsResponseItemsItemCode PAYROLL_RUNS_NOT_APPROVED = new PeriodChecklistReportsResponseItemsItemCode(Value.PAYROLL_RUNS_NOT_APPROVED, "payroll_runs_not_approved");
 
   public static final PeriodChecklistReportsResponseItemsItemCode DEFERRALS_NOT_POSTED = new PeriodChecklistReportsResponseItemsItemCode(Value.DEFERRALS_NOT_POSTED, "deferrals_not_posted");
+
+  public static final PeriodChecklistReportsResponseItemsItemCode FILING_SETTINGS_MISSING = new PeriodChecklistReportsResponseItemsItemCode(Value.FILING_SETTINGS_MISSING, "filing_settings_missing");
 
   private final Value value;
 
@@ -62,6 +68,8 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
     switch (value) {
       case DEPRECIATION_NOT_POSTED:
         return visitor.visitDepreciationNotPosted();
+      case BANK_LEDGER_DIFFERS_FROM_STATEMENT:
+        return visitor.visitBankLedgerDiffersFromStatement();
       case DRAFT_PURCHASE_DOCUMENTS:
         return visitor.visitDraftPurchaseDocuments();
       case RECURRING_INVOICES_NOT_GENERATED:
@@ -74,10 +82,14 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
         return visitor.visitOpenFxPayables();
       case UNBOOKED_BANK_LINES:
         return visitor.visitUnbookedBankLines();
+      case VAT_OUTSIDE_RETURNS:
+        return visitor.visitVatOutsideReturns();
       case PAYROLL_RUNS_NOT_APPROVED:
         return visitor.visitPayrollRunsNotApproved();
       case DEFERRALS_NOT_POSTED:
         return visitor.visitDeferralsNotPosted();
+      case FILING_SETTINGS_MISSING:
+        return visitor.visitFilingSettingsMissing();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -91,6 +103,8 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
     switch (value) {
       case "depreciation_not_posted":
         return DEPRECIATION_NOT_POSTED;
+      case "bank_ledger_differs_from_statement":
+        return BANK_LEDGER_DIFFERS_FROM_STATEMENT;
       case "draft_purchase_documents":
         return DRAFT_PURCHASE_DOCUMENTS;
       case "recurring_invoices_not_generated":
@@ -103,10 +117,14 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
         return OPEN_FX_PAYABLES;
       case "unbooked_bank_lines":
         return UNBOOKED_BANK_LINES;
+      case "vat_outside_returns":
+        return VAT_OUTSIDE_RETURNS;
       case "payroll_runs_not_approved":
         return PAYROLL_RUNS_NOT_APPROVED;
       case "deferrals_not_posted":
         return DEFERRALS_NOT_POSTED;
+      case "filing_settings_missing":
+        return FILING_SETTINGS_MISSING;
       default:
         return new PeriodChecklistReportsResponseItemsItemCode(Value.UNKNOWN, value);
     }
@@ -131,6 +149,12 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
 
     OPEN_FX_PAYABLES,
 
+    BANK_LEDGER_DIFFERS_FROM_STATEMENT,
+
+    VAT_OUTSIDE_RETURNS,
+
+    FILING_SETTINGS_MISSING,
+
     UNKNOWN
   }
 
@@ -152,6 +176,12 @@ public final class PeriodChecklistReportsResponseItemsItemCode {
     T visitOpenFxReceivables();
 
     T visitOpenFxPayables();
+
+    T visitBankLedgerDiffersFromStatement();
+
+    T visitVatOutsideReturns();
+
+    T visitFilingSettingsMissing();
 
     T visitUnknown(String unknownType);
   }

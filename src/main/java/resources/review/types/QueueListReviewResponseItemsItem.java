@@ -54,7 +54,7 @@ public final class QueueListReviewResponseItemsItem {
   }
 
   /**
-   * @return The id of the draft, bank transaction or partner, or the key of the filing
+   * @return The id of the draft, bank transaction, partner or file, or the key of the filing
    */
   @JsonProperty("id")
   public String getId() {
@@ -116,7 +116,7 @@ public final class QueueListReviewResponseItemsItem {
 
   public interface IdStage {
     /**
-     * <p>The id of the draft, bank transaction or partner, or the key of the filing</p>
+     * <p>The id of the draft, bank transaction, partner or file, or the key of the filing</p>
      */
     MessageStage id(@NotNull String id);
   }
@@ -182,7 +182,7 @@ public final class QueueListReviewResponseItemsItem {
     }
 
     /**
-     * <p>The id of the draft, bank transaction or partner, or the key of the filing</p>
+     * <p>The id of the draft, bank transaction, partner or file, or the key of the filing</p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override

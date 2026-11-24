@@ -58,6 +58,8 @@ public final class ItemsCreateCatalogResponse {
 
   private final Optional<String> cnCode;
 
+  private final Optional<String> cpaCode;
+
   private final Optional<String> originCountry;
 
   private final Optional<String> netMassKg;
@@ -144,7 +146,7 @@ public final class ItemsCreateCatalogResponse {
       ItemsCreateCatalogResponseTracking tracking, String name, Optional<String> code,
       Optional<String> barcode, String unit, Optional<String> vatClassifierCode,
       Optional<String> vatRatePercent, Optional<String> salePriceExclVat,
-      Optional<String> purchasePriceExclVat, Optional<String> cnCode,
+      Optional<String> purchasePriceExclVat, Optional<String> cnCode, Optional<String> cpaCode,
       Optional<String> originCountry, Optional<String> netMassKg,
       Optional<String> supplementaryUnit, Optional<String> supplementaryQtyPerUnit,
       Optional<String> description, Optional<String> groupId,
@@ -176,6 +178,7 @@ public final class ItemsCreateCatalogResponse {
     this.salePriceExclVat = salePriceExclVat;
     this.purchasePriceExclVat = purchasePriceExclVat;
     this.cnCode = cnCode;
+    this.cpaCode = cpaCode;
     this.originCountry = originCountry;
     this.netMassKg = netMassKg;
     this.supplementaryUnit = supplementaryUnit;
@@ -298,6 +301,14 @@ public final class ItemsCreateCatalogResponse {
       return Optional.empty();
     }
     return cnCode;
+  }
+
+  @JsonIgnore
+  public Optional<String> getCpaCode() {
+    if (cpaCode == null) {
+      return Optional.empty();
+    }
+    return cpaCode;
   }
 
   @JsonIgnore
@@ -667,6 +678,15 @@ public final class ItemsCreateCatalogResponse {
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
   )
+  @JsonProperty("cpaCode")
+  private Optional<String> _getCpaCode() {
+    return cpaCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
   @JsonProperty("originCountry")
   private Optional<String> _getOriginCountry() {
     return originCountry;
@@ -973,12 +993,12 @@ public final class ItemsCreateCatalogResponse {
   }
 
   private boolean equalTo(ItemsCreateCatalogResponse other) {
-    return id.equals(other.id) && type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && documentRef.equals(other.documentRef) && translations.equals(other.translations) && components.equals(other.components) && alternativeUnits.equals(other.alternativeUnits) && kindId.equals(other.kindId) && saleAccountCode.equals(other.saleAccountCode) && purchaseAccountCode.equals(other.purchaseAccountCode) && expenseAccountCode.equals(other.expenseAccountCode) && manufacturer.equals(other.manufacturer) && grossMassKg.equals(other.grossMassKg) && minQuantity.equals(other.minQuantity) && costPrice.equals(other.costPrice) && isFreePrice == other.isFreePrice && externalId.equals(other.externalId) && isReturnable == other.isReturnable && commentRequired == other.commentRequired && priceFrom.equals(other.priceFrom) && priceTo.equals(other.priceTo) && minPrice.equals(other.minPrice) && discountPercent.equals(other.discountPercent) && maxDiscountPercent.equals(other.maxDiscountPercent) && loyaltyPoints.equals(other.loyaltyPoints) && department.equals(other.department) && ageRestriction.equals(other.ageRestriction) && packageQuantity.equals(other.packageQuantity) && taraCode.equals(other.taraCode) && certificateNumber.equals(other.certificateNumber) && certificateDate.equals(other.certificateDate) && validFrom.equals(other.validFrom) && validTo.equals(other.validTo) && posFlags.equals(other.posFlags) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && type.equals(other.type) && tracking.equals(other.tracking) && name.equals(other.name) && code.equals(other.code) && barcode.equals(other.barcode) && unit.equals(other.unit) && vatClassifierCode.equals(other.vatClassifierCode) && vatRatePercent.equals(other.vatRatePercent) && salePriceExclVat.equals(other.salePriceExclVat) && purchasePriceExclVat.equals(other.purchasePriceExclVat) && cnCode.equals(other.cnCode) && cpaCode.equals(other.cpaCode) && originCountry.equals(other.originCountry) && netMassKg.equals(other.netMassKg) && supplementaryUnit.equals(other.supplementaryUnit) && supplementaryQtyPerUnit.equals(other.supplementaryQtyPerUnit) && description.equals(other.description) && groupId.equals(other.groupId) && attributes.equals(other.attributes) && documentRef.equals(other.documentRef) && translations.equals(other.translations) && components.equals(other.components) && alternativeUnits.equals(other.alternativeUnits) && kindId.equals(other.kindId) && saleAccountCode.equals(other.saleAccountCode) && purchaseAccountCode.equals(other.purchaseAccountCode) && expenseAccountCode.equals(other.expenseAccountCode) && manufacturer.equals(other.manufacturer) && grossMassKg.equals(other.grossMassKg) && minQuantity.equals(other.minQuantity) && costPrice.equals(other.costPrice) && isFreePrice == other.isFreePrice && externalId.equals(other.externalId) && isReturnable == other.isReturnable && commentRequired == other.commentRequired && priceFrom.equals(other.priceFrom) && priceTo.equals(other.priceTo) && minPrice.equals(other.minPrice) && discountPercent.equals(other.discountPercent) && maxDiscountPercent.equals(other.maxDiscountPercent) && loyaltyPoints.equals(other.loyaltyPoints) && department.equals(other.department) && ageRestriction.equals(other.ageRestriction) && packageQuantity.equals(other.packageQuantity) && taraCode.equals(other.taraCode) && certificateNumber.equals(other.certificateNumber) && certificateDate.equals(other.certificateDate) && validFrom.equals(other.validFrom) && validTo.equals(other.validTo) && posFlags.equals(other.posFlags) && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.documentRef, this.translations, this.components, this.alternativeUnits, this.kindId, this.saleAccountCode, this.purchaseAccountCode, this.expenseAccountCode, this.manufacturer, this.grossMassKg, this.minQuantity, this.costPrice, this.isFreePrice, this.externalId, this.isReturnable, this.commentRequired, this.priceFrom, this.priceTo, this.minPrice, this.discountPercent, this.maxDiscountPercent, this.loyaltyPoints, this.department, this.ageRestriction, this.packageQuantity, this.taraCode, this.certificateNumber, this.certificateDate, this.validFrom, this.validTo, this.posFlags, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.type, this.tracking, this.name, this.code, this.barcode, this.unit, this.vatClassifierCode, this.vatRatePercent, this.salePriceExclVat, this.purchasePriceExclVat, this.cnCode, this.cpaCode, this.originCountry, this.netMassKg, this.supplementaryUnit, this.supplementaryQtyPerUnit, this.description, this.groupId, this.attributes, this.documentRef, this.translations, this.components, this.alternativeUnits, this.kindId, this.saleAccountCode, this.purchaseAccountCode, this.expenseAccountCode, this.manufacturer, this.grossMassKg, this.minQuantity, this.costPrice, this.isFreePrice, this.externalId, this.isReturnable, this.commentRequired, this.priceFrom, this.priceTo, this.minPrice, this.discountPercent, this.maxDiscountPercent, this.loyaltyPoints, this.department, this.ageRestriction, this.packageQuantity, this.taraCode, this.certificateNumber, this.certificateDate, this.validFrom, this.validTo, this.posFlags, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -1080,6 +1100,12 @@ public final class ItemsCreateCatalogResponse {
     _FinalStage cnCode(String cnCode);
 
     _FinalStage cnCode(Nullable<String> cnCode);
+
+    _FinalStage cpaCode(Optional<String> cpaCode);
+
+    _FinalStage cpaCode(String cpaCode);
+
+    _FinalStage cpaCode(Nullable<String> cpaCode);
 
     _FinalStage originCountry(Optional<String> originCountry);
 
@@ -1392,6 +1418,8 @@ public final class ItemsCreateCatalogResponse {
 
     private Optional<String> originCountry = Optional.empty();
 
+    private Optional<String> cpaCode = Optional.empty();
+
     private Optional<String> cnCode = Optional.empty();
 
     private Optional<String> purchasePriceExclVat = Optional.empty();
@@ -1426,6 +1454,7 @@ public final class ItemsCreateCatalogResponse {
       salePriceExclVat(other.getSalePriceExclVat());
       purchasePriceExclVat(other.getPurchasePriceExclVat());
       cnCode(other.getCnCode());
+      cpaCode(other.getCpaCode());
       originCountry(other.getOriginCountry());
       netMassKg(other.getNetMassKg());
       supplementaryUnit(other.getSupplementaryUnit());
@@ -2590,6 +2619,36 @@ public final class ItemsCreateCatalogResponse {
     }
 
     @java.lang.Override
+    public _FinalStage cpaCode(Nullable<String> cpaCode) {
+      if (cpaCode.isNull()) {
+        this.cpaCode = null;
+      }
+      else if (cpaCode.isEmpty()) {
+        this.cpaCode = Optional.empty();
+      }
+      else {
+        this.cpaCode = Optional.of(cpaCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage cpaCode(String cpaCode) {
+      this.cpaCode = Optional.ofNullable(cpaCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "cpaCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage cpaCode(Optional<String> cpaCode) {
+      this.cpaCode = cpaCode;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage cnCode(Nullable<String> cnCode) {
       if (cnCode.isNull()) {
         this.cnCode = null;
@@ -2801,7 +2860,7 @@ public final class ItemsCreateCatalogResponse {
 
     @java.lang.Override
     public ItemsCreateCatalogResponse build() {
-      return new ItemsCreateCatalogResponse(id, type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, documentRef, translations, components, alternativeUnits, kindId, saleAccountCode, purchaseAccountCode, expenseAccountCode, manufacturer, grossMassKg, minQuantity, costPrice, isFreePrice, externalId, isReturnable, commentRequired, priceFrom, priceTo, minPrice, discountPercent, maxDiscountPercent, loyaltyPoints, department, ageRestriction, packageQuantity, taraCode, certificateNumber, certificateDate, validFrom, validTo, posFlags, createdAt, updatedAt, additionalProperties);
+      return new ItemsCreateCatalogResponse(id, type, tracking, name, code, barcode, unit, vatClassifierCode, vatRatePercent, salePriceExclVat, purchasePriceExclVat, cnCode, cpaCode, originCountry, netMassKg, supplementaryUnit, supplementaryQtyPerUnit, description, groupId, attributes, documentRef, translations, components, alternativeUnits, kindId, saleAccountCode, purchaseAccountCode, expenseAccountCode, manufacturer, grossMassKg, minQuantity, costPrice, isFreePrice, externalId, isReturnable, commentRequired, priceFrom, priceTo, minPrice, discountPercent, maxDiscountPercent, loyaltyPoints, department, ageRestriction, packageQuantity, taraCode, certificateNumber, certificateDate, validFrom, validTo, posFlags, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

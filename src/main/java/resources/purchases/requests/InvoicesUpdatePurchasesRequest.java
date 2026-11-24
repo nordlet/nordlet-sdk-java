@@ -59,6 +59,12 @@ public final class InvoicesUpdatePurchasesRequest {
 
   private final Optional<String> einvoiceNumber;
 
+  private final Optional<String> paymentReference;
+
+  private final Optional<String> agreementId;
+
+  private final Optional<String> agreementPeriodStart;
+
   private final Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines;
 
   private final Optional<String> netTotal;
@@ -75,6 +81,8 @@ public final class InvoicesUpdatePurchasesRequest {
       Optional<String> notes, Optional<String> intrastatTransportMode,
       Optional<String> intrastatDeliveryTerms, Optional<String> intrastatRegion,
       Optional<String> intrastatNatureOfTransaction, Optional<String> einvoiceNumber,
+      Optional<String> paymentReference, Optional<String> agreementId,
+      Optional<String> agreementPeriodStart,
       Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines, Optional<String> netTotal,
       Optional<String> vatTotal, Optional<String> grossTotal,
       Map<String, Object> additionalProperties) {
@@ -92,6 +100,9 @@ public final class InvoicesUpdatePurchasesRequest {
     this.intrastatRegion = intrastatRegion;
     this.intrastatNatureOfTransaction = intrastatNatureOfTransaction;
     this.einvoiceNumber = einvoiceNumber;
+    this.paymentReference = paymentReference;
+    this.agreementId = agreementId;
+    this.agreementPeriodStart = agreementPeriodStart;
     this.lines = lines;
     this.netTotal = netTotal;
     this.vatTotal = vatTotal;
@@ -193,6 +204,30 @@ public final class InvoicesUpdatePurchasesRequest {
     return einvoiceNumber;
   }
 
+  @JsonIgnore
+  public Optional<String> getPaymentReference() {
+    if (paymentReference == null) {
+      return Optional.empty();
+    }
+    return paymentReference;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAgreementId() {
+    if (agreementId == null) {
+      return Optional.empty();
+    }
+    return agreementId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getAgreementPeriodStart() {
+    if (agreementPeriodStart == null) {
+      return Optional.empty();
+    }
+    return agreementPeriodStart;
+  }
+
   @JsonProperty("lines")
   public Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> getLines() {
     return lines;
@@ -285,6 +320,33 @@ public final class InvoicesUpdatePurchasesRequest {
     return einvoiceNumber;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("paymentReference")
+  private Optional<String> _getPaymentReference() {
+    return paymentReference;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("agreementId")
+  private Optional<String> _getAgreementId() {
+    return agreementId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("agreementPeriodStart")
+  private Optional<String> _getAgreementPeriodStart() {
+    return agreementPeriodStart;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -297,12 +359,12 @@ public final class InvoicesUpdatePurchasesRequest {
   }
 
   private boolean equalTo(InvoicesUpdatePurchasesRequest other) {
-    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && lines.equals(other.lines) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal);
+    return id.equals(other.id) && partnerId.equals(other.partnerId) && documentNumber.equals(other.documentNumber) && documentDate.equals(other.documentDate) && dueDate.equals(other.dueDate) && currency.equals(other.currency) && purchaseOrderId.equals(other.purchaseOrderId) && operationTypeId.equals(other.operationTypeId) && notes.equals(other.notes) && intrastatTransportMode.equals(other.intrastatTransportMode) && intrastatDeliveryTerms.equals(other.intrastatDeliveryTerms) && intrastatRegion.equals(other.intrastatRegion) && intrastatNatureOfTransaction.equals(other.intrastatNatureOfTransaction) && einvoiceNumber.equals(other.einvoiceNumber) && paymentReference.equals(other.paymentReference) && agreementId.equals(other.agreementId) && agreementPeriodStart.equals(other.agreementPeriodStart) && lines.equals(other.lines) && netTotal.equals(other.netTotal) && vatTotal.equals(other.vatTotal) && grossTotal.equals(other.grossTotal);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.lines, this.netTotal, this.vatTotal, this.grossTotal);
+    return Objects.hash(this.id, this.partnerId, this.documentNumber, this.documentDate, this.dueDate, this.currency, this.purchaseOrderId, this.operationTypeId, this.notes, this.intrastatTransportMode, this.intrastatDeliveryTerms, this.intrastatRegion, this.intrastatNatureOfTransaction, this.einvoiceNumber, this.paymentReference, this.agreementId, this.agreementPeriodStart, this.lines, this.netTotal, this.vatTotal, this.grossTotal);
   }
 
   @java.lang.Override
@@ -395,6 +457,24 @@ public final class InvoicesUpdatePurchasesRequest {
 
     _FinalStage einvoiceNumber(Nullable<String> einvoiceNumber);
 
+    _FinalStage paymentReference(Optional<String> paymentReference);
+
+    _FinalStage paymentReference(String paymentReference);
+
+    _FinalStage paymentReference(Nullable<String> paymentReference);
+
+    _FinalStage agreementId(Optional<String> agreementId);
+
+    _FinalStage agreementId(String agreementId);
+
+    _FinalStage agreementId(Nullable<String> agreementId);
+
+    _FinalStage agreementPeriodStart(Optional<String> agreementPeriodStart);
+
+    _FinalStage agreementPeriodStart(String agreementPeriodStart);
+
+    _FinalStage agreementPeriodStart(Nullable<String> agreementPeriodStart);
+
     _FinalStage lines(Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines);
 
     _FinalStage lines(List<InvoicesUpdatePurchasesRequestLinesItem> lines);
@@ -425,6 +505,12 @@ public final class InvoicesUpdatePurchasesRequest {
     private Optional<String> netTotal = Optional.empty();
 
     private Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines = Optional.empty();
+
+    private Optional<String> agreementPeriodStart = Optional.empty();
+
+    private Optional<String> agreementId = Optional.empty();
+
+    private Optional<String> paymentReference = Optional.empty();
 
     private Optional<String> einvoiceNumber = Optional.empty();
 
@@ -474,6 +560,9 @@ public final class InvoicesUpdatePurchasesRequest {
       intrastatRegion(other.getIntrastatRegion());
       intrastatNatureOfTransaction(other.getIntrastatNatureOfTransaction());
       einvoiceNumber(other.getEinvoiceNumber());
+      paymentReference(other.getPaymentReference());
+      agreementId(other.getAgreementId());
+      agreementPeriodStart(other.getAgreementPeriodStart());
       lines(other.getLines());
       netTotal(other.getNetTotal());
       vatTotal(other.getVatTotal());
@@ -549,6 +638,96 @@ public final class InvoicesUpdatePurchasesRequest {
     )
     public _FinalStage lines(Optional<List<InvoicesUpdatePurchasesRequestLinesItem>> lines) {
       this.lines = lines;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementPeriodStart(Nullable<String> agreementPeriodStart) {
+      if (agreementPeriodStart.isNull()) {
+        this.agreementPeriodStart = null;
+      }
+      else if (agreementPeriodStart.isEmpty()) {
+        this.agreementPeriodStart = Optional.empty();
+      }
+      else {
+        this.agreementPeriodStart = Optional.of(agreementPeriodStart.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementPeriodStart(String agreementPeriodStart) {
+      this.agreementPeriodStart = Optional.ofNullable(agreementPeriodStart);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementPeriodStart",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementPeriodStart(Optional<String> agreementPeriodStart) {
+      this.agreementPeriodStart = agreementPeriodStart;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(Nullable<String> agreementId) {
+      if (agreementId.isNull()) {
+        this.agreementId = null;
+      }
+      else if (agreementId.isEmpty()) {
+        this.agreementId = Optional.empty();
+      }
+      else {
+        this.agreementId = Optional.of(agreementId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage agreementId(String agreementId) {
+      this.agreementId = Optional.ofNullable(agreementId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "agreementId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage agreementId(Optional<String> agreementId) {
+      this.agreementId = agreementId;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentReference(Nullable<String> paymentReference) {
+      if (paymentReference.isNull()) {
+        this.paymentReference = null;
+      }
+      else if (paymentReference.isEmpty()) {
+        this.paymentReference = Optional.empty();
+      }
+      else {
+        this.paymentReference = Optional.of(paymentReference.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage paymentReference(String paymentReference) {
+      this.paymentReference = Optional.ofNullable(paymentReference);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "paymentReference",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage paymentReference(Optional<String> paymentReference) {
+      this.paymentReference = paymentReference;
       return this;
     }
 
@@ -874,7 +1053,7 @@ public final class InvoicesUpdatePurchasesRequest {
 
     @java.lang.Override
     public InvoicesUpdatePurchasesRequest build() {
-      return new InvoicesUpdatePurchasesRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, lines, netTotal, vatTotal, grossTotal, additionalProperties);
+      return new InvoicesUpdatePurchasesRequest(id, partnerId, documentNumber, documentDate, dueDate, currency, purchaseOrderId, operationTypeId, notes, intrastatTransportMode, intrastatDeliveryTerms, intrastatRegion, intrastatNatureOfTransaction, einvoiceNumber, paymentReference, agreementId, agreementPeriodStart, lines, netTotal, vatTotal, grossTotal, additionalProperties);
     }
 
     @java.lang.Override

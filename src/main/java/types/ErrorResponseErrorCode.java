@@ -18,6 +18,8 @@ public final class ErrorResponseErrorCode {
 
   public static final ErrorResponseErrorCode FORBIDDEN = new ErrorResponseErrorCode(Value.FORBIDDEN, "forbidden");
 
+  public static final ErrorResponseErrorCode CONFIRMATION_REQUIRED = new ErrorResponseErrorCode(Value.CONFIRMATION_REQUIRED, "confirmation_required");
+
   public static final ErrorResponseErrorCode INTERNAL = new ErrorResponseErrorCode(Value.INTERNAL, "internal");
 
   public static final ErrorResponseErrorCode IDEMPOTENCY_KEY_REUSE = new ErrorResponseErrorCode(Value.IDEMPOTENCY_KEY_REUSE, "idempotency_key_reuse");
@@ -70,6 +72,8 @@ public final class ErrorResponseErrorCode {
         return visitor.visitValidation();
       case FORBIDDEN:
         return visitor.visitForbidden();
+      case CONFIRMATION_REQUIRED:
+        return visitor.visitConfirmationRequired();
       case INTERNAL:
         return visitor.visitInternal();
       case IDEMPOTENCY_KEY_REUSE:
@@ -101,6 +105,8 @@ public final class ErrorResponseErrorCode {
         return VALIDATION;
       case "forbidden":
         return FORBIDDEN;
+      case "confirmation_required":
+        return CONFIRMATION_REQUIRED;
       case "internal":
         return INTERNAL;
       case "idempotency_key_reuse":
@@ -137,6 +143,8 @@ public final class ErrorResponseErrorCode {
 
     PAYMENT_REQUIRED,
 
+    CONFIRMATION_REQUIRED,
+
     INTERNAL,
 
     UNKNOWN
@@ -160,6 +168,8 @@ public final class ErrorResponseErrorCode {
     T visitRateLimited();
 
     T visitPaymentRequired();
+
+    T visitConfirmationRequired();
 
     T visitInternal();
 

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import com.nordlet.api.resources.bank.types.TransactionsPostBankRequestSaveRule;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,11 +43,14 @@ public final class TransactionsPostBankRequest {
 
   private final Optional<String> vatClassifierCode;
 
+  private final Optional<TransactionsPostBankRequestSaveRule> saveRule;
+
   private final Map<String, Object> additionalProperties;
 
   private TransactionsPostBankRequest(String transactionId, String accountCode,
       Optional<String> taxPaymentId, Optional<String> partnerId, Optional<String> costCenterId,
       Optional<String> projectId, Optional<String> description, Optional<String> vatClassifierCode,
+      Optional<TransactionsPostBankRequestSaveRule> saveRule,
       Map<String, Object> additionalProperties) {
     this.transactionId = transactionId;
     this.accountCode = accountCode;
@@ -56,6 +60,7 @@ public final class TransactionsPostBankRequest {
     this.projectId = projectId;
     this.description = description;
     this.vatClassifierCode = vatClassifierCode;
+    this.saveRule = saveRule;
     this.additionalProperties = additionalProperties;
   }
 
@@ -99,6 +104,11 @@ public final class TransactionsPostBankRequest {
     return vatClassifierCode;
   }
 
+  @JsonProperty("saveRule")
+  public Optional<TransactionsPostBankRequestSaveRule> getSaveRule() {
+    return saveRule;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -111,12 +121,12 @@ public final class TransactionsPostBankRequest {
   }
 
   private boolean equalTo(TransactionsPostBankRequest other) {
-    return transactionId.equals(other.transactionId) && accountCode.equals(other.accountCode) && taxPaymentId.equals(other.taxPaymentId) && partnerId.equals(other.partnerId) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && description.equals(other.description) && vatClassifierCode.equals(other.vatClassifierCode);
+    return transactionId.equals(other.transactionId) && accountCode.equals(other.accountCode) && taxPaymentId.equals(other.taxPaymentId) && partnerId.equals(other.partnerId) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && description.equals(other.description) && vatClassifierCode.equals(other.vatClassifierCode) && saveRule.equals(other.saveRule);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.transactionId, this.accountCode, this.taxPaymentId, this.partnerId, this.costCenterId, this.projectId, this.description, this.vatClassifierCode);
+    return Objects.hash(this.transactionId, this.accountCode, this.taxPaymentId, this.partnerId, this.costCenterId, this.projectId, this.description, this.vatClassifierCode, this.saveRule);
   }
 
   @java.lang.Override
@@ -168,6 +178,10 @@ public final class TransactionsPostBankRequest {
     _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
 
     _FinalStage vatClassifierCode(String vatClassifierCode);
+
+    _FinalStage saveRule(Optional<TransactionsPostBankRequestSaveRule> saveRule);
+
+    _FinalStage saveRule(TransactionsPostBankRequestSaveRule saveRule);
   }
 
   @JsonIgnoreProperties(
@@ -177,6 +191,8 @@ public final class TransactionsPostBankRequest {
     private String transactionId;
 
     private String accountCode;
+
+    private Optional<TransactionsPostBankRequestSaveRule> saveRule = Optional.empty();
 
     private Optional<String> vatClassifierCode = Optional.empty();
 
@@ -206,6 +222,7 @@ public final class TransactionsPostBankRequest {
       projectId(other.getProjectId());
       description(other.getDescription());
       vatClassifierCode(other.getVatClassifierCode());
+      saveRule(other.getSaveRule());
       return this;
     }
 
@@ -220,6 +237,22 @@ public final class TransactionsPostBankRequest {
     @JsonSetter("accountCode")
     public _FinalStage accountCode(@NotNull String accountCode) {
       this.accountCode = Objects.requireNonNull(accountCode, "accountCode must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage saveRule(TransactionsPostBankRequestSaveRule saveRule) {
+      this.saveRule = Optional.ofNullable(saveRule);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "saveRule",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage saveRule(Optional<TransactionsPostBankRequestSaveRule> saveRule) {
+      this.saveRule = saveRule;
       return this;
     }
 
@@ -321,7 +354,7 @@ public final class TransactionsPostBankRequest {
 
     @java.lang.Override
     public TransactionsPostBankRequest build() {
-      return new TransactionsPostBankRequest(transactionId, accountCode, taxPaymentId, partnerId, costCenterId, projectId, description, vatClassifierCode, additionalProperties);
+      return new TransactionsPostBankRequest(transactionId, accountCode, taxPaymentId, partnerId, costCenterId, projectId, description, vatClassifierCode, saveRule, additionalProperties);
     }
 
     @java.lang.Override

@@ -41,13 +41,18 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
 
   private final Optional<String> companyDiscretionaryData;
 
+  private final Optional<String> bic;
+
+  private final Optional<String> initiatingPartyBankId;
+
   private final Map<String, Object> additionalProperties;
 
   private AccountsCreateBankResponsePaymentFileSettings(Optional<String> serviceUserNumber,
       Optional<String> serviceUserName, Optional<String> odfiRoutingNumber,
       Optional<String> immediateOrigin, Optional<String> immediateDestinationName,
       Optional<String> companyIdentification, Optional<String> companyName,
-      Optional<String> companyDiscretionaryData, Map<String, Object> additionalProperties) {
+      Optional<String> companyDiscretionaryData, Optional<String> bic,
+      Optional<String> initiatingPartyBankId, Map<String, Object> additionalProperties) {
     this.serviceUserNumber = serviceUserNumber;
     this.serviceUserName = serviceUserName;
     this.odfiRoutingNumber = odfiRoutingNumber;
@@ -56,6 +61,8 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
     this.companyIdentification = companyIdentification;
     this.companyName = companyName;
     this.companyDiscretionaryData = companyDiscretionaryData;
+    this.bic = bic;
+    this.initiatingPartyBankId = initiatingPartyBankId;
     this.additionalProperties = additionalProperties;
   }
 
@@ -123,6 +130,22 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
     return companyDiscretionaryData;
   }
 
+  /**
+   * @return pain.001: the BIC of the bank that holds this account, written as the debtor agent; required for a SEK supplier file from a Swedish account
+   */
+  @JsonProperty("bic")
+  public Optional<String> getBic() {
+    return bic;
+  }
+
+  /**
+   * @return pain.001: the identifier the bank gave the company for file payments (at Swedbank the agreement ID), written as InitgPty/Id/OrgId/Othr with scheme BANK
+   */
+  @JsonProperty("initiatingPartyBankId")
+  public Optional<String> getInitiatingPartyBankId() {
+    return initiatingPartyBankId;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -135,12 +158,12 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
   }
 
   private boolean equalTo(AccountsCreateBankResponsePaymentFileSettings other) {
-    return serviceUserNumber.equals(other.serviceUserNumber) && serviceUserName.equals(other.serviceUserName) && odfiRoutingNumber.equals(other.odfiRoutingNumber) && immediateOrigin.equals(other.immediateOrigin) && immediateDestinationName.equals(other.immediateDestinationName) && companyIdentification.equals(other.companyIdentification) && companyName.equals(other.companyName) && companyDiscretionaryData.equals(other.companyDiscretionaryData);
+    return serviceUserNumber.equals(other.serviceUserNumber) && serviceUserName.equals(other.serviceUserName) && odfiRoutingNumber.equals(other.odfiRoutingNumber) && immediateOrigin.equals(other.immediateOrigin) && immediateDestinationName.equals(other.immediateDestinationName) && companyIdentification.equals(other.companyIdentification) && companyName.equals(other.companyName) && companyDiscretionaryData.equals(other.companyDiscretionaryData) && bic.equals(other.bic) && initiatingPartyBankId.equals(other.initiatingPartyBankId);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.serviceUserNumber, this.serviceUserName, this.odfiRoutingNumber, this.immediateOrigin, this.immediateDestinationName, this.companyIdentification, this.companyName, this.companyDiscretionaryData);
+    return Objects.hash(this.serviceUserNumber, this.serviceUserName, this.odfiRoutingNumber, this.immediateOrigin, this.immediateDestinationName, this.companyIdentification, this.companyName, this.companyDiscretionaryData, this.bic, this.initiatingPartyBankId);
   }
 
   @java.lang.Override
@@ -172,6 +195,10 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
 
     private Optional<String> companyDiscretionaryData = Optional.empty();
 
+    private Optional<String> bic = Optional.empty();
+
+    private Optional<String> initiatingPartyBankId = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -187,6 +214,8 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
       companyIdentification(other.getCompanyIdentification());
       companyName(other.getCompanyName());
       companyDiscretionaryData(other.getCompanyDiscretionaryData());
+      bic(other.getBic());
+      initiatingPartyBankId(other.getInitiatingPartyBankId());
       return this;
     }
 
@@ -326,8 +355,42 @@ public final class AccountsCreateBankResponsePaymentFileSettings {
       return this;
     }
 
+    /**
+     * <p>pain.001: the BIC of the bank that holds this account, written as the debtor agent; required for a SEK supplier file from a Swedish account</p>
+     */
+    @JsonSetter(
+        value = "bic",
+        nulls = Nulls.SKIP
+    )
+    public Builder bic(Optional<String> bic) {
+      this.bic = bic;
+      return this;
+    }
+
+    public Builder bic(String bic) {
+      this.bic = Optional.ofNullable(bic);
+      return this;
+    }
+
+    /**
+     * <p>pain.001: the identifier the bank gave the company for file payments (at Swedbank the agreement ID), written as InitgPty/Id/OrgId/Othr with scheme BANK</p>
+     */
+    @JsonSetter(
+        value = "initiatingPartyBankId",
+        nulls = Nulls.SKIP
+    )
+    public Builder initiatingPartyBankId(Optional<String> initiatingPartyBankId) {
+      this.initiatingPartyBankId = initiatingPartyBankId;
+      return this;
+    }
+
+    public Builder initiatingPartyBankId(String initiatingPartyBankId) {
+      this.initiatingPartyBankId = Optional.ofNullable(initiatingPartyBankId);
+      return this;
+    }
+
     public AccountsCreateBankResponsePaymentFileSettings build() {
-      return new AccountsCreateBankResponsePaymentFileSettings(serviceUserNumber, serviceUserName, odfiRoutingNumber, immediateOrigin, immediateDestinationName, companyIdentification, companyName, companyDiscretionaryData, additionalProperties);
+      return new AccountsCreateBankResponsePaymentFileSettings(serviceUserNumber, serviceUserName, odfiRoutingNumber, immediateOrigin, immediateDestinationName, companyIdentification, companyName, companyDiscretionaryData, bic, initiatingPartyBankId, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

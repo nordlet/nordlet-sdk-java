@@ -157,7 +157,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false, except in a Croatian company, where an employee with a <code>birthDate</code> who is under 40 on the <code>hireDate</code> (today without one) is in pension pillar II by default (Zakon o obveznim mirovinskim fondovima čl. 90 st. 1). An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request) {
@@ -165,7 +165,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false. An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
+   * Creates an employee record. <code>payrollOptions</code> holds the country-specific settings the payroll engine reads for the person (see <code>hr/employees/fields</code>); <code>applyAllowance</code> defaults to true and <code>pensionAccumulation</code> to false, except in a Croatian company, where an employee with a <code>birthDate</code> who is under 40 on the <code>hireDate</code> (today without one) is in pension pillar II by default (Zakon o obveznim mirovinskim fondovima čl. 90 st. 1). An <code>iban</code> whose check digits fail (ISO 13616), a <code>birthDate</code> in the future or before 1900, and a <code>personalCode</code> that is not a valid OIB (Croatia) or DNI/NIE (Spain) are refused with 422.
    */
   public CompletableFuture<EmployeesCreateHrResponse> employeesCreate(
       EmployeesCreateHrRequest request, RequestOptions requestOptions) {
@@ -703,7 +703,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and the public holidays of the company's country (of its region, from the address <code>subdivision</code>, where they differ) are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
    */
   public CompletableFuture<TimesheetsGenerateHrResponse> timesheetsGenerate(
       TimesheetsGenerateHrRequest request) {
@@ -711,7 +711,7 @@ public class AsyncHrClient {
   }
 
   /**
-   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
+   * Builds the timesheet of the month for every employee with a contract in it, or for one employee with <code>employeeId</code>, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and the public holidays of the company's country (of its region, from the address <code>subdivision</code>, where they differ) are <code>holiday</code> days with 0 hours. Answers 422 when no contract covers the month.
    */
   public CompletableFuture<TimesheetsGenerateHrResponse> timesheetsGenerate(
       TimesheetsGenerateHrRequest request, RequestOptions requestOptions) {

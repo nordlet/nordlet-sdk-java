@@ -51,6 +51,8 @@ public final class InvoicesUpdateSalesRequestLinesItem {
 
   private final Optional<String> vatExemptionBasis;
 
+  private final Optional<String> accountCode;
+
   private final Optional<String> standaloneSellingPrice;
 
   private final Optional<String> refundEstimatePercent;
@@ -63,7 +65,7 @@ public final class InvoicesUpdateSalesRequestLinesItem {
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId,
       Optional<InvoicesUpdateSalesRequestLinesItemRecognition> recognition,
-      Optional<String> assetId, Optional<String> vatExemptionBasis,
+      Optional<String> assetId, Optional<String> vatExemptionBasis, Optional<String> accountCode,
       Optional<String> standaloneSellingPrice, Optional<String> refundEstimatePercent,
       Map<String, Object> additionalProperties) {
     this.itemId = itemId;
@@ -79,6 +81,7 @@ public final class InvoicesUpdateSalesRequestLinesItem {
     this.recognition = recognition;
     this.assetId = assetId;
     this.vatExemptionBasis = vatExemptionBasis;
+    this.accountCode = accountCode;
     this.standaloneSellingPrice = standaloneSellingPrice;
     this.refundEstimatePercent = refundEstimatePercent;
     this.additionalProperties = additionalProperties;
@@ -152,6 +155,14 @@ public final class InvoicesUpdateSalesRequestLinesItem {
     return vatExemptionBasis;
   }
 
+  /**
+   * @return The revenue account the line is credited to at issue, a postable account of the company's chart (422 otherwise); without it the operation type's income account, else the item's sale account, else the services revenue posting rule account for a service item or a line without an item and the products revenue posting rule account for a product item. A line that sells a fixed asset always goes to <code>assets.disposalProceeds</code>.
+   */
+  @JsonProperty("accountCode")
+  public Optional<String> getAccountCode() {
+    return accountCode;
+  }
+
   @JsonProperty("standaloneSellingPrice")
   public Optional<String> getStandaloneSellingPrice() {
     return standaloneSellingPrice;
@@ -174,12 +185,12 @@ public final class InvoicesUpdateSalesRequestLinesItem {
   }
 
   private boolean equalTo(InvoicesUpdateSalesRequestLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && assetId.equals(other.assetId) && vatExemptionBasis.equals(other.vatExemptionBasis) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && recognition.equals(other.recognition) && assetId.equals(other.assetId) && vatExemptionBasis.equals(other.vatExemptionBasis) && accountCode.equals(other.accountCode) && standaloneSellingPrice.equals(other.standaloneSellingPrice) && refundEstimatePercent.equals(other.refundEstimatePercent);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.assetId, this.vatExemptionBasis, this.standaloneSellingPrice, this.refundEstimatePercent);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.recognition, this.assetId, this.vatExemptionBasis, this.accountCode, this.standaloneSellingPrice, this.refundEstimatePercent);
   }
 
   @java.lang.Override
@@ -221,6 +232,8 @@ public final class InvoicesUpdateSalesRequestLinesItem {
 
     private Optional<String> vatExemptionBasis = Optional.empty();
 
+    private Optional<String> accountCode = Optional.empty();
+
     private Optional<String> standaloneSellingPrice = Optional.empty();
 
     private Optional<String> refundEstimatePercent = Optional.empty();
@@ -245,6 +258,7 @@ public final class InvoicesUpdateSalesRequestLinesItem {
       recognition(other.getRecognition());
       assetId(other.getAssetId());
       vatExemptionBasis(other.getVatExemptionBasis());
+      accountCode(other.getAccountCode());
       standaloneSellingPrice(other.getStandaloneSellingPrice());
       refundEstimatePercent(other.getRefundEstimatePercent());
       return this;
@@ -436,6 +450,23 @@ public final class InvoicesUpdateSalesRequestLinesItem {
       return this;
     }
 
+    /**
+     * <p>The revenue account the line is credited to at issue, a postable account of the company's chart (422 otherwise); without it the operation type's income account, else the item's sale account, else the services revenue posting rule account for a service item or a line without an item and the products revenue posting rule account for a product item. A line that sells a fixed asset always goes to <code>assets.disposalProceeds</code>.</p>
+     */
+    @JsonSetter(
+        value = "accountCode",
+        nulls = Nulls.SKIP
+    )
+    public Builder accountCode(Optional<String> accountCode) {
+      this.accountCode = accountCode;
+      return this;
+    }
+
+    public Builder accountCode(String accountCode) {
+      this.accountCode = Optional.ofNullable(accountCode);
+      return this;
+    }
+
     @JsonSetter(
         value = "standaloneSellingPrice",
         nulls = Nulls.SKIP
@@ -465,7 +496,7 @@ public final class InvoicesUpdateSalesRequestLinesItem {
     }
 
     public InvoicesUpdateSalesRequestLinesItem build() {
-      return new InvoicesUpdateSalesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, assetId, vatExemptionBasis, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
+      return new InvoicesUpdateSalesRequestLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, recognition, assetId, vatExemptionBasis, accountCode, standaloneSellingPrice, refundEstimatePercent, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

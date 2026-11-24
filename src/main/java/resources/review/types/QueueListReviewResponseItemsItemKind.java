@@ -12,6 +12,8 @@ import java.lang.String;
 public final class QueueListReviewResponseItemsItemKind {
   public static final QueueListReviewResponseItemsItemKind BANK_TRANSACTION_UNBOOKED = new QueueListReviewResponseItemsItemKind(Value.BANK_TRANSACTION_UNBOOKED, "bank_transaction_unbooked");
 
+  public static final QueueListReviewResponseItemsItemKind FILE_UNATTACHED = new QueueListReviewResponseItemsItemKind(Value.FILE_UNATTACHED, "file_unattached");
+
   public static final QueueListReviewResponseItemsItemKind DRAFT_WARNING = new QueueListReviewResponseItemsItemKind(Value.DRAFT_WARNING, "draft_warning");
 
   public static final QueueListReviewResponseItemsItemKind PARTNER_VAT_INVALID = new QueueListReviewResponseItemsItemKind(Value.PARTNER_VAT_INVALID, "partner_vat_invalid");
@@ -52,6 +54,8 @@ public final class QueueListReviewResponseItemsItemKind {
     switch (value) {
       case BANK_TRANSACTION_UNBOOKED:
         return visitor.visitBankTransactionUnbooked();
+      case FILE_UNATTACHED:
+        return visitor.visitFileUnattached();
       case DRAFT_WARNING:
         return visitor.visitDraftWarning();
       case PARTNER_VAT_INVALID:
@@ -71,6 +75,8 @@ public final class QueueListReviewResponseItemsItemKind {
     switch (value) {
       case "bank_transaction_unbooked":
         return BANK_TRANSACTION_UNBOOKED;
+      case "file_unattached":
+        return FILE_UNATTACHED;
       case "draft_warning":
         return DRAFT_WARNING;
       case "partner_vat_invalid":
@@ -91,6 +97,8 @@ public final class QueueListReviewResponseItemsItemKind {
 
     FILING_SETTINGS_MISSING,
 
+    FILE_UNATTACHED,
+
     UNKNOWN
   }
 
@@ -102,6 +110,8 @@ public final class QueueListReviewResponseItemsItemKind {
     T visitPartnerVatInvalid();
 
     T visitFilingSettingsMissing();
+
+    T visitFileUnattached();
 
     T visitUnknown(String unknownType);
   }

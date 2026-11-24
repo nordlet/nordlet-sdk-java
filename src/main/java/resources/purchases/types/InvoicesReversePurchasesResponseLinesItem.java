@@ -16,9 +16,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.Nullable;
 import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -51,6 +53,8 @@ public final class InvoicesReversePurchasesResponseLinesItem {
 
   private final Optional<String> vatClassifierCode;
 
+  private final Optional<Long> deductiblePercent;
+
   private final Optional<String> costCenterId;
 
   private final Optional<String> projectId;
@@ -65,6 +69,8 @@ public final class InvoicesReversePurchasesResponseLinesItem {
 
   private final Optional<String> expiryDate;
 
+  private final Optional<List<String>> chassisNumbers;
+
   private final String lineNet;
 
   private final String lineVat;
@@ -78,11 +84,12 @@ public final class InvoicesReversePurchasesResponseLinesItem {
   private InvoicesReversePurchasesResponseLinesItem(String id, Optional<String> itemId,
       String description, String unit, String quantity, String unitFactor, String baseQuantity,
       Optional<String> unitPriceExclVat, Optional<String> unitPriceInclVat, String vatRatePercent,
-      Optional<String> vatClassifierCode, Optional<String> costCenterId, Optional<String> projectId,
-      Optional<String> accountCode, Optional<String> deferralStartDate,
-      Optional<String> deferralEndDate, Optional<String> lotNumber, Optional<String> expiryDate,
-      String lineNet, String lineVat, String lineGross, long sortOrder,
-      Map<String, Object> additionalProperties) {
+      Optional<String> vatClassifierCode, Optional<Long> deductiblePercent,
+      Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
+      Optional<String> deferralStartDate, Optional<String> deferralEndDate,
+      Optional<String> lotNumber, Optional<String> expiryDate,
+      Optional<List<String>> chassisNumbers, String lineNet, String lineVat, String lineGross,
+      long sortOrder, Map<String, Object> additionalProperties) {
     this.id = id;
     this.itemId = itemId;
     this.description = description;
@@ -94,6 +101,7 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     this.unitPriceInclVat = unitPriceInclVat;
     this.vatRatePercent = vatRatePercent;
     this.vatClassifierCode = vatClassifierCode;
+    this.deductiblePercent = deductiblePercent;
     this.costCenterId = costCenterId;
     this.projectId = projectId;
     this.accountCode = accountCode;
@@ -101,6 +109,7 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     this.deferralEndDate = deferralEndDate;
     this.lotNumber = lotNumber;
     this.expiryDate = expiryDate;
+    this.chassisNumbers = chassisNumbers;
     this.lineNet = lineNet;
     this.lineVat = lineVat;
     this.lineGross = lineGross;
@@ -176,6 +185,14 @@ public final class InvoicesReversePurchasesResponseLinesItem {
   }
 
   @JsonIgnore
+  public Optional<Long> getDeductiblePercent() {
+    if (deductiblePercent == null) {
+      return Optional.empty();
+    }
+    return deductiblePercent;
+  }
+
+  @JsonIgnore
   public Optional<String> getCostCenterId() {
     if (costCenterId == null) {
       return Optional.empty();
@@ -229,6 +246,14 @@ public final class InvoicesReversePurchasesResponseLinesItem {
       return Optional.empty();
     }
     return expiryDate;
+  }
+
+  @JsonIgnore
+  public Optional<List<String>> getChassisNumbers() {
+    if (chassisNumbers == null) {
+      return Optional.empty();
+    }
+    return chassisNumbers;
   }
 
   @JsonProperty("lineNet")
@@ -285,6 +310,15 @@ public final class InvoicesReversePurchasesResponseLinesItem {
   @JsonProperty("vatClassifierCode")
   private Optional<String> _getVatClassifierCode() {
     return vatClassifierCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deductiblePercent")
+  private Optional<Long> _getDeductiblePercent() {
+    return deductiblePercent;
   }
 
   @JsonInclude(
@@ -350,6 +384,15 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     return expiryDate;
   }
 
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("chassisNumbers")
+  private Optional<List<String>> _getChassisNumbers() {
+    return chassisNumbers;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -362,12 +405,12 @@ public final class InvoicesReversePurchasesResponseLinesItem {
   }
 
   private boolean equalTo(InvoicesReversePurchasesResponseLinesItem other) {
-    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
+    return id.equals(other.id) && itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitFactor.equals(other.unitFactor) && baseQuantity.equals(other.baseQuantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && deductiblePercent.equals(other.deductiblePercent) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && chassisNumbers.equals(other.chassisNumbers) && lineNet.equals(other.lineNet) && lineVat.equals(other.lineVat) && lineGross.equals(other.lineGross) && sortOrder == other.sortOrder;
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
+    return Objects.hash(this.id, this.itemId, this.description, this.unit, this.quantity, this.unitFactor, this.baseQuantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.deductiblePercent, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate, this.chassisNumbers, this.lineNet, this.lineVat, this.lineGross, this.sortOrder);
   }
 
   @java.lang.Override
@@ -456,6 +499,12 @@ public final class InvoicesReversePurchasesResponseLinesItem {
 
     _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode);
 
+    _FinalStage deductiblePercent(Optional<Long> deductiblePercent);
+
+    _FinalStage deductiblePercent(Long deductiblePercent);
+
+    _FinalStage deductiblePercent(Nullable<Long> deductiblePercent);
+
     _FinalStage costCenterId(Optional<String> costCenterId);
 
     _FinalStage costCenterId(String costCenterId);
@@ -497,6 +546,12 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     _FinalStage expiryDate(String expiryDate);
 
     _FinalStage expiryDate(Nullable<String> expiryDate);
+
+    _FinalStage chassisNumbers(Optional<List<String>> chassisNumbers);
+
+    _FinalStage chassisNumbers(List<String> chassisNumbers);
+
+    _FinalStage chassisNumbers(Nullable<List<String>> chassisNumbers);
   }
 
   @JsonIgnoreProperties(
@@ -525,6 +580,8 @@ public final class InvoicesReversePurchasesResponseLinesItem {
 
     private long sortOrder;
 
+    private Optional<List<String>> chassisNumbers = Optional.empty();
+
     private Optional<String> expiryDate = Optional.empty();
 
     private Optional<String> lotNumber = Optional.empty();
@@ -538,6 +595,8 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     private Optional<String> projectId = Optional.empty();
 
     private Optional<String> costCenterId = Optional.empty();
+
+    private Optional<Long> deductiblePercent = Optional.empty();
 
     private Optional<String> vatClassifierCode = Optional.empty();
 
@@ -566,6 +625,7 @@ public final class InvoicesReversePurchasesResponseLinesItem {
       unitPriceInclVat(other.getUnitPriceInclVat());
       vatRatePercent(other.getVatRatePercent());
       vatClassifierCode(other.getVatClassifierCode());
+      deductiblePercent(other.getDeductiblePercent());
       costCenterId(other.getCostCenterId());
       projectId(other.getProjectId());
       accountCode(other.getAccountCode());
@@ -573,6 +633,7 @@ public final class InvoicesReversePurchasesResponseLinesItem {
       deferralEndDate(other.getDeferralEndDate());
       lotNumber(other.getLotNumber());
       expiryDate(other.getExpiryDate());
+      chassisNumbers(other.getChassisNumbers());
       lineNet(other.getLineNet());
       lineVat(other.getLineVat());
       lineGross(other.getLineGross());
@@ -654,6 +715,36 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     @JsonSetter("sortOrder")
     public _FinalStage sortOrder(long sortOrder) {
       this.sortOrder = sortOrder;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage chassisNumbers(Nullable<List<String>> chassisNumbers) {
+      if (chassisNumbers.isNull()) {
+        this.chassisNumbers = null;
+      }
+      else if (chassisNumbers.isEmpty()) {
+        this.chassisNumbers = Optional.empty();
+      }
+      else {
+        this.chassisNumbers = Optional.of(chassisNumbers.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage chassisNumbers(List<String> chassisNumbers) {
+      this.chassisNumbers = Optional.ofNullable(chassisNumbers);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "chassisNumbers",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage chassisNumbers(Optional<List<String>> chassisNumbers) {
+      this.chassisNumbers = chassisNumbers;
       return this;
     }
 
@@ -868,6 +959,36 @@ public final class InvoicesReversePurchasesResponseLinesItem {
     }
 
     @java.lang.Override
+    public _FinalStage deductiblePercent(Nullable<Long> deductiblePercent) {
+      if (deductiblePercent.isNull()) {
+        this.deductiblePercent = null;
+      }
+      else if (deductiblePercent.isEmpty()) {
+        this.deductiblePercent = Optional.empty();
+      }
+      else {
+        this.deductiblePercent = Optional.of(deductiblePercent.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deductiblePercent(Long deductiblePercent) {
+      this.deductiblePercent = Optional.ofNullable(deductiblePercent);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deductiblePercent",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deductiblePercent(Optional<Long> deductiblePercent) {
+      this.deductiblePercent = deductiblePercent;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode) {
       if (vatClassifierCode.isNull()) {
         this.vatClassifierCode = null;
@@ -989,7 +1110,7 @@ public final class InvoicesReversePurchasesResponseLinesItem {
 
     @java.lang.Override
     public InvoicesReversePurchasesResponseLinesItem build() {
-      return new InvoicesReversePurchasesResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
+      return new InvoicesReversePurchasesResponseLinesItem(id, itemId, description, unit, quantity, unitFactor, baseQuantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, deductiblePercent, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, chassisNumbers, lineNet, lineVat, lineGross, sortOrder, additionalProperties);
     }
 
     @java.lang.Override

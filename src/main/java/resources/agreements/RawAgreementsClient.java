@@ -26,9 +26,12 @@ import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.agreements.requests.AgreementsBillingRunAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsExpectedInvoicesAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsGenerateInvoiceAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsGetAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsPaymentScheduleGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsPaymentScheduleSetAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
@@ -40,9 +43,12 @@ import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
 import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsExpectedInvoicesAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsGenerateInvoiceAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsGetAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsPaymentScheduleGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsPaymentScheduleSetAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
@@ -867,38 +873,22 @@ public class RawAgreementsClient {
                       }
 
                       /**
-                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       * The schedule of the supplier invoices an agreement with a <code>billingPeriod</code> leads you to expect, such as a lease: each period from <code>startDate</code> up to <code>to</code> (default today), on the grid of <code>agreements/agreements/generate-invoice</code> (prorated by days when cut by <code>endDate</code>, an <code>autoRenew</code> agreement continuing by whole terms), with <code>expectedNet</code>, the sum of quantity times unit price of the agreement items, else <code>value</code>, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this <code>agreementId</code> and the period's <code>periodStart</code> as <code>agreementPeriodStart</code>. A period without one is <code>missing</code>. Answers 404 for an unknown agreement and 422 when it has no <code>billingPeriod</code>.
                        */
-                      public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
-                          ) {
-                        return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build());
+                      public NordletApiHttpResponse<AgreementsExpectedInvoicesAgreementsResponse> agreementsExpectedInvoices(
+                          AgreementsExpectedInvoicesAgreementsRequest request) {
+                        return agreementsExpectedInvoices(request,null);
                       }
 
                       /**
-                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                       * The schedule of the supplier invoices an agreement with a <code>billingPeriod</code> leads you to expect, such as a lease: each period from <code>startDate</code> up to <code>to</code> (default today), on the grid of <code>agreements/agreements/generate-invoice</code> (prorated by days when cut by <code>endDate</code>, an <code>autoRenew</code> agreement continuing by whole terms), with <code>expectedNet</code>, the sum of quantity times unit price of the agreement items, else <code>value</code>, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this <code>agreementId</code> and the period's <code>periodStart</code> as <code>agreementPeriodStart</code>. A period without one is <code>missing</code>. Answers 404 for an unknown agreement and 422 when it has no <code>billingPeriod</code>.
                        */
-                      public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
-                          RequestOptions requestOptions) {
-                        return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build(),requestOptions);
-                      }
-
-                      /**
-                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
-                       */
-                      public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
-                          AgreementsBillingRunAgreementsRequest request) {
-                        return agreementsBillingRun(request,null);
-                      }
-
-                      /**
-                       * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
-                       */
-                      public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
-                          AgreementsBillingRunAgreementsRequest request,
+                      public NordletApiHttpResponse<AgreementsExpectedInvoicesAgreementsResponse> agreementsExpectedInvoices(
+                          AgreementsExpectedInvoicesAgreementsRequest request,
                           RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/agreements/agreements/billing/run");if (requestOptions != null) {
+                          .addPathSegments("v1/agreements/agreements/expected-invoices");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -928,7 +918,7 @@ public class RawAgreementsClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AgreementsBillingRunAgreementsResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AgreementsExpectedInvoicesAgreementsResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -959,22 +949,22 @@ public class RawAgreementsClient {
                         }
 
                         /**
-                         * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                         * Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its <code>dueDate</code>, the <code>principal</code> it repays and the <code>interest</code> it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same <code>dueDate</code>.
                          */
-                        public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
-                            InsurancePoliciesCreateAgreementsRequest request) {
-                          return insurancePoliciesCreate(request,null);
+                        public NordletApiHttpResponse<AgreementsPaymentScheduleSetAgreementsResponse> agreementsPaymentScheduleSet(
+                            AgreementsPaymentScheduleSetAgreementsRequest request) {
+                          return agreementsPaymentScheduleSet(request,null);
                         }
 
                         /**
-                         * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                         * Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its <code>dueDate</code>, the <code>principal</code> it repays and the <code>interest</code> it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same <code>dueDate</code>.
                          */
-                        public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
-                            InsurancePoliciesCreateAgreementsRequest request,
+                        public NordletApiHttpResponse<AgreementsPaymentScheduleSetAgreementsResponse> agreementsPaymentScheduleSet(
+                            AgreementsPaymentScheduleSetAgreementsRequest request,
                             RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/agreements/insurance-policies/create");if (requestOptions != null) {
+                            .addPathSegments("v1/agreements/agreements/payment-schedule/set");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -1004,7 +994,7 @@ public class RawAgreementsClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesCreateAgreementsResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AgreementsPaymentScheduleSetAgreementsResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -1035,38 +1025,22 @@ public class RawAgreementsClient {
                           }
 
                           /**
-                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           * The repayment schedule kept with <code>agreements/agreements/payment-schedule/set</code>, by due date, with each instalment's total and, when the agreement has a <code>value</code> (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
                            */
-                          public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
-                              ) {
-                            return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build());
+                          public NordletApiHttpResponse<AgreementsPaymentScheduleGetAgreementsResponse> agreementsPaymentScheduleGet(
+                              AgreementsPaymentScheduleGetAgreementsRequest request) {
+                            return agreementsPaymentScheduleGet(request,null);
                           }
 
                           /**
-                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                           * The repayment schedule kept with <code>agreements/agreements/payment-schedule/set</code>, by due date, with each instalment's total and, when the agreement has a <code>value</code> (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
                            */
-                          public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
-                              RequestOptions requestOptions) {
-                            return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build(),requestOptions);
-                          }
-
-                          /**
-                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
-                           */
-                          public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
-                              InsurancePoliciesListAgreementsRequest request) {
-                            return insurancePoliciesList(request,null);
-                          }
-
-                          /**
-                           * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
-                           */
-                          public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
-                              InsurancePoliciesListAgreementsRequest request,
+                          public NordletApiHttpResponse<AgreementsPaymentScheduleGetAgreementsResponse> agreementsPaymentScheduleGet(
+                              AgreementsPaymentScheduleGetAgreementsRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/agreements/insurance-policies/list");if (requestOptions != null) {
+                              .addPathSegments("v1/agreements/agreements/payment-schedule/get");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1096,7 +1070,7 @@ public class RawAgreementsClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesListAgreementsResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AgreementsPaymentScheduleGetAgreementsResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1127,22 +1101,38 @@ public class RawAgreementsClient {
                             }
 
                             /**
-                             * Mark an insurance policy as deleted.
+                             * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
                              */
-                            public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
-                                InsurancePoliciesDeleteAgreementsRequest request) {
-                              return insurancePoliciesDelete(request,null);
+                            public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+                                ) {
+                              return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build());
                             }
 
                             /**
-                             * Mark an insurance policy as deleted.
+                             * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
                              */
-                            public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
-                                InsurancePoliciesDeleteAgreementsRequest request,
+                            public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+                                RequestOptions requestOptions) {
+                              return agreementsBillingRun(AgreementsBillingRunAgreementsRequest.builder().build(),requestOptions);
+                            }
+
+                            /**
+                             * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                             */
+                            public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+                                AgreementsBillingRunAgreementsRequest request) {
+                              return agreementsBillingRun(request,null);
+                            }
+
+                            /**
+                             * Generate the invoices due up to <code>asOfDate</code> (default today) for every active agreement of the company that has a partner and a billing period, one invoice per period and at most 60 per agreement in one run, in the same way as <code>agreements/agreements/generate-invoice</code>. An agreement that is fully billed and whose <code>endDate</code> has passed is set to <code>expired</code>. A failing agreement is listed in <code>errors</code> and does not stop the run. Each invoice emits <code>agreement.invoice_generated</code>.
+                             */
+                            public NordletApiHttpResponse<AgreementsBillingRunAgreementsResponse> agreementsBillingRun(
+                                AgreementsBillingRunAgreementsRequest request,
                                 RequestOptions requestOptions) {
                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                .addPathSegments("v1/agreements/insurance-policies/delete");if (requestOptions != null) {
+                                .addPathSegments("v1/agreements/agreements/billing/run");if (requestOptions != null) {
                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                     httpUrl.addQueryParameter(_key, _value);
                                   } );
@@ -1172,7 +1162,7 @@ public class RawAgreementsClient {
                                   ResponseBody responseBody = response.body();
                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                   if (response.isSuccessful()) {
-                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesDeleteAgreementsResponse.class), response);
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AgreementsBillingRunAgreementsResponse.class), response);
                                   }
                                   try {
                                     switch (response.code()) {
@@ -1201,4 +1191,248 @@ public class RawAgreementsClient {
                                   throw new NordletApiException("Network error executing HTTP request", e);
                                 }
                               }
-                            }
+
+                              /**
+                               * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                               */
+                              public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
+                                  InsurancePoliciesCreateAgreementsRequest request) {
+                                return insurancePoliciesCreate(request,null);
+                              }
+
+                              /**
+                               * Create an insurance policy. Answers 422 when <code>toDate</code> is before <code>fromDate</code>, 400 when <code>insurerPartnerId</code> is not a partner of the company, and 409 when the company already has a policy with that <code>policyNumber</code>.
+                               */
+                              public NordletApiHttpResponse<InsurancePoliciesCreateAgreementsResponse> insurancePoliciesCreate(
+                                  InsurancePoliciesCreateAgreementsRequest request,
+                                  RequestOptions requestOptions) {
+                                HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                  .addPathSegments("v1/agreements/insurance-policies/create");if (requestOptions != null) {
+                                    requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                      httpUrl.addQueryParameter(_key, _value);
+                                    } );
+                                  }
+                                  RequestBody body;
+                                  try {
+                                    body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                  }
+                                  catch(JsonProcessingException e) {
+                                    throw new NordletApiException("Failed to serialize request", e);
+                                  }
+                                  Request okhttpRequest = new Request.Builder()
+                                    .url(httpUrl.build())
+                                    .method("POST", body)
+                                    .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                    .addHeader("Content-Type", "application/json")
+                                    .addHeader("Accept", "application/json")
+                                    .build();
+                                  OkHttpClient client = clientOptions.httpClient();
+                                  if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                    client = clientOptions.httpClientWithTimeout(requestOptions);
+                                  }
+                                  if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                    okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                  }
+                                  try (Response response = client.newCall(okhttpRequest).execute()) {
+                                    ResponseBody responseBody = response.body();
+                                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                    if (response.isSuccessful()) {
+                                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesCreateAgreementsResponse.class), response);
+                                    }
+                                    try {
+                                      switch (response.code()) {
+                                        case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      }
+                                    }
+                                    catch (JsonProcessingException ignored) {
+                                      // unable to map error response, throwing generic error
+                                    }
+                                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                    throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                  }
+                                  catch (JsonProcessingException e) {
+                                    throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                  }
+                                  catch (IOException e) {
+                                    throw new NordletApiException("Network error executing HTTP request", e);
+                                  }
+                                }
+
+                                /**
+                                 * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                                 */
+                                public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+                                    ) {
+                                  return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build());
+                                }
+
+                                /**
+                                 * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                                 */
+                                public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+                                    RequestOptions requestOptions) {
+                                  return insurancePoliciesList(InsurancePoliciesListAgreementsRequest.builder().build(),requestOptions);
+                                }
+
+                                /**
+                                 * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                                 */
+                                public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+                                    InsurancePoliciesListAgreementsRequest request) {
+                                  return insurancePoliciesList(request,null);
+                                }
+
+                                /**
+                                 * List the company's insurance policies. Filterable by <code>policyNumber</code>, <code>insurerPartnerId</code> and <code>toDate</code>; sortable by <code>policyNumber</code> and <code>toDate</code> (default <code>toDate</code> descending).
+                                 */
+                                public NordletApiHttpResponse<InsurancePoliciesListAgreementsResponse> insurancePoliciesList(
+                                    InsurancePoliciesListAgreementsRequest request,
+                                    RequestOptions requestOptions) {
+                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                    .addPathSegments("v1/agreements/insurance-policies/list");if (requestOptions != null) {
+                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                        httpUrl.addQueryParameter(_key, _value);
+                                      } );
+                                    }
+                                    RequestBody body;
+                                    try {
+                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                    }
+                                    catch(JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to serialize request", e);
+                                    }
+                                    Request okhttpRequest = new Request.Builder()
+                                      .url(httpUrl.build())
+                                      .method("POST", body)
+                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                      .addHeader("Content-Type", "application/json")
+                                      .addHeader("Accept", "application/json")
+                                      .build();
+                                    OkHttpClient client = clientOptions.httpClient();
+                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                    }
+                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                    }
+                                    try (Response response = client.newCall(okhttpRequest).execute()) {
+                                      ResponseBody responseBody = response.body();
+                                      String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                      if (response.isSuccessful()) {
+                                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesListAgreementsResponse.class), response);
+                                      }
+                                      try {
+                                        switch (response.code()) {
+                                          case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                        }
+                                      }
+                                      catch (JsonProcessingException ignored) {
+                                        // unable to map error response, throwing generic error
+                                      }
+                                      Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                      throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                    }
+                                    catch (JsonProcessingException e) {
+                                      throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                    }
+                                    catch (IOException e) {
+                                      throw new NordletApiException("Network error executing HTTP request", e);
+                                    }
+                                  }
+
+                                  /**
+                                   * Mark an insurance policy as deleted.
+                                   */
+                                  public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
+                                      InsurancePoliciesDeleteAgreementsRequest request) {
+                                    return insurancePoliciesDelete(request,null);
+                                  }
+
+                                  /**
+                                   * Mark an insurance policy as deleted.
+                                   */
+                                  public NordletApiHttpResponse<InsurancePoliciesDeleteAgreementsResponse> insurancePoliciesDelete(
+                                      InsurancePoliciesDeleteAgreementsRequest request,
+                                      RequestOptions requestOptions) {
+                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                      .addPathSegments("v1/agreements/insurance-policies/delete");if (requestOptions != null) {
+                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                          httpUrl.addQueryParameter(_key, _value);
+                                        } );
+                                      }
+                                      RequestBody body;
+                                      try {
+                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                      }
+                                      catch(JsonProcessingException e) {
+                                        throw new NordletApiException("Failed to serialize request", e);
+                                      }
+                                      Request okhttpRequest = new Request.Builder()
+                                        .url(httpUrl.build())
+                                        .method("POST", body)
+                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                        .addHeader("Content-Type", "application/json")
+                                        .addHeader("Accept", "application/json")
+                                        .build();
+                                      OkHttpClient client = clientOptions.httpClient();
+                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                      }
+                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                      }
+                                      try (Response response = client.newCall(okhttpRequest).execute()) {
+                                        ResponseBody responseBody = response.body();
+                                        String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                        if (response.isSuccessful()) {
+                                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, InsurancePoliciesDeleteAgreementsResponse.class), response);
+                                        }
+                                        try {
+                                          switch (response.code()) {
+                                            case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                            case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                          }
+                                        }
+                                        catch (JsonProcessingException ignored) {
+                                          // unable to map error response, throwing generic error
+                                        }
+                                        Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                        throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                      }
+                                      catch (JsonProcessingException e) {
+                                        throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                      }
+                                      catch (IOException e) {
+                                        throw new NordletApiException("Network error executing HTTP request", e);
+                                      }
+                                    }
+                                  }

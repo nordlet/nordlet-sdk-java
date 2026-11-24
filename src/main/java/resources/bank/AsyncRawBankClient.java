@@ -54,6 +54,9 @@ import com.nordlet.api.resources.bank.requests.MatchRulesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesDeleteBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.ReconciliationGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesImportBankRequest;
@@ -109,6 +112,9 @@ import com.nordlet.api.resources.bank.types.MatchRulesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesCreateBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesDeleteBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.ReconciliationGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesImportBankResponse;
@@ -1071,7 +1077,7 @@ public class AsyncRawBankClient {
                     }
 
                     /**
-                     * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+                     * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With <code>saveRule</code> the account and the partner are also kept as a posting rule (see <code>bank/posting-rules/create</code>), which <code>bank/transactions/suggest-matches</code> proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
                      */
                     public CompletableFuture<NordletApiHttpResponse<TransactionsPostBankResponse>> transactionsPost(
                         TransactionsPostBankRequest request) {
@@ -1079,7 +1085,7 @@ public class AsyncRawBankClient {
                     }
 
                     /**
-                     * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+                     * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With <code>saveRule</code> the account and the partner are also kept as a posting rule (see <code>bank/posting-rules/create</code>), which <code>bank/transactions/suggest-matches</code> proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
                      */
                     public CompletableFuture<NordletApiHttpResponse<TransactionsPostBankResponse>> transactionsPost(
                         TransactionsPostBankRequest request, RequestOptions requestOptions) {
@@ -1563,7 +1569,7 @@ public class AsyncRawBankClient {
                               }
 
                               /**
-                               * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
+                               * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs <code>paymentFileSettings.bic</code>; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; <code>paymentFileSettings.initiatingPartyBankId</code> is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (<code>bankCode</code> 9900 and the 7 or 8 digit number as <code>bankAccountNumber</code>) or a PlusGiro number (<code>bankCode</code> 9960 and 2 to 8 digits); the invoice's <code>paymentReference</code> goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
                                */
                               public CompletableFuture<NordletApiHttpResponse<PaymentsExportBankResponse>> paymentsExport(
                                   PaymentsExportBankRequest request) {
@@ -1571,7 +1577,7 @@ public class AsyncRawBankClient {
                               }
 
                               /**
-                               * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
+                               * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs <code>paymentFileSettings.bic</code>; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; <code>paymentFileSettings.initiatingPartyBankId</code> is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (<code>bankCode</code> 9900 and the 7 or 8 digit number as <code>bankAccountNumber</code>) or a PlusGiro number (<code>bankCode</code> 9960 and 2 to 8 digits); the invoice's <code>paymentReference</code> goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
                                */
                               public CompletableFuture<NordletApiHttpResponse<PaymentsExportBankResponse>> paymentsExport(
                                   PaymentsExportBankRequest request,
@@ -2700,22 +2706,22 @@ public class AsyncRawBankClient {
                                                     }
 
                                                     /**
-                                                     * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+                                                     * Keep a posting rule: a new bank line whose counterparty name contains <code>counterpartyContains</code> and whose description contains <code>descriptionContains</code> (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for <code>accountCode</code> and <code>partnerId</code> in <code>bank/transactions/suggest-matches</code>. Nothing is posted until <code>bank/transactions/post</code> is called. <code>accountCode</code> must be a postable account (422).
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
-                                                        MandatesCreateBankRequest request) {
-                                                      return mandatesCreate(request,null);
+                                                    public CompletableFuture<NordletApiHttpResponse<PostingRulesCreateBankResponse>> postingRulesCreate(
+                                                        PostingRulesCreateBankRequest request) {
+                                                      return postingRulesCreate(request,null);
                                                     }
 
                                                     /**
-                                                     * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
+                                                     * Keep a posting rule: a new bank line whose counterparty name contains <code>counterpartyContains</code> and whose description contains <code>descriptionContains</code> (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for <code>accountCode</code> and <code>partnerId</code> in <code>bank/transactions/suggest-matches</code>. Nothing is posted until <code>bank/transactions/post</code> is called. <code>accountCode</code> must be a postable account (422).
                                                      */
-                                                    public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
-                                                        MandatesCreateBankRequest request,
+                                                    public CompletableFuture<NordletApiHttpResponse<PostingRulesCreateBankResponse>> postingRulesCreate(
+                                                        PostingRulesCreateBankRequest request,
                                                         RequestOptions requestOptions) {
                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                        .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
+                                                        .addPathSegments("v1/bank/posting-rules/create");if (requestOptions != null) {
                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                             httpUrl.addQueryParameter(_key, _value);
                                                           } );
@@ -2741,14 +2747,14 @@ public class AsyncRawBankClient {
                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                         }
-                                                        CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> future = new CompletableFuture<>();
+                                                        CompletableFuture<NordletApiHttpResponse<PostingRulesCreateBankResponse>> future = new CompletableFuture<>();
                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                           @Override
                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                             try (ResponseBody responseBody = response.body()) {
                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                               if (response.isSuccessful()) {
-                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCreateBankResponse.class), response));
+                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostingRulesCreateBankResponse.class), response));
                                                                 return;
                                                               }
                                                               try {
@@ -2799,22 +2805,38 @@ public class AsyncRawBankClient {
                                                       }
 
                                                       /**
-                                                       * Change the BIC, debtor name or notes of a mandate.
+                                                       * List the posting rules of the company, newest first.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
-                                                          MandatesUpdateBankRequest request) {
-                                                        return mandatesUpdate(request,null);
+                                                      public CompletableFuture<NordletApiHttpResponse<PostingRulesListBankResponse>> postingRulesList(
+                                                          ) {
+                                                        return postingRulesList(PostingRulesListBankRequest.builder().build());
                                                       }
 
                                                       /**
-                                                       * Change the BIC, debtor name or notes of a mandate.
+                                                       * List the posting rules of the company, newest first.
                                                        */
-                                                      public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
-                                                          MandatesUpdateBankRequest request,
+                                                      public CompletableFuture<NordletApiHttpResponse<PostingRulesListBankResponse>> postingRulesList(
+                                                          RequestOptions requestOptions) {
+                                                        return postingRulesList(PostingRulesListBankRequest.builder().build(),requestOptions);
+                                                      }
+
+                                                      /**
+                                                       * List the posting rules of the company, newest first.
+                                                       */
+                                                      public CompletableFuture<NordletApiHttpResponse<PostingRulesListBankResponse>> postingRulesList(
+                                                          PostingRulesListBankRequest request) {
+                                                        return postingRulesList(request,null);
+                                                      }
+
+                                                      /**
+                                                       * List the posting rules of the company, newest first.
+                                                       */
+                                                      public CompletableFuture<NordletApiHttpResponse<PostingRulesListBankResponse>> postingRulesList(
+                                                          PostingRulesListBankRequest request,
                                                           RequestOptions requestOptions) {
                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                          .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
+                                                          .addPathSegments("v1/bank/posting-rules/list");if (requestOptions != null) {
                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                               httpUrl.addQueryParameter(_key, _value);
                                                             } );
@@ -2840,14 +2862,14 @@ public class AsyncRawBankClient {
                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                           }
-                                                          CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> future = new CompletableFuture<>();
+                                                          CompletableFuture<NordletApiHttpResponse<PostingRulesListBankResponse>> future = new CompletableFuture<>();
                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                             @Override
                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                               try (ResponseBody responseBody = response.body()) {
                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                 if (response.isSuccessful()) {
-                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesUpdateBankResponse.class), response));
+                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostingRulesListBankResponse.class), response));
                                                                   return;
                                                                 }
                                                                 try {
@@ -2898,22 +2920,22 @@ public class AsyncRawBankClient {
                                                         }
 
                                                         /**
-                                                         * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
+                                                         * Delete a posting rule. Lines already posted are not changed.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
-                                                            MandatesCancelBankRequest request) {
-                                                          return mandatesCancel(request,null);
+                                                        public CompletableFuture<NordletApiHttpResponse<PostingRulesDeleteBankResponse>> postingRulesDelete(
+                                                            PostingRulesDeleteBankRequest request) {
+                                                          return postingRulesDelete(request,null);
                                                         }
 
                                                         /**
-                                                         * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
+                                                         * Delete a posting rule. Lines already posted are not changed.
                                                          */
-                                                        public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
-                                                            MandatesCancelBankRequest request,
+                                                        public CompletableFuture<NordletApiHttpResponse<PostingRulesDeleteBankResponse>> postingRulesDelete(
+                                                            PostingRulesDeleteBankRequest request,
                                                             RequestOptions requestOptions) {
                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                            .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
+                                                            .addPathSegments("v1/bank/posting-rules/delete");if (requestOptions != null) {
                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                 httpUrl.addQueryParameter(_key, _value);
                                                               } );
@@ -2939,14 +2961,14 @@ public class AsyncRawBankClient {
                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                             }
-                                                            CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> future = new CompletableFuture<>();
+                                                            CompletableFuture<NordletApiHttpResponse<PostingRulesDeleteBankResponse>> future = new CompletableFuture<>();
                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                               @Override
                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                 try (ResponseBody responseBody = response.body()) {
                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                   if (response.isSuccessful()) {
-                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCancelBankResponse.class), response));
+                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PostingRulesDeleteBankResponse.class), response));
                                                                     return;
                                                                   }
                                                                   try {
@@ -2997,22 +3019,22 @@ public class AsyncRawBankClient {
                                                           }
 
                                                           /**
-                                                           * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
+                                                           * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
-                                                              MandatesGetBankRequest request) {
-                                                            return mandatesGet(request,null);
+                                                          public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
+                                                              MandatesCreateBankRequest request) {
+                                                            return mandatesCreate(request,null);
                                                           }
 
                                                           /**
-                                                           * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
+                                                           * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
                                                            */
-                                                          public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
-                                                              MandatesGetBankRequest request,
+                                                          public CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> mandatesCreate(
+                                                              MandatesCreateBankRequest request,
                                                               RequestOptions requestOptions) {
                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                              .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
+                                                              .addPathSegments("v1/bank/mandates/create");if (requestOptions != null) {
                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                 } );
@@ -3038,14 +3060,14 @@ public class AsyncRawBankClient {
                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                               }
-                                                              CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> future = new CompletableFuture<>();
+                                                              CompletableFuture<NordletApiHttpResponse<MandatesCreateBankResponse>> future = new CompletableFuture<>();
                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                 @Override
                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                   try (ResponseBody responseBody = response.body()) {
                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                     if (response.isSuccessful()) {
-                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesGetBankResponse.class), response));
+                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCreateBankResponse.class), response));
                                                                       return;
                                                                     }
                                                                     try {
@@ -3096,38 +3118,22 @@ public class AsyncRawBankClient {
                                                             }
 
                                                             /**
-                                                             * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
+                                                             * Change the BIC, debtor name or notes of a mandate.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
-                                                                ) {
-                                                              return mandatesList(MandatesListBankRequest.builder().build());
+                                                            public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
+                                                                MandatesUpdateBankRequest request) {
+                                                              return mandatesUpdate(request,null);
                                                             }
 
                                                             /**
-                                                             * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
+                                                             * Change the BIC, debtor name or notes of a mandate.
                                                              */
-                                                            public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
-                                                                RequestOptions requestOptions) {
-                                                              return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
-                                                            }
-
-                                                            /**
-                                                             * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
-                                                             */
-                                                            public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
-                                                                MandatesListBankRequest request) {
-                                                              return mandatesList(request,null);
-                                                            }
-
-                                                            /**
-                                                             * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
-                                                             */
-                                                            public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
-                                                                MandatesListBankRequest request,
+                                                            public CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> mandatesUpdate(
+                                                                MandatesUpdateBankRequest request,
                                                                 RequestOptions requestOptions) {
                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
+                                                                .addPathSegments("v1/bank/mandates/update");if (requestOptions != null) {
                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                   } );
@@ -3153,14 +3159,14 @@ public class AsyncRawBankClient {
                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                 }
-                                                                CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> future = new CompletableFuture<>();
+                                                                CompletableFuture<NordletApiHttpResponse<MandatesUpdateBankResponse>> future = new CompletableFuture<>();
                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                   @Override
                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                     try (ResponseBody responseBody = response.body()) {
                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                       if (response.isSuccessful()) {
-                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesListBankResponse.class), response));
+                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesUpdateBankResponse.class), response));
                                                                         return;
                                                                       }
                                                                       try {
@@ -3211,38 +3217,22 @@ public class AsyncRawBankClient {
                                                               }
 
                                                               /**
-                                                               * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+                                                               * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
-                                                                  ) {
-                                                                return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build());
+                                                              public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
+                                                                  MandatesCancelBankRequest request) {
+                                                                return mandatesCancel(request,null);
                                                               }
 
                                                               /**
-                                                               * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+                                                               * Cancel an active mandate. A BACS mandate that was lodged with AUDDIS is then reported cancelled by the next <code>bank/mandates/auddis-export</code>. A mandate that is already cancelled or completed answers 409.
                                                                */
-                                                              public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
-                                                                  RequestOptions requestOptions) {
-                                                                return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build(),requestOptions);
-                                                              }
-
-                                                              /**
-                                                               * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
-                                                               */
-                                                              public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
-                                                                  DirectDebitsCandidatesBankRequest request) {
-                                                                return directDebitsCandidates(request,null);
-                                                              }
-
-                                                              /**
-                                                               * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
-                                                               */
-                                                              public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
-                                                                  DirectDebitsCandidatesBankRequest request,
+                                                              public CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> mandatesCancel(
+                                                                  MandatesCancelBankRequest request,
                                                                   RequestOptions requestOptions) {
                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                  .addPathSegments("v1/bank/direct-debits/candidates");if (requestOptions != null) {
+                                                                  .addPathSegments("v1/bank/mandates/cancel");if (requestOptions != null) {
                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                     } );
@@ -3268,14 +3258,14 @@ public class AsyncRawBankClient {
                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                   }
-                                                                  CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> future = new CompletableFuture<>();
+                                                                  CompletableFuture<NordletApiHttpResponse<MandatesCancelBankResponse>> future = new CompletableFuture<>();
                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                     @Override
                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                       try (ResponseBody responseBody = response.body()) {
                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                         if (response.isSuccessful()) {
-                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsCandidatesBankResponse.class), response));
+                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesCancelBankResponse.class), response));
                                                                           return;
                                                                         }
                                                                         try {
@@ -3326,22 +3316,22 @@ public class AsyncRawBankClient {
                                                                 }
 
                                                                 /**
-                                                                 * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
+                                                                 * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
                                                                  */
-                                                                public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
-                                                                    DirectDebitsExportBankRequest request) {
-                                                                  return directDebitsExport(request,null);
+                                                                public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
+                                                                    MandatesGetBankRequest request) {
+                                                                  return mandatesGet(request,null);
                                                                 }
 
                                                                 /**
-                                                                 * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
+                                                                 * Read one mandate. <code>expiresOn</code> is 36 months after the last collection, or after the signature date when nothing has been collected.
                                                                  */
-                                                                public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
-                                                                    DirectDebitsExportBankRequest request,
+                                                                public CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> mandatesGet(
+                                                                    MandatesGetBankRequest request,
                                                                     RequestOptions requestOptions) {
                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                    .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
+                                                                    .addPathSegments("v1/bank/mandates/get");if (requestOptions != null) {
                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                       } );
@@ -3367,14 +3357,14 @@ public class AsyncRawBankClient {
                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                     }
-                                                                    CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> future = new CompletableFuture<>();
+                                                                    CompletableFuture<NordletApiHttpResponse<MandatesGetBankResponse>> future = new CompletableFuture<>();
                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                       @Override
                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                         try (ResponseBody responseBody = response.body()) {
                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                           if (response.isSuccessful()) {
-                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsExportBankResponse.class), response));
+                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesGetBankResponse.class), response));
                                                                             return;
                                                                           }
                                                                           try {
@@ -3425,22 +3415,38 @@ public class AsyncRawBankClient {
                                                                   }
 
                                                                   /**
-                                                                   * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
+                                                                   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
                                                                    */
-                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> mandatesAuddisExport(
-                                                                      MandatesAuddisExportBankRequest request) {
-                                                                    return mandatesAuddisExport(request,null);
+                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
+                                                                      ) {
+                                                                    return mandatesList(MandatesListBankRequest.builder().build());
                                                                   }
 
                                                                   /**
-                                                                   * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
+                                                                   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
                                                                    */
-                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> mandatesAuddisExport(
-                                                                      MandatesAuddisExportBankRequest request,
+                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
+                                                                      RequestOptions requestOptions) {
+                                                                    return mandatesList(MandatesListBankRequest.builder().build(),requestOptions);
+                                                                  }
+
+                                                                  /**
+                                                                   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
+                                                                      MandatesListBankRequest request) {
+                                                                    return mandatesList(request,null);
+                                                                  }
+
+                                                                  /**
+                                                                   * List the mandates of the company. Filterable by partnerId, status, scheme, reference and iban; sortable by createdAt, signatureDate, reference, partnerName (the name of the partner, else the debtor name), iban, scheme, sequenceType, collectionsCount, expiresOn (the last collection date, else the signature date) and status.
+                                                                   */
+                                                                  public CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> mandatesList(
+                                                                      MandatesListBankRequest request,
                                                                       RequestOptions requestOptions) {
                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                      .addPathSegments("v1/bank/mandates/auddis-export");if (requestOptions != null) {
+                                                                      .addPathSegments("v1/bank/mandates/list");if (requestOptions != null) {
                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                         } );
@@ -3466,14 +3472,14 @@ public class AsyncRawBankClient {
                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                       }
-                                                                      CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> future = new CompletableFuture<>();
+                                                                      CompletableFuture<NordletApiHttpResponse<MandatesListBankResponse>> future = new CompletableFuture<>();
                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                         @Override
                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                           try (ResponseBody responseBody = response.body()) {
                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                             if (response.isSuccessful()) {
-                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesAuddisExportBankResponse.class), response));
+                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesListBankResponse.class), response));
                                                                               return;
                                                                             }
                                                                             try {
@@ -3524,22 +3530,38 @@ public class AsyncRawBankClient {
                                                                     }
 
                                                                     /**
-                                                                     * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+                                                                     * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
                                                                      */
-                                                                    public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
-                                                                        TransactionsSuggestMatchesBankRequest request) {
-                                                                      return transactionsSuggestMatches(request,null);
+                                                                    public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
+                                                                        ) {
+                                                                      return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build());
                                                                     }
 
                                                                     /**
-                                                                     * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+                                                                     * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
                                                                      */
-                                                                    public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
-                                                                        TransactionsSuggestMatchesBankRequest request,
+                                                                    public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
+                                                                        RequestOptions requestOptions) {
+                                                                      return directDebitsCandidates(DirectDebitsCandidatesBankRequest.builder().build(),requestOptions);
+                                                                    }
+
+                                                                    /**
+                                                                     * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+                                                                     */
+                                                                    public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
+                                                                        DirectDebitsCandidatesBankRequest request) {
+                                                                      return directDebitsCandidates(request,null);
+                                                                    }
+
+                                                                    /**
+                                                                     * List the issued sale invoices that are unpaid or partly paid and whose partner holds an active mandate of a scheme in the invoice currency (CORE and B2B for EUR, BACS for GBP, PPD and CCD for USD), each with the mandate <code>bank/direct-debits/export</code> would use (the most recently signed active one of those schemes). Filterable by partnerId, fullNumber, issueDate and dueDate; sortable by issueDate, dueDate, fullNumber, grossTotal, createdAt, partnerName (the name of the partner), remaining (the gross total less the paid amount) and mandateReference (the reference of the mandate shown).
+                                                                     */
+                                                                    public CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> directDebitsCandidates(
+                                                                        DirectDebitsCandidatesBankRequest request,
                                                                         RequestOptions requestOptions) {
                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                        .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
+                                                                        .addPathSegments("v1/bank/direct-debits/candidates");if (requestOptions != null) {
                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                           } );
@@ -3565,14 +3587,14 @@ public class AsyncRawBankClient {
                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                         }
-                                                                        CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> future = new CompletableFuture<>();
+                                                                        CompletableFuture<NordletApiHttpResponse<DirectDebitsCandidatesBankResponse>> future = new CompletableFuture<>();
                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                           @Override
                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                             try (ResponseBody responseBody = response.body()) {
                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                               if (response.isSuccessful()) {
-                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsSuggestMatchesBankResponse.class), response));
+                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsCandidatesBankResponse.class), response));
                                                                                 return;
                                                                               }
                                                                               try {
@@ -3623,22 +3645,22 @@ public class AsyncRawBankClient {
                                                                       }
 
                                                                       /**
-                                                                       * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
+                                                                       * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
-                                                                          SettlementsImportBankRequest request) {
-                                                                        return settlementsImport(request,null);
+                                                                      public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
+                                                                          DirectDebitsExportBankRequest request) {
+                                                                        return directDebitsExport(request,null);
                                                                       }
 
                                                                       /**
-                                                                       * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
+                                                                       * Build a direct debit file that collects the remaining amount of each issued sale invoice into the bank account on <code>collectionDate</code> under the partner's most recently signed active mandate of a scheme the file carries. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Debit file (BACS mandates; needs <code>paymentFileSettings.serviceUserNumber</code>; each mandate must have been lodged with <code>bank/mandates/auddis-export</code> and the collection processed at least two Bacs working days after the lodgement; <code>collectionDate</code> is the day the money is collected, a Bacs working day whose processing day is after today, default the earliest; transaction code 01 for the first collection under a mandate and 17 after that), a USD account of a US company with a routing number and account number gets a Nacha ACH debit file (PPD and CCD mandates; needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; <code>collectionDate</code> not before the mandate's signature date; default today), and an account with an IBAN gets a SEPA direct debit file pain.008.001.02 (CORE and B2B mandates; needs a valid <code>sepaCreditorId</code>, see <code>account/companies/update</code>; a mandate expires after 36 months without a collection; sequence type OOFF for a one-off mandate, FRST for the first collection under a recurrent one and RCUR after that; default today). Each invoice must be in the currency of the format (EUR, GBP, USD), 422 otherwise; an invoice whose partner has no usable active mandate answers 422; an invoice already paid, or a one-off mandate asked to collect more than one invoice, answers 409. On success the collection count and last collection date of each mandate are advanced and a one-off mandate is completed; nothing is posted. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code>, <code>contentType</code> and the <code>collectionDate</code> used.
                                                                        */
-                                                                      public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
-                                                                          SettlementsImportBankRequest request,
+                                                                      public CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> directDebitsExport(
+                                                                          DirectDebitsExportBankRequest request,
                                                                           RequestOptions requestOptions) {
                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                          .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
+                                                                          .addPathSegments("v1/bank/direct-debits/export");if (requestOptions != null) {
                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                             } );
@@ -3664,14 +3686,14 @@ public class AsyncRawBankClient {
                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                           }
-                                                                          CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> future = new CompletableFuture<>();
+                                                                          CompletableFuture<NordletApiHttpResponse<DirectDebitsExportBankResponse>> future = new CompletableFuture<>();
                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                             @Override
                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                 if (response.isSuccessful()) {
-                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsImportBankResponse.class), response));
+                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DirectDebitsExportBankResponse.class), response));
                                                                                   return;
                                                                                 }
                                                                                 try {
@@ -3722,38 +3744,22 @@ public class AsyncRawBankClient {
                                                                         }
 
                                                                         /**
-                                                                         * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
+                                                                         * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
                                                                          */
-                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
-                                                                            ) {
-                                                                          return settlementsList(SettlementsListBankRequest.builder().build());
+                                                                        public CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> mandatesAuddisExport(
+                                                                            MandatesAuddisExportBankRequest request) {
+                                                                          return mandatesAuddisExport(request,null);
                                                                         }
 
                                                                         /**
-                                                                         * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
+                                                                         * Build a Bacs AUDDIS file that lodges new Bacs Direct Debit Instructions (transaction code 0N, each active BACS mandate not yet lodged) and cancels lodged ones (0C, each cancelled BACS mandate whose cancellation was not yet lodged) with the paying banks. Without <code>mandateIds</code> every such mandate of the company is included. The bank account must be a GBP account of a UK company with a sort code, an account number and <code>paymentFileSettings.serviceUserNumber</code> (422 otherwise). <code>processingDate</code> is the Bacs processing day of the file, a Bacs working day after today (default the next one); it is stored as the mandate's <code>lodgedOn</code> or <code>cancellationLodgedOn</code>, and a first collection can be processed two Bacs working days after <code>lodgedOn</code>. Nothing to lodge answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is sent to the bank.
                                                                          */
-                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
-                                                                            RequestOptions requestOptions) {
-                                                                          return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
-                                                                        }
-
-                                                                        /**
-                                                                         * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
-                                                                         */
-                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
-                                                                            SettlementsListBankRequest request) {
-                                                                          return settlementsList(request,null);
-                                                                        }
-
-                                                                        /**
-                                                                         * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
-                                                                         */
-                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
-                                                                            SettlementsListBankRequest request,
+                                                                        public CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> mandatesAuddisExport(
+                                                                            MandatesAuddisExportBankRequest request,
                                                                             RequestOptions requestOptions) {
                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                            .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
+                                                                            .addPathSegments("v1/bank/mandates/auddis-export");if (requestOptions != null) {
                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                               } );
@@ -3779,14 +3785,14 @@ public class AsyncRawBankClient {
                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                             }
-                                                                            CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> future = new CompletableFuture<>();
+                                                                            CompletableFuture<NordletApiHttpResponse<MandatesAuddisExportBankResponse>> future = new CompletableFuture<>();
                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                               @Override
                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                   if (response.isSuccessful()) {
-                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsListBankResponse.class), response));
+                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MandatesAuddisExportBankResponse.class), response));
                                                                                     return;
                                                                                   }
                                                                                   try {
@@ -3837,22 +3843,22 @@ public class AsyncRawBankClient {
                                                                           }
 
                                                                           /**
-                                                                           * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
+                                                                           * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. <code>allocations</code> names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for <code>bank/transactions/match-many</code>; otherwise it is null. <code>postingRules</code> lists the posting rules (<code>bank/posting-rules/create</code>) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for <code>bank/transactions/post</code>. A transaction that is already matched answers 409.
                                                                            */
-                                                                          public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
-                                                                              SettlementsGetBankRequest request) {
-                                                                            return settlementsGet(request,null);
+                                                                          public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
+                                                                              TransactionsSuggestMatchesBankRequest request) {
+                                                                            return transactionsSuggestMatches(request,null);
                                                                           }
 
                                                                           /**
-                                                                           * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
+                                                                           * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. <code>allocations</code> names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for <code>bank/transactions/match-many</code>; otherwise it is null. <code>postingRules</code> lists the posting rules (<code>bank/posting-rules/create</code>) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for <code>bank/transactions/post</code>. A transaction that is already matched answers 409.
                                                                            */
-                                                                          public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
-                                                                              SettlementsGetBankRequest request,
+                                                                          public CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> transactionsSuggestMatches(
+                                                                              TransactionsSuggestMatchesBankRequest request,
                                                                               RequestOptions requestOptions) {
                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                              .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
+                                                                              .addPathSegments("v1/bank/transactions/suggest-matches");if (requestOptions != null) {
                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                 } );
@@ -3878,14 +3884,14 @@ public class AsyncRawBankClient {
                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                               }
-                                                                              CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> future = new CompletableFuture<>();
+                                                                              CompletableFuture<NordletApiHttpResponse<TransactionsSuggestMatchesBankResponse>> future = new CompletableFuture<>();
                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                 @Override
                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                     if (response.isSuccessful()) {
-                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsGetBankResponse.class), response));
+                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TransactionsSuggestMatchesBankResponse.class), response));
                                                                                       return;
                                                                                     }
                                                                                     try {
@@ -3936,22 +3942,22 @@ public class AsyncRawBankClient {
                                                                             }
 
                                                                             /**
-                                                                             * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
+                                                                             * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
                                                                              */
-                                                                            public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
-                                                                                SettlementsMatchBankRequest request) {
-                                                                              return settlementsMatch(request,null);
+                                                                            public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
+                                                                                SettlementsImportBankRequest request) {
+                                                                              return settlementsImport(request,null);
                                                                             }
 
                                                                             /**
-                                                                             * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
+                                                                             * Import a Stripe payout report into settlement batches, one per payout: the itemized payout reconciliation CSV (<code>format</code> payout_reconciliation) or the unified payments export with its Transfer column (unified_payments); another CSV is refused with 422. Rows without a payout, the payout rows themselves and unsettled payments are skipped and counted. Each line is matched to an issued sale invoice through the references the report carries (the external reference of a sales order or an invoice number) or through a charge matched earlier. A payout already imported receives its new lines while the batch is in status imported and is skipped once posted; a payout mixing currencies answers 422. Emits <code>settlement.imported</code> for a new batch and <code>settlement.updated</code> for one that received lines.
                                                                              */
-                                                                            public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
-                                                                                SettlementsMatchBankRequest request,
+                                                                            public CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> settlementsImport(
+                                                                                SettlementsImportBankRequest request,
                                                                                 RequestOptions requestOptions) {
                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
+                                                                                .addPathSegments("v1/bank/settlements/import");if (requestOptions != null) {
                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                   } );
@@ -3977,14 +3983,14 @@ public class AsyncRawBankClient {
                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                 }
-                                                                                CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> future = new CompletableFuture<>();
+                                                                                CompletableFuture<NordletApiHttpResponse<SettlementsImportBankResponse>> future = new CompletableFuture<>();
                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                   @Override
                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                       if (response.isSuccessful()) {
-                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsMatchBankResponse.class), response));
+                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsImportBankResponse.class), response));
                                                                                         return;
                                                                                       }
                                                                                       try {
@@ -4035,22 +4041,38 @@ public class AsyncRawBankClient {
                                                                               }
 
                                                                               /**
-                                                                               * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+                                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
                                                                                */
-                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> settlementsCommission(
-                                                                                  SettlementsCommissionBankRequest request) {
-                                                                                return settlementsCommission(request,null);
+                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
+                                                                                  ) {
+                                                                                return settlementsList(SettlementsListBankRequest.builder().build());
                                                                               }
 
                                                                               /**
-                                                                               * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+                                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
                                                                                */
-                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> settlementsCommission(
-                                                                                  SettlementsCommissionBankRequest request,
+                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
+                                                                                  RequestOptions requestOptions) {
+                                                                                return settlementsList(SettlementsListBankRequest.builder().build(),requestOptions);
+                                                                              }
+
+                                                                              /**
+                                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
+                                                                               */
+                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
+                                                                                  SettlementsListBankRequest request) {
+                                                                                return settlementsList(request,null);
+                                                                              }
+
+                                                                              /**
+                                                                               * List the settlement batches with their line counts and the clearing figures against the bank lines. Filterable by provider, payoutId, status, currency and bankAccountId; sortable by payoutDate, createdAt, netTotal, payoutId, provider, bankAccountName (the name of the bank account), grossTotal, feeTotal, lineCount (the number of lines) and status.
+                                                                               */
+                                                                              public CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> settlementsList(
+                                                                                  SettlementsListBankRequest request,
                                                                                   RequestOptions requestOptions) {
                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                  .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
+                                                                                  .addPathSegments("v1/bank/settlements/list");if (requestOptions != null) {
                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                     } );
@@ -4076,14 +4098,14 @@ public class AsyncRawBankClient {
                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                   }
-                                                                                  CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> future = new CompletableFuture<>();
+                                                                                  CompletableFuture<NordletApiHttpResponse<SettlementsListBankResponse>> future = new CompletableFuture<>();
                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                     @Override
                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                         if (response.isSuccessful()) {
-                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsCommissionBankResponse.class), response));
+                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsListBankResponse.class), response));
                                                                                           return;
                                                                                         }
                                                                                         try {
@@ -4134,22 +4156,22 @@ public class AsyncRawBankClient {
                                                                                 }
 
                                                                                 /**
-                                                                                 * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                                                 * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
                                                                                  */
-                                                                                public CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> settlementsLink(
-                                                                                    SettlementsLinkBankRequest request) {
-                                                                                  return settlementsLink(request,null);
+                                                                                public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
+                                                                                    SettlementsGetBankRequest request) {
+                                                                                  return settlementsGet(request,null);
                                                                                 }
 
                                                                                 /**
-                                                                                 * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+                                                                                 * Read one settlement batch with its lines, each with the invoice it is matched to and the bank line that cleared it (<code>clearingBooked</code>, <code>clearingDifference</code>, <code>clearingUnposted</code>).
                                                                                  */
-                                                                                public CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> settlementsLink(
-                                                                                    SettlementsLinkBankRequest request,
+                                                                                public CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> settlementsGet(
+                                                                                    SettlementsGetBankRequest request,
                                                                                     RequestOptions requestOptions) {
                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                    .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
+                                                                                    .addPathSegments("v1/bank/settlements/get");if (requestOptions != null) {
                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                       } );
@@ -4175,14 +4197,14 @@ public class AsyncRawBankClient {
                                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                     }
-                                                                                    CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> future = new CompletableFuture<>();
+                                                                                    CompletableFuture<NordletApiHttpResponse<SettlementsGetBankResponse>> future = new CompletableFuture<>();
                                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                       @Override
                                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                         try (ResponseBody responseBody = response.body()) {
                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                           if (response.isSuccessful()) {
-                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsLinkBankResponse.class), response));
+                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsGetBankResponse.class), response));
                                                                                             return;
                                                                                           }
                                                                                           try {
@@ -4233,22 +4255,22 @@ public class AsyncRawBankClient {
                                                                                   }
 
                                                                                   /**
-                                                                                   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                                   * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
                                                                                    */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> settlementsUnlink(
-                                                                                      SettlementsUnlinkBankRequest request) {
-                                                                                    return settlementsUnlink(request,null);
+                                                                                  public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
+                                                                                      SettlementsMatchBankRequest request) {
+                                                                                    return settlementsMatch(request,null);
                                                                                   }
 
                                                                                   /**
-                                                                                   * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+                                                                                   * Match a settlement line to an issued sale invoice or advance by hand (<code>matchStatus</code> manual), or clear the match with <code>invoiceId</code> null. Only lines of the categories charge, refund, dispute, dispute_reversal and partial_capture_reversal can be matched (422), and only while the batch is in status imported (409).
                                                                                    */
-                                                                                  public CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> settlementsUnlink(
-                                                                                      SettlementsUnlinkBankRequest request,
+                                                                                  public CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> settlementsMatch(
+                                                                                      SettlementsMatchBankRequest request,
                                                                                       RequestOptions requestOptions) {
                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                      .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
+                                                                                      .addPathSegments("v1/bank/settlements/match");if (requestOptions != null) {
                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                         } );
@@ -4274,14 +4296,14 @@ public class AsyncRawBankClient {
                                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                       }
-                                                                                      CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> future = new CompletableFuture<>();
+                                                                                      CompletableFuture<NordletApiHttpResponse<SettlementsMatchBankResponse>> future = new CompletableFuture<>();
                                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                         @Override
                                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                           try (ResponseBody responseBody = response.body()) {
                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                             if (response.isSuccessful()) {
-                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsUnlinkBankResponse.class), response));
+                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsMatchBankResponse.class), response));
                                                                                               return;
                                                                                             }
                                                                                             try {
@@ -4332,22 +4354,22 @@ public class AsyncRawBankClient {
                                                                                     }
 
                                                                                     /**
-                                                                                     * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable account each was posted to (its operation type's account, else the posting rule; the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
+                                                                                     * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                                      */
-                                                                                    public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
-                                                                                        SettlementsPostBankRequest request) {
-                                                                                      return settlementsPost(request,null);
+                                                                                    public CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> settlementsCommission(
+                                                                                        SettlementsCommissionBankRequest request) {
+                                                                                      return settlementsCommission(request,null);
                                                                                     }
 
                                                                                     /**
-                                                                                     * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable account each was posted to (its operation type's account, else the posting rule; the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
+                                                                                     * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
                                                                                      */
-                                                                                    public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
-                                                                                        SettlementsPostBankRequest request,
+                                                                                    public CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> settlementsCommission(
+                                                                                        SettlementsCommissionBankRequest request,
                                                                                         RequestOptions requestOptions) {
                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                        .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
+                                                                                        .addPathSegments("v1/bank/settlements/commission");if (requestOptions != null) {
                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                           } );
@@ -4373,14 +4395,14 @@ public class AsyncRawBankClient {
                                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                         }
-                                                                                        CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> future = new CompletableFuture<>();
+                                                                                        CompletableFuture<NordletApiHttpResponse<SettlementsCommissionBankResponse>> future = new CompletableFuture<>();
                                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                           @Override
                                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                             try (ResponseBody responseBody = response.body()) {
                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                               if (response.isSuccessful()) {
-                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsPostBankResponse.class), response));
+                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsCommissionBankResponse.class), response));
                                                                                                 return;
                                                                                               }
                                                                                               try {
@@ -4431,22 +4453,22 @@ public class AsyncRawBankClient {
                                                                                       }
 
                                                                                       /**
-                                                                                       * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
+                                                                                       * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                                        */
-                                                                                      public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
-                                                                                          SecuritiesImportBankRequest request) {
-                                                                                        return securitiesImport(request,null);
+                                                                                      public CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> settlementsLink(
+                                                                                          SettlementsLinkBankRequest request) {
+                                                                                        return settlementsLink(request,null);
                                                                                       }
 
                                                                                       /**
-                                                                                       * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
+                                                                                       * Attach the incoming bank-statement line that carries this payout to the settlement batch.
                                                                                        */
-                                                                                      public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
-                                                                                          SecuritiesImportBankRequest request,
+                                                                                      public CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> settlementsLink(
+                                                                                          SettlementsLinkBankRequest request,
                                                                                           RequestOptions requestOptions) {
                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                          .addPathSegments("v1/bank/securities/import");if (requestOptions != null) {
+                                                                                          .addPathSegments("v1/bank/settlements/link");if (requestOptions != null) {
                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                             } );
@@ -4472,14 +4494,14 @@ public class AsyncRawBankClient {
                                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                           }
-                                                                                          CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> future = new CompletableFuture<>();
+                                                                                          CompletableFuture<NordletApiHttpResponse<SettlementsLinkBankResponse>> future = new CompletableFuture<>();
                                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                             @Override
                                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                 if (response.isSuccessful()) {
-                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesImportBankResponse.class), response));
+                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsLinkBankResponse.class), response));
                                                                                                   return;
                                                                                                 }
                                                                                                 try {
@@ -4530,38 +4552,22 @@ public class AsyncRawBankClient {
                                                                                         }
 
                                                                                         /**
-                                                                                         * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                                         * Detach the bank-statement line from the settlement batch and return the line to unmatched.
                                                                                          */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
-                                                                                            ) {
-                                                                                          return securitiesList(SecuritiesListBankRequest.builder().build());
+                                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> settlementsUnlink(
+                                                                                            SettlementsUnlinkBankRequest request) {
+                                                                                          return settlementsUnlink(request,null);
                                                                                         }
 
                                                                                         /**
-                                                                                         * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
+                                                                                         * Detach the bank-statement line from the settlement batch and return the line to unmatched.
                                                                                          */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
-                                                                                            RequestOptions requestOptions) {
-                                                                                          return securitiesList(SecuritiesListBankRequest.builder().build(),requestOptions);
-                                                                                        }
-
-                                                                                        /**
-                                                                                         * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
-                                                                                         */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
-                                                                                            SecuritiesListBankRequest request) {
-                                                                                          return securitiesList(request,null);
-                                                                                        }
-
-                                                                                        /**
-                                                                                         * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
-                                                                                         */
-                                                                                        public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
-                                                                                            SecuritiesListBankRequest request,
+                                                                                        public CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> settlementsUnlink(
+                                                                                            SettlementsUnlinkBankRequest request,
                                                                                             RequestOptions requestOptions) {
                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                            .addPathSegments("v1/bank/securities/list");if (requestOptions != null) {
+                                                                                            .addPathSegments("v1/bank/settlements/unlink");if (requestOptions != null) {
                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                               } );
@@ -4587,14 +4593,14 @@ public class AsyncRawBankClient {
                                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                             }
-                                                                                            CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> future = new CompletableFuture<>();
+                                                                                            CompletableFuture<NordletApiHttpResponse<SettlementsUnlinkBankResponse>> future = new CompletableFuture<>();
                                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                               @Override
                                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                   if (response.isSuccessful()) {
-                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesListBankResponse.class), response));
+                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsUnlinkBankResponse.class), response));
                                                                                                     return;
                                                                                                   }
                                                                                                   try {
@@ -4645,22 +4651,22 @@ public class AsyncRawBankClient {
                                                                                           }
 
                                                                                           /**
-                                                                                           * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
+                                                                                           * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable account each was posted to (its operation type's account, else the posting rule; the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
                                                                                            */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
-                                                                                              SecuritiesGetBankRequest request) {
-                                                                                            return securitiesGet(request,null);
+                                                                                          public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
+                                                                                              SettlementsPostBankRequest request) {
+                                                                                            return settlementsPost(request,null);
                                                                                           }
 
                                                                                           /**
-                                                                                           * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
+                                                                                           * Post a settlement batch dated <code>date</code> (default: the payout date, else today): the bank account receives the net payout, the matched sale invoices are settled against the receivable account each was posted to (its operation type's account, else the posting rule; the receivable of each partner in a journal transaction of its own when invoices of several partners are settled), the provider fees, the marketplace commission and the seller payable are booked, and a payout in another currency is converted at the rate of that date with the exchange difference against each invoice's own rate on the gain or loss account. A line without a matched invoice is split by its own rate or amount, else by <code>commissionPercent</code>, else parked on the suspense account; a line already imported as a movement of a bank account is posted against that account instead. Answers 409 when the batch is already posted or the period is locked, 422 when it has no lines. The payout is linked to the bank line a match rule recognises. Emits <code>settlement.posted</code>, <code>sale_invoice.paid</code> for each invoice that becomes paid and <code>refund_liability.actual</code> for refunds of invoices carrying a refund liability.
                                                                                            */
-                                                                                          public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
-                                                                                              SecuritiesGetBankRequest request,
+                                                                                          public CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> settlementsPost(
+                                                                                              SettlementsPostBankRequest request,
                                                                                               RequestOptions requestOptions) {
                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                              .addPathSegments("v1/bank/securities/get");if (requestOptions != null) {
+                                                                                              .addPathSegments("v1/bank/settlements/post");if (requestOptions != null) {
                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                 } );
@@ -4686,14 +4692,14 @@ public class AsyncRawBankClient {
                                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                               }
-                                                                                              CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> future = new CompletableFuture<>();
+                                                                                              CompletableFuture<NordletApiHttpResponse<SettlementsPostBankResponse>> future = new CompletableFuture<>();
                                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                 @Override
                                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                     if (response.isSuccessful()) {
-                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesGetBankResponse.class), response));
+                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SettlementsPostBankResponse.class), response));
                                                                                                       return;
                                                                                                     }
                                                                                                     try {
@@ -4744,38 +4750,22 @@ public class AsyncRawBankClient {
                                                                                             }
 
                                                                                             /**
-                                                                                             * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
+                                                                                             * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
-                                                                                                ) {
-                                                                                              return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build());
+                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
+                                                                                                SecuritiesImportBankRequest request) {
+                                                                                              return securitiesImport(request,null);
                                                                                             }
 
                                                                                             /**
-                                                                                             * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
+                                                                                             * Import an Interactive Brokers activity statement (CSV) into a bank account of type <code>broker</code>; refused with 422 for another account type, a file that is not an IBKR statement, a statement of a different IBKR account than the bank account already holds, or a trade older than the latest trade already imported (statements go in in date order). Rows already imported are skipped. Dividends, withholding tax, interest and fees are posted against the broker account; stock, option and futures trades are matched FIFO against the open lots and post the cost to <code>securities.investments</code> and the realised result to <code>securities.gain</code> or <code>securities.loss</code> (posting rules), one journal entry per date in the base currency at the rate of the day (422 without a rate, 409 when the date's period is locked). Deposits, corporate actions and currency conversions are stored as <code>not_posted</code> with a note.
                                                                                              */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
-                                                                                                RequestOptions requestOptions) {
-                                                                                              return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build(),requestOptions);
-                                                                                            }
-
-                                                                                            /**
-                                                                                             * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
-                                                                                             */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
-                                                                                                SecuritiesOperationsListBankRequest request) {
-                                                                                              return securitiesOperationsList(request,null);
-                                                                                            }
-
-                                                                                            /**
-                                                                                             * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
-                                                                                             */
-                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
-                                                                                                SecuritiesOperationsListBankRequest request,
+                                                                                            public CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> securitiesImport(
+                                                                                                SecuritiesImportBankRequest request,
                                                                                                 RequestOptions requestOptions) {
                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                .addPathSegments("v1/bank/securities/operations/list");if (requestOptions != null) {
+                                                                                                .addPathSegments("v1/bank/securities/import");if (requestOptions != null) {
                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                   } );
@@ -4801,14 +4791,14 @@ public class AsyncRawBankClient {
                                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                 }
-                                                                                                CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> future = new CompletableFuture<>();
+                                                                                                CompletableFuture<NordletApiHttpResponse<SecuritiesImportBankResponse>> future = new CompletableFuture<>();
                                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                   @Override
                                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                       if (response.isSuccessful()) {
-                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesOperationsListBankResponse.class), response));
+                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesImportBankResponse.class), response));
                                                                                                         return;
                                                                                                       }
                                                                                                       try {
@@ -4859,38 +4849,38 @@ public class AsyncRawBankClient {
                                                                                               }
 
                                                                                               /**
-                                                                                               * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                              public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                                   ) {
-                                                                                                return feedsBanksList(FeedsBanksListBankRequest.builder().build());
+                                                                                                return securitiesList(SecuritiesListBankRequest.builder().build());
                                                                                               }
 
                                                                                               /**
-                                                                                               * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                              public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
                                                                                                   RequestOptions requestOptions) {
-                                                                                                return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
+                                                                                                return securitiesList(SecuritiesListBankRequest.builder().build(),requestOptions);
                                                                                               }
 
                                                                                               /**
-                                                                                               * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
-                                                                                                  FeedsBanksListBankRequest request) {
-                                                                                                return feedsBanksList(request,null);
+                                                                                              public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
+                                                                                                  SecuritiesListBankRequest request) {
+                                                                                                return securitiesList(request,null);
                                                                                               }
 
                                                                                               /**
-                                                                                               * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                               * List the securities imports, newest first; filterable by <code>bankAccountId</code> and <code>brokerAccount</code>, sortable by <code>createdAt</code> and <code>realizedTotal</code>.
                                                                                                */
-                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
-                                                                                                  FeedsBanksListBankRequest request,
+                                                                                              public CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> securitiesList(
+                                                                                                  SecuritiesListBankRequest request,
                                                                                                   RequestOptions requestOptions) {
                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                  .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
+                                                                                                  .addPathSegments("v1/bank/securities/list");if (requestOptions != null) {
                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                     } );
@@ -4916,14 +4906,14 @@ public class AsyncRawBankClient {
                                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                   }
-                                                                                                  CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> future = new CompletableFuture<>();
+                                                                                                  CompletableFuture<NordletApiHttpResponse<SecuritiesListBankResponse>> future = new CompletableFuture<>();
                                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                     @Override
                                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                         if (response.isSuccessful()) {
-                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsBanksListBankResponse.class), response));
+                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesListBankResponse.class), response));
                                                                                                           return;
                                                                                                         }
                                                                                                         try {
@@ -4974,22 +4964,22 @@ public class AsyncRawBankClient {
                                                                                                 }
 
                                                                                                 /**
-                                                                                                 * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
+                                                                                                 * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
                                                                                                  */
-                                                                                                public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
-                                                                                                    FeedsConnectionsStartBankRequest request) {
-                                                                                                  return feedsConnectionsStart(request,null);
+                                                                                                public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
+                                                                                                    SecuritiesGetBankRequest request) {
+                                                                                                  return securitiesGet(request,null);
                                                                                                 }
 
                                                                                                 /**
-                                                                                                 * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
+                                                                                                 * Return one securities import with its operations in date order, each with its posting status, its amounts in the base currency and the journal transaction it was posted in.
                                                                                                  */
-                                                                                                public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
-                                                                                                    FeedsConnectionsStartBankRequest request,
+                                                                                                public CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> securitiesGet(
+                                                                                                    SecuritiesGetBankRequest request,
                                                                                                     RequestOptions requestOptions) {
                                                                                                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                    .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
+                                                                                                    .addPathSegments("v1/bank/securities/get");if (requestOptions != null) {
                                                                                                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                         httpUrl.addQueryParameter(_key, _value);
                                                                                                       } );
@@ -5015,14 +5005,14 @@ public class AsyncRawBankClient {
                                                                                                     if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                       okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                     }
-                                                                                                    CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> future = new CompletableFuture<>();
+                                                                                                    CompletableFuture<NordletApiHttpResponse<SecuritiesGetBankResponse>> future = new CompletableFuture<>();
                                                                                                     client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                       @Override
                                                                                                       public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                         try (ResponseBody responseBody = response.body()) {
                                                                                                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                           if (response.isSuccessful()) {
-                                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsStartBankResponse.class), response));
+                                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesGetBankResponse.class), response));
                                                                                                             return;
                                                                                                           }
                                                                                                           try {
@@ -5073,22 +5063,38 @@ public class AsyncRawBankClient {
                                                                                                   }
 
                                                                                                   /**
-                                                                                                   * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
+                                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
                                                                                                    */
-                                                                                                  public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
-                                                                                                      FeedsConnectionsCompleteBankRequest request) {
-                                                                                                    return feedsConnectionsComplete(request,null);
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
+                                                                                                      ) {
+                                                                                                    return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build());
                                                                                                   }
 
                                                                                                   /**
-                                                                                                   * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
+                                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
                                                                                                    */
-                                                                                                  public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
-                                                                                                      FeedsConnectionsCompleteBankRequest request,
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
+                                                                                                      RequestOptions requestOptions) {
+                                                                                                    return securitiesOperationsList(SecuritiesOperationsListBankRequest.builder().build(),requestOptions);
+                                                                                                  }
+
+                                                                                                  /**
+                                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
+                                                                                                   */
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
+                                                                                                      SecuritiesOperationsListBankRequest request) {
+                                                                                                    return securitiesOperationsList(request,null);
+                                                                                                  }
+
+                                                                                                  /**
+                                                                                                   * List the imported securities operations, newest first; filterable by <code>bankAccountId</code>, <code>kind</code>, <code>status</code>, <code>symbol</code> and <code>date</code>, sortable by <code>date</code>, <code>createdAt</code>, <code>bankAccountName</code> (the name of the bank account), <code>kind</code>, <code>symbol</code>, <code>quantity</code>, <code>amount</code>, <code>fee</code>, <code>cashBase</code>, <code>costBase</code>, <code>realizedBase</code> and <code>status</code>.
+                                                                                                   */
+                                                                                                  public CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> securitiesOperationsList(
+                                                                                                      SecuritiesOperationsListBankRequest request,
                                                                                                       RequestOptions requestOptions) {
                                                                                                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                      .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
+                                                                                                      .addPathSegments("v1/bank/securities/operations/list");if (requestOptions != null) {
                                                                                                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                           httpUrl.addQueryParameter(_key, _value);
                                                                                                         } );
@@ -5114,14 +5120,14 @@ public class AsyncRawBankClient {
                                                                                                       if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                         okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                       }
-                                                                                                      CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> future = new CompletableFuture<>();
+                                                                                                      CompletableFuture<NordletApiHttpResponse<SecuritiesOperationsListBankResponse>> future = new CompletableFuture<>();
                                                                                                       client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                         @Override
                                                                                                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                           try (ResponseBody responseBody = response.body()) {
                                                                                                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                             if (response.isSuccessful()) {
-                                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsCompleteBankResponse.class), response));
+                                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, SecuritiesOperationsListBankResponse.class), response));
                                                                                                               return;
                                                                                                             }
                                                                                                             try {
@@ -5172,22 +5178,38 @@ public class AsyncRawBankClient {
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Read one bank connection with its bank-feed accounts.
+                                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
                                                                                                      */
-                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
-                                                                                                        FeedsConnectionsGetBankRequest request) {
-                                                                                                      return feedsConnectionsGet(request,null);
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                                        ) {
+                                                                                                      return feedsBanksList(FeedsBanksListBankRequest.builder().build());
                                                                                                     }
 
                                                                                                     /**
-                                                                                                     * Read one bank connection with its bank-feed accounts.
+                                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
                                                                                                      */
-                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
-                                                                                                        FeedsConnectionsGetBankRequest request,
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                                        RequestOptions requestOptions) {
+                                                                                                      return feedsBanksList(FeedsBanksListBankRequest.builder().build(),requestOptions);
+                                                                                                    }
+
+                                                                                                    /**
+                                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                                     */
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                                        FeedsBanksListBankRequest request) {
+                                                                                                      return feedsBanksList(request,null);
+                                                                                                    }
+
+                                                                                                    /**
+                                                                                                     * Read from the bank-feed provider configured on the API server or in platform settings (Enable Banking or an HTTP bridge, named in <code>provider</code>), for one <code>country</code> or all. Without a provider the call answers 503.
+                                                                                                     */
+                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> feedsBanksList(
+                                                                                                        FeedsBanksListBankRequest request,
                                                                                                         RequestOptions requestOptions) {
                                                                                                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                        .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
+                                                                                                        .addPathSegments("v1/bank/feeds/banks/list");if (requestOptions != null) {
                                                                                                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                             httpUrl.addQueryParameter(_key, _value);
                                                                                                           } );
@@ -5213,14 +5235,14 @@ public class AsyncRawBankClient {
                                                                                                         if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                           okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                         }
-                                                                                                        CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> future = new CompletableFuture<>();
+                                                                                                        CompletableFuture<NordletApiHttpResponse<FeedsBanksListBankResponse>> future = new CompletableFuture<>();
                                                                                                         client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                           @Override
                                                                                                           public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                             try (ResponseBody responseBody = response.body()) {
                                                                                                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                               if (response.isSuccessful()) {
-                                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsGetBankResponse.class), response));
+                                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsBanksListBankResponse.class), response));
                                                                                                                 return;
                                                                                                               }
                                                                                                               try {
@@ -5271,38 +5293,22 @@ public class AsyncRawBankClient {
                                                                                                       }
 
                                                                                                       /**
-                                                                                                       * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                                       * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
                                                                                                        */
-                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
-                                                                                                          ) {
-                                                                                                        return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
+                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
+                                                                                                          FeedsConnectionsStartBankRequest request) {
+                                                                                                        return feedsConnectionsStart(request,null);
                                                                                                       }
 
                                                                                                       /**
-                                                                                                       * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                                       * Creates a pending bank connection and asks the provider for the authorization page of the bank. <code>url</code> is where the user authorizes access for <code>validForDays</code> (default 90); <code>reference</code> is the state the bank sends back and what <code>bank/feeds/connections/complete</code> takes. <code>redirectUrl</code> falls back to the one in platform settings, and the call is refused with 422 when neither is set.
                                                                                                        */
-                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
-                                                                                                          RequestOptions requestOptions) {
-                                                                                                        return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
-                                                                                                      }
-
-                                                                                                      /**
-                                                                                                       * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
-                                                                                                       */
-                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
-                                                                                                          FeedsConnectionsListBankRequest request) {
-                                                                                                        return feedsConnectionsList(request,null);
-                                                                                                      }
-
-                                                                                                      /**
-                                                                                                       * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
-                                                                                                       */
-                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
-                                                                                                          FeedsConnectionsListBankRequest request,
+                                                                                                      public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> feedsConnectionsStart(
+                                                                                                          FeedsConnectionsStartBankRequest request,
                                                                                                           RequestOptions requestOptions) {
                                                                                                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                          .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
+                                                                                                          .addPathSegments("v1/bank/feeds/connections/start");if (requestOptions != null) {
                                                                                                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                               httpUrl.addQueryParameter(_key, _value);
                                                                                                             } );
@@ -5328,14 +5334,14 @@ public class AsyncRawBankClient {
                                                                                                           if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                             okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                           }
-                                                                                                          CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> future = new CompletableFuture<>();
+                                                                                                          CompletableFuture<NordletApiHttpResponse<FeedsConnectionsStartBankResponse>> future = new CompletableFuture<>();
                                                                                                           client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                             @Override
                                                                                                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                               try (ResponseBody responseBody = response.body()) {
                                                                                                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                 if (response.isSuccessful()) {
-                                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsListBankResponse.class), response));
+                                                                                                                  future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsStartBankResponse.class), response));
                                                                                                                   return;
                                                                                                                 }
                                                                                                                 try {
@@ -5386,22 +5392,22 @@ public class AsyncRawBankClient {
                                                                                                         }
 
                                                                                                         /**
-                                                                                                         * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
+                                                                                                         * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
                                                                                                          */
-                                                                                                        public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
-                                                                                                            FeedsConnectionsDeleteBankRequest request) {
-                                                                                                          return feedsConnectionsDelete(request,null);
+                                                                                                        public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
+                                                                                                            FeedsConnectionsCompleteBankRequest request) {
+                                                                                                          return feedsConnectionsComplete(request,null);
                                                                                                         }
 
                                                                                                         /**
-                                                                                                         * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
+                                                                                                         * Exchanges <code>code</code> for a provider session, sets the connection to active with the consent expiry the bank reports, and records every account of the session as a bank-feed account, not yet linked to a ledger account (<code>bank/feeds/accounts/link</code>). A connection that is already active answers 409. When the provider refuses the code the connection goes to status error with the message in <code>error</code>.
                                                                                                          */
-                                                                                                        public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
-                                                                                                            FeedsConnectionsDeleteBankRequest request,
+                                                                                                        public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> feedsConnectionsComplete(
+                                                                                                            FeedsConnectionsCompleteBankRequest request,
                                                                                                             RequestOptions requestOptions) {
                                                                                                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                            .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
+                                                                                                            .addPathSegments("v1/bank/feeds/connections/complete");if (requestOptions != null) {
                                                                                                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                 httpUrl.addQueryParameter(_key, _value);
                                                                                                               } );
@@ -5427,14 +5433,14 @@ public class AsyncRawBankClient {
                                                                                                             if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                               okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                             }
-                                                                                                            CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> future = new CompletableFuture<>();
+                                                                                                            CompletableFuture<NordletApiHttpResponse<FeedsConnectionsCompleteBankResponse>> future = new CompletableFuture<>();
                                                                                                             client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                               @Override
                                                                                                               public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                                 try (ResponseBody responseBody = response.body()) {
                                                                                                                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                   if (response.isSuccessful()) {
-                                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsDeleteBankResponse.class), response));
+                                                                                                                    future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsCompleteBankResponse.class), response));
                                                                                                                     return;
                                                                                                                   }
                                                                                                                   try {
@@ -5485,22 +5491,22 @@ public class AsyncRawBankClient {
                                                                                                           }
 
                                                                                                           /**
-                                                                                                           * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                           * Read one bank connection with its bank-feed accounts.
                                                                                                            */
-                                                                                                          public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
-                                                                                                              FeedsAccountsLinkBankRequest request) {
-                                                                                                            return feedsAccountsLink(request,null);
+                                                                                                          public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
+                                                                                                              FeedsConnectionsGetBankRequest request) {
+                                                                                                            return feedsConnectionsGet(request,null);
                                                                                                           }
 
                                                                                                           /**
-                                                                                                           * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                           * Read one bank connection with its bank-feed accounts.
                                                                                                            */
-                                                                                                          public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
-                                                                                                              FeedsAccountsLinkBankRequest request,
+                                                                                                          public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> feedsConnectionsGet(
+                                                                                                              FeedsConnectionsGetBankRequest request,
                                                                                                               RequestOptions requestOptions) {
                                                                                                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                              .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
+                                                                                                              .addPathSegments("v1/bank/feeds/connections/get");if (requestOptions != null) {
                                                                                                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                   httpUrl.addQueryParameter(_key, _value);
                                                                                                                 } );
@@ -5526,14 +5532,14 @@ public class AsyncRawBankClient {
                                                                                                               if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                                 okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                               }
-                                                                                                              CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> future = new CompletableFuture<>();
+                                                                                                              CompletableFuture<NordletApiHttpResponse<FeedsConnectionsGetBankResponse>> future = new CompletableFuture<>();
                                                                                                               client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                                 @Override
                                                                                                                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                                   try (ResponseBody responseBody = response.body()) {
                                                                                                                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                     if (response.isSuccessful()) {
-                                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsLinkBankResponse.class), response));
+                                                                                                                      future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsGetBankResponse.class), response));
                                                                                                                       return;
                                                                                                                     }
                                                                                                                     try {
@@ -5584,22 +5590,38 @@ public class AsyncRawBankClient {
                                                                                                             }
 
                                                                                                             /**
-                                                                                                             * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
                                                                                                              */
-                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
-                                                                                                                FeedsAccountsConfigureBankRequest request) {
-                                                                                                              return feedsAccountsConfigure(request,null);
+                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
+                                                                                                                ) {
+                                                                                                              return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build());
                                                                                                             }
 
                                                                                                             /**
-                                                                                                             * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
                                                                                                              */
-                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
-                                                                                                                FeedsAccountsConfigureBankRequest request,
+                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
+                                                                                                                RequestOptions requestOptions) {
+                                                                                                              return feedsConnectionsList(FeedsConnectionsListBankRequest.builder().build(),requestOptions);
+                                                                                                            }
+
+                                                                                                            /**
+                                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                                             */
+                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
+                                                                                                                FeedsConnectionsListBankRequest request) {
+                                                                                                              return feedsConnectionsList(request,null);
+                                                                                                            }
+
+                                                                                                            /**
+                                                                                                             * List the bank connections of the company, without their accounts. Filterable by status, provider and aspspCountry; sortable by createdAt and lastSyncedAt.
+                                                                                                             */
+                                                                                                            public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> feedsConnectionsList(
+                                                                                                                FeedsConnectionsListBankRequest request,
                                                                                                                 RequestOptions requestOptions) {
                                                                                                               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
+                                                                                                                .addPathSegments("v1/bank/feeds/connections/list");if (requestOptions != null) {
                                                                                                                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                     httpUrl.addQueryParameter(_key, _value);
                                                                                                                   } );
@@ -5625,14 +5647,14 @@ public class AsyncRawBankClient {
                                                                                                                 if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                                   okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                                 }
-                                                                                                                CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> future = new CompletableFuture<>();
+                                                                                                                CompletableFuture<NordletApiHttpResponse<FeedsConnectionsListBankResponse>> future = new CompletableFuture<>();
                                                                                                                 client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                                   @Override
                                                                                                                   public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                                     try (ResponseBody responseBody = response.body()) {
                                                                                                                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                       if (response.isSuccessful()) {
-                                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsConfigureBankResponse.class), response));
+                                                                                                                        future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsListBankResponse.class), response));
                                                                                                                         return;
                                                                                                                       }
                                                                                                                       try {
@@ -5683,22 +5705,22 @@ public class AsyncRawBankClient {
                                                                                                               }
 
                                                                                                               /**
-                                                                                                               * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                               * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
                                                                                                                */
-                                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
-                                                                                                                  FeedsSyncBankRequest request) {
-                                                                                                                return feedsSync(request,null);
+                                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
+                                                                                                                  FeedsConnectionsDeleteBankRequest request) {
+                                                                                                                return feedsConnectionsDelete(request,null);
                                                                                                               }
 
                                                                                                               /**
-                                                                                                               * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                               * Closes the provider session when the connection has one and a provider is configured (a failure at the bank does not stop the call), then deletes the connection and its bank-feed accounts. The ledger bank accounts and the transactions already imported stay.
                                                                                                                */
-                                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
-                                                                                                                  FeedsSyncBankRequest request,
+                                                                                                              public CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> feedsConnectionsDelete(
+                                                                                                                  FeedsConnectionsDeleteBankRequest request,
                                                                                                                   RequestOptions requestOptions) {
                                                                                                                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                                                                                                                  .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                                                  .addPathSegments("v1/bank/feeds/connections/delete");if (requestOptions != null) {
                                                                                                                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                                                                                                       httpUrl.addQueryParameter(_key, _value);
                                                                                                                     } );
@@ -5724,14 +5746,14 @@ public class AsyncRawBankClient {
                                                                                                                   if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
                                                                                                                     okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
                                                                                                                   }
-                                                                                                                  CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> future = new CompletableFuture<>();
+                                                                                                                  CompletableFuture<NordletApiHttpResponse<FeedsConnectionsDeleteBankResponse>> future = new CompletableFuture<>();
                                                                                                                   client.newCall(okhttpRequest).enqueue(new Callback() {
                                                                                                                     @Override
                                                                                                                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                                                                                                       try (ResponseBody responseBody = response.body()) {
                                                                                                                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                                                                                                         if (response.isSuccessful()) {
-                                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsSyncBankResponse.class), response));
+                                                                                                                          future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsConnectionsDeleteBankResponse.class), response));
                                                                                                                           return;
                                                                                                                         }
                                                                                                                         try {
@@ -5780,4 +5802,301 @@ public class AsyncRawBankClient {
                                                                                                                   });
                                                                                                                   return future;
                                                                                                                 }
-                                                                                                              }
+
+                                                                                                                /**
+                                                                                                                 * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                                 */
+                                                                                                                public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
+                                                                                                                    FeedsAccountsLinkBankRequest request) {
+                                                                                                                  return feedsAccountsLink(request,null);
+                                                                                                                }
+
+                                                                                                                /**
+                                                                                                                 * Give exactly one of <code>bankAccountId</code> (an existing ledger bank account) or <code>createBankAccount</code> (a new one with the IBAN and currency of the feed account; <code>accountCode</code> defaults to the default bank account of the chart of accounts). <code>syncFrom</code> is the date the first sync starts from; without it the first sync covers the last 90 days.
+                                                                                                                 */
+                                                                                                                public CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> feedsAccountsLink(
+                                                                                                                    FeedsAccountsLinkBankRequest request,
+                                                                                                                    RequestOptions requestOptions) {
+                                                                                                                  HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                    .addPathSegments("v1/bank/feeds/accounts/link");if (requestOptions != null) {
+                                                                                                                      requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                        httpUrl.addQueryParameter(_key, _value);
+                                                                                                                      } );
+                                                                                                                    }
+                                                                                                                    RequestBody body;
+                                                                                                                    try {
+                                                                                                                      body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                    }
+                                                                                                                    catch(JsonProcessingException e) {
+                                                                                                                      throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                    }
+                                                                                                                    Request okhttpRequest = new Request.Builder()
+                                                                                                                      .url(httpUrl.build())
+                                                                                                                      .method("POST", body)
+                                                                                                                      .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                      .addHeader("Content-Type", "application/json")
+                                                                                                                      .addHeader("Accept", "application/json")
+                                                                                                                      .build();
+                                                                                                                    OkHttpClient client = clientOptions.httpClient();
+                                                                                                                    if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                      client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                    }
+                                                                                                                    if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                      okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                    }
+                                                                                                                    CompletableFuture<NordletApiHttpResponse<FeedsAccountsLinkBankResponse>> future = new CompletableFuture<>();
+                                                                                                                    client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                                                      @Override
+                                                                                                                      public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                                                        try (ResponseBody responseBody = response.body()) {
+                                                                                                                          String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                          if (response.isSuccessful()) {
+                                                                                                                            future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsLinkBankResponse.class), response));
+                                                                                                                            return;
+                                                                                                                          }
+                                                                                                                          try {
+                                                                                                                            switch (response.code()) {
+                                                                                                                              case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                              case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                              return;
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                          catch (JsonProcessingException ignored) {
+                                                                                                                            // unable to map error response, throwing generic error
+                                                                                                                          }
+                                                                                                                          Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                          future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                                                          return;
+                                                                                                                        }
+                                                                                                                        catch (JsonProcessingException e) {
+                                                                                                                          future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                                                        }
+                                                                                                                        catch (IOException e) {
+                                                                                                                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                        }
+                                                                                                                      }
+
+                                                                                                                      @Override
+                                                                                                                      public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                                                        future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                      }
+                                                                                                                    });
+                                                                                                                    return future;
+                                                                                                                  }
+
+                                                                                                                  /**
+                                                                                                                   * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                                   */
+                                                                                                                  public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
+                                                                                                                      FeedsAccountsConfigureBankRequest request) {
+                                                                                                                    return feedsAccountsConfigure(request,null);
+                                                                                                                  }
+
+                                                                                                                  /**
+                                                                                                                   * <code>importTemplateId</code> must be a template of type bank_connection, or null to apply none. <code>syncSchedule</code> is manual, daily, weekly or monthly; every account whose schedule is not manual is synced by Nordlet when it is due. At least one of the two must be given.
+                                                                                                                   */
+                                                                                                                  public CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> feedsAccountsConfigure(
+                                                                                                                      FeedsAccountsConfigureBankRequest request,
+                                                                                                                      RequestOptions requestOptions) {
+                                                                                                                    HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                      .addPathSegments("v1/bank/feeds/accounts/configure");if (requestOptions != null) {
+                                                                                                                        requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                          httpUrl.addQueryParameter(_key, _value);
+                                                                                                                        } );
+                                                                                                                      }
+                                                                                                                      RequestBody body;
+                                                                                                                      try {
+                                                                                                                        body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                      }
+                                                                                                                      catch(JsonProcessingException e) {
+                                                                                                                        throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                      }
+                                                                                                                      Request okhttpRequest = new Request.Builder()
+                                                                                                                        .url(httpUrl.build())
+                                                                                                                        .method("POST", body)
+                                                                                                                        .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                        .addHeader("Content-Type", "application/json")
+                                                                                                                        .addHeader("Accept", "application/json")
+                                                                                                                        .build();
+                                                                                                                      OkHttpClient client = clientOptions.httpClient();
+                                                                                                                      if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                        client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                      }
+                                                                                                                      if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                        okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                      }
+                                                                                                                      CompletableFuture<NordletApiHttpResponse<FeedsAccountsConfigureBankResponse>> future = new CompletableFuture<>();
+                                                                                                                      client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                                                        @Override
+                                                                                                                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                                                          try (ResponseBody responseBody = response.body()) {
+                                                                                                                            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                            if (response.isSuccessful()) {
+                                                                                                                              future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsAccountsConfigureBankResponse.class), response));
+                                                                                                                              return;
+                                                                                                                            }
+                                                                                                                            try {
+                                                                                                                              switch (response.code()) {
+                                                                                                                                case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                                case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                return;
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                            catch (JsonProcessingException ignored) {
+                                                                                                                              // unable to map error response, throwing generic error
+                                                                                                                            }
+                                                                                                                            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                            future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                                                            return;
+                                                                                                                          }
+                                                                                                                          catch (JsonProcessingException e) {
+                                                                                                                            future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                                                          }
+                                                                                                                          catch (IOException e) {
+                                                                                                                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                          }
+                                                                                                                        }
+
+                                                                                                                        @Override
+                                                                                                                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                                                          future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                        }
+                                                                                                                      });
+                                                                                                                      return future;
+                                                                                                                    }
+
+                                                                                                                    /**
+                                                                                                                     * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                                     */
+                                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
+                                                                                                                        FeedsSyncBankRequest request) {
+                                                                                                                      return feedsSync(request,null);
+                                                                                                                    }
+
+                                                                                                                    /**
+                                                                                                                     * Fetches the transactions of every linked bank-feed account of the connection, or of <code>feedAccountId</code> alone, from <code>dateFrom</code> (default: seven days before the last sync, else the <code>syncFrom</code> of the account, else 90 days back) to <code>dateTo</code>, and inserts the new ones into the linked ledger bank account; lines already there count as <code>skipped</code>. An import template set on the account is applied as in <code>bank/statements/import</code>. Answers 409 when the connection is not active or has no session, and when the bank returns more than 20 pages for the range (keep <code>dateFrom</code> and set an earlier <code>dateTo</code>). A provider failure is written to the <code>error</code> of the connection, and one that is not retryable sets its status to error. The outcome is announced as <code>bank_feed.synced</code>, and invoices the template issues as <code>sale_invoice.issued</code>.
+                                                                                                                     */
+                                                                                                                    public CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> feedsSync(
+                                                                                                                        FeedsSyncBankRequest request,
+                                                                                                                        RequestOptions requestOptions) {
+                                                                                                                      HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                                                                                                        .addPathSegments("v1/bank/feeds/sync");if (requestOptions != null) {
+                                                                                                                          requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                                                                                                            httpUrl.addQueryParameter(_key, _value);
+                                                                                                                          } );
+                                                                                                                        }
+                                                                                                                        RequestBody body;
+                                                                                                                        try {
+                                                                                                                          body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                                                                                                        }
+                                                                                                                        catch(JsonProcessingException e) {
+                                                                                                                          throw new NordletApiException("Failed to serialize request", e);
+                                                                                                                        }
+                                                                                                                        Request okhttpRequest = new Request.Builder()
+                                                                                                                          .url(httpUrl.build())
+                                                                                                                          .method("POST", body)
+                                                                                                                          .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                                                                                                          .addHeader("Content-Type", "application/json")
+                                                                                                                          .addHeader("Accept", "application/json")
+                                                                                                                          .build();
+                                                                                                                        OkHttpClient client = clientOptions.httpClient();
+                                                                                                                        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                                                                                                          client = clientOptions.httpClientWithTimeout(requestOptions);
+                                                                                                                        }
+                                                                                                                        if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                                                                                                          okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                                                                                                        }
+                                                                                                                        CompletableFuture<NordletApiHttpResponse<FeedsSyncBankResponse>> future = new CompletableFuture<>();
+                                                                                                                        client.newCall(okhttpRequest).enqueue(new Callback() {
+                                                                                                                          @Override
+                                                                                                                          public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                                                                                                            try (ResponseBody responseBody = response.body()) {
+                                                                                                                              String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                                                                                                              if (response.isSuccessful()) {
+                                                                                                                                future.complete(new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, FeedsSyncBankResponse.class), response));
+                                                                                                                                return;
+                                                                                                                              }
+                                                                                                                              try {
+                                                                                                                                switch (response.code()) {
+                                                                                                                                  case 400:future.completeExceptionally(new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 401:future.completeExceptionally(new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 402:future.completeExceptionally(new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 403:future.completeExceptionally(new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 404:future.completeExceptionally(new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 409:future.completeExceptionally(new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 413:future.completeExceptionally(new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 422:future.completeExceptionally(new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 429:future.completeExceptionally(new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                  case 500:future.completeExceptionally(new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response));
+                                                                                                                                  return;
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                              catch (JsonProcessingException ignored) {
+                                                                                                                                // unable to map error response, throwing generic error
+                                                                                                                              }
+                                                                                                                              Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                                                                                                              future.completeExceptionally(new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response));
+                                                                                                                              return;
+                                                                                                                            }
+                                                                                                                            catch (JsonProcessingException e) {
+                                                                                                                              future.completeExceptionally(new NordletApiException("Failed to deserialize response: " + e.getMessage(), e));
+                                                                                                                            }
+                                                                                                                            catch (IOException e) {
+                                                                                                                              future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                            }
+                                                                                                                          }
+
+                                                                                                                          @Override
+                                                                                                                          public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                                                                                                            future.completeExceptionally(new NordletApiException("Network error executing HTTP request", e));
+                                                                                                                          }
+                                                                                                                        });
+                                                                                                                        return future;
+                                                                                                                      }
+                                                                                                                    }

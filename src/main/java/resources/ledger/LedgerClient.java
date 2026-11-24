@@ -21,6 +21,10 @@ import com.nordlet.api.resources.ledger.requests.CostCentersListLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.CostCentersUpdateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.FxRevaluationReverseLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.FxRevaluationRunLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTemplatesCreateLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTemplatesDeleteLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTemplatesListLedgerRequest;
+import com.nordlet.api.resources.ledger.requests.JournalTemplatesPostLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsCreateLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsGetLedgerRequest;
 import com.nordlet.api.resources.ledger.requests.JournalTransactionsListLedgerRequest;
@@ -53,6 +57,10 @@ import com.nordlet.api.resources.ledger.types.CostCentersListLedgerResponse;
 import com.nordlet.api.resources.ledger.types.CostCentersUpdateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.FxRevaluationReverseLedgerResponse;
 import com.nordlet.api.resources.ledger.types.FxRevaluationRunLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTemplatesCreateLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTemplatesDeleteLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTemplatesListLedgerResponse;
+import com.nordlet.api.resources.ledger.types.JournalTemplatesPostLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsCreateLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsGetLedgerResponse;
 import com.nordlet.api.resources.ledger.types.JournalTransactionsListLedgerResponse;
@@ -178,21 +186,21 @@ public class LedgerClient {
   }
 
   /**
-   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   * Replaces the seeded chart with the chart template of the company country (the national chart for a company registered in Belgium, the Czech Republic, Denmark, Estonia, France, Luxembourg, the Netherlands, Portugal, Romania, Slovakia, Slovenia, Spain, the United Kingdom or the United States, the chart of the balance sheet and profit and loss items of Directive 2013/34/EU for a company registered in Austria, Bulgaria, Croatia, Cyprus, Finland, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Malta, Norway, Poland or Sweden, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
   public AccountsSwitchChartLedgerResponse accountsSwitchChart() {
     return this.rawClient.accountsSwitchChart().body();
   }
 
   /**
-   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   * Replaces the seeded chart with the chart template of the company country (the national chart for a company registered in Belgium, the Czech Republic, Denmark, Estonia, France, Luxembourg, the Netherlands, Portugal, Romania, Slovakia, Slovenia, Spain, the United Kingdom or the United States, the chart of the balance sheet and profit and loss items of Directive 2013/34/EU for a company registered in Austria, Bulgaria, Croatia, Cyprus, Finland, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Malta, Norway, Poland or Sweden, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
   public AccountsSwitchChartLedgerResponse accountsSwitchChart(RequestOptions requestOptions) {
     return this.rawClient.accountsSwitchChart(requestOptions).body();
   }
 
   /**
-   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   * Replaces the seeded chart with the chart template of the company country (the national chart for a company registered in Belgium, the Czech Republic, Denmark, Estonia, France, Luxembourg, the Netherlands, Portugal, Romania, Slovakia, Slovenia, Spain, the United Kingdom or the United States, the chart of the balance sheet and profit and loss items of Directive 2013/34/EU for a company registered in Austria, Bulgaria, Croatia, Cyprus, Finland, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Malta, Norway, Poland or Sweden, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
   public AccountsSwitchChartLedgerResponse accountsSwitchChart(
       AccountsSwitchChartLedgerRequest request) {
@@ -200,7 +208,7 @@ public class LedgerClient {
   }
 
   /**
-   * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+   * Replaces the seeded chart with the chart template of the company country (the national chart for a company registered in Belgium, the Czech Republic, Denmark, Estonia, France, Luxembourg, the Netherlands, Portugal, Romania, Slovakia, Slovenia, Spain, the United Kingdom or the United States, the chart of the balance sheet and profit and loss items of Directive 2013/34/EU for a company registered in Austria, Bulgaria, Croatia, Cyprus, Finland, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Malta, Norway, Poland or Sweden, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
    */
   public AccountsSwitchChartLedgerResponse accountsSwitchChart(
       AccountsSwitchChartLedgerRequest request, RequestOptions requestOptions) {
@@ -586,7 +594,85 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   * Save a journal template: the accounts of a recurring manual transaction, each with its side (<code>debit</code> or <code>credit</code>), for example the lines of a payslip from an outside payroll provider. <code>ledger/journal/templates/post</code> then posts it with the amounts of the month. The accounts, cost centers, projects and partners are checked as in <code>ledger/journal/transactions/create</code> (422); the template needs at least one debit and one credit line (422), and a repeated <code>name</code> is refused with 409.
+   */
+  public JournalTemplatesCreateLedgerResponse journalTemplatesCreate(
+      JournalTemplatesCreateLedgerRequest request) {
+    return this.rawClient.journalTemplatesCreate(request).body();
+  }
+
+  /**
+   * Save a journal template: the accounts of a recurring manual transaction, each with its side (<code>debit</code> or <code>credit</code>), for example the lines of a payslip from an outside payroll provider. <code>ledger/journal/templates/post</code> then posts it with the amounts of the month. The accounts, cost centers, projects and partners are checked as in <code>ledger/journal/transactions/create</code> (422); the template needs at least one debit and one credit line (422), and a repeated <code>name</code> is refused with 409.
+   */
+  public JournalTemplatesCreateLedgerResponse journalTemplatesCreate(
+      JournalTemplatesCreateLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTemplatesCreate(request, requestOptions).body();
+  }
+
+  /**
+   * Lists the journal templates with their lines. Filterable by <code>name</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
+  public JournalTemplatesListLedgerResponse journalTemplatesList() {
+    return this.rawClient.journalTemplatesList().body();
+  }
+
+  /**
+   * Lists the journal templates with their lines. Filterable by <code>name</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
+  public JournalTemplatesListLedgerResponse journalTemplatesList(RequestOptions requestOptions) {
+    return this.rawClient.journalTemplatesList(requestOptions).body();
+  }
+
+  /**
+   * Lists the journal templates with their lines. Filterable by <code>name</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
+  public JournalTemplatesListLedgerResponse journalTemplatesList(
+      JournalTemplatesListLedgerRequest request) {
+    return this.rawClient.journalTemplatesList(request).body();
+  }
+
+  /**
+   * Lists the journal templates with their lines. Filterable by <code>name</code>; sortable by <code>name</code> and <code>createdAt</code>.
+   */
+  public JournalTemplatesListLedgerResponse journalTemplatesList(
+      JournalTemplatesListLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTemplatesList(request, requestOptions).body();
+  }
+
+  /**
+   * Deletes a journal template. The transactions already posted from it stay. Answers 404 for an unknown template.
+   */
+  public JournalTemplatesDeleteLedgerResponse journalTemplatesDelete(
+      JournalTemplatesDeleteLedgerRequest request) {
+    return this.rawClient.journalTemplatesDelete(request).body();
+  }
+
+  /**
+   * Deletes a journal template. The transactions already posted from it stay. Answers 404 for an unknown template.
+   */
+  public JournalTemplatesDeleteLedgerResponse journalTemplatesDelete(
+      JournalTemplatesDeleteLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTemplatesDelete(request, requestOptions).body();
+  }
+
+  /**
+   * Posts a manual journal transaction from a journal template: <code>amounts</code> gives one amount per template line, in the template's order, on the line's side; a line with amount 0 is left out. The transaction is posted as by <code>ledger/journal/transactions/create</code> (<code>documentType</code> <code>manual</code>, base currency) with <code>description</code>, else the template name. Answers 404 for an unknown template and 422 when the number of amounts differs from the number of lines, when fewer than two lines have an amount or when the debits differ from the credits, besides the answers of <code>ledger/journal/transactions/create</code>.
+   */
+  public JournalTemplatesPostLedgerResponse journalTemplatesPost(
+      JournalTemplatesPostLedgerRequest request) {
+    return this.rawClient.journalTemplatesPost(request).body();
+  }
+
+  /**
+   * Posts a manual journal transaction from a journal template: <code>amounts</code> gives one amount per template line, in the template's order, on the line's side; a line with amount 0 is left out. The transaction is posted as by <code>ledger/journal/transactions/create</code> (<code>documentType</code> <code>manual</code>, base currency) with <code>description</code>, else the template name. Answers 404 for an unknown template and 422 when the number of amounts differs from the number of lines, when fewer than two lines have an amount or when the debits differ from the credits, besides the answers of <code>ledger/journal/transactions/create</code>.
+   */
+  public JournalTemplatesPostLedgerResponse journalTemplatesPost(
+      JournalTemplatesPostLedgerRequest request, RequestOptions requestOptions) {
+    return this.rawClient.journalTemplatesPost(request, requestOptions).body();
+  }
+
+  /**
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction, a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>), a <code>vat_prorata_adjustment</code> (posted by <code>declarations/vat-prorata/adjustment/post</code>) or an <code>it_tfr_accrual</code> or <code>it_tfr_revaluation</code> (posted by <code>declarations/it/tfr/accrual/post</code> and <code>declarations/it/tfr/revaluation/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
    */
   public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
       JournalTransactionsReverseLedgerRequest request) {
@@ -594,7 +680,7 @@ public class LedgerClient {
   }
 
   /**
-   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction or a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
+   * Posts a journal transaction (<code>documentType</code> <code>manual_reversal</code>, <code>documentId</code> the original) dated <code>date</code> (default the original date) whose entries mirror the original's (debits and credits swapped). Only a <code>manual</code> transaction, a <code>tax_provision</code> (posted by <code>ledger/tax-provision/post</code>), a <code>vat_prorata_adjustment</code> (posted by <code>declarations/vat-prorata/adjustment/post</code>) or an <code>it_tfr_accrual</code> or <code>it_tfr_revaluation</code> (posted by <code>declarations/it/tfr/accrual/post</code> and <code>declarations/it/tfr/revaluation/post</code>) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of <code>date</code> is locked, and 400 when <code>date</code> is before the original date.
    */
   public JournalTransactionsReverseLedgerResponse journalTransactionsReverse(
       JournalTransactionsReverseLedgerRequest request, RequestOptions requestOptions) {
@@ -663,21 +749,21 @@ public class LedgerClient {
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped with ledger/statement-rows/set.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes() {
     return this.rawClient.statementRowsSchemes().body();
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped with ledger/statement-rows/set.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(RequestOptions requestOptions) {
     return this.rawClient.statementRowsSchemes(requestOptions).body();
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped with ledger/statement-rows/set.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(
       StatementRowsSchemesLedgerRequest request) {
@@ -685,7 +771,7 @@ public class LedgerClient {
   }
 
   /**
-   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+   * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped with ledger/statement-rows/set.
    */
   public StatementRowsSchemesLedgerResponse statementRowsSchemes(
       StatementRowsSchemesLedgerRequest request, RequestOptions requestOptions) {

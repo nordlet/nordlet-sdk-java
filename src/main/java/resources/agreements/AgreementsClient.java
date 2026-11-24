@@ -9,9 +9,12 @@ import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.agreements.requests.AgreementsBillingRunAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsDeleteAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsExpectedInvoicesAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsGenerateInvoiceAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsGetAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsListAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsPaymentScheduleGetAgreementsRequest;
+import com.nordlet.api.resources.agreements.requests.AgreementsPaymentScheduleSetAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.AgreementsUpdateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesCreateAgreementsRequest;
 import com.nordlet.api.resources.agreements.requests.InsurancePoliciesDeleteAgreementsRequest;
@@ -23,9 +26,12 @@ import com.nordlet.api.resources.agreements.requests.TypesListAgreementsRequest;
 import com.nordlet.api.resources.agreements.types.AgreementsBillingRunAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsDeleteAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsExpectedInvoicesAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsGenerateInvoiceAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsGetAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsListAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsPaymentScheduleGetAgreementsResponse;
+import com.nordlet.api.resources.agreements.types.AgreementsPaymentScheduleSetAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.AgreementsUpdateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesCreateAgreementsResponse;
 import com.nordlet.api.resources.agreements.types.InsurancePoliciesDeleteAgreementsResponse;
@@ -246,6 +252,54 @@ public class AgreementsClient {
   public AgreementsGenerateInvoiceAgreementsResponse agreementsGenerateInvoice(
       AgreementsGenerateInvoiceAgreementsRequest request, RequestOptions requestOptions) {
     return this.rawClient.agreementsGenerateInvoice(request, requestOptions).body();
+  }
+
+  /**
+   * The schedule of the supplier invoices an agreement with a <code>billingPeriod</code> leads you to expect, such as a lease: each period from <code>startDate</code> up to <code>to</code> (default today), on the grid of <code>agreements/agreements/generate-invoice</code> (prorated by days when cut by <code>endDate</code>, an <code>autoRenew</code> agreement continuing by whole terms), with <code>expectedNet</code>, the sum of quantity times unit price of the agreement items, else <code>value</code>, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this <code>agreementId</code> and the period's <code>periodStart</code> as <code>agreementPeriodStart</code>. A period without one is <code>missing</code>. Answers 404 for an unknown agreement and 422 when it has no <code>billingPeriod</code>.
+   */
+  public AgreementsExpectedInvoicesAgreementsResponse agreementsExpectedInvoices(
+      AgreementsExpectedInvoicesAgreementsRequest request) {
+    return this.rawClient.agreementsExpectedInvoices(request).body();
+  }
+
+  /**
+   * The schedule of the supplier invoices an agreement with a <code>billingPeriod</code> leads you to expect, such as a lease: each period from <code>startDate</code> up to <code>to</code> (default today), on the grid of <code>agreements/agreements/generate-invoice</code> (prorated by days when cut by <code>endDate</code>, an <code>autoRenew</code> agreement continuing by whole terms), with <code>expectedNet</code>, the sum of quantity times unit price of the agreement items, else <code>value</code>, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this <code>agreementId</code> and the period's <code>periodStart</code> as <code>agreementPeriodStart</code>. A period without one is <code>missing</code>. Answers 404 for an unknown agreement and 422 when it has no <code>billingPeriod</code>.
+   */
+  public AgreementsExpectedInvoicesAgreementsResponse agreementsExpectedInvoices(
+      AgreementsExpectedInvoicesAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsExpectedInvoices(request, requestOptions).body();
+  }
+
+  /**
+   * Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its <code>dueDate</code>, the <code>principal</code> it repays and the <code>interest</code> it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same <code>dueDate</code>.
+   */
+  public AgreementsPaymentScheduleSetAgreementsResponse agreementsPaymentScheduleSet(
+      AgreementsPaymentScheduleSetAgreementsRequest request) {
+    return this.rawClient.agreementsPaymentScheduleSet(request).body();
+  }
+
+  /**
+   * Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its <code>dueDate</code>, the <code>principal</code> it repays and the <code>interest</code> it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same <code>dueDate</code>.
+   */
+  public AgreementsPaymentScheduleSetAgreementsResponse agreementsPaymentScheduleSet(
+      AgreementsPaymentScheduleSetAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsPaymentScheduleSet(request, requestOptions).body();
+  }
+
+  /**
+   * The repayment schedule kept with <code>agreements/agreements/payment-schedule/set</code>, by due date, with each instalment's total and, when the agreement has a <code>value</code> (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
+   */
+  public AgreementsPaymentScheduleGetAgreementsResponse agreementsPaymentScheduleGet(
+      AgreementsPaymentScheduleGetAgreementsRequest request) {
+    return this.rawClient.agreementsPaymentScheduleGet(request).body();
+  }
+
+  /**
+   * The repayment schedule kept with <code>agreements/agreements/payment-schedule/set</code>, by due date, with each instalment's total and, when the agreement has a <code>value</code> (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
+   */
+  public AgreementsPaymentScheduleGetAgreementsResponse agreementsPaymentScheduleGet(
+      AgreementsPaymentScheduleGetAgreementsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.agreementsPaymentScheduleGet(request, requestOptions).body();
   }
 
   /**

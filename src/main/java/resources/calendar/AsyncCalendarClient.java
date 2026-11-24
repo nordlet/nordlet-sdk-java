@@ -99,14 +99,14 @@ public class AsyncCalendarClient {
   }
 
   /**
-   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. <code>key</code> is <code>&lt;ruleKey&gt;:&lt;period&gt;</code> as <code>calendar/list</code> returns it. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no single file for the deadline.
+   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. <code>key</code> is <code>&lt;ruleKey&gt;:&lt;period&gt;</code> as <code>calendar/list</code> returns it. A deadline filed as one document per person or flow (REK-O, Intrastat, PIT-11, FPS) comes as one zip of its documents when there are several. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no file for the deadline.
    */
   public CompletableFuture<DownloadCalendarResponse> download(DownloadCalendarRequest request) {
     return this.rawClient.download(request).thenApply(response -> response.body());
   }
 
   /**
-   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. <code>key</code> is <code>&lt;ruleKey&gt;:&lt;period&gt;</code> as <code>calendar/list</code> returns it. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no single file for the deadline.
+   * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded. <code>key</code> is <code>&lt;ruleKey&gt;:&lt;period&gt;</code> as <code>calendar/list</code> returns it. A deadline filed as one document per person or flow (REK-O, Intrastat, PIT-11, FPS) comes as one zip of its documents when there are several. Answers 404 for an unknown rule or an invalid period, and 422 with the reason when Nordlet builds no file for the deadline.
    */
   public CompletableFuture<DownloadCalendarResponse> download(DownloadCalendarRequest request,
       RequestOptions requestOptions) {

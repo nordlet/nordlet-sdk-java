@@ -27,6 +27,7 @@ import com.nordlet.api.resources.reports.requests.OssReportsRequest;
 import com.nordlet.api.resources.reports.requests.PartnerBalancesReportsRequest;
 import com.nordlet.api.resources.reports.requests.PeriodChecklistReportsRequest;
 import com.nordlet.api.resources.reports.requests.PosSalesReportsRequest;
+import com.nordlet.api.resources.reports.requests.SaftNoReportsRequest;
 import com.nordlet.api.resources.reports.requests.SieReportsRequest;
 import com.nordlet.api.resources.reports.requests.SizeCategoryReportsRequest;
 import com.nordlet.api.resources.reports.requests.StockAgingReportsRequest;
@@ -34,6 +35,7 @@ import com.nordlet.api.resources.reports.requests.StockBalanceReportsRequest;
 import com.nordlet.api.resources.reports.requests.StockMovementReportsRequest;
 import com.nordlet.api.resources.reports.requests.StockShortageReportsRequest;
 import com.nordlet.api.resources.reports.requests.TrialBalanceReportsRequest;
+import com.nordlet.api.resources.reports.requests.VatAccountsReportsRequest;
 import com.nordlet.api.resources.reports.requests.VatDetailReportsRequest;
 import com.nordlet.api.resources.reports.requests.VatSummaryReportsRequest;
 import com.nordlet.api.resources.reports.requests.WriteOffActsReportsRequest;
@@ -58,6 +60,7 @@ import com.nordlet.api.resources.reports.types.OssReportsResponse;
 import com.nordlet.api.resources.reports.types.PartnerBalancesReportsResponse;
 import com.nordlet.api.resources.reports.types.PeriodChecklistReportsResponse;
 import com.nordlet.api.resources.reports.types.PosSalesReportsResponse;
+import com.nordlet.api.resources.reports.types.SaftNoReportsResponse;
 import com.nordlet.api.resources.reports.types.SieReportsResponse;
 import com.nordlet.api.resources.reports.types.SizeCategoryReportsResponse;
 import com.nordlet.api.resources.reports.types.StockAgingReportsResponse;
@@ -65,6 +68,7 @@ import com.nordlet.api.resources.reports.types.StockBalanceReportsResponse;
 import com.nordlet.api.resources.reports.types.StockMovementReportsResponse;
 import com.nordlet.api.resources.reports.types.StockShortageReportsResponse;
 import com.nordlet.api.resources.reports.types.TrialBalanceReportsResponse;
+import com.nordlet.api.resources.reports.types.VatAccountsReportsResponse;
 import com.nordlet.api.resources.reports.types.VatDetailReportsResponse;
 import com.nordlet.api.resources.reports.types.VatSummaryReportsResponse;
 import com.nordlet.api.resources.reports.types.WriteOffActsReportsResponse;
@@ -102,14 +106,14 @@ public class ReportsClient {
   }
 
   /**
-   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. The limits are those of the accounting law of the company's country for a financial year starting on 1 January of that year, in <code>currency</code> (the company's base currency, converted at the year-end rate when the law sets them in another currency); a category the law does not have is left out of <code>thresholds</code>. A country without recorded limits uses those of Directive 2013/34/EU as amended by Delegated Directive (EU) 2023/2775. The category follows the law's rule over the years: in most countries it changes only when the limits are crossed at two consecutive year ends, and in AT, BE, BG, CZ, HU, PT and SK from the year after; DK and FI need both years within a category's limits, SE both years over its limits to be large, EE two year ends outside a category to leave it, LV the higher category while the category changes every year, HR the figures of the year before, and the Maltese medium category one year end; a Bulgarian company that leaves its category takes the category of the later year. The earlier years are the financial years before with postings in Nordlet, each tested against the limits of the year classified at its own year-end rate; a year without postings ends the chain, and the first year is classified on its own figures. CY, GR and countries without recorded limits classify each year on its own figures. This is the default category of <code>reports/financial-statements</code>.
    */
   public SizeCategoryReportsResponse sizeCategory(SizeCategoryReportsRequest request) {
     return this.rawClient.sizeCategory(request).body();
   }
 
   /**
-   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. This is the default category of <code>reports/financial-statements</code>.
+   * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in <code>thresholds</code>; a category applies when at least two of its three limits are met. The limits are those of the accounting law of the company's country for a financial year starting on 1 January of that year, in <code>currency</code> (the company's base currency, converted at the year-end rate when the law sets them in another currency); a category the law does not have is left out of <code>thresholds</code>. A country without recorded limits uses those of Directive 2013/34/EU as amended by Delegated Directive (EU) 2023/2775. The category follows the law's rule over the years: in most countries it changes only when the limits are crossed at two consecutive year ends, and in AT, BE, BG, CZ, HU, PT and SK from the year after; DK and FI need both years within a category's limits, SE both years over its limits to be large, EE two year ends outside a category to leave it, LV the higher category while the category changes every year, HR the figures of the year before, and the Maltese medium category one year end; a Bulgarian company that leaves its category takes the category of the later year. The earlier years are the financial years before with postings in Nordlet, each tested against the limits of the year classified at its own year-end rate; a year without postings ends the chain, and the first year is classified on its own figures. CY, GR and countries without recorded limits classify each year on its own figures. This is the default category of <code>reports/financial-statements</code>.
    */
   public SizeCategoryReportsResponse sizeCategory(SizeCategoryReportsRequest request,
       RequestOptions requestOptions) {
@@ -280,14 +284,14 @@ public class ReportsClient {
   }
 
   /**
-   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+   * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
    */
   public VatSummaryReportsResponse vatSummary(VatSummaryReportsRequest request) {
     return this.rawClient.vatSummary(request).body();
   }
 
   /**
-   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
+   * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of <code>reports/vat-detail</code> grouped by rate.
    */
   public VatSummaryReportsResponse vatSummary(VatSummaryReportsRequest request,
       RequestOptions requestOptions) {
@@ -396,14 +400,43 @@ public class ReportsClient {
   }
 
   /**
-   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
+   * Export the posted ledger of a period of a Norwegian company as a SAF-T Financial file (Skatteetaten, Norwegian SAF-T Financial data), which the company hands over when the Tax Administration asks for it (bokføringsforskriften § 7-8). The contact person is the one stored for the Skatteetaten system (<code>declarations/configs/update</code>, <code>contactFirstName</code>, <code>contactLastName</code>). Answers 422 for a company outside Norway.
+   */
+  public SaftNoReportsResponse saftNo(SaftNoReportsRequest request) {
+    return this.rawClient.saftNo(request).body();
+  }
+
+  /**
+   * Export the posted ledger of a period of a Norwegian company as a SAF-T Financial file (Skatteetaten, Norwegian SAF-T Financial data), which the company hands over when the Tax Administration asks for it (bokføringsforskriften § 7-8). The contact person is the one stored for the Skatteetaten system (<code>declarations/configs/update</code>, <code>contactFirstName</code>, <code>contactLastName</code>). Answers 422 for a company outside Norway.
+   */
+  public SaftNoReportsResponse saftNo(SaftNoReportsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.saftNo(request, requestOptions).body();
+  }
+
+  /**
+   * Compares, for the <code>months</code> months starting in <code>month</code>, the VAT posted on each account of the posting rules <code>sales.vatPayable</code>, <code>sales.ossVatPayable</code> and <code>purchases.vatReceivable</code> with the VAT the documents read by the company's VAT return carry. <code>posted</code> is the movement of the account in the period (credit less debit on an output account, debit less credit on the input account) without the bank, cash and year-end closing postings, which are shown as <code>settlements</code>; <code>expected</code> is, from the documents of the period: output VAT and self-assessed VAT for <code>sales.vatPayable</code>, VAT of the issued invoices, credit notes and advance invoices under the OSS and IOSS schemes (<code>vatScheme</code> <code>oss_union</code>, <code>oss_non_union</code>, <code>ioss</code>, by issue date) for <code>sales.ossVatPayable</code> and deductible VAT for <code>purchases.vatReceivable</code>, summed when rules share an account (deductible VAT subtracted on an output account). <code>difference</code> is <code>posted</code> less <code>expected</code>; <code>byDocumentType</code> gives the debit and credit of the period by journal document type. <code>warnings</code> are those of the VAT return collector, such as lines without a VAT type.
+   */
+  public VatAccountsReportsResponse vatAccounts(VatAccountsReportsRequest request) {
+    return this.rawClient.vatAccounts(request).body();
+  }
+
+  /**
+   * Compares, for the <code>months</code> months starting in <code>month</code>, the VAT posted on each account of the posting rules <code>sales.vatPayable</code>, <code>sales.ossVatPayable</code> and <code>purchases.vatReceivable</code> with the VAT the documents read by the company's VAT return carry. <code>posted</code> is the movement of the account in the period (credit less debit on an output account, debit less credit on the input account) without the bank, cash and year-end closing postings, which are shown as <code>settlements</code>; <code>expected</code> is, from the documents of the period: output VAT and self-assessed VAT for <code>sales.vatPayable</code>, VAT of the issued invoices, credit notes and advance invoices under the OSS and IOSS schemes (<code>vatScheme</code> <code>oss_union</code>, <code>oss_non_union</code>, <code>ioss</code>, by issue date) for <code>sales.ossVatPayable</code> and deductible VAT for <code>purchases.vatReceivable</code>, summed when rules share an account (deductible VAT subtracted on an output account). <code>difference</code> is <code>posted</code> less <code>expected</code>; <code>byDocumentType</code> gives the debit and credit of the period by journal document type. <code>warnings</code> are those of the VAT return collector, such as lines without a VAT type.
+   */
+  public VatAccountsReportsResponse vatAccounts(VatAccountsReportsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.vatAccounts(request, requestOptions).body();
+  }
+
+  /**
+   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end, the bank accounts whose ledger balance at the period end differs from the statement balance stored by an import (<code>bank/reconciliation/get</code>), the posted manual entries and accruals in the period on the VAT accounts of the posting rules <code>sales.vatPayable</code>, <code>sales.ossVatPayable</code> and <code>purchases.vatReceivable</code> and the expense reports in the period with VAT on a line without a VAT type, which no VAT return reads, and the filings of the period (<code>calendar/list</code> keys) whose filing system has settings without a stored value. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices, runs, bank accounts, journal transactions or calendar keys; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
    */
   public PeriodChecklistReportsResponse periodChecklist(PeriodChecklistReportsRequest request) {
     return this.rawClient.periodChecklist(request).body();
   }
 
   /**
-   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
+   * Lists what is still open for <code>period</code>: a month (<code>YYYY-MM</code>) or the fiscal year that ends in <code>YYYY</code>. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status <code>new</code>, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end, the bank accounts whose ledger balance at the period end differs from the statement balance stored by an import (<code>bank/reconciliation/get</code>), the posted manual entries and accruals in the period on the VAT accounts of the posting rules <code>sales.vatPayable</code>, <code>sales.ossVatPayable</code> and <code>purchases.vatReceivable</code> and the expense reports in the period with VAT on a line without a VAT type, which no VAT return reads, and the filings of the period (<code>calendar/list</code> keys) whose filing system has settings without a stored value. Each item carries the <code>count</code> and the <code>ids</code> of the documents, rows, assets, recurring invoices, runs, bank accounts, journal transactions or calendar keys; an item with nothing open is left out. <code>ledger/periods/lock</code> returns the same items as <code>warnings</code>.
    */
   public PeriodChecklistReportsResponse periodChecklist(PeriodChecklistReportsRequest request,
       RequestOptions requestOptions) {
@@ -426,14 +459,14 @@ public class ReportsClient {
   }
 
   /**
-   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+   * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
    */
   public VatDetailReportsResponse vatDetail(VatDetailReportsRequest request) {
     return this.rawClient.vatDetail(request).body();
   }
 
   /**
-   * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
+   * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. <code>reports/vat-summary</code> groups these rows by rate.
    */
   public VatDetailReportsResponse vatDetail(VatDetailReportsRequest request,
       RequestOptions requestOptions) {

@@ -55,6 +55,8 @@ public final class GetDocumentSeriesResponse {
 
   private final boolean printSeries;
 
+  private final String suffix;
+
   private final boolean isDefault;
 
   private final boolean isActive;
@@ -68,8 +70,8 @@ public final class GetDocumentSeriesResponse {
   private GetDocumentSeriesResponse(String id, String documentType, String prefix,
       Optional<String> name, Optional<String> label, Optional<String> operationTypeId,
       long numberLength, long nextNumber, Optional<Long> allocatedFrom, Optional<Long> allocatedTo,
-      Optional<String> warehouseId, boolean printSeries, boolean isDefault, boolean isActive,
-      OffsetDateTime createdAt, OffsetDateTime updatedAt,
+      Optional<String> warehouseId, boolean printSeries, String suffix, boolean isDefault,
+      boolean isActive, OffsetDateTime createdAt, OffsetDateTime updatedAt,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.documentType = documentType;
@@ -83,6 +85,7 @@ public final class GetDocumentSeriesResponse {
     this.allocatedTo = allocatedTo;
     this.warehouseId = warehouseId;
     this.printSeries = printSeries;
+    this.suffix = suffix;
     this.isDefault = isDefault;
     this.isActive = isActive;
     this.createdAt = createdAt;
@@ -166,6 +169,11 @@ public final class GetDocumentSeriesResponse {
   @JsonProperty("printSeries")
   public boolean getPrintSeries() {
     return printSeries;
+  }
+
+  @JsonProperty("suffix")
+  public String getSuffix() {
+    return suffix;
   }
 
   @JsonProperty("isDefault")
@@ -254,12 +262,12 @@ public final class GetDocumentSeriesResponse {
   }
 
   private boolean equalTo(GetDocumentSeriesResponse other) {
-    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength == other.numberLength && nextNumber == other.nextNumber && allocatedFrom.equals(other.allocatedFrom) && allocatedTo.equals(other.allocatedTo) && warehouseId.equals(other.warehouseId) && printSeries == other.printSeries && isDefault == other.isDefault && isActive == other.isActive && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
+    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength == other.numberLength && nextNumber == other.nextNumber && allocatedFrom.equals(other.allocatedFrom) && allocatedTo.equals(other.allocatedTo) && warehouseId.equals(other.warehouseId) && printSeries == other.printSeries && suffix.equals(other.suffix) && isDefault == other.isDefault && isActive == other.isActive && createdAt.equals(other.createdAt) && updatedAt.equals(other.updatedAt);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.allocatedFrom, this.allocatedTo, this.warehouseId, this.printSeries, this.isDefault, this.isActive, this.createdAt, this.updatedAt);
+    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.allocatedFrom, this.allocatedTo, this.warehouseId, this.printSeries, this.suffix, this.isDefault, this.isActive, this.createdAt, this.updatedAt);
   }
 
   @java.lang.Override
@@ -294,7 +302,11 @@ public final class GetDocumentSeriesResponse {
   }
 
   public interface PrintSeriesStage {
-    IsDefaultStage printSeries(boolean printSeries);
+    SuffixStage printSeries(boolean printSeries);
+  }
+
+  public interface SuffixStage {
+    IsDefaultStage suffix(@NotNull String suffix);
   }
 
   public interface IsDefaultStage {
@@ -360,7 +372,7 @@ public final class GetDocumentSeriesResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements IdStage, DocumentTypeStage, PrefixStage, NumberLengthStage, NextNumberStage, PrintSeriesStage, IsDefaultStage, IsActiveStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
+  public static final class Builder implements IdStage, DocumentTypeStage, PrefixStage, NumberLengthStage, NextNumberStage, PrintSeriesStage, SuffixStage, IsDefaultStage, IsActiveStage, CreatedAtStage, UpdatedAtStage, _FinalStage {
     private String id;
 
     private String documentType;
@@ -372,6 +384,8 @@ public final class GetDocumentSeriesResponse {
     private long nextNumber;
 
     private boolean printSeries;
+
+    private String suffix;
 
     private boolean isDefault;
 
@@ -413,6 +427,7 @@ public final class GetDocumentSeriesResponse {
       allocatedTo(other.getAllocatedTo());
       warehouseId(other.getWarehouseId());
       printSeries(other.getPrintSeries());
+      suffix(other.getSuffix());
       isDefault(other.getIsDefault());
       isActive(other.getIsActive());
       createdAt(other.getCreatedAt());
@@ -457,8 +472,15 @@ public final class GetDocumentSeriesResponse {
 
     @java.lang.Override
     @JsonSetter("printSeries")
-    public IsDefaultStage printSeries(boolean printSeries) {
+    public SuffixStage printSeries(boolean printSeries) {
       this.printSeries = printSeries;
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("suffix")
+    public IsDefaultStage suffix(@NotNull String suffix) {
+      this.suffix = Objects.requireNonNull(suffix, "suffix must not be null");
       return this;
     }
 
@@ -672,7 +694,7 @@ public final class GetDocumentSeriesResponse {
 
     @java.lang.Override
     public GetDocumentSeriesResponse build() {
-      return new GetDocumentSeriesResponse(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, allocatedFrom, allocatedTo, warehouseId, printSeries, isDefault, isActive, createdAt, updatedAt, additionalProperties);
+      return new GetDocumentSeriesResponse(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, allocatedFrom, allocatedTo, warehouseId, printSeries, suffix, isDefault, isActive, createdAt, updatedAt, additionalProperties);
     }
 
     @java.lang.Override

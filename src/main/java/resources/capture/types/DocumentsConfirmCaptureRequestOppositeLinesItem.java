@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nordlet.api.core.ObjectMappers;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -55,6 +57,10 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
 
   private final Optional<String> expiryDate;
 
+  private final Optional<Long> deductiblePercent;
+
+  private final Optional<List<String>> chassisNumbers;
+
   private final Map<String, Object> additionalProperties;
 
   private DocumentsConfirmCaptureRequestOppositeLinesItem(Optional<String> itemId,
@@ -64,8 +70,8 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
       Optional<String> vatRatePercent, Optional<String> vatClassifierCode,
       Optional<String> costCenterId, Optional<String> projectId, Optional<String> accountCode,
       Optional<String> deferralStartDate, Optional<String> deferralEndDate,
-      Optional<String> lotNumber, Optional<String> expiryDate,
-      Map<String, Object> additionalProperties) {
+      Optional<String> lotNumber, Optional<String> expiryDate, Optional<Long> deductiblePercent,
+      Optional<List<String>> chassisNumbers, Map<String, Object> additionalProperties) {
     this.itemId = itemId;
     this.description = description;
     this.unit = unit;
@@ -81,6 +87,8 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
     this.deferralEndDate = deferralEndDate;
     this.lotNumber = lotNumber;
     this.expiryDate = expiryDate;
+    this.deductiblePercent = deductiblePercent;
+    this.chassisNumbers = chassisNumbers;
     this.additionalProperties = additionalProperties;
   }
 
@@ -159,6 +167,22 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
     return expiryDate;
   }
 
+  /**
+   * @return The share of the purchase used for the company's taxable supplies, in whole percent rounded up: required on a VAT type that deducts the line's own share (CZ-D21-P, CZ-D12-P, the poměrný koeficient of § 75 odst. 3 ZDPH) and refused on any other
+   */
+  @JsonProperty("deductiblePercent")
+  public Optional<Long> getDeductiblePercent() {
+    return deductiblePercent;
+  }
+
+  /**
+   * @return The chassis numbers of the passenger cars bought on the line. A Hungarian company lists them on sheet 2665A-09 of the VAT return of the period when the line is an intra-Community acquisition or an import (Áfa tv. 4/A. számú melléklet II.)
+   */
+  @JsonProperty("chassisNumbers")
+  public Optional<List<String>> getChassisNumbers() {
+    return chassisNumbers;
+  }
+
   @java.lang.Override
   public boolean equals(Object other) {
     if (this == other) return true;
@@ -171,12 +195,12 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
   }
 
   private boolean equalTo(DocumentsConfirmCaptureRequestOppositeLinesItem other) {
-    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate);
+    return itemId.equals(other.itemId) && description.equals(other.description) && unit.equals(other.unit) && quantity.equals(other.quantity) && unitPriceExclVat.equals(other.unitPriceExclVat) && unitPriceInclVat.equals(other.unitPriceInclVat) && vatRatePercent.equals(other.vatRatePercent) && vatClassifierCode.equals(other.vatClassifierCode) && costCenterId.equals(other.costCenterId) && projectId.equals(other.projectId) && accountCode.equals(other.accountCode) && deferralStartDate.equals(other.deferralStartDate) && deferralEndDate.equals(other.deferralEndDate) && lotNumber.equals(other.lotNumber) && expiryDate.equals(other.expiryDate) && deductiblePercent.equals(other.deductiblePercent) && chassisNumbers.equals(other.chassisNumbers);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate);
+    return Objects.hash(this.itemId, this.description, this.unit, this.quantity, this.unitPriceExclVat, this.unitPriceInclVat, this.vatRatePercent, this.vatClassifierCode, this.costCenterId, this.projectId, this.accountCode, this.deferralStartDate, this.deferralEndDate, this.lotNumber, this.expiryDate, this.deductiblePercent, this.chassisNumbers);
   }
 
   @java.lang.Override
@@ -222,6 +246,10 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
 
     private Optional<String> expiryDate = Optional.empty();
 
+    private Optional<Long> deductiblePercent = Optional.empty();
+
+    private Optional<List<String>> chassisNumbers = Optional.empty();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -244,6 +272,8 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
       deferralEndDate(other.getDeferralEndDate());
       lotNumber(other.getLotNumber());
       expiryDate(other.getExpiryDate());
+      deductiblePercent(other.getDeductiblePercent());
+      chassisNumbers(other.getChassisNumbers());
       return this;
     }
 
@@ -458,8 +488,42 @@ public final class DocumentsConfirmCaptureRequestOppositeLinesItem {
       return this;
     }
 
+    /**
+     * <p>The share of the purchase used for the company's taxable supplies, in whole percent rounded up: required on a VAT type that deducts the line's own share (CZ-D21-P, CZ-D12-P, the poměrný koeficient of § 75 odst. 3 ZDPH) and refused on any other</p>
+     */
+    @JsonSetter(
+        value = "deductiblePercent",
+        nulls = Nulls.SKIP
+    )
+    public Builder deductiblePercent(Optional<Long> deductiblePercent) {
+      this.deductiblePercent = deductiblePercent;
+      return this;
+    }
+
+    public Builder deductiblePercent(Long deductiblePercent) {
+      this.deductiblePercent = Optional.ofNullable(deductiblePercent);
+      return this;
+    }
+
+    /**
+     * <p>The chassis numbers of the passenger cars bought on the line. A Hungarian company lists them on sheet 2665A-09 of the VAT return of the period when the line is an intra-Community acquisition or an import (Áfa tv. 4/A. számú melléklet II.)</p>
+     */
+    @JsonSetter(
+        value = "chassisNumbers",
+        nulls = Nulls.SKIP
+    )
+    public Builder chassisNumbers(Optional<List<String>> chassisNumbers) {
+      this.chassisNumbers = chassisNumbers;
+      return this;
+    }
+
+    public Builder chassisNumbers(List<String> chassisNumbers) {
+      this.chassisNumbers = Optional.ofNullable(chassisNumbers);
+      return this;
+    }
+
     public DocumentsConfirmCaptureRequestOppositeLinesItem build() {
-      return new DocumentsConfirmCaptureRequestOppositeLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, additionalProperties);
+      return new DocumentsConfirmCaptureRequestOppositeLinesItem(itemId, description, unit, quantity, unitPriceExclVat, unitPriceInclVat, vatRatePercent, vatClassifierCode, costCenterId, projectId, accountCode, deferralStartDate, deferralEndDate, lotNumber, expiryDate, deductiblePercent, chassisNumbers, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

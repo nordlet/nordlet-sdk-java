@@ -6,12 +6,15 @@ package com.nordlet.api.resources.bank.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nordlet.api.core.Nullable;
+import com.nordlet.api.core.NullableNonemptyFilter;
 import com.nordlet.api.core.ObjectMappers;
 import java.lang.Object;
 import java.lang.String;
@@ -20,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(
@@ -28,18 +32,48 @@ import java.util.Objects;
 public final class TransactionsSuggestMatchesBankResponse {
   private final List<TransactionsSuggestMatchesBankResponseSuggestionsItem> suggestions;
 
+  private final Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> allocations;
+
+  private final List<TransactionsSuggestMatchesBankResponsePostingRulesItem> postingRules;
+
   private final Map<String, Object> additionalProperties;
 
   private TransactionsSuggestMatchesBankResponse(
       List<TransactionsSuggestMatchesBankResponseSuggestionsItem> suggestions,
+      Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> allocations,
+      List<TransactionsSuggestMatchesBankResponsePostingRulesItem> postingRules,
       Map<String, Object> additionalProperties) {
     this.suggestions = suggestions;
+    this.allocations = allocations;
+    this.postingRules = postingRules;
     this.additionalProperties = additionalProperties;
   }
 
   @JsonProperty("suggestions")
   public List<TransactionsSuggestMatchesBankResponseSuggestionsItem> getSuggestions() {
     return suggestions;
+  }
+
+  @JsonIgnore
+  public Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> getAllocations() {
+    if (allocations == null) {
+      return Optional.empty();
+    }
+    return allocations;
+  }
+
+  @JsonProperty("postingRules")
+  public List<TransactionsSuggestMatchesBankResponsePostingRulesItem> getPostingRules() {
+    return postingRules;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("allocations")
+  private Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> _getAllocations() {
+    return allocations;
   }
 
   @java.lang.Override
@@ -54,12 +88,12 @@ public final class TransactionsSuggestMatchesBankResponse {
   }
 
   private boolean equalTo(TransactionsSuggestMatchesBankResponse other) {
-    return suggestions.equals(other.suggestions);
+    return suggestions.equals(other.suggestions) && allocations.equals(other.allocations) && postingRules.equals(other.postingRules);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.suggestions);
+    return Objects.hash(this.suggestions, this.allocations, this.postingRules);
   }
 
   @java.lang.Override
@@ -77,6 +111,10 @@ public final class TransactionsSuggestMatchesBankResponse {
   public static final class Builder {
     private List<TransactionsSuggestMatchesBankResponseSuggestionsItem> suggestions = new ArrayList<>();
 
+    private Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> allocations = Optional.empty();
+
+    private List<TransactionsSuggestMatchesBankResponsePostingRulesItem> postingRules = new ArrayList<>();
+
     @JsonAnySetter
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -85,6 +123,8 @@ public final class TransactionsSuggestMatchesBankResponse {
 
     public Builder from(TransactionsSuggestMatchesBankResponse other) {
       suggestions(other.getSuggestions());
+      allocations(other.getAllocations());
+      postingRules(other.getPostingRules());
       return this;
     }
 
@@ -115,8 +155,65 @@ public final class TransactionsSuggestMatchesBankResponse {
       return this;
     }
 
+    @JsonSetter(
+        value = "allocations",
+        nulls = Nulls.SKIP
+    )
+    public Builder allocations(
+        Optional<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> allocations) {
+      this.allocations = allocations;
+      return this;
+    }
+
+    public Builder allocations(
+        List<TransactionsSuggestMatchesBankResponseAllocationsItem> allocations) {
+      this.allocations = Optional.ofNullable(allocations);
+      return this;
+    }
+
+    public Builder allocations(
+        Nullable<List<TransactionsSuggestMatchesBankResponseAllocationsItem>> allocations) {
+      if (allocations.isNull()) {
+        this.allocations = null;
+      }
+      else if (allocations.isEmpty()) {
+        this.allocations = Optional.empty();
+      }
+      else {
+        this.allocations = Optional.of(allocations.get());
+      }
+      return this;
+    }
+
+    @JsonSetter(
+        value = "postingRules",
+        nulls = Nulls.SKIP
+    )
+    public Builder postingRules(
+        List<TransactionsSuggestMatchesBankResponsePostingRulesItem> postingRules) {
+      this.postingRules.clear();
+      if (postingRules != null) {
+        this.postingRules.addAll(postingRules);
+      }
+      return this;
+    }
+
+    public Builder addPostingRules(
+        TransactionsSuggestMatchesBankResponsePostingRulesItem postingRules) {
+      this.postingRules.add(postingRules);
+      return this;
+    }
+
+    public Builder addAllPostingRules(
+        List<TransactionsSuggestMatchesBankResponsePostingRulesItem> postingRules) {
+      if (postingRules != null) {
+        this.postingRules.addAll(postingRules);
+      }
+      return this;
+    }
+
     public TransactionsSuggestMatchesBankResponse build() {
-      return new TransactionsSuggestMatchesBankResponse(suggestions, additionalProperties);
+      return new TransactionsSuggestMatchesBankResponse(suggestions, allocations, postingRules, additionalProperties);
     }
 
     public Builder additionalProperty(String key, Object value) {

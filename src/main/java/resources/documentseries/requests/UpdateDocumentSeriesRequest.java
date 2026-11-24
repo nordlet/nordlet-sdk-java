@@ -56,6 +56,8 @@ public final class UpdateDocumentSeriesRequest {
 
   private final Optional<Boolean> printSeries;
 
+  private final Optional<String> suffix;
+
   private final Optional<Boolean> isDefault;
 
   private final Optional<Boolean> isActive;
@@ -67,7 +69,7 @@ public final class UpdateDocumentSeriesRequest {
       Optional<String> name, Optional<String> label, Optional<String> operationTypeId,
       Optional<Long> numberLength, Optional<Long> nextNumber, Optional<Long> allocatedFrom,
       Optional<Long> allocatedTo, Optional<String> warehouseId, Optional<Boolean> printSeries,
-      Optional<Boolean> isDefault, Optional<Boolean> isActive,
+      Optional<String> suffix, Optional<Boolean> isDefault, Optional<Boolean> isActive,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.documentType = documentType;
@@ -81,6 +83,7 @@ public final class UpdateDocumentSeriesRequest {
     this.allocatedTo = allocatedTo;
     this.warehouseId = warehouseId;
     this.printSeries = printSeries;
+    this.suffix = suffix;
     this.isDefault = isDefault;
     this.isActive = isActive;
     this.additionalProperties = additionalProperties;
@@ -164,6 +167,11 @@ public final class UpdateDocumentSeriesRequest {
     return printSeries;
   }
 
+  @JsonProperty("suffix")
+  public Optional<String> getSuffix() {
+    return suffix;
+  }
+
   @JsonProperty("isDefault")
   public Optional<Boolean> getIsDefault() {
     return isDefault;
@@ -240,12 +248,12 @@ public final class UpdateDocumentSeriesRequest {
   }
 
   private boolean equalTo(UpdateDocumentSeriesRequest other) {
-    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength.equals(other.numberLength) && nextNumber.equals(other.nextNumber) && allocatedFrom.equals(other.allocatedFrom) && allocatedTo.equals(other.allocatedTo) && warehouseId.equals(other.warehouseId) && printSeries.equals(other.printSeries) && isDefault.equals(other.isDefault) && isActive.equals(other.isActive);
+    return id.equals(other.id) && documentType.equals(other.documentType) && prefix.equals(other.prefix) && name.equals(other.name) && label.equals(other.label) && operationTypeId.equals(other.operationTypeId) && numberLength.equals(other.numberLength) && nextNumber.equals(other.nextNumber) && allocatedFrom.equals(other.allocatedFrom) && allocatedTo.equals(other.allocatedTo) && warehouseId.equals(other.warehouseId) && printSeries.equals(other.printSeries) && suffix.equals(other.suffix) && isDefault.equals(other.isDefault) && isActive.equals(other.isActive);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.allocatedFrom, this.allocatedTo, this.warehouseId, this.printSeries, this.isDefault, this.isActive);
+    return Objects.hash(this.id, this.documentType, this.prefix, this.name, this.label, this.operationTypeId, this.numberLength, this.nextNumber, this.allocatedFrom, this.allocatedTo, this.warehouseId, this.printSeries, this.suffix, this.isDefault, this.isActive);
   }
 
   @java.lang.Override
@@ -326,6 +334,10 @@ public final class UpdateDocumentSeriesRequest {
 
     _FinalStage printSeries(Boolean printSeries);
 
+    _FinalStage suffix(Optional<String> suffix);
+
+    _FinalStage suffix(String suffix);
+
     _FinalStage isDefault(Optional<Boolean> isDefault);
 
     _FinalStage isDefault(Boolean isDefault);
@@ -344,6 +356,8 @@ public final class UpdateDocumentSeriesRequest {
     private Optional<Boolean> isActive = Optional.empty();
 
     private Optional<Boolean> isDefault = Optional.empty();
+
+    private Optional<String> suffix = Optional.empty();
 
     private Optional<Boolean> printSeries = Optional.empty();
 
@@ -387,6 +401,7 @@ public final class UpdateDocumentSeriesRequest {
       allocatedTo(other.getAllocatedTo());
       warehouseId(other.getWarehouseId());
       printSeries(other.getPrintSeries());
+      suffix(other.getSuffix());
       isDefault(other.getIsDefault());
       isActive(other.getIsActive());
       return this;
@@ -428,6 +443,22 @@ public final class UpdateDocumentSeriesRequest {
     )
     public _FinalStage isDefault(Optional<Boolean> isDefault) {
       this.isDefault = isDefault;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage suffix(String suffix) {
+      this.suffix = Optional.ofNullable(suffix);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "suffix",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage suffix(Optional<String> suffix) {
+      this.suffix = suffix;
       return this;
     }
 
@@ -694,7 +725,7 @@ public final class UpdateDocumentSeriesRequest {
 
     @java.lang.Override
     public UpdateDocumentSeriesRequest build() {
-      return new UpdateDocumentSeriesRequest(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, allocatedFrom, allocatedTo, warehouseId, printSeries, isDefault, isActive, additionalProperties);
+      return new UpdateDocumentSeriesRequest(id, documentType, prefix, name, label, operationTypeId, numberLength, nextNumber, allocatedFrom, allocatedTo, warehouseId, printSeries, suffix, isDefault, isActive, additionalProperties);
     }
 
     @java.lang.Override

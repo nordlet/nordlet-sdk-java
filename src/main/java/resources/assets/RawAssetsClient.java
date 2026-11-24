@@ -24,6 +24,7 @@ import com.nordlet.api.errors.TooManyRequestsError;
 import com.nordlet.api.errors.UnauthorizedError;
 import com.nordlet.api.errors.UnprocessableEntityError;
 import com.nordlet.api.resources.assets.requests.AssetsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsCreateFromPurchaseAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsDisposeAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsGetAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsInputVatAssetsRequest;
@@ -37,6 +38,7 @@ import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
 import com.nordlet.api.resources.assets.requests.SettingsGetAssetsRequest;
 import com.nordlet.api.resources.assets.requests.SettingsUpdateAssetsRequest;
 import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsCreateFromPurchaseAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsInputVatAssetsResponse;
@@ -474,21 +476,21 @@ public class RawAssetsClient {
             }
 
             /**
-             * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
+             * Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; <code>acquisitionCost</code> takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps <code>purchaseInvoiceLineId</code>. Otherwise as <code>assets/assets/create</code>.
              */
-            public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
-                AssetsUpdateAssetsRequest request) {
-              return assetsUpdate(request,null);
+            public NordletApiHttpResponse<AssetsCreateFromPurchaseAssetsResponse> assetsCreateFromPurchase(
+                AssetsCreateFromPurchaseAssetsRequest request) {
+              return assetsCreateFromPurchase(request,null);
             }
 
             /**
-             * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
+             * Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; <code>acquisitionCost</code> takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps <code>purchaseInvoiceLineId</code>. Otherwise as <code>assets/assets/create</code>.
              */
-            public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
-                AssetsUpdateAssetsRequest request, RequestOptions requestOptions) {
+            public NordletApiHttpResponse<AssetsCreateFromPurchaseAssetsResponse> assetsCreateFromPurchase(
+                AssetsCreateFromPurchaseAssetsRequest request, RequestOptions requestOptions) {
               HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                .addPathSegments("v1/assets/assets/update");if (requestOptions != null) {
+                .addPathSegments("v1/assets/assets/create-from-purchase");if (requestOptions != null) {
                   requestOptions.getQueryParameters().forEach((_key, _value) -> {
                     httpUrl.addQueryParameter(_key, _value);
                   } );
@@ -518,7 +520,7 @@ public class RawAssetsClient {
                   ResponseBody responseBody = response.body();
                   String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                   if (response.isSuccessful()) {
-                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsUpdateAssetsResponse.class), response);
+                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsCreateFromPurchaseAssetsResponse.class), response);
                   }
                   try {
                     switch (response.code()) {
@@ -549,21 +551,21 @@ public class RawAssetsClient {
               }
 
               /**
-               * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+               * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
                */
-              public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
-                  AssetsInputVatAssetsRequest request) {
-                return assetsInputVat(request,null);
+              public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
+                  AssetsUpdateAssetsRequest request) {
+                return assetsUpdate(request,null);
               }
 
               /**
-               * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+               * Change an asset that has no posted depreciation yet: group, code, name, dates, cost, salvage value, useful life, notes or documents. Refused with 409 once depreciation is posted or the asset is disposed, and with 422 when the salvage value would reach the acquisition cost; a duplicate code is 409.
                */
-              public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
-                  AssetsInputVatAssetsRequest request, RequestOptions requestOptions) {
+              public NordletApiHttpResponse<AssetsUpdateAssetsResponse> assetsUpdate(
+                  AssetsUpdateAssetsRequest request, RequestOptions requestOptions) {
                 HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                  .addPathSegments("v1/assets/assets/input-vat");if (requestOptions != null) {
+                  .addPathSegments("v1/assets/assets/update");if (requestOptions != null) {
                     requestOptions.getQueryParameters().forEach((_key, _value) -> {
                       httpUrl.addQueryParameter(_key, _value);
                     } );
@@ -593,7 +595,7 @@ public class RawAssetsClient {
                     ResponseBody responseBody = response.body();
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsInputVatAssetsResponse.class), response);
+                      return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsUpdateAssetsResponse.class), response);
                     }
                     try {
                       switch (response.code()) {
@@ -624,21 +626,21 @@ public class RawAssetsClient {
                 }
 
                 /**
-                 * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
+                 * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
                  */
-                public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
-                    AssetsGetAssetsRequest request) {
-                  return assetsGet(request,null);
+                public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
+                    AssetsInputVatAssetsRequest request) {
+                  return assetsInputVat(request,null);
                 }
 
                 /**
-                 * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
+                 * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
                  */
-                public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
-                    AssetsGetAssetsRequest request, RequestOptions requestOptions) {
+                public NordletApiHttpResponse<AssetsInputVatAssetsResponse> assetsInputVat(
+                    AssetsInputVatAssetsRequest request, RequestOptions requestOptions) {
                   HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                    .addPathSegments("v1/assets/assets/get");if (requestOptions != null) {
+                    .addPathSegments("v1/assets/assets/input-vat");if (requestOptions != null) {
                       requestOptions.getQueryParameters().forEach((_key, _value) -> {
                         httpUrl.addQueryParameter(_key, _value);
                       } );
@@ -668,7 +670,7 @@ public class RawAssetsClient {
                       ResponseBody responseBody = response.body();
                       String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                       if (response.isSuccessful()) {
-                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsGetAssetsResponse.class), response);
+                        return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsInputVatAssetsResponse.class), response);
                       }
                       try {
                         switch (response.code()) {
@@ -699,36 +701,21 @@ public class RawAssetsClient {
                   }
 
                   /**
-                   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
+                   * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
                    */
-                  public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList() {
-                    return assetsList(AssetsListAssetsRequest.builder().build());
+                  public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
+                      AssetsGetAssetsRequest request) {
+                    return assetsGet(request,null);
                   }
 
                   /**
-                   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
+                   * Return one fixed asset with its totals (cost including modernisations, accumulated depreciation, net book value, total life in months), its input VAT facts and its disposal.
                    */
-                  public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
-                      RequestOptions requestOptions) {
-                    return assetsList(AssetsListAssetsRequest.builder().build(),requestOptions);
-                  }
-
-                  /**
-                   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
-                   */
-                  public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
-                      AssetsListAssetsRequest request) {
-                    return assetsList(request,null);
-                  }
-
-                  /**
-                   * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
-                   */
-                  public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
-                      AssetsListAssetsRequest request, RequestOptions requestOptions) {
+                  public NordletApiHttpResponse<AssetsGetAssetsResponse> assetsGet(
+                      AssetsGetAssetsRequest request, RequestOptions requestOptions) {
                     HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                      .addPathSegments("v1/assets/assets/list");if (requestOptions != null) {
+                      .addPathSegments("v1/assets/assets/get");if (requestOptions != null) {
                         requestOptions.getQueryParameters().forEach((_key, _value) -> {
                           httpUrl.addQueryParameter(_key, _value);
                         } );
@@ -758,7 +745,7 @@ public class RawAssetsClient {
                         ResponseBody responseBody = response.body();
                         String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                         if (response.isSuccessful()) {
-                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsListAssetsResponse.class), response);
+                          return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsGetAssetsResponse.class), response);
                         }
                         try {
                           switch (response.code()) {
@@ -789,21 +776,36 @@ public class RawAssetsClient {
                     }
 
                     /**
-                     * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
+                     * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
                      */
-                    public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
-                        AssetsModernizeAssetsRequest request) {
-                      return assetsModernize(request,null);
+                    public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList() {
+                      return assetsList(AssetsListAssetsRequest.builder().build());
                     }
 
                     /**
-                     * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
+                     * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
                      */
-                    public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
-                        AssetsModernizeAssetsRequest request, RequestOptions requestOptions) {
+                    public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
+                        RequestOptions requestOptions) {
+                      return assetsList(AssetsListAssetsRequest.builder().build(),requestOptions);
+                    }
+
+                    /**
+                     * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
+                     */
+                    public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
+                        AssetsListAssetsRequest request) {
+                      return assetsList(request,null);
+                    }
+
+                    /**
+                     * List the fixed assets; filterable by <code>code</code>, <code>name</code>, <code>groupId</code>, <code>status</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code> and <code>accumulatedDepreciation</code>, sortable by <code>code</code>, <code>name</code>, <code>acquisitionDate</code>, <code>acquisitionCost</code>, <code>groupName</code> (the name of the asset group), <code>vehiclePlate</code> (the plate number of the linked vehicle), <code>status</code>, <code>totalCost</code> (the acquisition cost plus the modernisations), <code>accumulatedDepreciation</code> and <code>netBookValue</code> (the total cost less the accumulated depreciation, zero when disposed).
+                     */
+                    public NordletApiHttpResponse<AssetsListAssetsResponse> assetsList(
+                        AssetsListAssetsRequest request, RequestOptions requestOptions) {
                       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                        .addPathSegments("v1/assets/assets/modernize");if (requestOptions != null) {
+                        .addPathSegments("v1/assets/assets/list");if (requestOptions != null) {
                           requestOptions.getQueryParameters().forEach((_key, _value) -> {
                             httpUrl.addQueryParameter(_key, _value);
                           } );
@@ -833,7 +835,7 @@ public class RawAssetsClient {
                           ResponseBody responseBody = response.body();
                           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                           if (response.isSuccessful()) {
-                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsModernizeAssetsResponse.class), response);
+                            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsListAssetsResponse.class), response);
                           }
                           try {
                             switch (response.code()) {
@@ -864,21 +866,21 @@ public class RawAssetsClient {
                       }
 
                       /**
-                       * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
+                       * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
                        */
-                      public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
-                          AssetsDisposeAssetsRequest request) {
-                        return assetsDispose(request,null);
+                      public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
+                          AssetsModernizeAssetsRequest request) {
+                        return assetsModernize(request,null);
                       }
 
                       /**
-                       * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
+                       * Record a modernisation of a fixed asset: <code>amount</code> is added to its cost and <code>addedLifeMonths</code> to its useful life from the month of <code>date</code> on, and the remaining depreciable value is spread over the months left. Refused with 422 when the asset is disposed or when no depreciation month would be left (give <code>addedLifeMonths</code> of at least 1); a fully depreciated asset becomes active again.
                        */
-                      public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
-                          AssetsDisposeAssetsRequest request, RequestOptions requestOptions) {
+                      public NordletApiHttpResponse<AssetsModernizeAssetsResponse> assetsModernize(
+                          AssetsModernizeAssetsRequest request, RequestOptions requestOptions) {
                         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                          .addPathSegments("v1/assets/assets/dispose");if (requestOptions != null) {
+                          .addPathSegments("v1/assets/assets/modernize");if (requestOptions != null) {
                             requestOptions.getQueryParameters().forEach((_key, _value) -> {
                               httpUrl.addQueryParameter(_key, _value);
                             } );
@@ -908,7 +910,7 @@ public class RawAssetsClient {
                             ResponseBody responseBody = response.body();
                             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                             if (response.isSuccessful()) {
-                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsDisposeAssetsResponse.class), response);
+                              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsModernizeAssetsResponse.class), response);
                             }
                             try {
                               switch (response.code()) {
@@ -939,22 +941,21 @@ public class RawAssetsClient {
                         }
 
                         /**
-                         * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
+                         * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
                          */
-                        public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
-                            DepreciationPreviewAssetsRequest request) {
-                          return depreciationPreview(request,null);
+                        public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
+                            AssetsDisposeAssetsRequest request) {
+                          return assetsDispose(request,null);
                         }
 
                         /**
-                         * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
+                         * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month. With <code>saleInvoiceId</code> (reason <code>sold</code>) the proceeds are the net of the issued invoice lines that name this asset (<code>assetId</code> on the sales invoice line, converted to the base currency at the invoice rate), <code>proceeds</code> must then be omitted, the buyer is the partner of the disposal entry, and the receivable and the VAT stay on the invoice; 422 when the invoice is not an issued invoice, has no line for the asset, or when <code>proceeds</code> is given with it.
                          */
-                        public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
-                            DepreciationPreviewAssetsRequest request,
-                            RequestOptions requestOptions) {
+                        public NordletApiHttpResponse<AssetsDisposeAssetsResponse> assetsDispose(
+                            AssetsDisposeAssetsRequest request, RequestOptions requestOptions) {
                           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                            .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
+                            .addPathSegments("v1/assets/assets/dispose");if (requestOptions != null) {
                               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                 httpUrl.addQueryParameter(_key, _value);
                               } );
@@ -984,7 +985,7 @@ public class RawAssetsClient {
                               ResponseBody responseBody = response.body();
                               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                               if (response.isSuccessful()) {
-                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPreviewAssetsResponse.class), response);
+                                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssetsDisposeAssetsResponse.class), response);
                               }
                               try {
                                 switch (response.code()) {
@@ -1015,22 +1016,22 @@ public class RawAssetsClient {
                           }
 
                           /**
-                           * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+                           * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
                            */
-                          public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
-                              DepreciationPostAssetsRequest request) {
-                            return depreciationPost(request,null);
+                          public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
+                              DepreciationPreviewAssetsRequest request) {
+                            return depreciationPreview(request,null);
                           }
 
                           /**
-                           * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+                           * Preview what <code>assets/depreciation/post</code> would post for a month: per active asset the amount and the months it covers, earlier unposted months included, and whether the month is already posted. Nothing is written.
                            */
-                          public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
-                              DepreciationPostAssetsRequest request,
+                          public NordletApiHttpResponse<DepreciationPreviewAssetsResponse> depreciationPreview(
+                              DepreciationPreviewAssetsRequest request,
                               RequestOptions requestOptions) {
                             HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-                              .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                              .addPathSegments("v1/assets/depreciation/preview");if (requestOptions != null) {
                                 requestOptions.getQueryParameters().forEach((_key, _value) -> {
                                   httpUrl.addQueryParameter(_key, _value);
                                 } );
@@ -1060,7 +1061,7 @@ public class RawAssetsClient {
                                 ResponseBody responseBody = response.body();
                                 String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                                 if (response.isSuccessful()) {
-                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPostAssetsResponse.class), response);
+                                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPreviewAssetsResponse.class), response);
                                 }
                                 try {
                                   switch (response.code()) {
@@ -1089,4 +1090,80 @@ public class RawAssetsClient {
                                 throw new NordletApiException("Network error executing HTTP request", e);
                               }
                             }
-                          }
+
+                            /**
+                             * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+                             */
+                            public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
+                                DepreciationPostAssetsRequest request) {
+                              return depreciationPost(request,null);
+                            }
+
+                            /**
+                             * Post the depreciation of a month: one journal entry dated the last day of the month that debits each group's expense account and credits its accumulated depreciation account, for every active asset whose depreciation has started, covering that month and any earlier month not yet posted. Each month's amount is the remaining depreciable value (cost plus modernisations less salvage value less accumulated depreciation) divided by the months left; an asset whose life or value is used up becomes <code>fully_depreciated</code>. Answers 409 when the period is locked, and <code>journalTransactionId</code> null when nothing is due.
+                             */
+                            public NordletApiHttpResponse<DepreciationPostAssetsResponse> depreciationPost(
+                                DepreciationPostAssetsRequest request,
+                                RequestOptions requestOptions) {
+                              HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+                                .addPathSegments("v1/assets/depreciation/post");if (requestOptions != null) {
+                                  requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                                    httpUrl.addQueryParameter(_key, _value);
+                                  } );
+                                }
+                                RequestBody body;
+                                try {
+                                  body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+                                }
+                                catch(JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to serialize request", e);
+                                }
+                                Request okhttpRequest = new Request.Builder()
+                                  .url(httpUrl.build())
+                                  .method("POST", body)
+                                  .headers(Headers.of(clientOptions.headers(requestOptions)))
+                                  .addHeader("Content-Type", "application/json")
+                                  .addHeader("Accept", "application/json")
+                                  .build();
+                                OkHttpClient client = clientOptions.httpClient();
+                                if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                                  client = clientOptions.httpClientWithTimeout(requestOptions);
+                                }
+                                if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                                  okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+                                }
+                                try (Response response = client.newCall(okhttpRequest).execute()) {
+                                  ResponseBody responseBody = response.body();
+                                  String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                                  if (response.isSuccessful()) {
+                                    return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DepreciationPostAssetsResponse.class), response);
+                                  }
+                                  try {
+                                    switch (response.code()) {
+                                      case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                      case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                                    }
+                                  }
+                                  catch (JsonProcessingException ignored) {
+                                    // unable to map error response, throwing generic error
+                                  }
+                                  Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                                  throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+                                }
+                                catch (JsonProcessingException e) {
+                                  throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+                                }
+                                catch (IOException e) {
+                                  throw new NordletApiException("Network error executing HTTP request", e);
+                                }
+                              }
+                            }

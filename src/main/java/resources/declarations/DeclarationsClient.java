@@ -32,7 +32,10 @@ import com.nordlet.api.resources.declarations.requests.DeReturnFactsGetDeclarati
 import com.nordlet.api.resources.declarations.requests.DeReturnFactsSetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DeReturnsGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.DkSelskabsskatGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EeEmploymentRegisterGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EeEmploymentRegisterSendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EeTsdAnnexesGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EeTsdAnnexesSetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EsVerifactuDeclaracionResponsableDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuDac7PreviewDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuDac7XmlDeclarationsRequest;
@@ -40,6 +43,7 @@ import com.nordlet.api.resources.declarations.requests.EuDigitalReportingListDec
 import com.nordlet.api.resources.declarations.requests.EuDistanceSalesThresholdGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuIossComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuOssComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.EuOssNonUnionComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuOwnGoodsTransfersComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeCrossBorderReportComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.EuSmeThresholdGetDeclarationsRequest;
@@ -63,8 +67,15 @@ import com.nordlet.api.resources.declarations.requests.GbVatPenaltiesGetDeclarat
 import com.nordlet.api.resources.declarations.requests.GbVatReturnsGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.IeB1GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.IeCt1GenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.IeRtdGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItInailAutoliquidazioneComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItInailAutoliquidazioneF24DeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.ItSdiPurchasePreviewDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.ItSdiPurchaseSendDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItTfrAccrualComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItTfrAccrualPostDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItTfrRevaluationComputeDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.ItTfrRevaluationPostDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.LiLohndeklarationGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.LiLohnlistenGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.LtFr0564ComputeDeclarationsRequest;
@@ -84,8 +95,10 @@ import com.nordlet.api.resources.declarations.requests.LtSaftSendDeclarationsReq
 import com.nordlet.api.resources.declarations.requests.LtSamComputeDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.LtSdFfdataDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.LtSdGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.LvEmployeeNoticeGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.MtAnnualReturnGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.MtCompanyTaxGenerateDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.MtFs7GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.PlCit8GenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.PlIntrastatGenerateDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.PlJpkFaGenerateDeclarationsRequest;
@@ -131,6 +144,8 @@ import com.nordlet.api.resources.declarations.requests.UsSalesTaxGetDeclarations
 import com.nordlet.api.resources.declarations.requests.UsStateSalesGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsW2ListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.UsWorkweeksListDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.VatProrataAdjustmentGetDeclarationsRequest;
+import com.nordlet.api.resources.declarations.requests.VatProrataAdjustmentPostDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataGetDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataListDeclarationsRequest;
 import com.nordlet.api.resources.declarations.requests.VatProrataSetDeclarationsRequest;
@@ -160,7 +175,10 @@ import com.nordlet.api.resources.declarations.types.DeReturnFactsGetDeclarations
 import com.nordlet.api.resources.declarations.types.DeReturnFactsSetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DeReturnsGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.DkSelskabsskatGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EeEmploymentRegisterGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EeEmploymentRegisterSendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EeTsdAnnexesGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EeTsdAnnexesSetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EsVerifactuDeclaracionResponsableDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuDac7PreviewDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuDac7XmlDeclarationsResponse;
@@ -168,6 +186,7 @@ import com.nordlet.api.resources.declarations.types.EuDigitalReportingListDeclar
 import com.nordlet.api.resources.declarations.types.EuDistanceSalesThresholdGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuIossComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuOssComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.EuOssNonUnionComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuOwnGoodsTransfersComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeCrossBorderReportComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.EuSmeThresholdGetDeclarationsResponse;
@@ -190,8 +209,15 @@ import com.nordlet.api.resources.declarations.types.GbVatPaymentsListDeclaration
 import com.nordlet.api.resources.declarations.types.GbVatReturnsGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.IeB1GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.IeCt1GenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.IeRtdGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItInailAutoliquidazioneComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItInailAutoliquidazioneF24DeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.ItSdiPurchasePreviewDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.ItSdiPurchaseSendDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItTfrAccrualComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItTfrAccrualPostDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItTfrRevaluationComputeDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.ItTfrRevaluationPostDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.LiLohndeklarationGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.LiLohnlistenGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.LtFr0564ComputeDeclarationsResponse;
@@ -211,8 +237,10 @@ import com.nordlet.api.resources.declarations.types.LtSaftSendDeclarationsRespon
 import com.nordlet.api.resources.declarations.types.LtSamComputeDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.LtSdFfdataDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.LtSdGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.LvEmployeeNoticeGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.MtAnnualReturnGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.MtCompanyTaxGenerateDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.MtFs7GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.PlCit8GenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.PlIntrastatGenerateDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.PlJpkFaGenerateDeclarationsResponse;
@@ -258,6 +286,8 @@ import com.nordlet.api.resources.declarations.types.UsSalesTaxGetDeclarationsRes
 import com.nordlet.api.resources.declarations.types.UsStateSalesGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsW2ListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.UsWorkweeksListDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.VatProrataAdjustmentGetDeclarationsResponse;
+import com.nordlet.api.resources.declarations.types.VatProrataAdjustmentPostDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataGetDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataListDeclarationsResponse;
 import com.nordlet.api.resources.declarations.types.VatProrataSetDeclarationsResponse;
@@ -515,6 +545,22 @@ public class DeclarationsClient {
   public EuOssComputeDeclarationsResponse euOssCompute(EuOssComputeDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.euOssCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Computes the non-Union OSS return of a quarter (Directive 2006/112/EC art. 358a to 369k) from the issued invoices and credit notes with the <code>oss_non_union</code> VAT scheme: services to consumers in the EU by a company established outside it. The rows, corrections and EUR conversion are those of <code>declarations/eu/oss/compute</code> (art. 365: per Member State of consumption the value without VAT and the VAT per rate; amendments of an earlier return in a later one within three years; art. 366: euro at the rate of the last day of the period). <code>memberStateOfIdentification</code> is the Member State the company registered with for the scheme (art. 358a(2)). Answers 422 when the company is established in the EU.
+   */
+  public EuOssNonUnionComputeDeclarationsResponse euOssNonUnionCompute(
+      EuOssNonUnionComputeDeclarationsRequest request) {
+    return this.rawClient.euOssNonUnionCompute(request).body();
+  }
+
+  /**
+   * Computes the non-Union OSS return of a quarter (Directive 2006/112/EC art. 358a to 369k) from the issued invoices and credit notes with the <code>oss_non_union</code> VAT scheme: services to consumers in the EU by a company established outside it. The rows, corrections and EUR conversion are those of <code>declarations/eu/oss/compute</code> (art. 365: per Member State of consumption the value without VAT and the VAT per rate; amendments of an earlier return in a later one within three years; art. 366: euro at the rate of the last day of the period). <code>memberStateOfIdentification</code> is the Member State the company registered with for the scheme (art. 358a(2)). Answers 422 when the company is established in the EU.
+   */
+  public EuOssNonUnionComputeDeclarationsResponse euOssNonUnionCompute(
+      EuOssNonUnionComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.euOssNonUnionCompute(request, requestOptions).body();
   }
 
   /**
@@ -812,7 +858,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
+   * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Answers 422 naming the lines when an intra-EU goods line has no CN code: a product item without an eight-digit <code>cnCode</code>, or a line without a product item whose VAT type is an intra-EU supply or acquisition of goods; lines of a triangular trade in which the company is the intermediary are left out. The IST message itself goes out from the Intrastat deadline in the calendar.
    */
   public PlIntrastatGenerateDeclarationsResponse plIntrastatGenerate(
       PlIntrastatGenerateDeclarationsRequest request) {
@@ -820,7 +866,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
+   * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Answers 422 naming the lines when an intra-EU goods line has no CN code: a product item without an eight-digit <code>cnCode</code>, or a line without a product item whose VAT type is an intra-EU supply or acquisition of goods; lines of a triangular trade in which the company is the intermediary are left out. The IST message itself goes out from the Intrastat deadline in the calendar.
    */
   public PlIntrastatGenerateDeclarationsResponse plIntrastatGenerate(
       PlIntrastatGenerateDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1017,14 +1063,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+   * Sets the provisional pro-rata percentage of the company for a calendar year (<code>fiscalYear</code>). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed. The year-end adjustment to the definitive pro-rata is <code>declarations/vat-prorata/adjustment/get</code> and <code>post</code>.
    */
   public VatProrataSetDeclarationsResponse vatProrataSet(VatProrataSetDeclarationsRequest request) {
     return this.rawClient.vatProrataSet(request).body();
   }
 
   /**
-   * Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+   * Sets the provisional pro-rata percentage of the company for a calendar year (<code>fiscalYear</code>). Purchase lines on a VAT type marked pro-rata (<code>prorata</code>) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and <code>purchases/invoices/register</code> answers the warning <code>prorata_not_set</code>. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed. The year-end adjustment to the definitive pro-rata is <code>declarations/vat-prorata/adjustment/get</code> and <code>post</code>.
    */
   public VatProrataSetDeclarationsResponse vatProrataSet(VatProrataSetDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -1044,6 +1090,38 @@ public class DeclarationsClient {
   public VatProrataGetDeclarationsResponse vatProrataGet(VatProrataGetDeclarationsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.vatProrataGet(request, requestOptions).body();
+  }
+
+  /**
+   * Computes the definitive pro-rata of a calendar year and the adjustment of the VAT deducted at the provisional pro-rata (Codul fiscal art. 300 alin. (8), (12) and (14)), for a Romanian company. <code>computedPercent</code> is the supplies of the year with the right of deduction (D300 rows 1, 3, 9-11, 13, 14, 16-18 and the regularisations) over those plus the supplies without it (row 15), net of credit notes and of the sale invoices of disposed fixed assets (alin. (7) lit. a)), rounded up to the next whole percent. <code>definitivePercent</code> in the body replaces it, for the exclusions Nordlet does not detect or a special pro-rata (alin. (16)). <code>proRataVat</code> is the VAT of the year's purchase lines on pro-rata VAT types before the pro-rata, <code>deductedVat</code> what the VAT returns deducted at the provisional percentage, <code>adjustment</code> the definitive deductible VAT less <code>deductedVat</code> (positive: more VAT to deduct). 422 for a company outside Romania.
+   */
+  public VatProrataAdjustmentGetDeclarationsResponse vatProrataAdjustmentGet(
+      VatProrataAdjustmentGetDeclarationsRequest request) {
+    return this.rawClient.vatProrataAdjustmentGet(request).body();
+  }
+
+  /**
+   * Computes the definitive pro-rata of a calendar year and the adjustment of the VAT deducted at the provisional pro-rata (Codul fiscal art. 300 alin. (8), (12) and (14)), for a Romanian company. <code>computedPercent</code> is the supplies of the year with the right of deduction (D300 rows 1, 3, 9-11, 13, 14, 16-18 and the regularisations) over those plus the supplies without it (row 15), net of credit notes and of the sale invoices of disposed fixed assets (alin. (7) lit. a)), rounded up to the next whole percent. <code>definitivePercent</code> in the body replaces it, for the exclusions Nordlet does not detect or a special pro-rata (alin. (16)). <code>proRataVat</code> is the VAT of the year's purchase lines on pro-rata VAT types before the pro-rata, <code>deductedVat</code> what the VAT returns deducted at the provisional percentage, <code>adjustment</code> the definitive deductible VAT less <code>deductedVat</code> (positive: more VAT to deduct). 422 for a company outside Romania.
+   */
+  public VatProrataAdjustmentGetDeclarationsResponse vatProrataAdjustmentGet(
+      VatProrataAdjustmentGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatProrataAdjustmentGet(request, requestOptions).body();
+  }
+
+  /**
+   * Posts the <code>adjustment</code> of <code>declarations/vat-prorata/adjustment/get</code> as a journal transaction (<code>documentType</code> <code>vat_prorata_adjustment</code>, <code>documentId</code> the year) dated 31 December: a positive adjustment debits the <code>purchases.vatReceivable</code> posting rule account and credits <code>accountCode</code>, a negative one the other way round. The D300 of the period that contains 31 December declares it in row 34 (<code>R31_2</code>, Ajustări conform pro-rata), as Codul fiscal art. 300 alin. (14) lit. b) and the OPANAF 174/2026 instructions say. 422 when there is no adjustment or it is zero, for a company outside Romania and for an account that is missing or not postable; 409 when the period is locked and when the year already has an adjustment that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public VatProrataAdjustmentPostDeclarationsResponse vatProrataAdjustmentPost(
+      VatProrataAdjustmentPostDeclarationsRequest request) {
+    return this.rawClient.vatProrataAdjustmentPost(request).body();
+  }
+
+  /**
+   * Posts the <code>adjustment</code> of <code>declarations/vat-prorata/adjustment/get</code> as a journal transaction (<code>documentType</code> <code>vat_prorata_adjustment</code>, <code>documentId</code> the year) dated 31 December: a positive adjustment debits the <code>purchases.vatReceivable</code> posting rule account and credits <code>accountCode</code>, a negative one the other way round. The D300 of the period that contains 31 December declares it in row 34 (<code>R31_2</code>, Ajustări conform pro-rata), as Codul fiscal art. 300 alin. (14) lit. b) and the OPANAF 174/2026 instructions say. 422 when there is no adjustment or it is zero, for a company outside Romania and for an account that is missing or not postable; 409 when the period is locked and when the year already has an adjustment that is not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public VatProrataAdjustmentPostDeclarationsResponse vatProrataAdjustmentPost(
+      VatProrataAdjustmentPostDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.vatProrataAdjustmentPost(request, requestOptions).body();
   }
 
   /**
@@ -1284,14 +1362,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (ledger/statement-rows/set). Refused with 422 for a company without the cash-basis flag.
    */
   public DeEuerGetDeclarationsResponse deEuerGet(DeEuerGetDeclarationsRequest request) {
     return this.rawClient.deEuerGet(request).body();
   }
 
   /**
-   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (Account → Statement rows). Refused with 422 for a company without the cash-basis flag.
+   * The Anlage EÜR and the Anlage AVEÜR of a year for a company that determines its profit on a cash basis (§ 4 Abs. 3 EStG), as the Zeilen and Kennzahlen of the official 2025 forms with their amounts: the receipts and payments of the year from the invoice payments (each payment split over the lines of its invoice), the payroll and tax payments and the journal transactions on cash and bank accounts, and the asset register for the Anlage AVEÜR and the AfA. Accounts are placed on the Zeilen through the de-euer statement scheme (ledger/statement-rows/set). Refused with 422 for a company without the cash-basis flag.
    */
   public DeEuerGetDeclarationsResponse deEuerGet(DeEuerGetDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -1379,6 +1457,54 @@ public class DeclarationsClient {
   }
 
   /**
+   * The figures of TSD annexes 4 (fringe benefits), 5 (gifts, donations and entertainment costs) and 6 (non-business expenses and other payments) entered for a month, and the annexes Nordlet calculates from them: the calculated codes, the income tax added to code 114 and the social tax (code 4180) added to code 115. Annex 5 sums the year: the gifts to listed persons and the entertainment costs of the earlier months, and the personalised social-taxed payments of annex 1 from the payroll runs paid in the year so far. The <code>ee-cit-return</code> file carries the annexes next to annex 7. From 2025 (rate 22/78).
+   */
+  public EeTsdAnnexesGetDeclarationsResponse eeTsdAnnexesGet(
+      EeTsdAnnexesGetDeclarationsRequest request) {
+    return this.rawClient.eeTsdAnnexesGet(request).body();
+  }
+
+  /**
+   * The figures of TSD annexes 4 (fringe benefits), 5 (gifts, donations and entertainment costs) and 6 (non-business expenses and other payments) entered for a month, and the annexes Nordlet calculates from them: the calculated codes, the income tax added to code 114 and the social tax (code 4180) added to code 115. Annex 5 sums the year: the gifts to listed persons and the entertainment costs of the earlier months, and the personalised social-taxed payments of annex 1 from the payroll runs paid in the year so far. The <code>ee-cit-return</code> file carries the annexes next to annex 7. From 2025 (rate 22/78).
+   */
+  public EeTsdAnnexesGetDeclarationsResponse eeTsdAnnexesGet(
+      EeTsdAnnexesGetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.eeTsdAnnexesGet(request, requestOptions).body();
+  }
+
+  /**
+   * Replace the figures of TSD annexes 4, 5 and 6 for a month; an annex left out is not filed that month, and a body with no annex removes the month. Amounts are the figures the form asks the company to enter; Nordlet calculates the rest (4060, 4070, 4080, 4090, 4140, 4170, 4180, 4181; 5020, 5030 or 5050, 5060 to 5090, 5110 to 5170, 5190; 6000, 6140 to 6170) and refuses (422) a month whose figures do not compute. Annex 5 part II (<code>listedPersonTaxableGifts</code>, 5180) is for a person on the TuMS § 11 lg 1 list and excludes part I.
+   */
+  public EeTsdAnnexesSetDeclarationsResponse eeTsdAnnexesSet(
+      EeTsdAnnexesSetDeclarationsRequest request) {
+    return this.rawClient.eeTsdAnnexesSet(request).body();
+  }
+
+  /**
+   * Replace the figures of TSD annexes 4, 5 and 6 for a month; an annex left out is not filed that month, and a body with no annex removes the month. Amounts are the figures the form asks the company to enter; Nordlet calculates the rest (4060, 4070, 4080, 4090, 4140, 4170, 4180, 4181; 5020, 5030 or 5050, 5060 to 5090, 5110 to 5170, 5190; 6000, 6140 to 6170) and refuses (422) a month whose figures do not compute. Annex 5 part II (<code>listedPersonTaxableGifts</code>, 5180) is for a person on the TuMS § 11 lg 1 list and excludes part I.
+   */
+  public EeTsdAnnexesSetDeclarationsResponse eeTsdAnnexesSet(
+      EeTsdAnnexesSetDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.eeTsdAnnexesSet(request, requestOptions).body();
+  }
+
+  /**
+   * Build, without sending, the employment register (töötamise register) entry for an employment contract: the start of work, or its end with the reason recorded on the contract, as the TOOTREG v2 XML that <code>employment-register/send</code> sends to e-MTA over X-tee.
+   */
+  public EeEmploymentRegisterGenerateDeclarationsResponse eeEmploymentRegisterGenerate(
+      EeEmploymentRegisterGenerateDeclarationsRequest request) {
+    return this.rawClient.eeEmploymentRegisterGenerate(request).body();
+  }
+
+  /**
+   * Build, without sending, the employment register (töötamise register) entry for an employment contract: the start of work, or its end with the reason recorded on the contract, as the TOOTREG v2 XML that <code>employment-register/send</code> sends to e-MTA over X-tee.
+   */
+  public EeEmploymentRegisterGenerateDeclarationsResponse eeEmploymentRegisterGenerate(
+      EeEmploymentRegisterGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.eeEmploymentRegisterGenerate(request, requestOptions).body();
+  }
+
+  /**
    * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
    */
   public EeEmploymentRegisterSendDeclarationsResponse eeEmploymentRegisterSend(
@@ -1441,14 +1567,14 @@ public class DeclarationsClient {
   }
 
   /**
-   * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Account → Officers, the members from Account → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+   * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary recorded with officers/create, the members recorded with ledger/owners/create, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
    */
   public IeB1GenerateDeclarationsResponse ieB1Generate(IeB1GenerateDeclarationsRequest request) {
     return this.rawClient.ieB1Generate(request).body();
   }
 
   /**
-   * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Account → Officers, the members from Account → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+   * Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary recorded with officers/create, the members recorded with ledger/owners/create, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
    */
   public IeB1GenerateDeclarationsResponse ieB1Generate(IeB1GenerateDeclarationsRequest request,
       RequestOptions requestOptions) {
@@ -1456,7 +1582,22 @@ public class DeclarationsClient {
   }
 
   /**
-   * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+   * Build the Return of Trading Details of a calendar year from the issued sale documents and the registered purchase invoices: the net value of supplies, intra-Community acquisitions, purchases for resale and purchases not for resale, in whole euro, by Irish VAT rate, in the order the ROS screen asks for them. Revenue publishes no upload format for the RTD, so the figures are keyed into ROS; <code>xml</code> is a working paper, not a file ROS accepts.
+   */
+  public IeRtdGenerateDeclarationsResponse ieRtdGenerate(IeRtdGenerateDeclarationsRequest request) {
+    return this.rawClient.ieRtdGenerate(request).body();
+  }
+
+  /**
+   * Build the Return of Trading Details of a calendar year from the issued sale documents and the registered purchase invoices: the net value of supplies, intra-Community acquisitions, purchases for resale and purchases not for resale, in whole euro, by Irish VAT rate, in the order the ROS screen asks for them. Revenue publishes no upload format for the RTD, so the figures are keyed into ROS; <code>xml</code> is a working paper, not a file ROS accepts.
+   */
+  public IeRtdGenerateDeclarationsResponse ieRtdGenerate(IeRtdGenerateDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.ieRtdGenerate(request, requestOptions).body();
+  }
+
+  /**
+   * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed. The document type is <code>tipoDocumento</code> when given, else the one the VAT types of the lines name (TD17-<em>, TD18-</em>, TD19-*; 422 when the lines name different ones), else TD18 or TD19 for catalog products and TD17 otherwise. Lines whose VAT type is import VAT paid at customs are left out, and a purchase with only such lines is refused with 422: the customs declaration documents it (art. 77 c. 4 of the Testo unico IVA, DLgs 10/2026).
    */
   public ItSdiPurchaseSendDeclarationsResponse itSdiPurchaseSend(
       ItSdiPurchaseSendDeclarationsRequest request) {
@@ -1464,7 +1605,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
+   * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed. The document type is <code>tipoDocumento</code> when given, else the one the VAT types of the lines name (TD17-<em>, TD18-</em>, TD19-*; 422 when the lines name different ones), else TD18 or TD19 for catalog products and TD17 otherwise. Lines whose VAT type is import VAT paid at customs are left out, and a purchase with only such lines is refused with 422: the customs declaration documents it (art. 77 c. 4 of the Testo unico IVA, DLgs 10/2026).
    */
   public ItSdiPurchaseSendDeclarationsResponse itSdiPurchaseSend(
       ItSdiPurchaseSendDeclarationsRequest request, RequestOptions requestOptions) {
@@ -1472,7 +1613,7 @@ public class DeclarationsClient {
   }
 
   /**
-   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first. The document type and the customs lines are decided as in <code>declarations/it/sdi/purchase-send</code>.
    */
   public ItSdiPurchasePreviewDeclarationsResponse itSdiPurchasePreview(
       ItSdiPurchasePreviewDeclarationsRequest request) {
@@ -1480,11 +1621,107 @@ public class DeclarationsClient {
   }
 
   /**
-   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
+   * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first. The document type and the customs lines are decided as in <code>declarations/it/sdi/purchase-send</code>.
    */
   public ItSdiPurchasePreviewDeclarationsResponse itSdiPurchasePreview(
       ItSdiPurchasePreviewDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.itSdiPurchasePreview(request, requestOptions).body();
+  }
+
+  /**
+   * Compute the TFR of each employee in the approved payroll run of <code>year</code> and <code>month</code>: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (<code>retribuzione</code>), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in <code>includePaymentTypes</code>, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). <code>destination</code> is the employee option <code>itTfrDestinazione</code>: <code>azienda</code> (default, kept in the company), <code>fondo-tesoreria</code> or <code>previdenza-complementare</code>.
+   */
+  public ItTfrAccrualComputeDeclarationsResponse itTfrAccrualCompute(
+      ItTfrAccrualComputeDeclarationsRequest request) {
+    return this.rawClient.itTfrAccrualCompute(request).body();
+  }
+
+  /**
+   * Compute the TFR of each employee in the approved payroll run of <code>year</code> and <code>month</code>: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (<code>retribuzione</code>), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in <code>includePaymentTypes</code>, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). <code>destination</code> is the employee option <code>itTfrDestinazione</code>: <code>azienda</code> (default, kept in the company), <code>fondo-tesoreria</code> or <code>previdenza-complementare</code>.
+   */
+  public ItTfrAccrualComputeDeclarationsResponse itTfrAccrualCompute(
+      ItTfrAccrualComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itTfrAccrualCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Post the TFR of each employee in the approved payroll run of <code>year</code> and <code>month</code>: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (<code>retribuzione</code>), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in <code>includePaymentTypes</code>, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). <code>destination</code> is the employee option <code>itTfrDestinazione</code>: <code>azienda</code> (default, kept in the company), <code>fondo-tesoreria</code> or <code>previdenza-complementare</code>. The journal transaction (<code>documentType</code> <code>it_tfr_accrual</code>, <code>documentId</code> YYYY-MM) is dated the last day of the month: debit <code>expenseAccountCode</code> (B9 c) with the whole accrual, credit <code>fundAccountCode</code> (liability C) with the TFR kept in the company and <code>payableAccountCode</code> (D14) with the TFR due to the Fondo di Tesoreria or a pension fund (OIC 31 §§ 60-76). 422 when there is nothing to accrue or an account the accrual needs is missing; 409 when the accounting period is locked and when the month is already posted and not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public ItTfrAccrualPostDeclarationsResponse itTfrAccrualPost(
+      ItTfrAccrualPostDeclarationsRequest request) {
+    return this.rawClient.itTfrAccrualPost(request).body();
+  }
+
+  /**
+   * Post the TFR of each employee in the approved payroll run of <code>year</code> and <code>month</code>: the quota is the TFR base divided by 13.5 (art. 2120 c. 2 c.c.), less the 0.50% contribution of art. 3 L. 297/1982 on the base of the employee's INPS IVS contribution. The TFR base is the pay of the period (<code>retribuzione</code>), the tredicesima, the quattordicesima and the benefit in kind; other payment types count only when listed in <code>includePaymentTypes</code>, because art. 2120 c. 3 counts a payment only when it is not occasional and the collective agreement may say otherwise (tips and the TFR paid out are refused). <code>destination</code> is the employee option <code>itTfrDestinazione</code>: <code>azienda</code> (default, kept in the company), <code>fondo-tesoreria</code> or <code>previdenza-complementare</code>. The journal transaction (<code>documentType</code> <code>it_tfr_accrual</code>, <code>documentId</code> YYYY-MM) is dated the last day of the month: debit <code>expenseAccountCode</code> (B9 c) with the whole accrual, credit <code>fundAccountCode</code> (liability C) with the TFR kept in the company and <code>payableAccountCode</code> (D14) with the TFR due to the Fondo di Tesoreria or a pension fund (OIC 31 §§ 60-76). 422 when there is nothing to accrue or an account the accrual needs is missing; 409 when the accounting period is locked and when the month is already posted and not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public ItTfrAccrualPostDeclarationsResponse itTfrAccrualPost(
+      ItTfrAccrualPostDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itTfrAccrualPost(request, requestOptions).body();
+  }
+
+  /**
+   * Compute the revaluation at 31 December of <code>year</code> of the TFR kept in the company (art. 2120 c. 5 c.c.): each <code>funds</code> amount is the TFR of the employee at 31 December of the previous year, without the quota of <code>year</code>, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (<code>foiDecember</code>) against the previous December (<code>foiPreviousDecember</code>), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; <code>accontoNextYear</code> is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before <code>year</code> is left out with a warning, because art. 2120 c. 6 revalues to the month of termination.
+   */
+  public ItTfrRevaluationComputeDeclarationsResponse itTfrRevaluationCompute(
+      ItTfrRevaluationComputeDeclarationsRequest request) {
+    return this.rawClient.itTfrRevaluationCompute(request).body();
+  }
+
+  /**
+   * Compute the revaluation at 31 December of <code>year</code> of the TFR kept in the company (art. 2120 c. 5 c.c.): each <code>funds</code> amount is the TFR of the employee at 31 December of the previous year, without the quota of <code>year</code>, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (<code>foiDecember</code>) against the previous December (<code>foiPreviousDecember</code>), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; <code>accontoNextYear</code> is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before <code>year</code> is left out with a warning, because art. 2120 c. 6 revalues to the month of termination.
+   */
+  public ItTfrRevaluationComputeDeclarationsResponse itTfrRevaluationCompute(
+      ItTfrRevaluationComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itTfrRevaluationCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Post the revaluation at 31 December of <code>year</code> of the TFR kept in the company (art. 2120 c. 5 c.c.): each <code>funds</code> amount is the TFR of the employee at 31 December of the previous year, without the quota of <code>year</code>, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (<code>foiDecember</code>) against the previous December (<code>foiPreviousDecember</code>), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; <code>accontoNextYear</code> is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before <code>year</code> is left out with a warning, because art. 2120 c. 6 revalues to the month of termination. The journal transaction (<code>documentType</code> <code>it_tfr_revaluation</code>, <code>documentId</code> the year) is dated 31 December: debit <code>expenseAccountCode</code> (B9 c) with the revaluation, credit <code>fundAccountCode</code> (liability C) with the revaluation less the tax and <code>taxAccountCode</code> with the tax. 422 when there is nothing to revalue; 409 when the accounting period is locked and when the year is already posted and not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public ItTfrRevaluationPostDeclarationsResponse itTfrRevaluationPost(
+      ItTfrRevaluationPostDeclarationsRequest request) {
+    return this.rawClient.itTfrRevaluationPost(request).body();
+  }
+
+  /**
+   * Post the revaluation at 31 December of <code>year</code> of the TFR kept in the company (art. 2120 c. 5 c.c.): each <code>funds</code> amount is the TFR of the employee at 31 December of the previous year, without the quota of <code>year</code>, as the company keeps it; the rate is 1.5% plus 75% of the increase of the ISTAT FOI index of December (<code>foiDecember</code>) against the previous December (<code>foiPreviousDecember</code>), not rounded, and a fall of the index adds nothing. The 17% substitute tax (art. 11 c. 3 D.Lgs. 47/2000) is taken from the revaluation and paid with F24 code 1713 by 16 February; <code>accontoNextYear</code> is the acconto of the next year (code 1712, 16 December) at 17% of 90% of the revaluation. An employee who left in or before <code>year</code> is left out with a warning, because art. 2120 c. 6 revalues to the month of termination. The journal transaction (<code>documentType</code> <code>it_tfr_revaluation</code>, <code>documentId</code> the year) is dated 31 December: debit <code>expenseAccountCode</code> (B9 c) with the revaluation, credit <code>fundAccountCode</code> (liability C) with the revaluation less the tax and <code>taxAccountCode</code> with the tax. 422 when there is nothing to revalue; 409 when the accounting period is locked and when the year is already posted and not reversed (reverse it with <code>ledger/journal/transactions/reverse</code>).
+   */
+  public ItTfrRevaluationPostDeclarationsResponse itTfrRevaluationPost(
+      ItTfrRevaluationPostDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itTfrRevaluationPost(request, requestOptions).body();
+  }
+
+  /**
+   * Compute the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of <code>year</code> + 1: the regolazione of <code>year</code> on the wages paid in <code>year</code> and the rata of <code>year</code> + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in <code>year</code> (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of <code>positions</code> is a PAT and voce of the INAIL basi di calcolo with its <code>tassoRegolazione</code> and <code>tassoRata</code> (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (<code>riduzioneRegolazione</code>, <code>riduzioneRata</code>), the partly exempt wages (<code>quoteEsenti</code>), a lower presumed wage for the rata communicated to INAIL (<code>retribuzioniRata</code>) and the employees it covers (<code>employeeIds</code>, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts <code>rataAnticipata</code>, the rata requested for <code>year</code> in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With <code>rateazione</code> the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With <code>codiceDitta</code>, <code>codiceDittaControlCode</code> and <code>sedeInail</code> the response carries the F24 INAIL row: numero di riferimento 90 followed by <code>year</code> + 1, causale P.
+   */
+  public ItInailAutoliquidazioneComputeDeclarationsResponse itInailAutoliquidazioneCompute(
+      ItInailAutoliquidazioneComputeDeclarationsRequest request) {
+    return this.rawClient.itInailAutoliquidazioneCompute(request).body();
+  }
+
+  /**
+   * Compute the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of <code>year</code> + 1: the regolazione of <code>year</code> on the wages paid in <code>year</code> and the rata of <code>year</code> + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in <code>year</code> (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of <code>positions</code> is a PAT and voce of the INAIL basi di calcolo with its <code>tassoRegolazione</code> and <code>tassoRata</code> (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (<code>riduzioneRegolazione</code>, <code>riduzioneRata</code>), the partly exempt wages (<code>quoteEsenti</code>), a lower presumed wage for the rata communicated to INAIL (<code>retribuzioniRata</code>) and the employees it covers (<code>employeeIds</code>, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts <code>rataAnticipata</code>, the rata requested for <code>year</code> in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With <code>rateazione</code> the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With <code>codiceDitta</code>, <code>codiceDittaControlCode</code> and <code>sedeInail</code> the response carries the F24 INAIL row: numero di riferimento 90 followed by <code>year</code> + 1, causale P.
+   */
+  public ItInailAutoliquidazioneComputeDeclarationsResponse itInailAutoliquidazioneCompute(
+      ItInailAutoliquidazioneComputeDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itInailAutoliquidazioneCompute(request, requestOptions).body();
+  }
+
+  /**
+   * Build the F24 telematic file (Agenzia delle Entrate specification for taxpayers, records A, M, V and Z) that pays instalment <code>instalment</code> (1 for the single payment) of the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of <code>year</code> + 1: the regolazione of <code>year</code> on the wages paid in <code>year</code> and the rata of <code>year</code> + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in <code>year</code> (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of <code>positions</code> is a PAT and voce of the INAIL basi di calcolo with its <code>tassoRegolazione</code> and <code>tassoRata</code> (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (<code>riduzioneRegolazione</code>, <code>riduzioneRata</code>), the partly exempt wages (<code>quoteEsenti</code>), a lower presumed wage for the rata communicated to INAIL (<code>retribuzioniRata</code>) and the employees it covers (<code>employeeIds</code>, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts <code>rataAnticipata</code>, the rata requested for <code>year</code> in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With <code>rateazione</code> the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With <code>codiceDitta</code>, <code>codiceDittaControlCode</code> and <code>sedeInail</code> the response carries the F24 INAIL row: numero di riferimento 90 followed by <code>year</code> + 1, causale P. The file carries the INAIL row only, dated the instalment's due date; the debit account is given when the file is authenticated unless the company has exactly one active EUR account with an Italian IBAN. 422 without <code>codiceDitta</code>, when nothing is due (a credit is compensated in another F24) and for an instalment whose interest coefficients are not recorded.
+   */
+  public ItInailAutoliquidazioneF24DeclarationsResponse itInailAutoliquidazioneF24(
+      ItInailAutoliquidazioneF24DeclarationsRequest request) {
+    return this.rawClient.itInailAutoliquidazioneF24(request).body();
+  }
+
+  /**
+   * Build the F24 telematic file (Agenzia delle Entrate specification for taxpayers, records A, M, V and Z) that pays instalment <code>instalment</code> (1 for the single payment) of the INAIL autoliquidazione premium of the employees' policy (polizza dipendenti) due by 16 February of <code>year</code> + 1: the regolazione of <code>year</code> on the wages paid in <code>year</code> and the rata of <code>year</code> + 1. The wages are the INAIL bases of the approved Italian payroll runs paid in <code>year</code> (DPR 1124/1965 art. 28: the wages actually paid), rounded to the euro; a run without the INAIL component counts the base of its INPS IVS contribution, with a warning. Each entry of <code>positions</code> is a PAT and voce of the INAIL basi di calcolo with its <code>tassoRegolazione</code> and <code>tassoRata</code> (the tasso applicato, per mille), the reduction of the basi di calcolo in percent of the premium (<code>riduzioneRegolazione</code>, <code>riduzioneRata</code>), the partly exempt wages (<code>quoteEsenti</code>), a lower presumed wage for the rata communicated to INAIL (<code>retribuzioniRata</code>) and the employees it covers (<code>employeeIds</code>, required when there is more than one position). premium = wages x tasso / 1000, less the reduction, plus the 1% addizionale ex ANMIL; the regolazione subtracts <code>rataAnticipata</code>, the rata requested for <code>year</code> in the basi di calcolo; intermediate amounts have five decimals and the total is rounded to the cent (INAIL guide to the autoliquidazione 2025/2026). With <code>rateazione</code> the total is paid in four instalments of 25% on 16 February, 16 May, 20 August and 16 November (moved to the next working day), the last three with the interest coefficients INAIL publishes each January (recorded for 2026 only). With <code>codiceDitta</code>, <code>codiceDittaControlCode</code> and <code>sedeInail</code> the response carries the F24 INAIL row: numero di riferimento 90 followed by <code>year</code> + 1, causale P. The file carries the INAIL row only, dated the instalment's due date; the debit account is given when the file is authenticated unless the company has exactly one active EUR account with an Italian IBAN. 422 without <code>codiceDitta</code>, when nothing is due (a credit is compensated in another F24) and for an instalment whose interest coefficients are not recorded.
+   */
+  public ItInailAutoliquidazioneF24DeclarationsResponse itInailAutoliquidazioneF24(
+      ItInailAutoliquidazioneF24DeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.itInailAutoliquidazioneF24(request, requestOptions).body();
   }
 
   /**
@@ -1531,6 +1768,37 @@ public class DeclarationsClient {
   public LtPln204FfdataDeclarationsResponse ltPln204Ffdata(
       LtPln204FfdataDeclarationsRequest request, RequestOptions requestOptions) {
     return this.rawClient.ltPln204Ffdata(request, requestOptions).body();
+  }
+
+  /**
+   * Build the notice of employees (Ziņas par darba ņēmējiem, VID EDS document DokZDNv3) for an employment contract, for upload in EDS: the start of work with ziņu kods 11 and the employee's profession code (<code>lvProfesijasKods</code>), or the end of the contract with <code>endCode</code>, the ziņu kods 21 to 26 of annex 1 of MK noteikumi Nr. 827. Answers 422 when the start has no profession code, the end has no <code>endCode</code>, the contract has no end date or the employee's personal code is not a Latvian personas kods.
+   */
+  public LvEmployeeNoticeGenerateDeclarationsResponse lvEmployeeNoticeGenerate(
+      LvEmployeeNoticeGenerateDeclarationsRequest request) {
+    return this.rawClient.lvEmployeeNoticeGenerate(request).body();
+  }
+
+  /**
+   * Build the notice of employees (Ziņas par darba ņēmējiem, VID EDS document DokZDNv3) for an employment contract, for upload in EDS: the start of work with ziņu kods 11 and the employee's profession code (<code>lvProfesijasKods</code>), or the end of the contract with <code>endCode</code>, the ziņu kods 21 to 26 of annex 1 of MK noteikumi Nr. 827. Answers 422 when the start has no profession code, the end has no <code>endCode</code>, the contract has no end date or the employee's personal code is not a Latvian personas kods.
+   */
+  public LvEmployeeNoticeGenerateDeclarationsResponse lvEmployeeNoticeGenerate(
+      LvEmployeeNoticeGenerateDeclarationsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.lvEmployeeNoticeGenerate(request, requestOptions).body();
+  }
+
+  /**
+   * The boxes of the FS7 Payer's Annual Reconciliation Statement of a year (A1 to A4, the share options question, B1, C1 to C4, D1 to D4, E1, E2 and F2) from the approved payroll runs, equal to the totals of the FS3 lodgement file of the <code>mt-annual-payroll-statements</code> deadline, with a PDF working copy that lists them. The Malta Tax and Customs Administration publishes no file for the FS7: a payer with fewer than 10 FS3s files the barcoded FS7 it issues, and the others key the figures into its FS7 web form or e-filing spreadsheet, so the figures are transcribed. <code>leftToPayer</code> names what Nordlet does not hold: the principal's name, position and signature, the Jobsplus number, the childcare question, tax arrears (PCU2(A)) and the payments of section F with F1 and F3.
+   */
+  public MtFs7GenerateDeclarationsResponse mtFs7Generate(MtFs7GenerateDeclarationsRequest request) {
+    return this.rawClient.mtFs7Generate(request).body();
+  }
+
+  /**
+   * The boxes of the FS7 Payer's Annual Reconciliation Statement of a year (A1 to A4, the share options question, B1, C1 to C4, D1 to D4, E1, E2 and F2) from the approved payroll runs, equal to the totals of the FS3 lodgement file of the <code>mt-annual-payroll-statements</code> deadline, with a PDF working copy that lists them. The Malta Tax and Customs Administration publishes no file for the FS7: a payer with fewer than 10 FS3s files the barcoded FS7 it issues, and the others key the figures into its FS7 web form or e-filing spreadsheet, so the figures are transcribed. <code>leftToPayer</code> names what Nordlet does not hold: the principal's name, position and signature, the Jobsplus number, the childcare question, tax arrears (PCU2(A)) and the payments of section F with F1 and F3.
+   */
+  public MtFs7GenerateDeclarationsResponse mtFs7Generate(MtFs7GenerateDeclarationsRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.mtFs7Generate(request, requestOptions).body();
   }
 
   /**

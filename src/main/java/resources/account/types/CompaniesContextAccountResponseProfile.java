@@ -369,7 +369,7 @@ public final class CompaniesContextAccountResponseProfile {
   }
 
   /**
-   * @return Prefix of the numbers of invoices issued without a document series (SF when none was set)
+   * @return Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)
    */
   @JsonProperty("invoicePrefix")
   public String getInvoicePrefix() {
@@ -929,7 +929,7 @@ public final class CompaniesContextAccountResponseProfile {
 
   public interface InvoicePrefixStage {
     /**
-     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set)</p>
+     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)</p>
      */
     NextInvoiceNumberStage invoicePrefix(@NotNull String invoicePrefix);
   }
@@ -1403,7 +1403,7 @@ public final class CompaniesContextAccountResponseProfile {
     }
 
     /**
-     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set)</p>
+     * <p>Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)</p>
      * @return Reference to {@code this} so that method calls can be chained together.
      */
     @java.lang.Override

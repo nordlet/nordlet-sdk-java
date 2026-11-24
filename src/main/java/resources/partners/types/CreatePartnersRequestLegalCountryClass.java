@@ -10,9 +10,9 @@ import java.lang.Object;
 import java.lang.String;
 
 public final class CreatePartnersRequestLegalCountryClass {
-  public static final CreatePartnersRequestLegalCountryClass LT = new CreatePartnersRequestLegalCountryClass(Value.LT, "lt");
-
   public static final CreatePartnersRequestLegalCountryClass EU = new CreatePartnersRequestLegalCountryClass(Value.EU, "eu");
+
+  public static final CreatePartnersRequestLegalCountryClass DOMESTIC = new CreatePartnersRequestLegalCountryClass(Value.DOMESTIC, "domestic");
 
   public static final CreatePartnersRequestLegalCountryClass NON_EU = new CreatePartnersRequestLegalCountryClass(Value.NON_EU, "non_eu");
 
@@ -48,10 +48,10 @@ public final class CreatePartnersRequestLegalCountryClass {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
-      case LT:
-        return visitor.visitLt();
       case EU:
         return visitor.visitEu();
+      case DOMESTIC:
+        return visitor.visitDomestic();
       case NON_EU:
         return visitor.visitNonEu();
       case UNKNOWN:
@@ -65,10 +65,10 @@ public final class CreatePartnersRequestLegalCountryClass {
   )
   public static CreatePartnersRequestLegalCountryClass valueOf(String value) {
     switch (value) {
-      case "lt":
-        return LT;
       case "eu":
         return EU;
+      case "domestic":
+        return DOMESTIC;
       case "non_eu":
         return NON_EU;
       default:
@@ -77,7 +77,7 @@ public final class CreatePartnersRequestLegalCountryClass {
   }
 
   public enum Value {
-    LT,
+    DOMESTIC,
 
     EU,
 
@@ -87,7 +87,7 @@ public final class CreatePartnersRequestLegalCountryClass {
   }
 
   public interface Visitor<T> {
-    T visitLt();
+    T visitDomestic();
 
     T visitEu();
 

@@ -32,17 +32,20 @@ public final class SizeCategoryReportsResponse {
 
   private final SizeCategoryReportsResponseCategory category;
 
+  private final String currency;
+
   private final Map<String, SizeCategoryReportsResponseThresholdsValue> thresholds;
 
   private final Map<String, Object> additionalProperties;
 
   private SizeCategoryReportsResponse(long year, SizeCategoryReportsResponseCriteria criteria,
-      SizeCategoryReportsResponseCategory category,
+      SizeCategoryReportsResponseCategory category, String currency,
       Map<String, SizeCategoryReportsResponseThresholdsValue> thresholds,
       Map<String, Object> additionalProperties) {
     this.year = year;
     this.criteria = criteria;
     this.category = category;
+    this.currency = currency;
     this.thresholds = thresholds;
     this.additionalProperties = additionalProperties;
   }
@@ -62,6 +65,11 @@ public final class SizeCategoryReportsResponse {
     return category;
   }
 
+  @JsonProperty("currency")
+  public String getCurrency() {
+    return currency;
+  }
+
   @JsonProperty("thresholds")
   public Map<String, SizeCategoryReportsResponseThresholdsValue> getThresholds() {
     return thresholds;
@@ -79,12 +87,12 @@ public final class SizeCategoryReportsResponse {
   }
 
   private boolean equalTo(SizeCategoryReportsResponse other) {
-    return year == other.year && criteria.equals(other.criteria) && category.equals(other.category) && thresholds.equals(other.thresholds);
+    return year == other.year && criteria.equals(other.criteria) && category.equals(other.category) && currency.equals(other.currency) && thresholds.equals(other.thresholds);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.year, this.criteria, this.category, this.thresholds);
+    return Objects.hash(this.year, this.criteria, this.category, this.currency, this.thresholds);
   }
 
   @java.lang.Override
@@ -107,7 +115,11 @@ public final class SizeCategoryReportsResponse {
   }
 
   public interface CategoryStage {
-    _FinalStage category(@NotNull SizeCategoryReportsResponseCategory category);
+    CurrencyStage category(@NotNull SizeCategoryReportsResponseCategory category);
+  }
+
+  public interface CurrencyStage {
+    _FinalStage currency(@NotNull String currency);
   }
 
   public interface _FinalStage {
@@ -128,12 +140,14 @@ public final class SizeCategoryReportsResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  public static final class Builder implements YearStage, CriteriaStage, CategoryStage, _FinalStage {
+  public static final class Builder implements YearStage, CriteriaStage, CategoryStage, CurrencyStage, _FinalStage {
     private long year;
 
     private SizeCategoryReportsResponseCriteria criteria;
 
     private SizeCategoryReportsResponseCategory category;
+
+    private String currency;
 
     private Map<String, SizeCategoryReportsResponseThresholdsValue> thresholds = new LinkedHashMap<>();
 
@@ -148,6 +162,7 @@ public final class SizeCategoryReportsResponse {
       year(other.getYear());
       criteria(other.getCriteria());
       category(other.getCategory());
+      currency(other.getCurrency());
       thresholds(other.getThresholds());
       return this;
     }
@@ -168,8 +183,15 @@ public final class SizeCategoryReportsResponse {
 
     @java.lang.Override
     @JsonSetter("category")
-    public _FinalStage category(@NotNull SizeCategoryReportsResponseCategory category) {
+    public CurrencyStage category(@NotNull SizeCategoryReportsResponseCategory category) {
       this.category = Objects.requireNonNull(category, "category must not be null");
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter("currency")
+    public _FinalStage currency(@NotNull String currency) {
+      this.currency = Objects.requireNonNull(currency, "currency must not be null");
       return this;
     }
 
@@ -204,7 +226,7 @@ public final class SizeCategoryReportsResponse {
 
     @java.lang.Override
     public SizeCategoryReportsResponse build() {
-      return new SizeCategoryReportsResponse(year, criteria, category, thresholds, additionalProperties);
+      return new SizeCategoryReportsResponse(year, criteria, category, currency, thresholds, additionalProperties);
     }
 
     @java.lang.Override

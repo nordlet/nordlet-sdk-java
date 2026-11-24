@@ -27,10 +27,12 @@ import com.nordlet.api.resources.files.requests.DeleteFilesRequest;
 import com.nordlet.api.resources.files.requests.GetFilesRequest;
 import com.nordlet.api.resources.files.requests.ListFilesRequest;
 import com.nordlet.api.resources.files.requests.UploadFilesRequest;
+import com.nordlet.api.resources.files.requests.UploadLinksCreateFilesRequest;
 import com.nordlet.api.resources.files.types.DeleteFilesResponse;
 import com.nordlet.api.resources.files.types.GetFilesResponse;
 import com.nordlet.api.resources.files.types.ListFilesResponse;
 import com.nordlet.api.resources.files.types.UploadFilesResponse;
+import com.nordlet.api.resources.files.types.UploadLinksCreateFilesResponse;
 import com.nordlet.api.types.ErrorResponse;
 import java.io.IOException;
 import java.lang.Object;
@@ -125,20 +127,21 @@ public class RawFilesClient {
     }
 
     /**
-     * Return a file record with its content, base64-encoded.
+     * Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: <code>POST</code> the bytes to <code>url</code> with any <code>Content-Type</code>; no API key is needed, the link is the permission. The link works once and until <code>expiresAt</code> (<code>expiresInMinutes</code>, 60 by default, at most 1440). The file is stored under <code>entity</code>, <code>entityId</code>, <code>fileName</code> and <code>mimeType</code> (else the media type of the upload request) with the id <code>fileId</code> and the <code>storageKey</code> given here, which other calls take as <code>documentRef</code> once the file is uploaded; <code>files/get</code> with <code>fileId</code> answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
      */
-    public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request) {
-      return get(request,null);
+    public NordletApiHttpResponse<UploadLinksCreateFilesResponse> uploadLinksCreate(
+        UploadLinksCreateFilesRequest request) {
+      return uploadLinksCreate(request,null);
     }
 
     /**
-     * Return a file record with its content, base64-encoded.
+     * Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: <code>POST</code> the bytes to <code>url</code> with any <code>Content-Type</code>; no API key is needed, the link is the permission. The link works once and until <code>expiresAt</code> (<code>expiresInMinutes</code>, 60 by default, at most 1440). The file is stored under <code>entity</code>, <code>entityId</code>, <code>fileName</code> and <code>mimeType</code> (else the media type of the upload request) with the id <code>fileId</code> and the <code>storageKey</code> given here, which other calls take as <code>documentRef</code> once the file is uploaded; <code>files/get</code> with <code>fileId</code> answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
      */
-    public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request,
-        RequestOptions requestOptions) {
+    public NordletApiHttpResponse<UploadLinksCreateFilesResponse> uploadLinksCreate(
+        UploadLinksCreateFilesRequest request, RequestOptions requestOptions) {
       HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-        .addPathSegments("v1/files/get");if (requestOptions != null) {
+        .addPathSegments("v1/files/upload-links/create");if (requestOptions != null) {
           requestOptions.getQueryParameters().forEach((_key, _value) -> {
             httpUrl.addQueryParameter(_key, _value);
           } );
@@ -168,7 +171,7 @@ public class RawFilesClient {
           ResponseBody responseBody = response.body();
           String responseBodyString = responseBody != null ? responseBody.string() : "{}";
           if (response.isSuccessful()) {
-            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetFilesResponse.class), response);
+            return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, UploadLinksCreateFilesResponse.class), response);
           }
           try {
             switch (response.code()) {
@@ -199,34 +202,20 @@ public class RawFilesClient {
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
+       * Return a file record with its content, base64-encoded.
        */
-      public NordletApiHttpResponse<ListFilesResponse> list() {
-        return list(ListFilesRequest.builder().build());
+      public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request) {
+        return get(request,null);
       }
 
       /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
+       * Return a file record with its content, base64-encoded.
        */
-      public NordletApiHttpResponse<ListFilesResponse> list(RequestOptions requestOptions) {
-        return list(ListFilesRequest.builder().build(),requestOptions);
-      }
-
-      /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
-       */
-      public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request) {
-        return list(request,null);
-      }
-
-      /**
-       * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
-       */
-      public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request,
+      public NordletApiHttpResponse<GetFilesResponse> get(GetFilesRequest request,
           RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-          .addPathSegments("v1/files/list");if (requestOptions != null) {
+          .addPathSegments("v1/files/get");if (requestOptions != null) {
             requestOptions.getQueryParameters().forEach((_key, _value) -> {
               httpUrl.addQueryParameter(_key, _value);
             } );
@@ -256,7 +245,7 @@ public class RawFilesClient {
             ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListFilesResponse.class), response);
+              return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GetFilesResponse.class), response);
             }
             try {
               switch (response.code()) {
@@ -287,20 +276,34 @@ public class RawFilesClient {
         }
 
         /**
-         * Delete a file record and its stored content.
+         * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
          */
-        public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request) {
-          return delete(request,null);
+        public NordletApiHttpResponse<ListFilesResponse> list() {
+          return list(ListFilesRequest.builder().build());
         }
 
         /**
-         * Delete a file record and its stored content.
+         * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
          */
-        public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request,
+        public NordletApiHttpResponse<ListFilesResponse> list(RequestOptions requestOptions) {
+          return list(ListFilesRequest.builder().build(),requestOptions);
+        }
+
+        /**
+         * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
+         */
+        public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request) {
+          return list(request,null);
+        }
+
+        /**
+         * List the company's files. Filterable by <code>entity</code>, <code>entityId</code> and <code>fileName</code>; sortable by <code>createdAt</code>, <code>fileName</code>, <code>sizeBytes</code>, <code>entity</code>, <code>entityId</code> and <code>mimeType</code>.
+         */
+        public NordletApiHttpResponse<ListFilesResponse> list(ListFilesRequest request,
             RequestOptions requestOptions) {
           HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
 
-            .addPathSegments("v1/files/delete");if (requestOptions != null) {
+            .addPathSegments("v1/files/list");if (requestOptions != null) {
               requestOptions.getQueryParameters().forEach((_key, _value) -> {
                 httpUrl.addQueryParameter(_key, _value);
               } );
@@ -330,7 +333,7 @@ public class RawFilesClient {
               ResponseBody responseBody = response.body();
               String responseBodyString = responseBody != null ? responseBody.string() : "{}";
               if (response.isSuccessful()) {
-                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteFilesResponse.class), response);
+                return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ListFilesResponse.class), response);
               }
               try {
                 switch (response.code()) {
@@ -359,4 +362,78 @@ public class RawFilesClient {
               throw new NordletApiException("Network error executing HTTP request", e);
             }
           }
-        }
+
+          /**
+           * Delete a file record and its stored content.
+           */
+          public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request) {
+            return delete(request,null);
+          }
+
+          /**
+           * Delete a file record and its stored content.
+           */
+          public NordletApiHttpResponse<DeleteFilesResponse> delete(DeleteFilesRequest request,
+              RequestOptions requestOptions) {
+            HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl()).newBuilder()
+
+              .addPathSegments("v1/files/delete");if (requestOptions != null) {
+                requestOptions.getQueryParameters().forEach((_key, _value) -> {
+                  httpUrl.addQueryParameter(_key, _value);
+                } );
+              }
+              RequestBody body;
+              try {
+                body = RequestBody.create(ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+              }
+              catch(JsonProcessingException e) {
+                throw new NordletApiException("Failed to serialize request", e);
+              }
+              Request okhttpRequest = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+              OkHttpClient client = clientOptions.httpClient();
+              if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
+              }
+              if (requestOptions != null && requestOptions.getMaxRetries().isPresent()) {
+                okhttpRequest = okhttpRequest.newBuilder().tag(RetryInterceptor.MaxRetriesOverride.class, new RetryInterceptor.MaxRetriesOverride(requestOptions.getMaxRetries().get())).build();
+              }
+              try (Response response = client.newCall(okhttpRequest).execute()) {
+                ResponseBody responseBody = response.body();
+                String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                if (response.isSuccessful()) {
+                  return new NordletApiHttpResponse<>(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, DeleteFilesResponse.class), response);
+                }
+                try {
+                  switch (response.code()) {
+                    case 400:throw new BadRequestError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 401:throw new UnauthorizedError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 402:throw new PaymentRequiredError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 403:throw new ForbiddenError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 404:throw new NotFoundError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 409:throw new ConflictError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 413:throw new ContentTooLargeError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 422:throw new UnprocessableEntityError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 429:throw new TooManyRequestsError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                    case 500:throw new InternalServerError(ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ErrorResponse.class), response);
+                  }
+                }
+                catch (JsonProcessingException ignored) {
+                  // unable to map error response, throwing generic error
+                }
+                Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                throw new NordletApiApiException("Error with status code " + response.code(), response.code(), errorBody, response);
+              }
+              catch (JsonProcessingException e) {
+                throw new NordletApiException("Failed to deserialize response: " + e.getMessage(), e);
+              }
+              catch (IOException e) {
+                throw new NordletApiException("Network error executing HTTP request", e);
+              }
+            }
+          }

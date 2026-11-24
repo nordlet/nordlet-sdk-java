@@ -37,6 +37,9 @@ import com.nordlet.api.resources.bank.requests.MatchRulesDeleteBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.MatchRulesUpdateBankRequest;
 import com.nordlet.api.resources.bank.requests.PaymentsExportBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesCreateBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesDeleteBankRequest;
+import com.nordlet.api.resources.bank.requests.PostingRulesListBankRequest;
 import com.nordlet.api.resources.bank.requests.ReconciliationGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesGetBankRequest;
 import com.nordlet.api.resources.bank.requests.SecuritiesImportBankRequest;
@@ -92,6 +95,9 @@ import com.nordlet.api.resources.bank.types.MatchRulesDeleteBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.MatchRulesUpdateBankResponse;
 import com.nordlet.api.resources.bank.types.PaymentsExportBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesCreateBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesDeleteBankResponse;
+import com.nordlet.api.resources.bank.types.PostingRulesListBankResponse;
 import com.nordlet.api.resources.bank.types.ReconciliationGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesGetBankResponse;
 import com.nordlet.api.resources.bank.types.SecuritiesImportBankResponse;
@@ -308,7 +314,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With <code>saveRule</code> the account and the partner are also kept as a posting rule (see <code>bank/posting-rules/create</code>), which <code>bank/transactions/suggest-matches</code> proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
    */
   public CompletableFuture<TransactionsPostBankResponse> transactionsPost(
       TransactionsPostBankRequest request) {
@@ -316,7 +322,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
+   * Book one new bank transaction against a ledger account, for lines that settle no invoice (bank fees, interest, tax payments, transfers). Posts a journal transaction dated on the line's booking date between the bank account's ledger account and <code>accountCode</code> (incoming money: debit bank, credit the account; outgoing money the reverse), with the optional <code>partnerId</code> on the transaction and <code>costCenterId</code> and <code>projectId</code> on the counter entry, and sets the line to matched with <code>matchedDocumentType</code> <code>journal_transaction</code>. With <code>taxPaymentId</code> the line settles a tax payment recorded with <code>declarations/tax-payments/create</code>: an outgoing line for a payment, an incoming line for a refund, in the company currency and for the same amount (422 otherwise), not yet booked from another line (409); the line is matched as <code>tax_payment</code>. VAT is not booked here, because VAT returns are built from documents: a <code>vatClassifierCode</code> answers 422, and a fee with VAT is registered as a purchase invoice and the line matched to it. With <code>saveRule</code> the account and the partner are also kept as a posting rule (see <code>bank/posting-rules/create</code>), which <code>bank/transactions/suggest-matches</code> proposes for later lines; each text given must be in this line's counterparty name or description (422 otherwise). Answers 409 when the line is already matched or ignored or when the accounting period of the line date is locked. <code>bank/transactions/unmatch</code> reverses the posting.
    */
   public CompletableFuture<TransactionsPostBankResponse> transactionsPost(
       TransactionsPostBankRequest request, RequestOptions requestOptions) {
@@ -388,7 +394,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
+   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs <code>paymentFileSettings.bic</code>; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; <code>paymentFileSettings.initiatingPartyBankId</code> is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (<code>bankCode</code> 9900 and the 7 or 8 digit number as <code>bankAccountNumber</code>) or a PlusGiro number (<code>bankCode</code> 9960 and 2 to 8 digits); the invoice's <code>paymentReference</code> goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
    */
   public CompletableFuture<PaymentsExportBankResponse> paymentsExport(
       PaymentsExportBankRequest request) {
@@ -396,7 +402,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today). Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
+   * Build a payment file that pays the remaining amount of each registered purchase invoice from the bank account on <code>executionDate</code>, to the partner's default bank account that the format can use. The format follows the bank account: a GBP account of a UK company with a sort code and account number gets a Bacs Standard 18 Direct Credit file (needs <code>paymentFileSettings.serviceUserNumber</code>; <code>executionDate</code> is the day the money arrives, a Bacs working day whose processing day is after today, default the earliest), a USD account of a US company with a routing number and account number gets a Nacha ACH credit file (needs <code>paymentFileSettings.immediateOrigin</code> and <code>companyIdentification</code>; CCD for a business partner, PPD for a partner that is not one, see <code>partners/update</code> <code>isBusiness</code>; default <code>executionDate</code> today), and an account with an IBAN gets ISO 20022 pain.001.001.03, a SEPA credit transfer in EUR and a generic pain.001 in other currencies (default <code>executionDate</code> today); a SEK account with a Swedish IBAN gets a Swedish domestic pain.001 (needs <code>paymentFileSettings.bic</code>; SvcLvl NURG, or MPNS when the BIC is SEB's ESSESESS; CtgyPurp SUPP; ChrgBr SHAR; <code>paymentFileSettings.initiatingPartyBankId</code> is written as the initiating party's bank id), in which a partner may also be paid on a Bankgiro number (<code>bankCode</code> 9900 and the 7 or 8 digit number as <code>bankAccountNumber</code>) or a PlusGiro number (<code>bankCode</code> 9960 and 2 to 8 digits); the invoice's <code>paymentReference</code> goes as a structured reference (SCOR) when it is an OCR number paid to a Bankgiro or PlusGiro number (at most 25 digits with a modulus 10 check digit) or an RF creditor reference paid to an account (ISO 11649, issuer ISO; as text when the bank is Nordea, which does not take it yet), 422 when its check digits are wrong, and any other reference goes as the unstructured text in place of the invoice number. Every invoice must be in the currency of the bank account and the partner must have a bank account the format can use (IBAN; sort code and account number; routing number, account number and <code>accountType</code>), 422 otherwise, see <code>partners/bank-accounts/create</code>; an invoice that is already paid answers 409. The file is returned in <code>content</code>, with <code>format</code>, <code>fileName</code> and <code>contentType</code>; nothing is posted or marked paid.
    */
   public CompletableFuture<PaymentsExportBankResponse> paymentsExport(
       PaymentsExportBankRequest request, RequestOptions requestOptions) {
@@ -609,6 +615,69 @@ public class AsyncBankClient {
   }
 
   /**
+   * Keep a posting rule: a new bank line whose counterparty name contains <code>counterpartyContains</code> and whose description contains <code>descriptionContains</code> (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for <code>accountCode</code> and <code>partnerId</code> in <code>bank/transactions/suggest-matches</code>. Nothing is posted until <code>bank/transactions/post</code> is called. <code>accountCode</code> must be a postable account (422).
+   */
+  public CompletableFuture<PostingRulesCreateBankResponse> postingRulesCreate(
+      PostingRulesCreateBankRequest request) {
+    return this.rawClient.postingRulesCreate(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Keep a posting rule: a new bank line whose counterparty name contains <code>counterpartyContains</code> and whose description contains <code>descriptionContains</code> (case-insensitive; a text not given is not checked, at least one is required, 422 otherwise) is proposed for <code>accountCode</code> and <code>partnerId</code> in <code>bank/transactions/suggest-matches</code>. Nothing is posted until <code>bank/transactions/post</code> is called. <code>accountCode</code> must be a postable account (422).
+   */
+  public CompletableFuture<PostingRulesCreateBankResponse> postingRulesCreate(
+      PostingRulesCreateBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesCreate(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the posting rules of the company, newest first.
+   */
+  public CompletableFuture<PostingRulesListBankResponse> postingRulesList() {
+    return this.rawClient.postingRulesList().thenApply(response -> response.body());
+  }
+
+  /**
+   * List the posting rules of the company, newest first.
+   */
+  public CompletableFuture<PostingRulesListBankResponse> postingRulesList(
+      RequestOptions requestOptions) {
+    return this.rawClient.postingRulesList(requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the posting rules of the company, newest first.
+   */
+  public CompletableFuture<PostingRulesListBankResponse> postingRulesList(
+      PostingRulesListBankRequest request) {
+    return this.rawClient.postingRulesList(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * List the posting rules of the company, newest first.
+   */
+  public CompletableFuture<PostingRulesListBankResponse> postingRulesList(
+      PostingRulesListBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesList(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Delete a posting rule. Lines already posted are not changed.
+   */
+  public CompletableFuture<PostingRulesDeleteBankResponse> postingRulesDelete(
+      PostingRulesDeleteBankRequest request) {
+    return this.rawClient.postingRulesDelete(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Delete a posting rule. Lines already posted are not changed.
+   */
+  public CompletableFuture<PostingRulesDeleteBankResponse> postingRulesDelete(
+      PostingRulesDeleteBankRequest request, RequestOptions requestOptions) {
+    return this.rawClient.postingRulesDelete(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
    * Record a direct debit mandate a partner has signed, with the signature date. Schemes: <code>CORE</code> and <code>B2B</code> are SEPA mandates on the debtor's IBAN (and BIC), recurrent or one-off; <code>BACS</code> is a UK Direct Debit Instruction on a 6-digit sort code (<code>bankCode</code>) and an 8-digit account number, recurrent only, lodged with AUDDIS through <code>bank/mandates/auddis-export</code> before the first collection; <code>PPD</code> (consumer) and <code>CCD</code> (business) are US ACH debit authorizations on a 9-digit routing number (<code>bankCode</code>), an account number and <code>accountType</code>. Without <code>scheme</code>, an IBAN gives <code>CORE</code>, a UK company <code>BACS</code>, and a US company <code>CCD</code> for a business partner or <code>PPD</code> for one that is not (see <code>partners/update</code> <code>isBusiness</code>). <code>reference</code> is the mandate reference written into the collection files; without one <code>MNDT-</code> followed by a generated id is used (for <code>BACS</code> <code>MNDT</code> and the start of a generated id, upper case; a Bacs reference has 6 to 18 characters of A-Z, 0-9, . &amp; / - and space, with at least six letters or digits, not one repeated character, not starting with DDIC). <code>debtorName</code> defaults to the partner name. A reference already in use answers 409.
    */
   public CompletableFuture<MandatesCreateBankResponse> mandatesCreate(
@@ -764,7 +833,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. <code>allocations</code> names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for <code>bank/transactions/match-many</code>; otherwise it is null. <code>postingRules</code> lists the posting rules (<code>bank/posting-rules/create</code>) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for <code>bank/transactions/post</code>. A transaction that is already matched answers 409.
    */
   public CompletableFuture<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
       TransactionsSuggestMatchesBankRequest request) {
@@ -772,7 +841,7 @@ public class AsyncBankClient {
   }
 
   /**
-   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. A transaction that is already matched answers 409.
+   * Suggest documents for a new bank transaction: issued sale invoices and advances for incoming money; registered purchase invoices, issued sale credit notes and approved payroll runs for outgoing money. Candidates are unpaid documents with any remaining balance, also one below the payment, scored by an equal remaining balance, the document number or payroll period in the payment description and a counterparty IBAN or name matching the partner or an employee on the run; the best <code>limit</code> come back with their reasons; a candidate with no matching reason (score 0) is left out. <code>allocations</code> names two or more invoices or credit notes in the currency of the payment whose numbers all stand as whole words in the payment description and whose remaining balances add up to the payment, each with its remaining balance, ready for <code>bank/transactions/match-many</code>; otherwise it is null. <code>postingRules</code> lists the posting rules (<code>bank/posting-rules/create</code>) whose texts the counterparty name and description of the line contain, newest first, each with its account and partner for <code>bank/transactions/post</code>. A transaction that is already matched answers 409.
    */
   public CompletableFuture<TransactionsSuggestMatchesBankResponse> transactionsSuggestMatches(
       TransactionsSuggestMatchesBankRequest request, RequestOptions requestOptions) {

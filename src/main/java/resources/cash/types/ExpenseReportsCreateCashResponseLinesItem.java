@@ -37,21 +37,31 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
 
   private final String accountCode;
 
+  private final Optional<String> partnerId;
+
+  private final Optional<String> vatClassifierCode;
+
   private final String netAmount;
 
   private final String vatAmount;
 
+  private final Optional<String> deductibleVat;
+
   private final Map<String, Object> additionalProperties;
 
   private ExpenseReportsCreateCashResponseLinesItem(String id, String description,
-      Optional<String> documentNumber, String accountCode, String netAmount, String vatAmount,
-      Map<String, Object> additionalProperties) {
+      Optional<String> documentNumber, String accountCode, Optional<String> partnerId,
+      Optional<String> vatClassifierCode, String netAmount, String vatAmount,
+      Optional<String> deductibleVat, Map<String, Object> additionalProperties) {
     this.id = id;
     this.description = description;
     this.documentNumber = documentNumber;
     this.accountCode = accountCode;
+    this.partnerId = partnerId;
+    this.vatClassifierCode = vatClassifierCode;
     this.netAmount = netAmount;
     this.vatAmount = vatAmount;
+    this.deductibleVat = deductibleVat;
     this.additionalProperties = additionalProperties;
   }
 
@@ -78,6 +88,22 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
     return accountCode;
   }
 
+  @JsonIgnore
+  public Optional<String> getPartnerId() {
+    if (partnerId == null) {
+      return Optional.empty();
+    }
+    return partnerId;
+  }
+
+  @JsonIgnore
+  public Optional<String> getVatClassifierCode() {
+    if (vatClassifierCode == null) {
+      return Optional.empty();
+    }
+    return vatClassifierCode;
+  }
+
   @JsonProperty("netAmount")
   public String getNetAmount() {
     return netAmount;
@@ -88,6 +114,14 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
     return vatAmount;
   }
 
+  @JsonIgnore
+  public Optional<String> getDeductibleVat() {
+    if (deductibleVat == null) {
+      return Optional.empty();
+    }
+    return deductibleVat;
+  }
+
   @JsonInclude(
       value = JsonInclude.Include.CUSTOM,
       valueFilter = NullableNonemptyFilter.class
@@ -95,6 +129,33 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
   @JsonProperty("documentNumber")
   private Optional<String> _getDocumentNumber() {
     return documentNumber;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("partnerId")
+  private Optional<String> _getPartnerId() {
+    return partnerId;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("vatClassifierCode")
+  private Optional<String> _getVatClassifierCode() {
+    return vatClassifierCode;
+  }
+
+  @JsonInclude(
+      value = JsonInclude.Include.CUSTOM,
+      valueFilter = NullableNonemptyFilter.class
+  )
+  @JsonProperty("deductibleVat")
+  private Optional<String> _getDeductibleVat() {
+    return deductibleVat;
   }
 
   @java.lang.Override
@@ -109,12 +170,12 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
   }
 
   private boolean equalTo(ExpenseReportsCreateCashResponseLinesItem other) {
-    return id.equals(other.id) && description.equals(other.description) && documentNumber.equals(other.documentNumber) && accountCode.equals(other.accountCode) && netAmount.equals(other.netAmount) && vatAmount.equals(other.vatAmount);
+    return id.equals(other.id) && description.equals(other.description) && documentNumber.equals(other.documentNumber) && accountCode.equals(other.accountCode) && partnerId.equals(other.partnerId) && vatClassifierCode.equals(other.vatClassifierCode) && netAmount.equals(other.netAmount) && vatAmount.equals(other.vatAmount) && deductibleVat.equals(other.deductibleVat);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.description, this.documentNumber, this.accountCode, this.netAmount, this.vatAmount);
+    return Objects.hash(this.id, this.description, this.documentNumber, this.accountCode, this.partnerId, this.vatClassifierCode, this.netAmount, this.vatAmount, this.deductibleVat);
   }
 
   @java.lang.Override
@@ -160,6 +221,24 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
     _FinalStage documentNumber(String documentNumber);
 
     _FinalStage documentNumber(Nullable<String> documentNumber);
+
+    _FinalStage partnerId(Optional<String> partnerId);
+
+    _FinalStage partnerId(String partnerId);
+
+    _FinalStage partnerId(Nullable<String> partnerId);
+
+    _FinalStage vatClassifierCode(Optional<String> vatClassifierCode);
+
+    _FinalStage vatClassifierCode(String vatClassifierCode);
+
+    _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode);
+
+    _FinalStage deductibleVat(Optional<String> deductibleVat);
+
+    _FinalStage deductibleVat(String deductibleVat);
+
+    _FinalStage deductibleVat(Nullable<String> deductibleVat);
   }
 
   @JsonIgnoreProperties(
@@ -176,6 +255,12 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
 
     private String vatAmount;
 
+    private Optional<String> deductibleVat = Optional.empty();
+
+    private Optional<String> vatClassifierCode = Optional.empty();
+
+    private Optional<String> partnerId = Optional.empty();
+
     private Optional<String> documentNumber = Optional.empty();
 
     @JsonAnySetter
@@ -190,8 +275,11 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
       description(other.getDescription());
       documentNumber(other.getDocumentNumber());
       accountCode(other.getAccountCode());
+      partnerId(other.getPartnerId());
+      vatClassifierCode(other.getVatClassifierCode());
       netAmount(other.getNetAmount());
       vatAmount(other.getVatAmount());
+      deductibleVat(other.getDeductibleVat());
       return this;
     }
 
@@ -231,6 +319,96 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
     }
 
     @java.lang.Override
+    public _FinalStage deductibleVat(Nullable<String> deductibleVat) {
+      if (deductibleVat.isNull()) {
+        this.deductibleVat = null;
+      }
+      else if (deductibleVat.isEmpty()) {
+        this.deductibleVat = Optional.empty();
+      }
+      else {
+        this.deductibleVat = Optional.of(deductibleVat.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage deductibleVat(String deductibleVat) {
+      this.deductibleVat = Optional.ofNullable(deductibleVat);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "deductibleVat",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage deductibleVat(Optional<String> deductibleVat) {
+      this.deductibleVat = deductibleVat;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(Nullable<String> vatClassifierCode) {
+      if (vatClassifierCode.isNull()) {
+        this.vatClassifierCode = null;
+      }
+      else if (vatClassifierCode.isEmpty()) {
+        this.vatClassifierCode = Optional.empty();
+      }
+      else {
+        this.vatClassifierCode = Optional.of(vatClassifierCode.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage vatClassifierCode(String vatClassifierCode) {
+      this.vatClassifierCode = Optional.ofNullable(vatClassifierCode);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "vatClassifierCode",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage vatClassifierCode(Optional<String> vatClassifierCode) {
+      this.vatClassifierCode = vatClassifierCode;
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(Nullable<String> partnerId) {
+      if (partnerId.isNull()) {
+        this.partnerId = null;
+      }
+      else if (partnerId.isEmpty()) {
+        this.partnerId = Optional.empty();
+      }
+      else {
+        this.partnerId = Optional.of(partnerId.get());
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public _FinalStage partnerId(String partnerId) {
+      this.partnerId = Optional.ofNullable(partnerId);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "partnerId",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage partnerId(Optional<String> partnerId) {
+      this.partnerId = partnerId;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage documentNumber(Nullable<String> documentNumber) {
       if (documentNumber.isNull()) {
         this.documentNumber = null;
@@ -262,7 +440,7 @@ public final class ExpenseReportsCreateCashResponseLinesItem {
 
     @java.lang.Override
     public ExpenseReportsCreateCashResponseLinesItem build() {
-      return new ExpenseReportsCreateCashResponseLinesItem(id, description, documentNumber, accountCode, netAmount, vatAmount, additionalProperties);
+      return new ExpenseReportsCreateCashResponseLinesItem(id, description, documentNumber, accountCode, partnerId, vatClassifierCode, netAmount, vatAmount, deductibleVat, additionalProperties);
     }
 
     @java.lang.Override

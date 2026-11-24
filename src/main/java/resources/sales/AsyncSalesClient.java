@@ -44,6 +44,7 @@ import com.nordlet.api.resources.sales.requests.InvoicesSendSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUnlockSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesUpdateSalesRequest;
 import com.nordlet.api.resources.sales.requests.InvoicesViewSalesRequest;
+import com.nordlet.api.resources.sales.requests.InvoicesZugferdPdfSalesRequest;
 import com.nordlet.api.resources.sales.requests.PaymentsListSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionComputeSalesRequest;
 import com.nordlet.api.resources.sales.requests.RecognitionModifySalesRequest;
@@ -99,6 +100,7 @@ import com.nordlet.api.resources.sales.types.InvoicesSendSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUnlockSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesUpdateSalesResponse;
 import com.nordlet.api.resources.sales.types.InvoicesViewSalesResponse;
+import com.nordlet.api.resources.sales.types.InvoicesZugferdPdfSalesResponse;
 import com.nordlet.api.resources.sales.types.PaymentsListSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionComputeSalesResponse;
 import com.nordlet.api.resources.sales.types.RecognitionModifySalesResponse;
@@ -230,7 +232,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Account → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (declarations/configs/update (system peppol); Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
    */
   public CompletableFuture<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
       InvoicesPeppolSendSalesRequest request) {
@@ -238,7 +240,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Account → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
+   * Send an issued invoice or credit note to the customer over Peppol through the company's own access point (declarations/configs/update (system peppol); Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with <code>sales/invoices/peppol-xml</code>. <code>status</code> is <code>pending</code> until the receiving access point confirms, then <code>delivered</code>; <code>failed</code> and <code>rejected</code> come with <code>detail</code>, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as <code>sale_invoice.peppol_delivered</code>, <code>sale_invoice.peppol_rejected</code> and <code>sale_invoice.peppol_failed</code>.
    */
   public CompletableFuture<InvoicesPeppolSendSalesResponse> invoicesPeppolSend(
       InvoicesPeppolSendSalesRequest request, RequestOptions requestOptions) {
@@ -262,7 +264,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Render an issued invoice as the national e-invoicing payload for the company country: SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+   * Render an issued invoice as the national e-invoicing payload for the company country: XRechnung UBL (DE), SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented. For XRechnung, answers 422 naming what the BR-DE rules need and the company or invoice lacks; a customer whose Peppol ID has scheme 0204 gets its Leitweg-ID as the buyer reference.
    */
   public CompletableFuture<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
       InvoicesEinvoiceXmlSalesRequest request) {
@@ -270,11 +272,27 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Render an issued invoice as the national e-invoicing payload for the company country: SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+   * Render an issued invoice as the national e-invoicing payload for the company country: XRechnung UBL (DE), SII or Veri*Factu (ES), Factur-X (FR), myDATA (GR), Fiskalizacija (HR), NAV Online Számla (HU), FatturaPA (IT), KSeF FA(3) (PL), AT comunicação de faturas (PT) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented. For XRechnung, answers 422 naming what the BR-DE rules need and the company or invoice lacks; a customer whose Peppol ID has scheme 0204 gets its Leitweg-ID as the buyer reference.
    */
   public CompletableFuture<InvoicesEinvoiceXmlSalesResponse> invoicesEinvoiceXml(
       InvoicesEinvoiceXmlSalesRequest request, RequestOptions requestOptions) {
     return this.rawClient.invoicesEinvoiceXml(request, requestOptions).thenApply(response -> response.body());
+  }
+
+  /**
+   * Render an issued invoice or credit note of a German company as a ZUGFeRD 2.5.2 (Factur-X 1.09.2) hybrid e-invoice in the EN 16931 profile, returned base64-encoded: the PDF of <code>sales/invoices/pdf</code> as PDF/A-3 with the invoice data embedded as <code>factur-x.xml</code> (UN/CEFACT Cross Industry Invoice). The embedded XML is the leading part of the invoice. The seller is the one printed on the document, with the Steuernummer of the <code>de-elster</code> compliance settings (scheme FC) and the USt-IdNr. (scheme VA). The date of supply written is the issue date. Answers 422 for a company outside Germany, a draft, a document other than an invoice or credit note, a document with sales tax, and a seller with neither a Steuernummer nor a USt-IdNr.
+   */
+  public CompletableFuture<InvoicesZugferdPdfSalesResponse> invoicesZugferdPdf(
+      InvoicesZugferdPdfSalesRequest request) {
+    return this.rawClient.invoicesZugferdPdf(request).thenApply(response -> response.body());
+  }
+
+  /**
+   * Render an issued invoice or credit note of a German company as a ZUGFeRD 2.5.2 (Factur-X 1.09.2) hybrid e-invoice in the EN 16931 profile, returned base64-encoded: the PDF of <code>sales/invoices/pdf</code> as PDF/A-3 with the invoice data embedded as <code>factur-x.xml</code> (UN/CEFACT Cross Industry Invoice). The embedded XML is the leading part of the invoice. The seller is the one printed on the document, with the Steuernummer of the <code>de-elster</code> compliance settings (scheme FC) and the USt-IdNr. (scheme VA). The date of supply written is the issue date. Answers 422 for a company outside Germany, a draft, a document other than an invoice or credit note, a document with sales tax, and a seller with neither a Steuernummer nor a USt-IdNr.
+   */
+  public CompletableFuture<InvoicesZugferdPdfSalesResponse> invoicesZugferdPdf(
+      InvoicesZugferdPdfSalesRequest request, RequestOptions requestOptions) {
+    return this.rawClient.invoicesZugferdPdf(request, requestOptions).thenApply(response -> response.body());
   }
 
   /**
@@ -342,7 +360,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), or keeps <code>number</code>, the number a document issued in another program (a webshop, a till) already carries, without moving the series counter (409 when the company already has a document with that number, 422 in a country whose sale documents get national marks at issue, Portugal), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. An advance invoice whose VAT is due when it is paid (<code>advanceVatOnPayment</code>: the VAT country is AT, BG, CZ, DE, EE, ES, FI, FR, HR, HU, LT, LV, PL, SE, SI or SK, or BE, IE, LU or NL with a customer who is not a business) posts no VAT at issue: each payment posts and declares the VAT of the part paid, and a credit note takes back only VAT already declared. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request) {
@@ -350,7 +368,7 @@ public class AsyncSalesClient {
   }
 
   /**
-   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
+   * Issue a draft sale document: assigns the next number (from its document series, else from <code>series</code> or the type's default prefix and the year), or keeps <code>number</code>, the number a document issued in another program (a webshop, a till) already carries, without moving the series counter (409 when the company already has a document with that number, 422 in a country whose sale documents get national marks at issue, Portugal), the issue date (<code>issueDate</code>, else the draft's, else today) and a missing due date from the partner's payment term, and for an invoice, credit note or advance invoice posts the journal entry and stores the VAT evidence. <code>warehouseId</code> (or the series' warehouse) takes the sold goods of an invoice out of stock, the first-expiring lot first (lots without an expiry date after those with one, then the oldest layers first), leaving out expired lots, with a cost of goods sold entry; <code>returnToStock</code> puts them back for a credit note that credits an invoice. A credit note is set against the unpaid balance of the credited document. An advance invoice whose VAT is due when it is paid (<code>advanceVatOnPayment</code>: the VAT country is AT, BG, CZ, DE, EE, ES, FI, FR, HR, HU, LT, LV, PL, SE, SI or SK, or BE, IE, LU or NL with a customer who is not a business) posts no VAT at issue: each payment posts and declares the VAT of the part paid, and a credit note takes back only VAT already declared. Emits <code>sale_invoice.issued</code>, <code>sale_invoice.paid</code> when a credit note settles the credited invoice in full, and <code>intercompany.invoice_mirrored</code> when the partner is linked to another company of the group (a draft purchase invoice is created there). Answers 409 when the document is already issued or locked, the accounting period is locked or the credited invoice is reversed, 422 when the lines carry VAT under a scheme that charges none, when credit notes would exceed the credited total, or when <code>returnToStock</code> is used on anything but a credit note of an invoice. <code>warnings</code> carries the VAT type warnings of <code>sales/invoices/create</code> and <code>document_date_before_last_number</code> when the document is dated before the last number issued in its series.
    */
   public CompletableFuture<InvoicesIssueSalesResponse> invoicesIssue(
       InvoicesIssueSalesRequest request, RequestOptions requestOptions) {

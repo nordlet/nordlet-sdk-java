@@ -31,6 +31,8 @@ public final class InvoicesIssueSalesRequest {
 
   private final Optional<String> series;
 
+  private final Optional<String> number;
+
   private final Optional<String> issueDate;
 
   private final Optional<String> warehouseId;
@@ -39,11 +41,12 @@ public final class InvoicesIssueSalesRequest {
 
   private final Map<String, Object> additionalProperties;
 
-  private InvoicesIssueSalesRequest(String id, Optional<String> series, Optional<String> issueDate,
-      Optional<String> warehouseId, Optional<Boolean> returnToStock,
+  private InvoicesIssueSalesRequest(String id, Optional<String> series, Optional<String> number,
+      Optional<String> issueDate, Optional<String> warehouseId, Optional<Boolean> returnToStock,
       Map<String, Object> additionalProperties) {
     this.id = id;
     this.series = series;
+    this.number = number;
     this.issueDate = issueDate;
     this.warehouseId = warehouseId;
     this.returnToStock = returnToStock;
@@ -58,6 +61,11 @@ public final class InvoicesIssueSalesRequest {
   @JsonProperty("series")
   public Optional<String> getSeries() {
     return series;
+  }
+
+  @JsonProperty("number")
+  public Optional<String> getNumber() {
+    return number;
   }
 
   @JsonProperty("issueDate")
@@ -87,12 +95,12 @@ public final class InvoicesIssueSalesRequest {
   }
 
   private boolean equalTo(InvoicesIssueSalesRequest other) {
-    return id.equals(other.id) && series.equals(other.series) && issueDate.equals(other.issueDate) && warehouseId.equals(other.warehouseId) && returnToStock.equals(other.returnToStock);
+    return id.equals(other.id) && series.equals(other.series) && number.equals(other.number) && issueDate.equals(other.issueDate) && warehouseId.equals(other.warehouseId) && returnToStock.equals(other.returnToStock);
   }
 
   @java.lang.Override
   public int hashCode() {
-    return Objects.hash(this.id, this.series, this.issueDate, this.warehouseId, this.returnToStock);
+    return Objects.hash(this.id, this.series, this.number, this.issueDate, this.warehouseId, this.returnToStock);
   }
 
   @java.lang.Override
@@ -121,6 +129,10 @@ public final class InvoicesIssueSalesRequest {
 
     _FinalStage series(String series);
 
+    _FinalStage number(Optional<String> number);
+
+    _FinalStage number(String number);
+
     _FinalStage issueDate(Optional<String> issueDate);
 
     _FinalStage issueDate(String issueDate);
@@ -146,6 +158,8 @@ public final class InvoicesIssueSalesRequest {
 
     private Optional<String> issueDate = Optional.empty();
 
+    private Optional<String> number = Optional.empty();
+
     private Optional<String> series = Optional.empty();
 
     @JsonAnySetter
@@ -158,6 +172,7 @@ public final class InvoicesIssueSalesRequest {
     public Builder from(InvoicesIssueSalesRequest other) {
       id(other.getId());
       series(other.getSeries());
+      number(other.getNumber());
       issueDate(other.getIssueDate());
       warehouseId(other.getWarehouseId());
       returnToStock(other.getReturnToStock());
@@ -220,6 +235,22 @@ public final class InvoicesIssueSalesRequest {
     }
 
     @java.lang.Override
+    public _FinalStage number(String number) {
+      this.number = Optional.ofNullable(number);
+      return this;
+    }
+
+    @java.lang.Override
+    @JsonSetter(
+        value = "number",
+        nulls = Nulls.SKIP
+    )
+    public _FinalStage number(Optional<String> number) {
+      this.number = number;
+      return this;
+    }
+
+    @java.lang.Override
     public _FinalStage series(String series) {
       this.series = Optional.ofNullable(series);
       return this;
@@ -237,7 +268,7 @@ public final class InvoicesIssueSalesRequest {
 
     @java.lang.Override
     public InvoicesIssueSalesRequest build() {
-      return new InvoicesIssueSalesRequest(id, series, issueDate, warehouseId, returnToStock, additionalProperties);
+      return new InvoicesIssueSalesRequest(id, series, number, issueDate, warehouseId, returnToStock, additionalProperties);
     }
 
     @java.lang.Override

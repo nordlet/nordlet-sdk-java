@@ -7,6 +7,7 @@ package com.nordlet.api.resources.assets;
 import com.nordlet.api.core.ClientOptions;
 import com.nordlet.api.core.RequestOptions;
 import com.nordlet.api.resources.assets.requests.AssetsCreateAssetsRequest;
+import com.nordlet.api.resources.assets.requests.AssetsCreateFromPurchaseAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsDisposeAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsGetAssetsRequest;
 import com.nordlet.api.resources.assets.requests.AssetsInputVatAssetsRequest;
@@ -20,6 +21,7 @@ import com.nordlet.api.resources.assets.requests.GroupsListAssetsRequest;
 import com.nordlet.api.resources.assets.requests.SettingsGetAssetsRequest;
 import com.nordlet.api.resources.assets.requests.SettingsUpdateAssetsRequest;
 import com.nordlet.api.resources.assets.types.AssetsCreateAssetsResponse;
+import com.nordlet.api.resources.assets.types.AssetsCreateFromPurchaseAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsDisposeAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsGetAssetsResponse;
 import com.nordlet.api.resources.assets.types.AssetsInputVatAssetsResponse;
@@ -151,6 +153,22 @@ public class AssetsClient {
   public AssetsCreateAssetsResponse assetsCreate(AssetsCreateAssetsRequest request,
       RequestOptions requestOptions) {
     return this.rawClient.assetsCreate(request, requestOptions).body();
+  }
+
+  /**
+   * Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; <code>acquisitionCost</code> takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps <code>purchaseInvoiceLineId</code>. Otherwise as <code>assets/assets/create</code>.
+   */
+  public AssetsCreateFromPurchaseAssetsResponse assetsCreateFromPurchase(
+      AssetsCreateFromPurchaseAssetsRequest request) {
+    return this.rawClient.assetsCreateFromPurchase(request).body();
+  }
+
+  /**
+   * Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; <code>acquisitionCost</code> takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps <code>purchaseInvoiceLineId</code>. Otherwise as <code>assets/assets/create</code>.
+   */
+  public AssetsCreateFromPurchaseAssetsResponse assetsCreateFromPurchase(
+      AssetsCreateFromPurchaseAssetsRequest request, RequestOptions requestOptions) {
+    return this.rawClient.assetsCreateFromPurchase(request, requestOptions).body();
   }
 
   /**

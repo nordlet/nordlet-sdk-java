@@ -10,10 +10,12 @@ import com.nordlet.api.resources.files.requests.DeleteFilesRequest;
 import com.nordlet.api.resources.files.requests.GetFilesRequest;
 import com.nordlet.api.resources.files.requests.ListFilesRequest;
 import com.nordlet.api.resources.files.requests.UploadFilesRequest;
+import com.nordlet.api.resources.files.requests.UploadLinksCreateFilesRequest;
 import com.nordlet.api.resources.files.types.DeleteFilesResponse;
 import com.nordlet.api.resources.files.types.GetFilesResponse;
 import com.nordlet.api.resources.files.types.ListFilesResponse;
 import com.nordlet.api.resources.files.types.UploadFilesResponse;
+import com.nordlet.api.resources.files.types.UploadLinksCreateFilesResponse;
 
 public class FilesClient {
   protected final ClientOptions clientOptions;
@@ -44,6 +46,21 @@ public class FilesClient {
    */
   public UploadFilesResponse upload(UploadFilesRequest request, RequestOptions requestOptions) {
     return this.rawClient.upload(request, requestOptions).body();
+  }
+
+  /**
+   * Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: <code>POST</code> the bytes to <code>url</code> with any <code>Content-Type</code>; no API key is needed, the link is the permission. The link works once and until <code>expiresAt</code> (<code>expiresInMinutes</code>, 60 by default, at most 1440). The file is stored under <code>entity</code>, <code>entityId</code>, <code>fileName</code> and <code>mimeType</code> (else the media type of the upload request) with the id <code>fileId</code> and the <code>storageKey</code> given here, which other calls take as <code>documentRef</code> once the file is uploaded; <code>files/get</code> with <code>fileId</code> answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
+   */
+  public UploadLinksCreateFilesResponse uploadLinksCreate(UploadLinksCreateFilesRequest request) {
+    return this.rawClient.uploadLinksCreate(request).body();
+  }
+
+  /**
+   * Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: <code>POST</code> the bytes to <code>url</code> with any <code>Content-Type</code>; no API key is needed, the link is the permission. The link works once and until <code>expiresAt</code> (<code>expiresInMinutes</code>, 60 by default, at most 1440). The file is stored under <code>entity</code>, <code>entityId</code>, <code>fileName</code> and <code>mimeType</code> (else the media type of the upload request) with the id <code>fileId</code> and the <code>storageKey</code> given here, which other calls take as <code>documentRef</code> once the file is uploaded; <code>files/get</code> with <code>fileId</code> answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
+   */
+  public UploadLinksCreateFilesResponse uploadLinksCreate(UploadLinksCreateFilesRequest request,
+      RequestOptions requestOptions) {
+    return this.rawClient.uploadLinksCreate(request, requestOptions).body();
   }
 
   /**
